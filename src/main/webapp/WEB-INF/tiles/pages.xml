@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 3_0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+
+	<definition name="defaultTemplate" template="/WEB-INF/jsp/common/template/default-template.jsp">
+	<put-attribute name="header" value="/WEB-INF/jsp/common/header.jsp" />
+	<put-attribute name="body-content"	value="/WEB-INF/jsp/common/body-content.jsp" />
+	<put-attribute name="footer" value="/WEB-INF/jsp/common/footer.jsp" />  
+	</definition>
+
+	<!-- Common/General for all users -->
+	<!-- Start -->
+	
+	<definition name="home" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/website/body-content.jsp" />
+	</definition>
+	<definition name="farm" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/farm-list.jsp" />
+	</definition>
+	<definition name="farm-info" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/manage-farm-info.jsp" />
+	</definition>
+	<definition name="view-farm-info" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/view-farm-info.jsp" />
+	</definition>
+	<!-- <definition name="output-farm" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/output-farm.jsp" />
+	</definition> -->
+	<definition name="output-edit-farm-info" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/output-edit-farm-info.jsp" />
+	</definition>
+	<definition name="output-farm-info" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/output-farm-info.jsp" />
+	</definition>
+	<definition name="view-farm-strategy" extends="defaultTemplate">
+	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/strategy/view-farm-strategy.jsp" />
+	</definition>
+	
+	
+	<!--  By abhishek for scenarios -->
+	<definition name="scenarios" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/scenarios/scenarios.jsp"/>
+	</definition>
+
+	<!-- By abhishek for userManagement -->
+	<definition name="user-management" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/userManagement/userManagement.jsp"/>
+	</definition>
+
+	<definition name="contribution-payment" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/contribution-payment/contribution-payment.jsp"/>
+	</definition>
+	<definition name="privacy-policy" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/privacy-policy/privacy-policy.jsp"/>
+	</definition>
+	<definition name="license-agreement" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/license-agreement/license-agreement.jsp"/>
+	</definition>
+	<definition name="training-page" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/training-page/training-content.jsp"/>
+	</definition>
+	<definition name="error" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/error/error.jsp"/>
+	</definition>
+
+</tiles-definitions>

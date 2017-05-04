@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- We're using MySQL database so the dialect needs to MySQL as well-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <!-- Enable this to see the SQL statements in the logs-->
+        <property name="show_sql">false</property>
+        <property name="hbm2ddl.auto">update</property>
+        <!-- Property for file upload -->
+        <property name="hibernate.connection.SetBigStringTryClob">true</property>
+        <property name="hibernate.jdbc.batch_size">0</property>
+
+        <!--    @changed - Abhishek     @date - 13-01-2016    @desc - for implementing second level hibernate cache-->
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+        <property name="hbm2ddl.import_files">/import.sql</property>
+        <property name="hbm2ddl.import_files_sql_extractor">org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor</property>
+
+        <!--    for enabling dynamic lazy initialization of the lazy collections    -->
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+
+    </session-factory>
+</hibernate-configuration>

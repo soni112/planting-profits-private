@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<project name="CTH" default="all">
+	<property name="username" value="abhishek"/>
+	<property name="password" value="abhishek123"/>
+	<!--<property name="backupDirectory" location="/tmp"/>-->
+	<property name="backupDirectory" location="/opt/Planting_Profit/warBackup"/>
+	<!--<property name="baseDirectory" location="/home/abhishek/Abhishek/Server/wildfly-8.2.0.Final"/>-->
+	<property name="baseDirectory" location="/usr/local/share/wildfly/wildfly-9.0.2.Final"/>
+
+	<!--<path id="compile.classpath">
+		<fileset dir="/home/abhishek/Downloads/svnant-1.3.1/lib">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="/usr/share/ant/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>-->
+	<!-- Task, definition required to use SVN Checkout. -->
+	<!--<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="compile.classpath" />-->
+
+	<macrodef name="service">
+		<attribute name="service" />
+		<attribute name="action" />
+		<sequential>
+			<exec executable="/bin/bash">
+				<arg line="@{service} @{action}"/>
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<target name="start">
+		<exec dir="." executable="sh">
+			<arg value="-c" />
+			<arg value="nohup ${baseDirectory}/bin/standalone.sh 2>1&amp;"/>
+		</exec>
+		<!--<service service="${baseDirectory}/bin/standalone.sh" action="2>1&amp;" />-->
+	</target>
+	<target name="stop">
+		<service service="${baseDirectory}/bin/jboss-cli.sh"  action="--connect command=:shutdown" />
+	</target>
+
+	<target name="restart">
+		<service service="${baseDirectory}/bin/jboss-cli.sh"  action="--connect command=:shutdown" />
+		<exec dir="." executable="sh">
+			<!--<arg line="-c 'nohup ${baseDirectory}/bin/standalone.sh 2>1&amp;'" />-->
+			<arg value="nohup ${baseDirectory}/bin/standalone.sh 2>1&amp;"/>
+		</exec>
+	</target>
+
+	<target name="init">
+		<mkdir dir="build"/>
+		<mkdir dir="/opt/Planting_Profit"/>
+		<mkdir dir="/opt/Planting_Profit/warBackup"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="target" />
+		<delete dir="build" />
+	</target>
+
+	<target name="cleanAndBackup">
+		<tstamp>
+			<format property="TODAY_GB" pattern="yyyy-MMMM-d(hh:mm:ss aa)" locale="en,GB"/>
+		</tstamp>
+		<copy file="${baseDirectory}/standalone/deployments/P_Profit.war" todir="${backupDirectory}"/>
+		<move file="${backupDirectory}/P_Profit.war" tofile="${backupDirectory}/${TODAY_GB}.P_Profit.war"/>
+		<delete file="${baseDirectory}/standalone/deployments/P_Profit.war"/>
+	</target>
+
+	<target name="distribute">
+		<copy file="build/P_Profit.war" todir="${baseDirectory}/standalone/deployments"/>
+	</target>
+
+	<target name="update-codebase">
+		<exec dir="." executable="sh">
+			<arg line="-c 'svn update --username ${username} --password ${password}'" />
+		</exec>
+	</target>
+
+	<target name="mvn">
+		<exec dir="." executable="sh">
+			<arg line="-c 'mvn clean install -DskipTests'" />
+		</exec>
+	</target>
+
+	<target name="all">
+		<!--<antcall target="update-codebase" />-->
+		<antcall target="stop" />
+		<antcall target="mvn" />
+		<antcall target="cleanAndBackup" />
+		<antcall target="distribute" />
+		<!--<antcall target="start" />-->
+		<!--<antcall target="clean" />-->
+	</target>
+</project>

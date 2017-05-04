@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <!-- This is where we configure Spring-Security -->
+    <security:global-method-security secured-annotations="enabled"/>
+
+    <security:http use-expressions="true">
+        <security:intercept-url pattern="/agriculture/authentication/home"
+                                access="permitAll"/>
+
+        <security:access-denied-handler error-page="/access-denied.htm"/>
+
+
+        <security:form-login login-page="/agriculture/authentication/home"
+                             authentication-failure-url="/agriculture/authentication/home?error=true"
+                             default-target-url="/agriculture/authentication/logedin"
+                             login-processing-url="/j_spring_security_check" always-use-default-target="true"/>
+
+        <security:logout logout-success-url="/home.htm"
+                         logout-url="/j_spring_security_logout"
+                         invalidate-session="true"/>
+
+    </security:http>
+
+    <!-- Declare an authentication-manager to use a custom userDetailsService -->
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="customUserDetailsService">
+            <security:password-encoder ref="passwordEncoder"/>
+        </security:authentication-provider>
+
+    </security:authentication-manager>
+
+    <!-- Use a Md5 encoder since the user's passwords are stored as Md5 in the database -->
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+
+    <!-- A custom service where Spring will retrieve users and their corresponding access levels -->
+    <bean id="customUserDetailsService" class="com.decipher.security.CustomUserDetailsService"/>
+
+
+</beans>

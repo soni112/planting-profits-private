@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+       <diskStore path="java.io.tmpdir"/>
+
+       <defaultCache maxElementsInMemory="100" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="200" />
+
+       <cache
+               name="planting-Second-level-Cache"
+               maxElementsInMemory="10000"
+               eternal="false"
+               timeToIdleSeconds="300"
+               timeToLiveSeconds="600"
+               overflowToDisk="true"
+               diskExpiryThreadIntervalSeconds="1"
+               memoryStoreEvictionPolicy="LFU"
+               />
+</ehcache>
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd"
+         updateCheck="true" monitoring="autodetect"
+         dynamicConfig="true">
+
+       <diskStore path="java.io.tmpdir"/>
+
+       <cache name="planting-Second-level-Cache" maxEntriesLocalHeap="500" eternal="false" overflowToDisk="true" diskPersistent="true"
+              timeToIdleSeconds="300" timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1"
+              memoryStoreEvictionPolicy="LFU"></cache>
+
+
+</ehcache>-->
