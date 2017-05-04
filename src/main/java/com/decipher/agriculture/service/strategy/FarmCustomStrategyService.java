@@ -20,11 +20,11 @@ public interface FarmCustomStrategyService {
                                                    String[] cropProposedArray,String[] cropsGroupArray,String strategyName,
                                                    Double potentialProfit, Double totalAcreage);*/
     int saveFarmCustomStrategyForMultipalCrop(int farmId, String[] cropsArray, String[] cropContractArray,
-                                                  String[] cropProposedArray, String[] cropsGroupArray, String strategyName);
+                                              String[] cropProposedArray, String[] cropsGroupArray, String strategyName);
 
-    boolean isFarmStrategyExitsWithName(String strategyName,int farmId);
+    boolean isFarmStrategyExitsWithName(String strategyName, int farmId);
 
-    boolean isFarmStrategyExitsWithId(int strategyId,int farmId);
+    boolean isFarmStrategyExitsWithId(int strategyId, int farmId);
 
     boolean deleteStrategy(int strategyId);
 

@@ -33,7 +33,7 @@ public class StackedBarChartDemo4 extends ApplicationFrame {
         final CategoryDataset dataset = createDataset();
         final JFreeChart chart = createChart(dataset);
         final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(590, 350));
+        chartPanel.setPreferredSize(new Dimension(590, 350));
         setContentPane(chartPanel);
     }
 

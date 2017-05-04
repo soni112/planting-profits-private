@@ -172,7 +172,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                 if (checkCounter != 0) {
                     CropType cropType = (CropType) hibernateUtils.getPersistedObject(CropType.class, new Integer((String) jObj.get("crop_id")));
                     if (cropType == null) {
-                        throw new java.lang.RuntimeException("Crop id is invalid or not matched with stored values [" + jObj.get("crop_id") + "]");
+                        throw new RuntimeException("Crop id is invalid or not matched with stored values [" + jObj.get("crop_id") + "]");
                     }
                     if (!cropType.getCropName().equalsIgnoreCase(((String) jObj.get("crop_name")).trim())) {
                         throw new IllegalAccessException("Crop name not matched");
@@ -256,7 +256,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                 if (checkCounter != 0) {
                     CropType cropType = (CropType) hibernateUtils.getPersistedObject(CropType.class, new Integer((String) jObj.get("crop_id")));
                     if (cropType == null) {
-                        throw new java.lang.RuntimeException("Crop id is invalid or not matched with stored values [" + jObj.get("crop_id") + "]");
+                        throw new RuntimeException("Crop id is invalid or not matched with stored values [" + jObj.get("crop_id") + "]");
                     }
                     if (!cropType.getCropName().equalsIgnoreCase(((String) jObj.get("crop_name")).trim())) {
                         throw new IllegalAccessException("Crop name not matched");

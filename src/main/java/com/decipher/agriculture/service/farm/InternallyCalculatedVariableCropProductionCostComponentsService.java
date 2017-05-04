@@ -8,16 +8,16 @@ import com.decipher.view.form.farmDetails.InternallyCalculatedVariableCropProduc
 public interface InternallyCalculatedVariableCropProductionCostComponentsService
 {
 	int save(
-			InternallyCalculatedVariableCropProductionCostComponents costComponents);
+            InternallyCalculatedVariableCropProductionCostComponents costComponents);
 
 	boolean update(
-			InternallyCalculatedVariableCropProductionCostComponents costComponents);
+            InternallyCalculatedVariableCropProductionCostComponents costComponents);
 
 	boolean deleteById(int id);
 
 	boolean saveList(
-			Set<InternallyCalculatedVariableCropProductionCostComponents> costComponentsList);
+            Set<InternallyCalculatedVariableCropProductionCostComponents> costComponentsList);
 
 	InternallyCalculatedVariableCropProductionCostComponentsView getCostComponentsById(
-			int id);
+            int id);
 }

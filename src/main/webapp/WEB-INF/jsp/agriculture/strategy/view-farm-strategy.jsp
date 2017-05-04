@@ -575,9 +575,9 @@
             <td class="success"><h4 style="color : #337ab7; cursor : pointer" onclick="openStrategyDetailsPopup('{{= strategy.id}}'); return false;">{{= strategy.strategyName}}<h4></td>
             <td class="success"><h4>{{= addCommaSignWithDollarForTextWithOutId(strategy.potentialProfit)}}</h4></td>
             <td class="success"><h4>{{= addCommaSignForTextWithOutId(strategy.totalAcreage)}}</h4></td>
-            {{each(key1, jsonObject) outputDetails}}
-                {{if jsonObject.strategyName == strategy.strategyName}}
-                    {{each(key2, output) jsonObject.details}}
+            {{each(key1, data) outputDetails}}
+                {{if strategy.id == data.strategyId }}
+                    {{each(key2, output) data.details}}
                         <td class="success"><h4>{{= output.amount}}</h4></td>
                     {{/each}}
                 {{/if}}

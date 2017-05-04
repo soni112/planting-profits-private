@@ -10,13 +10,13 @@ public interface ExternalVariableCropProductionCostComponentPricesService
 	int save(ExternalVariableCropProductionCostComponentPrices componentPrices);
 
 	boolean update(
-			ExternalVariableCropProductionCostComponentPrices componentPrices);
+            ExternalVariableCropProductionCostComponentPrices componentPrices);
 
 	boolean delete(int id);
 
 	ExternalVariableCropProductionCostComponentPricesView getProductionCostComponentPricesById(
-			int id);
+            int id);
 
 	boolean saveList(
-			Set<ExternalVariableCropProductionCostComponentPrices> componentPricesList);
+            Set<ExternalVariableCropProductionCostComponentPrices> componentPricesList);
 }

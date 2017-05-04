@@ -119,12 +119,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             if (cropTypeView.getSelected()) {
                 JSONObject jsonObject = getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
                 jsonObject.put("cropName", cropTypeView.getCropName());
+                jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails));
                 jsonArray.add(jsonObject);
 
                 if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")){
 
                     JSONObject jsonObjectForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
                     jsonObjectForFirm.put("cropName", cropTypeView.getCropName() + " (Firm)");
+                    jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails));
                     jsonArray.add(jsonObjectForFirm);
                 }
             }
@@ -135,10 +137,45 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         for (CropsGroupView cropsGroupView : cropsGroupViewList) {
             JSONObject jsonObject = getCropLimit(farmInfoView, cropsGroupView.getMinimumAcres(), cropsGroupView.getMaximumAcres(), null, cropsGroupView, outputDetails);
             jsonObject.put("cropName", cropsGroupView.getCropsGroupName());
+            int totalAcreage = 0;
+            Set<CropType> cropSet = cropsGroupView.getCropSet();
+            for (CropType cropType : cropSet) {
+                totalAcreage += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(getCropAcreage(new CropTypeView(cropType), outputDetails)));
+            }
+            jsonObject.put("acreagePlanted", totalAcreage);
             jsonArray.add(jsonObject);
         }
 
         return jsonArray;
+    }
+
+    private String getCropAcreage(CropTypeView cropTypeView, JSONObject outputDetails){
+        FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+
+        if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
+            List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+
+            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+
+                if (farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+                    return farmOutputDetailsView.getUsedAcres();
+                }
+            }
+
+        } else if (PlanByStrategy.PLAN_BY_FIELDS.equals(farmInfoView.getStrategy())){
+            Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
+
+            String cropName = cropTypeView.getCropName();
+            if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
+                cropName += " (Firm)";
+            } /*else if (cropTypeView.getProposedchecked()) {
+                cropName += " (Proposed)";
+            }*/
+
+            return hashMapForAcre.get(cropName) != null ? hashMapForAcre.get(cropName).split(" ")[0] : "--";
+        }
+
+        return "";
     }
 
     private JSONObject getCropLimit(FarmInfoView farmInfoView, String minAcres, String maxAcres, CropTypeView cropTypeView, CropsGroupView cropsGroupView, JSONObject outputDetails) {
@@ -312,7 +349,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
 
-        if (Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
+        if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
             List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                 JSONObject jsonObject = new JSONObject();
@@ -358,7 +395,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             }
 
 
-        } else if (Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
+        } else if (PlanByStrategy.PLAN_BY_FIELDS.equals(farmInfoView.getStrategy())) {
             Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
             Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
             Map<String, String> hashMapForRatio = (Map<String, String>) outputDetails.get("hashMapForRatio");

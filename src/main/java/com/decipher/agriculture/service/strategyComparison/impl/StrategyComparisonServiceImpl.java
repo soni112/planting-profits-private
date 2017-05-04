@@ -488,6 +488,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             JSONArray cropArray = new JSONArray();
 
             jsonObjectForStrategy.put("strategyName", farmCustomStrategyView.getStrategyName());
+            jsonObjectForStrategy.put("strategyId", farmCustomStrategyView.getId());
 
             if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)){
                 for (FarmOutputDetailsView farmOutputDetailsView : (List<FarmOutputDetailsView>) strategyDetails.get("farmOutputDetails")) {
@@ -496,10 +497,11 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                         jsonObject.put("name", farmOutputDetailsView.getCropTypeView().getCropName());
                         jsonObject.put("amount", farmOutputDetailsView.getUsedAcresAsDouble());
                         cropArray.add(jsonObject);
-//                        if (counter == 0) {
-                            jsonArrayForCropHeader.add(farmOutputDetailsView.getCropTypeView().getCropName());
 
-//                        }
+                        if(jsonArrayForCropHeader.contains(farmOutputDetailsView.getCropTypeView().getCropName())){
+                            jsonArrayForCropHeader.add(farmOutputDetailsView.getCropTypeView().getCropName());
+                        }
+
                     }
 
                 }
@@ -514,17 +516,14 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put("amount", mapForAcreEntry.getValue().split(" ")[0]);
                     jsonObject.put("name", mapForAcreEntry.getKey());
                     cropArray.add(jsonObject);
-//                    if (counter == 0) {
-                        if (!jsonArrayForCropHeader.contains(mapForAcreEntry.getKey())) {
-                            jsonArrayForCropHeader.add(mapForAcreEntry.getKey());
-                        }
-//                    }
+
+                    if (!jsonArrayForCropHeader.contains(mapForAcreEntry.getKey())) {
+                        jsonArrayForCropHeader.add(mapForAcreEntry.getKey());
+                    }
 
                 }
 
             }
-
-//            counter++;
 
             jsonObjectForStrategy.put("details", cropArray);
 
@@ -587,6 +586,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             JSONArray jsonArray = new JSONArray();
 
             jsonObjectForStrategy.put("strategyName", farmCustomStrategyView.getStrategyName());
+            jsonObjectForStrategy.put("strategyId", farmCustomStrategyView.getId());
 
             Map<String, String> cropResourceUsed = (Map<String, String>) strategyDetails.get("cropResourceUsed");
 
@@ -683,6 +683,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
             JSONObject conservationObject = new JSONObject();
             conservationObject.put("strategyName", farmCustomStrategyView.getStrategyName());
+            conservationObject.put("strategyId", farmCustomStrategyView.getId());
+
             JSONArray conservationArray = new JSONArray();
             conservationArray.add(dataBuilder.getPpFromConservationRiskCrop(farmInfoView, strategyDetails));
             conservationArray.add(dataBuilder.getAcreageConservationRiskCrop(farmInfoView, strategyDetails));
@@ -691,6 +693,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
             JSONObject highRiskObject = new JSONObject();
             highRiskObject.put("strategyName", farmCustomStrategyView.getStrategyName());
+            highRiskObject.put("strategyId", farmCustomStrategyView.getId());
+
             JSONArray highRiskArray = new JSONArray();
             highRiskArray.add(dataBuilder.getCapitalUsed(strategyDetails));
             highRiskArray.add(dataBuilder.getReturnOnLand(farmInfoView, strategyDetails));

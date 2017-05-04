@@ -753,7 +753,8 @@ function validateCropLimits() {
     }
     if (totalMinimumAcre >= Number(removeAllCommas($("#total_land_available").text().trim()))) {
         // customAlerts('Total of the Minimum acres amount must be less than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
-        customAlerts('The total of all of Minimum crop acreage limits cannot be more than the total available land "' + $("#total_land_available").text().trim() + '". Change the minimum crop acreage limits or increase the available land.', type_error, time);
+        customAlerts('The total of all Minimum crop acreage limits cannot be more than the total available land "' + $("#total_land_available").text().trim() + '". ' +
+            'Reduce one or more Minimum crop acreage limits or increase Available land', type_error, time);
         validationCropLimitFlag = false;
         return validationCropLimitFlag;
     }
@@ -764,7 +765,8 @@ function validateCropLimits() {
      */
     if (totalMaximumAcre > Number(removeAllCommas($("#total_land_available").text().trim()))) {
         // customAlerts('Total of the Maximum acres amount must not be more than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
-        customAlerts('The total of all of Maximum crop acreage limits must not be more than the total available land "' + $("#total_land_available").text().trim() + '". Change the maximum crop acreage limits or increase the available land.', type_error, time);
+        customAlerts('The total of all Maximum crop acreage limits must not be more than the total available land "' + $("#total_land_available").text().trim() + '". ' +
+            'Reduce one or more Maximum crop acreage limits or increase Available land', type_error, time);
         validationCropLimitFlag = false;
         return validationCropLimitFlag;
     }
@@ -1670,11 +1672,13 @@ function variableProductionCostChange(obj) {
 
 function addCommaSignForAcres(id) {
     if ($(id).val() == "") {
+
     } else {
         var value = $.trim("" + $(id).val().replace('$', '').replace(/,/g, ''));
         var valueWithPoint = Number(value).toFixed(2);
         if (valueWithPoint > 10000) {
-            alertify.confirm("The amount of land entered exceeds 10,000 acres", function (e) {
+            alertify.confirm("The amount of land entered exceeds 10,000 acres? " +
+                "<br> Click OK to continue or Cancel to change the amount of Available Land", function (e) {
                 if (e) {
                     nextPlanByAcres();
                 }
@@ -3193,7 +3197,11 @@ function buildBaselineStrategySeletion(){
 }
 
 function openStrategyOrBaselinePopup(){
-   $('#save-strategy-popoup').show();
+    if (!checkAllValidation()) {
+        return false;
+    } else {
+        $('#save-strategy-popoup').show();
+    }
 }
 
 function closeStrategyOrBaselinePopup(){

@@ -123,6 +123,8 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
         customStrategy.setStrategyForResourse(false);
         customStrategy.setFarmInfo(farmInfo);
         customStrategy.setFarm(farmInfo.getFarm());
+        Set<CropType> cropTypeSet = farmInfo.getCropTypes();
+
         if (cropsArray != null) {
             for (String str : cropsArray) {
                 FarmCustomStrategyForCrop customStrategyForCrop = new FarmCustomStrategyForCrop();
@@ -132,7 +134,7 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                 } else if (str.split("#-#-#")[1].equals("min")) {
                     customStrategyForCrop.setMinimum(str.split("#-#-#")[2]);
                 }
-                for (CropType cropType : farmInfo.getCropTypes()) {
+                for (CropType cropType : cropTypeSet) {
                     if (cropType.getCropName().equals(str.split("#-#-#")[0])) {
                         customStrategyForCrop.setCropType(cropType);
                         break;
@@ -150,7 +152,7 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                 if (str.split("#-#-#")[1].equals("min")) {
                     customStrategyForCrop.setMinimum(str.split("#-#-#")[2]);
                 }
-                for (CropType cropType : farmInfo.getCropTypes()) {
+                for (CropType cropType : cropTypeSet) {
                     if (cropType.getCropName().equals(str.split("#-#-#")[0])) {
                         customStrategyForCrop.setCropType(cropType);
                         break;
@@ -168,7 +170,7 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                 if (str.split("#-#-#")[1].equals("min")) {
                     customStrategyForCrop.setMinimum(str.split("#-#-#")[2]);
                 }
-                for (CropType cropType : farmInfo.getCropTypes()) {
+                for (CropType cropType : cropTypeSet) {
                     if (cropType.getCropName().equals(str.split("#-#-#")[0])) {
                         customStrategyForCrop.setCropType(cropType);
                         break;
@@ -188,7 +190,8 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                 } else if (str.split("#-#-#")[1].equals("min")) {
                     customStrategyForGroup.setMinimum(str.split("#-#-#")[2]);
                 }
-                for (CropsGroup cropsGroup : farmInfo.getCropsGroup()) {
+                Set<CropsGroup> cropsGroupSet = farmInfo.getCropsGroup();
+                for (CropsGroup cropsGroup : cropsGroupSet) {
                     if (cropsGroup.getCropsGroupName().equals(str.split("#-#-#")[0])) {
                         customStrategyForGroup.setCropsGroup(cropsGroup);
                         break;

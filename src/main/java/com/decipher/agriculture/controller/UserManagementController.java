@@ -117,7 +117,7 @@ public class UserManagementController {
                 account.setExpirationDate(date);
             }
 
-            account.setRegistrationTime(new java.sql.Date(new java.util.Date().getTime()));
+            account.setRegistrationTime(new java.sql.Date(new Date().getTime()));
 
             if (accountType.equalsIgnoreCase("ROLE_ADMIN")){
                 account.setRole(AppRole.ROLE_ADMIN);

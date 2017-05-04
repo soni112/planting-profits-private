@@ -116,11 +116,11 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
             if (obj != null) {
                 if (obj instanceof FarmInfo) {
                     info = (FarmInfo) obj;
-                    if (CropTypes != null)
+//                    if (CropTypes != null)
                         Hibernate.initialize(info.getCropTypes());
-                    if (CropResourceUsage != null)
+//                    if (CropResourceUsage != null)
                         Hibernate.initialize(info.getCropResourceUsage());
-                    if (FieldInfos != null)
+//                    if (FieldInfos != null)
                         Hibernate.initialize(info.getFieldInfos());
                     if (cropDualValues != null)
                         Hibernate.initialize(info.getCropLimitDualValues());
@@ -128,7 +128,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                         Hibernate.initialize(info.getResourceDualValues());
                     if (groupDualValue != null)
                         Hibernate.initialize(info.getGroupLimitDualValues());
-                    if (CropsGroup != null)
+//                    if (CropsGroup != null)
                         Hibernate.initialize(info.getCropsGroup());
 
                 } else

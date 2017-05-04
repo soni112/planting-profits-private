@@ -10,12 +10,12 @@ public interface ExternalCropPriceInfoService
 	int saveExternalCropPriceInfo(ExternalCropPriceInfo externalCropPriceInfo);
 
 	boolean updateExternalCropPriceInfo(
-			ExternalCropPriceInfo externalCropPriceInfo);
+            ExternalCropPriceInfo externalCropPriceInfo);
 
 	boolean deleteExternalCropPriceInfoById(int id);
 
 	ExternalCropPriceInfoView getExternalCropPriceInfoById(int id);
 
 	boolean saveExternalCropPriceInfoList(
-			Set<ExternalCropPriceInfo> externalCropPriceInfoList);
+            Set<ExternalCropPriceInfo> externalCropPriceInfoList);
 }

@@ -336,7 +336,7 @@ public class CropTypeView implements Cloneable {
 
     public String getIntExpCropPriceString() {
         if (intExpCropPrice != null && intExpCropPrice.doubleValue() != 0.0) {
-            return "$" + AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(intExpCropPrice.toString());
+            return "$" + AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal(intExpCropPrice.toString());
         } else {
             return "$0.00";
         }
@@ -353,7 +353,7 @@ public class CropTypeView implements Cloneable {
 
     public String getIntMinCropPriceString() {
         if (intMinCropPrice != null && intMinCropPrice.doubleValue() != 0.0) {
-            return AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(intMinCropPrice.toString());
+            return AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal(intMinCropPrice.toString());
         } else {
             return "";
         }
@@ -380,7 +380,7 @@ public class CropTypeView implements Cloneable {
 
     public String getIntMaxCropPriceString() {
         if (intMaxCropPrice != null && intMaxCropPrice.doubleValue() != 0.0) {
-            return AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(intMaxCropPrice.toString());
+            return AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal(intMaxCropPrice.toString());
         } else {
             return "";
         }

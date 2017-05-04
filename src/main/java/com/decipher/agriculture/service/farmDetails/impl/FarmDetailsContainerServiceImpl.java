@@ -328,7 +328,7 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
                 FarmCustomStrategyView farmCustomStrategyView = farmCustomStrategyViewIterator.next();
                 for (int strategyId : strategyIdArray) {
                     if (farmCustomStrategyView.getId().equals(strategyId)) {
-                        strategyDetails.remove(farmCustomStrategyView);
+                        farmCustomStrategyViewIterator.remove();
                         result = true;
                     }
                 }

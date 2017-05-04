@@ -10,7 +10,7 @@ public class test {
 
     public void showDetails()
     {
-        test.Demo demoObj=new test.Demo();
+        Demo demoObj=new Demo();
         System.out.println("test.showDetails : "+demoObj);
 
     }

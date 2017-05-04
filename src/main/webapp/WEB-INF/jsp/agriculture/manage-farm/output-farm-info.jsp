@@ -563,6 +563,7 @@
 												<td>Impacting Income</td>
 												<td>To Increase Income</td>
 											</c:if>
+											<td>Acreage Planted</td>
 										</tr>
 									</thead>
 
@@ -592,6 +593,7 @@
 													</td>
 													<td class="success">${cropLimit.incDecIncome}</td>
 												</c:if>
+												<td class="success">${cropLimit.acreagePlanted}</td>
 											</tr>
 										</c:forEach>
 

@@ -9,12 +9,12 @@ public interface ExternalCropYieldInfoDao
 	int saveExternalCropPriceInfo(ExternalCropYieldInfo externalCropYieldInfo);
 
 	boolean updateExternalCropYieldInfo(
-			ExternalCropYieldInfo externalCropYieldInfo);
+            ExternalCropYieldInfo externalCropYieldInfo);
 
 	boolean deleteExternalCropYieldInfoById(int id);
 
 	ExternalCropYieldInfo getExternalCropYieldInfoById(int id);
 
 	boolean saveExternalCropYieldInfoList(
-			Set<ExternalCropYieldInfo> externalCropYieldInfoList);
+            Set<ExternalCropYieldInfo> externalCropYieldInfoList);
 }

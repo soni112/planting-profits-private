@@ -423,45 +423,51 @@ function applyHeaders(outputDetails){
 }
 
 function applyComparisonDetails(outputDetails){
-	var comparisonDetails = {};
-	comparisonDetails["strategyDetails"] = outputDetails.strategyDetails;
+//	crop output details
+    var comparisonDetails = {};
+    comparisonDetails["strategyDetails"] = outputDetails.strategyDetails;
 	comparisonDetails["reportFlag"] = false;
-
-//	crop output details Details
 	comparisonDetails["outputDetails"] = prepareCropComparisonDetails(outputDetails);
 	applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails, "#cropOutputDetailsTbody");
 
-//	resource output details Details
-	comparisonDetails["outputDetails"] = outputDetails.jsonArrayForResource;
-	applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails, "#resourceOutputDetailsTbody");
+//	resource output details
+    var comparisonDetails1 = {};
+    comparisonDetails1["strategyDetails"] = outputDetails.strategyDetails;
+    comparisonDetails1["reportFlag"] = false;
+	comparisonDetails1["outputDetails"] = outputDetails.jsonArrayForResource;
+	applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails1, "#resourceOutputDetailsTbody");
 
-//	conservation output details Details
-	if(outputDetails.jsonArrayForConservationCrop[0].details.length != 0){
-
-		comparisonDetails["outputDetails"] = outputDetails.jsonArrayForConservationCrop;
-		applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails, "#conservationDetailsTbody");
+//	conservation output details
+    if(outputDetails.jsonArrayForConservationCrop[0].details.length != 0){
+        var comparisonDetails2 = {};
+        comparisonDetails2["strategyDetails"] = outputDetails.strategyDetails;
+        comparisonDetails2["reportFlag"] = false;
+		comparisonDetails2["outputDetails"] = outputDetails.jsonArrayForConservationCrop;
+		applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails2, "#conservationDetailsTbody");
 	}
 
-//	highRisk output details Details
+//	highRisk output details
 	if(outputDetails.jsonArrayForHighRiskCrop[0].details.length != 0){
-
-		comparisonDetails["outputDetails"] = outputDetails.jsonArrayForHighRiskCrop;
-		applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails, "#highRiskDetailsTbody");
+        var comparisonDetails3 = {};
+        comparisonDetails3["strategyDetails"] = outputDetails.strategyDetails;
+        comparisonDetails3["reportFlag"] = false;
+		comparisonDetails3["outputDetails"] = outputDetails.jsonArrayForHighRiskCrop;
+		applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails3, "#highRiskDetailsTbody");
 	}
 }
 
 function prepareCropComparisonDetails(outputDetails){
 	var headerArr = outputDetails.jsonArrayForCropHeader;
-	var detailsArr = outputDetails.jsonArrayForCrop;
+	var strategyDetailsArr = outputDetails.jsonArrayForCrop;
 
 	var holder = [];
-	for(var index in detailsArr){
-		var strategyDetails = detailsArr[index];
+	for(var key in strategyDetailsArr){
+		var strategyDetails = strategyDetailsArr[key];
 		var cropDetailsArr = [];
-        for (var key in headerArr){
-        	for(var obj in strategyDetails["details"]){
-            	var cropDetails = strategyDetails["details"][obj];
-                if(cropDetails["name"] == headerArr[key]){
+        for (var crop in headerArr){
+        	for(var index in strategyDetails["details"]){
+            	var cropDetails = strategyDetails["details"][index];
+                if(cropDetails["name"] === headerArr[crop]){
                     cropDetailsArr.push(cropDetails);
                     break;
                 }
@@ -469,6 +475,7 @@ function prepareCropComparisonDetails(outputDetails){
         }
         var data = {};
 		data["strategyName"] = strategyDetails["strategyName"];
+		data["strategyId"] = strategyDetails["strategyId"];
 		data["details"] = cropDetailsArr;
 		holder.push(data);
 	}

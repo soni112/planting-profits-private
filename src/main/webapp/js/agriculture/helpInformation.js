@@ -400,7 +400,7 @@ var cropLimitSestivityDiv = "<p>Changing crop limits or a combination of crop li
 
 var cropLimitSestivityMultipleDiv = "<p><b>Multiple Crop Limits:</b></p>" +
 	"<p>You can change multiple crop limits simultaneously and analyze the impact.  </p>" +
-	"<p>Sometimes two or more crop limits may be critical.  In this case the effect of changing only one may be very small so you can more quickly see how to increase profit by increasing two or more crop limits at the same time. </p>";
+	"<p>Sometimes two or more crop limits may be critical.  In this case the effect of changing only one may be very small so you can quickly see how to increase profit by increasing two or more crop limits at the same time. </p>";
 
 
 var Conservation_Practice = "<p>Check the box to label a crop a as Conservation Practice crop.</p><p>This designator does not affect the analysis.</p><p>It is used to compute the amount of acreage and profit from crops labeled Conservation Practices.</p>";

@@ -719,6 +719,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         List<String[]> array = linearProgramingSolveDao.generateCombination(cropBeanForOutput, cropsGroups, fieldInfoViews);
         long oldProfit = 0;
         boolean continueFlag = true;
+        CropResourceUsageView resource = null;
 
         Double amount = 0.0;
 
@@ -732,6 +733,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 if (resourceName != null) {
                     for (CropResourceUsageView cropResourceUsageView : resourceUsageViews) {
                         if (cropResourceUsageView.getCropResourceUse().equals(resourceName)) {
+                            resource = cropResourceUsageView;
                             /**
                              * @changed - Abhishek
                              * @date - 25-02-2016
@@ -941,7 +943,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                      */
                     String differanceString = null;
                     if (resourceName != null) {
-                        differanceString = "$" + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
+                        differanceString = resource.getUoMResource() + " " + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                     } else {
                         differanceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                     }
@@ -1045,6 +1047,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         Set<CropsGroup> cropsGroups = farmInfo.getCropsGroup();
         long oldProfit = 0;
         boolean continueFlag = true;
+        CropResourceUsageView resource = null;
 
         Long amount = 0l;
         outer:
@@ -1054,6 +1057,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 if (resourceName != null) {
                     for (CropResourceUsageView cropResourceUsageView : resourceUsageViews) {
                         if (cropResourceUsageView.getCropResourceUse().equals(resourceName)) {
+                            resource = cropResourceUsageView;
                             /**
                              * @changed - Abhishek
                              * @date - 25-02-2016
@@ -1253,7 +1257,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                      */
                     String differanceString = null;
                     if (resourceName != null) {
-                        differanceString = "$" + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
+                        differanceString = resource.getUoMResource() + " " + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                     } else {
                         differanceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                     }

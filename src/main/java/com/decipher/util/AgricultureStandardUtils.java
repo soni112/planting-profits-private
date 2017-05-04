@@ -65,6 +65,13 @@ public class AgricultureStandardUtils {
 		return formatter.format(Double.parseDouble(pattern));
 	}
 
+	public static String commaSeparatedForPriceWithThreeDecimal(String pattern) {
+		DecimalFormat formatter = new DecimalFormat("#,###.000");
+//		DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
+//		symbols.setGroupingSeparator(',');
+		return formatter.format(Double.parseDouble(pattern));
+	}
+
 	public static String priceWithOneDecimal(String pattern) {
 		DecimalFormat formatter = new DecimalFormat("####.0");
 		return formatter.format(Double.parseDouble(pattern));

@@ -2340,7 +2340,7 @@ Commented as per client requirement
 				<div class="increase_profit">
 					<p>
 						<span class="cropNameForPopup"></span> profit per acre (<span id="potentialProfitForPopup"></span>) is less than zero.<br>
-						<span class="cropNameForPopup"></span> will not be included in the strategy since it has a negative profit per acre unless you enter a minimum acreage limit for <span class="cropNameForPopup"></span>
+						<span class="cropNameForPopup"></span> will not be included in the strategy since it has a negative profit per acre unless you enter a minimum acreage limit for <span class="cropNameForPopup"></span>.
 					</p>
 				</div>
 				<!-- <div class="decrease_profit">

@@ -42,7 +42,7 @@ public class SensetivityAnalysisController {
 			@RequestParam(value = "farmInfoId", required = false) int farmInfoId,
 			@RequestParam(value = "resourceArray[]", required = true) String[] resourceArray) {
 		JsonResponse jsonResponse = new JsonResponse();
-		org.json.simple.JSONObject jsonObject = null;
+		JSONObject jsonObject = null;
 		Account account = sessionService.getLoggedInUser();
 		if (account != null) {
 			jsonObject = sensetivityAnalysisService.getSAStrategyByMultipleResource(farmInfoId, resourceArray, null, null, null, null);
@@ -68,7 +68,7 @@ public class SensetivityAnalysisController {
 			@RequestParam(value = "cropProposedArray[]", required = false) String[] cropProposedArray,
 			@RequestParam(value = "cropsGroupArray[]", required = false) String[] cropsGroupArray) {
 		JsonResponse jsonResponse = new JsonResponse();
-		org.json.simple.JSONObject jsonObject = null;
+		JSONObject jsonObject = null;
 		Account account = sessionService.getLoggedInUser();
 		if (account != null) {
 			jsonObject = sensetivityAnalysisService.getSAStrategyByMultipleResource(farmInfoId, null, cropsArray, cropContractArray, cropsGroupArray, cropProposedArray);

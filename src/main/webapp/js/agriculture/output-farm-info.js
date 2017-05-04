@@ -1550,10 +1550,12 @@ function SaveStrategyForMultipleCrops(resourse_Type){
 				customAlerts('"'+strategyName+'" strategy has been successfully saved', type_success, time);
 				updateCurrentPotentialProfitAndCalculateDifference($("#potential_profit_id").text());
 				hideCreateNewScenario();
-					}
-			else if (status == 'Already exists') {
+				
+			} else if (status == 'Already exists') {
 				customAlerts('Strategy with name "'+strategyName+'" already exists, Please enter other strategy name', type_error, time);
 				//hideCreateNewScenario();
+			} else {
+				customAlerts('Something happened while processing your request', type_error, time);
 			}
 		},
 		error : function(XMLHttpRequest, status, message) {

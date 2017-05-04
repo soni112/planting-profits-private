@@ -21,24 +21,24 @@ import com.decipher.view.form.farmDetails.FieldInfoView;
 public interface LinearProgramingSolveDao {
 
 	Result getLinearProgramingResultForAcerage(
-			List<CropBeanForOutput> cropBeanForOutputList, String land,
-			List<CropResourceUsageView> resourceUsageViews,
-			Set<CropsGroup> cropsGroups);
+            List<CropBeanForOutput> cropBeanForOutputList, String land,
+            List<CropResourceUsageView> resourceUsageViews,
+            Set<CropsGroup> cropsGroups);
 
 	List<String[]> generateCombination(
-			List<CropBeanForOutput> cropBeanForOutputList,
-			Set<CropsGroup> cropsGroups, List<FieldInfoView> fieldInfoViews);
+            List<CropBeanForOutput> cropBeanForOutputList,
+            Set<CropsGroup> cropsGroups, List<FieldInfoView> fieldInfoViews);
 
 	Map<String[], Result> getLinearProgramingResultForField(
-			List<CropBeanForOutput> cropBeanForOutputList,
-			List<CropResourceUsageView> resourceUsageViews,
-			Set<CropsGroup> cropsGroups, List<String[]> combinationSetList,
-			List<FieldInfoView> fieldInfoViews);
+            List<CropBeanForOutput> cropBeanForOutputList,
+            List<CropResourceUsageView> resourceUsageViews,
+            Set<CropsGroup> cropsGroups, List<String[]> combinationSetList,
+            List<FieldInfoView> fieldInfoViews);
 
 	Map<String, Object> getBestResultFromLinearProgramingForField(
-			List<CropBeanForOutput> cropBeanForOutputList,
-			List<CropResourceUsageView> resourceUsageViews,
-			Set<CropsGroup> cropsGroups, List<FieldInfoView> fieldInfoViews,
-			List<String[]> array);
+            List<CropBeanForOutput> cropBeanForOutputList,
+            List<CropResourceUsageView> resourceUsageViews,
+            Set<CropsGroup> cropsGroups, List<FieldInfoView> fieldInfoViews,
+            List<String[]> array);
 
 }

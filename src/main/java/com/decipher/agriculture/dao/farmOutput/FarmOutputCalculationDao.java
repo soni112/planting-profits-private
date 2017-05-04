@@ -64,46 +64,46 @@ public interface FarmOutputCalculationDao {
 
 
 	List<FarmOutputDetails> calculateAcresForEachCropForAcres(
-			List<CropBeanForOutput> cropBeanForOutputList, FarmInfo farmInfo,
-			List<CropResourceUsageView> resourceUsageViews,
-			Set<CropsGroup> cropsGroups, boolean updateFlag);
+            List<CropBeanForOutput> cropBeanForOutputList, FarmInfo farmInfo,
+            List<CropResourceUsageView> resourceUsageViews,
+            Set<CropsGroup> cropsGroups, boolean updateFlag);
 
 	Map<String, HashMap<String, String>> calculateUsedAndUnusedResourcesForAcre(
-			List<CropResourceUsageView> resourceUsageViews,
-			List<FarmOutputDetailsView> farmOutputDetailsViewList,
-			List<CropResourceUsageFieldVariancesView> resourceUsageVariances);
+            List<CropResourceUsageView> resourceUsageViews,
+            List<FarmOutputDetailsView> farmOutputDetailsViewList,
+            List<CropResourceUsageFieldVariancesView> resourceUsageVariances);
 
 	Double calculatePotentialProfitForAcre(
-			List<FarmOutputDetailsView> farmOutputDetails);
+            List<FarmOutputDetailsView> farmOutputDetails);
 
 	org.json.simple.JSONObject createJSONObjectForGraphForAcre(List<FarmOutputDetailsView> farmOutputDetails, String unusedLand);
 
 
 
 	List<FarmOutputDetailsForField> calculateAcresForEachCropForField(
-			List<CropBeanForOutput> cropBeanForOutputList,
-			List<CropResourceUsageView> resourceUsageViews,
-			List<FieldInfoView> fieldInfoViews, Set<CropsGroup> cropsGroups);
+            List<CropBeanForOutput> cropBeanForOutputList,
+            List<CropResourceUsageView> resourceUsageViews,
+            List<FieldInfoView> fieldInfoViews, Set<CropsGroup> cropsGroups);
 
 	Map<String, HashMap<String, String>> calculateUsedAndUnusedResourcesForField(
-			List<CropResourceUsageView> resourceUsageViews,
-			List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews,
-			List<CropResourceUsageFieldVariancesView> resourceUsageVariances);
+            List<CropResourceUsageView> resourceUsageViews,
+            List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews,
+            List<CropResourceUsageFieldVariancesView> resourceUsageVariances);
 
 	Double calculatePotentialProfitForField(
-			List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews);
+            List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews);
 
 	Map<String, Object> createJSONObjectAndMapObjectForGraphForField(
-			List<CropTypeView> cropTypeView,
-			List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews,
-			String unusedLand);
+            List<CropTypeView> cropTypeView,
+            List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews,
+            String unusedLand);
 
 
 
 
 	List<CropBeanForOutput> getCropBeanForCalculation(
-			List<CropType> cropTypeList,
-			List<CropResourceUsageView> resourceUsageViews);
+            List<CropType> cropTypeList,
+            List<CropResourceUsageView> resourceUsageViews);
 
 
 	Double calculateProfit(double expectedYield, double expectedprice, double minAcres, double variableProductionCost);
