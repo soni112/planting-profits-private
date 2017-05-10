@@ -753,7 +753,7 @@ function validateCropLimits() {
     }
     if (totalMinimumAcre >= Number(removeAllCommas($("#total_land_available").text().trim()))) {
         // customAlerts('Total of the Minimum acres amount must be less than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
-        customAlerts('The total of all Minimum crop acreage limits cannot be more than the total available land "' + $("#total_land_available").text().trim() + '". ' +
+        customAlerts('The total of all of Minimum crop acreage limits cannot be greater than available land: "' + $("#total_land_available").text().trim() + '". ' +
             'Reduce one or more Minimum crop acreage limits or increase Available land', type_error, time);
         validationCropLimitFlag = false;
         return validationCropLimitFlag;
@@ -765,7 +765,7 @@ function validateCropLimits() {
      */
     if (totalMaximumAcre > Number(removeAllCommas($("#total_land_available").text().trim()))) {
         // customAlerts('Total of the Maximum acres amount must not be more than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
-        customAlerts('The total of all Maximum crop acreage limits must not be more than the total available land "' + $("#total_land_available").text().trim() + '". ' +
+        customAlerts('The total of all Maximum crop acreage limits must not be more than the total available land: "' + $("#total_land_available").text().trim() + '". ' +
             'Reduce one or more Maximum crop acreage limits or increase Available land', type_error, time);
         validationCropLimitFlag = false;
         return validationCropLimitFlag;
