@@ -723,7 +723,16 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
         Double amount = 0.0;
 
-        for (int i = 1; i <= 5; i++) {
+        long tempHolder = differenceValue.longValue();
+
+        for (int i = 0; i <= 5; i++) {
+
+            if (i == 0){
+                differenceValue = 0L;
+            } else {
+                differenceValue = tempHolder;
+            }
+
             /**
              * @changed - Abhishek
              * @date - 09-12-2015
@@ -1049,9 +1058,19 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         boolean continueFlag = true;
         CropResourceUsageView resource = null;
 
-        Long amount = 0l;
+        Long amount = 0L;
+
+        long tempHolder = differenceValue.longValue();
+
         outer:
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 0; i <= 5; i++) {
+
+            if (i == 0){
+                differenceValue = 0L;
+            } else {
+                differenceValue = tempHolder;
+            }
+
             if (continueFlag) {
                 JSONObject jsonObject = new JSONObject();
                 if (resourceName != null) {
@@ -1243,7 +1262,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 try {
                     PlantingProfitLogger.info(result.getObjective().longValue() != 0 ? "Estimated Income value : " + result.getObjective().longValue() : 0);
                 } catch (Exception e) {
-                    PlantingProfitLogger.info(" ********************* You are a fucking asshole ********************* ");
+                    PlantingProfitLogger.error(e.getMessage());
+                    PlantingProfitLogger.debug(e);
                 }
                 PlantingProfitLogger.info("old profit value : " + oldProfit);
                 PlantingProfitLogger.info("currentPotentialProfit value : " + currentPotentialProfit);
