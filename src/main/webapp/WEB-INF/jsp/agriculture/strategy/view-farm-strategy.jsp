@@ -67,7 +67,7 @@
 
                                             <div id="tabCropComparison" class="tab-content" style="display: block">
                                                 <div class="ques">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x overflow-y-fixed-height">
                                                         <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center">
                                                             <thead>
                                                                 <tr class="tblhd add-fieldi" id="cropComparisonThead">
@@ -88,7 +88,7 @@
 
                                             <div id="tabStrategyResourceComparison" class="tab-content" style="display: none">
                                                 <div class="ques">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x overflow-y-fixed-height">
                                                         <table cellspacing="0" class="table table-striped tbl-bordr  tblbrdr output_table text-center">
                                                             <thead>
                                                                 <tr class="tblhd add-fieldi" id="resourceComparisonThead">
@@ -110,7 +110,7 @@
 
                                             <div id="tabRiskComparison" class="tab-content" style="display: none">
                                                 <div class="ques">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x overflow-y-fixed-height">
                                                         <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center">
                                                             <thead>
                                                             <tr class="tblhd add-fieldi" id="highRiskComparisonThead">
@@ -132,7 +132,7 @@
 
                                             <div id="tabConservationComparison" class="tab-content" style="display: none">
                                                 <div class="ques">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x overflow-y-fixed-height">
                                                         <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center">
                                                             <thead>
                                                             <tr class="tblhd add-fieldi" id="conservationComparisonThead">

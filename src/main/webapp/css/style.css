@@ -4065,3 +4065,7 @@ sup {
 .tbl-header-scrolll-width{
     width: 98.2%!important;
 }
+.overflow-y-fixed-height{
+    overflow-y: auto;
+    max-height: 450px;
+}
