@@ -10,6 +10,7 @@ $(function() {
 	
 	openStrategyComparisonSelectionPopup();
 	// onclick="openStrategySelectionPopup(); return false;"
+    resetStrategyComparisonGraph();
 });
 
 /*	***********************		Common/Builder Specific	***********************		*/
@@ -26,8 +27,11 @@ function toggleGraphSection(){
 	$("#tableSectionForStrategy").hide();
 	$("#graphSectionForStrategy").show();
 	// $("#headerText").html("Graphical Comparison Of Strategies")
-	$('#xAxisValue').val('2');
-	$('#yAxisValue').val('0');
+}
+
+function resetStrategyComparisonGraph(){
+    $('#xAxisValue').val('2');
+    $('#yAxisValue').val('0');
 }
 
 function toggleTableSection(){
@@ -371,10 +375,11 @@ function getStrategyForFarm(farmId){
 
 					applyCheckBoxValidation();
 
-					var data = {};
+					/*var data = {};
 					data['graphDataJsonObject'] = [];
 					data['graphJsonObject'] = [];
-					prepareStrategyAnalysisGraph(data);
+					prepareStrategyAnalysisGraph(data);*/
+                    getAndApplyComparisonData();
 
 					
 					var varianceGraphData = {};
@@ -594,7 +599,7 @@ function getAndApplyComparisonData(){
 	var strategyArray = localStorage.getItem("strategyArrayForComparison");
 
 	$.ajax({
-		url: 'ajaxRequest/getChartSpecificData',
+		url: 'ajaxRequest/getStrategyComparisonChartData',
 		type: 'POST',
 		beforeSend: showLoadingImageForStrategy(),
 		data: {

@@ -177,11 +177,11 @@ public class StrategyViewController {
 		return response;
 	}
 
-	@RequestMapping(value = "getChartSpecificData", method = RequestMethod.POST)
-	public @ResponseBody JsonResponse getChartSpecificData(@RequestParam(value="xAxisValue", required = false) int xAxisValue,
-														   @RequestParam(value="yAxisValue", required = false) int yAxisValue,
-														   @RequestParam(value="farmId", required = false) int farmId,
-														   @RequestParam(value="strategyArray", required = false) int[] strategyIdArray) throws JSONException {
+	@RequestMapping(value = "getStrategyComparisonChartData", method = RequestMethod.POST)
+	public @ResponseBody JsonResponse getStrategyComparisonChartData(@RequestParam(value="xAxisValue", required = false) int xAxisValue,
+																	 @RequestParam(value="yAxisValue", required = false) int yAxisValue,
+																	 @RequestParam(value="farmId", required = false) int farmId,
+																	 @RequestParam(value="strategyArray", required = false) int[] strategyIdArray) throws JSONException {
 
 		httpSessionService.removeAttribute("strategyIdArray");
 		httpSessionService.setAttribute("strategyIdArray", strategyIdArray);
