@@ -498,7 +498,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                         jsonObject.put("amount", farmOutputDetailsView.getUsedAcresAsDouble());
                         cropArray.add(jsonObject);
 
-                        if(jsonArrayForCropHeader.contains(farmOutputDetailsView.getCropTypeView().getCropName())){
+                        if(!jsonArrayForCropHeader.contains(farmOutputDetailsView.getCropTypeView().getCropName())){
                             jsonArrayForCropHeader.add(farmOutputDetailsView.getCropTypeView().getCropName());
                         }
 

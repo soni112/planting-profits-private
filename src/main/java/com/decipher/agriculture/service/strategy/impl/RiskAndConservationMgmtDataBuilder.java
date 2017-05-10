@@ -81,9 +81,9 @@ public class RiskAndConservationMgmtDataBuilder {
             }
 
         }
-
+        double amount = potentialProfit / totalAcreage;
         jsonObject.put("name", "returnOnLand");
-        jsonObject.put("amount", AgricultureStandardUtils.commaSeparatedUptoOneDecimalForDoublePrice(potentialProfit/totalAcreage));
+        jsonObject.put("amount", Double.isNaN(amount) ? "0.0" : AgricultureStandardUtils.commaSeparatedUptoOneDecimalForDoublePrice(amount));
 
         return jsonObject;
 
