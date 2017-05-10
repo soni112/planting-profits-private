@@ -13,7 +13,7 @@
 			<div class="right_farm_form_filled">
 				<div class="edit_output_details_link">
 					<!-- @changed - Jyoti    @date - 30-01-2017 -->
-					<a href="view-farm-info.htm?farmId=${farmId}" style="text-decoration: underline;">Change Farm Information</a>
+					<a class="alertify-button alertify-button-ok remove-text-deco" href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
 				</div>
 				<div class="output_base">
 					<h3>${model.farmInfoView.farmName} (Baseline Strategy)</h3>

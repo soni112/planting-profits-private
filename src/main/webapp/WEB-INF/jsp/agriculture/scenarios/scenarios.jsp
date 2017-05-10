@@ -24,7 +24,7 @@ Date 24-11-2015
 
         <div class="right_farm_form_filled">
             <div class="edit_output_details_link">
-                <a style="text-decoration: underline;" href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
+                <a class="alertify-button alertify-button-ok remove-text-deco" href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
             </div>
             <div class="output_base" id="scenarion-container">
                 <h3>${model.farm.farmName}</h3>

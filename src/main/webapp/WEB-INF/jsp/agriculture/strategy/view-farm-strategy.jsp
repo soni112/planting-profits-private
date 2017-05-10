@@ -17,7 +17,7 @@
             <%@ include file="../manage-farm/common/menu.jsp" %>
             <div class="right_farm_form_filled">
                 <div class="edit_output_details_link">
-                    <a href="view-farm-info.htm?farmId=${farmId}" style="text-decoration: underline;">Change Farm Information</a>
+                    <a class="alertify-button alertify-button-ok remove-text-deco" href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
                 </div>
                 <div class="output_base">
                     <h3><span id="headerText">${model.farm.farmName}</span></h3>
