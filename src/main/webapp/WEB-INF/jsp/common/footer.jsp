@@ -66,7 +66,11 @@ give us a call or send us an email.</p>
 		<div class="container clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 text-center">
 				<div class="copy">
-					Copyright &copy; 2015 | <span class="policy"><a href="<c:url value="/privacy-policy.htm"/>" target="_blank">Privacy Policy</a></span>
+					Copyright &copy; 2015 |
+					<span class="policy">
+						<a href="<c:url value="/privacy-policy.htm"/>" target="_blank">Privacy Policy</a>
+					</span> | Patent Pending
+
 				</div>
 			</div>
 		</div>

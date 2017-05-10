@@ -25,7 +25,6 @@
                     <a href="<c:url value="/home.htm"/>" class="pull-left">
                         <img src="<c:url value="/images/logo.png"/> ">
                     </a>
-                    <span style="margin-left: 85px"><b>Patent Pending</b></span>
                 </div>
                 <div class="">
 
