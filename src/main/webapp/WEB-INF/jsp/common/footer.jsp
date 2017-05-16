@@ -33,6 +33,9 @@ give us a call or send us an email.</p>
 					<ul class="list-unstyled">
 						<li>- Video/chat for online consulting</li>
 						<li>- Find a consultant</li>
+						<li>- <a href="https://appointiv.herokuapp.com/appointivwebform/plantingprofits/booking"
+								 class="remove-text-deco"
+								 target="_blank">Schedule Appointment</a></li>
 					</ul>
 				</div>
 
