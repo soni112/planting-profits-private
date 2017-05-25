@@ -16,6 +16,7 @@
         <hibernate.version>4.3.11.Final</hibernate.version>
         <apacheTiles.version>3.0.5</apacheTiles.version>
         <jackson.version>2.5.0</jackson.version>
+        <appname>P_Profit</appname>
     </properties>
 
     <dependencies>
@@ -637,14 +638,14 @@
             </resource>
         </resources>
 
-        <finalName>PlantingProfit</finalName>
+        <finalName>${appname}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <warName>P_Profit</warName>
+                    <warName>${appname}</warName>
                     <outputDirectory>${basedir}/build</outputDirectory>
                     <webResources>
                         <resource>
@@ -662,8 +663,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
         </plugins>

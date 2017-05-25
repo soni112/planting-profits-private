@@ -751,6 +751,9 @@ public class ScenarioServiceImpl implements ScenarioService {
                     JSONObject scenarioOutputDetails = scenarioDetails.get(farmCustomStrategyView);
                     JSONObject strategyOutputDetails = farmDetailsContainerService.getStrategyDetails(farmInfoView, farmCustomStrategyView);
 
+                    PlantingProfitLogger.info("strategyOutputDetails.get(\"potentialProfit\") : " + strategyOutputDetails.get("potentialProfit"));
+                    PlantingProfitLogger.info("scenarioOutputDetails.get(\"potentialProfit\") : " + scenarioOutputDetails.get("potentialProfit"));
+
                     int strategyProfit = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(strategyOutputDetails.get("potentialProfit").toString()));
                     int scenarioProfit = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(scenarioOutputDetails.get("potentialProfit").toString()));
 
