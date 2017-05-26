@@ -1022,8 +1022,10 @@ function forCastGraphForSingleResource() {
 		url : 'agriculture/SensetivityAnalysisController/getSAForCastGraphForSingleResource',
 		type : 'POST',
 		beforeSend: function(){
-			$('#loading-strategy-content').html('Preparing to Save strategy...')
-			showLoadingImageForStrategy()
+            // $('#loading-strategy-content').html('Preparing to Save strategy...')
+            //Update according to PPT 05232017, Slide no : G055
+            $('#loading-strategy-content').html('Generating multiple strategies for ' + resourceName);
+			showLoadingImageForStrategy();
 		},
 		data : {
 			farmInfoId : farmInfoId,
@@ -1088,7 +1090,9 @@ function forCastGraphForSingleCropLimit() {
 		url : 'agriculture/SensetivityAnalysisController/SAForCastGraphForSingleCrop',
 		type : 'POST',
 		beforeSend: function(){
-			$('#loading-strategy-content').html('Preparing to Save strategy...')
+			//Update according to PPT 05232017, Slide no : G055
+			// $('#loading-strategy-content').html('Preparing to Save strategy...')
+			$('#loading-strategy-content').html('Generating multiple strategies for ' + cropName);
 			showLoadingImageForStrategy()
 		},
 		data : {

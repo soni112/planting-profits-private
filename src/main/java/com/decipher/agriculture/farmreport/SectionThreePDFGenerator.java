@@ -8,6 +8,8 @@ import com.decipher.view.form.farmDetails.FarmInfoView;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.*;
 import java.util.List;
@@ -274,8 +276,15 @@ public class SectionThreePDFGenerator {
      * @desc - getting table for crop acreage limits table
      */
     private PdfPTable getCropAcreageLimitsTable(){
+        PdfPTable table;
+        if (farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)){
+            table = new PdfPTable(6);
+        } else {
+            table = new PdfPTable(4);
+        }
 
-        PdfPTable table = new PdfPTable(3);
+
+
         table.setWidthPercentage(100);
 
         // Create Header Cells Field, Acreage, Crop
@@ -287,15 +296,41 @@ public class SectionThreePDFGenerator {
         fieldHeaderCell.setBackgroundColor(new BaseColor(247, 205, 114));
         table.addCell(fieldHeaderCell);
 
-        PdfPCell acreageCell = new PdfPCell(new Phrase("Limit", ReportTemplate.TIMESROMAN_10_NORMAL));
-        acreageCell.setBorderWidth(0.5f);
-        acreageCell.setBorderColor(new BaseColor(131, 154, 103));
-        acreageCell.setBorder(Rectangle.BOX);
-        acreageCell.setUseBorderPadding(true);
-        acreageCell.setBackgroundColor(new BaseColor(247, 205, 114));
-        table.addCell(acreageCell);
+        PdfPCell maxLimit = new PdfPCell(new Phrase("Max Limit", ReportTemplate.TIMESROMAN_10_NORMAL));
+        maxLimit.setBorderWidth(0.5f);
+        maxLimit.setBorderColor(new BaseColor(131, 154, 103));
+        maxLimit.setBorder(Rectangle.BOX);
+        maxLimit.setUseBorderPadding(true);
+        maxLimit.setBackgroundColor(new BaseColor(247, 205, 114));
+        table.addCell(maxLimit);
 
-        PdfPCell cropCell = new PdfPCell(new Phrase("Impacting Profit", ReportTemplate.TIMESROMAN_10_NORMAL));
+        PdfPCell minLimit = new PdfPCell(new Phrase("Min Limit", ReportTemplate.TIMESROMAN_10_NORMAL));
+        minLimit.setBorderWidth(0.5f);
+        minLimit.setBorderColor(new BaseColor(131, 154, 103));
+        minLimit.setBorder(Rectangle.BOX);
+        minLimit.setUseBorderPadding(true);
+        minLimit.setBackgroundColor(new BaseColor(247, 205, 114));
+        table.addCell(minLimit);
+
+        if (farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)){
+            PdfPCell impactingIncome = new PdfPCell(new Phrase("Impacting Income", ReportTemplate.TIMESROMAN_10_NORMAL));
+            impactingIncome.setBorderWidth(0.5f);
+            impactingIncome.setBorderColor(new BaseColor(131, 154, 103));
+            impactingIncome.setBorder(Rectangle.BOX);
+            impactingIncome.setUseBorderPadding(true);
+            impactingIncome.setBackgroundColor(new BaseColor(247, 205, 114));
+            table.addCell(impactingIncome);
+
+            PdfPCell toIncreaseIncome = new PdfPCell(new Phrase("To Increase Income", ReportTemplate.TIMESROMAN_10_NORMAL));
+            toIncreaseIncome.setBorderWidth(0.5f);
+            toIncreaseIncome.setBorderColor(new BaseColor(131, 154, 103));
+            toIncreaseIncome.setBorder(Rectangle.BOX);
+            toIncreaseIncome.setUseBorderPadding(true);
+            toIncreaseIncome.setBackgroundColor(new BaseColor(247, 205, 114));
+            table.addCell(toIncreaseIncome);
+        }
+
+        PdfPCell cropCell = new PdfPCell(new Phrase("Acreage Planted", ReportTemplate.TIMESROMAN_10_NORMAL));
         cropCell.setBorderWidth(0.5f);
         cropCell.setBorderColor(new BaseColor(131, 154, 103));
         cropCell.setBorder(Rectangle.BOX);
@@ -305,7 +340,64 @@ public class SectionThreePDFGenerator {
 
         table.completeRow();
 
-        HashMap<String, Object> cropAcreageLimts = reportDataPage3.getCropAcreageLimts();
+        JSONArray cropLimitContentArray = reportDataPage3.getCropLimitContent();
+
+        for (Object o : cropLimitContentArray) {
+            JSONObject cropLimitDetails = (JSONObject) o;
+
+            PdfPCell cropNameDataCell = new PdfPCell(new Phrase(cropLimitDetails.get("cropName").toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
+            cropNameDataCell.setBorderWidth(0.5f);
+            cropNameDataCell.setBorderColor(new BaseColor(131, 154, 103));
+            cropNameDataCell.setBorder(Rectangle.BOX);
+            cropNameDataCell.setUseBorderPadding(true);
+            cropNameDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
+            table.addCell(cropNameDataCell);
+
+
+            PdfPCell cropMinLimitsDataCell = new PdfPCell(new Phrase(cropLimitDetails.get("minLimit").toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
+            cropMinLimitsDataCell.setBorderWidth(0.5f);
+            cropMinLimitsDataCell.setBorderColor(new BaseColor(131, 154, 103));
+            cropMinLimitsDataCell.setBorder(Rectangle.BOX);
+            cropMinLimitsDataCell.setUseBorderPadding(true);
+            cropMinLimitsDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
+            table.addCell(cropMinLimitsDataCell);
+
+            PdfPCell cropMaxLimitsDataCell = new PdfPCell(new Phrase(cropLimitDetails.get("maxLimit").toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
+            cropMaxLimitsDataCell.setBorderWidth(0.5f);
+            cropMaxLimitsDataCell.setBorderColor(new BaseColor(131, 154, 103));
+            cropMaxLimitsDataCell.setBorder(Rectangle.BOX);
+            cropMaxLimitsDataCell.setUseBorderPadding(true);
+            cropMaxLimitsDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
+            table.addCell(cropMaxLimitsDataCell);
+
+            if (farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)){
+                PdfPCell impactingProfitDataCell = new PdfPCell(new Phrase(cropLimitDetails.get("impactingIncome").toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
+                impactingProfitDataCell.setBorderWidth(0.5f);
+                impactingProfitDataCell.setBorderColor(new BaseColor(131, 154, 103));
+                impactingProfitDataCell.setBorder(Rectangle.BOX);
+                impactingProfitDataCell.setUseBorderPadding(true);
+                impactingProfitDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
+                table.addCell(impactingProfitDataCell);
+
+                PdfPCell toIncreaseIncomeDataCell = new PdfPCell(new Phrase(cropLimitDetails.get("incDecIncome").toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
+                toIncreaseIncomeDataCell.setBorderWidth(0.5f);
+                toIncreaseIncomeDataCell.setBorderColor(new BaseColor(131, 154, 103));
+                toIncreaseIncomeDataCell.setBorder(Rectangle.BOX);
+                toIncreaseIncomeDataCell.setUseBorderPadding(true);
+                toIncreaseIncomeDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
+                table.addCell(toIncreaseIncomeDataCell);
+            }
+
+            PdfPCell impactingProfitDataCell = new PdfPCell(new Phrase(cropLimitDetails.get("acreagePlanted").toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
+            impactingProfitDataCell.setBorderWidth(0.5f);
+            impactingProfitDataCell.setBorderColor(new BaseColor(131, 154, 103));
+            impactingProfitDataCell.setBorder(Rectangle.BOX);
+            impactingProfitDataCell.setUseBorderPadding(true);
+            impactingProfitDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
+            table.addCell(impactingProfitDataCell);
+        }
+
+        /*HashMap<String, Object> cropAcreageLimts = reportDataPage3.getCropAcreageLimts();
 
         List<CropTypeView> cropTypeViewList = (List<CropTypeView>)cropAcreageLimts.get("cropTypeViewList");
         List<CropsGroupView> cropsGroupViewsList = (List<CropsGroupView>)cropAcreageLimts.get("cropsGroupViewsList");
@@ -406,7 +498,7 @@ public class SectionThreePDFGenerator {
             impactingProfitDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
             table.addCell(impactingProfitDataCell);
 
-        }
+        }*/
 
         return table;
     }

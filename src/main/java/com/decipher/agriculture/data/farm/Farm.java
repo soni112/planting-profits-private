@@ -122,7 +122,7 @@ public class Farm implements Serializable, Comparable<Farm>{
 
     @Override
     public int compareTo(Farm farm) {
-        if(Objects.equals(this.getFarmId(), farm.getFarmId())){
+        if(this.getFarmId().equals(farm.getFarmId())){
             return 0;
         } else if(this.getFarmId() > farm.getFarmId()){
             return 1;

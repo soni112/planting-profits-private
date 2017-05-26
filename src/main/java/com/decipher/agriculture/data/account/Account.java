@@ -448,7 +448,7 @@ public class Account implements Comparable<Account>{
 
 	@Override
 	public int compareTo(Account account) {
-		if(Objects.equals(this.getId(), account.getId())){
+		if(this.getId().equals(account.getId())){
 			return 0;
 		} else if(this.getId() > account.getId()){
 			return 1;

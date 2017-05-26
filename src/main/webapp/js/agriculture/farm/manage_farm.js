@@ -720,6 +720,14 @@ function validateCropLimits() {
         minimum_acres = Number(removeAllCommas(returnZeroIfBlank($(this).children("td:nth(2)").find("input").val().trim())));
         maximum_acres = Number(removeAllCommas(returnZeroIfBlank($(this).children("td:nth(3)").find("input").val().trim())));
         cropName = $(this).children("td:nth(1)").text();
+
+        if (maximum_acres > Number(removeAllCommas($("#total_land_available").text().trim()))) {
+
+            customAlerts('The total Maximum crop acreage limit for '+ cropName +' is limited to Available land', type_error, time);
+            validationCropLimitFlag = false;
+            return validationCropLimitFlag;
+        }
+
         totalMinimumAcre += minimum_acres;
         totalMaximumAcre += maximum_acres;
         if ($(this).children("td:nth(3)").find("input").val().trim() != "") {

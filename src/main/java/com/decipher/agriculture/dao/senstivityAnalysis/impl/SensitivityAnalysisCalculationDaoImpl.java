@@ -1012,7 +1012,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                          * @updated - 30-12-2015
                          */
                         continueFlag = false;
-                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is increased by " + (amount) + (resourceName == null ? " acres" : ""));
+                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is increased to " + (amount) + (resourceName == null ? " acres" : ""));
 //						jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" acres of ":"")+cropName):(resourceName+" resource"))+" is increased to " + (i *differenceValue) + (resourceName == null? " acres" : ""));
 //						jsonObject.put("bubbleMessage", "Increasing "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" of ":"")+cropName+" "+selectionType):(resourceName+" resource"))+" with "+(i*differenceValue)+" amount a valid strategy can not be generated so there will be no Estimated Income, we suggest you to change the amount and try again.");
                     } else {
@@ -1022,7 +1022,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                          * @updated - 30-12-2015
                          */
                         continueFlag = false;
-                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is reduced by " + (amount) + (resourceName == null ? " acres" : ""));
+                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is reduced to " + (amount) + (resourceName == null ? " acres" : ""));
 //						jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" acres of ":"")+cropName):(resourceName+" resource"))+" is reduced to " + (i *differenceValue) + (resourceName == null? " acres" : ""));
 //      	            jsonObject.put("bubbleMessage", "On decreasing "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" of ":"")+cropName+" "+selectionType):(resourceName+" resource"))+" with "+Math.abs(i*differenceValue)+" amount a valid strategy can not be generated so there will be no Estimated Income, we suggest you to change the amount and try again.");
                     }
@@ -1334,7 +1334,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                          * @date - 02-12-2015
                          * @updated - 30-12-2015
                          */
-                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is increased by " + (amount) + (resourceName == null ? " acres" : ""));
+                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is increased to " + (amount) + (resourceName == null ? " acres" : ""));
 //						jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" acres of ":"")+cropName):(resourceName+" resource"))+" is increased to "+ (i *differenceValue) + (resourceName == null? " acres" : "") );
                         //  jsonObject.put("bubbleMessage", "Increasing "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" of ":"")+cropName+" "+selectionType):(resourceName+" resource"))+" with "+(i*differenceValue)+" amount a valid strategy can not be generated so there will be no Estimated Income, we sugges you to change the amount and try again.");
                     } else {
@@ -1343,7 +1343,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                          * @date - 02-12-2015
                          * @updated - 30-12-2015
                          */
-                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is reduced by " + (amount) + (resourceName == null ? " acres" : ""));
+                        jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceName == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceName + " resource")) + " is reduced to " + (amount) + (resourceName == null ? " acres" : ""));
 //						jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" acres of ":"")+cropName):(resourceName+" resource"))+" is reduced to "+ (i *differenceValue) + (resourceName == null? " acres" : "") );
                         //jsonObject.put("bubbleMessage", "On decreasing "+(resourceName == null?(((selectionType.equals("Crop") || selectionType.equals("Group"))?rangeType+" of ":"")+cropName+" "+selectionType):(resourceName+" resource"))+" with "+Math.abs(i*differenceValue)+" amount a valid strategy can not be generated so there will be no Estimated Income, we sugges you to change the amount and try again.");
                     }

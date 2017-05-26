@@ -213,7 +213,7 @@ public class FarmInfoView implements Comparable<FarmInfoView>, Cloneable{
 
 	@Override
 	public int compareTo(FarmInfoView farmInfoView) {
-		if(Objects.equals(this.getId(), farmInfoView.getId())){
+		if(this.getId().equals(farmInfoView.getId())){
 			return 0;
 		} else if(this.getId() > farmInfoView.getId()){
 			return 1;

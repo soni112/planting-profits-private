@@ -161,8 +161,8 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
         Map<String, Object> farmDetails = (Map<String, Object>) allFarmDetails.get(farm);
 
         Map<FarmCustomStrategyView, JSONObject> strategyDetails = (Map<FarmCustomStrategyView, JSONObject>) farmDetails.get(STRATEGY_DETAILS);
-
-        return strategyDetails.get(farmCustomStrategyView);
+        JSONObject jsonObject = strategyDetails.get(farmCustomStrategyView);
+        return jsonObject;
 
     }
 
