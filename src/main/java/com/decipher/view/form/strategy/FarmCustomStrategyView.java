@@ -170,7 +170,7 @@ public class FarmCustomStrategyView implements Comparable<FarmCustomStrategyView
 
     @Override
     public int compareTo(FarmCustomStrategyView farmCustomStrategyView) {
-        if (this.getId() == farmCustomStrategyView.getId()) {
+        if (this.getId().equals(farmCustomStrategyView.getId())) {
             return 0;
         } else if (this.getId() > farmCustomStrategyView.getId()) {
             return 1;

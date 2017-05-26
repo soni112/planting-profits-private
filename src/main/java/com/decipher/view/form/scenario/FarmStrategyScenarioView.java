@@ -111,7 +111,7 @@ public class FarmStrategyScenarioView implements Comparable<FarmStrategyScenario
 
     @Override
     public int compareTo(FarmStrategyScenarioView farmStrategyScenarioView) {
-        if(this.getScenarioId() == farmStrategyScenarioView.getScenarioId()){
+        if(this.getScenarioId().equals(farmStrategyScenarioView.getScenarioId())){
             return 0;
         } else if(this.getScenarioId() > farmStrategyScenarioView.getScenarioId()){
             return 1;
