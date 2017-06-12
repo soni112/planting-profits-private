@@ -937,7 +937,14 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
                     jsonObject.put("Field_Crop_Info", jsonArrayInner);
 
-                    long profit = bestResult.getObjective().longValue();
+                    long profit, temp = bestResult.getObjective().longValue();
+                    profit = temp - currentPotentialProfit;
+                    if(profit == 0.5 || profit == -0.5 || profit == -1 || profit == 1){
+                        profit = currentPotentialProfit;
+//                        currentPotentialProfit = temp;
+                    } else {
+                        profit = temp;
+                    }
 
                     PlantingProfitLogger.info("Called 1 iteration : " + i);
                     PlantingProfitLogger.info("difference value : " + differenceValue);
@@ -1274,7 +1281,15 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 PlantingProfitLogger.info("currentPotentialProfit value : " + currentPotentialProfit);
 
                 if (result != null) {
-                    long profit = result.getObjective().longValue();
+//                    long profit = result.getObjective().longValue();
+                    long profit, temp = result.getObjective().longValue();
+                    profit = temp - currentPotentialProfit;
+                    if(profit == 0.5 || profit == -0.5 || profit == -1 || profit == 1){
+                        profit = currentPotentialProfit;
+//                        currentPotentialProfit = temp;
+                    } else {
+                        profit = temp;
+                    }
                     /**
                      * @changed - Abhishek
                      * @date - 02-12-2015
