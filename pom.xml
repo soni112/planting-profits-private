@@ -646,7 +646,7 @@
                 <version>2.4</version>
                 <configuration>
                     <warName>${appname}</warName>
-                    <outputDirectory>${basedir}</outputDirectory>
+                    <!--<outputDirectory>${basedir}</outputDirectory>-->
                     <webResources>
                         <resource>
                             <directory>${basedir}/src/main/libraries</directory>
