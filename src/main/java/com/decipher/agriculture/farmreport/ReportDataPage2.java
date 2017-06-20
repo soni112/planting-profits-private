@@ -4,13 +4,17 @@ package com.decipher.agriculture.farmreport;
  * @author Abhishek
  * @date 29-11-2015
  */
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.view.form.farmDetails.CropResourceUsageView;
 import com.decipher.view.form.farmDetails.CropTypeView;
+import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
 import com.decipher.view.form.farmDetails.FarmInfoView;
 import org.json.simple.JSONObject;
@@ -100,4 +104,67 @@ public class ReportDataPage2 {
 	public int getTotalScenarioCount() {
 		return totalScenarioCount;
 	}
+
+
+	public Map<String, String> getRiskAndConservationAnalysis(JSONObject baseSelectedOutpuDetailsJsonObject) {
+
+		FarmInfoView farmInfoView = getFarmInfoView();
+
+		Map<String, String> riskAnalysisMap = new HashMap<>();
+
+
+		double landUnderConservation = 0.0, incomeUnderConservation = 0.0, landUnderRisk = 0.0, incomeUnderRisk = 0.0;
+
+		DecimalFormat formatter = new DecimalFormat("#.00");
+
+		if (farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
+
+			for (FarmOutputDetailsView farmOutputDetails : (List<FarmOutputDetailsView>) baseSelectedOutpuDetailsJsonObject.get("farmOutputDetails")) {
+				if (farmOutputDetails.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")) {
+					landUnderConservation += farmOutputDetails.getUsedAcresPercentage();
+					incomeUnderConservation += farmOutputDetails.getUsedCapitalPercentage();
+				} else if (farmOutputDetails.getCropTypeView().getHiRiskCrop().equalsIgnoreCase("true")) {
+					landUnderRisk += farmOutputDetails.getUsedAcresPercentage();
+					incomeUnderRisk += Double.parseDouble(formatter.format((farmOutputDetails.getProfitDouble() / Double.parseDouble(SectionOnePDFGenerator.getEstimatedIncome().replaceAll("\\,", ""))) * 100));
+				}
+			}
+
+
+		} else if (farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS)) {
+			Map<String, String> hashMapForAcre = (Map<String, String>) baseSelectedOutpuDetailsJsonObject.get("hashMapForAcre");
+			Map<String, String> hashMapForProfit = (Map<String, String>) baseSelectedOutpuDetailsJsonObject.get("hashMapForProfit");
+			List<CropTypeView> cropTypeViewList = (List<CropTypeView>) baseSelectedOutpuDetailsJsonObject.get("cropTypeView");
+
+			Set<String> keySet = hashMapForAcre.keySet();
+
+			for (String cropKey : keySet) {
+				for (CropTypeView cropTypeView : cropTypeViewList) {
+					if (cropTypeView.getSelected()
+							&& cropTypeView.getConservation_Crop().equalsIgnoreCase("true")
+							&& cropKey.contains(cropTypeView.getCropName())) {
+						String land = hashMapForAcre.get(cropKey);
+						landUnderConservation += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
+						String income = hashMapForProfit.get(cropKey);
+						incomeUnderConservation += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+					} else if (cropTypeView.getSelected()
+							&& cropTypeView.getHiRiskCrop().equalsIgnoreCase("true")
+							&& cropKey.contains(cropTypeView.getCropName())) {
+						String land = hashMapForAcre.get(cropKey);
+						landUnderRisk += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
+						String income = hashMapForProfit.get(cropKey);
+						incomeUnderRisk += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+					}
+				}
+			}
+
+		}
+
+		riskAnalysisMap.put("landUnderConservation", formatter.format(landUnderConservation));
+		riskAnalysisMap.put("incomeUnderConservation", "$" + formatter.format(incomeUnderConservation));
+		riskAnalysisMap.put("landUnderRisk", formatter.format(landUnderRisk));
+		riskAnalysisMap.put("incomeUnderRisk", "$" + formatter.format(incomeUnderRisk));
+
+		return riskAnalysisMap;
+	}
+
 }

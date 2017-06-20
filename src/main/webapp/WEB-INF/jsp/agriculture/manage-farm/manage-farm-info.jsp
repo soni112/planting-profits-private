@@ -815,7 +815,8 @@
 													<table width="100%" cellspacing="0" class="table table-striped tbl-bordr  tblbrdr">
 														<tbody>
 														<tr class="tblgrn text-center">
-															<td class="success infotext">Under construction.  Planting dates not needed at this time.</td>
+															<%--<td class="success infotext">Under construction.  Planting dates not needed at this time.</td>--%>
+															<td class="success infotext">Cashflow Analysis Under Construction</td>
 														</tr>
 														</tbody>
 													</table>

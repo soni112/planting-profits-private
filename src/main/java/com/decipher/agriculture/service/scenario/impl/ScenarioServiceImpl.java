@@ -605,10 +605,17 @@ public class ScenarioServiceImpl implements ScenarioService {
         for (Map.Entry<String, String> entry : map.get("cropResourceUsed").entrySet()) {
             JSONObject jsonObject = new JSONObject();
             JSONObject jsonObject1 = new JSONObject();
-            jsonObject.put("label", entry.getKey());
-            jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUsed").get(entry.getKey()))));
-            jsonObject1.put("label", entry.getKey());
-            jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUnused").get(entry.getKey()))));
+            if(entry.getKey().equalsIgnoreCase("capital")) {
+                jsonObject.put("label", "Working Capital");
+                jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUsed").get(entry.getKey()))));
+                jsonObject1.put("label", "Working Capital");
+                jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUnused").get(entry.getKey()))));
+            } else {
+                jsonObject.put("label", entry.getKey());
+                jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUsed").get(entry.getKey()))));
+                jsonObject1.put("label", entry.getKey());
+                jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUnused").get(entry.getKey()))));
+            }
             cropResourceUsed.add(jsonObject);
             cropResourceUnused.add(jsonObject1);
 

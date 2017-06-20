@@ -616,27 +616,27 @@ public class SectionTwoPDFGenerator {
              * @date - 12-01-2016
              * @desc - Added remaining data in table
              */
-            DecimalFormat decimalFormatter = new DecimalFormat("#,00");
+            /*DecimalFormat decimalFormatter = new DecimalFormat("#,00");
             if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
 //                Double incomeContracted = 0.0;
                 Double incomeUnderConservation = 0.0;
                 Double landUnderConservation = 0.0;
                 List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                    /*if (farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
+                    *//*if (farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
                         incomeContracted += farmOutputDetailsView.getUsedCapitalPercentage();
-                    }*/
+                    }*//*
                     if(farmOutputDetailsView.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")){
                         incomeUnderConservation += farmOutputDetailsView.getUsedCapitalPercentage();
                         landUnderConservation += farmOutputDetailsView.getUsedAcresPercentage();
                     }
                 }
 
-                /**
+                *//**
                  * @changed - Abhishek
                  * @date - 12-01-2016
                  * @desc - Added remaining data in table
-                 */
+                 *//*
                 Map<String, String> mapDifferentValues = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("mapDifferentValues");
 
                 String usedForwardAcresP = mapDifferentValues.get("usedForwardAcresP");
@@ -657,10 +657,10 @@ public class SectionTwoPDFGenerator {
                 Set<String> keySet = hashMapForAcre.keySet();
                 for (String cropKey : keySet) {
                     for (CropTypeView cropTypeView : cropTypeViewList) {
-                    /*if (cropTypeView.getSelected() && cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
+                    *//*if (cropTypeView.getSelected() && cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
                         String income = hashMapForProfit.get(cropTypeView.getCropName());
                         incomeForwardSold += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
-                    }*/
+                    }*//*
                         if (cropTypeView.getSelected()
                                 && cropTypeView.getConservation_Crop().equalsIgnoreCase("true")
                                 && cropKey.contains(cropKey)) {
@@ -675,11 +675,11 @@ public class SectionTwoPDFGenerator {
 
 
 
-                /**
+                *//**
                  * @changed - Abhishek
                  * @date - 12-01-2016
                  * @desc - Added percentage data for conservation management and crop contracted
-                 */
+                 *//*
                 Map<String, String> mapDifferentValues = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("mapDifferentValues");
 
                 String usedForwardAcresP = mapDifferentValues.get("usedForwardAcresP");
@@ -688,7 +688,17 @@ public class SectionTwoPDFGenerator {
                 table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(decimalFormatter.format(incomeUnderConservation)));
                 table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(decimalFormatter.format(landUnderConservation)));
 
-            }
+            }*/
+
+
+            Map<String, String> mapDifferentValues = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("mapDifferentValues");
+            String usedForwardAcresP = mapDifferentValues.get("usedForwardAcresP");
+            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(usedForwardAcresP));
+
+            Map<String, String> riskAnalysis = reportDataPage2.getRiskAndConservationAnalysis(strategyDataJsonObject);
+
+            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(riskAnalysis.get("incomeUnderRisk")));
+            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(riskAnalysis.get("landUnderRisk")));
 
             /**
              * @Added - Abhishek
@@ -801,7 +811,7 @@ public class SectionTwoPDFGenerator {
              */
             table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + strategyDataJsonObject.get("potentialProfit").toString()));
 
-            Double landUnderConservation = 0.0;
+            /*Double landUnderConservation = 0.0;
             Double incomeUnderConservation = 0.0;
             Double totalUsedLand = 0.0;
 
@@ -842,16 +852,16 @@ public class SectionTwoPDFGenerator {
 
             }
 
-            /*String potentialProfit = SectionOnePDFGenerator.getEstimatedIncome().replaceAll("\\,", "");
-
+            *//*String potentialProfit = SectionOnePDFGenerator.getEstimatedIncome().replaceAll("\\,", "");
             landUnderConservation = (landUnderConservation * Double.parseDouble(potentialProfit)) / 100;
+            incomeUnderConservation = (incomeUnderConservation * totalUsedLand) / 100;*//*
 
-            incomeUnderConservation = (incomeUnderConservation * totalUsedLand) / 100;*/
+            DecimalFormat formatter = new DecimalFormat("#.00");*/
 
-            DecimalFormat formatter = new DecimalFormat("#.00");
+            Map<String, String> riskAnalysis = reportDataPage2.getRiskAndConservationAnalysis(strategyDataJsonObject);
 
-            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(formatter.format(landUnderConservation)));
-            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(formatter.format(incomeUnderConservation)));
+            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(riskAnalysis.get("landUnderConservation")));
+            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(riskAnalysis.get("incomeUnderConservation")));
 
             table.completeRow();
         }

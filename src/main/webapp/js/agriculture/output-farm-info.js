@@ -1024,7 +1024,12 @@ function forCastGraphForSingleResource() {
 		beforeSend: function(){
             // $('#loading-strategy-content').html('Preparing to Save strategy...')
             //Update according to PPT 05232017, Slide no : G055
-            $('#loading-strategy-content').html('Generating multiple strategies for ' + resourceName);
+			if(resourceName == 'Capital'){
+                $('#loading-strategy-content').html('Generating multiple strategies for Working Capital');
+			} else {
+                $('#loading-strategy-content').html('Generating multiple strategies for ' + resourceName);
+			}
+
 			showLoadingImageForStrategy();
 		},
 		data : {
