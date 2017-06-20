@@ -428,12 +428,18 @@
 													<select id="forCastGraphResourceList">
 														<c:forEach var="resource" items="${model.resourceList}">
 															<c:if test="${resource.isActive()}">
-																<c:if test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resource.cropResourceUse eq 'Land'}">
-																	<option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
-																</c:if>
-																<c:if test="${resource.cropResourceUse ne 'Land'}">
-																	<option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
-																</c:if>
+																<c:choose>
+																	<c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resource.cropResourceUse eq 'Land'}">
+																		<option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
+																	</c:when>
+																	<c:when test="${resource.cropResourceUse eq 'Capital'}">
+																		<option value="${resource.cropResourceUse}">Working Capital</option>
+																	</c:when>
+																	<c:otherwise>
+																		<option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
+																	</c:otherwise>
+																</c:choose>
+
 															</c:if>
 
 														</c:forEach>
@@ -482,28 +488,42 @@
 													</thead>
 													<tbody>
 													<c:forEach var="resourceList" items="${model.resourceList}">
-														<c:if test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resourceList.cropResourceUse eq 'Land'}">
-															<tr class="tblgrn line_no_break">
-																<td class="success">${resourceList.cropResourceUse}</td>
-																<td class="success">${resourceList.cropResourceUseAmount}</td>
-																<td class="success croplimit"><input type="text"
-																									 value="${resourceList.cropResourceUseAmount}"
-																									 onchange="addCommaSignWithOutDollarDot(this);"
-																									 onkeypress="return isValidNumberValueForWithOutDot(event)" />
-																</td>
-															</tr>
-														</c:if>
-														<c:if test="${resourceList.cropResourceUse ne 'Land'}">
-															<tr class="tblgrn line_no_break">
-																<td class="success">${resourceList.cropResourceUse}</td>
-																<td class="success">${resourceList.cropResourceUseAmount}</td>
-																<td class="success croplimit"><input type="text"
-																									 value="${resourceList.cropResourceUseAmount}"
-																									 onchange="addCommaSignWithOutDollarDot(this);"
-																									 onkeypress="return isValidNumberValueForWithOutDot(event)" />
-																</td>
-															</tr>
-														</c:if>
+														<c:choose>
+															<c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resourceList.cropResourceUse eq 'Land'}">
+																<tr class="tblgrn line_no_break">
+																	<td class="success">${resourceList.cropResourceUse}</td>
+																	<td class="success">${resourceList.cropResourceUseAmount}</td>
+																	<td class="success croplimit"><input type="text"
+																										 value="${resourceList.cropResourceUseAmount}"
+																										 onchange="addCommaSignWithOutDollarDot(this);"
+																										 onkeypress="return isValidNumberValueForWithOutDot(event)" />
+																	</td>
+																</tr>
+															</c:when>
+
+															<c:when test="${resourceList.cropResourceUse eq 'Capital'}">
+																<tr class="tblgrn line_no_break">
+																	<td class="success">Working Capital</td>
+																	<td class="success">${resourceList.cropResourceUseAmount}</td>
+																	<td class="success croplimit"><input type="text"
+																										 value="${resourceList.cropResourceUseAmount}"
+																										 onchange="addCommaSignWithOutDollarDot(this);"
+																										 onkeypress="return isValidNumberValueForWithOutDot(event)" />
+																	</td>
+																</tr>
+															</c:when>
+															<c:when test="${resourceList.cropResourceUse ne 'Land'}">
+																<tr class="tblgrn line_no_break">
+																	<td class="success">${resourceList.cropResourceUse}</td>
+																	<td class="success">${resourceList.cropResourceUseAmount}</td>
+																	<td class="success croplimit"><input type="text"
+																										 value="${resourceList.cropResourceUseAmount}"
+																										 onchange="addCommaSignWithOutDollarDot(this);"
+																										 onkeypress="return isValidNumberValueForWithOutDot(event)" />
+																	</td>
+																</tr>
+															</c:when>
+														</c:choose>
 													</c:forEach>
 													</tbody>
 												</table>
