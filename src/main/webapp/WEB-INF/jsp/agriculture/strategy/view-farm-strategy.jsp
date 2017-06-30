@@ -26,28 +26,13 @@
                         <div class="left-farmList">
                             <ul id="sidemenu" class="total_output width-full">
                                 <li class="active">
-                                    <a href="#compareStrategies"
-                                       class="open"
-                                       delta="${farmId}">
-                                        <div class="scnr_detail">Compare Strategies</div>
-                                    </a>
+                                    <a href="#compareStrategies" class="open" delta="${farmId}"><div class="scnr_detail">Compare Strategies</div></a>
                                 </li>
                                 <li>
-                                    <a href="#manageStrategies"
-                                       delta="${farmId}">
-                                        <div class="scnr_detail">Manage Strategies</div>
-                                    </a>
+                                    <a href="#manageStrategies" delta="${farmId}"><div class="scnr_detail">Manage Strategies</div></a>
                                 </li>
                                 <li>
-                                    <a href="#printStrategies"
-                                       delta="${farmId}">
-                                        <div class="scnr_detail">Print Strategies</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#insurance-evaluator-tab">
-                                        <div class="scnr_detail">Evaluate Crop Insurance</div>
-                                    </a>
+                                    <a href="#printStrategies" delta="${farmId}"><div class="scnr_detail">Print Strategies</div></a>
                                 </li>
                             </ul>
                         </div>
@@ -317,18 +302,6 @@
                                 </table>
                                 <button class="alertify-button alertify-button-ok pull-right"
                                         onclick="openStrategySelectionPopup(); return false;">Print</button>
-                            </div>
-                        </div>
-
-                        <div id="insurance-evaluator-tab" class="strategy_block right-strategy-details" style="display: none">
-                            <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
-                                <table width="100%" cellspacing="0" class="table table-striped tbl-bordr  tblbrdr">
-                                    <tbody>
-                                        <tr class="tblgrn text-center">
-                                            <td class="success infotext">Crop Insurance Evaluator under construction</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
 
