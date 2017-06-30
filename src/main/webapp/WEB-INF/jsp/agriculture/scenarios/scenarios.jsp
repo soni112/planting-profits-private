@@ -31,16 +31,18 @@ Date 24-11-2015
 
                 <div class="base_white">
                     <ul id="sidemenu" class="total_output">
-                        <li class="active"><a href="#createScenario" class="open">
-                            <div class="scnr_detail">Create New Scenario</div>
-                        </a></li>
-                        <li><a href="#viewEditScenario" class="">
-                            <div class="scnr_detail">View/Modify Existing Scenario</div>
-                        </a></li>
-                        <li><a href="#applyScenarioToCurrent" class=""
-                               onclick="openScenarioAnalysisPopup(); return false;">
-                            <div class="scnr_detail">Scenario Analysis</div>
-                        </a></li>
+                        <li class="active">
+                            <a href="#createScenario"><div class="scnr_detail">Create New Scenario</div></a>
+                        </li>
+                        <li>
+                            <a href="#viewEditScenario"><div class="scnr_detail">View/Modify Existing Scenario</div></a>
+                        </li>
+                        <li>
+                            <a href="#applyScenarioToCurrent" onclick="openScenarioAnalysisPopup(); return false;"><div class="scnr_detail">Scenario Analysis</div></a>
+                        </li>
+                        <li>
+                            <a href="#insurance-evaluator-tab"><div class="scnr_detail">Evaluate Crop Insurance</div></a>
+                        </li>
                     </ul>
 
                     <!-----start tab rightside description-------------------------------------->
@@ -527,6 +529,19 @@ Date 24-11-2015
 
                     </div>
                     <!-- @end #applyScenarioToCurrent -->
+
+                    <div id="insurance-evaluator-tab" class="strategy_block right-strategy-details" style="display: none">
+                        <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+                            <table width="100%" cellspacing="0" class="table table-striped tbl-bordr  tblbrdr">
+                                <tbody>
+                                <tr class="tblgrn text-center">
+                                    <td class="success infotext">Crop Insurance Evaluator under construction</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- @end #insurance-evaluator-tab -->
 
                 </div>
             </div>

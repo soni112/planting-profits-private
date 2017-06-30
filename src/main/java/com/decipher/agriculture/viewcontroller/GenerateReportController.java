@@ -79,7 +79,7 @@ public class GenerateReportController {
 
             for (FarmCustomStrategyView farmCustomStrategyView : farmCustomStrategyViewSet) {
 
-                if (farmCustomStrategyView.getId() == strategyId) {
+                if (farmCustomStrategyView.getId().equals(strategyId)) {
 
                     JSONObject strategyOutputDetails = allStrategiesDetails.get(farmCustomStrategyView);
 
