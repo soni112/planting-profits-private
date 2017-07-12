@@ -69,7 +69,7 @@ public class ApplicationContextListener implements ServletContextListener{
 		 * @date - 02-04-2016
 		 * @desc - Initializing scheduler
 		 */
-		/*try {
+		try {
 //			ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
 //			ApplicationStandard bean = applicationContext.getBean(ApplicationStandard.class);
 //			ApplicationMode applicationMode = bean.getApplicationMode();
@@ -78,7 +78,7 @@ public class ApplicationContextListener implements ServletContextListener{
 //			}
 		} catch (Exception e) {
 			PlantingProfitLogger.error(e);
-		}*/
+		}
 
 	}
 
