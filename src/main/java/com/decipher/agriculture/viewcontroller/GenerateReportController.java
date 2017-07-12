@@ -173,15 +173,10 @@ public class GenerateReportController {
 //
         PlantingProfitLogger.info("loopCount = " + loopCount);
         PlantingProfitLogger.info("scenarioCount = " + scenarioCount);
-//        /**
-//         * @changed - Abhishek
-//         * @date - 09-01-2016
-//         * @desc - passing only the data to be used for processing information
-//         */
+
         ReportDataPage1 reportDataPage1 = new ReportDataPage1(accountView, baseFarmInfoView, baseSelectedStrategyOutputDetails);
         ReportDataPage2 reportDataPage2 = new ReportDataPage2(baseSelectedStrategyOutputDetails, allStrategyOutputDetailsContainer, scenarioCount);
         ReportDataPage3 reportDataPage3 = new ReportDataPage3(baseSelectedStrategyOutputDetails);
-
 
         model.put(AppConstants.ACCOUNT_VIEW, accountView);
         model.put(AppConstants.BASE_FARM_INFO_REPORT, baseFarmInfoView);
