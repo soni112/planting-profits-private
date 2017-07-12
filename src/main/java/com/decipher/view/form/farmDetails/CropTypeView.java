@@ -125,6 +125,7 @@ public class CropTypeView implements Cloneable {
                 this.intMinCropPrice = cropPricesInfo.getIntMinCropPrice();
                 this.intMaxCropPrice = cropPricesInfo.getIntMaxCropPrice();
             }
+            //  Crop variable production cost
             InternalVariableCropProductionCosts costsCropProductionCosts = cropType.getCostsCropProductionCosts();
             if (costsCropProductionCosts != null) {
                 this.calculatedVariableProductionCost = costsCropProductionCosts.getCalculatedVariableProductionCost();

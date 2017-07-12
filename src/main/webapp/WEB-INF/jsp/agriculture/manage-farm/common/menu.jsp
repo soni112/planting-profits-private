@@ -54,7 +54,7 @@ $(function(){
 				hideLoadingImage();
 			},
 			complete: function () {
-                hideLoadingImage();
+//                hideLoadingImage();
             }
 		});
 	});
