@@ -389,7 +389,10 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
         executorService.shutdown();
         boolean finished = false;
         try {
-            finished = executorService.awaitTermination(1, TimeUnit.MINUTES);
+//            finished = executorService.awaitTermination(1, TimeUnit.MINUTES);
+//            finished = executorService.awaitTermination(2, TimeUnit.MINUTES);
+//            finished = executorService.awaitTermination(3, TimeUnit.MINUTES);
+            finished = executorService.awaitTermination(4, TimeUnit.MINUTES);
         } catch (Exception e) {
             PlantingProfitLogger.error(e);
         }
