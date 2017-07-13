@@ -40,7 +40,7 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
     private static final String STRATEGY_DETAILS = "StrategyDetails";
     private static final String SCENARIO_DETAILS = "ScenarioDetails";
 
-    private Map<Account, Object> accountDataContainerMap = Collections.synchronizedMap(new TreeMap<Account, Object>());
+    private final Map<Account, Object> accountDataContainerMap = Collections.synchronizedMap(new TreeMap<Account, Object>());
 
     @Autowired
     private ScenarioService scenarioService;
@@ -264,7 +264,6 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
             synchronized (farmDetails) {
                 farmDetails.remove(farm);
                 farmDetails.put(farm, getDetailsForFarmFromDatabase(farm));
-                return true;
             }
 
         } catch (Exception e) {
@@ -272,6 +271,7 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
             return false;
         }
 
+        return true;
     }
 
     @Override

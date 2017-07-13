@@ -120,7 +120,13 @@ public class ReportDataPage2 {
 		if (farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
 
 			for (FarmOutputDetailsView farmOutputDetails : (List<FarmOutputDetailsView>) baseSelectedOutpuDetailsJsonObject.get("farmOutputDetails")) {
-				if (farmOutputDetails.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")) {
+				if(farmOutputDetails.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")
+						&& farmOutputDetails.getCropTypeView().getHiRiskCrop().equalsIgnoreCase("true")){
+					landUnderConservation += farmOutputDetails.getUsedAcresPercentage();
+					incomeUnderConservation += farmOutputDetails.getUsedCapitalPercentage();
+					landUnderRisk += farmOutputDetails.getUsedAcresPercentage();
+					incomeUnderRisk += Double.parseDouble(formatter.format((farmOutputDetails.getProfitDouble() / Double.parseDouble(SectionOnePDFGenerator.getEstimatedIncome().replaceAll("\\,", ""))) * 100));
+				} else if (farmOutputDetails.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")) {
 					landUnderConservation += farmOutputDetails.getUsedAcresPercentage();
 					incomeUnderConservation += farmOutputDetails.getUsedCapitalPercentage();
 				} else if (farmOutputDetails.getCropTypeView().getHiRiskCrop().equalsIgnoreCase("true")) {
@@ -139,7 +145,21 @@ public class ReportDataPage2 {
 
 			for (String cropKey : keySet) {
 				for (CropTypeView cropTypeView : cropTypeViewList) {
-					if (cropTypeView.getSelected()
+					if(cropTypeView.getSelected()
+							&& cropTypeView.getConservation_Crop().equalsIgnoreCase("true")
+							&& cropTypeView.getHiRiskCrop().equalsIgnoreCase("true")
+							&& cropKey.contains(cropTypeView.getCropName())){
+						String land, income;
+						land = hashMapForAcre.get(cropKey);
+						landUnderConservation += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
+						income = hashMapForProfit.get(cropKey);
+						incomeUnderConservation += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+
+						land = hashMapForAcre.get(cropKey);
+						landUnderRisk += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
+						income = hashMapForProfit.get(cropKey);
+						incomeUnderRisk += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+					} else if (cropTypeView.getSelected()
 							&& cropTypeView.getConservation_Crop().equalsIgnoreCase("true")
 							&& cropKey.contains(cropTypeView.getCropName())) {
 						String land = hashMapForAcre.get(cropKey);

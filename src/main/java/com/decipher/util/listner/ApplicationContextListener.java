@@ -34,7 +34,7 @@ public class ApplicationContextListener implements ServletContextListener{
 			e.printStackTrace();
 		}
 
-//		System.gc();
+		System.gc();
 	}
 
 	@Override
@@ -69,16 +69,15 @@ public class ApplicationContextListener implements ServletContextListener{
 		 * @date - 02-04-2016
 		 * @desc - Initializing scheduler
 		 */
-		/*try {
-//			ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
-//			ApplicationStandard bean = applicationContext.getBean(ApplicationStandard.class);
-//			ApplicationMode applicationMode = bean.getApplicationMode();
-//			if (Objects.equals(applicationMode, ApplicationMode.UAT) || Objects.equals(applicationMode, ApplicationMode.PRODUCTION)) {
+		try {
+			ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
+			ApplicationMode applicationMode = applicationContext.getBean(ApplicationStandard.class).getApplicationMode();
+			if (applicationMode.equals(ApplicationMode.UAT) || applicationMode.equals(ApplicationMode.PRODUCTION)) {
 				AgricultureScheduler.startQuartsSchedulerJobs();
-//			}
+			}
 		} catch (Exception e) {
 			PlantingProfitLogger.error(e);
-		}*/
+		}
 
 	}
 
