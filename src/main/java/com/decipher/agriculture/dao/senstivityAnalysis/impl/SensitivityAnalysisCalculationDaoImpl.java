@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import com.decipher.AppConstants;
 import com.decipher.agriculture.bean.OutputBeanForStrategy;
 import com.decipher.agriculture.dao.farmOutput.FarmOutputCalculationDao;
 import com.decipher.agriculture.dao.farmOutput.LinearProgramingSolveDao;
@@ -959,9 +960,10 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                      */
                     String differenceString;
                     if (resourceName != null) {
-                        if (resource.getCropResourceUse().equalsIgnoreCase("capital"))
+                        if (resource.getCropResourceUse().equalsIgnoreCase("capital")) {
                             differenceString = "$" + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
-                        else
+                            resourceName = AppConstants.WORKING_CAPITAL;
+                        } else
                             differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue) + " " + resource.getUoMResource();
                     } else {
                         differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
@@ -1297,9 +1299,10 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                      */
                     String differenceString = null;
                     if (resourceName != null) {
-                        if (resource.getCropResourceUse().equalsIgnoreCase("capital"))
+                        if (resource.getCropResourceUse().equalsIgnoreCase("capital")) {
                             differenceString = "$" + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
-                        else
+                            resourceName = AppConstants.WORKING_CAPITAL;
+                        }else
                             differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue) + " " + resource.getUoMResource();
                     } else {
                         differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
