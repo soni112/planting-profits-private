@@ -421,11 +421,11 @@
                 <div class="addcrop">
                     <ul class="tabs-menu list-inline">
                         <li class="current">
-                            <a href="#tab-variance-information">Information</a>
+                            <a href="#tab-variance-information">Vary Price / Yield</a>
                             <img id="strategy-variance-information-info" class="help_Infromation_PopUp" src="<c:url value="/images/i-icon.png"/>">
                         </li>
                         <li>
-                            <a href="#tab-variance-range">Range</a>
+                            <a href="#tab-variance-range">Price / Yield Range</a>
                             <img id="strategy-variance-range-info" class="help_Infromation_PopUp" src="<c:url value="/images/i-icon.png"/>">
                         </li>
                     </ul>
