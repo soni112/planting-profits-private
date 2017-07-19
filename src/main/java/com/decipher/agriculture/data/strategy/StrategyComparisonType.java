@@ -8,7 +8,7 @@ package com.decipher.agriculture.data.strategy;
  */
 public enum StrategyComparisonType {
 
-    Potential_Profit(0, "Estimated Income"),
+    Potential_Profit(0, "Working Capital"),
     Land_Used(1, "Land Used"),
     Capital_Used(2, "Capital Used"),
     Crop_Acreage_Per_Crop(3, "Crop Acreage Per Crop"),

@@ -180,9 +180,9 @@ public class ReportDataPage2 {
 		}
 
 		riskAnalysisMap.put("landUnderConservation", formatter.format(landUnderConservation));
-		riskAnalysisMap.put("incomeUnderConservation", "$" + formatter.format(incomeUnderConservation));
+		riskAnalysisMap.put("incomeUnderConservation", formatter.format(incomeUnderConservation));
 		riskAnalysisMap.put("landUnderRisk", formatter.format(landUnderRisk));
-		riskAnalysisMap.put("incomeUnderRisk", "$" + formatter.format(incomeUnderRisk));
+		riskAnalysisMap.put("incomeUnderRisk", formatter.format(incomeUnderRisk));
 
 		return riskAnalysisMap;
 	}

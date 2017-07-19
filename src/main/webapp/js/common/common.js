@@ -660,14 +660,14 @@ function applyTabingOnSidemenu(){
 			var oldcontent = $('#sidemenu a.open').attr('href');
 			var newcontent = $(this).attr('href');
 
-			$(oldcontent).fadeOut('fast', function() {
+			$(oldcontent).fadeOut(200, function() {
 				/**
 				 * @changed- Abhishek
 				 * @date - 23-01-2016
 				 * @desc - changed according to slide# 12 of 01042015
 				 */
 				/*$(newcontent).fadeIn().removeClass('hidden');*/
-				$(newcontent).fadeIn('fast').removeClass('hidden');
+				$(newcontent).fadeIn(100).removeClass('hidden');
 				$(oldcontent).addClass('hidden');
 			});
 

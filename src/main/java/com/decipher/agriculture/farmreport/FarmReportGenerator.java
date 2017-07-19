@@ -1,7 +1,7 @@
 package com.decipher.agriculture.farmreport;
 
 
-import com.decipher.agriculture.AppConstants;
+import com.decipher.AppConstants;
 import com.decipher.agriculture.data.account.AccountDocuments;
 import com.decipher.agriculture.data.account.AccountDocumentsType;
 import com.decipher.agriculture.data.account.AppRole;

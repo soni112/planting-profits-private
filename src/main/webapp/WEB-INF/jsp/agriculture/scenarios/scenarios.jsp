@@ -32,7 +32,7 @@ Date 24-11-2015
                 <div class="base_white">
                     <ul id="sidemenu" class="total_output">
                         <li class="active">
-                            <a href="#createScenario"><div class="scnr_detail">Create New Scenario</div></a>
+                            <a href="#createScenario" class="open"><div class="scnr_detail">Create New Scenario</div></a>
                         </li>
                         <li>
                             <a href="#viewEditScenario"><div class="scnr_detail">View/Modify Existing Scenario</div></a>
@@ -560,7 +560,9 @@ Date 24-11-2015
             <img src="<c:url value="/images/cross.png"/>" onclick="$('#critical-message-pop-up').hide(); return false;" id="close">
             <div class="popupform messagepopup potencial_profit_popup">
                 <div class="increase_profit">
-                    <p> If changed values in crop specific then global prices will not be applied. </p>
+                    <%--<p> If changed values in crop specific then global prices will not be applied. </p>--%>
+                    <p>Crop-specific values override Global values.</p>
+                    <p>Crop-specific values will be used for Scenario analysis </p>
                 </div>
             </div>
         </div>

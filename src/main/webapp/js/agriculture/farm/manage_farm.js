@@ -1549,7 +1549,8 @@ function addNewResource() {
         return false;
     }
     else if ($("#resourse_unit_name").val() == "") {
-        customAlerts("Please select unit of measure of particular resource", type_error, time);
+        // customAlerts("Please select unit of measure of particular resource", type_error, time);
+        customAlerts("Please select the appropriate unit of measure for resources : " + resourse_name, type_error, time);
         addErrorClassOnObject("#resourse_unit_name");
         return false;
     }
@@ -2876,7 +2877,7 @@ function saveAllFarmInformation() {
                 var status = response.status;
                 if (status == 'success') {
                     // customAlerts('"' + farmName + '" farm has been successfully saved', type_success, time);
-                    customAlerts('"' + farmName + '" strategy generated', type_success, time);
+                    customAlerts('"' + farmName + '" strategy generated. <br> Preparing output... Please be patient', type_success, time);
                     showLoadingImage();
                     var delay = 1000; //Your delay in milliseconds by rohit 14-04-15
 //		            setTimeout(function(){ window.location = "output-edit-farm-info.htm?farmId="+farmId; }, delay);

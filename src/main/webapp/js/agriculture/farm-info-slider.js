@@ -62,8 +62,8 @@ $(document).ready(
 					var oldcontent = $('#sidemenu li.active').attr('href');
 					var newcontent = $(this).attr('href');
 
-					$(oldcontent).fadeOut('fast', function() {
-						$(newcontent).fadeIn().removeClass('hidden');
+					$(oldcontent).fadeOut(200, function() {
+						$(newcontent).fadeIn(100).removeClass('hidden');
 						$(oldcontent).addClass('hidden');
 					});
 

@@ -1,4 +1,4 @@
-package com.decipher.agriculture;
+package com.decipher;
 
 /**
  * Created on 11/3/17 4:01 PM by Abhishek Samuel
@@ -22,5 +22,5 @@ public class AppConstants {
     public static final String FARM_ID = "farm-id";
     public static final String STRATEGY_ID_ARRAY = "strategy-id-array";
 
-
+    public static final String WORKING_CAPITAL = "Working Capital";
 }
