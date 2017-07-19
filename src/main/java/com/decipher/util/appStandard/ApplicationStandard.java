@@ -24,7 +24,7 @@ public class ApplicationStandard {
                     ApplicationStandard.applicationMode = ApplicationMode.DEVELOPMENT;
                     break;
                 case 1:
-                    ApplicationStandard.applicationMode = ApplicationMode.DEVELOPMENT;
+                    ApplicationStandard.applicationMode = ApplicationMode.UAT;
                     break;
                 case 2:
                     ApplicationStandard.applicationMode = ApplicationMode.PRODUCTION;
