@@ -530,7 +530,7 @@ function getStrategyForMultipleCrops(){
 		url : 'agriculture/SensetivityAnalysisController/getSAForStrategyByMultipleCrops',
 		type : 'POST',
 		beforeSend: function(){
-			$('#loading-strategy-content').html('Preparing to Save strategy...');
+			$('#loading-strategy-content').html('Changing crop acreage limits and generating a new strategy...');
 			showLoadingImageForStrategy()
 		},
 		data : {
