@@ -1025,9 +1025,9 @@ function forCastGraphForSingleResource() {
             // $('#loading-strategy-content').html('Preparing to Save strategy...')
             //Update according to PPT 05232017, Slide no : G055
 			if(resourceName == 'Capital'){
-                $('#loading-strategy-content').html('Generating multiple strategies for Working Capital');
+                $('#loading-strategy-content').html('Generating multiple strategies for Working Capital...');
 			} else {
-                $('#loading-strategy-content').html('Generating multiple strategies for ' + resourceName);
+                $('#loading-strategy-content').html('Generating multiple strategies for ' + resourceName + "...");
 			}
 
 			showLoadingImageForStrategy();
@@ -1097,7 +1097,7 @@ function forCastGraphForSingleCropLimit() {
 		beforeSend: function(){
 			//Update according to PPT 05232017, Slide no : G055
 			// $('#loading-strategy-content').html('Preparing to Save strategy...')
-			$('#loading-strategy-content').html('Generating multiple strategies for ' + cropName);
+			$('#loading-strategy-content').html('Generating multiple strategies for ' + cropName + "...");
 			showLoadingImageForStrategy()
 		},
 		data : {
@@ -1248,7 +1248,7 @@ function getStrategyForMultipleResourcesForCreateNewScenario(){
 		}
 	}).done(function(){
 		hideLoadingImageForStrategy();
-		$('#loading-strategy-content').html('Generating strategy…')
+		$('#loading-strategy-content').html('Generating strategy...')
 	});
 }
 
@@ -1362,7 +1362,7 @@ function getStrategyForSinghalResourcesForCreateNewScenario(){
 		},
 	}).done(function(){
 		hideLoadingImageForStrategy();
-		$('#loading-strategy-content').html('Generating strategy…')
+		$('#loading-strategy-content').html('Generating strategy...')
 	});
 	hideSensetiveAnalysisCropAndResourcePopup();  //hide popup crop | Acrreage by rohit
 }
@@ -1452,7 +1452,7 @@ function SaveStrategyForMultipleResources(resourse_Type){
 		}
 	}).done(function(){
 		hideLoadingImageForStrategy();
-		$('#loading-strategy-content').html('Generating strategy…')
+		$('#loading-strategy-content').html('Generating strategy...')
 	});
 }
 
@@ -1572,7 +1572,7 @@ function SaveStrategyForMultipleCrops(resourse_Type){
 		}
 	}).done(function(){
 		hideLoadingImageForStrategy();
-		$('#loading-strategy-content').html('Generating strategy…')
+		$('#loading-strategy-content').html('Generating strategy...')
 	});
 }
 
