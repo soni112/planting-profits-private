@@ -303,7 +303,7 @@ function getStrategyForMultipleResources(){
 		url : 'agriculture/SensetivityAnalysisController/getSAForStrategyByMultipleResource',
 		type : 'POST',
 		beforeSend: function(){
-			$('#loading-strategy-content').html('Preparing to Save strategy...');
+            $('#loading-strategy-content').html('Changing resources and generating a new strategy...');
 			showLoadingImageForStrategy()
 		},
 		data : {
@@ -1572,7 +1572,7 @@ function SaveStrategyForMultipleCrops(resourse_Type){
 		}
 	}).done(function(){
 		hideLoadingImageForStrategy();
-		$('#loading-strategy-content').html('Generating strategy...')
+		$('#loading-strategy-content').html('Generating strategy')
 	});
 }
 
