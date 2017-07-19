@@ -2876,7 +2876,7 @@ function saveAllFarmInformation() {
                 var status = response.status;
                 if (status == 'success') {
                     // customAlerts('"' + farmName + '" farm has been successfully saved', type_success, time);
-                    customAlerts('"' + farmName + '" strategy generated', type_success, time);
+                    customAlerts('"' + farmName + '" strategy generated. <br> Preparing output... Please be patient', type_success, time);
                     showLoadingImage();
                     var delay = 1000; //Your delay in milliseconds by rohit 14-04-15
 //		            setTimeout(function(){ window.location = "output-edit-farm-info.htm?farmId="+farmId; }, delay);
