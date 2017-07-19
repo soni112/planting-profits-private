@@ -32,7 +32,7 @@ Date 24-11-2015
                 <div class="base_white">
                     <ul id="sidemenu" class="total_output">
                         <li class="active">
-                            <a href="#createScenario"><div class="scnr_detail">Create New Scenario</div></a>
+                            <a href="#createScenario" class="open"><div class="scnr_detail">Create New Scenario</div></a>
                         </li>
                         <li>
                             <a href="#viewEditScenario"><div class="scnr_detail">View/Modify Existing Scenario</div></a>
