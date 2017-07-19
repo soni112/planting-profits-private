@@ -885,7 +885,12 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 String[] bestCase = (String[]) map.get("Best_Case");
                 if (bestResult != null) {
                     try {
-                        jsonObject.put("Potential_Profit", bestResult.getObjective().longValue());
+                        if(i == 0) {
+                            jsonObject.put("Potential_Profit", currentPotentialProfit);
+                        } else {
+                            jsonObject.put("Potential_Profit", bestResult.getObjective().longValue());
+                        }
+//                        jsonObject.put("Potential_Profit", bestResult.getObjective().longValue());
                     } catch (Exception e) {
 
                         PlantingProfitLogger.error(e);
@@ -1264,8 +1269,11 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
                         }
                     }
-
-                    jsonObject.put("Potential_Profit", result.getObjective().longValue());
+                    if(i == 0) {
+                        jsonObject.put("Potential_Profit", currentPotentialProfit);
+                    } else {
+                        jsonObject.put("Potential_Profit", result.getObjective().longValue());
+                    }
                     jsonObject.put("Crop_Details", innerJsonArray);
                     jsonObject.put("Strategy", "Acerage");
 
