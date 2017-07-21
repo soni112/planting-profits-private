@@ -1,6 +1,6 @@
 	<%@ page pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
-<%@ taglib prefix="cfun" uri="/WEB-INF/tags/functions.tld" %>
+<%@ taglib prefix="cfun" uri="/WEB-INF/tld/functions.tld" %>
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-multiselect.css"/>" type="text/css" />
 <link rel="stylesheet" href="<c:url value="/css/sb-admin-2.css"/>" type="text/css" media="all">
 <script>
@@ -129,7 +129,7 @@
 									</c:choose>
 
 									<div class="col-lg-1 col-md-2 col-sm-2 option_selection">
-										<a id="farm_Information_planBy" class="help_Infromation_PopUp" href="#">
+										<a id="farm_Information_planBy" class="help_Infromation_PopUp" href="javascript:;">
 											<img src="<c:url value="/images/i-icon.png"/> ">
 										</a>
 									</div>
@@ -181,7 +181,7 @@
 									</c:choose>
 
 									<div class="col-lg-1 col-md-2 col-sm-2 option_selection">
-										<a id="farm_Information_irrigate" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+										<a id="farm_Information_irrigate" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 									</div>
 								</div>
 								<!-- start by rohit on 29-04-15 -->
@@ -221,7 +221,7 @@
 
 									<div class="col-lg-1 col-md-2 col-sm-2 option_selection">
 										<a id="farm_Information_storage"
-											class="help_Infromation_PopUp" href="#"><img
+											class="help_Infromation_PopUp" href="javascript:;"><img
 											src="<c:url value="/images/i-icon.png"/>"></a>
 									</div>
 								</div>
@@ -267,7 +267,7 @@
 									</div>
 									<div class="col-lg-1 col-md-2 col-sm-2 option_selection">
 										<a id="farm_Information_forward"
-											class="help_Infromation_PopUp" href="#"><img
+											class="help_Infromation_PopUp" href="javascript:;"><img
 											src="<c:url value="/images/i-icon.png"/>"></a>
 									</div>
 								</div>
@@ -310,7 +310,7 @@
 									</div>
 									<div class="col-lg-1 col-md-2 col-sm-2 option_selection">
 										<a id="farm_Information_insurance"
-											class="help_Infromation_PopUp" href="#"><img
+											class="help_Infromation_PopUp" href="javascript:;"><img
 											src="<c:url value="/images/i-icon.png"/>"></a>
 									</div>
 								</div>
@@ -323,7 +323,7 @@
 									</a>
 								</div>
 								<!-- <div class="yellobtn pre_next">
-<a id="submit" href="#">Previous</a>
+<a id="submit" href="javascript:;">Previous</a>
 </div> -->
 							</div>
 							<!-- Popup Div Starts Here -->
@@ -365,7 +365,7 @@
 								<h2 class="field-heading">
 									<%--Plan by Fields --%>
 										Field Information
-									<a id="Plan_by_Fields" class="help_Infromation_PopUp" href="#">
+									<a id="Plan_by_Fields" class="help_Infromation_PopUp" href="javascript:;">
 										<img src="<c:url value="/images/i-icon.png"/>">
 									</a>
 										<span id="land_acres_planningbyfield"></span>
@@ -374,14 +374,14 @@
 								<div style="margin-bottom: 8px;" class="all_buttons">
 									<div class="top_buttons addremove-field">
 										<a onclick="div_show4ForAddField()"><img
-											src="images/add_field.png"></a>
+											src="<c:url value="/images/add_field.png"/>"></a>
 									</div>
 									<div class="top_buttons addremove-field">
 										<a onclick="modifyExistingField()"><img
-											src="images/modify_field.png"></a>
+											src="<c:url value="/images/modify_field.png"/>"></a>
 									</div>
 									<div class="top_buttons addremove-field padding-left-none">
-										<a onclick="removeField()"><img src="images/remove.png"></a>
+										<a onclick="removeField()"><img src="<c:url value="/images/remove.png"/>"></a>
 									</div>
 								</div>
 								<!-- <div class="col-lg-5 col-md-2 col-sm-2 text-left"></div>
@@ -406,20 +406,20 @@
 													</td>
 													<td class="text-center">Last Crop <a
 														id="Plan_by_Fields_Last_Crop"
-														class="help_Infromation_PopUp" href="#"><span
-															class="add-fieldi"><img src="images/i-img.png"></a></span></td>
+														class="help_Infromation_PopUp" href="javascript:;"><span
+															class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"></span></a></td>
 													<td class="text-center">Fallow <a
 														id="Plan_by_Fields_Fallow" class="help_Infromation_PopUp"
-														href="#"><span class="add-fieldi"><img
-																src="images/i-img.png"></a></span></td>
+														href="javascript:;"><span class="add-fieldi"><img
+																src="<c:url value="/images/i-img.png"/>"></span></a></td>
 													<td class="text-center">Divide <a
 														id="Plan_by_Fields_Divide" class="help_Infromation_PopUp"
-														href="#"><span class="add-fieldi"><img
-																src="images/i-img.png"></a></span></td>
+														href="javascript:;"><span class="add-fieldi"><img
+																src="<c:url value="/images/i-img.png"/>"></span></a></td>
 													<td class="text-center">Irrigate <a
 														id="Plan_by_Fields_Irrigate"
-														class="help_Infromation_PopUp" href="#"><span
-															class="add-fieldi"><img src="images/i-img.png"></a></span></td>
+														class="help_Infromation_PopUp" href="javascript:;"><span
+															class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"></span></a></td>
 												</tr>
 											</thead>
 											<tbody id="plan-by-field-tbody"
@@ -428,8 +428,8 @@
 												<!--          create field dynamically get field information from FarmInfoView list -->
 
 
-												<c:set var="rowCount" value="1"></c:set>
-												<c:set var="totalSize" value="0"></c:set>
+												<c:set var="rowCount" value="1" />
+												<c:set var="totalSize" value="0" />
 												<c:forEach var="fieldList" items="${model.fieldInfoList}">
 													<!--get crop list from fieldInfoList View object -->
 													<tr class="success tblgrn text-center">
@@ -456,9 +456,9 @@
 															id="field-irrigate__${rowCount}" type="checkbox"
 															value="true" ${fieldList.irrigate ?'checked':''}></td>
 														<c:set var="totalSize"
-															value="${totalSize+fieldList.fieldSize}"></c:set>
+															value="${totalSize+fieldList.fieldSize}" />
 													</tr>
-													<c:set var="rowCount" value="${rowCount+1}"></c:set>
+													<c:set var="rowCount" value="${rowCount+1}" />
 												</c:forEach>
 											</tbody>
 											<tfoot>
@@ -527,7 +527,7 @@
 							<div class="form_area">
 								<h2 class="field-heading">
 									Plan by Acres <span><a id="plan_by_acres"
-										class="help_Infromation_PopUp" href="#"><img
+										class="help_Infromation_PopUp" href="javascript:;"><img
 											src="<c:url value="/images/i-icon.png"/>"></a></span>
 								</h2>
 								<div class="clearfix"></div>
@@ -560,21 +560,21 @@
 						<div id="crop_cropinfo" class="show_hide_class hidden">
 							<div class="form_area">
 								<h2 class="field-heading"> Crops and Crop Information
-									<a id="Crops_and_Crop_Information" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+									<a id="Crops_and_Crop_Information" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 								</h2>
 								<div class="clearfix"></div>
 
 								<div class="all_buttons" style="margin-bottom: 8px;">
 									<div class="top_buttons addremove-field">
-										<a onclick="div_show5()"><img src="images/add-crop.png"></a>
+										<a onclick="div_show5()"><img src="<c:url value="/images/add-crop.png"/>"></a>
 									</div>
 									<div class="top_buttons addremove-field padding-left-none">
-										<a onclick="removeCrops()"><img src="images/remove-crops.png"></a>
+										<a onclick="removeCrops()"><img src="<c:url value="/images/remove-crops.png"/>"></a>
 									</div>
 									<div class="top_buttons addremove-field padding-left-none">
-										<a onclick="selectAllContacts()"><img id="select-unselect-img" src="images/select_all.png"></a>
+										<a onclick="selectAllContacts()"><img id="select-unselect-img" src="<c:url value="/images/select_all.png"/>"></a>
 									</div>
-									<a id="Crops_and_Crop_Information_add" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+									<a id="Crops_and_Crop_Information_add" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 								</div>
 
 								<!---------------------start tab------------------------------->
@@ -595,12 +595,12 @@
 													<div
 														class="col-lg-12 col-md-12 col-sm-12 padding-left-none tabcontaint">
 														<ul class="list-unstyled text-left" id="crop_normal">
-															<c:set var="isFountFieldCrop" value="0"></c:set>
+															<c:set var="isFountFieldCrop" value="0" />
 															<c:forEach var="farm" items="${model.cropTypeView}">
 																<!--get crop list from CropView object -->
 																<c:if test="${farm.cropTypeName eq 'Field_Crop'}">
 																	<li class="col-lg-4 col-md-4 col-sm-6 padding-left-none">
-																		<img src="images/cropimg.png"> &nbsp;&nbsp;
+																		<img src="<c:url value="/images/cropimg.png"/>"> &nbsp;&nbsp;
 																		<label class="labelForCrops">
 																			<input type="checkbox" name="field_crop[]"
 																				onchange="onCropSelectedOrRemoved(this); changeSelectAllImage();"
@@ -623,12 +623,12 @@
 													<div
 														class="col-lg-12 col-md-12 col-sm-12 padding-left-none tabcontaint">
 														<ul class="list-unstyled text-left" id="crop_vegitable">
-															<c:set var="isFountVegitableCrop" value="0"></c:set>
+															<c:set var="isFountVegitableCrop" value="0" />
 															<c:forEach var="farm" items="${model.cropTypeView}">
 																<!--get crop list from CropView object -->
 																<c:if test="${farm.cropTypeName eq 'Vegitable_Crop'}">
 																	<li class="col-lg-4 col-md-4 col-sm-6 padding-left-none">
-																		<img src="images/cropimg.png"> &nbsp;&nbsp;
+																		<img src="<c:url value="/images/cropimg.png"/>"> &nbsp;&nbsp;
 																		<label class="labelForCrops">
 																			<input type="checkbox"
 																				name="vegitable_crop[]"
@@ -719,7 +719,7 @@
 											   ${model.farmInfoView.montyCarloStatus == true ? 'checked' : ''}
 											   onchange="enableDisableMontyCarloAnalysis(); return false;">
 									</label>
-									<a id="montyCarloSwitch" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+									<a id="montyCarloSwitch" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 								</div>
 								<div class="clearfix"></div>
 
@@ -732,30 +732,30 @@
 													<td class="tblbrdr text-center add-fieldi">Crop</td>
 													<td class="text-center add-fieldi uom_width">UoM</td>
 													<td class="text-center" colspan="3">
-														<a id="Crop_Information_Details_yield" class="help_Infromation_PopUp" href="#">
-															<span class="add-fieldi">Yields (UoM/acre) <img src="images/i-img.png"></span>
+														<a id="Crop_Information_Details_yield" class="help_Infromation_PopUp" href="javascript:;">
+															<span class="add-fieldi">Yields (UoM/acre) <img src="<c:url value="/images/i-img.png"/>"></span>
 														</a><br>
 													<span class="infosubhead expected_range">Expected*</span> <span
 														class="infosubhead max_range">Max</span> <span
 														class="infosubhead min_range">Min</span></td>
 													<td class="text-center" colspan="3"><a
 														id="Crop_Information_Details_price"
-														class="help_Infromation_PopUp" href="#"><span
+														class="help_Infromation_PopUp" href="javascript:;"><span
 															class="add-fieldi">Prices ($/UoM) <img
-																src="images/i-img.png"></span></a><br>
+																src="<c:url value="/images/i-img.png"/>"></span></a><br>
 													<span class="infosubhead expected_range">Expected*</span> <span
 														class="infosubhead max_range">Max</span> <span
 														class="infosubhead min_range">Min</span></td>
 													<td class="text-center">Variable Production Costs <span
 														class="infosubhead">($/acre)*</span><span><a
 															id="variable_production_cost"
-															class="help_Infromation_PopUp" href="#"><img
+															class="help_Infromation_PopUp" href="javascript:;"><img
 																src="<c:url value="/images/i-icon.png"/>"></a></span>
 													</td>
 													<td class="text-center">Est. Income <span
 														class="infosubhead">($/acre)</span><span><a
 															id="profit_per_acre" class="help_Infromation_PopUp"
-															href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></span>
+															href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></span>
 													</td>
 												</tr>
 
@@ -763,7 +763,7 @@
 											<tbody id="crop_information_tbody">
 
 												<!--         start update by Bhagvan Singh on 06-04-2015-->
-												<c:set var="rowCount" value="1"></c:set>
+												<c:set var="rowCount" value="1" />
 												<c:forEach var="farm" items="${model.cropTypeView}">
 													<!--get crop list from CropView object -->
 													<c:if test="${farm.selected}">
@@ -843,7 +843,7 @@
 
 														</tr>
 
-														<c:set var="rowCount" value="${rowCount+1}"></c:set>
+														<c:set var="rowCount" value="${rowCount+1}" />
 													</c:if>
 												</c:forEach>
 
@@ -874,14 +874,14 @@
 															<td class="tblbrdr text-center add-fieldi">Crop</td>
 															<!--	@changed - Abhishek		@date - 30-12-2015 -->
 															<td class="text-center add-fieldi hidden">Irrigated</td>
-															<td class="text-center">Conservation Practice <a id="Conservation_Practice" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
-															<td class="text-center">Hi-Risk Crop <a id="hiRisk_crop" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+															<td class="text-center">Conservation Practice <a id="Conservation_Practice" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+															<td class="text-center">Hi-Risk Crop <a id="hiRisk_crop" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
 														</tr>
 														</thead>
 														<tbody id="optional_crop_info_tbody">
 
 														<!--         start update by Bhagvan Singh-->
-														<c:set var="rowCount" value="1"></c:set>
+														<c:set var="rowCount" value="1" />
 														<c:forEach var="farm" items="${model.cropTypeView}">
 															<!--get crop list from CropView object -->
 															<c:if test="${farm.selected}">
@@ -894,7 +894,7 @@
 																	<td class="success"><input type="checkbox" id="optional_crop_info_conservation_practice__${rowCount}" value="true" ${farm.conservation_Crop eq 'true'?'checked':''} /></td>
 																	<td class="success"><input type="checkbox" id="optional_crop_info_hi_risk_crop__${rowCount}" value="true" ${farm.hiRiskCrop eq 'true'?'checked':''} /></td>
 																</tr>
-																<c:set var="rowCount" value="${rowCount+1}"></c:set>
+																<c:set var="rowCount" value="${rowCount+1}" />
 															</c:if>
 														</c:forEach>
 
@@ -930,7 +930,7 @@
 														</tr>
 														</thead>
 														<tbody id="optional_planting_date">
-														<c:set var="rowCount" value="1"></c:set>
+														<c:set var="rowCount" value="1" />
 														<c:forEach var="farm" items="${model.cropTypeView}">
 															<c:if test="${farm.selected}">
 																<tr class="tblgrn text-center"
@@ -958,7 +958,7 @@
 																			name="Crop"
 																			onkeypress="return isValidNumberValue(event)"></td>
 																</tr>
-																<c:set var="rowCount" value="${rowCount+1}"></c:set>
+																<c:set var="rowCount" value="${rowCount+1}" />
 															</c:if>
 														</c:forEach>
 
@@ -1058,23 +1058,23 @@
 									Optional Crop Production Costs Details
 									<%--@changed - Abhishek 	@date - 29-12-2015		@desc - Added help information functionality--%>
 									<%--<span><img src="<c:url value="/images/i-icon.png"/>"></span>--%>
-									<a id="Optional_Crop_Production_Costs_Details" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+									<a id="Optional_Crop_Production_Costs_Details" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 								</h2>
 								<div class="all_buttons">
 									<div class="top_buttons addremove-field">
 										<a id="add_production_cost_field"
 											onclick="addProductionCostField(1)"><img
-											src="images/add-componentbutton.png"></a>
+											src="<c:url value="/images/add-componentbutton.png"/>"></a>
 									</div>
 									<div class="top_buttons addremove-field">
 										<a id="modify_production_cost_field"
 											onclick="modifyProductionCostField(2)"><img
-											src="images/modify.png"></a>
+											src="<c:url value="/images/modify.png"/>"></a>
 									</div>
 									<div class="top_buttons add-field padding-right-none">
 										<a id="remove_production_cost_field"
 											onclick="removeProductionCostField(3)"><img
-											src="images/remove-component.png"></a>
+											src="<c:url value="/images/remove-component.png"/>"></a>
 									</div>
 								</div>
 								<div class="clearfix"></div>
@@ -1115,14 +1115,14 @@ Start
 													<tbody
 														id="production_cost_table_tbody__${cropList.cropNameForId}">
 														<!-- get components list from OptionalCropProductionCostsDetailsView object  -->
-														<c:set var="rowCount" value="1"></c:set>
-														<c:set var="total" value=""></c:set>
-														<c:set var="cropNameId" value=""></c:set>
+														<c:set var="rowCount" value="1" />
+														<c:set var="total" value="" />
+														<c:set var="cropNameId" value="" />
 														<c:forEach var="farm" items="${model.CropCostsDetailsList}">
-															<c:set var="cropNameId" value="${farm.cropName}"></c:set>
+															<c:set var="cropNameId" value="${farm.cropName}" />
 															<%-- <c:out value="${listValue.cropName}" /> --%>
 															<!--   	forEach loop for row creation crop cost_component_row wise -->
-															<c:set var="total" value="${farm.calculateTotalStr}"></c:set>
+															<c:set var="total" value="${farm.calculateTotalStr}" />
 															<c:if test="${cropList.id eq farm.cropId}">
 																<c:choose>
 																	<c:when test="${rowCount % 2 eq '0'}">
@@ -1182,7 +1182,7 @@ Start
 																		</tr>
 																	</c:otherwise>
 																</c:choose>
-																<c:set var="rowCount" value="${rowCount+1}"></c:set>
+																<c:set var="rowCount" value="${rowCount+1}" />
 															</c:if>
 														</c:forEach>
 													</tbody>
@@ -1217,7 +1217,7 @@ Start
 										onclick="setTotalOfOptionalCropInformationToVariableProductionCost()">OK</a>
 								</div>
 								<!-- <div class="yellobtn pre_next">
-<a id="submit" href="#">Previous</a>
+<a id="submit" href="javascript:;">Previous</a>
 </div> -->
 							</div>
 						</div>
@@ -1229,10 +1229,10 @@ Start
 start -->
 								<div style="margin-bottom: 8px;" class="all_buttons">
 									<div class="top_buttons addremove-field">
-										<a onclick="allCheckboxNone()"><img src="images/select-none.png"></a>
+										<a onclick="allCheckboxNone()"><img src="<c:url value="/images/select-none.png"/>"></a>
 									</div>
 									<div class="top_buttons addremove-field padding-left-none">
-										<a onclick="allCheckboxSelect()"><img src="images/select-all.png"></a>
+										<a onclick="allCheckboxSelect()"><img src="<c:url value="/images/select-all.png"/>"></a>
 									</div>
 								</div>
 								<!-- <div>
@@ -1243,7 +1243,7 @@ start -->
 								<div class="info">
 									Select which crops you are considering planting in each field.
 									<span><a id="crop_field_choices"
-										class="help_Infromation_PopUp" href="#"><img
+										class="help_Infromation_PopUp" href="javascript:;"><img
 											src="<c:url value="/images/i-icon.png"/>"></a></span>
 								</div>
 								<div class="ques">
@@ -1275,13 +1275,13 @@ start -->
 														<td class="tblft1" id="field_choice_crop_tbody_row_first_column__${rowFieldCount}">${cropFieldsList.fieldName}</td>
 
 														<c:set var="falllow" value="false" />
-														<%-- <c:set var="lastCropName" value=""></c:set>  --%>
+														<%-- <c:set var="lastCropName" value="" />  --%>
 														<c:forEach var="fieldList" items="${model.fieldInfoList}">
 															<c:if test="${fieldList.fieldName eq cropFieldsList.fieldName && fieldList.fallow}">
 																<c:set var="falllow" value="true" />
 															</c:if>
 															<%-- <c:if test="${fieldList.fieldName eq cropFieldsList.fieldName && fieldList.lastCrop ne 'No Crop'}">
-<c:set var="lastCropName" value="fieldList.lastCrop"></c:set>
+<c:set var="lastCropName" value="fieldList.lastCrop" />
 </c:if> --%>
 														</c:forEach>
 
@@ -1337,11 +1337,11 @@ start -->
 								<div style="margin-bottom: 8px;" class="all_buttons">
 									<div class="top_buttons addremove-field">
 										<a onclick="div_show6()"><img
-											src="images/add_resource.png"></a>
+											src="<c:url value="/images/add_resource.png"/>"></a>
 									</div>
 									<div class="top_buttons addremove-field padding-left-none">
 										<a onclick="removeResource()"><img
-											src="images/remove_resources.png"></a>
+											src="<c:url value="/images/remove_resources.png"/>"></a>
 									</div>
 								</div>
 								<!-- <div class="col-lg-6 col-md-2 col-sm-2 text-left"></div>
@@ -1354,7 +1354,7 @@ start -->
 								 -->
 								<div class="info" style="margin-top: 5px;">
 									Select which resources you want to include in the analysis.<span><a
-										id="resourse_manage" class="help_Infromation_PopUp" href="#"><img
+										id="resourse_manage" class="help_Infromation_PopUp" href="javascript:;"><img
 											src="<c:url value="/images/i-icon.png"/>"></a></span>
 								</div>
 
@@ -1370,15 +1370,15 @@ start -->
 													<td class="text-center add-fieldi">Resource Name</td>
 													<!--	@changed - Abhishek		@date - 23-01-2016 		@desc - Added help information functionality-->
 													<%--<td class="text-center add-fieldi">Unit of Measure</td>--%>
-													<td class="text-center add-fieldi">Unit of Measure<a id="resourceUnitOfmeasure" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<td class="text-center add-fieldi">Unit of Measure<a id="resourceUnitOfmeasure" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
 													<!--	@changed - Abhishek		@date - 29-12-2015 		@desc - Added help information functionality-->
-													<%--<td class="text-center">Amount Available <img src="images/i-img.png"></td>--%>
-													<td class="text-center">Amount Available <a id="amount_Available" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<%--<td class="text-center">Amount Available <img src="<c:url value="/images/i-img.png"/>"></td>--%>
+													<td class="text-center">Amount Available <a id="amount_Available" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
 												</tr>
 											</thead>
 											<tbody id="manage_resource_tbody">
-												<c:set var="rowCount" value="1"></c:set>
-												<c:set var="resourceNo" value="1"></c:set>
+												<c:set var="rowCount" value="1" />
+												<c:set var="resourceNo" value="1" />
 												<c:forEach var="resourceListForManageResource" items="${model.resourceList}">
 													<!-- details start -->
 													<c:choose>
@@ -1489,7 +1489,7 @@ start -->
 								<div class="clearfix"></div>
 								<div class="info">
 									Enter the amount of each resource used per acre.
-									<span><a id="resourse_usage" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></span>
+									<span><a id="resourse_usage" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></span>
 								</div>
 								<div class="ques">
 									<div class="maintbl" style="max-height: 250px;">
@@ -1610,7 +1610,7 @@ start -->
 									Account for variability of yields and resource use among fields.
 									<%--@changed - Abhishek 	@date - 29-12-2015 		@desc - Added help information functionality--%>
 									<%--<img src="<c:url value="/images/i-icon.png"/>">--%>
-									<a id="amount_variablity_yield" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+									<a id="amount_variablity_yield" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 								</div>
 								<div class="clearfix"></div>
 								<div class="ques">
@@ -1647,7 +1647,7 @@ start -->
 											<p class="text-left variancesub"> Yield Difference
 												<%--@changed - Abhishek 	@date - 29-12-2015 	@desc - Added help information functionality--%>
 												<%--<img src="<c:url value="/images/i-icon.png"/>">--%>
-												<a id="yield_Difference" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+												<a id="yield_Difference" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 											</p>
 											<div class="table-responsive">
 												<table class="table table-striped tbl-bordr  tblbrdr" cellspacing="0" width="100%">
@@ -1742,7 +1742,7 @@ start -->
 												Resource Usage Difference
 												<%--@changed - Abhishek 	@date - 29-12-2015 	@desc - Added help information functionality --%>
 												<%--<img src="<c:url value="/images/i-icon.png"/>">--%>
-												<a id="resource_usage_Difference" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+												<a id="resource_usage_Difference" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 											</p>
 											<div class="table-responsive">
 												<table class="table table-striped tbl-bordr  tblbrdr"
@@ -1853,14 +1853,14 @@ start -->
 							<div class="form_area">
 								<h2 class="field-heading">
 									Forward Sales <span><a id="forward_sale"
-										class="help_Infromation_PopUp" href="#"><img
+										class="help_Infromation_PopUp" href="javascript:;"><img
 											src="<c:url value="/images/i-icon.png"/>"></a></span>
 								</h2>
 								<div class="clearfix"></div>
 								<div class="info">
 									Enter information on firm or proposed forward sales.
 									<%--@changed - Abhishek 	@date - 29-12-2015	--%>
-									<%--<a id="forward_sale_proposed" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>" class="add-fieldi"></a>--%>
+									<%--<a id="forward_sale_proposed" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>" class="add-fieldi"></a>--%>
 								</div>
 								<div class="ques">
 									<div class="table-responsive">  <%--style="max-height: 300px;"--%>
@@ -1872,22 +1872,22 @@ start -->
 												<tr class="tblhd text-center add-fieldi">
 													<td class="tblbrdr text-center add-fieldi">Crop</td>
 													<td class="text-center add-fieldi">Yield Units</td>
-													<td class="text-center add-fieldi">Price <a id="forward_sale_price" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
-													<td class="text-center add-fieldi">Amount <a id="forward_sale_amount" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
-													<td class="text-center add-fieldi">Acres <a id="forward_sale_acres" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
-													<td class="text-center">Proposed <a id="forward_sale_proposed" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
-													<td class="text-center">Firm <a id="forward_sale_firm_td" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
-													<td class="text-center hidden">Upper Limit (%) <a id="forward_sale_upper_limit" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<td class="text-center add-fieldi">Price <a id="forward_sale_price" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<td class="text-center add-fieldi">Amount <a id="forward_sale_amount" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<td class="text-center add-fieldi">Acres <a id="forward_sale_acres" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<td class="text-center">Proposed <a id="forward_sale_proposed" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<td class="text-center">Firm <a id="forward_sale_firm_td" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
+													<td class="text-center hidden">Upper Limit (%) <a id="forward_sale_upper_limit" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></td>
 												</tr>
 											</thead>
 											<!--         Modify by Bhagvan Singh 06-04-2015 start -->
 											<tbody id="forward_sales_information_tbody">
-												<c:set var="forwardSalesRowCount" value="1"></c:set>
-												<c:set var="ContactIdentifierValue" value=""></c:set>
+												<c:set var="forwardSalesRowCount" value="1" />
+												<c:set var="ContactIdentifierValue" value="" />
 												<c:forEach var="cropListForforwardSale" items="${model.cropTypeView}">
 													<!--get crop list from CropView object -->
 													<c:if test="${cropListForforwardSale.selected}">
-														<c:set var="ContactIdentifierValue" value="${cropListForforwardSale.contactIdentifier}"></c:set>
+														<c:set var="ContactIdentifierValue" value="${cropListForforwardSale.contactIdentifier}" />
 														<tr id="forward_sales_information_tbody_row__${forwardSalesRowCount}" class="tblbclgrnd text-center">
 															<td id="forward_sales_information_tbody_row_crop_name__${forwardSalesRowCount}" class="tblft1">${cropListForforwardSale.cropName}</td>
 															<td class="success infotext tittle-uppercase" id="forward_sales_information_tbody_row_uomValue__${forwardSalesRowCount}">${cropListForforwardSale.cropUOM}</td>
@@ -1931,7 +1931,7 @@ start -->
 																	onkeypress="return isValidNumberValueForWithOutDot(event)"></td>
 														</tr>
 														<c:set var="forwardSalesRowCount"
-															value="${forwardSalesRowCount+1}"></c:set>
+															value="${forwardSalesRowCount+1}" />
 													</c:if>
 												</c:forEach>
 											</tbody>
@@ -1969,16 +1969,14 @@ Commented as per client requirement
 									<!-- @changed - Abhishek 	@date - 05-12-2015 		@updated - 30-12-2015-->
 									<p class="croptext pull-right" style=" margin-bottom: 10px; ">
 										Create a group of crops and enter minimum <br>or maximum acreage limits for the group
-										<a id="crop_group" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>
+										<a id="crop_group" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 									</p>
 									<div class="clearfix"></div>
-
-
 
 									<div class="pull-right">
 										<span>
 											<!-- @changed - Abhishek 	@date - 30-12-2015-->
-											<%--<a id="crop_group" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a>--%>
+											<%--<a id="crop_group" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>--%>
 											<a onclick="deSelectAllCropsInGroupOptionAndRebuild(); div_show11()"><img src="<c:url value="/images/add-group.png"/>"></a>
 										</span>
 										<span><a onclick="getGroupForModify()"><img src="<c:url value="/images/modify_group.png"/>"></a></span>
@@ -1989,8 +1987,7 @@ Commented as per client requirement
 									<%--	@changed - Abhishek 	@date - 26-01-2016		@desc - changed according to silde# 6 of 01042016	--%>
 									<%--<div class="info pull-left" style="margin-top: 1.5px"> Enter minimum and maximum acreage limit for each crop--%>
 									<div class="info pull-left" style="margin-top: 1.5px"> Enter minimum and/or maximum acreage limits for any crop.
-										<a id="crop_limit" class="help_Infromation_PopUp" href="#">
-											<img src="<c:url value="/images/i-icon.png"/>"></a>
+										<a id="crop_limit" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a>
 									</div>
 
 								</div>
@@ -2003,19 +2000,25 @@ Commented as per client requirement
 													<td class="tblbrdr text-center add-fieldi">Modify</td>
 													<td class="tblbrdr text-center add-fieldi">Crop</td>
 													<!-- @changed - Abhishek 	@date - 23-01-2016		@desc - according to silde# 130of 01042015-->
-													<%--<td class="text-center add-fieldi">Minimum Acres <img src="images/i-img.png"></td>
-													<td class="text-center">Maximum Acres <img src="images/i-img.png"></td>--%>
+													<%--<td class="text-center add-fieldi">Minimum Acres <img src="<c:url value="/images/i-img.png"/>"></td>
+													<td class="text-center">Maximum Acres <img src="<c:url value="/images/i-img.png"/>"></td>--%>
 													<td class="text-center add-fieldi">Minimum Acres
-														<a id="crop_limit_min" class="help_Infromation_PopUp" href="#"><img src="images/i-img.png"></a>
+														<a id="crop_limit_min" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-img.png"/>"></a>
+													</td>
+													<td class="text-center add-fieldi">Minimum Acres %
+														<%--<a id="crop_limit_min_percentage" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-img.png"/>"></a>--%>
 													</td>
 													<td class="text-center">Maximum Acres
-														<a id="crop_limit_max" class="help_Infromation_PopUp" href="#"><img src="images/i-img.png"></a>
+														<a id="crop_limit_max" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-img.png"/>"></a>
+													</td>
+													<td class="text-center">Maximum Acres %
+														<%--<a id="crop_limit_max_percentage" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-img.png"/>"></a>--%>
 													</td>
 												</tr>
 											</thead>
 											<tbody id="crop_limits_table_tbody">
 
-												<c:set var="rowCountForCropLimit" value="1"></c:set>
+												<c:set var="rowCountForCropLimit" value="1"/>
 												<c:forEach var="cropListForCropLimit" items="${model.cropTypeView}">
 													<!--get crop list from CropView object -->
 													<c:if test="${cropListForCropLimit.selected}">
@@ -2023,20 +2026,28 @@ Commented as per client requirement
 															<td class="tblft1"></td>
 															<td id="crop_limits_table_crop_name__${rowCountForCropLimit}" class="tblft1">${cropListForCropLimit.cropName}</td>
 															<td class="success croplimit">
-																<input type="text"
-																	onkeypress="return isValidNumberValue(event)"
-																	   onchange="addCommaSignWithOutDollarDot(this)"
-																	   id="crop_limits_crop_minimum_acres__${rowCountForCropLimit}"
-																	value="${cropListForCropLimit.minimumAcres}"></td>
+																<input type="text" id="crop_limits_crop_minimum_acres__${rowCountForCropLimit}" class="minCropAcreage"
+																	onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMinAcreage(this);"
+																	value="${cropListForCropLimit.minimumAcres}">
+															</td>
 															<td class="success croplimit">
-																<input type="text"
-																	onkeypress="return isValidNumberValue(event)"
-																	id="crop_limits_crop_maximum_acres__${rowCountForCropLimit}"
-																	onchange="addCommaSignWithOutDollarDot(this)"
-																	value="${cropListForCropLimit.maximumAcres}"></td>
+																<input type="text" onkeypress="return isValidNumberValue(event)" class="minCropAcreagePercentage"
+																	   onchange="calculatePercentageOfMinAcreage(this); return false;"
+																	   value="${cropListForCropLimit.minimumAcresPercentage}">
+															</td>
+															<td class="success croplimit">
+																<input type="text" id="crop_limits_crop_maximum_acres__${rowCountForCropLimit}" class="maxCropAcreage"
+																	onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMaxAcreage(this); return false;"
+																	value="${cropListForCropLimit.maximumAcres}">
+															</td>
+															<td class="success croplimit">
+																<input type="text" onkeypress="return isValidNumberValue(event)" class="maxCropAcreagePercentage"
+																	   onchange="calculatePercentageOfMaxAcreage(this); return false;"
+																	   value="${cropListForCropLimit.maximumAcresPercentage}">
+															</td>
 															
 														</tr>
-														<c:set var="rowCountForCropLimit" value="${rowCountForCropLimit+1}"></c:set>
+														<c:set var="rowCountForCropLimit" value="${rowCountForCropLimit+1}" />
 													</c:if>
 												</c:forEach>
 
@@ -2050,35 +2061,50 @@ Commented as per client requirement
 															<td class="tblft1"></td>
 															<td class="tblft1">${cropListForforwardSale.cropName} (Firm)</td>
 															<!--	@changed - Abhishek		@date - 30-12-2015		@desc - switched below two TD	-->
-															<td class="success croplimit"><input type="text" value="${cropListForforwardSale.acresStr}" disabled="disabled"></td>
+															<td class="success croplimit"><input type="text" value="${cropListForforwardSale.acresStr}" disabled="disabled" class="minCropAcreage"></td>
+															<td class="success croplimit">
+																<input type="text" onkeypress="return isValidNumberValue(event)" class="minCropAcreagePercentage"
+																	   onchange="calculatePercentageOfMinAcreage(this); return false;"
+																	   value="${cropListForforwardSale.minimumAcresPercentage}">
+															</td>
+															<td class="success croplimit">NA</td>
 															<td class="success croplimit">NA</td>
 														</tr>
 													</c:if>
 												</c:forEach>
 											</tbody>
 											<tbody id="group_table_tbody" style="border-top: 0px">
-												<c:set var="groupCount" value="1"></c:set>
+												<c:set var="groupCount" value="1" />
 												<c:forEach var="groupList" items="${model.cropsGroupList}">
-													<tr id="group_table_tbody_row_${groupCount}"
-														class="tblbclgrnd text-center">
+													<tr id="group_table_tbody_row_${groupCount}" class="tblbclgrnd text-center">
 														<td class="tblft1">
 															<input type="checkbox" id="group_crop_check_acres__${groupCount}" name="groupNameSelection[]">
 														</td>
 														<td id="group_table_group_name_${groupCount}" class="tblft1">${groupList.cropsGroupName}</td>
 														<td class="success croplimit">
-															<input type="text"
-																id="group_crop_minimum_acres__${groupCount}"
-																onkeypress="return isValidNumberValue(event)"
+															<input type="text" id="group_crop_minimum_acres__${groupCount}"
+																onkeypress="return isValidNumberValue(event)" class="minCropAcreage"
+																   onchange="calculatePercentageOfMinAcreage(this); return false;"
 																value="${groupList.minimumAcres eq 0 ? '' : groupList.minimumAcres}">
 														</td>
 														<td class="success croplimit">
-															<input type="text"
-																id="group_crop_maximum_acres__${groupCount}"
-																onkeypress="return isValidNumberValue(event)"
+															<input type="text" onkeypress="return isValidNumberValue(event)" class="minCropAcreagePercentage"
+																   onchange="calculatePercentageOfMinAcreage(this); return false;"
+																   value="${groupList.minimumAcresPercentage}">
+														</td>
+														<td class="success croplimit">
+															<input type="text" id="group_crop_maximum_acres__${groupCount}"
+																onkeypress="return isValidNumberValue(event)" class="maxCropAcreage"
+																   onchange="calculatePercentageOfMaxAcreage(this); return false;"
 																value="${groupList.maximumAcres eq 0 ? '' : groupList.maximumAcres}">
 														</td>
+														<td class="success croplimit">
+															<input type="text" onkeypress="return isValidNumberValue(event)" class="maxCropAcreagePercentage"
+																   onchange="calculatePercentageOfMaxAcreage(this); return false;"
+																   value="${groupList.maximumAcresPercentage}">
+														</td>
 													</tr>
-													<c:set var="groupCount" value="${groupCount+1}"></c:set>
+													<c:set var="groupCount" value="${groupCount+1}" />
 												</c:forEach>
 											</tbody>
 										</table>
@@ -2088,19 +2114,14 @@ Commented as per client requirement
 
 								<div class="yellobtn pre_next">
 									<!-- <a onclick="showCropInsurancePage()">Next</a> -->
-									<!-- 
-										@Changed - Abhishek
-										@Date - 25-11-2015										
-									 -->
+									<!-- @Changed - Abhishek @Date - 25-11-2015 -->
 									<%--<a onclick="saveAllFarmInformation()">Analyze</a>--%>
 									<a onclick="openStrategyOrBaselinePopup(); return false;">Analyze</a>
 								</div>
 								<div class="yellobtn pre_next">
 									<a id="submit" onclick="callMethodForPageChangeAndProgressBarImage(8, 7); return false;">Previous</a>
 								</div>
-								<!-- <div class="yellobtn pre_next">
-<a id="submit" >Add Additional Group</a>
-</div> -->
+								<!-- <div class="yellobtn pre_next"><a id="submit" >Add Additional Group</a></div> -->
 							</div>
 						</div>
 						<!-- @end #forward_sales -->
@@ -2109,8 +2130,7 @@ Commented as per client requirement
 								<h2 class="field-heading">Crop Insurance</h2>
 								<div class="clearfix"></div>
 								<div class="info">
-									Enter information for each of these crops. <img
-										src="<c:url value="/images/i-icon.png"/>">
+									Enter information for each of these crops. <img src="<c:url value="/images/i-icon.png"/>">
 								</div>
 								<div class="ques">
 									<div class="table-responsive">
@@ -2275,7 +2295,7 @@ Commented as per client requirement
 
 			<!-- @Abhishek 25-11-2015 changed from Crop Group to Add Crop Group -->
 			<h2 style="padding: 0 0 0 22px; color: #BE922F; font-weight: bold;" class="popupheadercrop" id="add_group"> Add Crop Group
-				<span><a id="add_group" class="help_Infromation_PopUp" href="#"><img src="<c:url value="/images/i-icon.png"/>"></a></span>
+				<span><a id="add_group" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-icon.png"/>"></a></span>
 			</h2>
 			<h2 style="padding: 0 0 0 22px; color: #BE922F; font-weight: bold;" class="popupheadercrop" id="modify_group">Modify Group</h2>
 			<div style="padding: 5px 20px;" class="popupform messagepopup">
@@ -2364,7 +2384,7 @@ Commented as per client requirement
 						<label>
 							<h4>Save as the Baseline strategy<br>or as a new strategy?</h4>
 						</label>
-						<a id="new_strategy" class="help_Infromation_PopUp" href="#">
+						<a id="new_strategy" class="help_Infromation_PopUp" href="javascript:;">
 							<img src="<c:url value="/images/i-icon.png"/>">
 						</a>
 					</div>

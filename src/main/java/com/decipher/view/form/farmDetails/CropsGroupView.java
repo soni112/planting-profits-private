@@ -9,14 +9,18 @@ public class CropsGroupView {
     private Integer id;
     private String cropsGroupName;
     private String minimumAcres;
+    private String minimumAcresPercentage;
     private String maximumAcres;
+    private String maximumAcresPercentage;
     private Set<CropType> cropSet;
 
     public CropsGroupView(CropsGroup cropsGroup) {
         this.id = cropsGroup.getId();
         this.cropsGroupName = cropsGroup.getCropsGroupName();
         this.minimumAcres = cropsGroup.getMinimumAcres();
+        this.minimumAcres = cropsGroup.getMinimumAcresPercentageStr() != null ? cropsGroup.getMinimumAcresPercentageStr() : "0";
         this.maximumAcres = cropsGroup.getMaximumAcres();
+        this.maximumAcres = cropsGroup.getMaximumAcresPercentageStr() != null ? cropsGroup.getMaximumAcresPercentageStr() : "0";
         this.cropSet = cropsGroup.getCropTypes();
 //		PlantingProfitLogger.info("cropsGroupName : "+cropsGroupName);
     }
@@ -59,5 +63,21 @@ public class CropsGroupView {
 
     public void setCropSet(Set<CropType> cropSet) {
         this.cropSet = cropSet;
+    }
+
+    public String getMinimumAcresPercentage() {
+        return minimumAcresPercentage;
+    }
+
+    public void setMinimumAcresPercentage(String minimumAcresPercentage) {
+        this.minimumAcresPercentage = minimumAcresPercentage;
+    }
+
+    public String getMaximumAcresPercentage() {
+        return maximumAcresPercentage;
+    }
+
+    public void setMaximumAcresPercentage(String maximumAcresPercentage) {
+        this.maximumAcresPercentage = maximumAcresPercentage;
     }
 }
