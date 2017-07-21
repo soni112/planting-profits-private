@@ -146,7 +146,8 @@ public class FarmViewController {
             try {
                 myModel.put("strategies", farmDetailsContainerService.getAllStrategiesForFarm(farm));
             } catch (Exception e) {
-                PlantingProfitLogger.error(e.getMessage(), e);
+                PlantingProfitLogger.debug(e);
+                PlantingProfitLogger.error(e.getMessage());
             }
             return new ModelAndView("output-edit-farm-info", "model", myModel);
         }

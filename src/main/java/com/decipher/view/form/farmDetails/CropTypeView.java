@@ -55,7 +55,9 @@ public class CropTypeView implements Cloneable {
     private String cropNameForId;
 
     private String minimumAcres;
+    private String minimumAcresPercentage;
     private String maximumAcres;
+    private String maximumAcresPercentage;
 
     private String forwardPrice;
     private String forwardQuantity;
@@ -150,7 +152,9 @@ public class CropTypeView implements Cloneable {
             CropLimit cropLimit = cropType.getCropLimit();
             if (cropLimit != null) {
                 this.minimumAcres = cropLimit.getMinimumAcres();
+                this.minimumAcresPercentage = cropLimit.getMinimumAcresPercentageStr();
                 this.maximumAcres = cropLimit.getMaximumAcres();
+                this.maximumAcresPercentage = cropLimit.getMaximumAcresPercentageStr();
             }
             CropForwardSales cropForwardSales = cropType.getCropForwardSales();
             if (cropForwardSales != null) {
@@ -1027,6 +1031,27 @@ public class CropTypeView implements Cloneable {
 
     public void setAdditionalIncome(Double additionalIncome) {
         this.additionalIncome = additionalIncome;
+    }
+
+    public String getMinimumAcresPercentage() {
+        if(minimumAcresPercentage == null)
+            return "";
+        return minimumAcresPercentage.equals("") || minimumAcresPercentage.equals("0") ? "" : minimumAcresPercentage;
+    }
+
+    public void setMinimumAcresPercentage(String minimumAcresPercentage) {
+        this.minimumAcresPercentage = minimumAcresPercentage;
+    }
+
+    public String getMaximumAcresPercentage() {
+        if(maximumAcresPercentage == null)
+            return "";
+        return maximumAcresPercentage.equals("") || maximumAcresPercentage.equals("0") ? "" : maximumAcresPercentage;
+
+    }
+
+    public void setMaximumAcresPercentage(String maximumAcresPercentage) {
+        this.maximumAcresPercentage = maximumAcresPercentage;
     }
 
     @Override

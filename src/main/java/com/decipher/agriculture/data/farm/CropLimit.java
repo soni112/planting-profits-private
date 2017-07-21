@@ -22,8 +22,12 @@ public class CropLimit {
     private Integer id;
     @Column(name = "MINIMUM_ACRES")
     private String minimumAcres;
+    @Column(name = "MINIMUM_ACRES_PERCENTAGE")
+    private String minimumAcresPercentage;
     @Column(name = "MAXIMUM_ACRES")
     private String maximumAcres;
+    @Column(name = "MAXIMUM_ACRES_PERCENTAGE")
+    private String maximumAcresPercentage;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CROP_TYPE_ID")
@@ -65,5 +69,35 @@ public class CropLimit {
 
     public void setCropType(CropType cropType) {
         this.cropType = cropType;
+    }
+
+    public int getMinimumAcresPercentage() {
+        if (!minimumAcresPercentage.equals("")) {
+            return Integer.parseInt(minimumAcresPercentage);
+        } else
+            return 0;
+    }
+
+    public int getMaximumAcresPercentage() {
+        if (!maximumAcresPercentage.equals("")) {
+            return Integer.parseInt(maximumAcresPercentage);
+        } else
+            return 0;
+    }
+
+    public String getMinimumAcresPercentageStr() {
+        return minimumAcresPercentage;
+    }
+
+    public String getMaximumAcresPercentageStr() {
+        return maximumAcresPercentage;
+    }
+
+    public void setMinimumAcresPercentage(String minimumAcresPercentage) {
+        this.minimumAcresPercentage = minimumAcresPercentage;
+    }
+
+    public void setMaximumAcresPercentage(String maximumAcresPercentage) {
+        this.maximumAcresPercentage = maximumAcresPercentage;
     }
 }

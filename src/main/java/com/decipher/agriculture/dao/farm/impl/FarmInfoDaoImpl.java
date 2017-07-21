@@ -556,7 +556,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                     CropLimit cropLimit = cropType.getCropLimit();
                                     cropLimit.setCropType(cropType);
                                     cropLimit.setMinimumAcres((array[1].equals("0")) ? "0" : array[1]);
-                                    cropLimit.setMaximumAcres((array[2].equals("0")) ? "0" : array[2]);
+                                    cropLimit.setMinimumAcresPercentage((array[2].equals("0")) ? "0" : array[2]);
+                                    cropLimit.setMaximumAcres((array[3].equals("0")) ? "0" : array[3]);
+                                    cropLimit.setMaximumAcresPercentage((array[4].equals("0")) ? "0" : array[4]);
                                 }
                             }
                         }
@@ -893,7 +895,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                     CropLimit cropLimit = new CropLimit();
                                     cropLimit.setCropType(cropType);
                                     cropLimit.setMinimumAcres((array[1].equals("0")) ? "0" : array[1]);
-                                    cropLimit.setMaximumAcres((array[2].equals("0")) ? "0" : array[2]);
+                                    cropLimit.setMinimumAcresPercentage((array[2].equals("0")) ? "0" : array[2]);
+                                    cropLimit.setMaximumAcres((array[3].equals("0")) ? "0" : array[3]);
+                                    cropLimit.setMaximumAcresPercentage((array[4].equals("0")) ? "0" : array[4]);
                                     cropType.setCropLimit(cropLimit);
                                 }
                             }
@@ -1061,7 +1065,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                 CropLimit cropLimit = new CropLimit();
                                 cropLimit.setCropType(cropType);
                                 cropLimit.setMinimumAcres((array[1].equals("0")) ? "0" : array[1]);
-                                cropLimit.setMaximumAcres((array[2].equals("0")) ? "0" : array[2]);
+                                cropLimit.setMinimumAcresPercentage((array[2].equals("0")) ? "0" : array[2]);
+                                cropLimit.setMaximumAcres((array[3].equals("0")) ? "0" : array[3]);
+                                cropLimit.setMaximumAcresPercentage((array[4].equals("0")) ? "0" : array[4]);
                                 cropType.setCropLimit(cropLimit);
                             }
                         }
@@ -1312,7 +1318,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                     if (cropsGroup.getCropsGroupName().equals(array[0])) {
                         cropsGroup.setCropsGroupName(array[0]);
                         cropsGroup.setMaximumAcres(array[1]);
-                        cropsGroup.setMinimumAcres(array[2]);
+                        cropsGroup.setMaximumAcresPercentage(array[2]);
+                        cropsGroup.setMinimumAcres(array[3]);
+                        cropsGroup.setMinimumAcresPercentage(array[4]);
                         cropsGroup.setFarmInfo(farmInfo);
                         Set<CropType> types = new HashSet<CropType>();
                         for (CropType cropType : cropsGroup.getCropTypes()) {
@@ -1542,7 +1550,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                         if (array[0].equals(cropType.getCropName())) {
                             cropLimit.setCropType(cropType);
                             cropLimit.setMinimumAcres((array[1].equals("0")) ? "0" : array[1]);
-                            cropLimit.setMaximumAcres((array[2].equals("0")) ? "0" : array[2]);
+                            cropLimit.setMinimumAcresPercentage((array[2].equals("0")) ? "0" : array[2]);
+                            cropLimit.setMaximumAcres((array[3].equals("0")) ? "0" : array[3]);
+                            cropLimit.setMaximumAcresPercentage((array[4].equals("0")) ? "0" : array[4]);
                         }
                     }
                 }
@@ -1700,7 +1710,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                 CropsGroup cropsGroup = new CropsGroup();
                 cropsGroup.setCropsGroupName(array[0]);
                 cropsGroup.setMaximumAcres(array[1]);
-                cropsGroup.setMinimumAcres(array[2]);
+                cropsGroup.setMaximumAcresPercentage(array[2]);
+                cropsGroup.setMinimumAcres(array[3]);
+                cropsGroup.setMinimumAcresPercentage(array[4]);
                 cropsGroup.setFarmInfo(farmInfo);
                 for (int i = 4; i < array.length; ) {
                     for (CropType cropType : cropTypes) {

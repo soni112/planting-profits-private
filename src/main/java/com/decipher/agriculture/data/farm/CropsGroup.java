@@ -27,8 +27,12 @@ public class CropsGroup {
     private String cropsGroupName;
     @Column(name = "MINIMUM_ACRES")
     private String minimumAcres;
+    @Column(name = "MINIMUM_ACRES_PERCENTAGE")
+    private String minimumAcresPercentage;
     @Column(name = "MAXIMUM_ACRES")
     private String maximumAcres;
+    @Column(name = "MAXIMUM_ACRES_PERCENTAGE")
+    private String maximumAcresPercentage;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "GROUP_CROPS", joinColumns = {@JoinColumn(name = "CROPS_GROUP_ID")}, inverseJoinColumns = {@JoinColumn(name = "CROP_TYPE_ID")})
@@ -96,5 +100,39 @@ public class CropsGroup {
 
     public void setFarmInfo(FarmInfo farmInfo) {
         this.farmInfo = farmInfo;
+    }
+
+    public int getMinimumAcresPercentage() {
+        if (!minimumAcresPercentage.equals("")) {
+            return Integer.parseInt(minimumAcresPercentage);
+        } else
+            return 0;
+    }
+
+    public int getMaximumAcresPercentage() {
+        if (!maximumAcresPercentage.equals("")) {
+            return Integer.parseInt(maximumAcresPercentage);
+        } else
+            return 0;
+    }
+
+    public String getMinimumAcresPercentageStr() {
+        if(minimumAcresPercentage == null)
+            return "";
+        return minimumAcresPercentage.equals("") || minimumAcresPercentage.equals("0") ? "" : minimumAcresPercentage;
+    }
+
+    public String getMaximumAcresPercentageStr() {
+        if(maximumAcresPercentage == null)
+            return "";
+        return maximumAcresPercentage.equals("") || maximumAcresPercentage.equals("0") ? "" : maximumAcresPercentage;
+    }
+
+    public void setMinimumAcresPercentage(String minimumAcresPercentage) {
+        this.minimumAcresPercentage = minimumAcresPercentage;
+    }
+
+    public void setMaximumAcresPercentage(String maximumAcresPercentage) {
+        this.maximumAcresPercentage = maximumAcresPercentage;
     }
 }

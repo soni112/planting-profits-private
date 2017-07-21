@@ -1208,7 +1208,7 @@
 									<div class="ques">
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<p class="text-left variancesub">
-												Yield Difference <img src="<:url value="/images/i-icon.png"/>">
+												Yield Difference <img src="<c:url value="/images/i-icon.png"/>">
 											</p>
 											<div class="table-responsive">
 												<table class="table table-striped tbl-bordr  tblbrdr"
@@ -1435,8 +1435,14 @@ Commented as per client requirement
 													<td class="text-center add-fieldi">Minimum Acres
 														<a id="crop_limit_min" class="help_Infromation_PopUp" href="#"><img src="images/i-img.png"></a>
 													</td>
+													<td class="text-center add-fieldi">Minimum Acres %
+														<%--<a id="crop_limit_min_percentage" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-img.png"/>"></a>--%>
+													</td>
 													<td class="text-center">Maximum Acres
 														<a id="crop_limit_max" class="help_Infromation_PopUp" href="#"><img src="images/i-img.png"></a>
+													</td>
+													<td class="text-center">Maximum Acres %
+														<%--<a id="crop_limit_max_percentage" class="help_Infromation_PopUp" href="javascript:;"><img src="<c:url value="/images/i-img.png"/>"></a>--%>
 													</td>
 												</tr>
 											</thead>
