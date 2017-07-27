@@ -974,7 +974,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                     }
                     if(i == 0){
-                        jsonObject.put("bubbleMessage", "This is the baseline amount for " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr)));
+//                        jsonObject.put("bubbleMessage", "This is the baseline amount for " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr)));
+                        jsonObject.put("bubbleMessage", "This is the baseline " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " crop acreage limit for " : "") + cropName) : (" amount for " + resourceStr)));
                     } else if (differenceValue > 0) {
                         if ((profit < currentPotentialProfit) || (profit < oldProfit)) {
 
@@ -1328,7 +1329,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                     }
                     if(i == 0){
-                        jsonObject.put("bubbleMessage", "This is the baseline amount for " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr)));
+//                        jsonObject.put("bubbleMessage", "This is the baseline amount for " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr)));
+                        jsonObject.put("bubbleMessage", "This is the baseline " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " crop acreage limit for " : "") + cropName) : (" amount for " + resourceStr)));
                     } else if (differenceValue > 0) {
                         if ((profit < currentPotentialProfit) || (profit < oldProfit)) {
 
