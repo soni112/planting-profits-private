@@ -236,51 +236,51 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private JSONObject getDetailsForStrategyType(StrategyComparisonType strategyComparisonType, String axis, FarmInfoView farmInfoView){
         JSONObject jsonObject = new JSONObject();
 
-        if (Objects.equals(strategyComparisonType, StrategyComparisonType.Potential_Profit)) {
+        if (StrategyComparisonType.Potential_Profit.equals(strategyComparisonType)) {
 
             jsonObject = strategyComparisonDataBuilder.getPotentialProfitComparisonDetails(axis);
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Land_Used)){
+        } else if (StrategyComparisonType.Land_Used.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getLandUsageComparisonDetails(axis);
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Capital_Used)){
+        } else if (StrategyComparisonType.Capital_Used.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getCapitalUsageComparisonDetails(axis);
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Crop_Acreage_Per_Crop)){
+        } else if (StrategyComparisonType.Crop_Acreage_Per_Crop.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getCropAcreagePerCropComparisonDetails(axis, farmInfoView);
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Percentage_PP_from_Single_Profitable_Crop)){
+        } else if (StrategyComparisonType.Percentage_PP_from_Single_Profitable_Crop.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getPpFromOneOrTwoProfitCropComparisonDetails(axis, farmInfoView, "one");
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Percentage_PP_from_Two_Profitable_Crops)){
+        } else if (StrategyComparisonType.Percentage_PP_from_Two_Profitable_Crops.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getPpFromOneOrTwoProfitCropComparisonDetails(axis, farmInfoView, "two");
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Percentage_PP_from_Forward_Sales)){
+        } else if (StrategyComparisonType.Percentage_PP_from_Forward_Sales.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getPpFromForwardSalesComparisonDetails(axis);
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Percentage_PP_from_High_Risk_Crops)){
+        } else if (StrategyComparisonType.Percentage_PP_from_High_Risk_Crops.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getAcreageOrProfitHighRiskCropComparisonDetails(axis, farmInfoView, "profit");
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Percentage_Acreage_High_Risk_Crops)){
+        } else if (StrategyComparisonType.Percentage_Acreage_High_Risk_Crops.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getAcreageOrProfitHighRiskCropComparisonDetails(axis, farmInfoView, "acreage");
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Percentage_PP_Conservation_Crops)){
+        } else if (StrategyComparisonType.Percentage_PP_Conservation_Crops.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getAcreageOrProfitConservationCropComparisonDetails(axis, farmInfoView, "profit");
 
-        } else if (Objects.equals(strategyComparisonType, StrategyComparisonType.Percentage_Acreage_Conservation_Crops)){
+        } else if (StrategyComparisonType.Percentage_Acreage_Conservation_Crops.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getAcreageOrProfitConservationCropComparisonDetails(axis, farmInfoView, "acreage");
 
-        } else if(Objects.equals(strategyComparisonType, StrategyComparisonType.PP_Given_Min_Price_And_Yield)){
+        } else if(StrategyComparisonType.PP_Given_Min_Price_And_Yield.equals(strategyComparisonType)){
 
             jsonObject = strategyComparisonDataBuilder.getPpForMinGivenPriceAndYield(axis, farmInfoView);
 

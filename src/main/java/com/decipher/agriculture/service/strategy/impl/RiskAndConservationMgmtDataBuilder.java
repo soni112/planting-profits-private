@@ -260,9 +260,11 @@ public class RiskAndConservationMgmtDataBuilder {
         }
 
         if(key.equalsIgnoreCase("income")){
-            return incomeUnderHighRisk == 0.0 ? "0.0" : formatter.format(incomeUnderHighRisk);
+//            return incomeUnderHighRisk == 0.0 ? "0.0" : formatter.format(incomeUnderHighRisk);
+            return incomeUnderHighRisk == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(incomeUnderHighRisk.toString());
         } else if(key.equalsIgnoreCase("acreage")){
-            return landUnderHighRisk == 0.0 ? "0.0" : formatter.format(landUnderHighRisk);
+//            return landUnderHighRisk == 0.0 ? "0.0" : formatter.format(landUnderHighRisk);
+            return landUnderHighRisk == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(landUnderHighRisk.toString());
         }
 
 
