@@ -1605,7 +1605,7 @@ function addNewResource() {
     }
     else if ($("#resourse_unit_name").val() == "") {
         // customAlerts("Please select unit of measure of particular resource", type_error, time);
-        customAlerts("Please select the appropriate unit of measure for resources : " + resourse_name, type_error, time);
+        customAlerts("Please select the appropriate unit of measure for resource: " + resourse_name, type_error, time);
         addErrorClassOnObject("#resourse_unit_name");
         return false;
     }
