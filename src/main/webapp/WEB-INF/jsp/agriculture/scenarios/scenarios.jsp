@@ -633,7 +633,7 @@ Date 24-11-2015
                                 onclick="getScenarioOutputDetailsForStrategy(); return false;">Ok
                         </button>
                         <button class="alertify-button alertify-button-cancel pull-right"
-                                onclick="closeScenarioAnalysisPopup(); return false;">Cancel
+                                onclick="closeScenarioAnalysisPopup(true); return false;">Cancel
                         </button>
                     </div>
 
