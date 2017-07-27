@@ -1,4 +1,4 @@
-package com.decipher.util.appStandard;
+package com.decipher.config;
 
 /**
  * Created by abhishek on 9/9/16.

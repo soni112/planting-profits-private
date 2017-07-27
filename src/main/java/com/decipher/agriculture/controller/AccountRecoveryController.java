@@ -2,6 +2,7 @@ package com.decipher.agriculture.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.decipher.config.ApplicationConfig;
 import com.decipher.util.PlantingProfitLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.decipher.agriculture.data.account.Account;
 import com.decipher.agriculture.service.account.AccountService;
-import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.CryptographyUtils;
 import com.decipher.util.JsonResponse;
 import com.decipher.util.email.SendEmail;
@@ -29,8 +29,6 @@ public class AccountRecoveryController {
 
 	@Autowired
 	private AccountService accountService;
-	@Autowired
-	private	AgricultureStandardUtils agricultureStandardUtils;
 	
 	@RequestMapping(value = "sendRequestForAccountRecovery", method = RequestMethod.POST)
 	public @ResponseBody
@@ -45,7 +43,7 @@ public class AccountRecoveryController {
 			jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
 			String encodedEmail=CryptographyUtils.encryptData(email);
 			PlantingProfitLogger.info("<< encoded mail >>>"+encodedEmail);
-			String applicationID=agricultureStandardUtils.getApplicationID(); 
+			String applicationID = ApplicationConfig.getAppUrl();
 			PlantingProfitLogger.info("<<<<<<<<< application id :>>>>>"+applicationID);
 			
 			String linkTxt="<a  target=\"_blank\" href=\""+applicationID+"/accountRecovery.htm?uid="+encodedEmail+"\" >"+applicationID+"/accountRecovery.htm?uid="+encodedEmail+"</a>";

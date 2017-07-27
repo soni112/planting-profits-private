@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.decipher.agriculture.data.account.UserState;
 import com.decipher.agriculture.service.util.HTTPService;
+import com.decipher.config.ApplicationConfig;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.decipher.agriculture.data.account.Account;
 import com.decipher.agriculture.data.account.AppRole;
 import com.decipher.agriculture.service.account.AccountService;
-import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.CryptographyUtils;
 import com.decipher.util.JsonResponse;
 import com.decipher.util.PlantingProfitLogger;
@@ -33,8 +33,6 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
-    @Autowired
-    private AgricultureStandardUtils agricultureStandardUtils;
     @Autowired
 	private HTTPService httpService;
 
@@ -114,7 +112,7 @@ public class AccountController {
             }
             int userId = accountService.saveUser(account);
             String encodedEmail = CryptographyUtils.encryptData(email);
-            String applicationID = agricultureStandardUtils.getApplicationID();
+            String applicationID = ApplicationConfig.getAppUrl();
             String linkTxt = "<a  target=\"_blank\" href=\"" + applicationID
                     + "/verifyAccount.htm?uid=" + encodedEmail + "\" >"
                     + "click here"

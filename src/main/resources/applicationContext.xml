@@ -13,11 +13,15 @@
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
 
+	<context:property-placeholder location="/WEB-INF/classes/*.properties" ignore-unresolvable="true" order="1"/>
+	<context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true" order="2"/>
+
 	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans.
 	 For example @Controller and @Service. Make sure to set the correct base-package-->
 	<context:component-scan base-package="com.decipher" scoped-proxy="targetClass" />
-	
-	 
+
+	<bean id="applicationConfig" class="com.decipher.config.ApplicationConfig"/>
+
 	<!-- Configures the annotation-driven Spring MVC Controller programming model.
 	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
 	<mvc:annotation-driven /> 

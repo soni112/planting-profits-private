@@ -13,7 +13,6 @@
 			http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:property-placeholder location="classpath*:*.properties"/>
 
     <!-- Enable annotation style of managing transactions -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -28,21 +27,24 @@
           p:packagesToScan="com.decipher.agriculture.data"
             />
 
-        <!-- Declare a datasource that has pooling capabilities-->
-<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-      destroy-method="close"
-      p:driverClass="${app.jdbc.driverClassName}"
-      p:jdbcUrl="${app.jdbc.url}"
-      p:user="${app.jdbc.username}"
-      p:password="${app.jdbc.password}"
-      p:acquireIncrement="5"
-      p:idleConnectionTestPeriod="300"
-      p:maxPoolSize="100"
-      p:maxStatements="50"
-      p:minPoolSize="10"/>
+    <!-- Declare a datasource that has pooling capabilities-->
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close"
+          p:driverClass="${app.jdbc.driverClassName}"
+          p:jdbcUrl="${app.jdbc.url}"
+          p:user="${app.jdbc.username}"
+          p:password="${app.jdbc.password}"
+          p:acquireIncrement="5"
+          p:idleConnectionTestPeriod="300"
+          p:maxPoolSize="100"
+          p:maxStatements="50"
+          p:minPoolSize="10"/>-->
 
-        <!-- Declare a transaction manager-->
-<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-      p:sessionFactory-ref="sessionFactory"/>
+    <bean id="dataSource" class="com.decipher.config.HikariDataSourceConfiguration"
+          depends-on="applicationConfig"/>
+
+    <!-- Declare a transaction manager-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory"/>
 
         </beans>

@@ -7,7 +7,7 @@ import com.decipher.agriculture.data.account.UserCity;
 import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.agriculture.data.account.UserState;
 import com.decipher.agriculture.service.account.AccountService;
-import com.decipher.util.AgricultureStandardUtils;
+import com.decipher.config.ApplicationConfig;
 import com.decipher.util.CryptographyUtils;
 import com.decipher.util.PlantingProfitLogger;
 import com.decipher.util.email.SendEmail;
@@ -39,8 +39,6 @@ public class AccountServiceImpl implements AccountService {
 	private AccountDao accountDAO;
 	@Autowired
 	private HttpSession httpSession;
-	@Autowired
-	AgricultureStandardUtils agricultureStandardUtils;
 
 	@Override
 	public Account getCurrentUser() {
@@ -208,7 +206,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public boolean sendRegistrationMail(Account account, String pwd) {
 		String encodedEmail = CryptographyUtils.encryptData(account.getEmail_Address());
-		String applicationID = agricultureStandardUtils.getApplicationID();
+		String applicationID = ApplicationConfig.getAppUrl();
 		String linkTxt = "<a  target=\"_blank\" href=\"" + applicationID
 				+ "/verifyAccount.htm?uid=" + encodedEmail + "\" >"
 				+ applicationID + "/verifyAccount.htm?uid=" + encodedEmail
