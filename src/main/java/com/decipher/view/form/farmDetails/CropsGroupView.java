@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.CropsGroup;
+import com.decipher.util.AgricultureStandardUtils;
 
 public class CropsGroupView {
     private Integer id;
@@ -45,12 +46,29 @@ public class CropsGroupView {
         return minimumAcres;
     }
 
+    public String getMinimumAcresWithoutComma(){
+        if (minimumAcres == null || minimumAcres.equalsIgnoreCase("0")) {
+            return "";
+        } else {
+            return AgricultureStandardUtils.removeAllCommas(minimumAcres);
+        }
+    }
+
     public void setMinimumAcres(String minimumAcres) {
         this.minimumAcres = minimumAcres;
     }
 
     public String getMaximumAcres() {
         return maximumAcres;
+    }
+
+    public String getMaximumAcresWithoutComma() {
+        if (maximumAcres == null || maximumAcres.toString().equalsIgnoreCase("0")) {
+            return "";
+        } else {
+            // return maximumAcres;
+            return AgricultureStandardUtils.removeAllCommas(maximumAcres);
+        }
     }
 
     public void setMaximumAcres(String maximumAcres) {

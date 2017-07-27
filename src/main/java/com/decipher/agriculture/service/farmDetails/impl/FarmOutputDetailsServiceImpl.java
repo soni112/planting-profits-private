@@ -263,8 +263,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
                     } else if (farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
-                        minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcres().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcres());
-                        maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcres().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcres());
+                        minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
+                        maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
                         return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
                     }
                 } else if (cropsGroupView != null) {
@@ -275,8 +275,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             usedAcres += farmOutputDetailsView.getUsedAcresAsInteger();
                         }
                     }
-                    int minimumAcres = Integer.parseInt(cropsGroupView.getMinimumAcres().equalsIgnoreCase("") ? "0" : cropsGroupView.getMinimumAcres());
-                    int maximumAcres = Integer.parseInt(cropsGroupView.getMaximumAcres().equalsIgnoreCase("") ? "0" : cropsGroupView.getMaximumAcres());
+                    int minimumAcres = Integer.parseInt(cropsGroupView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMinimumAcresWithoutComma());
+                    int maximumAcres = Integer.parseInt(cropsGroupView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMaximumAcresWithoutComma());
 
                     return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
                 }
@@ -295,8 +295,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     maximumAcres = 0;
                 } else {
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName()).split(" ")[0]));
-                    minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcres().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
-                    maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcres().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
+                    minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
+                    maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
                 }
 
 
@@ -308,8 +308,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 for (CropType cropType : cropSet) {
                     usedAcres += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropType.getCropName()).split(" ")[0]));
                 }
-                int minimumAcres = Integer.parseInt(cropsGroupView.getMinimumAcres().equalsIgnoreCase("") ? "0" : cropsGroupView.getMinimumAcres());
-                int maximumAcres = Integer.parseInt(cropsGroupView.getMaximumAcres().equalsIgnoreCase("") ? "0" : cropsGroupView.getMaximumAcres());
+                int minimumAcres = Integer.parseInt(cropsGroupView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMinimumAcresWithoutComma());
+                int maximumAcres = Integer.parseInt(cropsGroupView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMaximumAcresWithoutComma());
 
                 return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
             }

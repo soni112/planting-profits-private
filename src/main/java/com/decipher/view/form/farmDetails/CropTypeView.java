@@ -671,7 +671,7 @@ public class CropTypeView implements Cloneable {
 
     public String getMinimumAcres() {
         if (minimumAcres == null
-                || minimumAcres.toString().equalsIgnoreCase("0")) {
+                || minimumAcres.equalsIgnoreCase("0")) {
             return "";
         } else {
             // return minimumAcres;
@@ -681,8 +681,7 @@ public class CropTypeView implements Cloneable {
     }
 
     public String getMinimumAcresWithoutComma() {
-        if (minimumAcres == null
-                || minimumAcres.toString().equalsIgnoreCase("0")) {
+        if (minimumAcres == null || minimumAcres.equalsIgnoreCase("0")) {
             return "";
         } else {
             return AgricultureStandardUtils.removeAllCommas(minimumAcres);
@@ -709,7 +708,7 @@ public class CropTypeView implements Cloneable {
             return "";
         } else {
             // return maximumAcres;
-            return maximumAcres;
+            return AgricultureStandardUtils.removeAllCommas(maximumAcres);
         }
     }
 
