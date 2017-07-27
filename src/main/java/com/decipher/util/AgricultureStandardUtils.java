@@ -20,28 +20,6 @@ import org.springframework.stereotype.Component;
 @Scope(value = "singleton")
 public class AgricultureStandardUtils {
 
-	private String serverLocation;
-
-	private String applicationID;
-
-	public String getServerLocation() {
-		return serverLocation;
-	}
-
-	@Value("${app.serverLocation}")
-	public void setServerLocation(String serverLocation) {
-		this.serverLocation = serverLocation;
-	}
-
-	public String getApplicationID() {
-		return applicationID;
-	}
-
-	@Value("${app.applicationID}")
-	public void setApplicationID(String applicationID) {
-		this.applicationID = applicationID;
-	}
-
 	public static String commaSeparaterForNumber(String pattern) {
 		String number = pattern;
 		DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);

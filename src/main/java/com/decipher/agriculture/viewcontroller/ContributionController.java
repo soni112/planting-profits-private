@@ -3,7 +3,7 @@ package com.decipher.agriculture.viewcontroller;
 import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.JsonResponse;
 import com.decipher.util.PlantingProfitLogger;
-import com.decipher.util.appStandard.StripeUtils;
+import com.decipher.config.StripeUtils;
 import com.stripe.Stripe;
 import com.stripe.model.Charge;
 import org.springframework.beans.factory.annotation.Autowired;

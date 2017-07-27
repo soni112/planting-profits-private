@@ -5,19 +5,15 @@ package com.decipher.util.listner;
  * @date 27-11-2015 
  */
 
+import com.decipher.config.ApplicationConfig;
 import com.decipher.util.PlantingProfitLogger;
-import com.decipher.util.appStandard.ApplicationMode;
-import com.decipher.util.appStandard.ApplicationStandard;
+import com.decipher.config.ApplicationMode;
 import com.decipher.util.quartzScheduler.AgricultureScheduler;
 import org.quartz.SchedulerException;
 import org.springframework.context.ApplicationContext;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Objects;
 
 public class ApplicationContextListener implements ServletContextListener{
 
@@ -71,7 +67,7 @@ public class ApplicationContextListener implements ServletContextListener{
 		 */
 		try {
 			ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
-			ApplicationMode applicationMode = applicationContext.getBean(ApplicationStandard.class).getApplicationMode();
+			ApplicationMode applicationMode = applicationContext.getBean(ApplicationConfig.class).getApplicationMode();
 			if (applicationMode.equals(ApplicationMode.UAT) || applicationMode.equals(ApplicationMode.PRODUCTION)) {
 				AgricultureScheduler.startQuartsSchedulerJobs();
 			}

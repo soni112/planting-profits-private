@@ -112,11 +112,15 @@ function closeStrategySelectPopup(){
 }
 
 function openScenarioAnalysisPopup(){
+    $('#scenarioAnalysisOutputTbody').html('<tr class="tblgrn"><td colspan="5" class="success">Select and apply scenario to view details</td></tr>');
     $('#savedScenarioForCurrentStrategy').val('0, 0');
     $('#scenario-analysis-popup').show();
 }
 
-function closeScenarioAnalysisPopup(){
+function closeScenarioAnalysisPopup(flag){
+    if(flag) {
+        $('#scenarioAnalysisOutputTbody').html('<tr class="tblgrn"><td colspan="5" class="success">No Strategies selected<br><a href="javascript;" onclick="openScenarioAnalysisPopup(); return false;">Click here</a></td></tr>');
+    }
     $('#scenario-analysis-popup').hide();
 }
 
@@ -520,9 +524,9 @@ function getScenarioOutputDetailsForStrategy(){
                 var result = response.result;
                 if (status == 'success') {
 
-                    applyHtmlThroughTemplate('#scenarioAnalysisOutputTmpl', result.outputDetails, '#scenarioAnalysisOutputTbody');
-
                     closeScenarioAnalysisPopup();
+
+                    applyHtmlThroughTemplate('#scenarioAnalysisOutputTmpl', result.outputDetails, '#scenarioAnalysisOutputTbody');
 
                     if(scenarioID == "0"){
                         $('#scenarioAnalysisChartDiv').html('');

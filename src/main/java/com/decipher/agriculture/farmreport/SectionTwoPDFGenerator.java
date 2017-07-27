@@ -136,8 +136,15 @@ public class SectionTwoPDFGenerator {
             if(crop.getSelected()){
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getCropName()));
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getCropUOM()));
-                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getIntExpCropYield()));
-                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getIntExpCropPrice() != null ? crop.getIntExpCropPrice().toString() : "--"));
+
+                PdfPCell cropYieldDataCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getIntExpCropYield());
+                cropYieldDataCell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+                table.addCell(cropYieldDataCell);
+
+                PdfPCell priceDataCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getIntExpCropPrice() != null ? AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal(crop.getIntExpCropPrice().toString()) : "--");
+                priceDataCell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+                table.addCell(priceDataCell);
+
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getCalculatedVariableProductionCostFloat()));
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getCalculatedProfitString() != null ? crop.getCalculatedProfitString() : "--"));
                 if(crop.getFirmchecked().equalsIgnoreCase("true")){

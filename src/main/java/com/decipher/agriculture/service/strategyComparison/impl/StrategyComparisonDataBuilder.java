@@ -365,7 +365,8 @@ class StrategyComparisonDataBuilder {
 
                     if (farmOutputDetailsView.getCropTypeView().getHiRiskCrop().equalsIgnoreCase("true")) {
                         landUnderHighRisk += farmOutputDetailsView.getUsedAcresPercentage();
-                        incomeUnderHighRisk += Double.parseDouble(formatter.format((farmOutputDetailsView.getProfitDouble() / strategyProfit) * 100));
+//                        incomeUnderHighRisk += Double.parseDouble(formatter.format((farmOutputDetailsView.getProfitDouble() / strategyProfit) * 100));
+                        incomeUnderHighRisk += Double.parseDouble(formatter.format(farmOutputDetailsView.getUsedCapitalPercentage()));
                     }
 
                 }
@@ -387,10 +388,10 @@ class StrategyComparisonDataBuilder {
             }
 
             if (key.equalsIgnoreCase("acreage")) {
-                graphDataJsonObject.put(axis + count, landUnderHighRisk);
+                graphDataJsonObject.put(axis + count, Double.parseDouble(AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(landUnderHighRisk.toString())));
 
             } else if (key.equalsIgnoreCase("profit")) {
-                graphDataJsonObject.put(axis + count, incomeUnderHighRisk);
+                graphDataJsonObject.put(axis + count, Double.parseDouble(AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(incomeUnderHighRisk.toString())));
 
             }
 
