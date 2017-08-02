@@ -456,6 +456,9 @@ Date 24-11-2015
                         <div class="yellobtn pre_next">
                             <a onclick="modifyScenarioHandler();" href="javascript:;">Modify</a>
                         </div>
+                        <div class="yellobtn pre_next">
+                            <a href="<c:url value="/output-edit-farm-info.htm?farmId="/>${model.farm.farmId}">Cancel</a>
+                        </div>
                     </div>
                     <!-- @end #viewEditScenario -->
 
