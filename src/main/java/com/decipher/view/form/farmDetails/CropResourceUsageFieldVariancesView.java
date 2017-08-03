@@ -3,6 +3,7 @@ package com.decipher.view.form.farmDetails;
 import com.decipher.agriculture.data.farm.CropResourceUsageFieldVariances;
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.util.AgricultureStandardUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CropResourceUsageFieldVariancesView implements Cloneable{
 	private Integer id;
@@ -10,6 +11,9 @@ public class CropResourceUsageFieldVariancesView implements Cloneable{
 	private String cropResourceAmount;
 	private Integer cropId;
 	private String cropName;
+
+	@JsonIgnore
+	private CropResourceUsageFieldVariances cropResourceUsageFieldVariances;
 
 	CropResourceUsageFieldVariancesView() {
 
@@ -25,6 +29,8 @@ public class CropResourceUsageFieldVariancesView implements Cloneable{
 			this.cropName = type.getCropName();
 			this.cropId = type.getId();
 		}
+
+		this.cropResourceUsageFieldVariances = cropResourceUsageFieldVariances;
 	}
 
 	public Integer getId() {
@@ -44,10 +50,10 @@ public class CropResourceUsageFieldVariancesView implements Cloneable{
 	}
 
 	public String getCropResourceAmount() {
-		if (cropResourceAmount == null || cropResourceAmount.toString().equalsIgnoreCase("0")) {
+		if (cropResourceAmount == null || cropResourceAmount.equalsIgnoreCase("0")) {
 			return "";
 		} else {
-			return AgricultureStandardUtils.commaSeparaterForPrice(cropResourceAmount.toString());
+			return AgricultureStandardUtils.commaSeparaterForPrice(cropResourceAmount);
 		}
 	}
 
@@ -69,6 +75,14 @@ public class CropResourceUsageFieldVariancesView implements Cloneable{
 
 	public void setCropName(String cropName) {
 		this.cropName = cropName;
+	}
+
+	public CropResourceUsageFieldVariances getCropResourceUsageFieldVariances() {
+		return cropResourceUsageFieldVariances;
+	}
+
+	public void setCropResourceUsageFieldVariances(CropResourceUsageFieldVariances cropResourceUsageFieldVariances) {
+		this.cropResourceUsageFieldVariances = cropResourceUsageFieldVariances;
 	}
 
 	@Override

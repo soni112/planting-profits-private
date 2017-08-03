@@ -364,7 +364,7 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
 //		ExecutorService executorService = Executors.newCachedThreadPool();
         ExecutorService executorService = Executors.newFixedThreadPool(combinationsListForCalculationList.size());
         long start = System.currentTimeMillis();
-        PlantingProfitLogger.warn("Task started with " + combinationsListForCalculationList.size() + " threads : " + new Date());
+        PlantingProfitLogger.warn("Task started for farm id : " + resourceUsageViews.get(0).getCropResourceUsage().getFarmInfo().getFarm().getFarmId()+ " with " + combinationsListForCalculationList.size() + " threads : " + new Date());
 
         Thread thread;
         TempListHolder tempListHolder;

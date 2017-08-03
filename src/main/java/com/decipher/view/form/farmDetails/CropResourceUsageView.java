@@ -3,6 +3,7 @@ package com.decipher.view.form.farmDetails;
 import com.decipher.agriculture.data.farm.CropResourceUsage;
 import com.decipher.agriculture.data.farm.CropResourceUsageFieldDifferences;
 import com.decipher.util.AgricultureStandardUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CropResourceUsageView implements Cloneable{
 	private int id;
@@ -13,6 +14,9 @@ public class CropResourceUsageView implements Cloneable{
 	private String cropResourceUseLowerCase;
 	private int resourseUsageId;
 	private boolean isActive;
+
+	@JsonIgnore
+	private CropResourceUsage cropResourceUsage;
 
 	public CropResourceUsageView() {
 
@@ -46,6 +50,8 @@ public class CropResourceUsageView implements Cloneable{
 			if (cropResourceUsage.getResourceActive() != null) {
 				this.isActive = cropResourceUsage.getResourceActive();
 			}
+
+			this.cropResourceUsage = cropResourceUsage;
 		}
     }
 
@@ -133,6 +139,14 @@ public class CropResourceUsageView implements Cloneable{
 
 	public void setActive(boolean active) {
 		isActive = active;
+	}
+
+	public CropResourceUsage getCropResourceUsage() {
+		return cropResourceUsage;
+	}
+
+	public void setCropResourceUsage(CropResourceUsage cropResourceUsage) {
+		this.cropResourceUsage = cropResourceUsage;
 	}
 
 	@Override

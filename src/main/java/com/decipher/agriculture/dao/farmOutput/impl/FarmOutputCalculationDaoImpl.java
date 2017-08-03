@@ -249,10 +249,10 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                 double maxYield = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropTypeView.getIntMaxCropYield()));
                 double maxPrice = cropTypeView.getIntMaxCropPrice().doubleValue();
 
-                if (outputDetails.getCropType().getCropYieldFieldVariances() != null && outputDetails.getCropType().getCropYieldFieldVariances().getFieldInfo().getId() == outputDetails.getFieldInfo().getId()) {
+                if (outputDetails.getCropType().getCropYieldFieldVariances() != null && outputDetails.getCropType().getCropYieldFieldVariances().getFieldInfo().getId().equals(outputDetails.getFieldInfo().getId())) {
 
                     expectedYield = cropTypeView.getExpCropYieldFieldStr().equals("0") || cropTypeView.getExpCropYieldFieldStr().equals("") ? expectedYield : Double.parseDouble(cropTypeView.getExpCropYieldFieldStrWithOneDecimal());
-                    productionCost = cropTypeView.getVarProductionCost() == zeroDouble ? productionCost : cropTypeView.getVarProductionCost();
+                    productionCost = cropTypeView.getVarProductionCost().equals(zeroDouble) ? productionCost : cropTypeView.getVarProductionCost();
                 }
                 outputDetails.setUsedCapital(outputDetails.getUsedAcres() * productionCost);
                 if (outputDetails.getForFirm() || outputDetails.getForProposed()) {
@@ -728,6 +728,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                 for (FarmCustomStrategyForResourseView farmCustomStrategyForResourseView : dataForCustomStrategy.getCustomStrategyForResourcesView()) {
                     for (CropResourceUsageView resourceUsageView : resourceUsageViews) {
                         if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourseView.getResourseName())) {
+                            resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
                             resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
                         }
                     }

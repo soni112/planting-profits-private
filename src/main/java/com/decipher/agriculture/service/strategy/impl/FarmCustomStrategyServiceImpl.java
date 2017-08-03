@@ -7,7 +7,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import com.decipher.agriculture.bean.StrategyDataBean;
+import com.decipher.agriculture.data.farm.CropLimit;
 import com.decipher.agriculture.data.farm.CropResourceUsage;
+import com.decipher.agriculture.data.farm.CropResourceUsageFieldVariances;
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.CropsGroup;
 import com.decipher.agriculture.data.farm.Farm;
@@ -251,12 +253,13 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
         List<CropTypeView> cropTypeViewList = cropTypeService.getAllCropByFarm(farmInfoView.getId());
 
         Integer[] cropIdArray = new Integer[cropTypeViewList.size()];
+        List<CropType> cropTypeList = new ArrayList<CropType>();
         int i = 0;
-        for (CropTypeView view : cropTypeViewList) {
-            cropIdArray[i] = view.getId();
+        for (CropTypeView cropTypeView : cropTypeViewList) {
+            cropTypeList.add(cropTypeView.getCropType());
+            cropIdArray[i] = cropTypeView.getId();
             i++;
         }
-
 
         /**
          * resource values to be changed here
@@ -271,7 +274,7 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
 //		Updating values in baseline according to the strategy updated values
         List<FarmCustomStrategyView> dataForCustomStrategy = this.getDataForCustomStrategy(farm.getFarmId());
         for (FarmCustomStrategyView farmCustomStrategyView : dataForCustomStrategy) {
-            if (farmCustomStrategyView.getId() == strategyId) {
+            if (farmCustomStrategyView.getId().equals(strategyId)) {
 
                 /**
                  * @chanegd - Abhishek
@@ -287,6 +290,10 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                             if (cropDetails.getSelected() && cropDetails.getCropName().equalsIgnoreCase(farmCustomStrategyForCropView.getCropname())) {
                                 cropDetails.setMaximumAcres(farmCustomStrategyForCropView.getMaximum());
                                 cropDetails.setMinimumAcres(farmCustomStrategyForCropView.getMinimum());
+
+                                CropLimit cropLimit = cropDetails.getCropType().getCropLimit();
+                                cropLimit.setMaximumAcres(farmCustomStrategyForCropView.getMaximum());
+                                cropLimit.setMinimumAcres(farmCustomStrategyForCropView.getMinimum());
                             }
                         }
                     }
@@ -296,11 +303,18 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                         for (CropResourceUsageView resourceUsageView : resourceUsageViews) {
                             if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourseView.getResourseName())) {
                                 resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
+
+                                CropResourceUsage cropResourceUsage = resourceUsageView.getCropResourceUsage();
+                                cropResourceUsage.setCropResourceUseAmount(resourceUsageView.getCropResourceUseAmount());
                             }
                         }
                         for (CropResourceUsageFieldVariancesView otherResourcesUsed : resourceUsageVariances) {
                             if (otherResourcesUsed.getCropFieldResourceUse().equalsIgnoreCase(farmCustomStrategyForResourseView.getResourseName())) {
                                 otherResourcesUsed.setCropResourceAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
+
+                                CropResourceUsageFieldVariances cropResourceUsageFieldVariances = otherResourcesUsed.getCropResourceUsageFieldVariances();
+                                cropResourceUsageFieldVariances.setCropResourceAmount(otherResourcesUsed.getCropResourceAmount());
+
                             }
                         }
                     }
@@ -314,10 +328,7 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
 
 //		Setting updated values in bean(FarmCustomStrategyView setted above)
 
-        List<CropType> cropTypeList = new ArrayList<CropType>();
-        for (CropTypeView cropTypeView : cropTypeViewList) {
-            cropTypeList.add(cropTypeView.getCropType());
-        }
+
 
         strategyDataBean.setCropTypeList(cropTypeList);
         strategyDataBean.setCropTypeViewList(cropTypeViewList);
