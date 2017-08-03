@@ -507,7 +507,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         return jsonObject;
     }
 
-    public JSONObject calculateAcresForEachCropForAcres(List<CropBeanForOutput> cropBeanForOutputList, String land, List<CropResourceUsageView> resourceUsageViews, Set<CropsGroup> cropsGroups) {
+    private JSONObject calculateAcresForEachCropForAcres(List<CropBeanForOutput> cropBeanForOutputList, String land, List<CropResourceUsageView> resourceUsageViews, Set<CropsGroup> cropsGroups) {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         JSONArray jsonArrayForGraphByCrop = new JSONArray();
@@ -725,7 +725,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         Double amount = 0.0;
 
         long tempHolder = differenceValue.longValue();
-
+        outer:
         for (int i = 0; i <= 5; i++) {
 
             if (i == 0){
@@ -754,6 +754,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 							} else {*/
 
                             amount = Double.parseDouble(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()) + differenceValue;
+                            if (amount < 0) {
+                                break outer;
+                            }
                             cropResourceUsageView.setCropResourceUseAmount("" + (Long.parseLong(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()) + (differenceValue)));
 							/*}*/
 //						cropResourceUsageView.setCropResourceUseAmount(""+(Long.parseLong(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank())+((i>1)?differenceValue:0)));
@@ -787,6 +790,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = beanForOutput.getMinAcre().longValue();
 									} else {*/
                                     amount = beanForOutput.getMinAcre() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setMinAcre(beanForOutput.getMinAcre() + (differenceValue));
                                     cropValue = new Double(beanForOutput.getMinAcre()).longValue();
 									/*}*/
@@ -800,6 +806,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = beanForOutput.getMaxAcre().longValue();
 									} else {*/
                                     amount = beanForOutput.getMaxAcre() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setMaxAcre(beanForOutput.getMaxAcre() + (differenceValue));
                                     cropValue = new Double(beanForOutput.getMaxAcre()).longValue();
 									/*}*/
@@ -813,6 +822,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = beanForOutput.getFirmAcres().longValue();
 									} else {*/
                                     amount = beanForOutput.getFirmAcres() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setFirmAcres(beanForOutput.getFirmAcres() + (differenceValue));
                                     cropValue = new Double(beanForOutput.getFirmAcres()).longValue();
 									/*}*/
@@ -826,6 +838,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = beanForOutput.getProposedAcres().longValue();
 									} else {*/
                                     amount = beanForOutput.getProposedAcres() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setProposedAcres(beanForOutput.getProposedAcres() + (differenceValue));
                                     cropValue = new Double(beanForOutput.getProposedAcres()).longValue();
 									/*}*/
@@ -846,6 +861,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = AgricultureStandardUtils.stringToLong(cropsGroup.getMinimumAcres());
 									} else {*/
                                     amount = Double.parseDouble(cropsGroup.getMinimumAcres()) + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     PlantingProfitLogger.info("Case4:" + differenceValue);
                                     cropsGroup.setMinimumAcres("" + (Integer.parseInt(cropsGroup.getMinimumAcres()) + (differenceValue)));
                                     PlantingProfitLogger.info("Case1:" + cropsGroup.getMinimumAcres());
@@ -861,6 +879,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = AgricultureStandardUtils.stringToLong(cropsGroup.getMaximumAcres());
 									} else {*/
                                     amount = Double.parseDouble(cropsGroup.getMaximumAcres()) + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     cropsGroup.setMaximumAcres("" + (Integer.parseInt(cropsGroup.getMaximumAcres()) + (differenceValue)));
                                     cropValue = AgricultureStandardUtils.stringToLong(cropsGroup.getMaximumAcres());
 									/*}*/
@@ -1147,6 +1168,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 									} else {*/
 
                                     amount = new Double(beanForOutput.getMinAcre()).longValue() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setMinAcre(beanForOutput.getMinAcre() + (differenceValue));
                                     PlantingProfitLogger.debug("Crop Limit Updated tto = " + beanForOutput.getMinAcre());
                                     cropValue = new Double(beanForOutput.getMinAcre()).longValue();
@@ -1161,6 +1185,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = beanForOutput.getMaxAcre().longValue();
 									} else {*/
                                     amount = new Double(beanForOutput.getMaxAcre()).longValue() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setMaxAcre(beanForOutput.getMaxAcre() + (differenceValue));
                                     cropValue = new Double(beanForOutput.getMaxAcre()).longValue();
 									/*}*/
@@ -1174,6 +1201,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = beanForOutput.getFirmAcres().longValue();
 									} else {*/
                                     amount = new Double(beanForOutput.getFirmAcres()).longValue() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setFirmAcres(beanForOutput.getFirmAcres() + (differenceValue));
                                     cropValue = new Double(beanForOutput.getFirmAcres()).longValue();
 									/*}*/
@@ -1187,6 +1217,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = beanForOutput.getProposedAcres().longValue();
 									} else {*/
                                     amount = new Double(beanForOutput.getProposedAcres()).longValue() + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     beanForOutput.setProposedAcres(beanForOutput.getProposedAcres() + (differenceValue));
                                     cropValue = new Double(beanForOutput.getProposedAcres()).longValue();
 									/*}*/
@@ -1207,6 +1240,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = AgricultureStandardUtils.stringToLong(cropsGroup.getMinimumAcres());
 									} else {*/
                                     amount = Long.parseLong(cropsGroup.getMinimumAcres()) + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     cropsGroup.setMinimumAcres("" + (Integer.parseInt(cropsGroup.getMinimumAcres()) + (differenceValue)));
                                     cropValue = AgricultureStandardUtils.stringToLong(cropsGroup.getMinimumAcres());
 									/*}*/
@@ -1220,6 +1256,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 										cropValue = AgricultureStandardUtils.stringToLong(cropsGroup.getMaximumAcres());
 									} else {*/
                                     amount = Long.parseLong(cropsGroup.getMaximumAcres()) + differenceValue;
+                                    if (amount < 0) {
+                                        break outer;
+                                    }
                                     cropsGroup.setMaximumAcres("" + (Integer.parseInt(cropsGroup.getMaximumAcres()) + (differenceValue)));
                                     cropValue = AgricultureStandardUtils.stringToLong(cropsGroup.getMaximumAcres());
 									/*}*/
