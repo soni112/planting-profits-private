@@ -321,7 +321,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm(farmInfoView);
 
-        Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, farmInfoView);
+        Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, strategyIdArray);
         Map<String, JSONArray> cropDetailsForStrategy = getCropDetailsForStrategy(strategyDetailsForFarm);
         Map<String, JSONArray> resourceDetailsForStrategy = getResourceDetailsForStrategy(strategyDetailsForFarm);
         Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm);
@@ -355,113 +355,118 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
     }
 
-    private Map<String, JSONArray> getStrategyOutputDetails(Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm, FarmInfoView farmInfoView){
+    private Map<String, JSONArray> getStrategyOutputDetails(Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm, int[] strategyIdArray){
 
         Map<String, JSONArray> strategyDetails = new HashMap<>();
 
         JSONArray jsonArrayForStrategy = new JSONArray();
 
-        Set<Map.Entry<FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet();
         JSONArray jsonArrayForStrategyOutput = new JSONArray();
 
         Double totalAcreage;
-        for (Map.Entry<FarmCustomStrategyView, JSONObject> entry : entries) {
+        Set<FarmCustomStrategyView> farmCustomStrategyViews = strategyDetailsForFarm.keySet();
+        for (FarmCustomStrategyView farmCustomStrategyView : farmCustomStrategyViews) {
 
-            totalAcreage = 0.0;
+            for (int strategyId : strategyIdArray) {
 
-            FarmCustomStrategyView farmCustomStrategyView = entry.getKey();
+                if(farmCustomStrategyView.getId().equals(strategyId)){
 
-            JSONObject jsonObjectForStrategyDetails = entry.getValue();
+                    JSONObject jsonObjectForStrategyDetails = strategyDetailsForFarm.get(farmCustomStrategyView);
 
-            double potentialProfit = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(jsonObjectForStrategyDetails.get("potentialProfit").toString()));
-            farmCustomStrategyView.setPotentialProfit(potentialProfit);
+                    totalAcreage = 0.0;
 
-            if(Objects.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy(), PlanByStrategy.PLAN_BY_ACRES)){
+                    double potentialProfit = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(jsonObjectForStrategyDetails.get("potentialProfit").toString()));
+                    farmCustomStrategyView.setPotentialProfit(potentialProfit);
 
-                List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) jsonObjectForStrategyDetails.get("farmOutputDetails");
-                JSONArray jsonArray = new JSONArray();
-                JSONObject jsonObject = new JSONObject();
-                for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                    JSONObject jsonObjectDetails = new JSONObject();
-                    String cropName;
-                    if(farmOutputDetailsView.getForFirm())
-                        cropName = farmOutputDetailsView.getCropTypeView().getCropName() + " (Firm)";
-                    else if(farmOutputDetailsView.getForProposed())
-                        cropName = farmOutputDetailsView.getCropTypeView().getCropName() + " (Proposed)";
-                    else
-                        cropName = farmOutputDetailsView.getCropTypeView().getCropName();
-                    jsonObjectDetails.put("cropName", cropName);
-                    jsonObjectDetails.put("acreage", AgricultureStandardUtils.commaSeparaterForLong(farmOutputDetailsView.getUsedAcresAsInteger()));
+                    if(PlanByStrategy.PLAN_BY_ACRES.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy())){
 
-                    totalAcreage += farmOutputDetailsView.getUsedAcresAsDouble();
+                        List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) jsonObjectForStrategyDetails.get("farmOutputDetails");
+                        JSONArray jsonArray = new JSONArray();
+                        JSONObject jsonObject = new JSONObject();
+                        for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                            JSONObject jsonObjectDetails = new JSONObject();
+                            String cropName;
+                            if(farmOutputDetailsView.getForFirm())
+                                cropName = farmOutputDetailsView.getCropTypeView().getCropName() + " (Firm)";
+                            else if(farmOutputDetailsView.getForProposed())
+                                cropName = farmOutputDetailsView.getCropTypeView().getCropName() + " (Proposed)";
+                            else
+                                cropName = farmOutputDetailsView.getCropTypeView().getCropName();
+                            jsonObjectDetails.put("cropName", cropName);
+                            jsonObjectDetails.put("acreage", AgricultureStandardUtils.commaSeparaterForLong(farmOutputDetailsView.getUsedAcresAsInteger()));
 
-                    jsonArray.add(jsonObjectDetails);
-                }
-                jsonObject.put("outputDetails", jsonArray);
-                jsonObject.put("farmCustomStrategyId", farmCustomStrategyView.getId());
-                jsonObject.put("strategy", farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy());
+                            totalAcreage += farmOutputDetailsView.getUsedAcresAsDouble();
 
-                jsonArrayForStrategyOutput.add(jsonObject);
+                            jsonArray.add(jsonObjectDetails);
+                        }
+                        jsonObject.put("outputDetails", jsonArray);
+                        jsonObject.put("farmCustomStrategyId", farmCustomStrategyView.getId());
+                        jsonObject.put("strategy", farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy());
+
+                        jsonArrayForStrategyOutput.add(jsonObject);
 
 
-            } else if(Objects.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)){
+                    } else if(PlanByStrategy.PLAN_BY_FIELDS.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy())){
 
-                List<FieldInfoView> fieldInfoViewList = (List<FieldInfoView>)jsonObjectForStrategyDetails.get("fieldInfoList");
-                List<FarmOutputDetailsForFieldView> farmOutputDetailsViewList = (List<FarmOutputDetailsForFieldView>)jsonObjectForStrategyDetails.get("farmOutputDetails");
+                        List<FieldInfoView> fieldInfoViewList = (List<FieldInfoView>)jsonObjectForStrategyDetails.get("fieldInfoList");
+                        List<FarmOutputDetailsForFieldView> farmOutputDetailsViewList = (List<FarmOutputDetailsForFieldView>)jsonObjectForStrategyDetails.get("farmOutputDetails");
 
-                JSONArray jsonArray = new JSONArray();
-                JSONObject jsonObject = new JSONObject();
+                        JSONArray jsonArray = new JSONArray();
+                        JSONObject jsonObject = new JSONObject();
 
-                for (FieldInfoView fieldInfoView : fieldInfoViewList) {
+                        for (FieldInfoView fieldInfoView : fieldInfoViewList) {
 
-                    if (fieldInfoView.getFallow().equalsIgnoreCase("true")) {
-                        JSONObject jsonObjectDetails = new JSONObject();
-                        jsonObjectDetails.put("field", fieldInfoView.getFieldName());
-                        jsonObjectDetails.put("size", fieldInfoView.getFieldSize());
-                        jsonObjectDetails.put("crop", "Fallow");
-                        jsonArray.add(jsonObjectDetails);
-                    } else {
-                        boolean planted = false;
-                        for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsViewList) {
-                            if (farmOutputDetailsForFieldView.getFieldInfoView().getFieldName().equalsIgnoreCase(fieldInfoView.getFieldName()) && !farmOutputDetailsForFieldView.getUsedAcres().equals("0")) {
-                                planted = true;
+                            if (fieldInfoView.getFallow().equalsIgnoreCase("true")) {
                                 JSONObject jsonObjectDetails = new JSONObject();
                                 jsonObjectDetails.put("field", fieldInfoView.getFieldName());
-                                jsonObjectDetails.put("size", farmOutputDetailsForFieldView.getUsedAcres());
-
-                                totalAcreage += farmOutputDetailsForFieldView.getUsedAcresAsDouble();
-
-                                String forStr = "";
-                                if (farmOutputDetailsForFieldView.isForFirm()) {
-                                    forStr = " (Firm)";
-                                } else if (farmOutputDetailsForFieldView.isForProposed()) {
-                                    forStr = " (Proposed)";
-                                }
-                                jsonObjectDetails.put("crop", farmOutputDetailsForFieldView.getCropTypeView().getCropName() + forStr);
+                                jsonObjectDetails.put("size", fieldInfoView.getFieldSize());
+                                jsonObjectDetails.put("crop", "Fallow");
                                 jsonArray.add(jsonObjectDetails);
+                            } else {
+                                boolean planted = false;
+                                for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsViewList) {
+                                    if (farmOutputDetailsForFieldView.getFieldInfoView().getFieldName().equalsIgnoreCase(fieldInfoView.getFieldName()) && !farmOutputDetailsForFieldView.getUsedAcres().equals("0")) {
+                                        planted = true;
+                                        JSONObject jsonObjectDetails = new JSONObject();
+                                        jsonObjectDetails.put("field", fieldInfoView.getFieldName());
+                                        jsonObjectDetails.put("size", farmOutputDetailsForFieldView.getUsedAcres());
+
+                                        totalAcreage += farmOutputDetailsForFieldView.getUsedAcresAsDouble();
+
+                                        String forStr = "";
+                                        if (farmOutputDetailsForFieldView.isForFirm()) {
+                                            forStr = " (Firm)";
+                                        } else if (farmOutputDetailsForFieldView.isForProposed()) {
+                                            forStr = " (Proposed)";
+                                        }
+                                        jsonObjectDetails.put("crop", farmOutputDetailsForFieldView.getCropTypeView().getCropName() + forStr);
+                                        jsonArray.add(jsonObjectDetails);
+                                    }
+                                }
+
+                                if (!planted) {
+                                    JSONObject jsonObjectDetails = new JSONObject();
+                                    jsonObjectDetails.put("field", fieldInfoView.getFieldName());
+                                    jsonObjectDetails.put("size", fieldInfoView.getFieldSize());
+                                    jsonObjectDetails.put("crop", "Not Planted");
+                                    jsonArray.add(jsonObjectDetails);
+                                }
                             }
                         }
 
-                        if (!planted) {
-                            JSONObject jsonObjectDetails = new JSONObject();
-                            jsonObjectDetails.put("field", fieldInfoView.getFieldName());
-                            jsonObjectDetails.put("size", fieldInfoView.getFieldSize());
-                            jsonObjectDetails.put("crop", "Not Planted");
-                            jsonArray.add(jsonObjectDetails);
-                        }
+
+                        jsonObject.put("outputDetails", jsonArray);
+                        jsonObject.put("farmCustomStrategyId", farmCustomStrategyView.getId());
+                        jsonObject.put("strategy", farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy());
+                        jsonArrayForStrategyOutput.add(jsonObject);
                     }
+
+                    farmCustomStrategyView.setTotalAcreage(totalAcreage);
+
+                    jsonArrayForStrategy.add(farmCustomStrategyView);
                 }
 
-
-                jsonObject.put("outputDetails", jsonArray);
-                jsonObject.put("farmCustomStrategyId", farmCustomStrategyView.getId());
-                jsonObject.put("strategy", farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy());
-                jsonArrayForStrategyOutput.add(jsonObject);
             }
-
-            farmCustomStrategyView.setTotalAcreage(totalAcreage);
-
-            jsonArrayForStrategy.add(farmCustomStrategyView);
         }
 
         strategyDetails.put("jsonArrayForStrategy", jsonArrayForStrategy);

@@ -29,6 +29,7 @@ public class ApplicationContextListener implements ServletContextListener{
 		} catch (SchedulerException e) {
 			e.printStackTrace();
 		}
+//		System.loadLibrary("lpsolve55j");
 
 		System.gc();
 	}

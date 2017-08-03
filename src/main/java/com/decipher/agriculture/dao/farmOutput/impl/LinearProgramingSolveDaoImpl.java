@@ -16,9 +16,15 @@ import java.util.concurrent.TimeUnit;
 
 import com.decipher.agriculture.bean.LinearProgrammingResultBean;
 import com.decipher.agriculture.dao.farmOutput.LinearProgramingSolveDao;
-import net.sf.javailp.*;
+import net.sf.javailp.Linear;
+import net.sf.javailp.Operator;
+import net.sf.javailp.OptType;
+import net.sf.javailp.Problem;
+import net.sf.javailp.Result;
+import net.sf.javailp.Solver;
+import net.sf.javailp.SolverFactory;
+import net.sf.javailp.SolverFactoryLpSolve;
 import org.apache.commons.collections.map.HashedMap;
-import org.gnu.glpk.GLPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,9 +56,9 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
     private static final Double zeroDouble = 0.0;
     private Set<String> minRequiredCropsForGroups = null;
 
-    public static void main(String[] args) {
-        System.out.println(GLPK.glp_version());
-    }
+//    public static void main(String[] args) {
+//        System.out.println(GLPK.glp_version());
+//    }
 
     @Override
     public Result getLinearProgramingResultForAcerage(List<CropBeanForOutput> cropBeanForOutputList, String land, List<CropResourceUsageView> resourceUsageViews, Set<CropsGroup> cropsGroups) {
@@ -358,7 +364,7 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
 //		ExecutorService executorService = Executors.newCachedThreadPool();
         ExecutorService executorService = Executors.newFixedThreadPool(combinationsListForCalculationList.size());
         long start = System.currentTimeMillis();
-        PlantingProfitLogger.warn("Task started with " + combinationsListForCalculationList.size() + " threads : " + new Date());
+        PlantingProfitLogger.warn("Task started for farm id : " + resourceUsageViews.get(0).getCropResourceUsage().getFarmInfo().getFarm().getFarmId()+ " with " + combinationsListForCalculationList.size() + " threads : " + new Date());
 
         Thread thread;
         TempListHolder tempListHolder;

@@ -142,8 +142,8 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
      */
     @Override
     public List<FarmOutputDetailsView> getAllFarmOutputDetailsByFarm(OutputBeanForStrategy outputBeanForStrategy) {
-        Double totalUsedAcre = new Double(0);
-        Double totalProfit = new Double(0);
+        Double totalUsedAcre = 0.0;
+        Double totalProfit = 0.0;
         List<FarmOutputDetailsView> farmOutputDetailsViewList = new ArrayList<FarmOutputDetailsView>();
         List<FarmOutputDetails> farmOutputDetails = farmOutputCalculationDao.getAllFarmOutputDetailsByFarm(outputBeanForStrategy);
 
