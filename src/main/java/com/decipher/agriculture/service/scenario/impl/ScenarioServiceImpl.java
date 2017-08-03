@@ -404,7 +404,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                             costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() - valueToChange))));
 
 //                            cropTypeView.setVarProductionCost(Double.parseDouble(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange))));
-                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() - valueToChange)));
+                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
                             cropTypeView.getCropType().setCostsCropProductionCosts(costsCropProductionCosts);
 
                             changeFlag = true;
@@ -486,7 +486,7 @@ public class ScenarioServiceImpl implements ScenarioService {
 //                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() - valueToChange)));
 //                        } else {
                         costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() - valueToChange))));
-                        cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() - valueToChange)));
+                        cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
 //                        }
 
                         cropTypeView.getCropType().setCostsCropProductionCosts(costsCropProductionCosts);
