@@ -418,7 +418,7 @@ class StrategyComparisonDataBuilder {
             Double strategyProfit = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(strategyOutput.get("potentialProfit").toString()));
 
 
-            Double landUnderHighRisk = 0.0, incomeUnderHighRisk = 0.0;
+            Double landUnderConservation = 0.0, incomeUnderConservation = 0.0;
 
             if (Objects.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
 
@@ -426,8 +426,8 @@ class StrategyComparisonDataBuilder {
 
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")) {
-                        landUnderHighRisk += farmOutputDetailsView.getUsedAcresPercentage();
-                        incomeUnderHighRisk += Double.parseDouble(formatter.format((farmOutputDetailsView.getProfitDouble() / strategyProfit) * 100));
+                        landUnderConservation += farmOutputDetailsView.getUsedAcresPercentage();
+                        incomeUnderConservation += Double.parseDouble(formatter.format((farmOutputDetailsView.getProfitDouble() / strategyProfit) * 100));
                     }
                 }
 
@@ -436,21 +436,24 @@ class StrategyComparisonDataBuilder {
                 List<CropTypeView> cropTypeViewList = (List<CropTypeView>) entry.getValue().get("cropTypeView");
 
                 for (CropTypeView cropTypeView : cropTypeViewList) {
-                    if (cropTypeView.getSelected() && cropTypeView.getConservation_Crop().equalsIgnoreCase("true")) {
-                        String land = ((Map<String, String>) entry.getValue().get("hashMapForAcre")).get(cropTypeView.getCropName());
-                        landUnderHighRisk += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
-                        String income = ((Map<String, String>) entry.getValue().get("hashMapForProfit")).get(cropTypeView.getCropName());
-                        incomeUnderHighRisk += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+                    if (cropTypeView.getSelected()) {
+                        if (/*cropTypeView.getSelected() &&*/ cropTypeView.getConservation_Crop().equalsIgnoreCase("true")) {
+                            String land = ((Map<String, String>) entry.getValue().get("hashMapForAcre")).get(cropTypeView.getCropName());
+                            landUnderConservation += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
+                            String income = ((Map<String, String>) entry.getValue().get("hashMapForProfit")).get(cropTypeView.getCropName());
+                            incomeUnderConservation += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+                        }
                     }
+
                 }
 
             }
 
             if (key.equalsIgnoreCase("acreage")) {
-                graphDataJsonObject.put(axis + count, landUnderHighRisk);
+                graphDataJsonObject.put(axis + count, landUnderConservation);
 
             } else if (key.equalsIgnoreCase("profit")) {
-                graphDataJsonObject.put(axis + count, incomeUnderHighRisk);
+                graphDataJsonObject.put(axis + count, incomeUnderConservation);
 
             }
 

@@ -695,6 +695,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             conservationArray.add(dataBuilder.getAcreageConservationRiskCrop(farmInfoView, strategyDetails));
             conservationObject.put("details", conservationArray);
 
+            jsonArrayForConservationCrop.add(conservationObject);
 
             JSONObject highRiskObject = new JSONObject();
             highRiskObject.put("strategyName", farmCustomStrategyView.getStrategyName());
@@ -712,7 +713,6 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             highRiskObject.put("details", highRiskArray);
 
             jsonArrayForHighRiskCrop.add(highRiskObject);
-            jsonArrayForConservationCrop.add(conservationObject);
 
         }
 
