@@ -175,7 +175,7 @@ public class RiskAndConservationMgmtDataBuilder {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("name", "PP From high risk crop");
-        jsonObject.put("amount", getHighRiskDetails(farmInfoView, outputDetails, "income", "risk"));
+        jsonObject.put("amount", getHighRiskAndConservationDetails(farmInfoView, outputDetails, "income", "risk"));
         return jsonObject;
     }
 
@@ -183,7 +183,7 @@ public class RiskAndConservationMgmtDataBuilder {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("name", "Acreage From high crop");
-        jsonObject.put("amount", getHighRiskDetails(farmInfoView, outputDetails, "acreage", "risk"));
+        jsonObject.put("amount", getHighRiskAndConservationDetails(farmInfoView, outputDetails, "acreage", "risk"));
 
         return jsonObject;
     }
@@ -193,7 +193,7 @@ public class RiskAndConservationMgmtDataBuilder {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("name", "PP From conservation crop");
-        jsonObject.put("amount", getHighRiskDetails(farmInfoView, outputDetails, "income", "conservation"));
+        jsonObject.put("amount", getHighRiskAndConservationDetails(farmInfoView, outputDetails, "income", "conservation"));
 
         return jsonObject;
     }
@@ -203,14 +203,14 @@ public class RiskAndConservationMgmtDataBuilder {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("name", "Acreage From conservation crop");
-        jsonObject.put("amount", getHighRiskDetails(farmInfoView, outputDetails, "acreage", "conservation"));
+        jsonObject.put("amount", getHighRiskAndConservationDetails(farmInfoView, outputDetails, "acreage", "conservation"));
 
         return jsonObject;
     }
 
-    private String getHighRiskDetails(FarmInfoView farmInfoView, JSONObject outputDetails, String key, String cnsrvatnOrRisk){
+    private String getHighRiskAndConservationDetails(FarmInfoView farmInfoView, JSONObject outputDetails, String key, String cnsrvatnOrRisk){
         DecimalFormat formatter = new DecimalFormat("#.0");
-        Double landUnderHighRisk = 0.0, incomeUnderHighRisk = 0.0;
+        Double landUnderHighRisk = 0.0, incomeUnderHighRisk = 0.0, landUnderConservation = 0.0, incomeUnderConservation = 0.0;
 
         if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)){
 
@@ -220,13 +220,13 @@ public class RiskAndConservationMgmtDataBuilder {
 
                 if(cnsrvatnOrRisk.equalsIgnoreCase("conservation")){
                     if (farmOutputDetailsView.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")) {
-                        landUnderHighRisk += farmOutputDetailsView.getUsedAcresPercentage();
-                        incomeUnderHighRisk += Double.parseDouble(formatter.format(farmOutputDetailsView.getUsedCapitalPercentage()));
+                        landUnderConservation += farmOutputDetailsView.getUsedAcresPercentage();
+                        incomeUnderConservation += farmOutputDetailsView.getUsedCapitalPercentage();
                     }
                 } else if(cnsrvatnOrRisk.equalsIgnoreCase("risk")){
                     if (farmOutputDetailsView.getCropTypeView().getHiRiskCrop().equalsIgnoreCase("true")) {
                         landUnderHighRisk += farmOutputDetailsView.getUsedAcresPercentage();
-                        incomeUnderHighRisk += Double.parseDouble(formatter.format(farmOutputDetailsView.getUsedCapitalPercentage()));
+                        incomeUnderHighRisk += farmOutputDetailsView.getUsedCapitalPercentage();
                     }
                 }
             }
@@ -239,14 +239,14 @@ public class RiskAndConservationMgmtDataBuilder {
             for (CropTypeView cropTypeView : cropTypeViewList) {
 
                 if(cnsrvatnOrRisk.equalsIgnoreCase("conservation")){
-                    if (cropTypeView.getSelected() && cropTypeView.getHiRiskCrop().equalsIgnoreCase("true")) {
+                    if (cropTypeView.getSelected() && cropTypeView.getConservation_Crop().equalsIgnoreCase("true")) {
                         String land = ((Map<String, String>)outputDetails.get("hashMapForAcre")).get(cropTypeView.getCropName());
-                        landUnderHighRisk += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
+                        landUnderConservation += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
                         String income = ((Map<String, String>)outputDetails.get("hashMapForProfit")).get(cropTypeView.getCropName());
-                        incomeUnderHighRisk += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+                        incomeUnderConservation += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
                     }
                 } else if(cnsrvatnOrRisk.equalsIgnoreCase("risk")){
-                    if (cropTypeView.getSelected() && cropTypeView.getConservation_Crop().equalsIgnoreCase("true")) {
+                    if (cropTypeView.getSelected() && cropTypeView.getHiRiskCrop().equalsIgnoreCase("true")) {
                         String land = ((Map<String, String>)outputDetails.get("hashMapForAcre")).get(cropTypeView.getCropName());
                         landUnderHighRisk += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
                         String income = ((Map<String, String>)outputDetails.get("hashMapForProfit")).get(cropTypeView.getCropName());
@@ -259,16 +259,24 @@ public class RiskAndConservationMgmtDataBuilder {
 
         }
 
-        if(key.equalsIgnoreCase("income")){
+        if (cnsrvatnOrRisk.equalsIgnoreCase("risk")){
+            if(key.equalsIgnoreCase("income")){
 //            return incomeUnderHighRisk == 0.0 ? "0.0" : formatter.format(incomeUnderHighRisk);
-            return incomeUnderHighRisk == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(incomeUnderHighRisk.toString());
-        } else if(key.equalsIgnoreCase("acreage")){
+                return incomeUnderHighRisk == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(incomeUnderHighRisk.toString());
+            } else if(key.equalsIgnoreCase("acreage")){
 //            return landUnderHighRisk == 0.0 ? "0.0" : formatter.format(landUnderHighRisk);
-            return landUnderHighRisk == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(landUnderHighRisk.toString());
+                return landUnderHighRisk == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(landUnderHighRisk.toString());
+            }
+        } else if(cnsrvatnOrRisk.equalsIgnoreCase("conservation")){
+            if(key.equalsIgnoreCase("income")){
+                return incomeUnderConservation == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(incomeUnderConservation.toString());
+            } else if(key.equalsIgnoreCase("acreage")){
+                return landUnderConservation == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(landUnderConservation.toString());
+            }
         }
 
-
-        return formatter.format(incomeUnderHighRisk);
+        return "0.0";
+//        return formatter.format(incomeUnderHighRisk);
     }
 
     public JSONObject getForwardSoldProfit(FarmInfoView farmInfoView, JSONObject outputDetails){
