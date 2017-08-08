@@ -4069,3 +4069,228 @@ sup {
     overflow-y: auto;
     max-height: 450px;
 }
+/* Contribution Page */
+.contribute-bg {
+    background-image: url(../images/contribution-bg.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
+.contibution h1{
+    font-size: 46px;
+    font-weight: 200;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.contribution-bottom-bg {
+    background-color: rgba(77, 58, 44, 0.6);
+    background-size: cover;
+    background-position: left bottom;
+    background-repeat: repeat;
+}
+.margin-top-1 {
+    margin-top: 1%;
+}
+.margin-top-2 {
+    margin-top: 2%;
+}
+.contribution-bottom-bg h3 {
+    font-size: 32px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.contribution-bottom-bg p {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.01rem;
+    margin: 0 0 10px;
+}
+.contribution-select-donate-bg {
+    background-color: rgba(158, 145, 121, 0.4);
+    background-size: cover;
+    background-position: left bottom;
+    background-repeat: repeat;
+    padding-bottom: 20px;
+}
+.btn-contribute {
+    background-image: url(../images/btn-donate.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #b0a48b;
+    color: #000;
+    font-size: 26px;
+    border-radius: 5px;
+    margin: 0.2%;
+    border: 0px none;
+    box-shadow: none;
+}
+.btn-contribute:active {
+    background-image: url(../images/btn-donate-after.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transform: translateY(1px);
+}
+div button:nth-child(2), div button:nth-child(3), div button:nth-child(4) {
+    padding: 0.2% 1.6%;
+}
+div button:nth-child(5) {
+    padding: 0.2% 0.8%;
+}
+div button:nth-child(6) {
+    padding: 0.2% 0.6%;
+}
+.m-b-2{
+    margin-bottom: 2%;
+}
+.text-white{
+    color: #ffffff;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+/* PAYMENT OPTION */
+.paymentMode .nav-tabs{
+    background-color: rgba(64, 53, 45, 0.6);
+    border-bottom: 0px none;
+}
+.paymentMode .nav-tabs li:first-child{
+    margin-left: 35%;
+    margin-right: 2%;
+}
+.paymentMode .nav-tabs li a i{
+    font-size: 28px;
+}
+.paymentMode .nav-tabs > li > a{
+    color: #ffffff;
+}
+.paymentMode .nav-tabs > li.active > a{
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #5b3113;
+}
+.paymentMode .nav-tabs > li a:hover, .paymentMode .nav-tabs > li a:hover{
+    background-color: transparent;
+    color: #ffffff;
+}
+.payment-info h3 {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: 500;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+.tab-for input[type="text"] {
+    width: 96%;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #e7ebee;
+    outline: none;
+    color: #1b1a1a;
+    border-radius: 0px;
+    margin-bottom: 20px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.tab-form-left {
+    float: left;
+    width: 48%;
+}
+.tab-for h5, .tab-form-left h5, .tab-form-right h5 {
+    color: #ffffff;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+.tab-form-left ul {padding-left: 0px}
+.tab-form-left ul li {
+    list-style-type: none;
+    display: inline-block;
+    width: 40%;
+    margin-right: 9%;
+}
+.tab-for input[type="text"]:hover {
+    border: 1px solid #fbd176;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+input.text_box {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid #e7ebee;
+}
+input.text_box:hover{
+    border: 1px solid #fbd176;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+.text_box {
+    display: inline;
+    width: 60px;
+    padding: 3px 5px;
+    outline: none;
+    margin-left: 1%;
+    font-size: 20px;
+    color: #1b1a1a;
+    width: 100%;
+    color: #606060;
+    font-size: 15px;
+    padding: 8px 0 8px 10px;
+    border: none;
+    outline: none;
+    background: #fff;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+input.cvvNumber {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid #e7ebee;
+}
+.cvvNumber{
+    display: inline;
+    padding: 3px 5px;
+    outline: none;
+    font-size: 20px;
+    color: #1b1a1a;
+    width: 48%;
+    color: #606060;
+    font-size: 15px;
+    padding: 8px 0 8px 10px;
+    border: none;
+    outline: none;
+    background: #fff;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+input.cvvNumber:hover{
+    border: 1px solid #fbd176;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
