@@ -26,8 +26,6 @@ $(function () {
     $(window).on('beforeunload', windowUnload);
 
     Stripe.setPublishableKey(stripePublishKey);
-
-    // Stripe.setPublishableKey('pk_live_8fCjVz5VkwevSmV9MRhm0052');
     buildInputMask();
     init();
 });
@@ -63,27 +61,26 @@ function applyValidation(object) {
 function validateCardDetails(obj) {
     var status = true;
 
-    if($(obj).find('input[name="nameOnCard"]').val().length == 0) {
+    if($('#payment-amount').val() === '0'){
+        customAlerts('Please specify contribution amount before proceeding further', "error", 0);
+        status = false;
+    } else if($(obj).find('input[name="nameOnCard"]').val().length === 0) {
         customAlerts("Please enter the name on the card.", "error", 0);
         applyValidation($(obj).find('input[name="nameOnCard"]'));
         status = false;
-    } else if($('input[name="cardNumber"]').val().length == 0){
-
+    } else if($('input[name="cardNumber"]').val().length === 0) {
         customAlerts("Please enter the card number", "error", 0);
         applyValidation($(obj).find('input[name="cardNumber"]'));
         status = false;
-    } else if($('input[name="expMonth"]').val().length == 0){
-
+    } else if($('input[name="expMonth"]').val().length === 0) {
         customAlerts("Please enter the card expiry month", "error", 0);
         applyValidation($(obj).find('input[name="expMonth"]'));
         status = false;
-    } else if($('input[name="expYear"]').val().length == 0){
-
+    } else if($('input[name="expYear"]').val().length === 0) {
         customAlerts("Please enter the card expiry year", "error", 0);
         applyValidation($(obj).find('input[name="expYear"]'));
         status = false;
-    } else if($('input[name="cvv"]').val().length == 0){
-
+    } else if($('input[name="cvv"]').val().length === 0) {
         customAlerts("Please enter the cvv number.", "error", 0);
         applyValidation($(obj).find('input[name="cvv"]'));
         status = false;
@@ -96,9 +93,8 @@ var tmp;
 function submitPaymentForm(currentRef) {
 
     // $form = getCardDetailsFromHtml('.'+ currentRef);
-    currentRef = '.' + currentRef;
     tmp = currentRef;
-    var status = validateCardDetails(currentRef)
+    var status = validateCardDetails(currentRef);
     if (status) {
         var $form = $(currentRef);
 
@@ -146,6 +142,7 @@ function stripeResponseHandler(status, response) {
                 var result = response.result;
                 if(status == "success"){
                     customAlerts('We are glad to have you. Thanks for your contribution.', "success", 0);
+                    hideLoadingImage();
                     setTimeout(function () {
                         $('#logout-btn').trigger('click');
                     }, 2000);
@@ -180,24 +177,32 @@ function getCardDetailsFromHtml(container) {
 
 }
 
-function changeValue(obj) {
+function showPaymentOptions(currentRef){
+    currentRef = $(currentRef);
+    if(currentRef.attr('data-value') === 'other'){
+        $('#payment-amount').val('0');
+        $('#manual-amt-div').slideDown(500);
+    } else {
+        $('#payment-amount').val(addCommaSignWithDollarForTextWithOutId(currentRef.attr('data-value')));
+        $('#donation-amount-div').hide(500);
+        $('#payment-options-div').show(500);
+    }
 
-    var amt = $.trim($('#modified-amt').val());
-    $('#payment-amount').val(amt);
-    // $('#amt-to-donate').html(amt);
 
-    // $('a[data-toggle="collapse"]').trigger('click');
 
-}
-
-function showPaymentOptions(){
-
-    if($('#payment-amount').val() == ''){
+    /*if($('#payment-amount').val() === ''){
         customAlerts('Please specify contribution amount before proceeding further', "error", 0);
     } else {
         $('#donation-amount-div').hide(500);
         $('#payment-options-div').show(500);
-    }
+    }*/
+
+}
+
+function showContributionScreen(){
+
+    $('#donation-amount-div').show(500);
+    $('#payment-options-div').hide(500);
 
 }
 
@@ -208,7 +213,7 @@ function processLogout(url){
 function windowUnload(){
 
     if (_navigateState) {
-        $.ajax({
+        /*$.ajax({
             url: appContext + 'j_spring_security_logout',
             async: false,
             success: function (response) {
@@ -218,7 +223,7 @@ function windowUnload(){
 
             }
 
-        });
+        });*/
     }
 
 }

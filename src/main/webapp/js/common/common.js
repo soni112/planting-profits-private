@@ -627,10 +627,10 @@ function addCommaSignWithDollarForText(id) {
 	}
 }
 
-function addCommaSignWithDollarForTextWithOutId(id) {
+function addCommaSignWithDollarForTextWithOutId(obj) {
 	//var value = id.replace('$', '').replace(/,/g, '');
 		var valueWithComma;
-		valueWithComma = Number(id).toLocaleString('en');
+		valueWithComma = Number(obj).toLocaleString('en');
 		//alert(valueWithComma);
 		var finalValue = "$" + valueWithComma;
 		return finalValue;

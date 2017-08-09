@@ -16,10 +16,10 @@ public interface FarmCustomStrategyService {
     /*boolean saveFarmCustomStrategy(int farmId,String[] resourceArray,String strategyName, Double potentialProfit, Double totalAcreage);*/
     int saveFarmCustomStrategy(int farmId, String[] resourceArray, String strategyName);
 
-    /*boolean  saveFarmCustomStrategyForMultipalCrop(int farmId,String[] cropsArray,String[] cropContractArray,
+    /*boolean  saveFarmCustomStrategyForMultipleCrop(int farmId,String[] cropsArray,String[] cropContractArray,
                                                    String[] cropProposedArray,String[] cropsGroupArray,String strategyName,
                                                    Double potentialProfit, Double totalAcreage);*/
-    int saveFarmCustomStrategyForMultipalCrop(int farmId, String[] cropsArray, String[] cropContractArray,
+    int saveFarmCustomStrategyForMultipleCrop(int farmId, String[] cropsArray, String[] cropContractArray,
                                               String[] cropProposedArray, String[] cropsGroupArray, String strategyName);
 
     boolean isFarmStrategyExitsWithName(String strategyName, int farmId);
@@ -40,7 +40,7 @@ public interface FarmCustomStrategyService {
      * @added - Abhishek
      * @date - 05-01-2016
      */
-    StrategyDataBean getStrategyBaseValuesForStrategy(int strategyId, FarmInfoView farmInfoView);
+    StrategyDataBean getStrategyBaseValuesForStrategy(FarmCustomStrategyView farmCustomStrategyView, FarmInfoView farmInfoView);
 
     int saveAsBaseLineStrategy(FarmInfo farmInfo/*, Double potentialProfit, Double totalAcreage*/);
 

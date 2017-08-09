@@ -96,7 +96,7 @@ public class FarmViewController {
         Account account = sessionService.getLoggedInUser();
         String page = "";
         if (account != null) {
-            Set<Farm> allFarmsForUser = farmService.getAllFarmsForUser(account.getId());
+            List<Farm> allFarmsForUser = farmService.getAllFarmsForUser(account.getId());
 
             model.put("farmList", allFarmsForUser);
 

@@ -5,9 +5,9 @@
 
 
 	<definition name="defaultTemplate" template="/WEB-INF/jsp/common/template/default-template.jsp">
-	<put-attribute name="header" value="/WEB-INF/jsp/common/header.jsp" />
-	<put-attribute name="body-content"	value="/WEB-INF/jsp/common/body-content.jsp" />
-	<put-attribute name="footer" value="/WEB-INF/jsp/common/footer.jsp" />  
+		<put-attribute name="header" value="/WEB-INF/jsp/common/header.jsp" />
+		<put-attribute name="body-content"	value="/WEB-INF/jsp/common/body-content.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/common/footer.jsp" />
 	</definition>
 
 	<!-- Common/General for all users -->
@@ -51,6 +51,7 @@
 
 	<definition name="contribution-payment" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/contribution-payment/contribution-payment.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
 	</definition>
 	<definition name="privacy-policy" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/privacy-policy/privacy-policy.jsp"/>

@@ -538,14 +538,14 @@ public class ScenarioServiceImpl implements ScenarioService {
         outputBeanForStrategy.setStrategyID(strategyDataBean.getFarmCustomStrategyView().getId());
         outputBeanForStrategy.setSaveFlag(false);
         outputBeanForStrategy.setBaselineFlag(false);
-        outputBeanForStrategy.setSesntivityFlag(true);
+        outputBeanForStrategy.setSensitivityFlag(true);
 //        outputBeanForStrategy.setFarmInfo(farmInfoService.getFarmInfoByIdForUpdate(strategyDataBean.getFarmInfoView().getId()));
         outputBeanForStrategy.setFarmInfo(strategyDataBean.getFarmInfoView().getFarmInfo());
         outputBeanForStrategy.setCropTypeList(strategyDataBean.getCropTypeList());
         outputBeanForStrategy.setResourceUsageViews(strategyDataBean.getResourceUsageViewsList());
 
         List<CropsGroupView> cropsGroupViews = cropGroupService.getAllCropGroupByFarm(strategyDataBean.getFarmInfoView().getId());
-        if (strategyDataBean.getFarmInfoView().getStrategy() == PlanByStrategy.PLAN_BY_ACRES) {
+        if (PlanByStrategy.PLAN_BY_ACRES.equals(strategyDataBean.getFarmInfoView().getStrategy())) {
             /* Output process for Farm by Acre */
             checkValidStrategyForFarm = farmOutputCalculationService.checkIfFarmHasValidStrategy(strategyDataBean.getFarmInfoView().getId());
 
@@ -567,7 +567,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                 }
             }
             /* Output process for Farm by Field */
-        } else if (strategyDataBean.getFarmInfoView().getStrategy() == PlanByStrategy.PLAN_BY_FIELDS) {
+        } else if (PlanByStrategy.PLAN_BY_FIELDS.equals(strategyDataBean.getFarmInfoView().getStrategy())) {
 
             /**
              *
@@ -625,7 +625,7 @@ public class ScenarioServiceImpl implements ScenarioService {
         jsonObjectForGraphs.put("cropResourceUsedForBarGraph", cropResourceUsed);
         jsonObjectForGraphs.put("cropResourceUnusedForBarGraph", cropResourceUnused);
 
-        JSONObject jsonObjectForstrategyCompleteData = new JSONObject();
+        JSONObject jsonObjectForStrategyCompleteData = new JSONObject();
         if (strategyDataBean.getFarmInfoView() != null) {
             Map<String, ResourceDualValueView> mapResourceDualValueView = new HashMap<String, ResourceDualValueView>();
 
@@ -673,55 +673,55 @@ public class ScenarioServiceImpl implements ScenarioService {
                         }
                     }
                 }
-                jsonObjectForstrategyCompleteData.put("mapResourceDualValueView", mapResourceDualValueView);
+                jsonObjectForStrategyCompleteData.put("mapResourceDualValueView", mapResourceDualValueView);
                 /**
                  * @added - Abhishek
                  * @date - 06-01-2016
                  * @desc - guidelines for Group Acreage
                  */
-                jsonObjectForstrategyCompleteData.put("mapCropLimitDualValueView", mapCropLimitDualValueView);
-                jsonObjectForstrategyCompleteData.put("mapGroupLimitDualValueView", mapGroupLimitDualValueView);
+                jsonObjectForStrategyCompleteData.put("mapCropLimitDualValueView", mapCropLimitDualValueView);
+                jsonObjectForStrategyCompleteData.put("mapGroupLimitDualValueView", mapGroupLimitDualValueView);
 
-                jsonObjectForstrategyCompleteData.put("checkStrategyForFarm", checkValidStrategyForFarm);
-                jsonObjectForstrategyCompleteData.put("farmOutputDetails", farmOutputDetailsViewList);
-                jsonObjectForstrategyCompleteData.put("cropResourceUsed", map.get("cropResourceUsed"));
-                jsonObjectForstrategyCompleteData.put("cropResourceUnused", map.get("cropResourceUnused"));
-                jsonObjectForstrategyCompleteData.put("jsonObjectForGraphs", jsonObjectForGraphs);
-                jsonObjectForstrategyCompleteData.put("potentialProfit", potentialProfit);
+                jsonObjectForStrategyCompleteData.put("checkStrategyForFarm", checkValidStrategyForFarm);
+                jsonObjectForStrategyCompleteData.put("farmOutputDetails", farmOutputDetailsViewList);
+                jsonObjectForStrategyCompleteData.put("cropResourceUsed", map.get("cropResourceUsed"));
+                jsonObjectForStrategyCompleteData.put("cropResourceUnused", map.get("cropResourceUnused"));
+                jsonObjectForStrategyCompleteData.put("jsonObjectForGraphs", jsonObjectForGraphs);
+                jsonObjectForStrategyCompleteData.put("potentialProfit", potentialProfit);
             } else if (strategyDataBean.getFarmInfoView().getStrategy() == PlanByStrategy.PLAN_BY_FIELDS) {
-                jsonObjectForstrategyCompleteData.put("checkStrategyForFarm", checkValidStrategyForFarm);
-                jsonObjectForstrategyCompleteData.put("farmOutputDetails", farmOutputDetailsForFieldViews);
-                jsonObjectForstrategyCompleteData.put("cropResourceUsed", map.get("cropResourceUsed"));
-                jsonObjectForstrategyCompleteData.put("cropResourceUnused", map.get("cropResourceUnused"));
-                jsonObjectForstrategyCompleteData.put("jsonObjectForGraphs", jsonObjectForGraphs);
-                jsonObjectForstrategyCompleteData.put("hashMapForAcre", mapForCropsForField.get("hashMapForAcre"));
-                jsonObjectForstrategyCompleteData.put("hashMapForProfit", mapForCropsForField.get("hashMapForProfit"));
-                jsonObjectForstrategyCompleteData.put("hashMapForRatio", mapForCropsForField.get("hashMapForRatio"));
-                jsonObjectForstrategyCompleteData.put("hashMapForProfitIndex", mapForCropsForField.get("hashMapForProfitIndex"));
-                jsonObjectForstrategyCompleteData.put("hashMapForRating", mapForCropsForField.get("hashMapForRating"));
-                jsonObjectForstrategyCompleteData.put("potentialProfit", potentialProfit);
+                jsonObjectForStrategyCompleteData.put("checkStrategyForFarm", checkValidStrategyForFarm);
+                jsonObjectForStrategyCompleteData.put("farmOutputDetails", farmOutputDetailsForFieldViews);
+                jsonObjectForStrategyCompleteData.put("cropResourceUsed", map.get("cropResourceUsed"));
+                jsonObjectForStrategyCompleteData.put("cropResourceUnused", map.get("cropResourceUnused"));
+                jsonObjectForStrategyCompleteData.put("jsonObjectForGraphs", jsonObjectForGraphs);
+                jsonObjectForStrategyCompleteData.put("hashMapForAcre", mapForCropsForField.get("hashMapForAcre"));
+                jsonObjectForStrategyCompleteData.put("hashMapForProfit", mapForCropsForField.get("hashMapForProfit"));
+                jsonObjectForStrategyCompleteData.put("hashMapForRatio", mapForCropsForField.get("hashMapForRatio"));
+                jsonObjectForStrategyCompleteData.put("hashMapForProfitIndex", mapForCropsForField.get("hashMapForProfitIndex"));
+                jsonObjectForStrategyCompleteData.put("hashMapForRating", mapForCropsForField.get("hashMapForRating"));
+                jsonObjectForStrategyCompleteData.put("potentialProfit", potentialProfit);
             }
 
 
-            jsonObjectForstrategyCompleteData.put("farmInfoView", strategyDataBean.getFarmInfoView());
-            jsonObjectForstrategyCompleteData.put("fieldInfoList", strategyDataBean.getFieldInfoViewList());
-            jsonObjectForstrategyCompleteData.put("resourceList", strategyDataBean.getResourceUsageViewsList());
-            jsonObjectForstrategyCompleteData.put("cropTypeView", strategyDataBean.getCropTypeViewList());
-            jsonObjectForstrategyCompleteData.put("cropsGroupViews", cropsGroupViews);
-            jsonObjectForstrategyCompleteData.put("cropFieldsDetails", strategyDataBean.getCropFieldChoicesViewList());
-            jsonObjectForstrategyCompleteData.put("mapDifferentValues", mapDifferentValues);
+            jsonObjectForStrategyCompleteData.put("farmInfoView", strategyDataBean.getFarmInfoView());
+            jsonObjectForStrategyCompleteData.put("fieldInfoList", strategyDataBean.getFieldInfoViewList());
+            jsonObjectForStrategyCompleteData.put("resourceList", strategyDataBean.getResourceUsageViewsList());
+            jsonObjectForStrategyCompleteData.put("cropTypeView", strategyDataBean.getCropTypeViewList());
+            jsonObjectForStrategyCompleteData.put("cropsGroupViews", cropsGroupViews);
+            jsonObjectForStrategyCompleteData.put("cropFieldsDetails", strategyDataBean.getCropFieldChoicesViewList());
+            jsonObjectForStrategyCompleteData.put("mapDifferentValues", mapDifferentValues);
             /**
              * @added - Abhishek
              * @date - 11-01-2016
              * @desc - for specifying for which strategy data has been populated
              */
-            jsonObjectForstrategyCompleteData.put("farmCustomStrategy", strategyDataBean.getFarmCustomStrategyView());
+            jsonObjectForStrategyCompleteData.put("farmCustomStrategy", strategyDataBean.getFarmCustomStrategyView());
 
-            jsonObjectForstrategyCompleteData.put("farm", strategyDataBean.getFarmInfoView().getFarmInfo().getFarm());
+            jsonObjectForStrategyCompleteData.put("farm", strategyDataBean.getFarmInfoView().getFarmInfo().getFarm());
 
         }
 
-        return jsonObjectForstrategyCompleteData;
+        return jsonObjectForStrategyCompleteData;
 
     }
 
