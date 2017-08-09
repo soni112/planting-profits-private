@@ -448,7 +448,7 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
             FarmInfoView farmInfoView = new FarmInfoView(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo());
 
             //  getting base values of strategy
-            StrategyDataBean strategyDataBean = farmCustomStrategyService.getStrategyBaseValuesForStrategy(farmCustomStrategyView.getId(), farmInfoView);
+            StrategyDataBean strategyDataBean = farmCustomStrategyService.getStrategyBaseValuesForStrategy(farmCustomStrategyView, farmInfoView);
 //            StrategyDataBean strategyDataBeanForScenario = null;
 //            try {
 //                strategyDataBeanForScenario = (StrategyDataBean) strategyDataBean.clone();
@@ -527,7 +527,7 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
         //  calculation of scenario output details
         for (FarmCustomStrategyView farmCustomStrategyView : farmCustomStrategyViewList) {
 
-            StrategyDataBean strategyDataBeanForScenario = farmCustomStrategyService.getStrategyBaseValuesForStrategy(farmCustomStrategyView.getId(), new FarmInfoView(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo()));
+            StrategyDataBean strategyDataBeanForScenario = farmCustomStrategyService.getStrategyBaseValuesForStrategy(farmCustomStrategyView, new FarmInfoView(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo()));
 
             //  getting scenario updated values for crops
             List<CropTypeView> cropTypeViewList = scenarioService.getScenarioCropValuesByStrategyBean(strategyDataBeanForScenario, farmStrategyScenarioView);
@@ -554,7 +554,7 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
         JSONObject strategyOutputDetails = null;
         try {
             //  getting base values of strategy
-            StrategyDataBean strategyDataBean = farmCustomStrategyService.getStrategyBaseValuesForStrategy(farmCustomStrategyView.getId(), farmInfoView);
+            StrategyDataBean strategyDataBean = farmCustomStrategyService.getStrategyBaseValuesForStrategy(farmCustomStrategyView, farmInfoView);
             //  getting all details for strategy
             strategyOutputDetails = scenarioService.getFarmOutputDetails(strategyDataBean);
         } catch (Exception e) {

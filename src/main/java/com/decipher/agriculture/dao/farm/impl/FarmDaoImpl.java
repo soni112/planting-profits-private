@@ -1,12 +1,10 @@
 package com.decipher.agriculture.dao.farm.impl;
 
 import com.decipher.agriculture.dao.farm.FarmDao;
-import com.decipher.agriculture.dao.farm.FarmInfoDao;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.farm.FarmInfo;
 import com.decipher.agriculture.service.farm.FarmInfoService;
 import com.decipher.util.PlantingProfitLogger;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,10 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by abhishek on 30/11/16.
@@ -231,18 +227,18 @@ public class FarmDaoImpl implements FarmDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Set<Farm> getAllFarmsForUser(int userId) {
+    public List<Farm> getAllFarmsForUser(int userId) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
-        Set<Farm> farmSet = new HashSet<>();
+        List<Farm> farmList = new ArrayList<>();
         try{
             transaction.begin();
             Query query = session.createQuery("from Farm where account.id=:userId");
             query.setParameter("userId", userId);
             List list = query.list();
             if(list != null && !list.isEmpty()){
-                farmSet.addAll(list);
-                for (Farm farm : farmSet) {
+                farmList.addAll(list);
+                for (Farm farm : farmList) {
                     initializeLazy(farm);
                 }
             }
@@ -251,11 +247,10 @@ public class FarmDaoImpl implements FarmDao {
         } catch (Exception e) {
             PlantingProfitLogger.error("Error while getting farms for account ", e);
             transaction.rollback();
-            farmSet = new HashSet<>();
         } finally {
             session.close();
         }
-        return farmSet;
+        return farmList;
     }
 
     private void initializeLazy(Farm farm){

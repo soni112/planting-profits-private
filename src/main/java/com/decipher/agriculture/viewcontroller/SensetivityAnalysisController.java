@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.decipher.agriculture.data.farm.FarmInfo;
 import com.decipher.agriculture.service.account.impl.SessionService;
-import com.decipher.agriculture.service.farm.FarmInfoService;
 import com.decipher.agriculture.service.farmDetails.FarmDetailsContainerService;
 import com.decipher.view.form.farmDetails.FarmInfoView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
@@ -194,7 +193,7 @@ public class SensetivityAnalysisController {
 		if (account != null) {
 			boolean exists = farmCustomStrategyService.isFarmStrategyExitsWithName(strategyName.trim(), farmId);
 			if (!exists) {
-				strategyId = farmCustomStrategyService.saveFarmCustomStrategyForMultipalCrop(farmInfoId, cropsArray, cropContractArray,
+				strategyId = farmCustomStrategyService.saveFarmCustomStrategyForMultipleCrop(farmInfoId, cropsArray, cropContractArray,
 										cropProposedArray, cropsGroupArray, strategyName);
 
 				if (strategyId != 0) {
@@ -206,6 +205,7 @@ public class SensetivityAnalysisController {
 					 */
 					FarmCustomStrategyView farmCustomStrategyView = farmCustomStrategyService.getDataForCustomStrategy(farmId, strategyId);
 					FarmInfo farmInfo = farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo();
+
 					farmDetailsContainerService.updateStrategyDetails(new FarmInfoView(farmInfo), farmCustomStrategyView);
 
 

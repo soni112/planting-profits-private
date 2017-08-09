@@ -16,7 +16,7 @@ public class OutputBeanForStrategy {
     private boolean baselineFlag = false;
     private int strategyID;
     private int farmID;
-    private boolean sesntivityFlag = false;
+    private boolean sensitivityFlag = false;
     private List<CropResourceUsageView> resourceUsageViews;
 
     /**
@@ -86,12 +86,12 @@ public class OutputBeanForStrategy {
         this.farmID = farmID;
     }
 
-    public boolean getSesntivityFlag() {
-        return sesntivityFlag;
+    public boolean getSensitivityFlag() {
+        return sensitivityFlag;
     }
 
-    public void setSesntivityFlag(boolean sesntivityFlag) {
-        this.sesntivityFlag = sesntivityFlag;
+    public void setSensitivityFlag(boolean sensitivityFlag) {
+        this.sensitivityFlag = sensitivityFlag;
     }
 
     public List<CropResourceUsageView> getResourceUsageViews() {

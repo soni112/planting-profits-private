@@ -26,7 +26,7 @@ import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.decipher.view.form.farmDetails.FieldInfoView;
 import com.decipher.view.form.strategy.FarmCustomStrategyForCropView;
 import com.decipher.view.form.strategy.FarmCustomStrategyForGroupView;
-import com.decipher.view.form.strategy.FarmCustomStrategyForResourseView;
+import com.decipher.view.form.strategy.FarmCustomStrategyForResourceView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
 import net.sf.javailp.Result;
 
@@ -600,13 +600,13 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
         } else {
 
-            FarmCustomStrategyView dataForCustomStrategy = farmCustomStrategyService.getDataForCustomStrategy(outputBeanForStrategy.getFarmInfo().getId(), outputBeanForStrategy.getStrategyID());
+            FarmCustomStrategyView farmCustomStrategyView = farmCustomStrategyService.getDataForCustomStrategy(outputBeanForStrategy.getFarmInfo().getId(), outputBeanForStrategy.getStrategyID());
 
 			/*List<CropType> cropTypeList = cropTypeService.getAllCropByFarmId(outputBeanForStrategy.getFarmInfo().getId());*/
             List<CropType> cropTypeList = outputBeanForStrategy.getCropTypeList();
 
             List<CropResourceUsageView> resourceUsageViews = null;
-            if (outputBeanForStrategy.getSesntivityFlag()) {
+            if (outputBeanForStrategy.getSensitivityFlag()) {
                 resourceUsageViews = outputBeanForStrategy.getResourceUsageViews();
             } else {
                 resourceUsageViews = cropResourceUsageService.getAllCropResourceUsageByFarmId(outputBeanForStrategy.getFarmInfo().getId());
@@ -615,8 +615,8 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
             Set<CropsGroup> cropsGroups = outputBeanForStrategy.getFarmInfo().getCropsGroup();
 
             //	updating values for crops maximum or minimum limits
-            if (dataForCustomStrategy.getCustomStrategyForCropsViews() != null) {
-                for (FarmCustomStrategyForCropView farmCustomStrategyForCropView : dataForCustomStrategy.getCustomStrategyForCropsViews()) {
+            /*if (farmCustomStrategyView.getCustomStrategyForCropsViews() != null) {
+                for (FarmCustomStrategyForCropView farmCustomStrategyForCropView : farmCustomStrategyView.getCustomStrategyForCropsViews()) {
                     for (CropType cropType : cropTypeList) {
                         if (cropType.getSelected()) {
                             if (cropType.getCropName().equalsIgnoreCase(farmCustomStrategyForCropView.getCropname())) {
@@ -633,22 +633,22 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
             }
 
             //	updating values for resources used
-            if (dataForCustomStrategy.getCustomStrategyForResourcesView() != null) {
-                for (FarmCustomStrategyForResourseView farmCustomStrategyForResourseView : dataForCustomStrategy.getCustomStrategyForResourcesView()) {
+            if (farmCustomStrategyView.getCustomStrategyForResourcesView() != null) {
+                for (FarmCustomStrategyForResourceView farmCustomStrategyForResourceView : farmCustomStrategyView.getCustomStrategyForResourcesView()) {
                     for (CropResourceUsageView resourceUsageView : resourceUsageViews) {
-                        if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourseView.getResourseName())) {
-                            resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
+                        if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourceView.getResourseName())) {
+                            resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourceView.getResourseValue()));
                         }
                     }
 
                 }
-            }
+            }*/
 
             List<CropBeanForOutput> cropBeanForOutput = getCropBeanForCalculation(cropTypeList, resourceUsageViews);
 
             //	updating values for groupTypes
-            if (dataForCustomStrategy.getCustomStrategyForGroupsView() != null) {
-                for (FarmCustomStrategyForGroupView farmCustomStrategyForGroupView : dataForCustomStrategy.getCustomStrategyForGroupsView()) {
+            if (farmCustomStrategyView.getCustomStrategyForGroupsView() != null) {
+                for (FarmCustomStrategyForGroupView farmCustomStrategyForGroupView : farmCustomStrategyView.getCustomStrategyForGroupsView()) {
                     for (CropsGroup cropsGroup : cropsGroups) {
                         if (cropsGroup.getCropsGroupName().equalsIgnoreCase(farmCustomStrategyForGroupView.getGroupname())) {
                             if (farmCustomStrategyForGroupView.getMinimum() != null) {
@@ -691,7 +691,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
             List<CropResourceUsageView> resourceUsageViews;
             List<CropType> cropTypeList;
-            if (outputBeanForStrategy.getSesntivityFlag()) {
+            if (outputBeanForStrategy.getSensitivityFlag()) {
                 resourceUsageViews = outputBeanForStrategy.getResourceUsageViews();
                 cropTypeList = outputBeanForStrategy.getCropTypeList();
             } else {
@@ -707,7 +707,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
              * @desc - applied null pointer check
              */
             //	updating values for crops maximum or minimum limits
-            if (dataForCustomStrategy.getCustomStrategyForCropsViews() != null) {
+            /*if (dataForCustomStrategy.getCustomStrategyForCropsViews() != null) {
                 for (FarmCustomStrategyForCropView farmCustomStrategyForCropView : dataForCustomStrategy.getCustomStrategyForCropsViews()) {
                     for (CropType cropType : cropTypeList) {
                         if (cropType.getCropName().equalsIgnoreCase(farmCustomStrategyForCropView.getCropname())) {
@@ -716,7 +716,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                         }
                     }
                 }
-            }
+            }*/
 
             /**
              * @changed - Abhishek
@@ -724,17 +724,17 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
              * @desc - applied null pointer check
              */
             //	updating values for resources used
-            if (dataForCustomStrategy.getCustomStrategyForResourcesView() != null) {
-                for (FarmCustomStrategyForResourseView farmCustomStrategyForResourseView : dataForCustomStrategy.getCustomStrategyForResourcesView()) {
+            /*if (dataForCustomStrategy.getCustomStrategyForResourcesView() != null) {
+                for (FarmCustomStrategyForResourceView farmCustomStrategyForResourceView : dataForCustomStrategy.getCustomStrategyForResourcesView()) {
                     for (CropResourceUsageView resourceUsageView : resourceUsageViews) {
-                        if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourseView.getResourseName())) {
-                            resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
-                            resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
+                        if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourceView.getResourseName())) {
+                            resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourceView.getResourseValue()));
+                            resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourceView.getResourseValue()));
                         }
                     }
 
                 }
-            }
+            }*/
 
             List<CropBeanForOutput> cropBeanForOutput = getCropBeanForCalculation(cropTypeList, resourceUsageViews);
 

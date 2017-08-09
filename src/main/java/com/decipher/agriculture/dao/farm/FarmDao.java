@@ -3,7 +3,7 @@ package com.decipher.agriculture.dao.farm;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.farm.FarmInfo;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by abhishek on 30/11/16.
@@ -26,7 +26,7 @@ public interface FarmDao {
 
     FarmInfo getBaselineFarmDetails(int farmId);
 
-    Set<Farm> getAllFarmsForUser(int userId);
+    List<Farm> getAllFarmsForUser(int userId);
 
 
 }

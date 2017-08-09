@@ -4,7 +4,7 @@ import com.decipher.agriculture.data.account.Account;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.view.form.farmDetails.FarmInfoView;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by abhishek on 30/11/16.
@@ -26,7 +26,7 @@ public interface FarmService {
 
     FarmInfoView getBaselineFarmDetails(int farmId);
 
-    Set<Farm> getAllFarmsForUser(int userId);
+    List<Farm> getAllFarmsForUser(int userId);
 
 
 }

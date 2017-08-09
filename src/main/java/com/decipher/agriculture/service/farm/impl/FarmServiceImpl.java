@@ -4,15 +4,14 @@ import com.decipher.agriculture.dao.farm.FarmDao;
 import com.decipher.agriculture.data.account.Account;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.farm.FarmInfo;
-import com.decipher.agriculture.service.farm.FarmInfoService;
 import com.decipher.agriculture.service.farm.FarmService;
-import com.decipher.agriculture.service.farmDetails.FarmDetailsContainerService;
 import com.decipher.view.form.farmDetails.FarmInfoView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -77,7 +76,7 @@ public class FarmServiceImpl implements FarmService {
     }
 
     @Override
-    public Set<Farm> getAllFarmsForUser(int userId) {
+    public List<Farm> getAllFarmsForUser(int userId) {
         return farmDao.getAllFarmsForUser(userId);
     }
 

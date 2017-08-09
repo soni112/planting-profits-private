@@ -34,7 +34,7 @@ import com.decipher.view.form.farmDetails.FarmInfoView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.decipher.view.form.farmDetails.FieldInfoView;
 import com.decipher.view.form.strategy.FarmCustomStrategyForCropView;
-import com.decipher.view.form.strategy.FarmCustomStrategyForResourseView;
+import com.decipher.view.form.strategy.FarmCustomStrategyForResourceView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,7 +113,7 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
     }
 
     @Override
-    public int saveFarmCustomStrategyForMultipalCrop(int farmId, String[] cropsArray, String[] cropContractArray,
+    public int saveFarmCustomStrategyForMultipleCrop(int farmId, String[] cropsArray, String[] cropContractArray,
                                                      String[] cropProposedArray, String[] cropsGroupArray, String strategyName) {
 
         PlantingProfitLogger.info("for saved saveFarmCustomStrategyForMultipleCrop in dao : ");
@@ -240,7 +240,7 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
      * @date - 05-01-2016
      */
     @Override
-    public StrategyDataBean getStrategyBaseValuesForStrategy(int strategyId, FarmInfoView farmInfoView) {
+    public StrategyDataBean getStrategyBaseValuesForStrategy(FarmCustomStrategyView farmCustomStrategyView, FarmInfoView farmInfoView) {
 
         StrategyDataBean strategyDataBean = new StrategyDataBean();
 
@@ -272,9 +272,9 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
 
 
 //		Updating values in baseline according to the strategy updated values
-        List<FarmCustomStrategyView> dataForCustomStrategy = this.getDataForCustomStrategy(farm.getFarmId());
-        for (FarmCustomStrategyView farmCustomStrategyView : dataForCustomStrategy) {
-            if (farmCustomStrategyView.getId().equals(strategyId)) {
+        List<FarmCustomStrategyView> farmCustomStrategyViewList = this.getDataForCustomStrategy(farm.getFarmId());
+//        for (FarmCustomStrategyView farmCustomStrategyView : farmCustomStrategyViewList) {
+//            if (farmCustomStrategyView.getId().equals(strategyId)) {
 
                 /**
                  * @chanegd - Abhishek
@@ -299,18 +299,18 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                     }
                 }
                 if (farmCustomStrategyView.isStrategyForResource() && farmCustomStrategyView.getCustomStrategyForResourcesView() != null) {
-                    for (FarmCustomStrategyForResourseView farmCustomStrategyForResourseView : farmCustomStrategyView.getCustomStrategyForResourcesView()) {
+                    for (FarmCustomStrategyForResourceView farmCustomStrategyForResourceView : farmCustomStrategyView.getCustomStrategyForResourcesView()) {
                         for (CropResourceUsageView resourceUsageView : resourceUsageViews) {
-                            if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourseView.getResourseName())) {
-                                resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
+                            if (resourceUsageView.getCropResourceUse().equalsIgnoreCase(farmCustomStrategyForResourceView.getResourseName())) {
+                                resourceUsageView.setCropResourceUseAmount(Long.toString(farmCustomStrategyForResourceView.getResourseValue()));
 
                                 CropResourceUsage cropResourceUsage = resourceUsageView.getCropResourceUsage();
                                 cropResourceUsage.setCropResourceUseAmount(resourceUsageView.getCropResourceUseAmount());
                             }
                         }
                         for (CropResourceUsageFieldVariancesView otherResourcesUsed : resourceUsageVariances) {
-                            if (otherResourcesUsed.getCropFieldResourceUse().equalsIgnoreCase(farmCustomStrategyForResourseView.getResourseName())) {
-                                otherResourcesUsed.setCropResourceAmount(Long.toString(farmCustomStrategyForResourseView.getResourseValue()));
+                            if (otherResourcesUsed.getCropFieldResourceUse().equalsIgnoreCase(farmCustomStrategyForResourceView.getResourseName())) {
+                                otherResourcesUsed.setCropResourceAmount(Long.toString(farmCustomStrategyForResourceView.getResourseValue()));
 
                                 CropResourceUsageFieldVariances cropResourceUsageFieldVariances = otherResourcesUsed.getCropResourceUsageFieldVariances();
                                 cropResourceUsageFieldVariances.setCropResourceAmount(otherResourcesUsed.getCropResourceAmount());
@@ -319,8 +319,8 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
                         }
                     }
                 }
-            }
-        }
+//            }
+//        }
 
         List<FieldInfoView> fieldInfoViews = fieldInfoService.getAllFieldsByFarmId(farmInfoView.getId());
 
@@ -328,15 +328,13 @@ public class FarmCustomStrategyServiceImpl implements FarmCustomStrategyService 
 
 //		Setting updated values in bean(FarmCustomStrategyView setted above)
 
-
-
         strategyDataBean.setCropTypeList(cropTypeList);
         strategyDataBean.setCropTypeViewList(cropTypeViewList);
         strategyDataBean.setResourceUsageViewsList(resourceUsageViews);
         strategyDataBean.setCropResourceUsageFieldVariancesList(resourceUsageVariances);
         strategyDataBean.setFieldInfoViewList(fieldInfoViews);
         strategyDataBean.setCropIdArray(cropIdArray);
-        strategyDataBean.setFarmCustomStrategyViewList(dataForCustomStrategy);
+        strategyDataBean.setFarmCustomStrategyViewList(farmCustomStrategyViewList);
         strategyDataBean.setCropFieldChoicesViewList(cropFieldsDetails);
         strategyDataBean.setFarmInfoView(farmInfoView);
 

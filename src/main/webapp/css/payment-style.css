@@ -167,7 +167,7 @@ li.resp-tab-item.resp-tab-active span label {
     font-size: 26px;
     text-align: center;
     margin-bottom: 15px;
-    color: #55493d;
+    /*color: #55493d;*/
     font-weight: 500;
     font-family: "calibri";
 }
@@ -178,7 +178,7 @@ li.resp-tab-item.resp-tab-active span label {
     font-weight: 600;
     border: 1px solid #e7ebee;
     outline: none;
-    color: #ccc;
+    /*color: #ccc;*/
     border-radius: 5px;
     margin-bottom: 20px;
     transition:0.5s all;
@@ -188,7 +188,7 @@ li.resp-tab-item.resp-tab-active span label {
 	-ms-transition:0.5s all;
 }
 .tab-for h5 ,.tab-form-left h5,.tab-form-right h5{
-    color: #435964;
+    /*color: #435964;*/
     font-size: 13px;
     text-transform: uppercase;
     margin: 0 0 8px 0;
@@ -257,7 +257,7 @@ input.text_box {
     font-weight: 600;
     border: 1px solid #e7ebee;
     outline: none;
-    color: #ccc;
+    /*color: #ccc;*/
     border-radius: 5px;
     margin-bottom: 30px;
     transition:0.5s all;

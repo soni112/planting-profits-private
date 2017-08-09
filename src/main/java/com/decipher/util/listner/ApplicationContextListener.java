@@ -36,7 +36,7 @@ public class ApplicationContextListener implements ServletContextListener{
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		PlantingProfitLogger.info("Context initialization started");
+
 		/*String pathToAdd = "/usr/local/lib/jni";
 
 		try {
@@ -70,6 +70,7 @@ public class ApplicationContextListener implements ServletContextListener{
 			ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
 			ApplicationMode applicationMode = applicationContext.getBean(ApplicationConfig.class).getApplicationMode();
 			if (applicationMode.equals(ApplicationMode.UAT) || applicationMode.equals(ApplicationMode.PRODUCTION)) {
+				PlantingProfitLogger.info("Data container initialization started");
 				AgricultureScheduler.startQuartsSchedulerJobs();
 			}
 		} catch (Exception e) {

@@ -17,7 +17,7 @@ public class FarmCustomStrategyView implements Comparable<FarmCustomStrategyView
     private Double potentialProfit;
     private Double totalAcreage;
     private Set<FarmCustomStrategyForCropView> customStrategyForCropsViews;
-    private Set<FarmCustomStrategyForResourseView> customStrategyForResourcesView;
+    private Set<FarmCustomStrategyForResourceView> customStrategyForResourcesView;
     private Set<FarmCustomStrategyForGroupView> customStrategyForGroupsView;
 
     /**
@@ -49,10 +49,10 @@ public class FarmCustomStrategyView implements Comparable<FarmCustomStrategyView
         }
 
         if (farmCustomStrategy.getCustomStrategyForResourses().size() > 0) {
-            this.customStrategyForResourcesView = new HashSet<FarmCustomStrategyForResourseView>();
+            this.customStrategyForResourcesView = new HashSet<FarmCustomStrategyForResourceView>();
             for (FarmCustomStrategyForResource farmCustomStrategyForResource : farmCustomStrategy.getCustomStrategyForResourses()) {
                 if (farmCustomStrategyForResource != null) {
-                    this.customStrategyForResourcesView.add(new FarmCustomStrategyForResourseView(farmCustomStrategyForResource));
+                    this.customStrategyForResourcesView.add(new FarmCustomStrategyForResourceView(farmCustomStrategyForResource));
                 }
             }
         }
@@ -127,11 +127,11 @@ public class FarmCustomStrategyView implements Comparable<FarmCustomStrategyView
         this.customStrategyForCropsViews = customStrategyForCropsViews;
     }
 
-    public Set<FarmCustomStrategyForResourseView> getCustomStrategyForResourcesView() {
+    public Set<FarmCustomStrategyForResourceView> getCustomStrategyForResourcesView() {
         return customStrategyForResourcesView;
     }
 
-    public void setCustomStrategyForResourcesView(Set<FarmCustomStrategyForResourseView> customStrategyForResourcesView) {
+    public void setCustomStrategyForResourcesView(Set<FarmCustomStrategyForResourceView> customStrategyForResourcesView) {
         this.customStrategyForResourcesView = customStrategyForResourcesView;
     }
 

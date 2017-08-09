@@ -26,7 +26,6 @@ import net.sf.javailp.Result;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -214,7 +213,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         outputBeanForStrategy.setCropTypeList(cropTypeList);
         outputBeanForStrategy.setFarmID(outputBeanForStrategy.getFarmInfo().getId());
         outputBeanForStrategy.setStrategyID(farmCustomStrategyService.getBaseLineStrategyForFarm(outputBeanForStrategy.getFarmInfo()).getId());
-        outputBeanForStrategy.setSesntivityFlag(true);
+        outputBeanForStrategy.setSensitivityFlag(true);
         outputBeanForStrategy.setResourceUsageViews(resourceUsageViews);
 
 //        List<Object> outputDetailsList = farmOutputCalculationDao.calculateFarmOutputStatisticsForField(outputBeanForStrategy);
@@ -529,7 +528,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         outputBeanForStrategy.setCropTypeList(cropTypeList);
         outputBeanForStrategy.setFarmID(outputBeanForStrategy.getFarmInfo().getId());
         outputBeanForStrategy.setStrategyID(farmCustomStrategyService.getBaseLineStrategyForFarm(outputBeanForStrategy.getFarmInfo()).getId());
-        outputBeanForStrategy.setSesntivityFlag(true);
+        outputBeanForStrategy.setSensitivityFlag(true);
         outputBeanForStrategy.setResourceUsageViews(resourceUsageViews);
 
 //		List<Object> outputDetailsList = farmOutputCalculationDao.calculateFarmOutputStatisticsForAcres(outputBeanForStrategy);
