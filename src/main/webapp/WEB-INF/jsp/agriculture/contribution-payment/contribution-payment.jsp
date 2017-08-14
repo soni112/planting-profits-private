@@ -128,7 +128,7 @@
                         <div class="col-md-12 col-sm-12 text-center">
                             <h3 class="text-white">Planting Profits<sup>&reg;</sup> is free for growers.</h3>
                             <p class="text-white">Your contribution will help us maintain and improve Planting Profits<sup>&reg;</sup><br>
-                                for the benefits for all growers.</p>
+                                for the benefit of all growers.</p>
 
                             </div><!-- /.col-12 -->
                         </div><!-- /.row -->
