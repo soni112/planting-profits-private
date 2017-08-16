@@ -12,6 +12,8 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import com.decipher.agriculture.bean.LinearProgrammingResultBean;
@@ -361,8 +363,15 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
 
         Set<Object> resultList = new HashSet<>();
 
+        final int CORE_POOL_SIZE = 100;
+        final int MAX_POOL_SIZE = 1000;
+        final long KEEP_ALIVE_TIME = 5000;
+
+        ExecutorService executorService = new ThreadPoolExecutor(
+                CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
 //		ExecutorService executorService = Executors.newCachedThreadPool();
-        ExecutorService executorService = Executors.newFixedThreadPool(combinationsListForCalculationList.size());
+//        ExecutorService executorService = Executors.newFixedThreadPool(combinationsListForCalculationList.size());
         long start = System.currentTimeMillis();
         PlantingProfitLogger.warn("Task started for farm id : " + resourceUsageViews.get(0).getCropResourceUsage().getFarmInfo().getFarm().getFarmId()+ " with " + combinationsListForCalculationList.size() + " threads : " + new Date());
 

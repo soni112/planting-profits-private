@@ -24,9 +24,7 @@ import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsForFieldView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.decipher.view.form.farmDetails.FieldInfoView;
-import com.decipher.view.form.strategy.FarmCustomStrategyForCropView;
 import com.decipher.view.form.strategy.FarmCustomStrategyForGroupView;
-import com.decipher.view.form.strategy.FarmCustomStrategyForResourceView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
 import net.sf.javailp.Result;
 
@@ -1194,11 +1192,11 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
     }
 
     @Override
-    public Double calculatePotentialProfitForAcre(List<FarmOutputDetailsView> farmOutputDetails) {
+    public int calculatePotentialProfitForAcre(List<FarmOutputDetailsView> farmOutputDetails) {
         PlantingProfitLogger.debug(" inside calculatePotentialProfitForAcre .. ");
-        Double potentialProfit = zeroDouble;
+        int potentialProfit = 0;
         for (FarmOutputDetailsView details : farmOutputDetails) {
-            potentialProfit += details.getProfitAsDouble();
+            potentialProfit += details.getProfitAsDouble().intValue();
         }
         return potentialProfit;
     }
@@ -1580,11 +1578,11 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
     }
 
     @Override
-    public Double calculatePotentialProfitForField(List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews) {
+    public int calculatePotentialProfitForField(List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews) {
         PlantingProfitLogger.debug(" inside calculatePotentialProfitForField .. ");
-        Double potentialProfit = zeroDouble;
+        int potentialProfit = 0;
         for (FarmOutputDetailsForFieldView details : farmOutputDetailsForFieldViews) {
-            potentialProfit += details.getProfitAsDouble();
+            potentialProfit += details.getProfitAsDouble().intValue();
         }
         return potentialProfit;
     }
