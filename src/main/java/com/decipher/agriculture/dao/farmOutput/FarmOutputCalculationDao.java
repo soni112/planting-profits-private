@@ -73,7 +73,7 @@ public interface FarmOutputCalculationDao {
             List<FarmOutputDetailsView> farmOutputDetailsViewList,
             List<CropResourceUsageFieldVariancesView> resourceUsageVariances);
 
-	Double calculatePotentialProfitForAcre(
+	int calculatePotentialProfitForAcre(
             List<FarmOutputDetailsView> farmOutputDetails);
 
 	org.json.simple.JSONObject createJSONObjectForGraphForAcre(List<FarmOutputDetailsView> farmOutputDetails, String unusedLand);
@@ -90,7 +90,7 @@ public interface FarmOutputCalculationDao {
             List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews,
             List<CropResourceUsageFieldVariancesView> resourceUsageVariances);
 
-	Double calculatePotentialProfitForField(
+	int calculatePotentialProfitForField(
             List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViews);
 
 	Map<String, Object> createJSONObjectAndMapObjectForGraphForField(

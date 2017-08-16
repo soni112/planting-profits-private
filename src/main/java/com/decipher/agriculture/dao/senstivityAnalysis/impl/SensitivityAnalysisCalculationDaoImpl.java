@@ -204,7 +204,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         /**
          * @added - Abhishek
          * @Date - 19-10-2016
-         * @desc -for generating senstivity analysis graph by profit
+         * @desc -for generating sensitivity analysis graph by profit
          */
         OutputBeanForStrategy outputBeanForStrategy = new OutputBeanForStrategy();
         outputBeanForStrategy.setBaselineFlag(false);
@@ -234,7 +234,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         if (bestResult != null) {
             PlantingProfitLogger.info("Best result is " + bestResult);
             try {
-                jsonObject.put("Potential_Profit", "$" + AgricultureStandardUtils.commaSeparaterForField("" + bestResult.getObjective().longValue()));
+                jsonObject.put("Potential_Profit", "$" + AgricultureStandardUtils.commaSeparaterForInteger((int)Math.round(bestResult.getObjective().doubleValue())));
             } catch (Exception e) {
                 PlantingProfitLogger.error(e);
             }
@@ -282,7 +282,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                         /**
                                          * @changed - Abhishek
                                          * @Date - 19-10-2016
-                                         * @desc -for generating senstivity analysis graph by profit
+                                         * @desc -for generating sensitivity analysis graph by profit
                                          */
                                         CropType cropType = beanForOutput.getCropType();
                                         String profit = hashMapForProfit.get(cropType.getCropName() + " (Firm)").split(" ")[0];
@@ -309,7 +309,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                         /**
                                          * @changed - Abhishek
                                          * @Date - 19-10-2016
-                                         * @desc -for generating senstivity analysis graph by profit
+                                         * @desc -for generating sensitivity analysis graph by profit
                                          */
                                         CropType cropType = beanForOutput.getCropType();
                                         String profit = hashMapForProfit.get(cropType.getCropName() + " (Proposed)").split(" ")[0];
@@ -338,7 +338,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         /**
                          * @changed - Abhishek
                          * @Date - 19-10-2016
-                         * @desc -for generating senstivity analysis graph by profit
+                         * @desc -for generating sensitivity analysis graph by profit
                          */
                         objectForGraphByField.put("Profit", 0);
 
@@ -367,7 +367,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     /**
                      * @changed - Abhishek
                      * @Date - 19-10-2016
-                     * @desc -for generating senstivity analysis graph by profit
+                     * @desc -for generating sensitivity analysis graph by profit
                      */
                     objectForGraphByField.put("Profit", 0);
 
@@ -514,7 +514,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         /**
          * @added - Abhishek
          * @Date - 19-10-2016
-         * @desc -for generating senstivity analysis graph by profit
+         * @desc -for generating sensitivity analysis graph by profit
          */
         List<CropType> cropTypeList = new ArrayList<>();
         for (CropBeanForOutput cropBeanForOutput : cropBeanForOutputList) {
@@ -550,7 +550,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     /**
                      * @changed - Abhishek
                      * @Date - 19-10-2016
-                     * @desc -for generating senstivity analysis graph by profit
+                     * @desc -for generating sensitivity analysis graph by profit
                      */
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsByFarmList) {
                         if (Objects.equals(farmOutputDetailsView.getCropTypeView().getId(), beanForOutput.getCropType().getId()) &&
@@ -585,7 +585,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         /**
                          * @changed - Abhishek
                          * @Date - 19-10-2016
-                         * @desc -for generating senstivity analysis graph by profit
+                         * @desc -for generating sensitivity analysis graph by profit
                          */
                         for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsByFarmList) {
                             if (Objects.equals(farmOutputDetailsView.getCropTypeView().getId(), beanForOutput.getCropType().getId()) &&
@@ -621,7 +621,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                             /**
                              * @changed - Abhishek
                              * @Date - 19-10-2016
-                             * @desc -for generating senstivity analysis graph by profit
+                             * @desc -for generating sensitivity analysis graph by profit
                              */
                             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsByFarmList) {
                                 if (Objects.equals(farmOutputDetailsView.getCropTypeView().getId(), beanForOutput.getCropType().getId()) &&
@@ -662,7 +662,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     /**
                      * @changed - Abhishek
                      * @Date - 19-10-2016
-                     * @desc -for generating senstivity analysis graph by profit
+                     * @desc -for generating sensitivity analysis graph by profit
                      */
                     objectForGraphByCrop.put("Profit", 0);
                 } catch (Exception e) {
