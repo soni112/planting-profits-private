@@ -41,6 +41,8 @@ public class ScenarioDaoImpl implements ScenarioDao {
 
         } catch (Exception e) {
             PlantingProfitLogger.error(e);
+        } finally {
+            session.close();
         }
         if (obj != null) {
             return new FarmStrategyScenarioView(obj);
@@ -56,9 +58,11 @@ public class ScenarioDaoImpl implements ScenarioDao {
         try {
             Query query = session.createQuery("from FarmStrategyScenario where scenarioName = :scenarioName and farmCustomStrategy.id = :strategyId and farmCustomStrategy.farm.id = :farmId");
             query.setParameter("scenarioName", scenarioName).setParameter("strategyId", strategyId).setParameter("farmId", farmId);
-            obj = (FarmStrategyScenario)query.uniqueResult();
+            obj = (FarmStrategyScenario) query.uniqueResult();
         } catch (Exception e) {
             PlantingProfitLogger.error(e);
+        } finally {
+            session.close();
         }
         if (obj != null) {
             return new FarmStrategyScenarioView(obj);
@@ -114,13 +118,13 @@ public class ScenarioDaoImpl implements ScenarioDao {
         final Session session = sessionFactory.openSession();
         final Transaction tx = session.beginTransaction();
 
-        try{
+        try {
             session.update(farmStrategyScenario);
             tx.commit();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             tx.rollback();
-        }finally {
+        } finally {
             session.close();
         }
         return false;
@@ -131,13 +135,13 @@ public class ScenarioDaoImpl implements ScenarioDao {
         final Session session = sessionFactory.openSession();
         final Transaction tx = session.beginTransaction();
 
-        try{
+        try {
             session.createQuery("delete from FarmStrategyScenarioCropSpecific where farmStrategyScenario.id = :scenarioId").setParameter("scenarioId", farmStrategyScenario.getScenarioId()).executeUpdate();
             tx.commit();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             tx.rollback();
-        }finally {
+        } finally {
             session.close();
         }
         return false;

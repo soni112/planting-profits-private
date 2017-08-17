@@ -4,17 +4,16 @@ import java.util.Set;
 
 import com.decipher.agriculture.data.farm.ExternalCropPriceInfo;
 
-public interface ExternalCropPriceInfoDao
-{
-	int saveExternalCropPriceInfo(ExternalCropPriceInfo externalCropPriceInfo);
+public interface ExternalCropPriceInfoDao {
+    int saveExternalCropPriceInfo(ExternalCropPriceInfo externalCropPriceInfo);
 
-	boolean updateExternalCropPriceInfo(
+    boolean updateExternalCropPriceInfo(
             ExternalCropPriceInfo externalCropPriceInfo);
 
-	boolean deleteExternalCropPriceInfoById(int id);
+    boolean deleteExternalCropPriceInfoById(int id);
 
-	ExternalCropPriceInfo getExternalCropPriceInfoById(int id);
+    ExternalCropPriceInfo getExternalCropPriceInfoById(int id);
 
-	boolean saveExternalCropPriceInfoList(
+    boolean saveExternalCropPriceInfoList(
             Set<ExternalCropPriceInfo> externalCropPriceInfoList);
 }

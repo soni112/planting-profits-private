@@ -477,6 +477,8 @@ public class AccountDaoImpl implements AccountDao {
 		} catch (Exception e){
 			PlantingProfitLogger.error(e);
 			transaction.rollback();
+		} finally {
+			session.close();
 		}
 
 		return growerList;
@@ -507,6 +509,8 @@ public class AccountDaoImpl implements AccountDao {
 			transaction.rollback();
 			PlantingProfitLogger.error(e);
 			accountList = null;
+		} finally {
+			session.close();
 		}
 
 		return Collections.synchronizedSet(new HashSet<Account>(accountList));

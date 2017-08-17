@@ -5,15 +5,14 @@ import java.util.Set;
 import com.decipher.agriculture.data.farm.ResourceType;
 import com.decipher.view.form.farmDetails.ResourceTypeView;
 
-public interface ResourceTypeService
-{
-	int save(ResourceType resourceType);
+public interface ResourceTypeService {
+    int save(ResourceType resourceType);
 
-	boolean update(ResourceType resourceType);
+    boolean update(ResourceType resourceType);
 
-	boolean deleteById(int id);
+    boolean deleteById(int id);
 
-	boolean saveList(Set<ResourceType> resourceTypeList);
+    boolean saveList(Set<ResourceType> resourceTypeList);
 
-	ResourceTypeView getCropProductionCostById(int id);
+    ResourceTypeView getCropProductionCostById(int id);
 }

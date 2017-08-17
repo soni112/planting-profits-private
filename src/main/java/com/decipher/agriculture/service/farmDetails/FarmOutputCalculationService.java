@@ -9,35 +9,35 @@ import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 
 public interface FarmOutputCalculationService {
 
-	boolean checkIfFarmHasValidStrategy(int farmId);
+    boolean checkIfFarmHasValidStrategy(int farmId);
 
-	void calculateFarmOutputStatistics(FarmInfo farmInfo);
+    void calculateFarmOutputStatistics(FarmInfo farmInfo);
 
-	List<FarmOutputDetailsView> getAllFarmOutputDetailsByFarm(int farmId);
+    List<FarmOutputDetailsView> getAllFarmOutputDetailsByFarm(int farmId);
 
-	List<FarmOutputDetailsForFieldView> getAllFarmOutputDetailsForFieldByFarm(int farmId);
+    List<FarmOutputDetailsForFieldView> getAllFarmOutputDetailsForFieldByFarm(int farmId);
 
-	/**
-	 * @author - Abhishek
-	 * @date - 21-12-2015
-	 * @return - list of output details for farm
-	 */
-	List<Object> calculateFarmOutputStatistics(OutputBeanForStrategy outputBeanForStrategy);
+    /**
+     * @return - list of output details for farm
+     * @author - Abhishek
+     * @date - 21-12-2015
+     */
+    List<Object> calculateFarmOutputStatistics(OutputBeanForStrategy outputBeanForStrategy);
 
-	/**
-	 * @author - Abhishek
-	 * @date - 21-12-2015
-	 * @return - list of output details for farm
-	 */
-	List<FarmOutputDetailsView> getAllFarmOutputDetailsByFarm(OutputBeanForStrategy outputBeanForStrategy);
+    /**
+     * @return - list of output details for farm
+     * @author - Abhishek
+     * @date - 21-12-2015
+     */
+    List<FarmOutputDetailsView> getAllFarmOutputDetailsByFarm(OutputBeanForStrategy outputBeanForStrategy);
 
-	/**
-	 * @author - Abhishek
-	 * @date - 21-12-2015
-	 * @return - list of output details for farm
-	 */
-	List<FarmOutputDetailsForFieldView> getAllFarmOutputDetailsForFieldByFarm(OutputBeanForStrategy outputBeanForStrategy);
+    /**
+     * @return - list of output details for farm
+     * @author - Abhishek
+     * @date - 21-12-2015
+     */
+    List<FarmOutputDetailsForFieldView> getAllFarmOutputDetailsForFieldByFarm(OutputBeanForStrategy outputBeanForStrategy);
 
 
-	Double calculateProfit(double expectedYield, double expectedprice, double minAcres, double variableProductionCost);
+    Double calculateProfit(double expectedYield, double expectedprice, double minAcres, double variableProductionCost);
 }

@@ -10,9 +10,14 @@ import java.util.List;
  */
 public interface ScenarioDao {
     FarmStrategyScenarioView getScenarioById(int scenarioId);
+
     FarmStrategyScenarioView getScenarioByNameFarmStrategy(String scenarioName, int strategyId, int farmId);
+
     List<FarmStrategyScenarioView> getAllScenarioByStrategy(int strategyId);
+
     long saveScenario(FarmStrategyScenario farmStrategyScenario, int strategyId);
+
     boolean updateScenario(int scenarioId, FarmStrategyScenario farmStrategyScenario);
+
     boolean deleteScenarioCropCpecificData(FarmStrategyScenario farmStrategyScenario);
 }

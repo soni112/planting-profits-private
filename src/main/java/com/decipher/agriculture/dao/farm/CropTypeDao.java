@@ -6,27 +6,27 @@ import java.util.Set;
 import com.decipher.agriculture.data.farm.CropType;
 
 public interface CropTypeDao {
-	CropType getCropByName(String name);
+    CropType getCropByName(String name);
 
-	boolean isCropExitsWithName(String name);
+    boolean isCropExitsWithName(String name);
 
-	int saveCrop(CropType cropType);
+    int saveCrop(CropType cropType);
 
-	boolean updateCrop(CropType cropType);
+    boolean updateCrop(CropType cropType);
 
-	boolean deleteCropById(int id);
+    boolean deleteCropById(int id);
 
-	CropType getCropById(int id);
+    CropType getCropById(int id);
 
-	boolean saveCropTypeList(Set<CropType> cropTypeList);
+    boolean saveCropTypeList(Set<CropType> cropTypeList);
 
-	List<CropType> getAllCropTypeByArcesId(int arcesId);
+    List<CropType> getAllCropTypeByArcesId(int arcesId);
 
-	List<CropType> getAllCropByFarm(int farmId);
+    List<CropType> getAllCropByFarm(int farmId);
 
-	List<CropType> getAllCropByFarmIds(List<Integer> farmId);
+    List<CropType> getAllCropByFarmIds(List<Integer> farmId);
 
-	List<CropType> getAllCropByGroupIds(Integer[] groupId);
+    List<CropType> getAllCropByGroupIds(Integer[] groupId);
 
-	boolean deleteCropByFarmId(int farmId);
+    boolean deleteCropByFarmId(int farmId);
 }

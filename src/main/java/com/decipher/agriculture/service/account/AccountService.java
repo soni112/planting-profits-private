@@ -14,53 +14,67 @@ import java.util.List;
 import java.util.Set;
 
 public interface AccountService {
-	Account getCurrentUser();
-	Account getUserByEmail(String email);
-	Account getEnabledUserByEmail(String email);
-	boolean isEmailAddressExists(String email);
-	int saveUser(Account account);
-	boolean UpdateUser(Account account);
-	/**
-	 * @added - Abhishek
-	 * @date - 23-03-2016
-	 * @desc - for getting user according to userID
-	 */
-	Account getUserById(int userID);
+    Account getCurrentUser();
 
-	List<Account> getAllChildren(Account parent, AppRole approle);
-	List<Account> getAllUsersUnderRole(AppRole approle);
-	List<Account> getAllVacantUsersUnderRole(AppRole approle);
-	List<Account> getAllVacantUsersUnderSuperParent(Account superParent);
-	List<Account> getAllGrowerUnderAdmin(Account admin);
+    Account getUserByEmail(String email);
 
-	/**
-	 * @changed - Abhishek
-	 * @date - 02-04-2016
-	 * @desc - for enable and disable feature of account
-	 */
-	List<Account> getAllUsersToDisable(Date currentDate);
+    Account getEnabledUserByEmail(String email);
 
-	void deleteUser(int userId);
+    boolean isEmailAddressExists(String email);
 
-	Set<AccountDocuments> getUserDocuments(Account account);
+    int saveUser(Account account);
 
-	void uploadDocument(Account account, MultipartFile multipartFile, AccountDocumentsType accountDocumentsType);
+    boolean UpdateUser(Account account);
 
-	boolean sendRegistrationMail(Account account, String pwd);
+    /**
+     * @added - Abhishek
+     * @date - 23-03-2016
+     * @desc - for getting user according to userID
+     */
+    Account getUserById(int userID);
 
-	/**
-	 * @changed - Abhishek
-	 * @date - 05-05-2016
-	 * @desc - for implementing middleware for optimization process
-	 */
-	Set<Account> getAllUsers();
+    List<Account> getAllChildren(Account parent, AppRole approle);
 
-	UserCountry getCountry(int countryId);
-	UserState getState(int stateId);
-	UserCity getCity(int cityId);
+    List<Account> getAllUsersUnderRole(AppRole approle);
 
-	List<UserCountry> getAllCountriesList();
-	List<UserState> getStatesForCountry(int countryId);
-	List<UserCity> getCitiesForState(int stateId);
+    List<Account> getAllVacantUsersUnderRole(AppRole approle);
+
+    List<Account> getAllVacantUsersUnderSuperParent(Account superParent);
+
+    List<Account> getAllGrowerUnderAdmin(Account admin);
+
+    /**
+     * @changed - Abhishek
+     * @date - 02-04-2016
+     * @desc - for enable and disable feature of account
+     */
+    List<Account> getAllUsersToDisable(Date currentDate);
+
+    void deleteUser(int userId);
+
+    Set<AccountDocuments> getUserDocuments(Account account);
+
+    void uploadDocument(Account account, MultipartFile multipartFile, AccountDocumentsType accountDocumentsType);
+
+    boolean sendRegistrationMail(Account account, String pwd);
+
+    /**
+     * @changed - Abhishek
+     * @date - 05-05-2016
+     * @desc - for implementing middleware for optimization process
+     */
+    Set<Account> getAllUsers();
+
+    UserCountry getCountry(int countryId);
+
+    UserState getState(int stateId);
+
+    UserCity getCity(int cityId);
+
+    List<UserCountry> getAllCountriesList();
+
+    List<UserState> getStatesForCountry(int countryId);
+
+    List<UserCity> getCitiesForState(int stateId);
 
 }

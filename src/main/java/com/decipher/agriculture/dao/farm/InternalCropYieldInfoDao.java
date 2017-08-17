@@ -4,15 +4,14 @@ import java.util.Set;
 
 import com.decipher.agriculture.data.farm.InternalCropYieldInfo;
 
-public interface InternalCropYieldInfoDao
-{
-	int save(InternalCropYieldInfo cropYieldInfo);
+public interface InternalCropYieldInfoDao {
+    int save(InternalCropYieldInfo cropYieldInfo);
 
-	boolean update(InternalCropYieldInfo cropYieldInfo);
+    boolean update(InternalCropYieldInfo cropYieldInfo);
 
-	boolean deleteById(int id);
+    boolean deleteById(int id);
 
-	boolean saveList(Set<InternalCropYieldInfo> cropYieldInfoList);
+    boolean saveList(Set<InternalCropYieldInfo> cropYieldInfoList);
 
-	InternalCropYieldInfo getInternalCropYieldInfoById(int id);
+    InternalCropYieldInfo getInternalCropYieldInfoById(int id);
 }

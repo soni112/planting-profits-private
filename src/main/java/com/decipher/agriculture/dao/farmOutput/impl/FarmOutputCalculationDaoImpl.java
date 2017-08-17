@@ -128,7 +128,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
          * @date - 21-12-2015
          */
         /*PlantingProfitLogger.debug("get All FarmOutputDetails By farm Id .. " + farmId);
-		List<FarmOutputDetails> farmOutputDetailsList = new ArrayList<FarmOutputDetails>();
+        List<FarmOutputDetails> farmOutputDetailsList = new ArrayList<FarmOutputDetails>();
 
 		Session session = sessionFactory.openSession();
 		try {
@@ -795,8 +795,8 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
 
                     Double forwardProfit = ((Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropTypeView.getIntExpCropYield())) *
-                                Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropTypeView.getPriceStr())))
-                                - Double.parseDouble(cropTypeView.getCalculatedVariableProductionCost().toString()));
+                            Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropTypeView.getPriceStr())))
+                            - Double.parseDouble(cropTypeView.getCalculatedVariableProductionCost().toString()));
 
                     Double acre = 1.0;
                     Double variableProductionCost = Double.parseDouble(cropTypeView.getCalculatedVariableProductionCost().toString());
@@ -825,7 +825,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                     List<CropResourceUsageFieldVariances> cropResourceUsageFieldVariances = cropResourceUsageFieldVariancesDao.getAllResourceByCrop(cropType.getId());
                     Map<String, Double> resourceMap = new HashMap<String, Double>();
                     for (CropResourceUsageView cropResourceUsageView : resourceUsageViews) {
-                        if(cropResourceUsageView.isActive()){
+                        if (cropResourceUsageView.isActive()) {
                             for (CropResourceUsageFieldVariances fieldVariances : cropResourceUsageFieldVariances) {
                                 if (!(cropResourceUsageView.getCropResourceUse().equals("Land") || cropResourceUsageView.getCropResourceUse().equals("Capital"))
                                         && cropResourceUsageView.getCropResourceUse().equals(fieldVariances.getCropFieldResourceUse())) {
@@ -867,55 +867,55 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
     @Override
     public List<FarmOutputDetails> calculateAcresForEachCropForAcres(List<CropBeanForOutput> cropBeanForOutputList, FarmInfo farmInfo,
-                                         List<CropResourceUsageView> resourceUsageViews, Set<CropsGroup> cropsGroups, boolean updateFlag) {
+                                                                     List<CropResourceUsageView> resourceUsageViews, Set<CropsGroup> cropsGroups, boolean updateFlag) {
         Result result = linearProgramingSolveDao.getLinearProgramingResultForAcerage(cropBeanForOutputList, farmInfo.getLand(), resourceUsageViews, cropsGroups);
         List<FarmOutputDetails> farmOutputDetails = new ArrayList<FarmOutputDetails>();
         if (result != null) {
             PlantingProfitLogger.info("Result for calculation is " + result);
             for (CropBeanForOutput beanForOutput : cropBeanForOutputList) {
 
-                    if (beanForOutput.getCropType().getCropForwardSales() != null
-                            && (beanForOutput.getCropType().getCropForwardSales().getFirmchecked().equals("true")
-                            || beanForOutput.getCropType().getCropForwardSales().getProposedchecked())) {
+                if (beanForOutput.getCropType().getCropForwardSales() != null
+                        && (beanForOutput.getCropType().getCropForwardSales().getFirmchecked().equals("true")
+                        || beanForOutput.getCropType().getCropForwardSales().getProposedchecked())) {
 
-                        FarmOutputDetails outputDetails = new FarmOutputDetails();
-                        FarmOutputDetails outputDetailsForForward = null;
-                        outputDetails.setCropType(beanForOutput.getCropType());
-                        outputDetails.setForContract(false);
-                        outputDetails.setForProposed(false);
-                        outputDetails.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName()).doubleValue()).doubleValue());
-                        if (beanForOutput.getFirmAcres() > zeroDouble) {
-                            outputDetailsForForward = new FarmOutputDetails();
-                            outputDetailsForForward.setCropType(beanForOutput.getCropType());
-                            outputDetailsForForward.setForContract(true);
-                            outputDetailsForForward.setForProposed(false);
-                            outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Contract)").doubleValue()).doubleValue());
-                        } else if (beanForOutput.getProposedAcres() > zeroDouble
-                                && result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue() > zeroDouble) {
-                            outputDetailsForForward = new FarmOutputDetails();
-                            outputDetailsForForward.setCropType(beanForOutput.getCropType());
-                            outputDetailsForForward.setForContract(false);
-                            outputDetailsForForward.setForProposed(true);
-                            outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue()).doubleValue());
-                        }
-                        PlantingProfitLogger.info(beanForOutput.getCropType().getCropName() + "------------" + outputDetails.getUsedAcres());
-                        farmOutputDetails.add(outputDetails);
-                        if (outputDetailsForForward != null)
-                            farmOutputDetails.add(outputDetailsForForward);
-                    } else {
-                        FarmOutputDetails outputDetails = new FarmOutputDetails();
-                        outputDetails.setCropType(beanForOutput.getCropType());
-                        outputDetails.setForContract(false);
-                        outputDetails.setForProposed(false);
-                        try {
-                            outputDetails.setUsedAcres(result.get(beanForOutput.getCropType().getCropName()).doubleValue());
-                        } catch (Exception exception) {
-                            outputDetails.setUsedAcres(zeroDouble);
-                            //					PlantingProfitLogger.error(exception);
-                        }
-                        PlantingProfitLogger.info(beanForOutput.getCropType().getCropName() + "------------" + outputDetails.getUsedAcres());
-                        farmOutputDetails.add(outputDetails);
+                    FarmOutputDetails outputDetails = new FarmOutputDetails();
+                    FarmOutputDetails outputDetailsForForward = null;
+                    outputDetails.setCropType(beanForOutput.getCropType());
+                    outputDetails.setForContract(false);
+                    outputDetails.setForProposed(false);
+                    outputDetails.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName()).doubleValue()).doubleValue());
+                    if (beanForOutput.getFirmAcres() > zeroDouble) {
+                        outputDetailsForForward = new FarmOutputDetails();
+                        outputDetailsForForward.setCropType(beanForOutput.getCropType());
+                        outputDetailsForForward.setForContract(true);
+                        outputDetailsForForward.setForProposed(false);
+                        outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Contract)").doubleValue()).doubleValue());
+                    } else if (beanForOutput.getProposedAcres() > zeroDouble
+                            && result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue() > zeroDouble) {
+                        outputDetailsForForward = new FarmOutputDetails();
+                        outputDetailsForForward.setCropType(beanForOutput.getCropType());
+                        outputDetailsForForward.setForContract(false);
+                        outputDetailsForForward.setForProposed(true);
+                        outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue()).doubleValue());
                     }
+                    PlantingProfitLogger.info(beanForOutput.getCropType().getCropName() + "------------" + outputDetails.getUsedAcres());
+                    farmOutputDetails.add(outputDetails);
+                    if (outputDetailsForForward != null)
+                        farmOutputDetails.add(outputDetailsForForward);
+                } else {
+                    FarmOutputDetails outputDetails = new FarmOutputDetails();
+                    outputDetails.setCropType(beanForOutput.getCropType());
+                    outputDetails.setForContract(false);
+                    outputDetails.setForProposed(false);
+                    try {
+                        outputDetails.setUsedAcres(result.get(beanForOutput.getCropType().getCropName()).doubleValue());
+                    } catch (Exception exception) {
+                        outputDetails.setUsedAcres(zeroDouble);
+                        //					PlantingProfitLogger.error(exception);
+                    }
+                    PlantingProfitLogger.info(beanForOutput.getCropType().getCropName() + "------------" + outputDetails.getUsedAcres());
+                    farmOutputDetails.add(outputDetails);
+                }
 
             }
         } else {
@@ -1383,10 +1383,10 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                         usedAmount += farmOutputDetailsForFieldView.getUsedAcresDouble() * Double.parseDouble(farmOutputDetailsForFieldView.getCropTypeView().getCalculatedVariableProductionCost().toString());
                     } else if (farmOutputDetailsForFieldView.getCropTypeView().getFieldIdForVariances() == farmOutputDetailsForFieldView.getFieldInfoView().getId()
                             && cropResourceUsageView.getResourseOverrideAmount() != null && (!cropResourceUsageView.getResourseOverrideAmount().equals(""))) {
-    //					PlantingProfitLogger.info("In Field Difference for resource---------------->>>>>>>>>>>>>>>>>>>"+cropResourceUsageView.getCropResourceUse());
+                        //					PlantingProfitLogger.info("In Field Difference for resource---------------->>>>>>>>>>>>>>>>>>>"+cropResourceUsageView.getCropResourceUse());
                         usedAmount += farmOutputDetailsForFieldView.getUsedAcresDouble() * Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getResourseOverrideAmount()));
-    //					PlantingProfitLogger.info(farmOutputDetailsForFieldView.getUsedAcresAsDouble()* Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getResourseOverrideAmount()!=null && cropResourceUsageView.getResourseOverrideAmount().equals("")?"0":(fieldVariances.getCropResourceAmount().equals("")?"0":fieldVariances.getCropResourceAmount())))+
-    //							"--------"+AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getResourseOverrideAmount() != null && cropResourceUsageView.getResourseOverrideAmount().equals("")?"0":(fieldVariances.getCropResourceAmount().equals("")?"0":fieldVariances.getCropResourceAmount())));
+                        //					PlantingProfitLogger.info(farmOutputDetailsForFieldView.getUsedAcresAsDouble()* Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getResourseOverrideAmount()!=null && cropResourceUsageView.getResourseOverrideAmount().equals("")?"0":(fieldVariances.getCropResourceAmount().equals("")?"0":fieldVariances.getCropResourceAmount())))+
+                        //							"--------"+AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getResourseOverrideAmount() != null && cropResourceUsageView.getResourseOverrideAmount().equals("")?"0":(fieldVariances.getCropResourceAmount().equals("")?"0":fieldVariances.getCropResourceAmount())));
                     } else {
                         for (CropResourceUsageFieldVariancesView fieldVariances : resourceUsageVariances) {
                             if (farmOutputDetailsForFieldView.getCropTypeView().getCropName().equals(fieldVariances.getCropName())
@@ -1435,18 +1435,18 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
                 for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViews) {
                     if (typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())
-                            && farmOutputDetailsForFieldView.isForFirm()){
+                            && farmOutputDetailsForFieldView.isForFirm()) {
 
                         firmProfitTotal += farmOutputDetailsForFieldView.getProfitAsDouble();
                         firmAcreTotal += farmOutputDetailsForFieldView.getUsedAcresAsDouble();
 
                     } else if (typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())
-                            && farmOutputDetailsForFieldView.isForProposed()){
+                            && farmOutputDetailsForFieldView.isForProposed()) {
 
                         proposedProfitTotal += farmOutputDetailsForFieldView.getProfitAsDouble();
                         proposedAcreTotal += farmOutputDetailsForFieldView.getUsedAcresAsDouble();
 
-                    } else if(typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())){
+                    } else if (typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())) {
                         profitTotal += farmOutputDetailsForFieldView.getProfitAsDouble();
                         acreTotal += farmOutputDetailsForFieldView.getUsedAcresAsDouble();
                     }
@@ -1458,7 +1458,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                 for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViews) {
 
                     if (typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())
-                            && farmOutputDetailsForFieldView.isForFirm()){
+                            && farmOutputDetailsForFieldView.isForFirm()) {
                         cropFlag = false;
                         try {
                             hashMapForAcre.put(typeView.getCropName() + " (Firm)", "" + firmAcreTotal);
@@ -1471,7 +1471,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
 
                     } else if (typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())
-                            && farmOutputDetailsForFieldView.isForProposed()){
+                            && farmOutputDetailsForFieldView.isForProposed()) {
                         cropFlag = false;
                         try {
                             hashMapForAcre.put(typeView.getCropName() + " (Proposed)", "" + proposedAcreTotal);
@@ -1483,7 +1483,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                         }
 
 
-                    } else if(typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())){
+                    } else if (typeView.getCropName().equalsIgnoreCase(farmOutputDetailsForFieldView.getCropTypeView().getCropName())) {
                         cropFlag = false;
                         try {
                             hashMapForAcre.put(typeView.getCropName(), "" + acreTotal);
@@ -1497,7 +1497,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                     }
 
                 }
-                if(cropFlag){
+                if (cropFlag) {
                     hashMapForAcre.put(typeView.getCropName(), "0");
                     hashMapForProfit.put(typeView.getCropName(), "0");
                     hashMapForRatio.put(typeView.getCropName(), "0");

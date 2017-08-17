@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.decipher.agriculture.dao.farmOutput;
 
@@ -16,26 +16,25 @@ import com.decipher.view.form.farmDetails.FieldInfoView;
 
 /**
  * @author Harshit Gupta
- *
  */
 public interface LinearProgramingSolveDao {
 
-	Result getLinearProgramingResultForAcerage(
+    Result getLinearProgramingResultForAcerage(
             List<CropBeanForOutput> cropBeanForOutputList, String land,
             List<CropResourceUsageView> resourceUsageViews,
             Set<CropsGroup> cropsGroups);
 
-	List<String[]> generateCombination(
+    List<String[]> generateCombination(
             List<CropBeanForOutput> cropBeanForOutputList,
             Set<CropsGroup> cropsGroups, List<FieldInfoView> fieldInfoViews);
 
-	Map<String[], Result> getLinearProgramingResultForField(
+    Map<String[], Result> getLinearProgramingResultForField(
             List<CropBeanForOutput> cropBeanForOutputList,
             List<CropResourceUsageView> resourceUsageViews,
             Set<CropsGroup> cropsGroups, List<String[]> combinationSetList,
             List<FieldInfoView> fieldInfoViews);
 
-	Map<String, Object> getBestResultFromLinearProgramingForField(
+    Map<String, Object> getBestResultFromLinearProgramingForField(
             List<CropBeanForOutput> cropBeanForOutputList,
             List<CropResourceUsageView> resourceUsageViews,
             Set<CropsGroup> cropsGroups, List<FieldInfoView> fieldInfoViews,
