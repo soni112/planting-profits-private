@@ -6,29 +6,29 @@ import com.decipher.agriculture.data.farm.FarmInfo;
 
 public interface FarmInfoDao {
 
-	boolean updateFarmInfo(FarmInfo farmInfo);
+    boolean updateFarmInfo(FarmInfo farmInfo);
 
-	FarmInfo getFarmInfoById(int id);
+    FarmInfo getFarmInfoById(int id);
 
 //	List<Integer> getAllFarmIds(int userId, int[] farmIds);
 
-	List<Integer> getAllFarmIds(int userId);
+    List<Integer> getAllFarmIds(int userId);
 
-	FarmInfo getFarmByFarmIdAndUserId(int farmId, int userId);
+    FarmInfo getFarmByFarmIdAndUserId(int farmId, int userId);
 
-	boolean updateFarmDetails(int userId, int farmId, String farmName);
+    boolean updateFarmDetails(int userId, int farmId, String farmName);
 
-	FarmInfo getFarmByIdAfterCheckForAccount(int id, int accountId);
+    FarmInfo getFarmByIdAfterCheckForAccount(int id, int accountId);
 
-	boolean deleteAllFarmRecords(int farmId);
+    boolean deleteAllFarmRecords(int farmId);
 
-	boolean deleteAllSelectedFarms(String farmIdsString);
+    boolean deleteAllSelectedFarms(String farmIdsString);
 
-	FarmInfo getFarmInfoOldById(int id, String CropTypes,
+    FarmInfo getFarmInfoOldById(int id, String CropTypes,
                                 String CropResourceUsage, String FieldInfos, String CropsGroup,
                                 String cropDualValues, String resourceDual, String groupDualValue);
 
-	FarmInfo updateFarmInfo(FarmInfo farmInfo, int farmId, String irrigate_val,
+    FarmInfo updateFarmInfo(FarmInfo farmInfo, int farmId, String irrigate_val,
                             boolean evaluate_forward_sales_val,
                             boolean evaluate_storage_sales_val,
                             boolean evaluate_crop_insurance_val, String strategy,
@@ -45,7 +45,7 @@ public interface FarmInfoDao {
                             String[] crop_resources_usages_difference_tbody_array,
                             String field_difference_str, String[] crop_group_array, String additionalCropCostObj);
 
-	FarmInfo saveFarm(int farmId, String irrigate_val,
+    FarmInfo saveFarm(int farmId, String irrigate_val,
                       boolean evaluate_forward_sales_val,
                       boolean evaluate_storage_sales_val,
                       boolean evaluate_crop_insurance_val, String strategy,
@@ -62,6 +62,6 @@ public interface FarmInfoDao {
                       String[] crop_resources_usages_difference_tbody_array,
                       String field_difference_str, String[] crop_group_array, String additionalCropCostObj);
 
-	void initializeLazy(FarmInfo farmInfo);
+    void initializeLazy(FarmInfo farmInfo);
 
 }

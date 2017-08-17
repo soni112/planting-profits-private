@@ -117,11 +117,11 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                 if (obj instanceof FarmInfo) {
                     info = (FarmInfo) obj;
 //                    if (CropTypes != null)
-                        Hibernate.initialize(info.getCropTypes());
+                    Hibernate.initialize(info.getCropTypes());
 //                    if (CropResourceUsage != null)
-                        Hibernate.initialize(info.getCropResourceUsage());
+                    Hibernate.initialize(info.getCropResourceUsage());
 //                    if (FieldInfos != null)
-                        Hibernate.initialize(info.getFieldInfos());
+                    Hibernate.initialize(info.getFieldInfos());
                     if (cropDualValues != null)
                         Hibernate.initialize(info.getCropLimitDualValues());
                     if (resourceDual != null)
@@ -129,7 +129,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                     if (groupDualValue != null)
                         Hibernate.initialize(info.getGroupLimitDualValues());
 //                    if (CropsGroup != null)
-                        Hibernate.initialize(info.getCropsGroup());
+                    Hibernate.initialize(info.getCropsGroup());
 
                 } else
                     info = null;
@@ -262,7 +262,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
 //                return farmInfo;
 //            } else {
 //                PlantingProfitLogger.info("FarmInfo Object is Null  ");
-                return null;
+            return null;
 //            }
 
         } catch (Exception e) {
@@ -297,7 +297,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
 //                    PlantingProfitLogger.info("Farm name updated successfully");
 //                    return true;
 //                } catch (Exception e) {
-                    return false;
+            return false;
 //                }
 //            } else {
 //                PlantingProfitLogger.info("FarmInfo Object is Null");
@@ -629,7 +629,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                 String[] array = str.split("#-#-#");
                                 if (array[0].equals(cropType.getCropName())) {
                                     CropForwardSales cropForwardSales = cropType.getCropForwardSales();
-                                    if (cropForwardSales == null){
+                                    if (cropForwardSales == null) {
                                         cropForwardSales = new CropForwardSales();
                                     }
                                     cropForwardSales.setPrice(array[1]);
@@ -1744,7 +1744,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
         Hibernate.initialize(farmInfo.getCropResourceUsage());
         Hibernate.initialize(farmInfo.getCropsGroup());
         Hibernate.initialize(farmInfo.getFieldInfos());
-		Hibernate.initialize(farmInfo.getFarmCustomStrategySet());
+        Hibernate.initialize(farmInfo.getFarmCustomStrategySet());
         Hibernate.initialize(farmInfo.getCropLimitDualValues());
         Hibernate.initialize(farmInfo.getResourceDualValues());
         Hibernate.initialize(farmInfo.getGroupLimitDualValues());

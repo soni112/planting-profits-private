@@ -7,23 +7,23 @@ import com.decipher.agriculture.data.farm.CropResourceUsageFieldVariances;
 import com.decipher.view.form.farmDetails.CropResourceUsageFieldVariancesView;
 
 public interface CropResourceUsageFieldVariancesService {
-	int saveCropResourceUsageFieldVariances(
+    int saveCropResourceUsageFieldVariances(
             CropResourceUsageFieldVariances cropResourceUsageFieldVariances);
 
-	boolean updateCropResourceUsageFieldVariances(
+    boolean updateCropResourceUsageFieldVariances(
             CropResourceUsageFieldVariances cropResourceUsageFieldVariances);
 
-	boolean deleteCropResourceUsageFieldVariancesById(int id);
+    boolean deleteCropResourceUsageFieldVariancesById(int id);
 
-	CropResourceUsageFieldVariancesView getCropResourceUsageFieldVariancesById(
+    CropResourceUsageFieldVariancesView getCropResourceUsageFieldVariancesById(
             int id);
 
-	boolean saveCropResourceUsageFieldVariancesList(
+    boolean saveCropResourceUsageFieldVariancesList(
             Set<CropResourceUsageFieldVariances> cropResourceUsageFieldVariancesList);
 
-	List<CropResourceUsageFieldVariancesView> getAllResourceByCrop(
+    List<CropResourceUsageFieldVariancesView> getAllResourceByCrop(
             int cropId);
 
-	List<CropResourceUsageFieldVariancesView> getAllResourceByCropIds(
+    List<CropResourceUsageFieldVariancesView> getAllResourceByCropIds(
             Integer[] cropId);
 }

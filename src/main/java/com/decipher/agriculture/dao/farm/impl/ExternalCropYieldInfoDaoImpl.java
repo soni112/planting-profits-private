@@ -16,151 +16,128 @@ import com.decipher.agriculture.data.farm.ExternalCropYieldInfo;
 
 @Repository
 @Transactional
-public class ExternalCropYieldInfoDaoImpl implements ExternalCropYieldInfoDao
-{
+public class ExternalCropYieldInfoDaoImpl implements ExternalCropYieldInfoDao {
 
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 
-	@Override
-	public int saveExternalCropPriceInfo(
-			ExternalCropYieldInfo externalCropYieldInfo)
-	{
-		PlantingProfitLogger.info("inside saveExternalCropPriceInfo .. ");
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		int id = 0;
-		try
-		{
-			tx = session.beginTransaction();
-			id = (int) session.save(externalCropYieldInfo);
-			tx.commit();
-			return id;
-		} catch (Exception e)
-		{
-			id = 0;
-			tx.rollback();
-			PlantingProfitLogger.error(e);
-			return id;
-		} finally
-		{
-			session.close();
-		}
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	@Override
-	public boolean updateExternalCropYieldInfo(
-			ExternalCropYieldInfo externalCropYieldInfo)
-	{
-		PlantingProfitLogger.info("inside updateExternalCropYieldInfo.."
-				+ externalCropYieldInfo.getId());
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try
-		{
-			tx = session.beginTransaction();
-			session.update(externalCropYieldInfo);
-			tx.commit();
-			return true;
-		} catch (Exception e)
-		{
-			tx.rollback();
-			PlantingProfitLogger.error(e);
-			return false;
-		} finally
-		{
-			session.close();
-		}
-	}
+    @Override
+    public int saveExternalCropPriceInfo(
+            ExternalCropYieldInfo externalCropYieldInfo) {
+        PlantingProfitLogger.info("inside saveExternalCropPriceInfo .. ");
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        int id = 0;
+        try {
+            tx = session.beginTransaction();
+            id = (int) session.save(externalCropYieldInfo);
+            tx.commit();
+            return id;
+        } catch (Exception e) {
+            id = 0;
+            tx.rollback();
+            PlantingProfitLogger.error(e);
+            return id;
+        } finally {
+            session.close();
+        }
+    }
 
-	@Override
-	public boolean deleteExternalCropYieldInfoById(int id)
-	{
-		PlantingProfitLogger.info("inside deleteExternalCropYieldInfoById..");
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try
-		{
-			tx = session.beginTransaction();
-			Query query = session
-					.createQuery("delete from ExternalCropYieldInfo where id = :id");
-			query.setParameter("id", id);
-			int result = query.executeUpdate();
-			PlantingProfitLogger.info("result deleted : " + result);
-			tx.commit();
-			return true;
-		} catch (Exception e)
-		{
-			tx.rollback();
-			PlantingProfitLogger.info("Exception Occurs -->>" + e.toString());
-			return false;
-		} finally
-		{
-			session.close();
-		}
-	}
+    @Override
+    public boolean updateExternalCropYieldInfo(
+            ExternalCropYieldInfo externalCropYieldInfo) {
+        PlantingProfitLogger.info("inside updateExternalCropYieldInfo.."
+                + externalCropYieldInfo.getId());
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(externalCropYieldInfo);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            tx.rollback();
+            PlantingProfitLogger.error(e);
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 
-	@Override
-	public ExternalCropYieldInfo getExternalCropYieldInfoById(int id)
-	{
-		PlantingProfitLogger.info("inside getView.." + id);
-		Session session = sessionFactory.openSession();
-		ExternalCropYieldInfo externalCropYieldInfo = null;
-		try
-		{
-			Query query = session
-					.createQuery("from CropUnitOfMeasure where id = :id");
-			query.setParameter("id", id);
-			Object obj = query.uniqueResult();
-			if (obj != null)
-			{
-				if (obj instanceof ExternalCropYieldInfo)
-					externalCropYieldInfo = (ExternalCropYieldInfo) obj;
-				else
-					externalCropYieldInfo = null;
-			} else
-			{
-				externalCropYieldInfo = null;
-			}
+    @Override
+    public boolean deleteExternalCropYieldInfoById(int id) {
+        PlantingProfitLogger.info("inside deleteExternalCropYieldInfoById..");
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session
+                    .createQuery("delete from ExternalCropYieldInfo where id = :id");
+            query.setParameter("id", id);
+            int result = query.executeUpdate();
+            PlantingProfitLogger.info("result deleted : " + result);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            tx.rollback();
+            PlantingProfitLogger.info("Exception Occurs -->>" + e.toString());
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 
-		} catch (Exception e)
-		{
-			PlantingProfitLogger.error(e);
-			externalCropYieldInfo = null;
-		} finally
-		{
-			session.close();
-		}
-		return externalCropYieldInfo;
-	}
+    @Override
+    public ExternalCropYieldInfo getExternalCropYieldInfoById(int id) {
+        PlantingProfitLogger.info("inside getView.." + id);
+        Session session = sessionFactory.openSession();
+        ExternalCropYieldInfo externalCropYieldInfo = null;
+        try {
+            Query query = session
+                    .createQuery("from CropUnitOfMeasure where id = :id");
+            query.setParameter("id", id);
+            Object obj = query.uniqueResult();
+            if (obj != null) {
+                if (obj instanceof ExternalCropYieldInfo)
+                    externalCropYieldInfo = (ExternalCropYieldInfo) obj;
+                else
+                    externalCropYieldInfo = null;
+            } else {
+                externalCropYieldInfo = null;
+            }
 
-	@Override
-	public boolean saveExternalCropYieldInfoList(
-			Set<ExternalCropYieldInfo> externalCropYieldInfoList)
-	{
-		PlantingProfitLogger.info("inside save External Crop Yield Info..");
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try
-		{
+        } catch (Exception e) {
+            PlantingProfitLogger.error(e);
+            externalCropYieldInfo = null;
+        } finally {
+            session.close();
+        }
+        return externalCropYieldInfo;
+    }
 
-			tx = session.beginTransaction();
-			for (ExternalCropYieldInfo externalCropYieldInfo : externalCropYieldInfoList)
-				session.save(externalCropYieldInfo);
-			tx.commit();
+    @Override
+    public boolean saveExternalCropYieldInfoList(
+            Set<ExternalCropYieldInfo> externalCropYieldInfoList) {
+        PlantingProfitLogger.info("inside save External Crop Yield Info..");
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
 
-			return true;
-		} catch (Exception e)
-		{
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			PlantingProfitLogger.error(e);
-			return false;
-		} finally
-		{
-			session.close();
-		}
-	}
+            tx = session.beginTransaction();
+            for (ExternalCropYieldInfo externalCropYieldInfo : externalCropYieldInfoList)
+                session.save(externalCropYieldInfo);
+            tx.commit();
+
+            return true;
+        } catch (Exception e) {
+            if (tx != null && tx.isActive())
+                tx.rollback();
+            PlantingProfitLogger.error(e);
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 
 }

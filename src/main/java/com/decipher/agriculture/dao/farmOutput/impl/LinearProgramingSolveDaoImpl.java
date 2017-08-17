@@ -149,22 +149,22 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                 }
 
 
-                    for (Entry<String, Double> entry : beanForOutput.getResourceList().entrySet()) {
-                        if (entry.getKey().equals(cropResourceUsageView.getCropResourceUse())) {
+                for (Entry<String, Double> entry : beanForOutput.getResourceList().entrySet()) {
+                    if (entry.getKey().equals(cropResourceUsageView.getCropResourceUse())) {
 
                             /* linear for resource usage */
 
-                            linear.add(entry.getValue(), beanForOutput.getCropType().getCropName());
-                            if (beanForOutput.getFirmAcres() > zeroDouble) {
-                                linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Contract)");
-                                PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Contract)");
-                            } else if (beanForOutput.getProposedAcres() > zeroDouble) {
-                                linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Proposed)");
-                                PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Proposed)");
-                            }
-                            PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName());
+                        linear.add(entry.getValue(), beanForOutput.getCropType().getCropName());
+                        if (beanForOutput.getFirmAcres() > zeroDouble) {
+                            linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Contract)");
+                            PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Contract)");
+                        } else if (beanForOutput.getProposedAcres() > zeroDouble) {
+                            linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Proposed)");
+                            PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Proposed)");
                         }
+                        PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName());
                     }
+                }
 
             }
             problem.add(cropResourceUsageView.getCropResourceUse(), linear, Operator.LE, Double.parseDouble(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()));
@@ -373,7 +373,7 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
 //		ExecutorService executorService = Executors.newCachedThreadPool();
 //        ExecutorService executorService = Executors.newFixedThreadPool(combinationsListForCalculationList.size());
         long start = System.currentTimeMillis();
-        PlantingProfitLogger.warn("Task started for farm id : " + resourceUsageViews.get(0).getCropResourceUsage().getFarmInfo().getFarm().getFarmId()+ " with " + combinationsListForCalculationList.size() + " threads : " + new Date());
+        PlantingProfitLogger.warn("Task started for farm id : " + resourceUsageViews.get(0).getCropResourceUsage().getFarmInfo().getFarm().getFarmId() + " with " + combinationsListForCalculationList.size() + " threads : " + new Date());
 
         Thread thread;
         TempListHolder tempListHolder;
@@ -572,7 +572,7 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
         Solver solver = factory.get();
 
         for (String[] combinationSet : combinationSetList) {
-             // use lp_solve
+            // use lp_solve
 //		SolverFactory factory = new SolverFactoryGLPK();
 //		SolverFactory factory = new SolverFactoryCPLEX();
 
@@ -940,7 +940,7 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
 
 
             Result result = solver.solve(problem);
-            if (result != null){
+            if (result != null) {
                 resultMap.put(combinationSet, result);
             }
 

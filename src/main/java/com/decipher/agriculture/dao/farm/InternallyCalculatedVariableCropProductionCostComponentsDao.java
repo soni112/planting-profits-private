@@ -4,15 +4,14 @@ import java.util.Set;
 
 import com.decipher.agriculture.data.farm.InternallyCalculatedVariableCropProductionCostComponents;
 
-public interface InternallyCalculatedVariableCropProductionCostComponentsDao
-{
-	int save(InternallyCalculatedVariableCropProductionCostComponents costComponents);
+public interface InternallyCalculatedVariableCropProductionCostComponentsDao {
+    int save(InternallyCalculatedVariableCropProductionCostComponents costComponents);
 
-	boolean update(InternallyCalculatedVariableCropProductionCostComponents costComponents);
+    boolean update(InternallyCalculatedVariableCropProductionCostComponents costComponents);
 
-	boolean deleteById(int id);
+    boolean deleteById(int id);
 
-	boolean saveList(Set<InternallyCalculatedVariableCropProductionCostComponents> costComponentsList);
+    boolean saveList(Set<InternallyCalculatedVariableCropProductionCostComponents> costComponentsList);
 
-	InternallyCalculatedVariableCropProductionCostComponents getCostComponentsById(int id);
+    InternallyCalculatedVariableCropProductionCostComponents getCostComponentsById(int id);
 }

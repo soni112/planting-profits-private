@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.decipher.view.form.farmDetails.OptionalCropProductionCostsDetailsView;
 
-public interface OptionalCropProductionCostsDetailsService
-{
-	List<OptionalCropProductionCostsDetailsView> getAllCropProductionCostsDetailsByCropIds(Integer[] cropId);
-	List<OptionalCropProductionCostsDetailsView> getAllCropProductionCostsDetailsByCrop(int cropId);
+public interface OptionalCropProductionCostsDetailsService {
+    List<OptionalCropProductionCostsDetailsView> getAllCropProductionCostsDetailsByCropIds(Integer[] cropId);
+
+    List<OptionalCropProductionCostsDetailsView> getAllCropProductionCostsDetailsByCrop(int cropId);
 }

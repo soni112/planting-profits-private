@@ -13,129 +13,125 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.decipher.agriculture.data.farm.CropCons;
+
 @Repository
 @Transactional
-public class CropConsDaoImpl implements CropConsDao
-{
+public class CropConsDaoImpl implements CropConsDao {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	@Override
-	public int saveCropCons(CropCons cropCons)
-	{
-		PlantingProfitLogger.info("inside saveCropCons..");
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		int id = 0;
-		try {
-			tx = session.beginTransaction();
-			id = (int) session.save(cropCons);
-			tx.commit();
-			return id;
-		} catch (Exception e) {
-			id = 0;
-			tx.rollback();
-			PlantingProfitLogger.error(e);
-			return id;
-		} finally {
-			session.close();
-		}
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	@Override
-	public boolean updateCropCons(CropCons cropCons)
-	{
-		PlantingProfitLogger.info("inside updateCropCons.." + cropCons.getId());
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.update(cropCons);
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			tx.rollback();
-			PlantingProfitLogger.error(e);
-			return false;
-		} finally {
-			session.close();
-		}
-	}
+    @Override
+    public int saveCropCons(CropCons cropCons) {
+        PlantingProfitLogger.info("inside saveCropCons..");
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        int id = 0;
+        try {
+            tx = session.beginTransaction();
+            id = (int) session.save(cropCons);
+            tx.commit();
+            return id;
+        } catch (Exception e) {
+            id = 0;
+            tx.rollback();
+            PlantingProfitLogger.error(e);
+            return id;
+        } finally {
+            session.close();
+        }
+    }
 
-	@Override
-	public boolean deleteCropConsById(int id)
-	{
-		PlantingProfitLogger.info("inside deleteCropConsById..");
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
+    @Override
+    public boolean updateCropCons(CropCons cropCons) {
+        PlantingProfitLogger.info("inside updateCropCons.." + cropCons.getId());
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(cropCons);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            tx.rollback();
+            PlantingProfitLogger.error(e);
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 
-			tx = session.beginTransaction();
-			Query query = session.createQuery("delete from CropCons where id = :id");
-			query.setParameter("id", id);
-			int result = query.executeUpdate();
-			PlantingProfitLogger.info("result deleted : " + result);
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			tx.rollback();
-			PlantingProfitLogger.info("Exception Occurs -->>" + e.toString());
-			return false;
-		} finally {
-			session.close();
-		}
-	}
+    @Override
+    public boolean deleteCropConsById(int id) {
+        PlantingProfitLogger.info("inside deleteCropConsById..");
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
 
-	@Override
-	public CropCons getCropConsById(int id)
-	{
-		PlantingProfitLogger.info("inside getView.." + id);
-		Session session = sessionFactory.openSession();
-		CropCons cropCons = null;
-		try {
-			Query query = session.createQuery("from CropCons where id = :id");
-			query.setParameter("id", id);
-			Object obj = query.uniqueResult();
-			if (obj != null) {
-				if (obj instanceof CropCons)
-					cropCons = (CropCons) obj;
-				else
-					cropCons = null;
-			} else {
-				cropCons = null;
-			}
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete from CropCons where id = :id");
+            query.setParameter("id", id);
+            int result = query.executeUpdate();
+            PlantingProfitLogger.info("result deleted : " + result);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            tx.rollback();
+            PlantingProfitLogger.info("Exception Occurs -->>" + e.toString());
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 
-		} catch (Exception e) {
-			PlantingProfitLogger.error(e);
-			cropCons = null;
-		} finally {
-			session.close();
-		}
-		return cropCons;
-	}
+    @Override
+    public CropCons getCropConsById(int id) {
+        PlantingProfitLogger.info("inside getView.." + id);
+        Session session = sessionFactory.openSession();
+        CropCons cropCons = null;
+        try {
+            Query query = session.createQuery("from CropCons where id = :id");
+            query.setParameter("id", id);
+            Object obj = query.uniqueResult();
+            if (obj != null) {
+                if (obj instanceof CropCons)
+                    cropCons = (CropCons) obj;
+                else
+                    cropCons = null;
+            } else {
+                cropCons = null;
+            }
 
-	@Override
-	public boolean saveCropConsList(Set<CropCons> cropConsList)
-	{
-		PlantingProfitLogger.info("inside save Crop Cons List..");
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		try {
+        } catch (Exception e) {
+            PlantingProfitLogger.error(e);
+            cropCons = null;
+        } finally {
+            session.close();
+        }
+        return cropCons;
+    }
 
-			tx = session.beginTransaction();
-			for (CropCons cropCons : cropConsList)
-				session.save(cropCons);
-			tx.commit();
+    @Override
+    public boolean saveCropConsList(Set<CropCons> cropConsList) {
+        PlantingProfitLogger.info("inside save Crop Cons List..");
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
 
-			return true;
-		} catch (Exception e) {
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			PlantingProfitLogger.error(e);
-			return false;
-		} finally {
-			session.close();
-		}
-	}
+            tx = session.beginTransaction();
+            for (CropCons cropCons : cropConsList)
+                session.save(cropCons);
+            tx.commit();
+
+            return true;
+        } catch (Exception e) {
+            if (tx != null && tx.isActive())
+                tx.rollback();
+            PlantingProfitLogger.error(e);
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 
 }

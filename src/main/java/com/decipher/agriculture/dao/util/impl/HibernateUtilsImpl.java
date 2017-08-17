@@ -32,6 +32,8 @@ public class HibernateUtilsImpl implements HibernateUtils {
         }catch(Exception e){
             PlantingProfitLogger.error(e);
             e.printStackTrace();
+        } finally {
+            session.close();
         }
         return o;
     }

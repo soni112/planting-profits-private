@@ -60,11 +60,11 @@ public class FarmDaoImpl implements FarmDao {
             Query query = session.createQuery("from Farm where id=:id");
             query.setParameter("id", farmId);
             farm = (Farm) query.uniqueResult();
-            if(farm != null)
+            if (farm != null)
                 initializeLazy(farm);
 
             transaction.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             PlantingProfitLogger.error("Error while getting farm for id : " + farmId, e);
             transaction.rollback();
         } finally {
@@ -86,7 +86,7 @@ public class FarmDaoImpl implements FarmDao {
             farmId = (int) session.save(farm);
             session.flush();
             transaction.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             PlantingProfitLogger.error("Error while saving farm ", e);
             return farmId;
@@ -107,7 +107,7 @@ public class FarmDaoImpl implements FarmDao {
             session.delete(farm);
             session.flush();
             transaction.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             PlantingProfitLogger.error("Error deletion of farm : " + farm.getFarmName(), e);
         } finally {
@@ -129,13 +129,13 @@ public class FarmDaoImpl implements FarmDao {
             Query query = session.createQuery("delete from Farm where account.id=:accountId");
             query.setParameter("accountId", accountId);
             int i = query.executeUpdate();
-            if (i > 0){
+            if (i > 0) {
                 flag = true;
             }
 
             session.flush();
             transaction.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             PlantingProfitLogger.error("Error deletion of farm for user id  : " + accountId, e);
             flag = false;
@@ -165,7 +165,7 @@ public class FarmDaoImpl implements FarmDao {
 
             session.flush();
             transaction.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             PlantingProfitLogger.error("Error deletion of farms with ids : " + farmIdsString, e);
             flag = false;
@@ -189,7 +189,7 @@ public class FarmDaoImpl implements FarmDao {
             session.flush();
             transaction.commit();
             flag = true;
-        } catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             PlantingProfitLogger.error("Error while updating farm : " + farm.getFarmName(), e);
             flag = false;
@@ -231,12 +231,12 @@ public class FarmDaoImpl implements FarmDao {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
         List<Farm> farmList = new ArrayList<>();
-        try{
+        try {
             transaction.begin();
             Query query = session.createQuery("from Farm where account.id=:userId");
             query.setParameter("userId", userId);
             List list = query.list();
-            if(list != null && !list.isEmpty()){
+            if (list != null && !list.isEmpty()) {
                 farmList.addAll(list);
                 for (Farm farm : farmList) {
                     initializeLazy(farm);
@@ -253,7 +253,7 @@ public class FarmDaoImpl implements FarmDao {
         return farmList;
     }
 
-    private void initializeLazy(Farm farm){
+    private void initializeLazy(Farm farm) {
 //        if(farm.getFarmInfoList().size() != 0)
 //            Hibernate.initialize(farm.getFarmInfoList());
 //        if(farm.getFarmCustomStrategy().size() != 0)

@@ -7,18 +7,18 @@ import com.decipher.view.form.farmDetails.FieldInfoView;
 
 public class FieldInfoViewComperatorASCOrder implements Comparator<FieldInfoView> {
 
-	@Override
-	public int compare(FieldInfoView o1, FieldInfoView o2) {
-		if (Long.parseLong(AgricultureStandardUtils.removeAllCommas(o1.getFieldSize())) == Long
-				.parseLong(AgricultureStandardUtils
-						.removeAllCommas(o2.getFieldSize())))
-			return 0;
-		else if (Long.parseLong(AgricultureStandardUtils
-				.removeAllCommas(o1.getFieldSize())) < Long
-				.parseLong(AgricultureStandardUtils
-						.removeAllCommas(o2.getFieldSize())))
-			return 1;
-		else
-			return -1;
-	}
+    @Override
+    public int compare(FieldInfoView o1, FieldInfoView o2) {
+        if (Long.parseLong(AgricultureStandardUtils.removeAllCommas(o1.getFieldSize())) == Long
+                .parseLong(AgricultureStandardUtils
+                        .removeAllCommas(o2.getFieldSize())))
+            return 0;
+        else if (Long.parseLong(AgricultureStandardUtils
+                .removeAllCommas(o1.getFieldSize())) < Long
+                .parseLong(AgricultureStandardUtils
+                        .removeAllCommas(o2.getFieldSize())))
+            return 1;
+        else
+            return -1;
+    }
 }

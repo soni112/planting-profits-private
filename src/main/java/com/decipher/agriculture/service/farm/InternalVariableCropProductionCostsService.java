@@ -5,16 +5,15 @@ import java.util.Set;
 import com.decipher.agriculture.data.farm.InternalVariableCropProductionCosts;
 import com.decipher.view.form.farmDetails.InternalVariableCropProductionCostsView;
 
-public interface InternalVariableCropProductionCostsService
-{
-	int save(InternalVariableCropProductionCosts productionCosts);
+public interface InternalVariableCropProductionCostsService {
+    int save(InternalVariableCropProductionCosts productionCosts);
 
-	boolean update(InternalVariableCropProductionCosts productionCosts);
+    boolean update(InternalVariableCropProductionCosts productionCosts);
 
-	boolean deleteById(int id);
+    boolean deleteById(int id);
 
-	boolean saveList(
+    boolean saveList(
             Set<InternalVariableCropProductionCosts> productionCostsList);
 
-	InternalVariableCropProductionCostsView getCropProductionCostById(int id);
+    InternalVariableCropProductionCostsView getCropProductionCostById(int id);
 }

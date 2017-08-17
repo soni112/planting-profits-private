@@ -401,10 +401,15 @@ public class ScenarioServiceImpl implements ScenarioService {
                             double valueToChange;
 
                             valueToChange = (costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() * farmStrategyScenarioCropSpecific.getProdCost()) / 100;
-                            costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() - valueToChange))));
 
-//                            cropTypeView.setVarProductionCost(Double.parseDouble(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange))));
-                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
+//                            if (farmStrategyScenarioCropSpecific.getProdCost() < 0) {
+//                                costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() - valueToChange))));
+//                                cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() - valueToChange)));
+//                            } else {
+                                costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() + valueToChange))));
+                                cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
+//                            }
+//                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
                             cropTypeView.getCropType().setCostsCropProductionCosts(costsCropProductionCosts);
 
                             changeFlag = true;
@@ -482,11 +487,11 @@ public class ScenarioServiceImpl implements ScenarioService {
                         valueToChange = Double.parseDouble(decimalFormatter.format(valueToChange));
 
 //                        if (globalCropProdCost < 0) {
-//                            costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() - valueToChange))));
-//                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() - valueToChange)));
+//                            costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() + valueToChange))));
+//                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
 //                        } else {
-                        costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() - valueToChange))));
-                        cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
+                            costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal(Double.parseDouble(decimalFormatter.format(costsCropProductionCosts.getCalculatedVariableProductionCost().doubleValue() + valueToChange))));
+                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
 //                        }
 
                         cropTypeView.getCropType().setCostsCropProductionCosts(costsCropProductionCosts);
@@ -529,17 +534,10 @@ public class ScenarioServiceImpl implements ScenarioService {
 
 
         OutputBeanForStrategy outputBeanForStrategy = new OutputBeanForStrategy();
-        /**
-         * Changed - Abhishek
-         * @date - 11-01-2016
-         * @desc - getting strategyID from object instead of direct strategyID
-         */
-        /*outputBeanForStrategy.setStrategyID(strategyDataBean.getStrategyId());*/
         outputBeanForStrategy.setStrategyID(strategyDataBean.getFarmCustomStrategyView().getId());
         outputBeanForStrategy.setSaveFlag(false);
         outputBeanForStrategy.setBaselineFlag(false);
         outputBeanForStrategy.setSensitivityFlag(true);
-//        outputBeanForStrategy.setFarmInfo(farmInfoService.getFarmInfoByIdForUpdate(strategyDataBean.getFarmInfoView().getId()));
         outputBeanForStrategy.setFarmInfo(strategyDataBean.getFarmInfoView().getFarmInfo());
         outputBeanForStrategy.setCropTypeList(strategyDataBean.getCropTypeList());
         outputBeanForStrategy.setResourceUsageViews(strategyDataBean.getResourceUsageViewsList());
