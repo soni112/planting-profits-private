@@ -11,10 +11,12 @@
     <div class="container">
         <div class="row ">
             <!---- Blog List ----->
-            <div class="jumbotron text-center" style="padding: 0">
-                <h1>Planting Profits Training</h1>
-            </div>
+
             <div class="col-lg-8 col-sm-8 col-md-8">
+                <div class="jumbotron text-left" style="padding: 0">
+                    <h1>Training</h1>
+                </div>
+                <div class="clearfix"></div>
                 <div class="tutorial-single-content">
                     <!-- POST -->
                     <div class="tutorial-pg tutorial-single">

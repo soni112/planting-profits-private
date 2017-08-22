@@ -151,6 +151,30 @@ public class ViewController {
 		return "license-agreement";
 	}
 
+	@RequestMapping(value = "/learning-center.htm", method = {RequestMethod.GET})
+	public String getLearningCenter(){
+
+		return "learning-center";
+	}
+
+	@RequestMapping(value = "/consultant-corner.htm", method = {RequestMethod.GET})
+	public String getConsultantCorner(){
+
+		return "consultant-corner";
+	}
+
+	@RequestMapping(value = "/farm-data.htm", method = {RequestMethod.GET})
+	public String getFarmData(){
+
+		return "farm-data";
+	}
+
+	@RequestMapping(value = "/contact.htm", method = {RequestMethod.GET})
+	public String getContact(){
+
+		return "contact";
+	}
+
 	@RequestMapping(value = "/error.htm", method = {RequestMethod.GET})
 	public String getErrorpage(){
 
