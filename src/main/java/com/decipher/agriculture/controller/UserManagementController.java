@@ -101,10 +101,19 @@ public class UserManagementController {
             account.setMailing_Address_Zip(mailing_Zip);
 
 
-            account.setPhysical_Address_Country(accountService.getCountry(Integer.parseInt(physical_Address_Country)));
-            account.setPhysical_Address_State(accountService.getState(Integer.parseInt(physical_Address_State)));
-            account.setMailing_Address_Country(accountService.getCountry(Integer.parseInt(mailing_Address_Country)));
-            account.setMailing_Address_State(accountService.getState(Integer.parseInt(mailing_Address_State)));
+//            account.setPhysical_Address_Country(physical_Address_Country.equals("") ? null : accountService.getCountry(Integer.parseInt(physical_Address_Country)));
+//            account.setPhysical_Address_State(physical_Address_State.equals("") ? null : accountService.getState(Integer.parseInt(physical_Address_State)));
+//            account.setMailing_Address_Country(mailing_Address_Country.equals("") ? null : accountService.getCountry(Integer.parseInt(mailing_Address_Country)));
+//            account.setMailing_Address_State(mailing_Address_State.equals("") ? null : accountService.getState(Integer.parseInt(mailing_Address_State)));
+
+            if(!physical_Address_Country.equalsIgnoreCase(""))
+                account.setPhysical_Address_Country(accountService.getCountry(Integer.parseInt(physical_Address_Country)));
+            if(!physical_Address_State.equalsIgnoreCase(""))
+                account.setPhysical_Address_State(accountService.getState(Integer.parseInt(physical_Address_State)));
+            if(!mailing_Address_Country.equalsIgnoreCase(""))
+                account.setMailing_Address_Country(accountService.getCountry(Integer.parseInt(mailing_Address_Country)));
+            if(!mailing_Address_State.equalsIgnoreCase(""))
+                account.setMailing_Address_State(accountService.getState(Integer.parseInt(mailing_Address_State)));
 
             /**
              * @added - Abhishek
