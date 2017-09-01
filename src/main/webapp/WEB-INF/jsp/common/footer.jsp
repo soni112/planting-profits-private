@@ -3,16 +3,6 @@
 	<div class="ftr">
 		<div class="wrap clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-				<!-- Code commented as per clients requirement
-By Harshit Gupta
-01-04-2015
-Start
- -->
-				<!-- <div class="text-center">
-<p class="mid">If you are a mid to large size producer with some flexibility in your rotations, 
-give us a call or send us an email.</p>
-</div> -->
-
 				<!-- END -->
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
 					<a href="<c:url value="/learning-center.htm"/>" target="_blank">

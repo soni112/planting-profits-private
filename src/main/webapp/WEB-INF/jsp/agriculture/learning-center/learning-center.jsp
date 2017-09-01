@@ -16,9 +16,18 @@
                 <div class="col-md-12 col-sm-12 text-center">
                     <h3 class="text-white uppercase">Learning Center</h3>
                         <ul class="list-unstyled text-white text-left" style="font-size: 20px;margin-left: 40%">
-                            <li><i class="fa fa-check text-white"></i> Trainig</li>
-                            <li><i class="fa fa-check text-white"></i> Farm Data Worksheets</li>
-                            <li><i class="fa fa-check text-white"></i> Production Planing Procedure</li>
+                            <li>
+                                <i class="fa fa-check text-white"></i>
+                                <a href="<c:url value="/training.htm"/>" class="remove-text-deco" target="_blank">Training</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-white"></i>
+                                <a href="<c:url value="/documents/Planting%20Profits%20Data%20Collection%20Worksheet.zip"/>" class="remove-text-deco" target="_blank">Farm Data Worksheets</a></li>
+                            <li>
+                                <i class="fa fa-check text-white"></i>
+                                <a href="javascript:;" onclick="$('#view-planning-process-popup').show();"
+                                   class="remove-text-deco">Production Planing Procedure</a>
+                            </li>
                         </ul>
                 </div><!-- /.col-12 -->
             </div><!-- /.row -->
@@ -450,6 +459,28 @@
         </div><!-- /.container -->
     </article>
 </section>
+
+<div id="view-planning-process-popup" class="pop-up" style="display: none; z-index: 1999;">
+    <div class="pop-up-body" style="width: 70%;left: 15%; top: 12%;">
+        <!-- Planning Form -->
+        <div class="popup_section">
+            <img onclick="$('#view-planning-process-popup').hide();" src="<c:url value="/images/cross.png"/> " class="img-close">
+            <div class="popupform" style="padding: 0 0;">
+                <div class="panel">
+                    <div class="panel-heading text-center" style="padding: 0 0;">
+                        <h2 class="popupheader">Production Planning Process</h2>
+                    </div>
+
+                    <div class="panel-body" style="display: block">
+                        <img src="<c:url value="/images/production_planning/Planting%20Profits%20Planning%20Process.jpg"/>"
+                             style="width: 100%;"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
