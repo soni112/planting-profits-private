@@ -3,19 +3,29 @@
 	<div class="ftr">
 		<div class="wrap clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-				<!-- Code commented as per clients requirement
-By Harshit Gupta
-01-04-2015
-Start
- -->
-				<!-- <div class="text-center">
-<p class="mid">If you are a mid to large size producer with some flexibility in your rotations, 
-give us a call or send us an email.</p>
-</div> -->
-
 				<!-- END -->
-				<div class="pull-left cons col-lg-2 col-md-2 col-sm-2">
-					<h4 class="const">Learning Center</h4>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
+					<a href="<c:url value="/learning-center.htm"/>" target="_blank">
+						<h4 class="ftr-title-bg">Learning Center</h4>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
+					<a href="<c:url value="/consultant-corner.htm"/>" target="_blank">
+						<h4 class="ftr-title-bg" style="padding-top: 21.5%;">Consultant's Corner</h4>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
+					<a href="<c:url value="/farm-data.htm"/>" target="_blank">
+						<h4 class="ftr-title-bg">Farm Data</h4>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
+					<a href="<c:url value="/contact.htm"/>" target="_blank">
+						<h4 class="ftr-title-bg">Contact</h4>
+					</a>
+				</div>
+				<%--<div class="pull-left cons col-lg-2 col-md-2 col-sm-2">
+					<a href=""><h4 class="const">Learning Center</h4></a>
 					<ul class="list-unstyled">
 						<li>- <a href="<c:url value="/documents/Planting%20Profits%20Data%20Collection%20Worksheet.zip"/>"
 								 class="remove-text-deco"
@@ -29,7 +39,7 @@ give us a call or send us an email.</p>
 				</div>
 
 				<div class="pull-left cons col-lg-3 col-md-3 col-sm-3">
-					<h4 class="const">Consultant's Corner</h4>
+					<a href=""><h4 class="const">Consultant's Corner</h4></a>
 					<ul class="list-unstyled">
 						<li>- Video/chat for online consulting</li>
 						<li>- Find a consultant</li>
@@ -60,7 +70,7 @@ give us a call or send us an email.</p>
 					<div class="text-left">
 						<i class="fa fa-mobile-phone"></i> 970.420.1656
 					</div>
-				</div>
+				</div>--%>
 			</div>
 		</div>
 	</div>

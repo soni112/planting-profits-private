@@ -1,7 +1,9 @@
 package com.decipher.config;
 
 import com.decipher.util.PlantingProfitLogger;
+import com.decipher.util.listner.SpringApplicationContextListener;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 
 /**
  * Created on 26/7/17 5:33 PM by Abhishek Samuel
@@ -308,5 +310,10 @@ public class ApplicationConfig {
     @Value("${minimumIdleTime}")
     public void setMinimumIdleTime(String minimumIdleTime) {
         ApplicationConfig.minimumIdleTime = minimumIdleTime;
+    }
+
+
+    public static ApplicationContext getApplicationContext(){
+        return SpringApplicationContextListener.getApplicationContext();
     }
 }

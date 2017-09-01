@@ -135,29 +135,6 @@
 </div>
 <!-- Popup Div Ends Here -->
 
-<div style="display: none; z-index: 999;" id="view-planning-process-popup" class="pop-up">
-    <div class="pop-up-body" style="width: 70%;left: 15%; top: 12%;">
-        <!-- Planning Form -->
-        <div class="popup_section">
-            <img onclick="$('#view-planning-process-popup').hide();" src="<c:url value="/images/cross.png"/> " class="img-close">
-            <div class="popupform" style="padding: 0 0;">
-                <div class="panel">
-                    <div class="panel-heading text-center" style="padding: 0 0;">
-                        <h2 class="popupheader">Production Planning Process</h2>
-                    </div>
-
-                    <div class="panel-body" style="display: block">
-                        <img src="<c:url value="/images/production_planning/Planting%20Profits%20Planning%20Process.jpg"/>"
-                        style="width: 100%;"/>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <!-- Google Analytics code for local website -->
 <%--<script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

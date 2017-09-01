@@ -215,7 +215,8 @@ navbar {
 }
 
 .ftr {
-    background: #8a8370;
+    /*background: #8a8370;*/
+    background: #c1b79d;
 }
 
 .ftbottom {
@@ -4293,4 +4294,19 @@ input.cvvNumber:hover{
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
+}
+.ftr-title-bg{
+    background-color: #55493D;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    color: #fbd176;
+    position: relative;
+    margin-top: 4%;
+    padding-top: 24.5%;
+}
+.ftr-pl{
+    padding-left: 7%;
 }
