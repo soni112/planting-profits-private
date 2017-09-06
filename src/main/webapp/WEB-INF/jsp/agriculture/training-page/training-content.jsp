@@ -205,7 +205,22 @@
                         </a>
                     </div>
                     <!-- END / Training Video 4B     -->
-
+                    <!-- Training Video 5 -->
+                    <div class="about-author">
+                        <a href="#" onclick="switchVideo(this); return false;"
+                           data-link="http://plantingprofits.com:82/module5.mp4">
+                            <div class="image-thumb fl">
+                                <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 4 - Entering Farm Information and Generating a Baseline Strategy">
+                            </div>
+                            <div class="author-info">
+                                <h5 class="">Module 5</h5>
+                                <div class="author-content">
+                                    <p>Compare Strategies and Select The Best Strategy</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- END / Training Video 5     -->
                 </aside>
             </div>
             <!-- END / SIDEBAR -->
