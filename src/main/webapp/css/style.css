@@ -217,6 +217,7 @@ navbar {
 .ftr {
     /*background: #8a8370;*/
     background: #c1b79d;
+    padding: 1% 0%;
 }
 
 .ftbottom {
@@ -4073,6 +4074,22 @@ sup {
 /* Contribution Page */
 .contribute-bg {
     background-image: url(../images/contribution/bg.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
+.learning-bg {
+    background-image: url(../images/LearningCenter.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
+.consultant-bg {
+    background-image: url(../images/Handshake.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center center;
