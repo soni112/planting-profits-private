@@ -302,9 +302,9 @@ public class SectionOnePDFGenerator {
 						+ ": $"+ formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)
 						+ " of gross income per $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL));
 			} else {
-				resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
+				/*resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
 						+ ": $" + formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)
-						+ " of gross income per " + resourceUsage.get("uom") + "\n", ReportTemplate.TIMESROMAN_10_NORMAL));
+						+ " of gross income per " + resourceUsage.get("uom") + "\n", ReportTemplate.TIMESROMAN_10_NORMAL));*/
 			}
 
 			resourceParagraph.add(ReportTemplate.getNewLineChunk());
