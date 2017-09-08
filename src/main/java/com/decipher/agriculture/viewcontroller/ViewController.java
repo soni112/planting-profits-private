@@ -188,4 +188,11 @@ public class ViewController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/review.htm", method = {RequestMethod.GET})
+	public ModelAndView getReview(){
+		ModelAndView modelAndView = new ModelAndView("review");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
 }
