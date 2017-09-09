@@ -81,8 +81,8 @@
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/contact/contact.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
 	</definition>
-	<definition name="review" extends="defaultTemplate">
-		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/review/review.jsp"/>
+	<definition name="report-issue" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/report-issue/report-issue.jsp"/>
 		<!--<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />-->
 	</definition>
 

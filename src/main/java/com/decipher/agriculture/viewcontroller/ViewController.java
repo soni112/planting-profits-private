@@ -188,10 +188,13 @@ public class ViewController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/review.htm", method = {RequestMethod.GET})
+	@RequestMapping(value = "/report-issue.htm", method = {RequestMethod.GET})
 	public ModelAndView getReview(){
-		ModelAndView modelAndView = new ModelAndView("review");
-		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		ModelAndView modelAndView = new ModelAndView("report-issue");
+
+		List<UserCountry> allCountriesList = accountService.getAllCountriesList();
+		modelAndView.addObject("countryAndCodes", allCountriesList);
+
 		return modelAndView;
 	}
 

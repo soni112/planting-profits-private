@@ -49,30 +49,6 @@ public class UserRedirectController {
 
     }
 
-    @Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
-    @RequestMapping(value = "/management.htm", method = RequestMethod.GET)
-    public ModelAndView userManagement(){
-
-        httpSession.removeAttribute("growerId");
-
-        Map<String, Object> model = new HashMap<String, Object>();
-
-//        Locale[] locales = Locale.getAvailableLocales();
-//        Map<String, String> countryAndCodes = new TreeMap<String, String>();
-//        for (Locale locale : locales){
-//            countryAndCodes.put(locale.getDisplayCountry(), locale.getCountry());
-//        }
-//        model.put("countryAndCodes", countryAndCodes);
-
-        List<UserCountry> allCountriesList = accountService.getAllCountriesList();
-        model.put("countryAndCodes", allCountriesList);
-
-        model.put("currentUser", accountService.getCurrentUser());
-//        model.put("userRole", accountService.getCurrentUser().getRole());
-
-        return new ModelAndView("user-management", "model", model);
-    }
-
 
     /*@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER", "ROLE_STUDENT"})
     @RequestMapping(value = "/farmInterceptor", method = RequestMethod.GET)
