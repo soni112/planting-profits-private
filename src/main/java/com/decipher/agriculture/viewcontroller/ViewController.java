@@ -3,11 +3,13 @@ package com.decipher.agriculture.viewcontroller;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.config.StripeUtils;
 import com.decipher.util.PlantingProfitLogger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +29,9 @@ public class ViewController {
 
 	@Autowired
 	private SessionService sessionService;
+
+	@Autowired
+	private HttpSession httpSession;
 
 	@RequestMapping(value = "/home.htm", headers = "Accept=*/*")
 	public ModelAndView homePage(@RequestParam(value = "err", required = false) String error,
@@ -196,6 +201,24 @@ public class ViewController {
 		modelAndView.addObject("countryAndCodes", allCountriesList);
 
 		return modelAndView;
+	}
+
+
+
+	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
+	@RequestMapping(value = "/management.htm", method = RequestMethod.GET)
+	public ModelAndView userManagement(){
+
+		httpSession.removeAttribute("growerId");
+
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		List<UserCountry> allCountriesList = accountService.getAllCountriesList();
+		model.put("countryAndCodes", allCountriesList);
+
+		model.put("currentUser", accountService.getCurrentUser());
+
+		return new ModelAndView("user-management", "model", model);
 	}
 
 }
