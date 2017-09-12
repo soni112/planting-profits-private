@@ -46,21 +46,7 @@ public class UserManagementController {
     @Autowired
     private AccountService accountService;
 
-    @Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
-    @RequestMapping(value = "/management.htm", method = RequestMethod.GET)
-    public ModelAndView userManagement(){
 
-        httpSession.removeAttribute("growerId");
-
-        Map<String, Object> model = new HashMap<String, Object>();
-
-        List<UserCountry> allCountriesList = accountService.getAllCountriesList();
-        model.put("countryAndCodes", allCountriesList);
-
-        model.put("currentUser", accountService.getCurrentUser());
-
-        return new ModelAndView("user-management", "model", model);
-    }
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public @ResponseBody JsonResponse addUser(@RequestParam(value = "accountType", required = true) String accountType,
