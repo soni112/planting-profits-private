@@ -188,4 +188,14 @@ public class ViewController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/report-issue.htm", method = {RequestMethod.GET})
+	public ModelAndView getReview(){
+		ModelAndView modelAndView = new ModelAndView("report-issue");
+
+		List<UserCountry> allCountriesList = accountService.getAllCountriesList();
+		modelAndView.addObject("countryAndCodes", allCountriesList);
+
+		return modelAndView;
+	}
+
 }
