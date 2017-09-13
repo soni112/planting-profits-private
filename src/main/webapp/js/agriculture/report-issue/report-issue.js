@@ -7,7 +7,7 @@
  */
 
 $(function (){
-
+    $("#header-user-nav").hide();
 });
 
 function validateIssueForm(obj) {
