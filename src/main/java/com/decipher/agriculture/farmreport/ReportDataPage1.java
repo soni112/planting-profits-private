@@ -294,44 +294,48 @@ public class ReportDataPage1 {
          */
         Map<String, String> cropResourceUsed = ((Map<String, String>) baseSelectedOutpuDetailsJsonObject.get("cropResourceUsed"));
 //            cropUsedAndUnusedArray[0][k] = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsed.getValue()));
-            Double totalResource = 0.0;
-            if(cropResourceUsed.containsKey("Land")){
+        Double totalResource = 0.0;
 
-                for (CropResourceUsageView cropResourceUsageView : resourceList) {
-                    if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("Land")) {
-                        totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0": cropResourceUsageView.getCropResourceUseAmount()));
-                    }
+        if(cropResourceUsed.containsKey("Land")){
+
+            for (CropResourceUsageView cropResourceUsageView : resourceList) {
+                if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("Land")) {
+                    totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0": cropResourceUsageView.getCropResourceUseAmount()));
                 }
-                totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsed.get("Land"))) * 100) / totalResource;
-                totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
-
-                dataset.addValue(totalResource, "Used", "% " + "Land");
-            }if(cropResourceUsed.containsKey("Capital")){
-
-                for (CropResourceUsageView cropResourceUsageView : resourceList) {
-                    if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("Capital")) {
-                        totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0": cropResourceUsageView.getCropResourceUseAmount()));
-                    }
-                }
-                totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsed.get("Capital"))) * 100) / totalResource;
-                totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
-
-                dataset.addValue(totalResource, "Used", "% " + "Capital");
             }
 
-                for (Map.Entry<String, String> cropResources : ((Map<String, String>) baseSelectedOutpuDetailsJsonObject.get("cropResourceUsed")).entrySet()) {
-                    if (!cropResources.getKey().equalsIgnoreCase("Land") && !cropResources.getKey().equalsIgnoreCase("Capital")) {
+            totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint((Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsed.get("Land"))) * 100) / totalResource);
+            dataset.addValue(totalResource, "Used", "% " + "Land");
+        } if(cropResourceUsed.containsKey("Capital")){
 
-                        for (CropResourceUsageView cropResourceUsageView : resourceList) {
-                            if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase(cropResources.getKey())) {
-                                totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0" : cropResourceUsageView.getCropResourceUseAmount()));
-                            }
-                        }
-                        totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResources.getValue())) * 100) / totalResource;
-                        totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
-                        dataset.addValue(totalResource, "Used", "% " + cropResources.getKey().substring(0, 5) + "...");
+            for (CropResourceUsageView cropResourceUsageView : resourceList) {
+                if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("Capital")) {
+                    totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0": cropResourceUsageView.getCropResourceUseAmount()));
+                }
+            }
+
+            totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsed.get("Capital"))) * 100) / totalResource;
+            totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
+
+            dataset.addValue(totalResource, "Used", "% " + "Capital");
+        }
+
+        for (Map.Entry<String, String> cropResources : ((Map<String, String>) baseSelectedOutpuDetailsJsonObject.get("cropResourceUsed")).entrySet()) {
+            if (!cropResources.getKey().equalsIgnoreCase("Land") && !cropResources.getKey().equalsIgnoreCase("Capital")) {
+                boolean flag = true;
+                for (CropResourceUsageView cropResourceUsageView : resourceList) {
+                    if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase(cropResources.getKey())) {
+                        flag = cropResourceUsageView.isActive();
+                        totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0" : cropResourceUsageView.getCropResourceUseAmount()));
                     }
                 }
+                if (flag) {
+                    totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResources.getValue())) * 100) / totalResource;
+                    totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
+                    dataset.addValue(totalResource, "Used", "% " + cropResources.getKey().substring(0, 5) + "...");
+                }
+            }
+        }
 
 
 
@@ -367,21 +371,25 @@ public class ReportDataPage1 {
             dataset.addValue(totalResource, "Unused", "% " + "Capital");
         }
 
-            for (Map.Entry<String, String> cropResourceUnused : ((Map<String, String>) baseSelectedOutpuDetailsJsonObject.get("cropResourceUnused")).entrySet()) {
+        for (Map.Entry<String, String> cropResourceUnused : ((Map<String, String>) baseSelectedOutpuDetailsJsonObject.get("cropResourceUnused")).entrySet()) {
 //            cropUsedAndUnusedArray[1][k] = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.getValue()));
-                //Double totalResource = 0.0;
-                if (!cropResourceUnused.getKey().equalsIgnoreCase("Land") && !cropResourceUnused.getKey().equalsIgnoreCase("Capital")) {
-                    for (CropResourceUsageView cropResourceUsageView : resourceList) {
-                        if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase(cropResourceUnused.getKey())) {
-                            totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0" : cropResourceUsageView.getCropResourceUseAmount()));
-                        }
+            //Double totalResource = 0.0;
+            if (!cropResourceUnused.getKey().equalsIgnoreCase("Land") && !cropResourceUnused.getKey().equalsIgnoreCase("Capital")) {
+                boolean flag = true;
+                for (CropResourceUsageView cropResourceUsageView : resourceList) {
+                    if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase(cropResourceUnused.getKey())) {
+                        flag = cropResourceUsageView.isActive();
+                        totalResource = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getCropResourceUseAmount().equalsIgnoreCase("") ? "0" : cropResourceUsageView.getCropResourceUseAmount()));
                     }
+                }
+                if (flag) {
                     totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.getValue())) * 100) / totalResource;
                     totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
                     dataset.addValue(totalResource, "Unused", "% " + cropResourceUnused.getKey().substring(0, 5) + "...");
-
                 }
+
             }
+        }
 
 
         /**
