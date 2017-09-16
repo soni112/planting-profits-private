@@ -4080,6 +4080,14 @@ sup {
     background-size: cover;
     overflow-x: hidden;
 }
+.contribute-bg-farm-data {
+    background-image: url(../images/contribution/bgfarmdata.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
 .learning-bg {
     background-image: url(../images/LearningCenter.jpg);
     background-attachment: fixed;

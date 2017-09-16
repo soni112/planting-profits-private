@@ -2,7 +2,7 @@
  * Created by abhishek on 15/9/16.
  */
 $(function () {
-    $('body').addClass('contribute-bg');
+
     $('#header-user-nav').hide();
     $('#header-donation-button').hide();
 
