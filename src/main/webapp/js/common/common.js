@@ -713,7 +713,9 @@ function getStatesForCountry(container, target){
 		countryId = $(container).find('.physical-address-country').val();
 	} else if(typeof target != "undefined" && target == "mailing"){
 		countryId = $(container).find('.mailing-address-country').val();
-	} else {
+	} else if(typeof target != "undefined" && target == "issue"){
+        countryId = $(container).find('select[name="country"]').val();
+    } else {
 		return;
 	}
 
@@ -739,7 +741,9 @@ function getStatesForCountry(container, target){
 						$(container).find('.physical-address-state').html(html);
 					} else if (typeof target != "undefined" && target == "mailing") {
 						$(container).find('.mailing-address-state').html(html);
-					}
+					} else if(typeof target != "undefined" && target == "issue"){
+                        $(container).find('select[name="state"]').html(html);
+                    }
 
 				}
 			},

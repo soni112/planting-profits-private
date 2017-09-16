@@ -1,5 +1,11 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
+
 <footer>
+	<div class="reportIssue">
+		<a href="<c:url value="/report-issue.htm"/>" data-toggle="tooltip" data-placement="right" title="Report an Issue">
+			<i class="fa fa-flag"></i>
+		</a>
+	</div>
 	<div class="ftr">
 		<div class="wrap clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12">
@@ -93,3 +99,4 @@
 		</div>
 	</div>
 </footer>
+

@@ -42,7 +42,11 @@ import java.util.Set;
 public class UserManagementController {
 
     @Autowired
+    private HttpSession httpSession;
+    @Autowired
     private AccountService accountService;
+
+
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public @ResponseBody JsonResponse addUser(@RequestParam(value = "accountType", required = true) String accountType,
