@@ -10,7 +10,7 @@ import com.decipher.agriculture.service.account.AccountService;
 import com.decipher.config.ApplicationConfig;
 import com.decipher.util.CryptographyUtils;
 import com.decipher.util.PlantingProfitLogger;
-import com.decipher.util.email.SendEmail;
+import com.decipher.agriculture.service.email.EmailService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
@@ -39,6 +39,9 @@ public class AccountServiceImpl implements AccountService {
 	private AccountDao accountDAO;
 	@Autowired
 	private HttpSession httpSession;
+
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public Account getCurrentUser() {
@@ -204,7 +207,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public boolean sendRegistrationMail(Account account, String pwd) {
+	public void sendRegistrationMail(Account account, String pwd) {
 		String encodedEmail = CryptographyUtils.encryptData(account.getEmail_Address());
 		String applicationID = ApplicationConfig.getAppUrl();
 		String linkTxt = "<a  target=\"_blank\" href=\"" + applicationID
@@ -222,7 +225,7 @@ public class AccountServiceImpl implements AccountService {
 				+ "</b><br/><br/>Please click on below link to activate your account :<br/>"
 				+ linkTxt + "<br><br><br>Regards" + " :  "
 				+ "Planting Profit Application Service Team ";
-		return SendEmail.sendEmail(account.getEmail_Address(), "Planting Profit Verification", msgText);
+		emailService.sendEmail(account.getEmail_Address(), "Planting Profit Verification", msgText);
 	}
 
 	@Override
