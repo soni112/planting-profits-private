@@ -461,3 +461,8 @@
 <script type="text/javascript" src="<c:url value="/js/plugins/input-mask/jquery.inputmask.bundle.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/plugins/pay-easyResponsiveTabs.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/agriculture/contribution-payment/contribution-payment.js?v=0.1"/>"></script>
+<script>
+    $(function () {
+        $('body').addClass('contribute-bg');
+    })
+</script>
