@@ -37,6 +37,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center margin-top-1">
                     <h3 style="color: #fff"><em>Space for future messages / ads / etc.</em></h3>
+                    <button class="btn-contribute" onclick="window.location = '<c:url value="/farm.htm"/>'">Back to application</button>
                 </div><!-- /.col-12 -->
 
             </div><!-- /.row -->
@@ -45,9 +46,9 @@
     </di><!--- col-lg-12 ---->
 </section>
 
-
 <script>
     $(function(){
         $('body').addClass('consultant-bg')
     })
 </script>
+<script type="text/javascript" src="<c:url value="/js/agriculture/contribution-payment/contribution-payment.js?v=0.1"/>"></script>
