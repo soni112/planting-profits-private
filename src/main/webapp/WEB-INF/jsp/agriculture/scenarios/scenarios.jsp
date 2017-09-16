@@ -280,8 +280,7 @@ Date 24-11-2015
                                             <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none tabcontaint">
                                                 <div class="sec_mrgn_bottom pull-right" id="cropSpecifcIndicator"
                                                      style="display:none">
-                                                    <label class="resource_label" style="color: darkred">Crop-Specific
-                                                        values previously entered</label>
+                                                    <label class="resource_label" style="color: darkred">Crop-specific values have been previously entered</label>
                                                 </div>
 
                                                 <div class="sec_mrgn_bottom">

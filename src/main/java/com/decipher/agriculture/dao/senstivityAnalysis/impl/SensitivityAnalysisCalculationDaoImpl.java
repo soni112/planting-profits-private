@@ -96,13 +96,18 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         List<CropBeanForOutput> cropBeanForOutputList = farmOutputCalculationDao.getCropBeanForCalculation(cropTypeList, resourceUsageViews);
         List<FieldInfoView> fieldInfoViews = fieldInfoService.getAllFieldsByFarmId(farmInfo.getId());
         Set<CropsGroup> cropsGroups = farmInfo.getCropsGroup();
+//        List<CropResourceUsageView> newResourceUsageViews = new ArrayList<>();
         if (resourceArray != null) {
-//			int resourceSize = resourceUsageViews.size();
             outer:
             for (String str : resourceArray) {
                 for (CropResourceUsageView resourceUsageView : resourceUsageViews) {
-                    if (str.split("#-#-#")[0].equals(resourceUsageView.getCropResourceUse())) {
+                    if("Working Capital".equals(str.split("#-#-#")[0]) && resourceUsageView.getCropResourceUse().equals("Capital")) {
                         resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
+//                        newResourceUsageViews.add(resourceUsageView);
+                        continue outer;
+                    } else if(str.split("#-#-#")[0].equals(resourceUsageView.getCropResourceUse())) {
+                        resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
+//                        newResourceUsageViews.add(resourceUsageView);
                         continue outer;
                     }
                 }
@@ -226,7 +231,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         Map<String, String> hashMapForProfit = (Map<String, String>) mapForCropsForField.get("hashMapForProfit");
 
         List<String[]> array = linearProgramingSolveDao.generateCombination(cropBeanForOutputList, cropsGroups, fieldInfoViews);
+//        Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutputList, newResourceUsageViews, cropsGroups, fieldInfoViews, array);
         Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutputList, resourceUsageViews, cropsGroups, fieldInfoViews, array);
+
         String[] bestCase = (String[]) map.get("Best_Case");
         Result bestResult = (Result) map.get("Best_Result");
         JSONArray jsonArray = new JSONArray();
@@ -422,15 +429,24 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         List<CropBeanForOutput> cropBeanForOutput = farmOutputCalculationDao.getCropBeanForCalculation(cropTypeList, resourceUsageViews);
         Set<CropsGroup> cropsGroups = farmInfo.getCropsGroup();
         if (resourceArray != null) {
-            int resourceSize = resourceUsageViews.size();
+            //int resourceSize = resourceUsageViews.size();
             outer:
             for (String str : resourceArray) {
-                for (int i = 0; i < resourceSize; i++) {
-                    if (str.split("#-#-#")[0].equals(resourceUsageViews.get(i).getCropResourceUse())) {
-                        resourceUsageViews.get(i).setCropResourceUseAmount(str.split("#-#-#")[1]);
+                for (CropResourceUsageView resourceUsageView : resourceUsageViews) {
+                    if("Working Capital".equals(str.split("#-#-#")[0]) && resourceUsageView.getCropResourceUse().equals("Capital")) {
+                        resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
+                        continue outer;
+                    } else if(str.split("#-#-#")[0].equals(resourceUsageView.getCropResourceUse())) {
+                        resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
                         continue outer;
                     }
                 }
+                /*for (int i = 0; i < resourceSize; i++) {
+                    if(str.split("#-#-#")[0].equals(resourceUsageViews.get(i).getCropResourceUse())){
+						resourceUsageViews.get(i).setCropResourceUseAmount(str.split("#-#-#")[1]);
+						continue outer;
+					}
+				}*/
             }
         }
         if (cropsArray != null) {

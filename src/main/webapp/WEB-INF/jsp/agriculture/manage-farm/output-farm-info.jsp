@@ -490,7 +490,7 @@
 													<c:forEach var="resourceList" items="${model.resourceList}">
 														<c:if test="${resourceList.isActive()}">
 															<c:choose>
-																<c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resourceList.cropResourceUse eq 'Land'}">
+																<%--<c:when test="${resourceList.cropResourceUse eq 'Land'}">
 																	<tr class="tblgrn line_no_break">
 																		<td class="success">${resourceList.cropResourceUse}</td>
 																		<td class="success">${resourceList.cropResourceUseAmount}</td>
@@ -500,8 +500,7 @@
 																											 onkeypress="return isValidNumberValueForWithOutDot(event)" />
 																		</td>
 																	</tr>
-																</c:when>
-
+																</c:when>--%>
 																<c:when test="${resourceList.cropResourceUse eq 'Capital'}">
 																	<tr class="tblgrn line_no_break">
 																		<td class="success">Working Capital</td>
@@ -513,7 +512,7 @@
 																		</td>
 																	</tr>
 																</c:when>
-																<c:when test="${resourceList.cropResourceUse ne 'Land'}">
+																<c:otherwise>
 																	<tr class="tblgrn line_no_break">
 																		<td class="success">${resourceList.cropResourceUse}</td>
 																		<td class="success">${resourceList.cropResourceUseAmount}</td>
@@ -523,7 +522,7 @@
 																											 onkeypress="return isValidNumberValueForWithOutDot(event)" />
 																		</td>
 																	</tr>
-																</c:when>
+																</c:otherwise>
 															</c:choose>
 														</c:if>
 													</c:forEach>

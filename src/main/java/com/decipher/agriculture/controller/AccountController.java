@@ -3,7 +3,6 @@ package com.decipher.agriculture.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.decipher.agriculture.data.account.UserState;
-import com.decipher.agriculture.service.util.HTTPService;
 import com.decipher.config.ApplicationConfig;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.NameValuePair;
@@ -21,7 +20,7 @@ import com.decipher.agriculture.service.account.AccountService;
 import com.decipher.util.CryptographyUtils;
 import com.decipher.util.JsonResponse;
 import com.decipher.util.PlantingProfitLogger;
-import com.decipher.util.email.SendEmail;
+import com.decipher.agriculture.service.email.EmailService;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
     @Autowired
-	private HTTPService httpService;
+	private EmailService emailService;
 
     @RequestMapping(value = "registerUser", method = RequestMethod.POST)
     public JsonResponse registerUser(
@@ -127,7 +126,7 @@ public class AccountController {
                     + "</b><br/><br/>Please "+ linkTxt + " to activate your account<br/>"
                     + "<br><br><br>Regards" + " :  "
                     + "Planting Profit Application Service Team ";
-            SendEmail.sendEmail(email, "Planting Profit Verification", msgText);
+            emailService.sendEmail(email, "Planting Profit Verification", msgText);
 
 
             PlantingProfitLogger.info("Sending request to Salesforce lead code");

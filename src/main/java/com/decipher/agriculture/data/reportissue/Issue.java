@@ -101,7 +101,7 @@ public class Issue implements Serializable {
     }
 
     public String getPhoneNo() {
-        return phoneNo;
+        return phoneNo == null ? "" : phoneNo;
     }
 
     public void setPhoneNo(String phoneNo) {

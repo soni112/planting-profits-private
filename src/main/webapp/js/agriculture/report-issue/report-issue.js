@@ -62,9 +62,8 @@ function createIssue(){
             data: data,
             success: function (response) {
                 if(response.status){
-                    customAlerts("Your issue is successfully submitted. Our team will contact you soon", 'success', 0);
-                    // target.reset();
-                    window.location.reload();
+                    customAlerts("Thanks you for your feedback", 'success', 0);
+                    target.find('input[type="reset"]').trigger('click');
                     hideLoadingImage();
                 }
             },
