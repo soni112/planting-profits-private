@@ -598,42 +598,43 @@ public class ScenarioServiceImpl implements ScenarioService {
 
         JSONObject jsonObject, jsonObject1;
 
+        if(!resourceUsed.isEmpty()) {
 
-        List<CropResourceUsageView> resourceUsageViewsList = strategyDataBean.getResourceUsageViewsList();
+            List<CropResourceUsageView> resourceUsageViewsList = strategyDataBean.getResourceUsageViewsList();
 
-        for (CropResourceUsageView cropResourceUsageView : resourceUsageViewsList) {
-            if (!cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")
-                    && !cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land") && cropResourceUsageView.isActive()) {
-                jsonObject = new JSONObject();
-                jsonObject1 = new JSONObject();
-                jsonObject.put("label", cropResourceUsageView.getCropResourceUse());
-                jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsed.get(cropResourceUsageView.getCropResourceUse()))));
-                jsonObject1.put("label", cropResourceUsageView.getCropResourceUse());
-                jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUnused.get(cropResourceUsageView.getCropResourceUse()))));
-                cropResourceUsed.add(jsonObject);
-                cropResourceUnused.add(jsonObject1);
+            for (CropResourceUsageView cropResourceUsageView : resourceUsageViewsList) {
+                if (!cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")
+                        && !cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land") && cropResourceUsageView.isActive()) {
+                    jsonObject = new JSONObject();
+                    jsonObject1 = new JSONObject();
+                    jsonObject.put("label", cropResourceUsageView.getCropResourceUse());
+                    jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsed.get(cropResourceUsageView.getCropResourceUse()))));
+                    jsonObject1.put("label", cropResourceUsageView.getCropResourceUse());
+                    jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUnused.get(cropResourceUsageView.getCropResourceUse()))));
+                    cropResourceUsed.add(jsonObject);
+                    cropResourceUnused.add(jsonObject1);
+                }
             }
+            jsonObject = new JSONObject();
+            jsonObject1 = new JSONObject();
+            jsonObject.put("label", "Working Capital");
+            jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsed.get("Capital"))));
+            jsonObject1.put("label", "Working Capital");
+            jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUnused.get("Capital"))));
+
+            cropResourceUsed.add(jsonObject);
+            cropResourceUnused.add(jsonObject1);
+
+            jsonObject = new JSONObject();
+            jsonObject1 = new JSONObject();
+            jsonObject.put("label", "Land");
+            jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsed.get("Land"))));
+            jsonObject1.put("label", "Land");
+            jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUnused.get("Land"))));
+
+            cropResourceUsed.add(jsonObject);
+            cropResourceUnused.add(jsonObject1);
         }
-        jsonObject = new JSONObject();
-        jsonObject1 = new JSONObject();
-        jsonObject.put("label", "Working Capital");
-        jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsed.get("Capital"))));
-        jsonObject1.put("label", "Working Capital");
-        jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUnused.get("Capital"))));
-
-        cropResourceUsed.add(jsonObject);
-        cropResourceUnused.add(jsonObject1);
-
-        jsonObject = new JSONObject();
-        jsonObject1 = new JSONObject();
-        jsonObject.put("label", "Land");
-        jsonObject.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsed.get("Land"))));
-        jsonObject1.put("label", "Land");
-        jsonObject1.put("y", Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUnused.get("Land"))));
-
-        cropResourceUsed.add(jsonObject);
-        cropResourceUnused.add(jsonObject1);
-
 //        JSONArray cropResourceUsed = new JSONArray();
 //        JSONArray cropResourceUnused = new JSONArray();
 //        for (Map.Entry<String, String> entry : map.get("cropResourceUsed").entrySet()) {
