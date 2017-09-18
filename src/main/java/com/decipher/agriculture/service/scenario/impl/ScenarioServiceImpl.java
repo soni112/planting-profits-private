@@ -603,7 +603,7 @@ public class ScenarioServiceImpl implements ScenarioService {
 
         for (CropResourceUsageView cropResourceUsageView : resourceUsageViewsList) {
             if (!cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")
-                    && !cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
+                    && !cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land") && cropResourceUsageView.isActive()) {
                 jsonObject = new JSONObject();
                 jsonObject1 = new JSONObject();
                 jsonObject.put("label", cropResourceUsageView.getCropResourceUse());
