@@ -13,6 +13,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
@@ -570,9 +571,17 @@ public class SectionTwoPDFGenerator {
 //        table.completeRow();
 
         List<JSONObject> strategiesDataForFarm = reportDataPage2.getStrategiesDataForFarm();
+        List<FarmStrategyScenarioView> farmStrategyScenarioViewList = reportDataPage2.getAllScenarios();
+        for (FarmStrategyScenarioView farmStrategyScenarioView : farmStrategyScenarioViewList) {
+            PdfPCell scenarioHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell(farmStrategyScenarioView.getScenarioName());
+            if (reportDataPage2.getTotalScenarioCount() !=0 ) {
+                scenarioHeaderCell.setRowspan(2);
+            }
+            table.addCell(scenarioHeaderCell);
+        }
 
 
-        for (JSONObject strategyDataJsonObject : strategiesDataForFarm) {
+        /*for (JSONObject strategyDataJsonObject : strategiesDataForFarm) {
             Map<FarmStrategyScenarioView, JSONObject> scenarioOutputMap = (Map<FarmStrategyScenarioView, JSONObject>) strategyDataJsonObject.get("scenarioDetails");
             Set<FarmStrategyScenarioView> farmStrategyScenarioViewSet = scenarioOutputMap.keySet();
 
@@ -586,18 +595,13 @@ public class SectionTwoPDFGenerator {
                     table.addCell(scenarioHeaderCell);
 
                 }
-            /**
-             * @changed - Abhishek
-             * @date - 20-01-2016
-             * @desc - removed bug while generating risk management table if scenario not present in strategies then the view was not clear
-             */
 //            } else {
 //                PdfPCell scenarioHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getBlankCell();
 //                scenarioHeaderCell.setRowspan(2);
 //                table.addCell(scenarioHeaderCell);
 //            }
 
-        }
+        }*/
 
         table.completeRow();
 
@@ -719,17 +723,20 @@ public class SectionTwoPDFGenerator {
                 table.addCell(blankPdfCell);
             }
 
-            Map<FarmStrategyScenarioView, JSONObject> scenarioOutputMap = (Map<FarmStrategyScenarioView, JSONObject>) strategyDataJsonObject.get("scenarioDetails");
-            Set<FarmStrategyScenarioView> farmStrategyScenarioViewSet = scenarioOutputMap.keySet();
-
-            for (FarmStrategyScenarioView farmStrategyScenarioView : farmStrategyScenarioViewSet) {
-
-                JSONObject scenarioOutputJsonObj = scenarioOutputMap.get(farmStrategyScenarioView);
-
-                PdfPCell scenarioCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + scenarioOutputJsonObj.get("potentialProfit").toString());
+            JSONArray scenarioDetails = reportDataPage2.getScenarioDetails(farmCustomStrategyView);
+            for (Object o : scenarioDetails) {
+                JSONObject jsonObject = (JSONObject) o;
+                PdfPCell scenarioCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(jsonObject.get("scenarioOutput").toString());
                 table.addCell(scenarioCell);
-
             }
+
+            /*JSONArray scenarioDetails = reportDataPage2.getScenarioDetails(farmCustomStrategyView.getId());
+
+            for (Object o : scenarioDetails) {
+                JSONObject jsonObject = (JSONObject) o;
+                PdfPCell scenarioCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(jsonObject.get("scenarioOutput").toString());
+                table.addCell(scenarioCell);
+            }*/
 
 //            /**
 //             * @changed - Abhishek

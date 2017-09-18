@@ -3,10 +3,13 @@ package com.decipher.agriculture.viewcontroller;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.decipher.agriculture.data.account.UserCountry;
+import com.decipher.config.StripeUtils;
 import com.decipher.util.PlantingProfitLogger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +29,9 @@ public class ViewController {
 
 	@Autowired
 	private SessionService sessionService;
+
+	@Autowired
+	private HttpSession httpSession;
 
 	@RequestMapping(value = "/home.htm", headers = "Accept=*/*")
 	public ModelAndView homePage(@RequestParam(value = "err", required = false) String error,
@@ -140,9 +146,10 @@ public class ViewController {
 	}
 
 	@RequestMapping(value = "/privacy-policy.htm", method = {RequestMethod.GET})
-	public String getPrivacyPolicyPage(){
-
-		return "privacy-policy";
+	public ModelAndView getPrivacyPolicyPage(){
+		ModelAndView modelAndView = new ModelAndView("privacy-policy");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/license-agreement.htm", method = {RequestMethod.GET})
@@ -151,10 +158,67 @@ public class ViewController {
 		return "license-agreement";
 	}
 
-	@RequestMapping(value = "/error.htm", method = {RequestMethod.GET})
-	public String getErrorpage(){
+	@RequestMapping(value = "/learning-center.htm", method = {RequestMethod.GET})
+	public ModelAndView getLearningCenter(){
+		ModelAndView modelAndView = new ModelAndView("learning-center");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
 
-		return "error";
+	@RequestMapping(value = "/consultant-corner.htm", method = {RequestMethod.GET})
+	public ModelAndView getConsultantCorner(){
+		ModelAndView modelAndView = new ModelAndView("consultant-corner");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/farm-data.htm", method = {RequestMethod.GET})
+	public ModelAndView getFarmData(){
+		ModelAndView modelAndView = new ModelAndView("farm-data");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/contact.htm", method = {RequestMethod.GET})
+	public ModelAndView getContact(){
+		ModelAndView modelAndView = new ModelAndView("contact");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/error.htm", method = {RequestMethod.GET})
+	public ModelAndView getErrorpage(){
+		ModelAndView modelAndView = new ModelAndView("error");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/report-issue.htm", method = {RequestMethod.GET})
+	public ModelAndView getReview(){
+		ModelAndView modelAndView = new ModelAndView("report-issue");
+
+		List<UserCountry> allCountriesList = accountService.getAllCountriesList();
+		modelAndView.addObject("countryAndCodes", allCountriesList);
+
+		return modelAndView;
+	}
+
+
+
+	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
+	@RequestMapping(value = "/management.htm", method = RequestMethod.GET)
+	public ModelAndView userManagement(){
+
+		httpSession.removeAttribute("growerId");
+
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		List<UserCountry> allCountriesList = accountService.getAllCountriesList();
+		model.put("countryAndCodes", allCountriesList);
+
+		model.put("currentUser", accountService.getCurrentUser());
+
+		return new ModelAndView("user-management", "model", model);
 	}
 
 }

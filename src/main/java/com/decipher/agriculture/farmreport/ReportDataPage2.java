@@ -6,17 +6,27 @@ package com.decipher.agriculture.farmreport;
  */
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.decipher.agriculture.data.farm.PlanByStrategy;
+import com.decipher.agriculture.service.farmDetails.FarmDetailsContainerService;
+import com.decipher.agriculture.service.scenario.ScenarioService;
+import com.decipher.agriculture.service.strategy.FarmCustomStrategyService;
+import com.decipher.config.ApplicationConfig;
 import com.decipher.view.form.farmDetails.CropResourceUsageView;
 import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
+import com.decipher.view.form.scenario.FarmStrategyScenarioView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
 import com.decipher.view.form.farmDetails.FarmInfoView;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.poi.util.ArrayUtil;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 @SuppressWarnings("unchecked")
@@ -105,6 +115,16 @@ public class ReportDataPage2 {
 		return totalScenarioCount;
 	}
 
+	public List<FarmStrategyScenarioView> getAllScenarios(){
+		FarmDetailsContainerService farmDetailsContainerService = ApplicationConfig.getApplicationContext().getBean(FarmDetailsContainerService.class);
+		Set<FarmCustomStrategyView> farmCustomStrategyViewSet = farmDetailsContainerService.getAllStrategiesForFarm(getFarmInfoView().getFarmInfo().getFarm());
+		List<FarmStrategyScenarioView> farmStrategyScenarioViewList = new ArrayList<>();
+		for (FarmCustomStrategyView customStrategyView : farmCustomStrategyViewSet) {
+			farmStrategyScenarioViewList.addAll(farmDetailsContainerService.getAllScenarioList(getFarmInfoView(), customStrategyView));
+		}
+
+		return farmStrategyScenarioViewList;
+	}
 
 	public Map<String, String> getRiskAndConservationAnalysis(JSONObject baseSelectedOutpuDetailsJsonObject) {
 
@@ -185,6 +205,22 @@ public class ReportDataPage2 {
 		riskAnalysisMap.put("incomeUnderRisk", formatter.format(incomeUnderRisk));
 
 		return riskAnalysisMap;
+	}
+
+	public JSONArray getScenarioDetails(FarmCustomStrategyView farmCustomStrategyView){
+		ScenarioService scenarioService = ApplicationConfig.getApplicationContext().getBean(ScenarioService.class);
+
+		List<FarmStrategyScenarioView> farmStrategyScenarioViewList = getAllScenarios();
+
+		JSONArray outputDetails = new JSONArray();
+		for (FarmStrategyScenarioView farmStrategyScenarioView : farmStrategyScenarioViewList) {
+			int[] ar = {farmCustomStrategyView.getId()};
+			JSONObject scenarioComparisonDetails = scenarioService.getScenarioComparisonDetails(getFarmInfoView(), farmStrategyScenarioView.getScenarioId(), ar);
+			JSONArray details = (JSONArray) scenarioComparisonDetails.get("outputDetails");
+			outputDetails.addAll(details);
+		}
+
+		return outputDetails;
 	}
 
 }

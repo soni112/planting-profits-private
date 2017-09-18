@@ -800,13 +800,13 @@ function validateCropLimits() {
      * @date : 21-02-2017
      * @type : {Reword according to slide : G024 of 04232017}
      */
-    if (totalMaximumAcre > totalLand || totalMaximumAcrePercentage >= 100) {
-        // customAlerts('Total of the Maximum acres amount must not be more than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
-        customAlerts('The total of all Maximum crop acreage limits must not be more than the total available land: "' + totalLand + '". ' +
-            'Reduce one or more Maximum crop acreage limits or increase Available land', type_error, time);
-        validationCropLimitFlag = false;
-        return validationCropLimitFlag;
-    }
+    // if (totalMaximumAcre > totalLand || totalMaximumAcrePercentage >= 100) {
+    //     // customAlerts('Total of the Maximum acres amount must not be more than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
+    //     customAlerts('The total of all Maximum crop acreage limits must not be more than the total available land: "' + totalLand + '". ' +
+    //         'Reduce one or more Maximum crop acreage limits or increase Available land', type_error, time);
+    //     validationCropLimitFlag = false;
+    //     return validationCropLimitFlag;
+    // }
     var groupMinAcres = 0;
     var groupMinAcresPercentage = 0;
     var groupMaximumAcres = 0;
@@ -884,7 +884,6 @@ function nextFarmInformation() {
             div_show3();
             return false;
         } else {
-            messageWhenStrategyChangedFromFieldToAcerage();
             callMethodForPageChangeAndProgressBarImage(2, 2);
         }
     }
@@ -2571,14 +2570,15 @@ function checkAllValidation() {
     } else if (!validateForwardSales()) {
         callMethodForPageChangeAndProgressBarImage(8, 7);
         return false;
-    } else if (!validateCropLimits()) {
+    }
+     else if (!validateCropLimits()) {
         return false;
     } else {
         return true;
     }
 }
 
-function saveAllFarmInformation() {
+function saveAllFarmInformation( ){
 
     if (!checkAllValidation()) {
         return false;

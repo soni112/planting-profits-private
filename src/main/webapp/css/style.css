@@ -215,7 +215,9 @@ navbar {
 }
 
 .ftr {
-    background: #8a8370;
+    /*background: #8a8370;*/
+    background: #c1b79d;
+    padding: 1% 0%;
 }
 
 .ftbottom {
@@ -4078,6 +4080,30 @@ sup {
     background-size: cover;
     overflow-x: hidden;
 }
+.contribute-bg-farm-data {
+    background-image: url(../images/contribution/bgfarmdata.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
+.learning-bg {
+    background-image: url(../images/LearningCenter.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
+.consultant-bg {
+    background-image: url(../images/Handshake.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
 .contibution h1{
     font-size: 46px;
     font-weight: 200;
@@ -4293,4 +4319,34 @@ input.cvvNumber:hover{
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
+}
+.ftr-title-bg{
+    background-color: #55493D;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    color: #fbd176;
+    position: relative;
+    margin-top: 4%;
+    padding-top: 24.5%;
+}
+.ftr-pl{
+    padding-left: 7%;
+}
+.reportIssue{
+    position: fixed;
+    bottom: 25px;
+    left: 15px;
+   z-index: 2;
+}
+
+.reportIssue a i{
+    color: #000;
+    font-size: 2rem;
+    background-color: #fff;
+    padding: 10px 10px;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0px 8px 13px 0px rgba(0, 0, 0, 0.3);
 }

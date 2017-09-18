@@ -56,7 +56,7 @@ public interface AccountService {
 
     void uploadDocument(Account account, MultipartFile multipartFile, AccountDocumentsType accountDocumentsType);
 
-    boolean sendRegistrationMail(Account account, String pwd);
+    void sendRegistrationMail(Account account, String pwd);
 
     /**
      * @changed - Abhishek
