@@ -669,6 +669,16 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.2.0.Alpha4</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://plantingprofits.com:8080/manager/text</url>
+                    <server>dev2-dz-TomcatServer</server>
+                    <path>/P_Profit</path>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
