@@ -730,7 +730,7 @@
 
 										</div>
 										<div id="multiple_crop_limit" style="display: none;">
-											<label class="resource_label">Select which Crop Limit to vary and the amount of each</label>
+											<label class="resource_label">Change one or more crop acreage limits</label>
 											<div class="table-responsive Crop-Acreage-tabel">
 												<table cellspacing="0" class="table table-striped tbl-bordr tblbrdr text-center multiple_resource_table">
 													<thead>
