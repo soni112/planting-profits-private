@@ -476,7 +476,7 @@
 											</div>
 										</div>
 										<div id="multiple_resources" style="display: none;">
-											<label class="resource_label">Select which resource to vary and the amount of each</label>
+											<label class="resource_label">Change the amounts of one or more resources</label>
 											<div class="table-responsive Crop-Acreage-tabel">
 												<table id="sa_multiple_resource_table" width="100%" cellspacing="0" class="table table-striped tbl-bordr tblbrdr text-center">
 													<thead>
