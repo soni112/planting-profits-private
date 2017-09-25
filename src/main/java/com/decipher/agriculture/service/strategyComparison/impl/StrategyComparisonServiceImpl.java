@@ -502,7 +502,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                         jsonObject.put("name", farmOutputDetailsView.getCropTypeView().getCropName());
                         jsonObject.put("amount", farmOutputDetailsView.getUsedAcresAsDouble());
                         cropArray.add(jsonObject);
-
+                        System.out.println(jsonObject);
                         if(!jsonArrayForCropHeader.contains(farmOutputDetailsView.getCropTypeView().getCropName())){
                             jsonArrayForCropHeader.add(farmOutputDetailsView.getCropTypeView().getCropName());
                         }
@@ -610,7 +610,12 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 } else {
                     jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
-                    jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
+                    if(cropResourceUsed.get(cropResourceUsageView.getCropResourceUse())== null){
+                        jsonObject.put("amount","N/A");
+                    }
+                    else{
+                        jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
+                    }
                 }
                 jsonArray.add(jsonObject);
                 if (counter == 0) {
