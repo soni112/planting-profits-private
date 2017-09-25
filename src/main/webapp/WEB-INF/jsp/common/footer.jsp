@@ -12,25 +12,25 @@
 				<!-- END -->
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
 					<a href="<c:url value="/learning-center.htm"/>" target="_blank">
-						<img src="<c:url value="/images/ic_learning.png"/>" width="150px">
+						<img src="<c:url value="/images/ic_learning.png"/>" width="100px">
 						<%--<h4 class="">Learning Center</h4>--%>
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
 					<a href="<c:url value="/consultant-corner.htm"/>" target="_blank">
-						<img src="<c:url value="/images/ic_consultant.png"/>" width="150px">
+						<img src="<c:url value="/images/ic_consultant.png"/>" width="100px">
 						<%--<h4 class="" style="padding-top: 21.5%;">Consultant's Corner</h4>--%>
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
 					<a href="<c:url value="/farm-data.htm"/>" target="_blank">
-						<img src="<c:url value="/images/ic_farmData.png"/>" width="150px">
+						<img src="<c:url value="/images/ic_farmData.png"/>" width="100px">
 						<%--<h4 class="">Farm Data</h4>--%>
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ftr-pl text-center">
 					<a href="<c:url value="/contact.htm"/>" target="_blank">
-						<img src="<c:url value="/images/ic_contact.png"/>" width="150px">
+						<img src="<c:url value="/images/ic_contact.png"/>" width="100px">
 						<%--<h4 class="">Contact</h4>--%>
 					</a>
 				</div>
