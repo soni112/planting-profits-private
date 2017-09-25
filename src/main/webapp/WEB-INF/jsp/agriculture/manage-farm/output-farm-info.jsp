@@ -424,7 +424,7 @@
 											<div class="resource_value">
 												<div class="value_input">
 													<%--	@added - Abhishek 	@date - 25-02-2016		@desc - According to slide#8 of 02212016	--%>
-													<label>Resource to vary</label>
+													<label>Resource to analyze</label>
 													<select id="forCastGraphResourceList">
 														<c:forEach var="resource" items="${model.resourceList}">
 															<c:if test="${resource.isActive()}">
