@@ -211,7 +211,7 @@
                                                                 </c:forEach>
                                                                 <%--<option value="0">Estimated Income</option>
                                                                 <option value="1">Land Used</option>
-                                                                <optn value="2">Capital Used</option>
+                                                                <option value="2">Capital Used</option>
                                                                 &lt;%&ndash;<option value="3">Crop Acreage Per Crop</option>&ndash;%&gt;
                                                                 <option value="4">% Potenial Profit from Single Most Profitable Crop</option>
                                                                 <option value="5">% Potenial Profit from Two Most Profitable Crops</option>
@@ -223,7 +223,7 @@
                                                                 <option value="11">Estimated Income Given Min Prices and Yields</option>--%>
 
                                                                 <c:forEach var="cropDetails" items="${model.cropDetailsForSelection}">
-                                                                    io                                        <option value="${cropDetails.key}">${cropDetails.value}</option>
+                                                                    <option value="${cropDetails.key}">${cropDetails.value}</option>
                                                                 </c:forEach>
                                                             </select>
                                                         </div>
@@ -527,7 +527,7 @@
                         </div>
 
 
-                    </div>
+                    </div>F
                 </div>
                 <div class="clearfix"></div>
                 <div style="margin-top: 1%">
