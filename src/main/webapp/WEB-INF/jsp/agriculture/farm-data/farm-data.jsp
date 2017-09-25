@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <h3 class="text-white uppercase">Farm Data</h3>
+                    <h1 class="text-white uppercase">Farm Data</h1>
                     <ul class="list-unstyled text-white text-left" style="font-size: 20px;margin-left: 41%">
                         <li><i class="fa fa-check text-white"></i> Upload/Download Data</li>
                         <li><i class="fa fa-check text-white"></i> Find Area Ag Statistics</li>
@@ -162,6 +162,7 @@
                     <%--<button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to application</button>--%>
 
                         <h3 style="color: #fff"><em>Space for future messages / ads / etc.</em></h3>
+                        <button class="btn-contribute" onclick="window.location = '<c:url value="/farm.htm"/>'">Back to Planting Profits</button>
 
                 </div><!-- /.col-12 -->
 
