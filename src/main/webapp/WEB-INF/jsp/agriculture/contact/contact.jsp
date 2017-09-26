@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <h3 class="text-white uppercase" style="margin-left: 40%">Contact</h3>
+                    <h1 class="text-white uppercase" style="margin-left: 40%">Contact</h1>
                     <ul class="list-unstyled text-white text-left" style="font-size: 20px;margin-left: 42%">
                         <li>970.420.1656</li>
                         <li><a href="mailto:info@Plantingprofits.com" style="color: #0099FF;text-decoration: underline">info@Plantingprofits.com</a></li>
@@ -129,51 +129,52 @@
             <img src="<c:url value="/images/contribution/contribution2.jpg"/> " style="width: 100%;">
         </div>
     </div>--%>
-    <article class="margin-top-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
-                    <h3 class="text-white">Planting Profits<sup>&reg;</sup> is free for growers.</h3>
-                    <p class="text-white">Your contribution will help us maintain and improve Planting Profits<sup>&reg;</sup><br>
-                        for the benefit of all growers.</p>
+    <%--<article class="margin-top-1">--%>
+        <%--<div class="container">--%>
+            <%--<div class="row">--%>
+                <%--<div class="col-md-12 col-sm-12 text-center">--%>
+                    <%--<h3 class="text-white">Planting Profits<sup>&reg;</sup> is free for growers.</h3>--%>
+                    <%--<p class="text-white">Your contribution will help us maintain and improve Planting Profits<sup>&reg;</sup><br>--%>
+                        <%--for the benefit of all growers.</p>--%>
 
-                </div><!-- /.col-12 -->
-            </div><!-- /.row -->
-        </div>
-    </article>
+                <%--</div><!-- /.col-12 -->--%>
+            <%--</div><!-- /.row -->--%>
+        <%--</div>--%>
+    <%--</article>--%>
     <article class="contribution-select-donate-bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <h3 class="text-white uppercase">Contribute</h3>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="10">$10</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="25">$25</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="50">$50</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="100">$100</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="other">Other</button>
-                    <br><div class="clearfix"></div>
-                    <div id="manual-amt-div" class="col-md-3 col-md-offset-5 col-sm-6 col-sm-offset-3" style="display: none;padding: 1%; left: 20px;">
-                        <input type="text" class="form-control" id="payment-amount" placeholder="Enter amount to contribute" style=" width: 50%;">
-                    </div>
-                    <br><div class="clearfix"></div>
-                    <button class="btn-contribute" id="logout-btn" onclick="processLogout('<c:url value="/j_spring_security_logout"/>'); return false;">No Thanks</button>
-                    <button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to application</button>
-
+                    <%--<h3 class="text-white uppercase">Contribute</h3>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="10">$10</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="25">$25</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="50">$50</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="100">$100</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="other">Other</button>--%>
+                    <%--<br><div class="clearfix"></div>--%>
+                    <%--<div id="manual-amt-div" class="col-md-3 col-md-offset-5 col-sm-6 col-sm-offset-3" style="display: none;padding: 1%; left: 20px;">--%>
+                        <%--<input type="text" class="form-control" id="payment-amount" placeholder="Enter amount to contribute" style=" width: 50%;">--%>
+                    <%--</div>--%>
+                    <%--<br><div class="clearfix"></div>--%>
+                    <%--<button class="btn-contribute" id="logout-btn" onclick="processLogout('<c:url value="/j_spring_security_logout"/>'); return false;">No Thanks</button>--%>
+                    <%--<button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to application</button>--%>
+                        <h3 style="color: #fff"><em>Space for future messages / ads / etc.</em></h3>
+                        <button class="btn-contribute" onclick="window.location = '<c:url value="/farm.htm"/>'">Back to Planting Profits</button>
 
                 </div><!-- /.col-12 -->
 
             </div><!-- /.row -->
         </div><!-- /.container -->
-    </article>
-    <article class="margin-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
-                    <p class="text-white">Thank you for your generosity.</p>
-                </div><!-- /.col-12 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </article>
+    <%--</article>--%>
+    <%--<article class="margin-1">--%>
+        <%--<div class="container">--%>
+            <%--<div class="row">--%>
+                <%--<div class="col-md-12 col-sm-12 text-center">--%>
+                    <%--<p class="text-white">Thank you for your generosity.</p>--%>
+                <%--</div><!-- /.col-12 -->--%>
+            <%--</div><!-- /.row -->--%>
+        <%--</div><!-- /.container -->--%>
+    <%--</article>--%>
     </di><!--- col-lg-12 ---->
 </section>
 <section class="contribution-bottom-bg" id="payment-options-div" style=" display: none; ">

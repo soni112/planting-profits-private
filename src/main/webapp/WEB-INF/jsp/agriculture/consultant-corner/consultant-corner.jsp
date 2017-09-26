@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center margin-top-1">
                     <h3 style="color: #fff"><em>Space for future messages / ads / etc.</em></h3>
-                    <button class="btn-contribute" onclick="window.location = '<c:url value="/farm.htm"/>'">Back to application</button>
+                    <button class="btn-contribute" onclick="window.location = '<c:url value="/farm.htm"/>'">Back to Planting Profits</button>
                 </div><!-- /.col-12 -->
 
             </div><!-- /.row -->

@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <h3 class="text-white uppercase">Farm Data</h3>
+                    <h1 class="text-white uppercase">Farm Data</h1>
                     <ul class="list-unstyled text-white text-left" style="font-size: 20px;margin-left: 41%">
                         <li><i class="fa fa-check text-white"></i> Upload/Download Data</li>
                         <li><i class="fa fa-check text-white"></i> Find Area Ag Statistics</li>
@@ -129,36 +129,40 @@
             <img src="<c:url value="/images/contribution/contribution2.jpg"/> " style="width: 100%;">
         </div>
     </div>--%>
-    <article class="margin-top-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
-                    <h3 class="text-white">Planting Profits<sup>&reg;</sup> is free for growers.</h3>
-                    <p class="text-white">Your contribution will help us maintain and improve Planting Profits<sup>&reg;</sup><br>
-                        for the benefit of all growers.</p>
+    <%--<article class="margin-top-1">--%>
+        <%--<div class="container">--%>
+            <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;&lt;%&ndash;<div class="col-md-12 col-sm-12 text-center">&ndash;%&gt;&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;&lt;%&ndash;&lt;%&ndash;<h3 class="text-white">Planting Profits<sup>&reg;</sup> is free for growers.</h3>&ndash;%&gt;&ndash;%&gt;&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;&lt;%&ndash;&lt;%&ndash;<p class="text-white">Your contribution will help us maintain and improve Planting Profits<sup>&reg;</sup><br>&ndash;%&gt;&ndash;%&gt;&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;&lt;%&ndash;&lt;%&ndash;for the benefit of all growers.</p>&ndash;%&gt;&ndash;%&gt;&ndash;%&gt;--%>
 
-                </div><!-- /.col-12 -->
-            </div><!-- /.row -->
-        </div>
-    </article>
+                <%--&lt;%&ndash;&lt;%&ndash;</div><!-- /.col-12 -->&ndash;%&gt;&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div><!-- /.row -->&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+    <%--</article>--%>
     <article class="contribution-select-donate-bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <h3 class="text-white uppercase">Contribute</h3>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="10">$10</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="25">$25</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="50">$50</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="100">$100</button>
-                    <button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="other">Other</button>
-                    <br><div class="clearfix"></div>
-                    <div id="manual-amt-div" class="col-md-3 col-md-offset-5 col-sm-6 col-sm-offset-3" style="display: none;padding: 1%; left: 20px;">
-                        <input type="text" class="form-control" id="payment-amount" placeholder="Enter amount to contribute" style=" width: 50%;">
-                    </div>
-                    <br><div class="clearfix"></div>
-                    <button class="btn-contribute" id="logout-btn" onclick="processLogout('<c:url value="/j_spring_security_logout"/>'); return false;">No Thanks</button>
-                    <button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to application</button>
+                    <%--<h3 class="text-white uppercase">Contribute</h3>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="10">$10</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="25">$25</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="50">$50</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="100">$100</button>--%>
+                    <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="other">Other</button>--%>
 
+                        <%--<br><div class="clearfix"></div>--%>
+                    <%--<div id="manual-amt-div" class="col-md-3 col-md-offset-5 col-sm-6 col-sm-offset-3" style="display: none;padding: 1%; left: 20px;">--%>
+                        <%--<input type="text" class="form-control" id="payment-amount" placeholder="Enter amount to contribute" style=" width: 50%;">--%>
+                    <%--</div>--%>
+                    <%--<br><div class="clearfix"></div>--%>
+
+                        <%--<button class="btn-contribute" id="logout-btn" onclick="processLogout('<c:url value="/j_spring_security_logout"/>'); return false;">No Thanks</button>--%>
+                    <%--<button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to application</button>--%>
+
+                        <h3 style="color: #fff"><em>Space for future messages / ads / etc.</em></h3>
+                        <button class="btn-contribute" onclick="window.location = '<c:url value="/farm.htm"/>'">Back to Planting Profits</button>
 
                 </div><!-- /.col-12 -->
 
@@ -169,7 +173,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <p class="text-white">Thank you for your generosity.</p>
+                    <%--<p class="text-white">Thank you for your generosity.</p>--%>
                 </div><!-- /.col-12 -->
             </div><!-- /.row -->
         </div><!-- /.container -->

@@ -424,7 +424,7 @@
 											<div class="resource_value">
 												<div class="value_input">
 													<%--	@added - Abhishek 	@date - 25-02-2016		@desc - According to slide#8 of 02212016	--%>
-													<label>Resource to vary</label>
+													<label>Resource to analyze</label>
 													<select id="forCastGraphResourceList">
 														<c:forEach var="resource" items="${model.resourceList}">
 															<c:if test="${resource.isActive()}">
@@ -476,7 +476,7 @@
 											</div>
 										</div>
 										<div id="multiple_resources" style="display: none;">
-											<label class="resource_label">Select which resource to vary and the amount of each</label>
+											<label class="resource_label">Change the amounts of one or more resources</label>
 											<div class="table-responsive Crop-Acreage-tabel">
 												<table id="sa_multiple_resource_table" width="100%" cellspacing="0" class="table table-striped tbl-bordr tblbrdr text-center">
 													<thead>
@@ -730,7 +730,7 @@
 
 										</div>
 										<div id="multiple_crop_limit" style="display: none;">
-											<label class="resource_label">Select which Crop Limit to vary and the amount of each</label>
+											<label class="resource_label">Change one or more crop acreage limits</label>
 											<div class="table-responsive Crop-Acreage-tabel">
 												<table cellspacing="0" class="table table-striped tbl-bordr tblbrdr text-center multiple_resource_table">
 													<thead>

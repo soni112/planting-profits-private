@@ -150,7 +150,7 @@
                                 </div>
                                 <br><div class="clearfix"></div>
                                 <button class="btn-contribute" id="logout-btn" onclick="processLogout('<c:url value="/j_spring_security_logout"/>'); return false;">No Thanks</button>
-                                <button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to application</button>
+                                <button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to Planting Profits</button>
 
 
                             </div><!-- /.col-12 -->
