@@ -36,7 +36,7 @@
             $("#content_box_help").find("input[name='strategyIdCheckbox']").each(function () {
                 $(this).change(function () {
                     if ($("#content_box_help").find("input[name='strategyIdCheckbox']:checked").length > 3) {
-                        customAlerts('You can select upto three strategies for a farm', "error", 0);
+                        customAlerts('Select up to three strategies', "error", 0);
                         $("input[name='strategyIdCheckbox']").prop("checked", false);
                     }
                 });
