@@ -39,7 +39,7 @@
                         <!-----start tab rightside description-------------------------------------->
                         <div id="compareStrategies" class="strategy_block right-strategy-details" style="display: block">
                             <div class="update_values result_str">
-
+                                <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right">Back to Baseline</a>
                                 <div id="tableSectionForStrategy" class="text-center">
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
