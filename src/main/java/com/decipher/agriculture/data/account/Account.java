@@ -3,6 +3,7 @@ package com.decipher.agriculture.data.account;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.farm.FarmInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -248,7 +249,7 @@ public class Account implements Comparable<Account>{
 	}
 
 	public String getPhysical_Address_Line_1() {
-		return physical_Address_Line_1;
+		return StringUtils.isEmpty(physical_Address_Line_1) ? StringUtils.EMPTY : physical_Address_Line_1;
 	}
 
 	public void setPhysical_Address_Line_1(String physical_Address_Line_1) {
@@ -256,7 +257,7 @@ public class Account implements Comparable<Account>{
 	}
 
 	public String getPhysical_Address_Line_2() {
-		return physical_Address_Line_2;
+		return StringUtils.isEmpty(physical_Address_Line_2) ? StringUtils.EMPTY : physical_Address_Line_2;
 	}
 
 	public void setPhysical_Address_Line_2(String physical_Address_Line_2) {
@@ -264,7 +265,7 @@ public class Account implements Comparable<Account>{
 	}
 
 	public String getPhysical_Address_City() {
-		return physical_Address_City;
+		return StringUtils.isEmpty(physical_Address_City) ? StringUtils.EMPTY : physical_Address_City;
 	}
 
 	public void setPhysical_Address_City(String physical_Address_City) {

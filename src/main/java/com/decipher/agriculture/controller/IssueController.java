@@ -31,40 +31,23 @@ public class IssueController {
     private IssueService issueService;
 
     @RequestMapping(value = "/create", method = {RequestMethod.POST})
-    public JsonResponse createIssue(@RequestParam(value = "name") String name,
-                                    @RequestParam(value = "email") String email,
-                                    @RequestParam(value = "phone", required = false) String phone,
-                                    @RequestParam(value = "address", required = false) String address,
-                                    @RequestParam(value = "state", required = false) Integer state,
-                                    @RequestParam(value = "country", required = false) Integer country,
-                                    @RequestParam(value = "zipcode", required = false) String zipcode,
-                                    @RequestParam(value = "issue") String issue){
+    public JsonResponse createIssue(@RequestParam(value = "issue") String issue) {
         JsonResponse jsonResponse = new JsonResponse();
 
-        Issue issueRaised = new Issue();
-        issueRaised.setName(name);
-        issueRaised.setEmail(email);
-        issueRaised.setPhoneNo(phone);
-        issueRaised.setAddress(address);
-        issueRaised.setZipcode(zipcode);
-        issueRaised.setIssueRaised(issue);
-
-        UserState userState = accountService.getState(state);
-        if (userState != null) {
-            issueRaised.setState(userState);
-        }
-        UserCountry userCountry = accountService.getCountry(country);
-        if (userCountry != null) {
-            issueRaised.setCountry(userCountry);
-        }
-
         Account currentUser = accountService.getCurrentUser();
-        if (currentUser != null){
-            issueRaised.setAccount(currentUser);
-            issueRaised.setTypeOfUser("Application User");
-        } else {
-            issueRaised.setTypeOfUser("Anonymous User");
-        }
+
+        Issue issueRaised = new Issue();
+        issueRaised.setName(currentUser.getFirstName() + " " + currentUser.getLastName());
+        issueRaised.setEmail(currentUser.getEmail_Address());
+        issueRaised.setPhoneNo(currentUser.getPhone_No());
+        issueRaised.setAddress(currentUser.getPhysical_Address_Line_1() + " " + currentUser.getPhysical_Address_Line_2() + " " +
+                currentUser.getPhysical_Address_Country().getCountryName() + " " + currentUser.getPhysical_Address_State().getStateName() + " " + currentUser.getPhysical_Address_City());
+        issueRaised.setZipcode(currentUser.getPhysical_Address_Zip());
+        issueRaised.setIssueRaised(issue);
+        issueRaised.setState(currentUser.getPhysical_Address_State());
+        issueRaised.setCountry(currentUser.getPhysical_Address_Country());
+        issueRaised.setAccount(currentUser);
+        issueRaised.setTypeOfUser("Application User");
 
         issueService.createIssue(issueRaised);
 
