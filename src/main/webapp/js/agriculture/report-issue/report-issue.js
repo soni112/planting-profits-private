@@ -13,31 +13,7 @@ $(function (){
 function validateIssueForm(obj) {
     var status = true;
 
-    if($.trim($(obj).find('input[name="name"]').val()).length === 0){
-        customAlerts('Please specify you name', "error", 0);
-        applyValidation($(obj).find('input[name="name"]'));
-        status = false;
-    } else if($.trim($(obj).find('input[name="email"]').val()).length === 0){
-        customAlerts('Please specify you email', "error", 0);
-        applyValidation($(obj).find('input[name="email"]'));
-        status = false;
-    } else if($.trim($(obj).find('input[name="address"]').val()).length === 0){
-        customAlerts('Please specify you address', "error", 0);
-        applyValidation($(obj).find('input[name="address"]'));
-        status = false;
-    } else if($.trim($(obj).find('select[name="country"]').val()).length === 0){
-        customAlerts('Please specify you country', "error", 0);
-        applyValidation($(obj).find('input[name="country"]'));
-        status = false;
-    } else if($.trim($(obj).find('select[name="state"]').val()).length === 0){
-        customAlerts('Please specify you state', "error", 0);
-        applyValidation($(obj).find('input[name="state"]'));
-        status = false;
-    } else if($.trim($(obj).find('input[name="zipcode"]').val()).length === 0){
-        customAlerts('Please specify you zipcode', "error", 0);
-        applyValidation($(obj).find('input[name="zipcode"]'));
-        status = false;
-    } else if($.trim($(obj).find('textarea[name="issue"]').val()).length === 0){
+    if($.trim($(obj).find('textarea[name="issue"]').val()).length === 0){
         customAlerts('Please specify the issue', "error", 0);
         applyValidation($(obj).find('textarea[name="issue"]'));
         status = false;
@@ -63,7 +39,7 @@ function createIssue(){
             success: function (response) {
                 if(response.status){
                     customAlerts("Thanks you for your feedback", 'success', 0);
-                    target.find('input[type="reset"]').trigger('click');
+                    target.find('textarea[name="issue"]').val('');
                     hideLoadingImage();
                 }
             },
@@ -83,13 +59,6 @@ function createIssue(){
 function getDetails(obj){
     var fd = new FormData();
 
-    fd.append('name', $.trim($(obj).find('input[name="name"]').val()));
-    fd.append('email', $.trim($(obj).find('input[name="email"]').val()));
-    fd.append('phone', $.trim($(obj).find('input[name="phone"]').val()));
-    fd.append('address', $.trim($(obj).find('input[name="address"]').val()));
-    fd.append('country', $.trim($(obj).find('select[name="country"]').val()));
-    fd.append('state', $.trim($(obj).find('select[name="state"]').val()));
-    fd.append('zipcode', $.trim($(obj).find('input[name="zipcode"]').val()));
     fd.append('issue', $.trim($(obj).find('textarea[name="issue"]').val()));
 
     return fd;

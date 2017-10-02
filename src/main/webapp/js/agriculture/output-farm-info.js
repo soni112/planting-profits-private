@@ -864,7 +864,7 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 	 * @desc - according to slide#9 of 01282016
 	 */
 	/*$("#SaveStrategyForMultipleResources_id").html("<a onclick=\"SaveStrategyForMultipleCrops('single_Crops')\">Save this strategy</a>");*/
-	$("#SaveStrategyForMultipleResources_id").html("<a onclick=\"SaveStrategyForMultipleCrops('single_Crops')\">Save</a>");
+	$("#SaveStrategyForMultipleResources_id").html("<a onclick=\"SaveStrategyForMultipleCrops('single_Crops', " + updatedValue + ")\">Save</a>");
 	$.ajax({
 		url : 'agriculture/SensetivityAnalysisController/getSAForStrategyByMultipleCrops',
 		type : 'POST',
@@ -1456,7 +1456,7 @@ function SaveStrategyForMultipleResources(resourse_Type){
 	});
 }
 
-function SaveStrategyForMultipleCrops(resourse_Type){
+function SaveStrategyForMultipleCrops(resourse_Type, updatedValue){
 	var strategyName = $("#pop-up-field-name-crop").val().trim();
 	//var potentialProfit = removeAllCommasAndDollar($("#potential_profit_id").text());
 	var cropsArray = [], cropContractArray = [], cropProposedArray = [], cropsGroupArray = [];
@@ -1515,25 +1515,26 @@ function SaveStrategyForMultipleCrops(resourse_Type){
 		var cropName = $("#forCastGraphCropList").val().trim().split("#-#-#")[1];
 		var selectionType = $("#forCastGraphCropList").val().trim().split("#-#-#")[0];
 		var rangeType = $("#max_min_selector").val();
-		var differenceValue = removeAllCommas($("#forCastGraphValueForSingleCrop").val());
+		// var differenceValue = removeAllCommas($("#forCastGraphValueForSingleCrop").val());
+		var differenceValue = updatedValue;
 
 		if(selectionType=="Crop") {
 			if(rangeType=="Maximum")
-				cropsArray.push(cropName+"#-#-#max#-#-#"+removeAllCommas(differenceValue));
+				cropsArray.push(cropName+"#-#-#max#-#-#"+differenceValue);
 			else
-				cropsArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));
+				cropsArray.push(cropName+"#-#-#min#-#-#"+differenceValue);
 		}
 		if(selectionType=="Proposed") {
-			cropProposedArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));
+			cropProposedArray.push(cropName+"#-#-#min#-#-#"+differenceValue);
 		}
 		if(selectionType=="Contract"){
-			cropContractArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));
+			cropContractArray.push(cropName+"#-#-#min#-#-#"+differenceValue);
 		}
 		if(selectionType=="Group"){
 			if(rangeType=="Maximum")
-				cropsGroupArray.push(cropName+"#-#-#max#-#-#"+removeAllCommas(differenceValue));
+				cropsGroupArray.push(cropName+"#-#-#max#-#-#"+differenceValue);
 			else
-				cropsGroupArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));
+				cropsGroupArray.push(cropName+"#-#-#min#-#-#"+differenceValue);
 		}
 	}
 

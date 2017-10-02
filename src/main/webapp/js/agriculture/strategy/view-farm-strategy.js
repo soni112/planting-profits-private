@@ -179,7 +179,7 @@ function applyCheckBoxValidation(){
 	$("#printStrategies").find("input[name='reportStrategyCheckbox']").each(function () {
 		$(this).change(function () {
 			if ($("#printStrategies").find("input[name='reportStrategyCheckbox']:checked").length > 3) {
-				customAlerts('Select up to three strategies', "error", 0);
+				customAlerts('Select up to three strategies for the report', "error", 0);
 				/**
 				 * @changed - Abhishek
 				 * @date - 09-01-2016

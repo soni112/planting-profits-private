@@ -48,7 +48,7 @@ Date 24-11-2015
                     <!-----start tab rightside description-------------------------------------->
 
                     <div id="createScenario" class="contentblock">
-                        <%--<div class="text_field" id="nameOfScenario">--%>
+                        <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right" style="margin-top: 4px;">Back to Baseline</a>
                         <ul class="potential_criteria">
                             <li>Name of Scenario:
                                 <div class="scenario_global">
@@ -58,7 +58,6 @@ Date 24-11-2015
                                     </div>
                                 </div>
                             </li>
-                            <!-- <li>Profit Goal: <span>$--,--</span></li> -->
                         </ul>
                         <!---------------------start tab------------------------------->
                         <div class="addcrop">
