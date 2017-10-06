@@ -13,8 +13,7 @@
             <div class="right_farm_form_filled">
                 <div class="edit_output_details_link">
                     <!-- @changed - Jyoti    @date - 30-01-2017 -->
-                    <a class="alertify-button alertify-button-ok remove-text-deco"
-                       href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
+                    <a class="alertify-button alertify-button-ok remove-text-deco" href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
                 </div>
                 <div class="output_base">
                     <h3>${model.farmInfoView.farmName} (Baseline Strategy)</h3>
@@ -23,16 +22,14 @@
                             <c:choose>
                                 <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
                                     <li class="active"><a href="#Crop-Acreage" class="open">
-                                        <div class="lf_pointer_images"><img
-                                                src="<c:url value="/images/pointer-image2.jpg"/>"></div>
+                                        <div class="lf_pointer_images"><img src="<c:url value="/images/pointer-image2.jpg"/>"></div>
                                         <div class="right_detail"> Crop Acreage
                                             <!-- <span>You can see the acreage of each crop planted.</span> --></div>
                                     </a></li>
                                 </c:when>
                                 <c:otherwise>
                                     <li class="active"><a href="#Crop-Acreage" class="open">
-                                        <div class="lf_pointer_images"><img
-                                                src="<c:url value="/images/pointer-image2.jpg"/>"></div>
+                                        <div class="lf_pointer_images"><img src="<c:url value="/images/pointer-image2.jpg"/>"></div>
                                         <div class="right_detail"> Crop Acreage
                                             <!-- <span>You can see the acreage of each crop planted.</span> --></div>
                                     </a></li>
@@ -40,8 +37,7 @@
                             </c:choose>
                             <c:if test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                 <li><a href="#Crop&ndash;Field-Assignments">
-                                    <div class="lf_pointer_images"><img
-                                            src="<c:url value="/images/pointer-image1.jpg"/>"></div>
+                                    <div class="lf_pointer_images"><img src="<c:url value="/images/pointer-image1.jpg"/>"></div>
                                     <div class="right_detail"> Crop &ndash; Field Assignments
                                         <!-- <span>You can see crop to field allocation.</span> --></div>
                                 </a></li>
