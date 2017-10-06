@@ -679,7 +679,10 @@ function updateUserDetails(container){
         userDetails.append("parentId", currentUserId);
 
         if (accountType == "ROLE_PROFESSIONAL") {
-            userDetails.append("logo", $(object).find(".logo-specific")[0].files[0]);
+            try {
+                userDetails.append("logo", $(object).find(".logo-specific")[0].files[0]);
+            } catch (e) {
+            }
         }
 
         $.ajax({
