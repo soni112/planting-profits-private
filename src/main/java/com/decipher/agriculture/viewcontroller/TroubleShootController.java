@@ -1,8 +1,14 @@
 package com.decipher.agriculture.viewcontroller;
 
+import com.decipher.agriculture.service.farm.FarmService;
+import com.decipher.util.PlantingProfitLogger;
+import com.decipher.view.form.farmDetails.FarmInfoView;
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -10,9 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class TroubleShootController {
+    @Autowired
+    private FarmService farmService;
 
     @RequestMapping(value = "/troubleshoot.htm", method = RequestMethod.GET)
-    public ModelAndView troubleShoot(){
-        return new ModelAndView("trouble-shoot");
+    public ModelAndView troubleShoot(@RequestParam(value = "farmId") int farmId){
+        JSONObject myModel=new JSONObject();
+        FarmInfoView farmInfoView=farmService.getBaselineFarmDetails(farmId);
+        PlantingProfitLogger.info(farmInfoView.getStrategy());
+        myModel.put("farmInfoView",farmInfoView);
+        return new ModelAndView("trouble-shoot","model",myModel);
     }
 }

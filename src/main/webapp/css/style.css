@@ -4360,3 +4360,9 @@ input.cvvNumber:hover{
     color: #333;
     text-decoration: underline;
 }
+.jumbotron .planning div{
+    padding-left: .5em;
+}
+.jumbotron .planning div a{
+    color: #5b3113;
+}
