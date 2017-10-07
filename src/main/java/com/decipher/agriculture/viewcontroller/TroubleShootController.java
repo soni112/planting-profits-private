@@ -1,5 +1,6 @@
 package com.decipher.agriculture.viewcontroller;
 
+import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.service.farm.FarmService;
 import com.decipher.util.PlantingProfitLogger;
 import com.decipher.view.form.farmDetails.FarmInfoView;
@@ -23,8 +24,11 @@ public class TroubleShootController {
     public ModelAndView troubleShoot(@RequestParam(value = "farmId") int farmId){
         JSONObject myModel=new JSONObject();
         FarmInfoView farmInfoView=farmService.getBaselineFarmDetails(farmId);
+
+        Farm farm = farmService.getFarmById(farmId);
         PlantingProfitLogger.info(farmInfoView.getStrategy());
         myModel.put("farmInfoView",farmInfoView);
+        myModel.put("farm",farm);
         return new ModelAndView("trouble-shoot","model",myModel);
     }
 }

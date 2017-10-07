@@ -46,6 +46,32 @@ $(function () {
         localStorage.removeItem('cropLimitFlag');
         showCropLimitsTab();
     }
+
+    var resourceFlag = localStorage.getItem('resourcesFlag');
+
+    if(typeof resourceFlag != 'undefined' && resourceFlag){
+        localStorage.removeItem('resourcesFlag');
+        showResourcesTab();
+    }
+
+    var profitFlag=localStorage.getItem('profitCropFlag');
+
+    if(typeof profitFlag != 'undefined' && profitFlag){
+        localStorage.removeItem('profitCropFlag');
+        showCropsAndCropInformationTab();
+        nextCropsAndCropsInformation();
+    }
+
+
+    var cropChoiceFlag=localStorage.getItem('cropChoicesFlag');
+
+    if(typeof profitFlag != 'undefined' && cropChoiceFlag){
+        localStorage.removeItem('cropChoicesFlag');
+        showCropsAndCropInformationTab();
+    }
+
+
+
     $fixedTables = $('.tbl-fixd-hdr, .fld-chc-tbl-fixd-hdr,' +
         ' .resources-tbl-fixd-hdr, .crop-resources-tbl-fixd-hdr, .forward-sales-tbl-fixd-hdr');
     $fixedTables.bind('rowAddOrRemove', rowAddOrRemovehandler);

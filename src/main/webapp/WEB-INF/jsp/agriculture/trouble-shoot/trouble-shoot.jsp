@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
+
+<c:set var="farmId" value="${model.farm.farmId}"/>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -32,7 +35,7 @@
                                 <div id="resources" class="collapse">
                                     Are
                                     there sufficient resources to meet minimum crop acreage limits?<br/>
-                                    <a href="">Check resource availabilities</a>. <%--<link to resources page>--%><br/>
+                                    <a href="javascript;" onclick="navigateToResources();return false;">Check resource availabilities</a>. <%--<link to resources page>--%><br/>
                                     Are any resources critical, i.e. all used up or almost all used up?<br/>
                                     If yes, increase the amount of critical resource(s) or decrease the minimum crop
                                     acreage limits (assuming this is an option).
@@ -45,7 +48,7 @@
                                     In order to maximize estimated income,<br/>
                                     Planting Profits will not allocate land or other resources to any unprofitable
                                     crops unless minimum crop acreage limits are specified.<br/>
-                                    <a href="">Check profitability of crops</a> <%--<link to crop details page>--%>
+                                    <a href="javascript;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> <%--<link to crop details page>--%>
                                 </div>
                             </li>
                             <li>
@@ -58,7 +61,10 @@
                                     acreage across the fields where the crop can be grown to meet the minimum?<br/>
                                     This applies to each crop that has a minimum acreage limit. Some of which may be
                                     competing for the same field
-                                        <%--<link to crop/field choices page>--%><br/>
+
+                                    <a href="javascript;" onclick="navigateToCropChoices();return false;">Check crop/field choices</a> <%--<link to crop details page>--%>
+
+                                <%--<link to crop/field choices page>--%><br/>
                                     Often, due to the large number of possible combinations this can be difficult to
                                     unravel.<br/>
                                     For crops with minimum acreage limits, either: 1) decrease the acreage limit, 2)
@@ -85,7 +91,7 @@
                                 <a data-toggle="collapse" href="#resourcesAcres">Resources</a>
                                 <div id="resourcesAcres" class="collapse">
                                     Are there sufficient resources to meet minimum crop acreage limits? <br/>
-                                    <a href="">Check resource availabilities</a>. <%--<link to resources page>--%><br/>
+                                    <a href="javascript;" onclick="navigateToResources();return false;">Check resource availabilities</a>. <%--<link to resources page>--%><br/>
                                     Are any resources critical, i.e. all used up or almost all used up?<br/>
                                     If yes, increase the amount of critical resource(s) or decrease the minimum crop
                                     acreage limits (assuming this is an option).
@@ -98,7 +104,7 @@
                                     In order to maximize estimated income,<br/>
                                     Planting Profits will not allocate land or other resources to any unprofitable
                                     crops unless minimum crop acreage limits are specified.<br/>
-                                    <a href="">Check profitability of crops</a> <%--<link to crop details page>--%>
+                                    <a href="javascript;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> <%--<link to crop details page>--%>
                                 </div>
                             </li>
                         </ul>
@@ -109,3 +115,18 @@
     </div><!-- /.row -->
 </div>
 <!-- /.container -->
+
+<script>
+    function navigateToResources() {
+        localStorage.setItem('resourcesFlag', true);
+        window.location = '<c:url value="/view-farm-info.htm?farmId="/>${farmId}';
+    }
+    function navigateToProfitableCrops() {
+        localStorage.setItem('profitCropFlag', true);
+        window.location = '<c:url value="/view-farm-info.htm?farmId="/>${farmId}';
+    }
+    function navigateToCropChoices() {
+        localStorage.setItem('cropChoicesFlag', true);
+        window.location = '<c:url value="/view-farm-info.htm?farmId="/>${farmId}';
+    }
+</script>
