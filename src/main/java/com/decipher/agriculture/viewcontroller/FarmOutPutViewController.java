@@ -300,9 +300,8 @@ public class FarmOutPutViewController {
 //                }
 //            }
 //        } else {
-            myModel = farmDetailsContainerService.getBaseLineDetails(farmInfoView.getFarmInfo().getFarm());
 //        }
-
+        myModel = farmDetailsContainerService.getBaseLineDetails(farmInfoView.getFarmInfo().getFarm());
 
         JSONArray forwardSalesJsonArray = farmOutputDetailsService.buildForwardSalesContent(myModel);
         myModel.put("forwardSalesJsonArray", forwardSalesJsonArray);
@@ -313,8 +312,8 @@ public class FarmOutPutViewController {
         JSONArray cropAcreageJsonArray = farmOutputDetailsService.buildCropAcreageContent(myModel);
         myModel.put("cropAcreageJsonArray", cropAcreageJsonArray);
 
-        JSONArray resourceJsonArray = farmOutputDetailsService.buildResourcesContent(myModel);
-        myModel.put("resourceJsonArray", resourceJsonArray);
+        JSONObject resourceJsonObject = farmOutputDetailsService.buildResourcesContent(myModel);
+        myModel.put("resourceJsonObject", resourceJsonObject);
 
 
         if (farmInfoView != null) {

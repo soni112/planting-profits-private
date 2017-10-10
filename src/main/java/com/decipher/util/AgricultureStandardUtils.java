@@ -156,6 +156,7 @@ public class AgricultureStandardUtils {
 	}
 	
 	public static long stringToLong(String pattern) {
+		pattern = removeAllCommas(pattern);
 		DecimalFormat formatter = new DecimalFormat("####");
 		return Long.parseLong(formatter.format(Double.parseDouble(pattern)));
 	}

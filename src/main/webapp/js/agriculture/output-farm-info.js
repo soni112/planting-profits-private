@@ -33,8 +33,9 @@ $(function(){
 		return false;
 	}
 	if (checkStrategyForFarm == false) {
-		customAlerts("Planting Profits could not generate a strategy that meets all of your objectives and constraints. " +
-			"<br> You will have to make adjustments to resources, crop limits, crop/field choices, or other parameters.", "error", 0);
+			 checkStrategyPopup();
+          // customAlerts("Planting Profits could not generate a strategy that meets all of your objectives and constraints. " +
+			//   "<br> You will have to make adjustments to resources, crop limits, crop/field choices, or other parameters.", "error", 0);
 		return false;
 	}
 
@@ -42,6 +43,10 @@ $(function(){
 	registerTemplates();
 	$('[data-toggle="popover"]').popover();
 });
+
+function checkStrategyPopup(){
+	$('#checkStrategy-pop-up').show();
+}
 
 function registerTemplates(){
 	$.template("tableBodyCropTemplate", $('#tableBodyCropTemplate'));
