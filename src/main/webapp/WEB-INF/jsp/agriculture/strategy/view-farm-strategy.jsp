@@ -527,7 +527,7 @@
                         </div>
 
 
-                    </div>F
+                    </div>
                 </div>
                 <div class="clearfix"></div>
                 <div style="margin-top: 1%">

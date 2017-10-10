@@ -85,5 +85,8 @@
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/report-issue/report-issue.jsp"/>
 		<!--<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />-->
 	</definition>
+	<definition name="trouble-shoot" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/trouble-shoot/trouble-shoot.jsp"/>
+	</definition>
 
 </tiles-definitions>

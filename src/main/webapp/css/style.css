@@ -4350,3 +4350,26 @@ input.cvvNumber:hover{
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0px 8px 13px 0px rgba(0, 0, 0, 0.3);
 }
+
+.jumbotron .planning{
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200;
+}
+.jumbotron .planning a{
+    color: #333;
+    text-decoration: underline;
+}
+.jumbotron .planning div{
+    padding-left: .5em;
+}
+.jumbotron .planning div a{
+    color: #5b3113;
+}
+.blink-icon {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}

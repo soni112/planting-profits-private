@@ -1,4 +1,4 @@
-package com.decipher.agriculture.viewcontroller;
+package com.decipher.agriculture.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
