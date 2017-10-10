@@ -21,6 +21,6 @@ public interface FarmOutputDetailsService {
 
     JSONArray buildCropAcreageContent(JSONObject outputDetails);
 
-    JSONArray buildResourcesContent(JSONObject outputDetails);
+    JSONObject buildResourcesContent(JSONObject outputDetails);
 
 }

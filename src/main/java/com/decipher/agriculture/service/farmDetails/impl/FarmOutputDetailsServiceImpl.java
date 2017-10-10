@@ -1,5 +1,6 @@
 package com.decipher.agriculture.service.farmDetails.impl;
 
+import com.decipher.AppConstants;
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.agriculture.service.farmDetails.FarmOutputDetailsService;
@@ -39,6 +40,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
     private static final String YES = "Yes";
     private static final String NO = "No";
+
+    private static final String RESOURCE_STATUS = "status";
+    private static final String RESOURCE_NAME = "resourceName";
+    private static final String RESOURCE_TOTAL_AVAILABLE = "totalAvailable";
+    private static final String RESOURCE_USED = "used";
+    private static final String RESOURCE_UNUSED = "unused";
+    private static final String RESOURCE_IMPACTING_PROFIT = "impactingProfit";
 
 
     @Override
@@ -447,40 +455,52 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
     }
 
     @Override
-    public JSONArray buildResourcesContent(JSONObject outputDetails) {
+    public JSONObject buildResourcesContent(JSONObject outputDetails) {
         List<CropResourceUsageView> resourceList = (List<CropResourceUsageView>) outputDetails.get("resourceList");
         Map<String, String> cropResourceUsed = (Map<String, String>) outputDetails.get("cropResourceUsed");
         Map<String, String> cropResourceUnused = (Map<String, String>) outputDetails.get("cropResourceUnused");
 
+        JSONObject flagStatusObj = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for (CropResourceUsageView cropResourceUsageView : resourceList) {
             JSONObject jsonObject = null;
             if (cropResourceUsageView.isActive()) {
                 jsonObject = new JSONObject();
                 if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")){
-                    jsonObject.put("resourceName", "Working Capital");
+                    jsonObject.put(RESOURCE_NAME, AppConstants.WORKING_CAPITAL);
+                } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")){
+                    String used = cropResourceUsed.get(cropResourceUsageView.getCropResourceUse());
+                    String unused = cropResourceUnused.get(cropResourceUsageView.getCropResourceUse());
+                    String totalAvailable = cropResourceUsageView.getCropResourceUseAmount();
+                    long total = null == totalAvailable ? 0L : AgricultureStandardUtils.stringToLong(totalAvailable);
+                    long usedLong = null == used ? 0L : AgricultureStandardUtils.stringToLong(used);
+                    long unusedLong = null == unused ? 0L : AgricultureStandardUtils.stringToLong(unused);
+
+                    jsonObject.put(RESOURCE_NAME, cropResourceUsageView.getCropResourceUse());
+                    flagStatusObj.put(cropResourceUsageView.getCropResourceUse(), (usedLong != total && usedLong < total));
                 } else {
-                    jsonObject.put("resourceName", cropResourceUsageView.getCropResourceUse());
+                    jsonObject.put(RESOURCE_NAME, cropResourceUsageView.getCropResourceUse());
+                    flagStatusObj.put(cropResourceUsageView.getCropResourceUse(), false);
                 }
 
-                jsonObject.put("totalAvailable", cropResourceUsageView.getCropResourceUseAmount());
-                jsonObject.put("used", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
-                jsonObject.put("unused", cropResourceUnused.get(cropResourceUsageView.getCropResourceUse()));
+                jsonObject.put(RESOURCE_TOTAL_AVAILABLE, cropResourceUsageView.getCropResourceUseAmount());
+                jsonObject.put(RESOURCE_USED, cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
+                jsonObject.put(RESOURCE_UNUSED, cropResourceUnused.get(cropResourceUsageView.getCropResourceUse()));
 
                 if(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse()).equalsIgnoreCase("0")){
-                    jsonObject.put("impactingProfit", "Yes");
+                    jsonObject.put(RESOURCE_IMPACTING_PROFIT, "Yes");
                 } else {
-                    jsonObject.put("impactingProfit", "No");
+                    jsonObject.put(RESOURCE_IMPACTING_PROFIT, "No");
                 }
                 jsonArray.add(jsonObject);
             }
-
-
         }
 
+        JSONObject data = new JSONObject();
+        data.put("resourceDetails", jsonArray);
+        data.put("resourceFlags", flagStatusObj);
 
-        return jsonArray;
+        return data;
     }
-
 
 }

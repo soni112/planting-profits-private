@@ -4366,3 +4366,10 @@ input.cvvNumber:hover{
 .jumbotron .planning div a{
     color: #5b3113;
 }
+.blink-icon {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}

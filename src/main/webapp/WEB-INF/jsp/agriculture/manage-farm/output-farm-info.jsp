@@ -47,6 +47,9 @@
                                 </div>
                                 <div class="right_detail"> Resource Use
                                     <!-- <span>You can see which resources you use.</span> --></div>
+                                <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
+                                    <div class="blink-icon" id="resource-highlight-icon"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
+                                </c:if>
                             </a></li>
                             <li><a href="#Crop-Limits">
                                 <div class="lf_pointer_images"><img src="<c:url value="/images/pointer-image4.jpg"/>">
@@ -342,7 +345,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="resourceList" items="${model.resourceJsonArray}">
+                                        <c:forEach var="resourceList" items="${model.resourceJsonObject.resourceDetails}">
                                             <%--<c:set var="key" value="${resourceList.cropResourceUse}" />
                                             <tr class="tblgrn">
                                                 <c:choose>
@@ -379,7 +382,18 @@
                                                 </c:choose>
                                             </tr>--%>
                                             <tr class="tblgrn">
-                                                <td class="success">${resourceList.resourceName}</td>
+                                                <td class="success">
+                                                    ${resourceList.resourceName}
+                                                    <c:if test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
+                                                        <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                                            <c:param name="farmId" value="${farmId}"/>
+                                                            <c:param name="key" value="unsed"/>
+                                                        </c:url>
+                                                        <a class="blink-icon pull-right" href="<c:out value="${troubleshooturl}"/>" target="_blank">
+                                                            <img src="<c:url value="/images/i-icon.png"/>">
+                                                        </a>
+                                                    </c:if>
+                                                </td>
                                                 <td class="success">${resourceList.totalAvailable}</td>
                                                 <td class="success">${resourceList.used}</td>
                                                 <td class="success">${resourceList.unused}</td>
@@ -398,8 +412,14 @@
                             </div>
                             <div id="resourceUseGraph" class="graph_field" style="display: block">
                                 <div class="addremove-field padding-left-none pull-right">
-                                    <a id="resourceUseTextShow" class="show_text"><img
-                                            src="<c:url value="/images/showtext.png"/>"></a>
+                                    <a id="resourceUseTextShow" class="show_text">
+                                        <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
+                                            <div class="blink-icon" id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;">
+                                                <i class="fa fa-circle" style="color: red; float: right;"></i>
+                                            </div>
+                                        </c:if>
+                                        <img src="<c:url value="/images/showtext.png"/>">
+                                    </a>
                                 </div>
                                 <div class="clr"></div>
                                 <div class="graph_area">
@@ -1261,13 +1281,20 @@
                         </label>
                     </div>
 
-                    <div class="panel-body" style="display: block">
+                    <div class="panel-body text-center" style="display: block">
                         <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none medium-height-overflow medium-height-overRide">
-                            <p>Planting Profits could not generate a strategy that meets all of your objectives and
-                                constraints.</p>
-                            <a href = "<c:url value="/troubleshoot.htm?farmId="/>${farmId}">continue</a>
+                            <p>Planting Profits could not generate a strategy that meets all of your objectives and constraints.</p>
+                            <c:url value="/troubleshoot.htm" var="myURL">
+                                <c:param name="farmId" value="${farmId}"/>
+                                <c:param name="key" value="baseline"/>
+                            </c:url>
                         </div>
-
+                        <div class="clearfix"></div>
+                        <div>
+                            <a class="alertify-button alertify-button-ok remove-text-deco"
+                               href="${myURL}"
+                                style="color:#0f0f0f">Continue</a>
+                        </div>
                     </div>
 
                 </div>
@@ -1276,6 +1303,7 @@
         </div>
     </div>
 </div>
+
 <!-- end -->
 <script>
     var farmId = '<c:out value="${model.farm.farmId}" />';

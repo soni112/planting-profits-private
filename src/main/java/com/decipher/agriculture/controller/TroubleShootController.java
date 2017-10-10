@@ -1,4 +1,4 @@
-package com.decipher.agriculture.viewcontroller;
+package com.decipher.agriculture.controller;
 
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.service.farm.FarmService;
@@ -21,14 +21,17 @@ public class TroubleShootController {
     private FarmService farmService;
 
     @RequestMapping(value = "/troubleshoot.htm", method = RequestMethod.GET)
-    public ModelAndView troubleShoot(@RequestParam(value = "farmId") int farmId){
-        JSONObject myModel=new JSONObject();
-        FarmInfoView farmInfoView=farmService.getBaselineFarmDetails(farmId);
+    public ModelAndView troubleShoot(@RequestParam(value = "farmId") int farmId,
+                                     @RequestParam(value = "key") String key) {
 
+        ModelAndView model = new ModelAndView("trouble-shoot");
+
+        FarmInfoView farmInfoView = farmService.getBaselineFarmDetails(farmId);
         Farm farm = farmService.getFarmById(farmId);
-        PlantingProfitLogger.info(farmInfoView.getStrategy());
-        myModel.put("farmInfoView",farmInfoView);
-        myModel.put("farm",farm);
-        return new ModelAndView("trouble-shoot","model",myModel);
+
+        model.addObject("farmInfoView", farmInfoView);
+        model.addObject("farm", farm);
+        model.addObject("key", key);
+        return model;
     }
 }
