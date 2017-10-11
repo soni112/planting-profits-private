@@ -16,9 +16,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <form id="issue-details-form">
                         <div class="form-group" style="padding: 0% 2%;">
-                            <label>Issue<span class="strickColor">*</span></label>
                             <textarea class="form-control" name="issue" rows="15" cols="8"
-                                      placeholder="Write your Issue..." style="resize: none;"></textarea>
+                                      placeholder="Please write down the issue..." style="resize: none;"></textarea>
                         </div>
 
                         <div class="clearfix"></div>
@@ -26,7 +25,7 @@
                             <input type="button" class="alertify-button alertify-button-ok pull-right" value="Submit"
                                    onclick="createIssue(); return false;">
                             <input type="button" onclick="window.location ='<c:url value="/farm.htm"/>'"
-                                   class="alertify-button alertify-button-ok pull-right" value="Back to Application">
+                                   class="alertify-button alertify-button-ok pull-right" value="Back">
                         </div>
                     </form>
                 </div>
