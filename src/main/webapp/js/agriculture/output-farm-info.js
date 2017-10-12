@@ -1308,6 +1308,7 @@ function getStrategyForSinghalResourcesForCreateNewScenario(){
 		}
 	});
 
+
 	var resource = {};
 	resource['resourceName'] = resourceName;
 	resource['resourceValueOld'] = oldVal;
