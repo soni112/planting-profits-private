@@ -334,7 +334,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="table-responsive Crop-Acreage-tabel" style="max-height: 298px;">
-                                    <table width="100%" cellspacing="0" class="table table-striped tbl-bordr  tblbrdr">
+                                    <table id="resource-table" width="100%" cellspacing="0" class="table table-striped tbl-bordr  tblbrdr">
                                         <thead>
                                         <tr class="tblhd add-fieldi">
                                             <td class="tblbrdr add-fieldi">Resource</td>
@@ -1375,12 +1375,15 @@
 	{{if source == "crop"}}
 		<tr class='tblhd add-fieldi'>
 			<td class='tblbrdr add-fieldi'>Crops</td>
+			<td class='add-fieldi'>Baseline Minimum</td>
+			<td class='add-fieldi'>Baseline Maximum</td>
 			<td class='add-fieldi'>Minimum</td>
 			<td class='add-fieldi'>Maximum</td>
 		</tr>
 		{{else source == "resource"}}
 			<tr class='tblhd add-fieldi'>
 				<td class='tblbrdr add-fieldi'>Resource</td>
+				<td class='tblbrdr add-fieldi'>Baseline</td>
 				<td class='add-fieldi'>New</td>
 			</tr>
 	{{/if}}
@@ -1394,15 +1397,18 @@
 		{{each(key, crop) cropDetails}}
 			<tr class="tblgrn">
 				<td class="success">{{= crop.cropName}}</td>
-				<td class="success">{{= crop.minimum}}</td>
-				<td class="success">{{= crop.maximum}}</td>
+				<td class="success">{{= crop.old_minimum}}</td>
+				<td class="success">{{= crop.old_maximum}}</td>
+				<td class="success">{{= crop.new_minimum}}</td>
+				<td class="success">{{= crop.new_maximum}}</td>
 			</tr>
 		{{/each}}
 		{{else source == "resource"}}
 			{{each(key, resource) resourceDetails}}
 			<tr class="tblgrn">
 				<td class="success">{{= resource.resourceName}}</td>
-				<td class="success">{{= resource.resourceValue}}</td>
+				<td class="success">{{= resource.resourceValueOld}}</td>
+				<td class="success">{{= resource.resourceValueNew}}</td>
 			</tr>
 		{{/each}}
 	{{/if}}
