@@ -1509,7 +1509,7 @@ start -->
 													</td>
 													<c:set var="headCount" value="4" />
 													<c:forEach var="resourceHead" items="${model.resourceList}">
-														<c:if test="${resourceHeadK.isActive()}">
+														<c:if test="${resourceHead.isActive()}">
 														<!--         modify Bhagvan Singh on 06-04-2015 for remove start -->
 														<c:if  test="${resourceHead.cropResourceUse ne 'Land' and resourceHead.cropResourceUse ne 'Capital'}">
 															<c:if test="${resourceHead.cropResourceUseAmount ne '' and resourceHead.cropResourceUseAmount ne '0'}">
