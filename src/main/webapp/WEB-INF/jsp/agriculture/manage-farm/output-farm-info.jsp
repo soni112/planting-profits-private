@@ -13,8 +13,7 @@
             <div class="right_farm_form_filled">
                 <div class="edit_output_details_link">
                     <!-- @changed - Jyoti    @date - 30-01-2017 -->
-                    <a class="alertify-button alertify-button-ok remove-text-deco"
-                       href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
+                    <a class="alertify-button alertify-button-ok remove-text-deco" href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
                 </div>
                 <div class="output_base">
                     <h3>${model.farmInfoView.farmName} (Baseline Strategy)</h3>
@@ -23,16 +22,14 @@
                             <c:choose>
                                 <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
                                     <li class="active"><a href="#Crop-Acreage" class="open">
-                                        <div class="lf_pointer_images"><img
-                                                src="<c:url value="/images/pointer-image2.jpg"/>"></div>
+                                        <div class="lf_pointer_images"><img src="<c:url value="/images/pointer-image2.jpg"/>"></div>
                                         <div class="right_detail"> Crop Acreage
                                             <!-- <span>You can see the acreage of each crop planted.</span> --></div>
                                     </a></li>
                                 </c:when>
                                 <c:otherwise>
                                     <li class="active"><a href="#Crop-Acreage" class="open">
-                                        <div class="lf_pointer_images"><img
-                                                src="<c:url value="/images/pointer-image2.jpg"/>"></div>
+                                        <div class="lf_pointer_images"><img src="<c:url value="/images/pointer-image2.jpg"/>"></div>
                                         <div class="right_detail"> Crop Acreage
                                             <!-- <span>You can see the acreage of each crop planted.</span> --></div>
                                     </a></li>
@@ -40,8 +37,7 @@
                             </c:choose>
                             <c:if test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                 <li><a href="#Crop&ndash;Field-Assignments">
-                                    <div class="lf_pointer_images"><img
-                                            src="<c:url value="/images/pointer-image1.jpg"/>"></div>
+                                    <div class="lf_pointer_images"><img src="<c:url value="/images/pointer-image1.jpg"/>"></div>
                                     <div class="right_detail"> Crop &ndash; Field Assignments
                                         <!-- <span>You can see crop to field allocation.</span> --></div>
                                 </a></li>
@@ -52,9 +48,7 @@
                                 <div class="right_detail"> Resource Use
                                     <!-- <span>You can see which resources you use.</span> --></div>
                                 <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                    <div class="blink-icon" id="resource-highlight-icon"><i class="fa fa-circle"
-                                                                                            style="color: red; float: right;"></i>
-                                    </div>
+                                    <div class="blink-icon" id="resource-highlight-icon"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
                                 </c:if>
                             </a></li>
                             <li><a href="#Crop-Limits">
@@ -351,8 +345,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="resourceList"
-                                                   items="${model.resourceJsonObject.resourceDetails}">
+                                        <c:forEach var="resourceList" items="${model.resourceJsonObject.resourceDetails}">
                                             <%--<c:set var="key" value="${resourceList.cropResourceUse}" />
                                             <tr class="tblgrn">
                                                 <c:choose>
@@ -390,14 +383,13 @@
                                             </tr>--%>
                                             <tr class="tblgrn">
                                                 <td class="success">
-                                                        ${resourceList.resourceName}
+                                                    ${resourceList.resourceName}
                                                     <c:if test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
                                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                             <c:param name="farmId" value="${farmId}"/>
                                                             <c:param name="key" value="unsed"/>
                                                         </c:url>
-                                                        <a class="blink-icon pull-right"
-                                                           href="<c:out value="${troubleshooturl}"/>" target="_blank">
+                                                        <a class="blink-icon pull-right" href="<c:out value="${troubleshooturl}"/>" target="_blank">
                                                             <img src="<c:url value="/images/i-icon.png"/>">
                                                         </a>
                                                     </c:if>
@@ -422,8 +414,7 @@
                                 <div class="addremove-field padding-left-none pull-right">
                                     <a id="resourceUseTextShow" class="show_text">
                                         <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                            <div class="blink-icon" id="resource-table-highlight-icon"
-                                                 style="position: relative; top: 10px; right: -1px;">
+                                            <div class="blink-icon" id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;">
                                                 <i class="fa fa-circle" style="color: red; float: right;"></i>
                                             </div>
                                         </c:if>
@@ -1292,8 +1283,7 @@
 
                     <div class="panel-body text-center" style="display: block">
                         <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none medium-height-overflow medium-height-overRide">
-                            <p>Planting Profits could not generate a strategy that meets all of your objectives and
-                                constraints.</p>
+                            <p>Planting Profits could not generate a strategy that meets all of your objectives and constraints.</p>
                             <c:url value="/troubleshoot.htm" var="myURL">
                                 <c:param name="farmId" value="${farmId}"/>
                                 <c:param name="key" value="baseline"/>
@@ -1303,7 +1293,7 @@
                         <div>
                             <a class="alertify-button alertify-button-ok remove-text-deco"
                                href="${myURL}"
-                               style="color:#0f0f0f">Continue</a>
+                                style="color:#0f0f0f">Continue</a>
                         </div>
                     </div>
 
@@ -1357,11 +1347,6 @@
 
 
 
-
-
-
-
-
 </script>
 
 <script type="text/x-jQuery-tmpl" id="tableBodyCropTemplate">
@@ -1384,33 +1369,21 @@
 
 
 
-
-
-
-
-
 </script>
 
 <script type="text/x-jQuery-tmpl" id="resourceCropTheadTemplate">
 	{{if source == "crop"}}
 		<tr class='tblhd add-fieldi'>
 			<td class='tblbrdr add-fieldi'>Crops</td>
-			<td class='tblbrdr add-fieldi'>Baseline Amount</td>
 			<td class='add-fieldi'>Minimum</td>
 			<td class='add-fieldi'>Maximum</td>
 		</tr>
 		{{else source == "resource"}}
 			<tr class='tblhd add-fieldi'>
 				<td class='tblbrdr add-fieldi'>Resource</td>
-				<td class='tblbrdr add-fieldi'>Baseline Amount</td>
 				<td class='add-fieldi'>New</td>
 			</tr>
 	{{/if}}
-
-
-
-
-
 
 
 
@@ -1421,7 +1394,6 @@
 		{{each(key, crop) cropDetails}}
 			<tr class="tblgrn">
 				<td class="success">{{= crop.cropName}}</td>
-				<td class="success">{{= null}}</td>
 				<td class="success">{{= crop.minimum}}</td>
 				<td class="success">{{= crop.maximum}}</td>
 			</tr>
@@ -1430,16 +1402,10 @@
 			{{each(key, resource) resourceDetails}}
 			<tr class="tblgrn">
 				<td class="success">{{= resource.resourceName}}</td>
-				<td class="success">{{= null}}</td>
 				<td class="success">{{= resource.resourceValue}}</td>
 			</tr>
 		{{/each}}
 	{{/if}}
-
-
-
-
-
 
 
 
@@ -1486,11 +1452,6 @@
 			<td class="success ratingGrey"></td>
 		{{/if}}--%>
 	</tr>
-
-
-
-
-
 
 
 
