@@ -25,9 +25,6 @@
 	<definition name="view-farm-info" extends="defaultTemplate">
 	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/view-farm-info.jsp" />
 	</definition>
-	<!-- <definition name="output-farm" extends="defaultTemplate">
-	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/output-farm.jsp" />
-	</definition> -->
 	<definition name="output-edit-farm-info" extends="defaultTemplate">
 	 	<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/manage-farm/output-edit-farm-info.jsp" />
 	</definition>
@@ -83,7 +80,6 @@
 	</definition>
 	<definition name="report-issue" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/report-issue/report-issue.jsp"/>
-		<!--<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />-->
 	</definition>
 	<definition name="trouble-shoot" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/trouble-shoot/trouble-shoot.jsp"/>

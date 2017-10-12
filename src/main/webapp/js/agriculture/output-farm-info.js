@@ -595,8 +595,10 @@ function getStrategyForMultipleCropsForCreateNewScenario(){
 
 		var cropData = {};
 		cropData['cropName'] = cropName;
-		cropData['minimum'] = minOverridedValue;
-		cropData['maximum'] = maxOverridedValue;
+		cropData['old_minimum'] = minValue;
+        cropData['new_minimum'] = minOverridedValue;
+        cropData['old_maximum'] = maxValue;
+        cropData['new_maximum'] = maxOverridedValue;
 		cropArrayForTemplate.push(cropData);
 
 		if(replaceHifun(maxValue) != maxOverridedValue && maxOverridedValue != ""){
@@ -614,8 +616,11 @@ function getStrategyForMultipleCropsForCreateNewScenario(){
 
 		var cropData = {};
 		cropData['cropName'] = cropName;
-		cropData['minimum'] = minOverridedValue;
-		cropData['maximum'] = "-";
+        cropData['old_minimum'] = minValue;
+        cropData['new_minimum'] = minOverridedValue;
+        cropData['old_maximum'] = "-";
+        cropData['new_maximum'] = "-";
+
 		cropArrayForTemplate.push(cropData);
 
 		if(replaceHifun(minValue) != minOverridedValue && minOverridedValue != ""){
@@ -630,8 +635,10 @@ function getStrategyForMultipleCropsForCreateNewScenario(){
 
 		var cropData = {};
 		cropData['cropName'] = cropName;
-		cropData['minimum'] = minOverridedValue;
-		cropData['maximum'] = "-";
+        cropData['old_minimum'] = minValue;
+        cropData['new_minimum'] = minOverridedValue;
+        cropData['old_maximum'] = "-";
+        cropData['new_maximum'] = "-";
 		cropArrayForTemplate.push(cropData);
 
 		if(replaceHifun(minValue) != minOverridedValue && minOverridedValue != ""){
@@ -648,8 +655,10 @@ function getStrategyForMultipleCropsForCreateNewScenario(){
 
 		var cropData = {};
 		cropData['cropName'] = groupName;
-		cropData['mingetStrategyForMultipleResourcesForCreateNewScenarioimum'] = minOverridedValue;
-		cropData['maximum'] = maxOverridedValue;
+        cropData['old_minimum'] = minValue;
+        cropData['new_minimum'] = minOverridedValue;
+        cropData['old_maximum'] = maxValue;
+        cropData['new_maximum'] = maxOverridedValue;
 		cropArrayForTemplate.push(cropData);
 
 		if(replaceHifun(maxValue) != maxOverridedValue && maxOverridedValue != ""){
@@ -777,8 +786,7 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 	var cropsArray = [], cropContractArray = [], cropProposedArray = [], cropsGroupArray = [], cropDetails = [];
 	var rowHTML = "";
 	if(selectionType=="Crop") {
-		
-		crop['cropName'] = cropName;		
+        crop['cropName'] = cropName;
 		if(rangeType=="Maximum"){
 			/**
 			 * @changed - Abhishek
@@ -787,8 +795,13 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 			/*cropsArray.push(cropName+"#-#-#max#-#-#"+removeAllCommas(differenceValue));
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>"+differenceValue +"</td><td class='success'>-</td> </tr>";*/
 			cropsArray.push(cropName+"#-#-#max#-#-#"+updatedValue);			
-			crop['minimum'] = "-";
-			crop['maximum'] = updatedValue;
+			// crop['minimum'] = "-";
+			// crop['maximum'] = updatedValue;
+
+			crop['old_minimum'] = "-";
+            crop['new_minimum'] = "-";
+            crop['old_maximum'] = $("#max_min_selector").find("option:selected").attr('delta');
+            crop['new_maximum'] = updatedValue;
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>"+updatedValue +"</td><td class='success'>-</td> </tr>";
 		}else{
 			/**
@@ -797,8 +810,12 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 			 */
 			/*cropsArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>-</td><td class='success'>"+differenceValue+"</td> </tr>";*/			
-			crop['minimum'] = updatedValue;
-			crop['maximum'] = "-";
+			// crop['minimum'] = updatedValue;
+			// crop['maximum'] = "-";
+            crop['old_minimum'] = $("#max_min_selector").find("option:selected").attr('delta');
+            crop['new_minimum'] = updatedValue;
+            crop['old_maximum'] = "-";
+            crop['new_maximum'] = "-";
 			cropsArray.push(cropName+"#-#-#min#-#-#"+updatedValue);
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>-</td><td class='success'>"+updatedValue+"</td> </tr>";
 		}
@@ -813,8 +830,12 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 		cropProposedArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));*/
 		
 		crop['cropName'] = cropName + "(Proposed)";
-		crop['minimum'] = updatedValue;
-		crop['maximum'] = "N/A";
+		// crop['minimum'] = updatedValue;
+		// crop['maximum'] = "N/A";
+        crop['old_minimum'] = $("#max_min_selector").find("option:selected").attr('delta');
+        crop['new_minimum'] = updatedValue;
+        crop['old_maximum'] = "N/A";
+        crop['new_maximum'] = "N/A";
 		cropDetails.push(crop);
 		rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"(Proposed)</td> <td class='success'>NA</td><td class='success'>"+updatedValue+"</td> </tr>";
 		cropProposedArray.push(cropName+"#-#-#min#-#-#"+updatedValue);
@@ -827,8 +848,12 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 		/*rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"(Contract)</td> <td class='success'>NA</td><td class='success'>"+differenceValue+"</td> </tr>";
 		cropContractArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));*/
 		crop['cropName'] = cropName + "(Contract)";
-		crop['minimum'] = updatedValue;
-		crop['maximum'] = "N/A";
+		// crop['minimum'] = updatedValue;
+		// crop['maximum'] = "N/A";
+        crop['old_minimum'] = $("#max_min_selector").find("option:selected").attr('delta');
+        crop['new_minimum'] = updatedValue;
+        crop['old_maximum'] = "N/A";
+        crop['new_maximum'] = "N/A";
 		cropDetails.push(crop);
 		rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"(Contract)</td> <td class='success'>NA</td><td class='success'>"+updatedValue+"</td> </tr>";
 		cropContractArray.push(cropName+"#-#-#min#-#-#"+updatedValue);
@@ -842,8 +867,12 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 			 */
 			/*cropsGroupArray.push(cropName+"#-#-#max#-#-#"+removeAllCommas(differenceValue));
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>"+differenceValue +"</td><td class='success'>-</td> </tr>";*/
-			crop['minimum'] = "-";
-			crop['maximum'] = updatedValue;
+			// crop['minimum'] = "-";
+			// crop['maximum'] = updatedValue;
+            crop['old_minimum'] = "-";
+            crop['new_minimum'] = "-";
+            crop['old_maximum'] = updatedValue;
+            crop['new_maximum'] = $("#max_min_selector").find("option:selected").attr('delta');
 			cropsGroupArray.push(cropName+"#-#-#max#-#-#"+updatedValue);
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>"+updatedValue +"</td><td class='success'>-</td> </tr>";
 		}else{
@@ -853,8 +882,12 @@ function getStrategyForSingleCropsForCreateNewScenario(updatedValue){
 			 */
 			/*cropsGroupArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(differenceValue));
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>-</td><td class='success'>"+differenceValue+"</td> </tr>";*/
-			crop['minimum'] = updatedValue;
-			crop['maximum'] = "-";
+			// crop['minimum'] = updatedValue;
+			// crop['maximum'] = "-";
+            crop['old_minimum'] = $("#max_min_selector").find("option:selected").attr('delta');
+            crop['new_minimum'] = updatedValue;
+            crop['old_maximum'] = "-";
+            crop['new_maximum'] = "-";
 			cropsGroupArray.push(cropName+"#-#-#min#-#-#"+updatedValue);
 			rowHTML += "<tr class='tblgrn'><td class='success'>"+cropName+"</td> <td class='success'>-</td><td class='success'>"+updatedValue+"</td> </tr>";
 		}
@@ -1150,7 +1183,8 @@ function getStrategyForMultipleResourcesForCreateNewScenario(){
 
 		var resource = {};
 		resource['resourceName'] = resourceName;
-		resource['resourceValue'] = resourceOverridedValue;
+		resource['resourceValueOld'] = resourceValue;
+		resource['resourceValueNew'] = resourceOverridedValue;
 		resourceDetails.push(resource);
 
 		if(resourceValue != resourceOverridedValue){
@@ -1267,10 +1301,18 @@ function getStrategyForSinghalResourcesForCreateNewScenario(){
 
 	var resourceName = $("#forCastGraphResourceList").val().trim();
 	var resourceOverridedValue = $("#resourse_Value_Result").text().trim();
+    var oldVal = 0;
+	$('#resource-table').find('tbody tr').each(function(){
+		if($(this).children("td:nth(0)").text().trim() == resourceName){
+			oldVal = $(this).children("td:nth(1)").text().trim();
+		}
+	});
+
 
 	var resource = {};
 	resource['resourceName'] = resourceName;
-	resource['resourceValue'] = resourceOverridedValue;
+	resource['resourceValueOld'] = oldVal;
+	resource['resourceValueNew'] = resourceOverridedValue;
 	resourceDetails.push(resource);
 
 	resourceArray.push(resourceName+"#-#-#"+removeAllCommas(resourceOverridedValue));
@@ -1293,7 +1335,7 @@ function getStrategyForSinghalResourcesForCreateNewScenario(){
 		url : 'agriculture/SensetivityAnalysisController/getSAForStrategyByMultipleResource',
 		type : 'POST',
 		beforeSend: function(){
-			$('#loading-strategy-content').html('Preparing to Save strategy...')
+			$('#loading-strategy-content').html('Preparing to Save strategy...');
 			showLoadingImageForStrategy()
 		},
 		data : {
@@ -1624,9 +1666,14 @@ function checkMinMaxForCrop(currentRef){
 				var result = response.result;
 				if(status == 'success'){
 
-					for(var i = 0; i< result.length; i++){
-						html += "<option value='"+result[i]+"'>"+result[i]+"</option>";
-					}
+					for(var key in result){
+                        console.log(key);
+                        html += "<option value='"+key+"' delta='"+result[key]+"' >"+key+"</option>";
+                    }
+
+					// for(var i = 0; i< result.length; i++){
+					// 	html += "<option value='"+result[i]+"'>"+result[i]+"</option>";
+					// }
 					$('#max_min_selector').html(html);
 
 				}

@@ -1509,6 +1509,7 @@ start -->
 													</td>
 													<c:set var="headCount" value="4" />
 													<c:forEach var="resourceHead" items="${model.resourceList}">
+														<c:if test="${resourceHead.isActive()}">
 														<!--         modify Bhagvan Singh on 06-04-2015 for remove start -->
 														<c:if  test="${resourceHead.cropResourceUse ne 'Land' and resourceHead.cropResourceUse ne 'Capital'}">
 															<c:if test="${resourceHead.cropResourceUseAmount ne '' and resourceHead.cropResourceUseAmount ne '0'}">
@@ -1519,6 +1520,7 @@ start -->
 																<c:set var="headCount" value="${headCount+1}" />
 															</c:if>
 														</c:if>
+														</c:if>
 													</c:forEach>
 												</tr>
 											</thead>
@@ -1527,7 +1529,6 @@ start -->
 												<%--         start row resource --%>
 												<c:set var="rowCount" value="1" />
 												<c:forEach var="cropList" items="${model.cropTypeView}">
-
 													<c:if test="${cropList.selected}">
 														<tr id="crop_resource_usage_row__${rowCount}" class="tblgrn text-center">
 															<c:choose>
@@ -1549,6 +1550,7 @@ start -->
 																<img src="<c:url value="/images/data.png"/>" /></td>
 															<c:set var="columnCount" value="1" />
 															<c:forEach var="resourceList" items="${model.resourceList}">
+																<c:if test="${resourceList.isActive()}">
 																<c:forEach var="resourcesVariancesList" items="${model.resourceVariancesList}">
 																	<%-- resourcesVariancesList:${resourcesVariancesList.id} --%>
 																	<%-- <c:out value="${listValue.cropName}" /> --%>
@@ -1568,6 +1570,7 @@ start -->
 																		</c:if>
 																	</c:if>
 																</c:forEach>
+																</c:if>
 															</c:forEach>
 														</tr>
 														<c:set var="rowCount" value="${rowCount+1}" />

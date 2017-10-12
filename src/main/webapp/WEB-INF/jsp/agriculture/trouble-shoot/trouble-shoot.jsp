@@ -61,13 +61,14 @@
                                             Only profitable crops will selected for planting unless forced to do so with minimum crop acreage constraints since planting land to unprofitable crops decreases estimated income.<br/>
                                             Are all crops profitable?<br/>
                                             Check profitability of crops and note any unprofitable crops<br/>
+                                            <a href="javascript:;" onclick="navigateToCropChoices();return false;">Check crop details.</a><br/>
                                         </div>
                                     </li>
                                 </ul>
                             </c:when>
                             <c:otherwise>
                                 <h2>
-                                    <b>IF PLANNING BY FIELDS:</b><br/>
+                                    <b>IF PLANNING BY ACRES:</b><br/>
                                     <p>Why was all of my available acreage not planted?</p>
                                 </h2>
                                 <p>Click one or more of the following parameters to fix the problem.</p>

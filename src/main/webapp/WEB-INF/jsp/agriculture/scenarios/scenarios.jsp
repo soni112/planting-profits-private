@@ -240,6 +240,7 @@ Date 24-11-2015
                     <!-- @end #createNewScenario -->
 
                     <div id="viewEditScenario" class="contentblock hidden">
+                        <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right" style="margin-top: 4px;">Back to Baseline</a>
                         <%--<div class="text_field">--%>
                         <div class="clearfix"></div>
                         <ul class="potential_criteria">
@@ -461,6 +462,7 @@ Date 24-11-2015
                     <!-- @end #viewEditScenario -->
 
                     <div id="applyScenarioToCurrent" class="contentblock hidden">
+                        <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right" style="margin-top: 4px;">Back to Baseline</a>
                         <ul class="potential_criteria">
                             <li>
                                 <label class="resource_label"> Select Scenario:

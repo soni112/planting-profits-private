@@ -341,19 +341,18 @@ public class FarmOutPutViewController {
             JSONObject baseLineDetails = farmDetailsContainerService.getBaseLineDetails(farm);
 
             List<CropTypeView> cropTypeViewList = (List<CropTypeView>)baseLineDetails.get("cropTypeView");
-
-            JSONArray jsonArray = new JSONArray();
+            JSONObject jsonObject = new JSONObject();
             for (CropTypeView cropTypeView : cropTypeViewList) {
                 if(cropTypeView.getSelected()){
                     if (Objects.equals(cropTypeView.getId(), cropId)){
                         if(!cropTypeView.getMaximumAcres().equalsIgnoreCase("")){
-                            jsonArray.add("Maximum");
+                            jsonObject.put("Maximum", cropTypeView.getMaximumAcres());
                         }
                         if(!cropTypeView.getMinimumAcres().equalsIgnoreCase("")){
-                            jsonArray.add("Minimum");
+                            jsonObject.put("Minimum", cropTypeView.getMinimumAcres());
                         }
                         if(cropTypeView.getMaximumAcres().equalsIgnoreCase("") && cropTypeView.getMinimumAcres().equalsIgnoreCase("")){
-                            jsonArray.add("No Crop Limit Specified");
+                            jsonObject.put("No Crop Limit Specified", "");
                         }
                     }
                 }
@@ -365,20 +364,20 @@ public class FarmOutPutViewController {
             for (CropsGroupView cropsGroupView : cropsGroupViewList) {
                 if (Objects.equals(cropsGroupView.getId(), groupId)){
                     if(!cropsGroupView.getMaximumAcres().equalsIgnoreCase("")){
-                        jsonArray.add("Maximum");
+                        jsonObject.put("Maximum", cropsGroupView.getMaximumAcres());
                     }
                     if(!cropsGroupView.getMinimumAcres().equalsIgnoreCase("")){
-                        jsonArray.add("Minimum");
+                        jsonObject.put("Minimum", cropsGroupView.getMinimumAcres());
                     }
                     if(cropsGroupView.getMaximumAcres().equalsIgnoreCase("") && cropsGroupView.getMinimumAcres().equalsIgnoreCase("")){
-                        jsonArray.add("No Crop Limit Specified");
+                        jsonObject.put("No Crop Limit Specified", "");
                     }
                 }
             }
 
 
             response.setStatus(JsonResponse.RESULT_SUCCESS);
-            response.setResult(jsonArray);
+            response.setResult(jsonObject);
         } catch (Exception e) {
             response.setStatus(JsonResponse.RESULT_FAILED);
             PlantingProfitLogger.error(e);
