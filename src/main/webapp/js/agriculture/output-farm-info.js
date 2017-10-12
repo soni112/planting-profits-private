@@ -1268,8 +1268,10 @@ function getStrategyForSinghalResourcesForCreateNewScenario(){
 	var resourceName = $("#forCastGraphResourceList").val().trim();
 	var resourceOverridedValue = $("#resourse_Value_Result").text().trim();
 
+
 	var resource = {};
 	resource['resourceName'] = resourceName;
+	resource['resourceBaseAmount'] = resourcebaselineAmount;
 	resource['resourceValue'] = resourceOverridedValue;
 	resourceDetails.push(resource);
 
@@ -1323,7 +1325,7 @@ function getStrategyForSinghalResourcesForCreateNewScenario(){
 				$("#addcroppopup").html("<label>Add New Strategy Name</label><input type='text' id='pop-up-field-name-resourse' />");
 
 				var theadObj = {};
-				theadObj['source'] = 'resource';
+				theadObj['source'] = 'resource','baseline';
 				var table = $("#resourceTableForCreateScenario");
 				applyDetailsThroughTemplate('#resourceCropTheadTemplate', theadObj, table.find("thead"));
 				applyDetailsThroughTemplate('#multipleCropTbodyTemplate', objetForResourceDetails, table.find("tbody"));
