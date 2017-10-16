@@ -61,7 +61,7 @@
                                             Only profitable crops will selected for planting unless forced to do so with minimum crop acreage constraints since planting land to unprofitable crops decreases estimated income.<br/>
                                             Are all crops profitable?<br/>
                                             Check profitability of crops and note any unprofitable crops<br/>
-                                            <a href="javascript:;" onclick="navigateToCropChoices();return false;">Check crop details.</a><br/>
+                                            <a href="javascript:;" onclick="navigateToCropFieldChoices();return false;">Check crop details.</a><br/>
                                         </div>
                                     </li>
                                 </ul>
@@ -153,7 +153,7 @@
                                             If there are one or more minimum crop acreage limits specified, is there enough acreage across the fields where the crop can be grown to meet the minimum?<br/>
                                             This applies to each crop that has a minimum acreage limit. Some of which may be competing for the same field
 
-                                            <a href="javascript:;" onclick="navigateToCropChoices();return false;">Check crop/field choices</a>
+                                            <a href="javascript:;" onclick="navigateToCropFieldChoices();return false;">Check crop/field choices</a>
                                             Often, due to the large number of possible combinations this can be difficult to unravel.<br/>
                                             For crops with minimum acreage limits, either:
                                             <ul class="planning">
@@ -215,6 +215,10 @@
     }
     function navigateToCropChoices() {
         localStorage.setItem('cropChoicesFlag', true);
+        window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
+    }
+    function navigateToCropFieldChoices() {
+        localStorage.setItem('cropFieldChoicesFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
 </script>

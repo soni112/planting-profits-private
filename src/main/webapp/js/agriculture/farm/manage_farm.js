@@ -65,11 +65,17 @@ $(function () {
 
     var cropChoiceFlag=localStorage.getItem('cropChoicesFlag');
 
-    if(typeof profitFlag != 'undefined' && cropChoiceFlag){
+    if(typeof cropChoiceFlag != 'undefined' && cropChoiceFlag){
         localStorage.removeItem('cropChoicesFlag');
         showCropsAndCropInformationTab();
     }
 
+    var cropFieldChoiceFlag=localStorage.getItem('cropFieldChoicesFlag');
+
+    if(typeof cropFieldChoiceFlag != 'undefined' && cropFieldChoiceFlag){
+        localStorage.removeItem('cropFieldChoicesFlag');
+        showCropFieldChoicesTab();
+    }
 
 
     $fixedTables = $('.tbl-fixd-hdr, .fld-chc-tbl-fixd-hdr,' +
