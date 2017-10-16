@@ -117,14 +117,14 @@
                         </c:choose>
                     </c:when>
                     <c:otherwise>
-                        <h1 class="text-center">Troubleshoot Baseline Strategy</h1>
+                        <h1 class="text-center">Trouble Shooting Tips Strategy not Generated.</h1>
                         <br>
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                 <h2><b>IF PLANNING BY FIELDS:</b></h2>
-                                <p>Please check the following and make adjustments to resources, crop limits or crop/field choices</p>
+                                <p>Please check the following and make adjustments to resources, crop limits or crop/field choices.</p>
                                 <br/>
-                                <p>Click one or more of the following parameters to diagnose the problem</p>
+                                <p>Click one or more of the following parameters to diagnose the problem.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#resources"><b>Resources</b></a>
@@ -140,8 +140,7 @@
                                         <a data-toggle="collapse" href="#profitabilityOfCrops"><b>Profitability of crops</b></a>
                                         <div id="profitabilityOfCrops" class="collapse">
                                             Are all crops profitable?<br/>
-                                            In order to maximize estimated income,<br/>
-                                            Planting Profits will not allocate land or other resources to any unprofitable crops unless minimum crop acreage limits are specified.<br/>
+                                            In order to maximize estimated income, Planting Profits will not allocate land or other resources to unprofitable crops unless minimum crop acreage limits are specified.<br/>
                                             <a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a>
                                         </div>
                                         <br/>
@@ -149,17 +148,18 @@
                                     <li>
                                         <a data-toggle="collapse" href="#cropChoices"><b>Crop/field choices</b></a>
                                         <div id="cropChoices" class="collapse">
-                                            Minimum crop acreage limits, combined with limitations on which crops can be grown in which fields may make some combinations of crops/fields infeasible.<br/>
-                                            If there are one or more minimum crop acreage limits specified, is there enough acreage across the fields where the crop can be grown to meet the minimum?<br/>
-                                            This applies to each crop that has a minimum acreage limit. Some of which may be competing for the same field
+                                            Minimum crop acreage limits, combined with limitations on which crops can be grown in which fields may make some combinations of crops/fields infeasible.
+                                            If there are one or more minimum crop acreage limits specified, is there enough acreage across the fields where the crop can be grown to meet the minimum crop acreage limits?<br/>
+                                            This applies to each crop that has a minimum acreage limit. Some of which may be competing for the same field.<br/>
 
-                                            <a href="javascript:;" onclick="navigateToCropFieldChoices();return false;">Check crop/field choices</a>
+                                            <a href="javascript:;" onclick="navigateToCropFieldChoices();return false;">Check crop/field choices</a><br/>
+
                                             Often, due to the large number of possible combinations this can be difficult to unravel.<br/>
                                             For crops with minimum acreage limits, either:
                                             <ul class="planning">
-                                                <li>1) decrease the acreage limit,</li>
-                                                <li>2) increase the number of fields where the crop (s) with the crop acreage limit(s) can be grown,</li>
-                                                <li>3) a combination of 1 and 2.</li>
+                                                <li>1) decrease the crop acreage limit</li>
+                                                <li>2) increase the number of fields where the crop (s) with the crop acreage limit(s) can be grown</li>
+                                                <li>3) use a combination of 1 and 2.</li>
                                             </ul>
                                         </div>
                                         <br/>
@@ -170,7 +170,7 @@
                                 <h2>IF PLANNING BY ACRES:</h2>
                                 <p>Please check the following and make adjustments to resources, crop limits or crop/field choices.</p>
                                 <br/>
-                                <p>Click one or more of the following parameters to diagnose the problem</p>
+                                <p>Click one or more of the following parameters to diagnose the problem.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#resourcesAcres"><b>Resources</b></a>
@@ -186,8 +186,7 @@
                                         <a data-toggle="collapse" href="#profitabilityOfCropsAcres"><b>Profitability of crops</b></a>
                                         <div id="profitabilityOfCropsAcres" class="collapse">
                                             Are all crops profitable?<br/>
-                                            In order to maximize estimated income,<br/>
-                                            Planting Profits will not allocate land or other resources to any unprofitable crops unless minimum crop acreage limits are specified.<br/>
+                                            In order to maximize estimated income, Planting Profits will not allocate land or other resources to unprofitable crops unless minimum crop acreage limits are specified.<br/>
                                             <a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a>
                                         </div>
                                     </li>
