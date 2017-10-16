@@ -38,7 +38,7 @@ function createIssue(){
             data: data,
             success: function (response) {
                 if(response.status){
-                    customAlerts("Thanks you for your feedback", 'success', 0);
+                    customAlerts("Thanks for your feedback", 'success', 0);
                     target.find('textarea[name="issue"]').val('');
                     hideLoadingImage();
                 }
