@@ -144,7 +144,7 @@
     <article class="contribution-select-donate-bg">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
+                <div class="col-md-12 col-sm-12 text-center margin-top-1">
                     <%--<h3 class="text-white uppercase">Contribute</h3>--%>
                     <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="10">$10</button>--%>
                     <%--<button class="btn-contribute" onclick="showPaymentOptions(this); return false;" data-value="25">$25</button>--%>
@@ -161,7 +161,7 @@
                         <%--<button class="btn-contribute" id="logout-btn" onclick="processLogout('<c:url value="/j_spring_security_logout"/>'); return false;">No Thanks</button>--%>
                     <%--<button class="btn-contribute" onclick="navigateBackToApplication(); return false;">Back to application</button>--%>
 
-                        <h3 style="color: #fff"><em>Space for future messages / ads / etc.</em></h3>
+                        <%--<h3 style="color: #fff"><em>Space for future messages / ads / etc.</em></h3>--%>
                         <button class="btn-contribute" onclick="window.location = '<c:url value="/farm.htm"/>'">Back to Planting Profits</button>
 
                 </div><!-- /.col-12 -->
@@ -169,16 +169,16 @@
             </div><!-- /.row -->
         </div><!-- /.container -->
     </article>
-    <article class="margin-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
-                    <%--<p class="text-white">Thank you for your generosity.</p>--%>
-                </div><!-- /.col-12 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </article>
-    </di><!--- col-lg-12 ---->
+    <%--<article class="margin-1">--%>
+        <%--<div class="container">--%>
+            <%--<div class="row">--%>
+                <%--<div class="col-md-12 col-sm-12 text-center">--%>
+                    <%--&lt;%&ndash;<p class="text-white">Thank you for your generosity.</p>&ndash;%&gt;--%>
+                <%--</div><!-- /.col-12 -->--%>
+            <%--</div><!-- /.row -->--%>
+        <%--</div><!-- /.container -->--%>
+    <%--</article>--%>
+    <%--</di><!--- col-lg-12 ---->--%>
 </section>
 <section class="contribution-bottom-bg" id="payment-options-div" style=" display: none; ">
     <%--</div>--%>
