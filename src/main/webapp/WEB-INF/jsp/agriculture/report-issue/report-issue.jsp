@@ -11,7 +11,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="jumbotron margin-top-2 pull-left m-b-2" style="width: 100%">
 
-                <h2 class="text-center font-weight-600">Report Issue</h2>
+                <h2 class="text-center font-weight-600">Flag an Issue</h2>
                 <br>
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <form id="issue-details-form">

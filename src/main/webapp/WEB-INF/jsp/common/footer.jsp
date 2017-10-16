@@ -4,7 +4,7 @@
     <sec:authorize access="isAuthenticated()">
         <div class="reportIssue">
             <a href="<c:url value="/report-issue.htm"/>" data-toggle="tooltip" data-placement="right"
-               title="Report an Issue">
+               title="Flag an Issue">
                 <i class="fa fa-flag"></i>
             </a>
         </div>

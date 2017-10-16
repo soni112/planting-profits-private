@@ -65,11 +65,17 @@ $(function () {
 
     var cropChoiceFlag=localStorage.getItem('cropChoicesFlag');
 
-    if(typeof profitFlag != 'undefined' && cropChoiceFlag){
+    if(typeof cropChoiceFlag != 'undefined' && cropChoiceFlag){
         localStorage.removeItem('cropChoicesFlag');
         showCropsAndCropInformationTab();
     }
 
+    var cropFieldChoiceFlag=localStorage.getItem('cropFieldChoicesFlag');
+
+    if(typeof cropFieldChoiceFlag != 'undefined' && cropFieldChoiceFlag){
+        localStorage.removeItem('cropFieldChoicesFlag');
+        showCropFieldChoicesTab();
+    }
 
 
     $fixedTables = $('.tbl-fixd-hdr, .fld-chc-tbl-fixd-hdr,' +
@@ -774,7 +780,7 @@ function validateCropLimits() {
 
         if (maximum_acres > totalLand || maximum_acresPercentage > 100) {
 
-            customAlerts('The total Maximum crop acreage limit for '+ cropName +' is limited to Available land', type_error, time);
+            customAlerts('The total Maximum crop acreage limit for '+ cropName +' cannot be greater than the Available land', type_error, time);
             validationCropLimitFlag = false;
             return validationCropLimitFlag;
         }
@@ -2985,7 +2991,9 @@ function saveAllFarmInformation( ){
                 var status = response.status;
                 if (status == 'success') {
                     // customAlerts('"' + farmName + '" farm has been successfully saved', type_success, time);
-                    customAlerts('"' + farmName + '" strategy generated. <br> Preparing output... Please be patient', type_success, time);
+                    // customAlerts('"' + farmName + '" strategy generate <br> Preparing output... Please be patient', type_success, time);
+                    customAlerts('Generating the most profitable strategy for "' + farmName + '"<br> Preparing output... Please be patient', type_error, time);
+
                     showLoadingImage();
                     var delay = 1000; //Your delay in milliseconds by rohit 14-04-15
 //		            setTimeout(function(){ window.location = "output-edit-farm-info.htm?farmId="+farmId; }, delay);

@@ -14,7 +14,7 @@ function validateIssueForm(obj) {
     var status = true;
 
     if($.trim($(obj).find('textarea[name="issue"]').val()).length === 0){
-        customAlerts('Please specify the issue', "error", 0);
+        customAlerts('Please enter the issue', "error", 0);
         applyValidation($(obj).find('textarea[name="issue"]'));
         status = false;
     }
@@ -38,7 +38,7 @@ function createIssue(){
             data: data,
             success: function (response) {
                 if(response.status){
-                    customAlerts("Thanks you for your feedback", 'success', 0);
+                    customAlerts("Thanks for your feedback", 'success', 0);
                     target.find('textarea[name="issue"]').val('');
                     hideLoadingImage();
                 }

@@ -48,7 +48,7 @@
                                 <div class="right_detail"> Resource Use
                                     <!-- <span>You can see which resources you use.</span> --></div>
                                 <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                    <div class="blink-icon" id="resource-highlight-icon"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
+                                    <div id="resource-highlight-icon" onmouseover="mouseOver()"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
                                 </c:if>
                             </a></li>
                             <li><a href="#Crop-Limits">
@@ -389,7 +389,7 @@
                                                             <c:param name="farmId" value="${farmId}"/>
                                                             <c:param name="key" value="unsed"/>
                                                         </c:url>
-                                                        <a class="blink-icon pull-right" href="<c:out value="${troubleshooturl}"/>" target="_blank">
+                                                        <a href="<c:out value="${troubleshooturl}"/>" target="_blank">
                                                             <img src="<c:url value="/images/i-icon.png"/>">
                                                         </a>
                                                     </c:if>
@@ -414,7 +414,7 @@
                                 <div class="addremove-field padding-left-none pull-right">
                                     <a id="resourceUseTextShow" class="show_text">
                                         <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                            <div class="blink-icon" id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;">
+                                            <div onmouseover="mouseOver()" id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;">
                                                 <i class="fa fa-circle" style="color: red; float: right;"></i>
                                             </div>
                                         </c:if>

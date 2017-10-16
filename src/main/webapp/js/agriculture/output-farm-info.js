@@ -1536,7 +1536,7 @@ function SaveStrategyForMultipleCrops(resourse_Type, updatedValue){
 		$("#sa_multiple_crop_proposed_tbody tr").each(function(){
 			var cropName = $(this).children("td:nth(0)").text().trim().split(" (Proposed)")[0];
 			var minValue = $(this).children("td:nth(1)").text().trim();
-			var minOverridedValue = $(this).children("td:nth(2)").find("input").val().trim();
+			var minOverridedValue = $(this).children("td:nth(3)").find("input").val().trim();
 			if(replaceHifun(minValue) != minOverridedValue && minOverridedValue != ""){
 				cropProposedArray.push(cropName+"#-#-#min#-#-#"+removeAllCommas(minOverridedValue));
 			}
@@ -1689,4 +1689,8 @@ function checkMinMaxForCrop(currentRef){
 	} else {
 		$("#max_min_selector").html("<option value=''>Select crop first</option>");
 	}
+}
+
+function mouseOver() {
+	customAlerts("All available acreage not planted");
 }
