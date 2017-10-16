@@ -249,12 +249,14 @@ function prepareResourceUsedUnsedChart(jsonObj, chartContainer){
 				type : "stackedBar100",
 				showInLegend : true,
 				name : "Used",
+                percentFormatString: "#0",
 				dataPoints : jsonObj.cropResourceUsedForBarGraph
 			},
 			{
 				type : "stackedBar100",
 				showInLegend : true,
 				name : "Unused",
+                percentFormatString: "#0",
 				dataPoints : jsonObj.cropResourceUnusedForBarGraph
 			}
 		],
