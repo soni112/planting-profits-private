@@ -261,8 +261,10 @@
                         </div>
 
                         <div id="manageStrategies" class="strategy_block right-strategy-details" style="display: none">
-
                             <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+                                <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>"
+                                   class="alertify-button alertify-button-ok pull-right"
+                                    style="margin-bottom: 4px;">Back to Baseline</a>
                                 <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center">
                                     <thead>
                                     <tr class="tblhd add-fieldi">
@@ -285,6 +287,9 @@
 
                         <div id="printStrategies" class="strategy_block right-strategy-details" style="display: none">
                             <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+                                <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>"
+                                   class="alertify-button alertify-button-ok pull-right"
+                                   style="margin-bottom: 4px;">Back to Baseline</a>
                                 <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center">
                                     <thead>
                                         <tr class="tblhd add-fieldi">
