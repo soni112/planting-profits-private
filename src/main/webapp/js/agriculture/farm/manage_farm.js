@@ -789,9 +789,10 @@ function validateCropLimits() {
         totalMinimumAcrePercentage += minimum_acresPercentage;
         totalMaximumAcre += maximum_acres;
         totalMaximumAcrePercentage += maximum_acresPercentage;
-        if ($(this).children("td:nth(4)").find("input").val().trim() != "" || $(this).children("td:nth(5)").find("input").val().trim() != "") {
+        if (($(this).children("td:nth(4)").find("input").val().trim() != "" && $(this).children("td:nth(4)").find("input").val().trim() != "0")
+                || ($(this).children("td:nth(5)").find("input").val().trim() != "" && $(this).children("td:nth(5)").find("input").val().trim() != "0")) {
             if (Number(removeAllCommas($(this).children("td:nth(4)").find("input").val())) < minimum_acres
-                || Number(removeAllCommas($(this).children("td:nth(5)").find("input").val())) < minimum_acresPercentage) {
+                && Number(removeAllCommas($(this).children("td:nth(5)").find("input").val())) < minimum_acresPercentage) {
                 /**
                  * @Chnaged - Abhishek
                  * @Date - 25-11-2015
@@ -2992,7 +2993,7 @@ function saveAllFarmInformation( ){
                 if (status == 'success') {
                     // customAlerts('"' + farmName + '" farm has been successfully saved', type_success, time);
                     // customAlerts('"' + farmName + '" strategy generate <br> Preparing output... Please be patient', type_success, time);
-                    customAlerts('Generating the most profitable strategy for "' + farmName + '"<br> Preparing output... Please be patient', type_error, time);
+                    customAlerts('Generating the most profitable strategy for "' + farmName + '"<br> Preparing output... Please be patient', type_success, time);
 
                     showLoadingImage();
                     var delay = 1000; //Your delay in milliseconds by rohit 14-04-15
