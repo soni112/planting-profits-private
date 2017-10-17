@@ -336,6 +336,14 @@ function getStrategyForMultipleResources(){
 				$('#multipleResourceViewStrategy').removeClass("hidden");
 
 				$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleResourcesForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
+
+                var currentPotentialProfit = Number(removeAllCommasAndDollar(updatedPotentialProfit));
+                var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
+                var difference = currentPotentialProfit - potentialProfit;
+                if(difference < 0){
+                    $('#checkStrategy-pop-up-close-btn').show();
+                    $('#checkStrategy-pop-up').show();
+				}
 				alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result);
 			} else if (status == 'failed') {
 				customAlerts('Some problem occured, Please try again later', type_error, time);
