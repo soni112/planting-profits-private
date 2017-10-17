@@ -281,7 +281,7 @@ public class Account implements Comparable<Account>{
 	}*/
 
 	public String getPhysical_Address_Zip() {
-		return physical_Address_Zip;
+		return StringUtils.isEmpty(physical_Address_Zip) ? StringUtils.EMPTY : physical_Address_Zip;
 	}
 
 	public void setPhysical_Address_Zip(String physical_Address_Zip) {
@@ -432,6 +432,12 @@ public class Account implements Comparable<Account>{
 	}
 
 	public UserCountry getPhysical_Address_Country() {
+		if(physical_Address_Country == null){
+			UserCountry userCountry = new UserCountry();
+			userCountry.setCountryName("");
+			userCountry.setCountryCode("");
+			return userCountry;
+		}
 		return physical_Address_Country;
 	}
 
@@ -440,6 +446,11 @@ public class Account implements Comparable<Account>{
 	}
 
 	public UserState getPhysical_Address_State() {
+		if(physical_Address_State == null){
+			UserState userState = new UserState();
+			userState.setStateName("");
+			return userState;
+		}
 		return physical_Address_State;
 	}
 

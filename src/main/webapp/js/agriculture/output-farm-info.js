@@ -45,7 +45,8 @@ $(function(){
 });
 
 function checkStrategyPopup(){
-	$('#checkStrategy-pop-up').show();
+    $('#checkStrategy-pop-up-close-btn').hide();
+    $('#checkStrategy-pop-up').show();
 }
 
 function registerTemplates(){
@@ -321,7 +322,9 @@ function getStrategyForMultipleResources(){
 			if (status == 'success') {
 				// result = JSON.parse(result);
 				if(result.Potential_Profit == "$0"){
-					customAlerts('Cannot generate a strategy with the amount of resources provided. Increase critical resource(s) to generate a feasible strategy', type_error, time);
+					// customAlerts('Cannot generate a strategy with the amount of resources provided. Increase critical resource(s) to generate a feasible strategy', type_error, time);
+					$('#checkStrategy-pop-up-close-btn').show();
+					$('#checkStrategy-pop-up').show();
 					return false;
 				}
 				//alterHTMLOfTableAndShowPopupTable(result);
@@ -333,6 +336,14 @@ function getStrategyForMultipleResources(){
 				$('#multipleResourceViewStrategy').removeClass("hidden");
 
 				$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleResourcesForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
+
+                var currentPotentialProfit = Number(removeAllCommasAndDollar(updatedPotentialProfit));
+                var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
+                var difference = currentPotentialProfit - potentialProfit;
+                if(difference < 0){
+                    $('#checkStrategy-pop-up-close-btn').show();
+                    $('#checkStrategy-pop-up').show();
+				}
 				alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result);
 			} else if (status == 'failed') {
 				customAlerts('Some problem occured, Please try again later', type_error, time);

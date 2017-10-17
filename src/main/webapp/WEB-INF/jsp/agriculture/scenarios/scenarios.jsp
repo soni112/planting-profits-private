@@ -534,6 +534,7 @@ Date 24-11-2015
                     <!-- @end #applyScenarioToCurrent -->
 
                     <div id="insurance-evaluator-tab" class="strategy_block right-strategy-details" style="display: none">
+                        <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right" style="margin-top: 4px;">Back to Baseline</a>
                         <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
                             <table width="100%" cellspacing="0" class="table table-striped tbl-bordr  tblbrdr">
                                 <tbody>

@@ -38,7 +38,7 @@ function createIssue(){
             data: data,
             success: function (response) {
                 if(response.status){
-                    customAlerts("Thanks for your feedback", 'success', 0);
+                    $('#issue-submitted-popup').show();
                     target.find('textarea[name="issue"]').val('');
                     hideLoadingImage();
                 }
