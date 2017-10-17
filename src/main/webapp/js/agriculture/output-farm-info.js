@@ -45,7 +45,8 @@ $(function(){
 });
 
 function checkStrategyPopup(){
-	$('#checkStrategy-pop-up').show();
+    $('#checkStrategy-pop-up-close-btn').hide();
+    $('#checkStrategy-pop-up').show();
 }
 
 function registerTemplates(){
@@ -321,7 +322,9 @@ function getStrategyForMultipleResources(){
 			if (status == 'success') {
 				// result = JSON.parse(result);
 				if(result.Potential_Profit == "$0"){
-					customAlerts('Cannot generate a strategy with the amount of resources provided. Increase critical resource(s) to generate a feasible strategy', type_error, time);
+					// customAlerts('Cannot generate a strategy with the amount of resources provided. Increase critical resource(s) to generate a feasible strategy', type_error, time);
+					$('#checkStrategy-pop-up-close-btn').show();
+					$('#checkStrategy-pop-up').show();
 					return false;
 				}
 				//alterHTMLOfTableAndShowPopupTable(result);
