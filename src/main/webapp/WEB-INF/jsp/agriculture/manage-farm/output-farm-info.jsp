@@ -1283,7 +1283,7 @@
 
                     <div class="panel-body text-center" style="display: block">
                         <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none medium-height-overflow medium-height-overRide">
-                            <p>Planting Profits could not generate a strategy that meets all of your objectives and constraints.</p>
+                            <p>Planting Profits could not generate a strategy that meets<br>all of your objectives and constraints.</p>
                             <c:url value="/troubleshoot.htm" var="myURL">
                                 <c:param name="farmId" value="${farmId}"/>
                                 <c:param name="key" value="baseline"/>
