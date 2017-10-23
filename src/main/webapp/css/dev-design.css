@@ -429,3 +429,6 @@ blockquote cite {
     font-size: 20px;
     padding-top: 15px;
 }
+.troubleshoot-heading{
+    font-size: 50px !important;
+}

@@ -17,7 +17,7 @@
 
                 <c:choose>
                     <c:when test="${key eq 'unused'}">
-                        <h1 class="text-center">Troubleshoot Resources</h1>
+                        <h1 class="text-left troubleshoot-heading">Troubleshoot Resources</h1>
                         <br>
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
@@ -117,7 +117,7 @@
                         </c:choose>
                     </c:when>
                     <c:otherwise>
-                        <h1 class="text-center">Trouble Shooting Tips Strategy not Generated.</h1>
+                        <h1 class="text-left troubleshoot-heading">Trouble Shooting Tips Strategy not Generated.</h1>
                         <a id="back-to-sensitivity-btn" class="pull-right" onclick="navigateToSensitivityAnalysis(); return false;"
                            href="javascript:;" style="display: none;">Back to Planting Profits</a>
                         <br>
