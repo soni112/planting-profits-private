@@ -168,7 +168,7 @@
                             </c:when>
                             <c:otherwise>
                                 <h2>IF PLANNING BY ACRES:</h2>
-                                <p>Please check the following and make adjustments to resources, crop limits or crop/field choices.</p>
+                                <p>Please check the following and make adjustments to resources and/or crop acreage limits.</p>
                                 <br/>
                                 <p>Click one or more of the following parameters to diagnose the problem.</p>
                                 <ul class="planning">
