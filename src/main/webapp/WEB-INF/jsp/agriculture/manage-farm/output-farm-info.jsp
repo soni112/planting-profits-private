@@ -1293,10 +1293,11 @@
                         <div>
                             <a class="alertify-button alertify-button-ok remove-text-deco"
                                href="${myURL}"
-                                style="color:#0f0f0f">Continue</a>
+                                style="color:#0f0f0f">Troubleshoot</a>
                             <a class="alertify-button alertify-button-ok remove-text-deco"
                                     id="checkStrategy-pop-up-close-btn" href="javascript:;"
-                                style="color:#0f0f0f; display: none;">Close</a>
+                                onclick="$('#checkStrategy-pop-up').hide();"
+                                style="color:#0f0f0f; display: none;">Back</a>
                         </div>
                     </div>
 
