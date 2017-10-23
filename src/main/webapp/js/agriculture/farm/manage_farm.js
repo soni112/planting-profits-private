@@ -780,7 +780,7 @@ function validateCropLimits() {
 
         if (maximum_acres > totalLand || maximum_acresPercentage > 100) {
 
-            customAlerts('The total Maximum crop acreage limit for '+ cropName +' cannot be greater than the Available land', type_error, time);
+            customAlerts('The total Maximum crop acreage limit for '+ cropName +' cannot be greater than the Available land : ' + totalLand + ' acres', type_error, time);
             validationCropLimitFlag = false;
             return validationCropLimitFlag;
         }
