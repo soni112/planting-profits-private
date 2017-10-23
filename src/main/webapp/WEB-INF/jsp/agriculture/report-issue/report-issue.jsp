@@ -41,7 +41,7 @@
             <img onclick="history.back();" src="<c:url value="/images/cross.png"/> " class="img-close">
             <div class="popupform messagepopup potencial_profit_popup" style="text-align: center;">
                 <div class="increase_profit">
-                    <p>Thanks for your feedback</p>
+                    <p>Thanks for your feedback!</p>
                 </div>
             </div>
         </div>
