@@ -24,7 +24,7 @@
                         <div class="form-group" style="padding: 0% 2%;">
                             <input type="button" class="alertify-button alertify-button-ok pull-right" value="Submit"
                                    onclick="createIssue(); return false;">
-                            <input type="button" onclick="window.location ='<c:url value="/farm.htm"/>'"
+                            <input type="button" onclick="history.back()"
                                    class="alertify-button alertify-button-ok pull-right" value="Back">
                         </div>
                     </form>
