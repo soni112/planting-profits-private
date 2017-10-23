@@ -48,7 +48,7 @@
                                 <div class="right_detail"> Resource Use
                                     <!-- <span>You can see which resources you use.</span> --></div>
                                 <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                    <div id="resource-highlight-icon" onmouseover="mouseOver()"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
+                                    <div id="resource-highlight-icon" title="All available acreage not planted"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
                                 </c:if>
                             </a></li>
                             <li><a href="#Crop-Limits">
@@ -414,7 +414,7 @@
                                 <div class="addremove-field padding-left-none pull-right">
                                     <a id="resourceUseTextShow" class="show_text">
                                         <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                            <div onmouseover="mouseOver()" id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;">
+                                            <div id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;" title="All available acreage not planted">
                                                 <i class="fa fa-circle" style="color: red; float: right;"></i>
                                             </div>
                                         </c:if>

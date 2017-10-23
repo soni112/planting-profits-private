@@ -1701,7 +1701,3 @@ function checkMinMaxForCrop(currentRef){
 		$("#max_min_selector").html("<option value=''>Select crop first</option>");
 	}
 }
-
-function mouseOver() {
-	customAlerts("All available acreage not planted");
-}
