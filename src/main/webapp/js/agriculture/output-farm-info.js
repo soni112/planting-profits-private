@@ -337,7 +337,7 @@ function getStrategyForMultipleResources(){
 
 				$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleResourcesForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
 
-                var currentPotentialProfit = Number(removeAllCommasAndDollar(updatedPotentialProfit));
+                var currentPotentialProfit = Number(removeAllCommasAndDollar(result.Potential_Profit));
                 var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
                 var difference = currentPotentialProfit - potentialProfit;
                 if(difference < 0){
