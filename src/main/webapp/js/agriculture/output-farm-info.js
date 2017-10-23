@@ -42,6 +42,17 @@ $(function(){
 	applyGraphTableToggleAndSAToggle();
 	registerTemplates();
 	$('[data-toggle="popover"]').popover();
+
+    var sensitivityFlag = localStorage.getItem('sensitivityFlag');
+
+    if(sensitivityFlag){
+        localStorage.removeItem('sensitivityFlag');
+        $('a[href="#Resource-Use"]').trigger('click');
+        $('#resource-senstivity-block').find('span[class="pull-right clickable panel-collapsed"]').trigger('click');
+        $('#resource-senstivity-single-multiple').find('ul[class="tabs"]').children().eq(1).trigger('click');
+    }
+
+
 });
 
 function checkStrategyPopup(){
@@ -323,6 +334,7 @@ function getStrategyForMultipleResources(){
 				// result = JSON.parse(result);
 				if(result.Potential_Profit == "$0"){
 					// customAlerts('Cannot generate a strategy with the amount of resources provided. Increase critical resource(s) to generate a feasible strategy', type_error, time);
+                    localStorage.setItem('sensitivityFlag', true);
 					$('#checkStrategy-pop-up-close-btn').show();
 					$('#checkStrategy-pop-up').show();
 					return false;
@@ -341,6 +353,7 @@ function getStrategyForMultipleResources(){
                 var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
                 var difference = currentPotentialProfit - potentialProfit;
                 if(difference < 0){
+                    localStorage.setItem('sensitivityFlag', true);
                     $('#checkStrategy-pop-up-close-btn').show();
                     $('#checkStrategy-pop-up').show();
 				}

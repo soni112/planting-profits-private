@@ -432,7 +432,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <br>
-                            <div class="panel panel-default">
+                            <div id="resource-senstivity-block" class="panel panel-default">
                                 <div class="panel-heading">
                                     <%--	@changed - Abhishek 	@date - 25-02-2016		@desc - According to slide#8 of 02212016	--%>
                                     <%--<h3 class="panel-title inc_dec_title">Change Estimated Income by increasing or decreasing a resource :</h3>--%>
@@ -447,7 +447,7 @@
                                     <span class="pull-right clickable panel-collapsed"><i
                                             class="fa fa-chevron-down"></i></span>
                                 </div>
-                                <div class="panel-body" style="display: none;">
+                                <div id="resource-senstivity-single-multiple" class="panel-body" style="display: none;">
                                     <ul class="tabs" data-persist="true">
                                         <li class="selected"><a href="#single_resource">Single Resource</a></li>
                                         <li class="">
