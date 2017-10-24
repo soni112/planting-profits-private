@@ -387,10 +387,10 @@
                                                     <c:if test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
                                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                             <c:param name="farmId" value="${farmId}"/>
-                                                            <c:param name="key" value="unsed"/>
+                                                            <c:param name="key" value="unused"/>
                                                         </c:url>
-                                                        <a href="<c:out value="${troubleshooturl}"/>" target="_blank">
-                                                            <img src="<c:url value="/images/i-icon.png"/>">
+                                                        <a href="<c:out value="${troubleshooturl}"/>" target="_blank" >
+                                                            <img src="<c:url value="/images/i-icon.png"/>" title="All available acreage not planted">
                                                         </a>
                                                     </c:if>
                                                 </td>
