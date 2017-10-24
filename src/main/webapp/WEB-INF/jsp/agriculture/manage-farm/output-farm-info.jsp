@@ -48,7 +48,7 @@
                                 <div class="right_detail"> Resource Use
                                     <!-- <span>You can see which resources you use.</span> --></div>
                                 <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                    <div id="resource-highlight-icon" onmouseover="mouseOver()"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
+                                    <div id="resource-highlight-icon" title="All available acreage not planted"><i class="fa fa-circle" style="color: red; float: right;"></i></div>
                                 </c:if>
                             </a></li>
                             <li><a href="#Crop-Limits">
@@ -414,7 +414,7 @@
                                 <div class="addremove-field padding-left-none pull-right">
                                     <a id="resourceUseTextShow" class="show_text">
                                         <c:if test="${model.resourceJsonObject.resourceFlags['Land']}">
-                                            <div onmouseover="mouseOver()" id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;">
+                                            <div id="resource-table-highlight-icon" style="position: relative; top: 10px; right: -1px;" title="All available acreage not planted">
                                                 <i class="fa fa-circle" style="color: red; float: right;"></i>
                                             </div>
                                         </c:if>
@@ -432,7 +432,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <br>
-                            <div class="panel panel-default">
+                            <div id="resource-senstivity-block" class="panel panel-default">
                                 <div class="panel-heading">
                                     <%--	@changed - Abhishek 	@date - 25-02-2016		@desc - According to slide#8 of 02212016	--%>
                                     <%--<h3 class="panel-title inc_dec_title">Change Estimated Income by increasing or decreasing a resource :</h3>--%>
@@ -447,7 +447,7 @@
                                     <span class="pull-right clickable panel-collapsed"><i
                                             class="fa fa-chevron-down"></i></span>
                                 </div>
-                                <div class="panel-body" style="display: none;">
+                                <div id="resource-senstivity-single-multiple" class="panel-body" style="display: none;">
                                     <ul class="tabs" data-persist="true">
                                         <li class="selected"><a href="#single_resource">Single Resource</a></li>
                                         <li class="">
@@ -1283,7 +1283,7 @@
 
                     <div class="panel-body text-center" style="display: block">
                         <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none medium-height-overflow medium-height-overRide">
-                            <p>Planting Profits could not generate a strategy that meets all of your objectives and constraints.</p>
+                            <p>Planting Profits could not generate a strategy that meets<br>all of your objectives and constraints.</p>
                             <c:url value="/troubleshoot.htm" var="myURL">
                                 <c:param name="farmId" value="${farmId}"/>
                                 <c:param name="key" value="baseline"/>
@@ -1293,10 +1293,11 @@
                         <div>
                             <a class="alertify-button alertify-button-ok remove-text-deco"
                                href="${myURL}"
-                                style="color:#0f0f0f">Continue</a>
+                                style="color:#0f0f0f">Troubleshoot</a>
                             <a class="alertify-button alertify-button-ok remove-text-deco"
                                     id="checkStrategy-pop-up-close-btn" href="javascript:;"
-                                style="color:#0f0f0f; display: none;">Close</a>
+                                onclick="$('#checkStrategy-pop-up').hide();"
+                                style="color:#0f0f0f; display: none;">Back</a>
                         </div>
                     </div>
 

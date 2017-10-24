@@ -17,7 +17,7 @@
 
                 <c:choose>
                     <c:when test="${key eq 'unused'}">
-                        <h1 class="text-center">Troubleshoot Resources</h1>
+                        <h1 class="text-left troubleshoot-heading">Troubleshoot Resources</h1>
                         <br>
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
@@ -117,7 +117,9 @@
                         </c:choose>
                     </c:when>
                     <c:otherwise>
-                        <h1 class="text-center">Trouble Shooting Tips Strategy not Generated.</h1>
+                        <h1 class="text-left troubleshoot-heading">Trouble Shooting Tips Strategy not Generated.</h1>
+                        <a id="back-to-sensitivity-btn" class="pull-right" onclick="navigateToSensitivityAnalysis(); return false;"
+                           href="javascript:;" style="display: none;">Back to Planting Profits</a>
                         <br>
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
@@ -168,7 +170,7 @@
                             </c:when>
                             <c:otherwise>
                                 <h2>IF PLANNING BY ACRES:</h2>
-                                <p>Please check the following and make adjustments to resources, crop limits or crop/field choices.</p>
+                                <p>Please check the following and make adjustments to resources and/or crop acreage limits.</p>
                                 <br/>
                                 <p>Click one or more of the following parameters to diagnose the problem.</p>
                                 <ul class="planning">
@@ -204,20 +206,36 @@
 <!-- /.container -->
 
 <script>
+    $(function(){
+        var sensitivityFlag = localStorage.getItem('sensitivityFlag');
+        if(sensitivityFlag){
+            $('#back-to-sensitivity-btn').show();
+            localStorage.removeItem('sensitivityFlag');
+        }
+    });
+
     function navigateToResources() {
         localStorage.setItem('resourcesFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
+
     function navigateToProfitableCrops() {
         localStorage.setItem('profitCropFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
+
     function navigateToCropChoices() {
         localStorage.setItem('cropChoicesFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
+
     function navigateToCropFieldChoices() {
         localStorage.setItem('cropFieldChoicesFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
+    }
+
+    function navigateToSensitivityAnalysis(){
+        localStorage.setItem('sensitivityFlag', true);
+        window.location = '<c:url value="/output-farm-info.htm?farmId="/>${farmId}';
     }
 </script>

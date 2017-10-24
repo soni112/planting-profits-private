@@ -24,7 +24,7 @@
                         <div class="form-group" style="padding: 0% 2%;">
                             <input type="button" class="alertify-button alertify-button-ok pull-right" value="Submit"
                                    onclick="createIssue(); return false;">
-                            <input type="button" onclick="window.location ='<c:url value="/farm.htm"/>'"
+                            <input type="button" onclick="history.back()"
                                    class="alertify-button alertify-button-ok pull-right" value="Back">
                         </div>
                     </form>
@@ -41,7 +41,7 @@
             <img onclick="history.back();" src="<c:url value="/images/cross.png"/> " class="img-close">
             <div class="popupform messagepopup potencial_profit_popup" style="text-align: center;">
                 <div class="increase_profit">
-                    <p>Thanks for your feedback</p>
+                    <p>Thanks for your feedback!</p>
                 </div>
             </div>
         </div>
