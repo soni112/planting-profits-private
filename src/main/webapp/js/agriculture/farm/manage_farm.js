@@ -41,41 +41,41 @@ $(function () {
     buildBaselineStrategySeletion();
 
     var flag = localStorage.getItem('cropLimitFlag');
-
     if(typeof flag != 'undefined' && flag){
         localStorage.removeItem('cropLimitFlag');
         showCropLimitsTab();
     }
 
     var resourceFlag = localStorage.getItem('resourcesFlag');
-
     if(typeof resourceFlag != 'undefined' && resourceFlag){
         localStorage.removeItem('resourcesFlag');
         showResourcesTab();
     }
 
-    var profitFlag=localStorage.getItem('profitCropFlag');
-
+    var profitFlag = localStorage.getItem('profitCropFlag');
     if(typeof profitFlag != 'undefined' && profitFlag){
         localStorage.removeItem('profitCropFlag');
         showCropsAndCropInformationTab();
         nextCropsAndCropsInformation();
     }
 
-
-    var cropChoiceFlag=localStorage.getItem('cropChoicesFlag');
-
+    var cropChoiceFlag = localStorage.getItem('cropChoicesFlag');
     if(typeof cropChoiceFlag != 'undefined' && cropChoiceFlag){
         localStorage.removeItem('cropChoicesFlag');
         showCropsAndCropInformationTab();
     }
 
     var cropFieldChoiceFlag=localStorage.getItem('cropFieldChoicesFlag');
-
     if(typeof cropFieldChoiceFlag != 'undefined' && cropFieldChoiceFlag){
         localStorage.removeItem('cropFieldChoicesFlag');
         showCropFieldChoicesTab();
         nextPlanByField();
+    }
+
+    var cropFieldFlag = localStorage.getItem('cropFieldFlag');
+    if(typeof cropFieldFlag != 'undefined' && cropFieldFlag){
+        localStorage.removeItem('cropFieldFlag');
+        showCropFieldChoicesTab();
     }
 
 
