@@ -1668,7 +1668,8 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
 	var difference = currentPotentialProfit - potentialProfit;
 	if(difference < 0){
 		$(".difference_bet_potential_profit").css("color", "red");
-		$(".difference_bet_potential_profit").text("-"+addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
+		// $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
+		$(".difference_bet_potential_profit").text("N/A");
 	}else{
 		$(".difference_bet_potential_profit").css("color", "");
 		$(".difference_bet_potential_profit").text(addCommaSignWithDollarForTextWithOutId(difference));
