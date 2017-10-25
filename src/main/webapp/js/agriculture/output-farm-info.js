@@ -582,8 +582,6 @@ function getStrategyForMultipleCrops(){
                 var potential_pro = Number(removeAllCommasAndDollar(result.Potential_Profit));
                 var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
 
-                console.log("potential_pro : " + potential_pro + "\t potentialProfit : " + potentialProfit);
-
 				if(potential_pro == potentialProfit){
 					customAlerts("Could not generate a feasible solution for the given crop acreage limits", "error", 0);
 				}

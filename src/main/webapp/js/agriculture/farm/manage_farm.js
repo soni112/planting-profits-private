@@ -75,6 +75,7 @@ $(function () {
     if(typeof cropFieldChoiceFlag != 'undefined' && cropFieldChoiceFlag){
         localStorage.removeItem('cropFieldChoicesFlag');
         showCropFieldChoicesTab();
+        nextPlanByField();
     }
 
 
