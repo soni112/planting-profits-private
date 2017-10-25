@@ -588,8 +588,17 @@ function getStrategyForMultipleCrops(){
                 var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
 
 				if(potential_pro == potentialProfit){
-					customAlerts("Could not generate a feasible solution for the given crop acreage limits", "error", 0);
+                    localStorage.setItem('sensitivityFlag', true);
+                    $('#checkStrategy-pop-up-close-btn').show();
+                    $('#checkStrategy-pop-up').show();
 				}
+
+                var difference = potential_pro - potentialProfit;
+                if(difference < 0){
+                    localStorage.setItem('sensitivityFlag', true);
+                    $('#checkStrategy-pop-up-close-btn').show();
+                    $('#checkStrategy-pop-up').show();
+                }
 
 				$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
 				//$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Update</a></div>");
