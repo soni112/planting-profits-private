@@ -578,6 +578,16 @@ function getStrategyForMultipleCrops(){
 				 * @changed - Abhishek
 				 * @date - 15-12-2015
 				 */
+
+                var potential_pro = Number(removeAllCommasAndDollar(result.Potential_Profit));
+                var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
+
+                console.log("potential_pro : " + potential_pro + "\t potentialProfit : " + potentialProfit);
+
+				if(potential_pro == potentialProfit){
+					customAlerts("Could not generate a feasible solution for the given crop acreage limits", "error", 0);
+				}
+
 				$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
 				//$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Update</a></div>");
 				alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result);
