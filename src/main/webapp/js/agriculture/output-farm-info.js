@@ -52,6 +52,11 @@ $(function(){
         $('#resource-senstivity-single-multiple').find('ul[class="tabs"]').children().eq(1).trigger('click');
     }
 
+    var resourceFlag = localStorage.getItem('resourcesFlag');
+    if(resourceFlag){
+        localStorage.removeItem('resourcesFlag');
+        $('a[href="#Resource-Use"]').trigger('click');
+    }
 
 });
 

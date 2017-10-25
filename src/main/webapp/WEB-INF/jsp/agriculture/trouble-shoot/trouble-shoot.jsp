@@ -48,7 +48,7 @@
                                             Resources are allocated to the most profitable crop(s) and to crops with minimum crop acreage limits in combinations that maximize profit.
                                             Minimum crop acreage limits may consume resources needed to plant all land.<br/>
                                             Are there sufficient resources to plant all of the land? <br/>
-                                            <a href="javascript:;" onclick="navigateToResources();return false;">Check resource availabilities.</a><br/>
+                                            <a href="javascript:;" onclick="navigateToOutputResources();return false;">Check resource availabilities.</a><br/>
                                             Are any resources critical, i.e. all used up or almost all used up?<br/>
                                             If yes, increase the amount of critical resource(s) (assuming this is an option).<br/>
                                             Re-analyze the farm model. Additional acreage should be brought into production. If not check one of the other common causes.
@@ -217,6 +217,11 @@
     function navigateToResources() {
         localStorage.setItem('resourcesFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
+    }
+
+    function navigateToOutputResources() {
+        localStorage.setItem('resourcesFlag', true);
+        window.open('<c:url value="/output-farm-info.htm?farmId="/>${farmId}');
     }
 
     function navigateToProfitableCrops() {
