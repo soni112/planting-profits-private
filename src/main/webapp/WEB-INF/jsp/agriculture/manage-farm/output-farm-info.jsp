@@ -397,15 +397,26 @@
                                                 <td class="success">${resourceList.totalAvailable}</td>
                                                 <td class="success">${resourceList.used}</td>
                                                 <td class="success">${resourceList.unused}</td>
-                                                <td class="success">${resourceList.impactingProfit}</td>
+                                                <c:choose>
+                                                    <c:when test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
+                                                        <td class="success" title="Resource limits or crop acreage limits preventing all land from being planted">
+                                                            <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}<sup>*</sup></a>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td class="success">${resourceList.impactingProfit}</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </tr>
                                             <c:if test="${resourceList.resourceName eq 'Land'}">
                                                 <c:set value="${resourceList.totalAvailable}" var="maxLand"/>
                                             </c:if>
                                         </c:forEach>
-
                                         </tbody>
                                     </table>
+                                    <div class="clearfix"></div>
+                                    <p class="pull-left">* Resource limits or crop acreage limits preventing all available land from being planted</p>
                                 </div>
 
 
