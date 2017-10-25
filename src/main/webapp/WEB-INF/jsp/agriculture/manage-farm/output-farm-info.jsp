@@ -387,25 +387,36 @@
                                                     <c:if test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
                                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                             <c:param name="farmId" value="${farmId}"/>
-                                                            <c:param name="key" value="unsed"/>
+                                                            <c:param name="key" value="unused"/>
                                                         </c:url>
-                                                        <a href="<c:out value="${troubleshooturl}"/>" target="_blank">
-                                                            <img src="<c:url value="/images/i-icon.png"/>">
+                                                        <a href="<c:out value="${troubleshooturl}"/>" target="_blank" >
+                                                            <img src="<c:url value="/images/i-icon.png"/>" title="All available acreage not planted">
                                                         </a>
                                                     </c:if>
                                                 </td>
                                                 <td class="success">${resourceList.totalAvailable}</td>
                                                 <td class="success">${resourceList.used}</td>
                                                 <td class="success">${resourceList.unused}</td>
-                                                <td class="success">${resourceList.impactingProfit}</td>
+                                                <c:choose>
+                                                    <c:when test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
+                                                        <td class="success" title="Resource limits or crop acreage limits preventing all land from being planted">
+                                                            <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}<sup>*</sup></a>
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td class="success">${resourceList.impactingProfit}</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </tr>
                                             <c:if test="${resourceList.resourceName eq 'Land'}">
                                                 <c:set value="${resourceList.totalAvailable}" var="maxLand"/>
                                             </c:if>
                                         </c:forEach>
-
                                         </tbody>
                                     </table>
+                                    <div class="clearfix"></div>
+                                    <p class="pull-left">* Resource limits or crop acreage limits preventing all available land from being planted</p>
                                 </div>
 
 

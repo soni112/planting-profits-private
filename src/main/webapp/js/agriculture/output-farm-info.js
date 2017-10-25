@@ -52,6 +52,11 @@ $(function(){
         $('#resource-senstivity-single-multiple').find('ul[class="tabs"]').children().eq(1).trigger('click');
     }
 
+    var resourceFlag = localStorage.getItem('resourcesFlag');
+    if(resourceFlag){
+        localStorage.removeItem('resourcesFlag');
+        $('a[href="#Resource-Use"]').trigger('click');
+    }
 
 });
 
@@ -578,6 +583,23 @@ function getStrategyForMultipleCrops(){
 				 * @changed - Abhishek
 				 * @date - 15-12-2015
 				 */
+
+                var potential_pro = Number(removeAllCommasAndDollar(result.Potential_Profit));
+                var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
+
+				if(potential_pro == potentialProfit){
+                    localStorage.setItem('sensitivityFlag', true);
+                    $('#checkStrategy-pop-up-close-btn').show();
+                    $('#checkStrategy-pop-up').show();
+				}
+
+                var difference = potential_pro - potentialProfit;
+                if(difference < 0){
+                    localStorage.setItem('sensitivityFlag', true);
+                    $('#checkStrategy-pop-up-close-btn').show();
+                    $('#checkStrategy-pop-up').show();
+                }
+
 				$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
 				//$("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Update</a></div>");
 				alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result);
@@ -1655,7 +1677,8 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
 	var difference = currentPotentialProfit - potentialProfit;
 	if(difference < 0){
 		$(".difference_bet_potential_profit").css("color", "red");
-		$(".difference_bet_potential_profit").text("-"+addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
+		// $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
+		$(".difference_bet_potential_profit").text("N/A");
 	}else{
 		$(".difference_bet_potential_profit").css("color", "");
 		$(".difference_bet_potential_profit").text(addCommaSignWithDollarForTextWithOutId(difference));
