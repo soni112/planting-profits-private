@@ -202,8 +202,27 @@ function buildObjForTmplIfStrategyField(object){
 
 function alterHTMLOfTableAndShowPopupTable(result){
 	var resourse_Crop_Value=null;
+	var resource_Crop_Total=0;
 	if(result.cropValue==undefined){
 		resourse_Crop_Value=result.resourceValue;
+
+		$.each(result.Crop_Details, function (k, v) {
+			console.log(v.land);
+			resource_Crop_Total +=parseInt(v.land);
+
+        });
+		console.log("Result total :"+ resource_Crop_Total);
+
+		if(resourse_Crop_Value<=resource_Crop_Total){
+        $("#Acreage_notPlanted").hide();
+		}
+		else{
+            $("#Acreage_notPlanted").show();
+        }
+
+         // for(var i=0; i<result.Crop_Deatils.length; i++){
+          //    resource_Crop_Total+= result.Crop_Deatils[i];
+		 // }
 			/**
 			 * @changed - Abhishek
 			 * @date - 15-12-2015
@@ -214,6 +233,21 @@ function alterHTMLOfTableAndShowPopupTable(result){
 	} else {
 
 		resourse_Crop_Value=result.cropValue;
+
+
+        $.each(result.Crop_Details, function (k, v) {
+            console.log(v.land);
+            resource_Crop_Total +=parseInt(v.land);
+
+        });
+        console.log("Result total :"+ resource_Crop_Total);
+
+        if(resourse_Crop_Value<=resource_Crop_Total){
+            $("#Acreage_notPlanted").hide();
+        }
+        else{
+            $("#Acreage_notPlanted").show();
+        }
 			/**
 			 * @changed - Abhishek
 			 * @date - 15-12-2015

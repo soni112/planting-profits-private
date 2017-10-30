@@ -1146,6 +1146,7 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="Acreage_notPlanted">All available acreage not planted.</div>
                 <div id="field_crop_button"></div>
             </div>
         </div>
