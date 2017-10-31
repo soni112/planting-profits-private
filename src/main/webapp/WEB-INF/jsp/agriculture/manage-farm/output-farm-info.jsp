@@ -384,15 +384,6 @@
                                             <tr class="tblgrn">
                                                 <td class="success">
                                                     ${resourceList.resourceName}
-                                                    <c:if test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
-                                                        <c:url value="/troubleshoot.htm" var="troubleshooturl">
-                                                            <c:param name="farmId" value="${farmId}"/>
-                                                            <c:param name="key" value="unused"/>
-                                                        </c:url>
-                                                        <a href="<c:out value="${troubleshooturl}"/>" target="_blank" >
-                                                            <img src="<c:url value="/images/i-icon.png"/>" title="All available acreage not planted">
-                                                        </a>
-                                                    </c:if>
                                                 </td>
                                                 <td class="success">${resourceList.totalAvailable}</td>
                                                 <td class="success">${resourceList.used}</td>
@@ -416,7 +407,14 @@
                                         </tbody>
                                     </table>
                                     <div class="clearfix"></div>
-                                    <p class="pull-left">* Resource limits or crop acreage limits preventing all available land from being planted</p>
+                                    <p class="pull-left">
+                                        * Resource limits or crop acreage limits preventing all available land from being planted
+                                        <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                            <c:param name="farmId" value="${farmId}"/>
+                                            <c:param name="key" value="unused"/>
+                                        </c:url>
+                                        <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+                                    </p>
                                 </div>
 
 
@@ -1146,6 +1144,7 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="Acreage_notPlanted">All available acreage not planted.</div>
                 <div id="field_crop_button"></div>
             </div>
         </div>

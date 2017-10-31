@@ -437,7 +437,7 @@ function validateScenario(container) {
     var scenario_global_crop_prod_cost = $(container).find("input[name=scenario_global_crop_prod_cost]");
 
     if ($.trim($(scenarioNameObj).val()).length <= 0) {
-        customAlerts("Please enter scenario name", "error", 0);
+        customAlerts("Please enter a scenario name", "error", 0);
         addErrorClassOnObject(scenarioNameObj);
         isValidated = false;
     }
