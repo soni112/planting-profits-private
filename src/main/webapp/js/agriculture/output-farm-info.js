@@ -373,10 +373,11 @@ function getStrategyForMultipleResources(){
 				// result = JSON.parse(result);
 				if(result.Potential_Profit == "$0"){
 					// customAlerts('Cannot generate a strategy with the amount of resources provided. Increase critical resource(s) to generate a feasible strategy', type_error, time);
-                    localStorage.setItem('sensitivityFlag', true);
 					$('#checkStrategy-pop-up-close-btn').show();
 					$('#checkStrategy-pop-up').show();
-					return false;
+                    localStorage.setItem('sensitivityFlag', true);
+
+                    return false;
 				}
 				//alterHTMLOfTableAndShowPopupTable(result);
 
@@ -391,7 +392,8 @@ function getStrategyForMultipleResources(){
                 var currentPotentialProfit = Number(removeAllCommasAndDollar(result.Potential_Profit));
                 var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
                 var difference = currentPotentialProfit - potentialProfit;
-                if(difference < 0){
+                console.log("Difference "+difference);
+                if(potentialProfit == currentPotentialProfit){
                     localStorage.setItem('sensitivityFlag', true);
                     $('#checkStrategy-pop-up-close-btn').show();
                     $('#checkStrategy-pop-up').show();
@@ -1709,10 +1711,14 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
 	var currentPotentialProfit = Number(removeAllCommasAndDollar(updatedPotentialProfit));
 	var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
 	var difference = currentPotentialProfit - potentialProfit;
-	if(difference < 0){
-		$(".difference_bet_potential_profit").css("color", "red");
-		// $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
-		$(".difference_bet_potential_profit").text("N/A");
+	if(potentialProfit == currentPotentialProfit){
+        $(".difference_bet_potential_profit").text("N/A");
+        $(".difference_bet_potential_profit").css("color", "red");
+        $("#multipleResourceViewStrategy").hide();
+	} else if(difference < 0){
+        $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
+        // $(".difference_bet_potential_profit").text("N/A");
+        $(".difference_bet_potential_profit").css("color", "red");
 	}else{
 		$(".difference_bet_potential_profit").css("color", "");
 		$(".difference_bet_potential_profit").text(addCommaSignWithDollarForTextWithOutId(difference));
