@@ -609,6 +609,14 @@
                                                     @Changed - Abhishek
                                                     @Date - 25-11-2015
                                                 -->
+                                                <div id="resourcesNotCompleted" style="display: none;margin-left: -10px;">
+                                                    All available acreage not planted.
+                                                    <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                                        <c:param name="farmId" value="${farmId}"/>
+                                                        <c:param name="key" value="unused"/>
+                                                    </c:url>
+                                                    <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+                                                </div>
                                                 <div class="yellobtn pre_next"
                                                      onclick="getStrategyForMultipleResources()">
                                                     <a>Analyze</a>
@@ -1144,7 +1152,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="Acreage_notPlanted">All available acreage not planted.</div>
+                <div id="Acreage_notPlanted" style="display: none">All available acreage not planted.</div>
                 <div id="field_crop_button"></div>
             </div>
         </div>
