@@ -580,7 +580,7 @@ function getStrategyForMultipleCrops() {
     if (limitFlag) {
         return false;
     } else if (totalMinimumAcre >= maxLand) {
-        customAlerts('Total of the Minimum acres amount must be less than total available land "' + maxLand + '"', type_error, time);
+        customAlerts('The total of all Minimum crop acreage limits must be less than the total available land "' + maxLand + '"', type_error, time);
         return false;
     } else if (totalMaximumAcre > maxLand) {
         customAlerts('Total of the Maximum acres amount must not be more than total available land "' + maxLand + '"', type_error, time);
