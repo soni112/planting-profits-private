@@ -312,7 +312,7 @@ Date 24-11-2015
                                                                 <input type="text" disabled
                                                                        name="scenario_global_crop_price"
                                                                        id="globalCropPriceEdit" placeholder="0"
-                                                                       onKeyPress="return isValidNumberValueForForCastSA(event); scenarioInputValidation();"/>
+                                                                       onKeyPress="return isValidNumberValueForForCastSA(event);"/>
                                                             </div>
                                                         </div>
                                                     </label>
