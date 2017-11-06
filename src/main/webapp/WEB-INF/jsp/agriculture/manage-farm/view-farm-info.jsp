@@ -2726,6 +2726,9 @@ Commented as per client requirement
                     placement: 'bottom'
                 }).popover('show');
             }
+            else{
+                $(this).popover('destroy');
+            }
         });
         $("input.popoverPercentage").mouseout(function(){
             if($(this).val() == 0 && $(this).val() != ''){
