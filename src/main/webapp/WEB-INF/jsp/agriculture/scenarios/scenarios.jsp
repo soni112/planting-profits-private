@@ -658,7 +658,29 @@ Date 24-11-2015
 <!-- @added - Abhishek @date - 08-01-2016 @desc - for creating charts for updated scenario-->
 <script type="text/javascript" src="<c:url value="/js/agriculture/output_pie_chart.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/agriculture/scenario/scenario.js"/>"></script>
+<script>
+    $('#globalCropPriceCreate').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("No numbers above 100");
+            $(this).val('');
+        }
+    });
 
+    $('#globalYieldCreate').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("No numbers above 100");
+            $(this).val('');
+        }
+    });
+
+    $('#globalVarCostCreate').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("No numbers above 100");
+            $(this).val('');
+        }
+    });
+
+</script>
 <script type="text/x-jQuery-tmpl" id="scenarioAnalysisOutputTmpl">
     <tr class="tblgrn">
         <td class="success">{{= strategyName}}</td>
