@@ -17,7 +17,7 @@
 
                 <c:choose>
                     <c:when test="${key eq 'unused'}">
-                        <h1 class="text-left troubleshoot-heading">Trouble Shooting Tips</h1>
+                        <h1 class="text-left troubleshoot-heading">TroubleShooting Tips</h1>
 
                         <br>
                         <c:choose>
@@ -39,7 +39,7 @@
                                         case.
                                         Several factors may cause misalignment between maximizing profit and maximizing
                                         acres farmed.
-                                        In these cases, Planting Profits will not plant all of the available land since
+                                        In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income or create a strategy that does not
                                         enforce all
                                         of the constraints in the farm model.
@@ -48,10 +48,10 @@
                                             <%--Remember, when a strategy does not use all available acres Planting Profits is saying that there is either a real conflict between profitability--%>
                                             <%--and planting all available land, or there is a constraint, i.e. a management decision, that needs to be changed in order to bring the remaining acreage into production.--%>
                                         When planning by fields, there are four common causes for a strategy that has
-                                        unplanted acreage.
+                                        unassigned acreage.
                                     </div>
                                 </ul>
-                                <p>Click one or more of the following parameters to fix the problem.</p>
+                                <p>Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesField"><b>Available
@@ -63,19 +63,19 @@
                                             may prevent all land from being assigned a crop. If it looks like a resource
                                             issue, try the following:
                                             <ul class="planning">
-                                                <li>1) Are any resources all used up or almost used up?
+                                                <p>1) Are any resources all used up or almost used up?
                                                     <a href="javascript:;"
                                                        onclick="navigateToResources();return false;">Check resources</a>.
-                                                </li>
-                                                <li>2) If yes, increase the amount of the critical resource. You can
+                                                </p>
+                                                <p>2) If yes, increase the amount of the critical resource. You can
                                                     change it by going to the <a href="javascript:;"
                                                                                  onclick="navigateToResources();return false;">Resources
                                                         page</a> or use the
                                                     <a href="javascript:;"
                                                        onclick="navigateToOutputResources();return false;"> resources
                                                         sensitivity analysis tool.</a>
-                                                </li>
-                                                <li>3) Re-analyze the farm model.</li>
+                                                </p>
+                                                <p>3) Re-analyze the farm model.</p>
                                             </ul>
                                                 <%--<a href="javascript:;" onclick="navigateToOutputResources();return false;">Check resource availabilities.</a><br/>--%>
                                             If a strategy is not generated, check one of the other Troubleshooting
@@ -95,7 +95,7 @@
                                         <div id="unusedFieldsFallowField" class="collapse">
                                             If one or more fields are marked fallow, these fields are not part of the
                                             available acreage and will not be planted. These fields will be assigned a
-                                            crop call <span style="color: red">fallow</span>.<br/>
+                                            crop called <span style="color: red">fallow</span>.<br/>
                                             <ul class="planning">
                                                 <li>Are any fields designated as fallow?
                                                     <a href="javascript:;"
