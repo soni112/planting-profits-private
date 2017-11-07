@@ -469,11 +469,10 @@
                             </c:when>
                             <c:otherwise>
                                 <h2>Strategy not generated - Planning by Acres</h2>
-                                <p>Check the following and make adjustments to resources, crop acreage limits or
-                                    crops.</p>
+                                <p>Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
                                 <br/>
-                                <p>Click one or more of the following troubleshooting areas to find and fix the
-                                    problem.</p>
+                                <%--<p>Click one or more of the following troubleshooting areas to find and fix the--%>
+                                    <%--problem.</p>--%>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#resourcesAcres"><b>Available Resources</b></a>
@@ -485,24 +484,24 @@
                                             both of the following to generate a strategy: <br/>
                                                 <%--<a href="javascript:;" onclick="navigateToResources();return false;">Check resource availabilities</a>.<br/>--%>
                                             <ul class="planning">
-                                                <li>1) Increase the amount of any resource that is needed for crops that
+                                                <p>1) Increase the amount of any resource that is needed for crops that
                                                     have minimum crop acreage limits. Often there is not enough working
                                                     capital to support the minimum crop limits. Do you have enough
                                                     working capital? Are there other resources that may be insufficient
                                                     to support minimum crop acreage limits? Can any of these suspects be
                                                     increased? <a href="javascript:;"
                                                                   onclick="navigateToResources();return false;">Check
-                                                        resources</a></li>
-                                                <li>2) If you cannot increase the limiting resource, decrease one or
+                                                        resources</a></p>
+                                                <p>2) If you cannot increase the limiting resource, decrease one or
                                                     more minimum crop acreage limits. <a href="javascript:;"
                                                                                          onclick="navigateToCropLimits();return false;">Check
-                                                        crop acreage limits</a></li>
-                                                <li>3) Use a combination of 1 and 2. After generating a strategy you can
+                                                        crop acreage limits</a></p>
+                                                <p>3) Use a combination of 1 and 2. After generating a strategy you can
                                                     back down the critical resource(s) that you increased in order to
                                                     generate your strategy. You can also change the minimum crop acreage
-                                                    limits and explore the inter-play between resources, minimum crop .
-                                                </li>
-                                                <li>4) Re-analyze the farm model.</li>
+                                                    limits and explore the inter-play between resources, minimum crop.
+                                                </p>
+                                                <p>4) Re-analyze the farm model.</p>
                                             </ul>
                                             If a strategy is not generated, check one of the other Troubleshooting
                                             paths.
@@ -523,7 +522,7 @@
                                                 <li>1) Are all crops unprofitable? <a href="javascript:;"
                                                                                       onclick="navigateToProfitableCrops();return false;">Check
                                                     profitability
-                                                    of crops</a> If not, this is not the reason PlantingProfits cannot
+                                                    of crops</a> If not, this is not the reason Planting Profits cannot
                                                     generate a strategy.
                                                 </li>
                                                 <li>2) If all crops are unprofitable, are there minimum crop acreage
