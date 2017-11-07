@@ -317,24 +317,24 @@
                                             crops would decrease estimated income. If it looks like (un)profitability of
                                             the crops may be the issue, try the following: <br/>
                                             <ul class="planning">
-                                                <li>1) Are any crops unprofitable?<a href="javascript:;"
+                                                <p>1) Are any crops unprofitable? <a href="javascript:;"
                                                                                      onclick="navigateToProfitableCrops();return false;">Check
                                                     profitability
                                                     of crops</a> If not,
                                                     this is not the reason Planting Profits did not assign crops to all
                                                     acreage.
-                                                </li>
-                                                <li>2) If any crops are unprofitable, are there minimum crop acreage
+                                                </p>
+                                                <p>2) If any crops are unprofitable, are there minimum crop acreage
                                                     limits on these crops? Are they maxed out, i.e. does the acreage
-                                                    assigned equal or nearly equal the minimum acreage limit?<a
+                                                    assigned equal or nearly equal the minimum acreage limit? <a
                                                             href="javascript:;"
                                                             onclick="navigateToOutputCropAcreageLimits();return false;">Check
                                                         crop acreage limits</a> Enter or increase minimum crop acreage
                                                     limits
                                                     for the
                                                     unprofitable crop(s).
-                                                </li>
-                                                <li>3) Re-analyze the farm model.</li>
+                                                </p>
+                                                <p>3) Re-analyze the farm model.</p>
                                             </ul>
 
                                             If all available acreage is not brought into production check one of the
