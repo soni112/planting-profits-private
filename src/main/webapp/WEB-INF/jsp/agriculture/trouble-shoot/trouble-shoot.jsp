@@ -355,7 +355,7 @@
                         </c:choose>
                     </c:when>
                     <c:otherwise>
-                        <h1 class="text-left troubleshoot-heading">Trouble Shooting Tips <a id="back-to-sensitivity-btn"
+                        <h1 class="text-left troubleshoot-heading">TroubleShooting Tips <a id="back-to-sensitivity-btn"
                                                                                             class="pull-right"
                                                                                             onclick="navigateToCropLimits(); return false;"
                                                                                             href="javascript:;"
@@ -366,10 +366,9 @@
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                 <h2><b>Strategy not generated - Planning by Fields</b></h2>
-                                <p>Check the following and make adjustments to resources, crop/field choices, crop
-                                    acreage limits or crops.</p>
+                                <p>Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
                                 <br/>
-                                <p>Click one or more of the following parameters to diagnose the problem.</p>
+                                <%--<p>Click one or more of the following parameters to diagnose the problem.</p>--%>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#resources"><b>Available Resources</b></a>
@@ -381,7 +380,7 @@
                                             both of the following to generate a strategy: <br/>
                                                 <%--<a href="javascript:;" onclick="navigateToResources();return false;">Check resource availabilities</a>.<br/>--%>
                                             <ul class="planning">
-                                                <li> 1) Increase the amount of any resource that is needed for crops
+                                                <p>1) Increase the amount of any resource that is needed for crops
                                                     that have minimum crop acreage limits. Often there is not enough
                                                     working capital to support the minimum crop limits. Do you have
                                                     enough working capital? Are there other resources that may be
@@ -389,18 +388,18 @@
                                                     these suspects be increased? <a href="javascript:;"
                                                                                     onclick="navigateToResources();return false;">Check
                                                         resources</a>.
-                                                </li>
-                                                <li> 2) If you cannot increase the limiting resource, decrease one or
+                                                </p>
+                                                <p>2) If you cannot increase the limiting resource, decrease one or
                                                     more minimum crop acreage limits. <a href="javascript:;"
                                                                                          onclick="navigateToCropLimits();return false;">Check
-                                                        crop acreage limits</a></li>
-                                                <li> 3) Use a combination of 1 and 2. After generating a strategy you
+                                                        crop acreage limits</a></p>
+                                                <p>3) Use a combination of 1 and 2. After generating a strategy you
                                                     can back down the critical resource(s) that you increased in order
                                                     to generate your strategy. You can also change the minimum crop
                                                     acreage limits and explore the inter-play between resources, minimum
                                                     crop acreage limits and estimated income.
-                                                </li>
-                                                <li> 4) Try again to generate a strategy.</li>
+                                                </p>
+                                                <p>4) Try again to generate a strategy.</p>
                                             </ul>
                                             If a strategy is not generated, check one of the other Troubleshooting
                                             paths.
@@ -426,22 +425,22 @@
                                             For crops with minimum acreage limits, either:<br/>
 
                                             <ul class="planning">
-                                                <li>1) Decrease the minimum crop acreage limit(s) that you suspect are
+                                                <p>1) Decrease the minimum crop acreage limit(s) that you suspect are
                                                     causing the conflict. <a href="javascript:;"
                                                                              onclick="navigateToCropLimits();return false;">Check
-                                                        crop acreage limits</a></li>
-                                                <li>2) Increase the number of fields where the crop(s) with the minimum
+                                                        crop acreage limits</a></p>
+                                                <p>2) Increase the number of fields where the crop(s) with the minimum
                                                     crop acreage limit(s) can be grown. <a href="javascript:;"
                                                                                            onclick="navigateToCropFieldChoices();return false;">Check
-                                                        crop/field choices</a></li>
-                                                <li>3) Use a combination of 1 and 2. After generating a strategy you can
+                                                        crop/field choices</a></p>
+                                                <p>3) Use a combination of 1 and 2. After generating a strategy you can
                                                     change the minimum crop acreage limits. You can go back to your
                                                     crop/field choices and if there is a crop assigned to a field that
                                                     you don’t like uncheck it so it cannot be considered for that field
                                                     if that is a preferred rotation. Explore the inter-play between
                                                     minimum crop acreage limits and crop/field choices and estimated
                                                     income.
-                                                </li>
+                                                </p>
                                             </ul>
                                             If a strategy is not generated, check one of the other Troubleshooting
                                             paths.
