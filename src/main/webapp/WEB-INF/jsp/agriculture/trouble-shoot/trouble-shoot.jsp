@@ -234,20 +234,20 @@
                                             constraint, may prevent all land from being assigned a crop. If it looks
                                             like a resource issue, try the following:<br/>
                                             <ul class="planning">
-                                                <li>1) Are any resources all used up or almost used up?<a
+                                                <p>1) Are any resources all used up or almost used up?<a
                                                         href="javascript:;"
                                                         onclick="navigateToOutputResources();return false;">Check
                                                     Resources</a>
-                                                </li>
-                                                <li>2) 2) If yes, increase the amount of the critical resource. You can
+                                                </p>
+                                                <p>2) 2) If yes, increase the amount of the critical resource. You can
                                                     change it by going to the <a href="javascript:;"
                                                                                  onclick="navigateToResources();return false;">Resources
                                                         page</a> or use the
                                                     <a href="javascript:;"
                                                        onclick="navigateToOutputResources();return false;"> resources
                                                         sensitivity analysis tool.</a>
-                                                </li>
-                                                <li>3) Re-analyze the farm model.</li>
+                                                </p>
+                                                <p>3) Re-analyze the farm model.</p>
                                             </ul>
                                             Repeat these steps until the additional acreage is planted. After generating
                                             a strategy you can change critical resources and/or minimum crop acreage
@@ -279,8 +279,8 @@
                                                     planted.
                                                 </p>
                                                 <p>3) Increase the maximum crop acreage limits on one or more
-                                                    crops.<br/>
-                                                    There must be enough resources to support the additional acreage.
+                                                    crops.</p>
+                                                <p>4) There must be enough resources to support the additional acreage.
                                                     Otherwise you may bump up against one of your resource constraints.
                                                     <a href="javascript:;"
                                                        onclick="navigateToResources();return false;">Check
