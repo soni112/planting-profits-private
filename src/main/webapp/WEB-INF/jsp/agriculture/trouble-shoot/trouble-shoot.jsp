@@ -179,22 +179,13 @@
                                             acreage limits, resource limitations or crop/field choices, can prevent
                                             Planting Profits from assigning crops to all of your land since planting
                                             this land to unprofitable crops would decrease estimated income. <br/>
-                                            Are any crops unprofitable? <a
-                                                href="javascript:;"
-                                                onclick="navigateToProfitableCrops();return false;">Check
-                                            profitability of crops</a>If not, this is not the reason Planting Profits
-                                            did not assign crops to all acreage.<br/>
-                                            If any crops are unprofitable, are there minimum crop acreage limits on
-                                            these crops? Are they maxed out, i.e. does the acreage assigned equal or
-                                            nearly equal the minimum acreage limit? <a href="javascript:;"
-                                                                                       onclick="navigateToOutputCropAcreageLimits();return false;">Check
-                                            crop acreage limits</a> Enter or increase minimum crop acreage limits for
-                                            the unprofitable crop(s). Go to the Crop/Field Choices page to make sure you
-                                            have enough acreage across your fields in which you can plant the
-                                            unprofitable crop(s).<br/>
-
-                                            Re-analyze the farm model.<br/>
-
+                                            <ul class="planning">
+                                                <p>1) Are any crops unprofitable?<a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> If not, this is not the reason Planting Profits did not assign crops to all acreage.</p>
+                                                <p>2) If any crops are unprofitable, are there minimum crop acreage limits on these crops? Are they maxed out, i.e. does the acreage assigned equal or nearly equal the minimum acreage limit? <a href="javascript:;" onclick="navigateToOutputCropAcreageLimits();return false;">Check crop acreage limits</a></p>
+                                                <p>3) If yes, enter or increase minimum crop acreage limits for the unprofitable crop(s).</p>
+                                                <p>4) Go to the Crop/Field Choices page to make sure you have enough acreage across your fields in which you can plant the unprofitable crop(s).</p>
+                                                <p>5) Re-analyze the farm model.</p>
+                                            </ul>
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
                                         </div>
