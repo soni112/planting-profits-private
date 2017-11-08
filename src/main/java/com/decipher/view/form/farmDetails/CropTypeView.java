@@ -343,7 +343,7 @@ public class CropTypeView implements Cloneable {
         if (intExpCropPrice != null && intExpCropPrice.doubleValue() != 0.0) {
             return "$" + AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal(intExpCropPrice.toString());
         } else {
-            return "$0.00";
+            return "$0.000";
         }
 
     }

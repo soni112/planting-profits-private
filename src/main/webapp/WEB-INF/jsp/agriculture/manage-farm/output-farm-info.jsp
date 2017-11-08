@@ -391,7 +391,7 @@
                                                 <c:choose>
                                                     <c:when test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
                                                         <td class="success" title="Resource limits or crop acreage limits preventing all land from being planted">
-                                                            <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}<sup>*</sup></a>
+                                                            <a class="remove-text-deco" style="color: red" target="_blank">${resourceList.impactingProfit}<sup>*</sup></a>
                                                         </td>
                                                     </c:when>
                                                     <c:otherwise>
@@ -408,7 +408,7 @@
                                     </table>
                                     <div class="clearfix"></div>
                                     <p class="pull-left">
-                                        * Resource limits or crop acreage limits preventing all available land from being planted
+                                        * One or more factors preventing all available land from being planted.
                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                             <c:param name="farmId" value="${farmId}"/>
                                             <c:param name="key" value="unused"/>
@@ -438,8 +438,17 @@
                                     </div>
 
                                 </div>
+                                <p class="pull-left">
+                                    * One or more factors preventing all available land from being planted.
+                                    <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                        <c:param name="farmId" value="${farmId}"/>
+                                        <c:param name="key" value="unused"/>
+                                    </c:url>
+                                    <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+                                </p>
                             </div>
-                            <div class="clearfix"></div>
+                            <div class="clearfix">
+                            </div>
                             <br>
                             <div id="resource-senstivity-block" class="panel panel-default">
                                 <div class="panel-heading">

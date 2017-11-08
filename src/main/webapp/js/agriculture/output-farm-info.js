@@ -456,7 +456,7 @@ function getStrategyForMultipleCrops() {
         }
         var minValue = $.trim($(this).children("td:nth(1)").text());
         var minOverridedValue = $.trim($(this).children("td:nth(3)").find("input").val());
-        if ((minValue == '' || minValue == '-') && minOverridedValue == "") {
+        if ((minValue != '' || minValue != '-') && minOverridedValue != "") {
 
             minOverridedValue = parseFloat(removeAllCommas(minOverridedValue));
             minValue = parseFloat(removeAllCommas(minValue));
@@ -481,7 +481,7 @@ function getStrategyForMultipleCrops() {
         var cropName = $(this).children("td:nth(0)").text().trim().split(" (Contract)")[0];
         var minValue = $.trim($(this).children("td:nth(1)").text());
         var minOverridedValue = $.trim($(this).children("td:nth(3)").find("input").val());
-        if ((minValue == '' || minValue == '-') && minOverridedValue == "") {
+        if ((minValue != '' || minValue != '-') && minOverridedValue != "") {
 
             minOverridedValue = minOverridedValue != "" ? parseFloat(removeAllCommas(minOverridedValue)) : 0.0;
             minValue = minValue != "" ? parseFloat(removeAllCommas(minValue)) : 0.0;
