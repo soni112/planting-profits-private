@@ -44,7 +44,7 @@ public class AgricultureStandardUtils {
 	}
 
 	public static String commaSeparatedForPriceWithThreeDecimal(String pattern) {
-		DecimalFormat formatter = new DecimalFormat("#,###.000");
+		DecimalFormat formatter = new DecimalFormat("#,###.###");
 //		DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
 //		symbols.setGroupingSeparator(',');
 		return formatter.format(Double.parseDouble(pattern));
