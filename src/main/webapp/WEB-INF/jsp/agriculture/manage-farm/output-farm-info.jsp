@@ -438,8 +438,17 @@
                                     </div>
 
                                 </div>
+                                <p class="pull-left">
+                                    * One or more factors preventing all available land from being planted.
+                                    <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                        <c:param name="farmId" value="${farmId}"/>
+                                        <c:param name="key" value="unused"/>
+                                    </c:url>
+                                    <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+                                </p>
                             </div>
-                            <div class="clearfix"></div>
+                            <div class="clearfix">
+                            </div>
                             <br>
                             <div id="resource-senstivity-block" class="panel panel-default">
                                 <div class="panel-heading">
