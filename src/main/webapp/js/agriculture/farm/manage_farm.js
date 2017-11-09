@@ -822,7 +822,7 @@ function validateCropLimits() {
     if (validationCropLimitFlag == false) {
         return validationCropLimitFlag;
     }
-    if (totalMinimumAcre >= totalLand || totalMinimumAcrePercentage >= 100) {
+    if (totalMinimumAcre > totalLand || totalMinimumAcrePercentage > 100) {
         // customAlerts('Total of the Minimum acres amount must be less than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
         customAlerts('The total of all of Minimum crop acreage limits cannot be greater than available land: "' + totalLand + '". ' +
             'Reduce one or more Minimum crop acreage limits or increase Available land', type_error, time);
