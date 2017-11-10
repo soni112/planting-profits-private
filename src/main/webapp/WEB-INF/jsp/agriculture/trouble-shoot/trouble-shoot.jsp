@@ -112,6 +112,7 @@
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
                                         </div>
+                                        <br/>
                                     </li>
                                     <li>
                                         <a data-toggle="collapse" href="#unusedMaxAcreageLimitsField"><b>Maximum acreage
@@ -166,6 +167,7 @@
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
                                         </div>
+                                        <br/>
                                     </li>
                                     <li>
                                         <a data-toggle="collapse" href="#unusedCropsField"><b>Profitability of crops</b></a>
@@ -189,6 +191,7 @@
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
                                         </div>
+                                        <br/>
                                     </li>
                                 </ul>
                             </c:when>
@@ -302,6 +305,7 @@
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
                                         </div>
+                                    <br/>
                                     </li>
                                     <li>
                                         <a data-toggle="collapse" href="#unusedCropsAcre"><b>Profitability of crops</b></a>
@@ -340,6 +344,7 @@
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
                                         </div>
+                                        <br/>
                                     </li>
                                 </ul>
                             </c:otherwise>
@@ -527,6 +532,7 @@
                                             If a strategy is not generated, check one of the other Troubleshooting
                                             paths.
                                         </div>
+                                        <br/>
                                     </li>
                                 </ul>
                             </c:otherwise>
