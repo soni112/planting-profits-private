@@ -17,7 +17,7 @@
 
                 <c:choose>
                     <c:when test="${key eq 'unused'}">
-                        <h1 class="text-left troubleshoot-heading">TroubleShooting Tips</h1>
+                        <h1 class="text-left troubleshoot-heading">Troubleshooting Tips</h1>
 
                         <br>
                         <c:choose>
@@ -25,7 +25,7 @@
                                 <h2><b>All available acreage not planted - Planning by Fields</b></h2>
                                 <h2>
                                     <p>
-                                        Why did Planting Profits not plant all of my available acreage? - Planning by
+                                        Why did Planting Profits not plant all of my available acres? - Planning by
                                         Fields.
                                         &nbsp;<a data-toggle="collapse" href="#moreUnusedAcreageContentField"
                                                  onclick="changeMoreLess(this); return false;">More</a>
@@ -197,7 +197,7 @@
 
                                 <h2>
                                     <p>
-                                        Why did Planting Profits not plant all of my available acreage? - Planning by
+                                        Why did Planting Profits not plant all of my available acres? - Planning by
                                         Acreage.
                                         &nbsp;<a data-toggle="collapse" href="#moreUnusedAcreageContent"
                                                  onclick="changeMoreLess(this); return false;">More</a>
@@ -239,7 +239,7 @@
                                                         onclick="navigateToOutputResources();return false;">Check
                                                     Resources</a>
                                                 </p>
-                                                <p>2) 2) If yes, increase the amount of the critical resource. You can
+                                                <p>2) If yes, increase the amount of the critical resource. You can
                                                     change it by going to the <a href="javascript:;"
                                                                                  onclick="navigateToResources();return false;">Resources
                                                         page</a> or use the
@@ -346,7 +346,7 @@
                         </c:choose>
                     </c:when>
                     <c:otherwise>
-                        <h1 class="text-left troubleshoot-heading">TroubleShooting Tips <a id="back-to-sensitivity-btn"
+                        <h1 class="text-left troubleshoot-heading">Troubleshooting Tips <a id="back-to-sensitivity-btn"
                                                                                             class="pull-right"
                                                                                             onclick="navigateToCropLimits(); return false;"
                                                                                             href="javascript:;"
