@@ -1408,8 +1408,8 @@
 			<td class='tblbrdr add-fieldi'>Crops</td>
 			<td class='add-fieldi'>Baseline Minimum</td>
 			<td class='add-fieldi'>Baseline Maximum</td>
-			<td class='add-fieldi'>Minimum</td>
-			<td class='add-fieldi'>Maximum</td>
+			<td class='add-fieldi'>New Minimum</td>
+			<td class='add-fieldi'>New Maximum</td>
 		</tr>
 		{{else source == "resource"}}
 			<tr class='tblhd add-fieldi'>
