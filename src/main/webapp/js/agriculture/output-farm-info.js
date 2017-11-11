@@ -350,7 +350,7 @@ function getStrategyForMultipleResources() {
                     $('#checkStrategy-pop-up').show();
                     localStorage.setItem('sensitivityFlag', true);
 
-                    return false;
+                    // return false;
                 }
                 //alterHTMLOfTableAndShowPopupTable(result);
                 $.each(result.Crop_Details, function (k, v) {
