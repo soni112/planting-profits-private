@@ -661,21 +661,21 @@ Date 24-11-2015
 <script>
     $('#globalCropPriceCreate').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("No numbers above 100");
+            customAlerts("Scenario parameters must be between 100% and -100%.");
             $(this).val('');
         }
     });
 
     $('#globalYieldCreate').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("No numbers above 100");
+            customAlerts("Scenario parameters must be between 100% and -100%.");
             $(this).val('');
         }
     });
 
     $('#globalVarCostCreate').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("No numbers above 100");
+            customAlerts("Scenario parameters must be between 100% and -100%.");
             $(this).val('');
         }
     });

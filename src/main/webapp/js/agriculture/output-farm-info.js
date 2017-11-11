@@ -350,7 +350,7 @@ function getStrategyForMultipleResources() {
                     $('#checkStrategy-pop-up').show();
                     localStorage.setItem('sensitivityFlag', true);
 
-                    return false;
+                    // return false;
                 }
                 //alterHTMLOfTableAndShowPopupTable(result);
                 $.each(result.Crop_Details, function (k, v) {
@@ -1712,7 +1712,13 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").hide();
-    } else if (difference < 0) {
+    }
+    else if(currentPotentialProfit == 0) {
+        $(".difference_bet_potential_profit").text("N/A");
+        $(".difference_bet_potential_profit").css("color", "red");
+        $("#multipleResourceViewStrategy").hide();
+    }
+        else if (difference < 0) {
         $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
         // $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
