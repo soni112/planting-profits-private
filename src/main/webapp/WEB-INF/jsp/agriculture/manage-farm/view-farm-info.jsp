@@ -2331,6 +2331,7 @@ Commented as per client requirement
                                                             <input type="text"
                                                                    onkeypress="return isValidNumberValue(event)"
                                                                    class="minCropAcreagePercentage"
+                                                                   disabled="disabled"
                                                                    onchange="calculatePercentageOfMinAcreage(this); return false;"
                                                                    value="${cropListForforwardSale.minimumAcresPercentage}">
                                                         </td>
