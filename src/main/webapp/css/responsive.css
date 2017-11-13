@@ -549,6 +549,9 @@
 		opecity: 0.6;
 
 	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
+	}
 }
 
 @media ( min-width :1371px) and (max-width:1470px) {
@@ -588,6 +591,9 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 66%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
 	}
 }
 
@@ -629,6 +635,9 @@
 		vertical-align: middle;
 		width: 66%;
 	}
+	.static_result_shown {
+		margin: 2% 0% 2% 8%;
+	}
 }
 
 @media ( min-width :1561px) and (max-width:1770px) {
@@ -668,6 +677,9 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 66%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
 	}
 }
 
@@ -709,6 +721,9 @@
 		vertical-align: middle;
 		width: 66%;
 	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
+	}
 }
 
 @media ( min-width :1911px) and ( max-width: 2200px ) {
@@ -748,6 +763,9 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 55%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 28%;
 	}
 }
 
@@ -790,6 +808,9 @@
 		vertical-align: middle;
 		width: 48%;
 	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
+	}
 }
 
 
@@ -830,6 +851,9 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 38%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
 	}
 }
 
@@ -887,6 +911,9 @@
 		vertical-align: middle;
 		width: 30%;
 	}
+	.static_result_shown {
+		margin: 2% 0% 2% 48%;
+	}
 }
 
 @media ( min-width :2901px) and ( max-width: 3100px ) {
@@ -941,6 +968,9 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 28%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
 	}
 }
 
@@ -998,6 +1028,9 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 25%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
 	}
 }
 
@@ -1057,6 +1090,9 @@
 		vertical-align: middle;
 		width: 23%;
 	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
+	}
 }
 
 
@@ -1112,6 +1148,9 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 20%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 58%;
 	}
 }
 
@@ -1169,6 +1208,9 @@
 		vertical-align: middle;
 		width: 17%;
 	}
+	.static_result_shown {
+		margin: 2% 0% 2% 18%;
+	}
 }
 
 @media ( min-width :4701px){
@@ -1223,5 +1265,8 @@
 		text-align: justify;
 		vertical-align: middle;
 		width: 14%;
+	}
+	.static_result_shown {
+		margin: 2% 0% 2% 58%;
 	}
 }

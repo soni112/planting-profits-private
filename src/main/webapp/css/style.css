@@ -2993,10 +2993,17 @@ div.sensitive_analysis_container {
     margin: 10px 0;
 }
 
-.static_result_shown span {
+.static_result_shown .rightspan {
+    width: 20%;
     float: right;
     font-size: 17px;
     line-height: 18px;
+}
+.static_result_shown .leftspan{
+    width: 80%;
+    float: left;
+    word-wrap: break-word;
+    font-size: 14px;
 }
 
 .increase_profit {
