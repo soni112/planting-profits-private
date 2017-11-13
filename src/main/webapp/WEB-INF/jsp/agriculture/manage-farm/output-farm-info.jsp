@@ -599,14 +599,14 @@
                                             <%--@changed - Abhishek     @date - 08-12-2015--%>
                                             <div class="baseline">
                                                 <p class="static_result_shown">
-                                                    Baseline Estimated Income: <span>$${model.potentialProfit}</span>
+                                                    <span class="leftspan">Baseline Estimated Income:</span> <span class="rightspan">$${model.potentialProfit}</span>
                                                 </p>
                                                 <p class="static_result_shown">
-                                                    Estimated Income from change to Baseline: <span
-                                                        class="new_potential_profit">$${model.potentialProfit}</span>
+                                                    <span class="leftspan">Estimated Income from change to Baseline:</span> <span
+                                                        class="new_potential_profit rightspan">$${model.potentialProfit}</span>
                                                 </p>
                                                 <p class="static_result_shown">
-                                                    Difference: <span class="difference_bet_potential_profit">$0</span>
+                                                    <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
                                                 </p>
                                             </div>
                                             <div style="width: 50%; float: right;">
@@ -1014,14 +1014,14 @@
                                             <%-- @changed - Abhishek        @date - 08-12-2015 --%>
                                             <div class="baseline">
                                                 <p class="static_result_shown">
-                                                    Baseline Estimated Income: <span>$${model.potentialProfit}</span>
+                                                    <span class="leftspan">Baseline Estimated Income:</span> <span class="rightspan">$${model.potentialProfit}</span>
                                                 </p>
                                                 <p class="static_result_shown">
-                                                    Estimated Income from change to Baseline: <span
-                                                        class="new_potential_profit">$${model.potentialProfit}</span>
+                                                    <span class="leftspan">Estimated Income from change to Baseline:</span> <span
+                                                        class="new_potential_profit rightspan">$${model.potentialProfit}</span>
                                                 </p>
                                                 <p class="static_result_shown">
-                                                    Difference: <span class="difference_bet_potential_profit">$0</span>
+                                                    <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
                                                 </p>
                                                 <div class="yellobtn pre_next" onclick="getStrategyForMultipleCrops()">
                                                     <a>Analyze</a>
