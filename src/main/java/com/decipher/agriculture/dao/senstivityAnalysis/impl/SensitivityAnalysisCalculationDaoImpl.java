@@ -458,10 +458,12 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         if (str.split("#-#-#")[1].equals("max")) {
                             Double maxAcres = Double.parseDouble(str.split("#-#-#")[2]);
                             cropBeanForOutput.get(i).setMaxAcre(maxAcres);
+                            cropBeanForOutput.get(i).getCropType().getCropLimit().setMaximumAcres(maxAcres.toString());
                             continue outer;
                         } else if (str.split("#-#-#")[1].equals("min")) {
                             Double minAcres = Double.parseDouble(str.split("#-#-#")[2]);
                             cropBeanForOutput.get(i).setMinAcre(minAcres);
+                            cropBeanForOutput.get(i).getCropType().getCropLimit().setMinimumAcres(minAcres.toString());
                             continue outer;
                         }
                     }
