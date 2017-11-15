@@ -337,7 +337,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     try {
                         JSONObject object = new JSONObject();
                         object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                        object.put("Crop_Info", "Not Planted");
+                        object.put("Crop_Info",fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
                         jsonArray.add(object);
                         JSONObject objectForGraphByField = new JSONObject();
                         objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName());
@@ -367,7 +367,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 JSONObject object = new JSONObject();
                 try {
                     object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                    object.put("Crop_Info", "Not Planted");
+                    object.put("Crop_Info", fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
                     JSONObject objectForGraphByField = new JSONObject();
                     objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName());
                     objectForGraphByField.put("Land", 0);
@@ -970,7 +970,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         if (!flag) {
                             JSONObject object = new JSONObject();
                             object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                            object.put("Crop_Info", "Not Planted");
+                            object.put("Crop_Info", fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
                             jsonArrayInner.add(object);
 
                         }
@@ -1074,7 +1074,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         JSONObject object = new JSONObject();
 
                         object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                        object.put("Crop_Info", "Not Planted");
+                        object.put("Crop_Info",  fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
 
                         jsonArrayInner.add(object);
                     }
