@@ -133,14 +133,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             if (cropTypeView.getSelected()) {
                 JSONObject jsonObject = getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
                 jsonObject.put("cropName", cropTypeView.getCropName());
-                jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails));
+                jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, false));
                 jsonArray.add(jsonObject);
 
                 if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")){
 
                     JSONObject jsonObjectForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
                     jsonObjectForFirm.put("cropName", cropTypeView.getCropName() + " (Firm)");
-                    jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails));
+                    jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
                     jsonArray.add(jsonObjectForFirm);
                 }
             }
@@ -154,7 +154,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             int totalAcreage = 0;
             Set<CropType> cropSet = cropsGroupView.getCropSet();
             for (CropType cropType : cropSet) {
-                totalAcreage += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(getCropAcreage(new CropTypeView(cropType), outputDetails)));
+                CropTypeView cropTypeView = new CropTypeView(cropType);
+                totalAcreage += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(getCropAcreage(cropTypeView, outputDetails, cropTypeView.getFirmchecked().equalsIgnoreCase("true"))));
             }
             jsonObject.put("acreagePlanted", totalAcreage);
             jsonArray.add(jsonObject);
@@ -163,7 +164,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         return jsonArray;
     }
 
-    private String getCropAcreage(CropTypeView cropTypeView, JSONObject outputDetails){
+    private String getCropAcreage(CropTypeView cropTypeView, JSONObject outputDetails, boolean isFirm){
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
 
         if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
@@ -171,7 +172,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
 
-                if (farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+                if(farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) && farmOutputDetailsView.getForFirm() && isFirm){
+                    return farmOutputDetailsView.getUsedAcres();
+                }
+
+                if(farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) && !isFirm){
                     return farmOutputDetailsView.getUsedAcres();
                 }
             }

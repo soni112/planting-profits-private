@@ -337,7 +337,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     try {
                         JSONObject object = new JSONObject();
                         object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                        object.put("Crop_Info", "Not Planted");
+                        object.put("Crop_Info",fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
                         jsonArray.add(object);
                         JSONObject objectForGraphByField = new JSONObject();
                         objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName());
@@ -367,7 +367,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 JSONObject object = new JSONObject();
                 try {
                     object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                    object.put("Crop_Info", "Not Planted");
+                    object.put("Crop_Info", fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
                     JSONObject objectForGraphByField = new JSONObject();
                     objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName());
                     objectForGraphByField.put("Land", 0);
@@ -458,10 +458,12 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         if (str.split("#-#-#")[1].equals("max")) {
                             Double maxAcres = Double.parseDouble(str.split("#-#-#")[2]);
                             cropBeanForOutput.get(i).setMaxAcre(maxAcres);
+                            cropBeanForOutput.get(i).getCropType().getCropLimit().setMaximumAcres(maxAcres.toString());
                             continue outer;
                         } else if (str.split("#-#-#")[1].equals("min")) {
                             Double minAcres = Double.parseDouble(str.split("#-#-#")[2]);
                             cropBeanForOutput.get(i).setMinAcre(minAcres);
+                            cropBeanForOutput.get(i).getCropType().getCropLimit().setMinimumAcres(minAcres.toString());
                             continue outer;
                         }
                     }
@@ -970,7 +972,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         if (!flag) {
                             JSONObject object = new JSONObject();
                             object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                            object.put("Crop_Info", "Not Planted");
+                            object.put("Crop_Info", fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
                             jsonArrayInner.add(object);
 
                         }
@@ -1074,7 +1076,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         JSONObject object = new JSONObject();
 
                         object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                        object.put("Crop_Info", "Not Planted");
+                        object.put("Crop_Info",  fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
 
                         jsonArrayInner.add(object);
                     }
