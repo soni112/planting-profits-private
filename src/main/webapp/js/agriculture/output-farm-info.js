@@ -628,7 +628,7 @@ function getStrategyForMultipleCrops() {
                 if (difference < 0) {
                     localStorage.setItem('sensitivityFlag', true);
                     $('#checkStrategy-pop-up-close-btn').show();
-                    $('#checkStrategy-pop-up').show();
+                    $('#checkStrategy-pop-up').hide();
                 }
 
                 $("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
