@@ -1541,7 +1541,7 @@ function SaveStrategyForMultipleResources(resourse_Type) {
     } else {
         $("#resourceTableForCreateScenario tbody tr").each(function () {
             var resourceName = $(this).children("td:nth(0)").text().trim();
-            var resourceOverridedValue = $(this).children("td:nth(1)").text().trim();
+            var resourceOverridedValue = $(this).children("td:nth(2)").text().trim();
             resourceArray.push(resourceName + "#-#-#" + removeAllCommas(resourceOverridedValue));
 
         });
