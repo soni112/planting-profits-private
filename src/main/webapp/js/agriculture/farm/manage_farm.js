@@ -3140,6 +3140,7 @@ function addStopButtonOnLoadingImageToStopAjax(ajaxRequest) {
 
 var ajaxRequestToStop = null;
 function stopTheStrategy() {
+    changeButtonLabelForAlertifyConfirm('Continue', 'Cancel')
     alertify.confirm('Are you sure you want to stop the Strategy building process.', function (e) {
         if (e) {
             ajaxRequestToStop.abort();
@@ -3147,6 +3148,7 @@ function stopTheStrategy() {
             $("#stopAjaxRequestDiv").html('');
         }
     });
+    changeButtonLabelForAlertifyConfirm('Ok', 'Cancel')
 }
 
 /*function calculateProfitByCrop(obj) {
