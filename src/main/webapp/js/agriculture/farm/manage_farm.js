@@ -3140,13 +3140,15 @@ function addStopButtonOnLoadingImageToStopAjax(ajaxRequest) {
 
 var ajaxRequestToStop = null;
 function stopTheStrategy() {
-    alertify.confirm('Are you sure you want to stop the Strategy building process.', function (e) {
+    changeButtonLabelForAlertifyConfirm('Continue', 'Cancel')
+    alertify.confirm('Stop the Strategy building process.', function (e) {
         if (e) {
             ajaxRequestToStop.abort();
             hideLoadingImageForStrategy();
             $("#stopAjaxRequestDiv").html('');
         }
     });
+    changeButtonLabelForAlertifyConfirm('Ok', 'Cancel')
 }
 
 /*function calculateProfitByCrop(obj) {

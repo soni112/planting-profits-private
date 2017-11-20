@@ -20,7 +20,7 @@
                         <li>970.420.1656</li>
                         <li><a href="mailto:info@Plantingprofits.com" style="color: #0099FF;text-decoration: underline">info@Plantingprofits.com</a></li>
                         <li>PO Box 201 Masonville, CO 80541</li>
-                        <li><button class="btn-contribute">Chat with Planting Profits</button></li>
+                        <%--<li><button class="btn-contribute">Chat with Planting Profits</button></li>--%>
                     </ul>
                 </div><!-- /.col-12 -->
             </div><!-- /.row -->
