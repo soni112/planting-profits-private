@@ -1161,6 +1161,7 @@ function forCastGraphForSingleResource() {
                 //alert("hello"+result.resourceUnit);
                 changeValuesOfForCastSingleResourcechartdiv(resourceName, result);
                 unitForCropResourse = result.resourceUnit;
+
             } else if (status == 'failed') {
                 customAlerts('Some problem occured, Please try again later', type_error, time);
             } else {
@@ -1173,6 +1174,8 @@ function forCastGraphForSingleResource() {
 
     }).done(function () {
         hideLoadingImageForStrategy();
+        $('#SingleResource_Message').show();
+
         $('#loading-strategy-content').html('Generating strategy…')
     });
 }
@@ -1243,6 +1246,7 @@ function forCastGraphForSingleCropLimit() {
 
     }).done(function () {
         hideLoadingImageForStrategy();
+        $('#SingleCrop_Message').show();
         $('#loading-strategy-content').html('Generating strategy…')
     });
 }

@@ -536,6 +536,14 @@
                                                 <div class="box-body chart-responsive">
                                                     <div id="forCastSingleResourcechartdiv"
                                                          style="width: 100%; height: 400px; background-color: #FFFFFF; margin-top: 12px; float: left; display: none;"></div>
+                                                    <p class="pull-left" style="display: none" id="SingleResource_Message">
+                                                        * One or more factors preventing all available land from being planted.
+                                                        <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                                            <c:param name="farmId" value="${farmId}"/>
+                                                            <c:param name="key" value="unused"/>
+                                                        </c:url>
+                                                        <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+                                                    </p>
                                                 </div>
                                                 <!-- /.box-body -->
                                             </div>
@@ -821,6 +829,14 @@
                                                     <div id="forCastSingleCropLimitchartdiv"
                                                          style="width: 100%; height: 400px; background-color: #FFFFFF; margin-top: 12px; float: left; display: none;"></div>
                                                 </div>
+                                                <p class="pull-left" style="display: none" id="SingleCrop_Message">
+                                                    * One or more factors preventing all available land from being planted.
+                                                    <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                                        <c:param name="farmId" value="${farmId}"/>
+                                                        <c:param name="key" value="unused"/>
+                                                    </c:url>
+                                                    <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+                                                </p>
                                                 <!-- /.box-body -->
                                             </div>
 
