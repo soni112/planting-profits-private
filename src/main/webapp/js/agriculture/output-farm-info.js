@@ -586,7 +586,7 @@ function getStrategyForMultipleCrops() {
         customAlerts('Total of the Maximum acres amount must not be more than total available land "' + maxLand + '"', type_error, time);
         return false;
     } else if (cropsArray.length == 0 && cropsGroupArray.length == 0 && cropContractArray.length == 0 && cropProposedArray.length == 0) {
-        customAlerts("No crop limit has been changed so a new strategy cannot be generated", type_error, time);
+        customAlerts("These are the original crop limits so a new strategy cannot be generate", type_error, time);
         return false;
     }
 
