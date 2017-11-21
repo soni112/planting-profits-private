@@ -354,10 +354,10 @@ function getStrategyForMultipleResources() {
                 }
                 //alterHTMLOfTableAndShowPopupTable(result);
                 $.each(result.Crop_Details, function (k, v) {
-                    console.log(v.land);
-                    totalAcreageResult += parseInt(v.land);
+                     console.log(v.land);
+                    totalAcreageResult += parseInt(removeAllCommas(v.land));
                 });
-                console.log("Total==" + totalAcreageResult);
+                console.log("TotalUsed==" + totalAcreageResult);
                 $.each(resourceArray, function (key, value) {
                     console.log("land : " + value);
                     var resultTotalAvailable = value.split("#-#-#");
