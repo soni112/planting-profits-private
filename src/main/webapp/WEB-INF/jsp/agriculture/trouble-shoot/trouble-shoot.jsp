@@ -515,19 +515,19 @@
                                             crops are unprofitable and you do not have entered minimum crop acreage
                                             limits, Planting Profits will not generate a strategy. <br/>
                                             <ul class="planning">
-                                                <li>1) Are all crops unprofitable? <a href="javascript:;"
+                                                <p>1) Are all crops unprofitable? <a href="javascript:;"
                                                                                       onclick="navigateToProfitableCrops();return false;">Check
                                                     profitability
                                                     of crops</a> If not, this is not the reason Planting Profits cannot
                                                     generate a strategy.
-                                                </li>
-                                                <li>2) If all crops are unprofitable, are there minimum crop acreage
+                                                </p>
+                                                <p>2) If all crops are unprofitable, are there minimum crop acreage
                                                     limits on one or more crops? <a href="javascript:;"
                                                                                     onclick="navigateToCropLimits();return false;">Check
                                                         crop acreage limits</a> If not, enter
                                                     minimum crop acreage limits for one or more crops.
-                                                </li>
-                                                <li>3) Re-analyze the farm model.</li>
+                                                </p>
+                                                <p>3) Re-analyze the farm model.</p>
                                             </ul>
                                             If a strategy is not generated, check one of the other Troubleshooting
                                             paths.
