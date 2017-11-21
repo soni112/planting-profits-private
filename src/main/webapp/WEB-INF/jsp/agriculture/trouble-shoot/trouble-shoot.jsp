@@ -25,8 +25,7 @@
                                 <h2><b>All available acreage not planted - Planning by Fields</b></h2>
                                 <h2>
                                     <p>
-                                        Why did Planting Profits not plant all of my available acres? - Planning by
-                                        Fields.
+                                        Why did Planting Profits not assign crops to all available land?
                                         &nbsp;<a data-toggle="collapse" href="#moreUnusedAcreageContentField"
                                                  onclick="changeMoreLess(this); return false;">More</a>
                                     </p>
