@@ -664,6 +664,14 @@ Date 24-11-2015
             customAlerts("Scenario parameters must be between 100% and -100%.");
             $(this).val('');
         }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+
+        else{
+
+        }
     });
 
     $('#globalYieldCreate').keyup(function(){
@@ -671,12 +679,28 @@ Date 24-11-2015
             customAlerts("Scenario parameters must be between 100% and -100%.");
             $(this).val('');
         }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+
+        else{
+
+        }
     });
 
     $('#globalVarCostCreate').keyup(function(){
         if ($(this).val() > 100){
             customAlerts("Scenario parameters must be between 100% and -100%.");
             $(this).val('');
+        }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+
+        else{
+
         }
     });
 

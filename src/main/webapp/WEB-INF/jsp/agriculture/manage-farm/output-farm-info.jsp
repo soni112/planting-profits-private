@@ -345,6 +345,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <c:set var="resourceFlag" value="false" />
                                         <c:forEach var="resourceList" items="${model.resourceJsonObject.resourceDetails}">
                                             <%--<c:set var="key" value="${resourceList.cropResourceUse}" />
                                             <tr class="tblgrn">
@@ -393,6 +394,8 @@
                                                         <td class="success" title="Resource limits or crop acreage limits preventing all land from being planted">
                                                             <a class="remove-text-deco" style="color: red" target="_blank">${resourceList.impactingProfit}<sup>*</sup></a>
                                                         </td>
+                                                        <c:set var="resourceFlag" value="true" />
+
                                                     </c:when>
                                                     <c:otherwise>
                                                         <td class="success">${resourceList.impactingProfit}</td>
@@ -407,6 +410,7 @@
                                         </tbody>
                                     </table>
                                     <div class="clearfix"></div>
+                                    <c:if test="${resourceFlag}">
                                     <p class="pull-left">
                                         * One or more factors preventing all available land from being planted.
                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
@@ -415,6 +419,7 @@
                                         </c:url>
                                         <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
                                     </p>
+                                    </c:if>
                                 </div>
 
 
@@ -438,6 +443,7 @@
                                     </div>
 
                                 </div>
+                                <c:if test="${resourceFlag}">
                                 <p class="pull-left">
                                     * One or more factors preventing all available land from being planted.
                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
@@ -446,6 +452,7 @@
                                     </c:url>
                                     <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
                                 </p>
+                                </c:if>
                             </div>
                             <div class="clearfix">
                             </div>
