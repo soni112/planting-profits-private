@@ -199,8 +199,7 @@
 
                                 <h2>
                                     <p>
-                                        Why did Planting Profits not plant all of my available acres? - Planning by
-                                        Acres.
+                                        Why did Planting Profits not assign crops to all available land?
                                         &nbsp;<a data-toggle="collapse" href="#moreUnusedAcreageContent"
                                                  onclick="changeMoreLess(this); return false;">More</a>
                                     </p>
