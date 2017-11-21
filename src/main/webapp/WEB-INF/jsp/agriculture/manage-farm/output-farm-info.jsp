@@ -410,6 +410,7 @@
                                         </tbody>
                                     </table>
                                     <div class="clearfix"></div>
+                                    <c:if test="${resourceFlag}">
                                     <p class="pull-left">
                                         * One or more factors preventing all available land from being planted.
                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
@@ -418,6 +419,7 @@
                                         </c:url>
                                         <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
                                     </p>
+                                    </c:if>
                                 </div>
 
 
