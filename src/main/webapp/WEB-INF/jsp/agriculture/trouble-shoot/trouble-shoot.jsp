@@ -97,17 +97,17 @@
                                             available acreage and will not be planted. These fields will be assigned a
                                             crop called <span style="color: red">fallow</span>.<br/>
                                             <ul class="planning">
-                                                <li>Are any fields designated as fallow?
+                                                <p>Are any fields designated as fallow?
                                                     <a href="javascript:;"
                                                        onclick="navigateToCropFieldInformation();return false;">Check
                                                         field information</a>
-                                                </li>
-                                                <li>2) To bring any fallow fields into production, uncheck the Fallow
+                                                </p>
+                                                <p>2) To bring any fallow fields into production, uncheck the Fallow
                                                     box. Then go to the Crop/Field Choices page. Indicate which crops
                                                     you would like to consider planting in that field.
-                                                </li>
-                                                <li>3) Repeat for all fallow fields.</li>
-                                                <li>4) Re-analyze the farm model.</li>
+                                                </p>
+                                                <p>3) Repeat for all fallow fields.</p>
+                                                <p>4) Re-analyze the farm model.</p>
                                             </ul>
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
@@ -125,15 +125,15 @@
                                             be land left over that is not assigned a crop. If it looks like a maximum
                                             crop acreage limits may be the issue, try the following:<br/>
                                             <ul class="planning">
-                                                <li>1) Are there maximum crop acreage limits? If so, have most of the
+                                                <p>1) Are there maximum crop acreage limits? If so, have most of the
                                                     maximum crop acreage limits been reached? <a
                                                             href="javascript:;"
                                                             onclick="navigateToCropLimits();return false;">Check
-                                                        crop limits.</a></li>
-                                                <li>2) If yes, this is likely causing some of the land not to be
+                                                        crop limits.</a></p>
+                                                <p>2) If yes, this is likely causing some of the land not to be
                                                     planted.
-                                                </li>
-                                                <li>3) Increase the maximum crop acreage limits on one or more
+                                                </p>
+                                                <p>3) Increase the maximum crop acreage limits on one or more
                                                     crops.<br/>
                                                     There must be enough resources to support the additional acreage.
                                                     Also, there must be enough acreage among the fields where you can
@@ -144,8 +144,8 @@
                                                             onclick="navigateToCropFieldChoices();return false;">Check
                                                         crop/field
                                                         choices</a>
-                                                </li>
-                                                <li>4) Re-analyze the farm model.</li>
+                                                </p>
+                                                <p>4) Re-analyze the farm model.</p>
                                             </ul>
                                             In combination with the above situation for maximum crop acreage limits, if
                                             you have minimum crop acreage limits (for unprofitable crops) that have been
