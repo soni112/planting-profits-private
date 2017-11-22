@@ -1721,6 +1721,7 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").hide();
+        $("#checkStrategy-pop-up").show();
     }
         else if (difference < 0) {
         $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
