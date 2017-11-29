@@ -836,7 +836,7 @@
                                                     <div id="forCastSingleCropLimitchartdiv"
                                                          style="width: 100%; height: 400px; background-color: #FFFFFF; margin-top: 12px; float: left; display: none;"></div>
                                                 </div>
-                                                <p class="pull-left" style="display: none" id="SingleCrop_Message">
+                                                <p class="pull-left" id="SingleCrop_Message" style="display: none">
                                                     * One or more factors preventing all available land from being planted.
                                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                         <c:param name="farmId" value="${farmId}"/>

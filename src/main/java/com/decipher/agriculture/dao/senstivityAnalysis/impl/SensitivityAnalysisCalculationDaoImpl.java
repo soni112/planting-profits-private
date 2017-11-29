@@ -1021,10 +1021,11 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     for(CropResourceUsageView resourceUsageView : resourceUsageViews){
                         if(resourceUsageView.getCropResourceUse().equalsIgnoreCase("Land")){
                             totalLand  += Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsageView.getCropResourceUseAmount()));
-                            PlantingProfitLogger.info("Resource New Value=="+totalLand);
-
                         }
                     }
+
+                    jsonObject.put("isAllAcreagePlanted", totalLand.equals(totalUseResourceValue));
+
                     if(i == 0){
                         jsonObject.put("bubbleMessage", "This is the baseline " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " crop acreage limit for " : "") + cropName) : (" amount for " + resourceStr)));
                     } else if (differenceValue > 0) {
@@ -1383,10 +1384,11 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     for(CropResourceUsageView resourceUsageView : resourceUsageViews){
                         if(resourceUsageView.getCropResourceUse().equalsIgnoreCase("Land")){
                             totalLand  += Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsageView.getCropResourceUseAmount()));
-                            PlantingProfitLogger.info("Resource New Value=="+totalLand);
-
                         }
                     }
+
+                    jsonObject.put("isAllAcreagePlanted", totalLand.equals(totalUseResourceValue));
+
                     if(i == 0){
                         jsonObject.put("bubbleMessage", "This is the baseline " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " crop acreage limit for " : "") + cropName) : (" amount for " + resourceStr)));
                     } else if (differenceValue > 0) {

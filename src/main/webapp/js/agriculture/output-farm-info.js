@@ -1126,6 +1126,8 @@ function forCastGraphForSingleResource() {
      customAlerts("Value for "+resourceName+" can not be zero", type_error, time);
      return false;
      }*/
+    $('#SingleResource_Message').hide();
+
     $.ajax({
         url: 'agriculture/SensetivityAnalysisController/getSAForCastGraphForSingleResource',
         type: 'POST',
@@ -1153,6 +1155,11 @@ function forCastGraphForSingleResource() {
                 // result = JSON.parse(result);
                 //alert("hello"+result.resourceUnit);
                 changeValuesOfForCastSingleResourcechartdiv(resourceName, result);
+                $.each(result.Resource_Array, function(key, value){
+                    if(value.isAllAcreagePlanted == false){
+                        $('#SingleResource_Message').show();
+                    }
+                });
                 unitForCropResourse = result.resourceUnit;
 
             } else if (status == 'failed') {
@@ -1167,8 +1174,6 @@ function forCastGraphForSingleResource() {
 
     }).done(function () {
         hideLoadingImageForStrategy();
-        $('#SingleResource_Message').show();
-
         $('#loading-strategy-content').html('Generating strategy…')
     });
 }
@@ -1202,6 +1207,7 @@ function forCastGraphForSingleCropLimit() {
      customAlerts("Value for "+cropName+" can not be zero", type_error, time);
      return false;
      }*/
+    $('#SingleCrop_Message').hide();
     $.ajax({
         url: 'agriculture/SensetivityAnalysisController/SAForCastGraphForSingleCrop',
         type: 'POST',
@@ -1226,6 +1232,11 @@ function forCastGraphForSingleCropLimit() {
                 // result = JSON.parse(result);
                 //alert("hello3"+result.resourceUnit);
                 changeValuesOfForCastSingleCropchartdiv(cropName, result);
+                $.each(result.Resource_Array, function(key, value){
+                    if(value.isAllAcreagePlanted == false){
+                        $('#SingleCrop_Message').show();
+                    }
+                });
                 unitForCropResourse = "acres";
             } else if (status == 'failed') {
                 customAlerts('Some problem occured, Please try again later', type_error, time);
@@ -1239,7 +1250,6 @@ function forCastGraphForSingleCropLimit() {
 
     }).done(function () {
         hideLoadingImageForStrategy();
-        $('#SingleCrop_Message').show();
         $('#loading-strategy-content').html('Generating strategy…')
     });
 }
