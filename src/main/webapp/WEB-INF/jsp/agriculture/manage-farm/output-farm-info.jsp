@@ -633,7 +633,7 @@
                                                     @Changed - Abhishek
                                                     @Date - 25-11-2015
                                                 -->
-                                                <div id="resourcesNotCompleted" style="display: none;margin-left: -10px;">
+                                                <div id="available-acreage-not-planted-msg" style="display: none;margin-left: -10px;">
                                                     All available acreage not planted.
                                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                         <c:param name="farmId" value="${farmId}"/>
@@ -1184,7 +1184,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="Acreage_notPlanted" style="display: none">All available acreage not planted.</div>
+                <div id="acreage-not-planted-msg" style="display: none">All available acreage not planted.</div>
                 <div id="field_crop_button"></div>
             </div>
         </div>

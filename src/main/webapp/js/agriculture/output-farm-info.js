@@ -339,9 +339,6 @@ function getStrategyForMultipleResources() {
         success: function (response) {
             var status = response.status;
             var result = response.result;
-            var totalAcreageResult = 0
-            var resultResourceChange = 0;
-
             if (status == 'success') {
                 // result = JSON.parse(result);
                 if (result.Potential_Profit == "$0") {
@@ -352,23 +349,23 @@ function getStrategyForMultipleResources() {
 
                     // return false;
                 } else {
+                    var totalAcreagePlanted = 0;
+                    var totalLand = 0;
                     $.each(result.Crop_Details, function (k, v) {
-                        console.log(v.land);
-                        totalAcreageResult += parseInt(removeAllCommas(v.land));
+                        totalAcreagePlanted += parseInt(removeAllCommas(v.land));
                     });
-                    $.each(resourceArray, function (key, value) {
-                        console.log("land : " + value);
-                        var resultTotalAvailable = value.split("#-#-#");
-                        for (var i = 0; i <= resultTotalAvailable.length; i++) {
-                            resultResourceChange = resultTotalAvailable[1];
+
+                    $('#sa_multiple_resource_table').find('tr').each(function() {
+                        if($(this).children().eq(0).html() == 'Land'){
+                            totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
                         }
                     });
-                    if (resultResourceChange <= totalAcreageResult) {
-                        $("#resourcesNotCompleted").hide();
-                        $("#Acreage_notPlanted").hide();
+                    if (totalLand <= totalAcreagePlanted) {
+                        $("#available-acreage-not-planted-msg").hide();
+                        $("#acreage-not-planted-msg").hide();
                     } else {
-                        $("#resourcesNotCompleted").show();
-                        $("#Acreage_notPlanted").show();
+                        $("#available-acreage-not-planted-msg").show();
+                        $("#acreage-not-planted-msg").show();
                     }
                 }
                 /**
@@ -1712,20 +1709,20 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").hide();
-    }
-    else if(currentPotentialProfit == 0) {
+    } else if(currentPotentialProfit == 0) {
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").hide();
         $("#checkStrategy-pop-up").show();
-    }
-        else if (difference < 0) {
+    } else if (difference < 0) {
         $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
         // $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
+        $("#multipleResourceViewStrategy").show();
     } else {
         $(".difference_bet_potential_profit").css("color", "");
         $(".difference_bet_potential_profit").text(addCommaSignWithDollarForTextWithOutId(difference));
+        $("#multipleResourceViewStrategy").show();
     }
 }
 
