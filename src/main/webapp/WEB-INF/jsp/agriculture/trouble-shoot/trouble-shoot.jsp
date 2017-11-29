@@ -463,7 +463,7 @@
                                 </ul>
                             </c:when>
                             <c:otherwise>
-                                <h2>Strategy not generated - Planning by Acres</h2>
+                                <h2><b>Strategy not generated - Planning by Acres</b></h2>
                                 <p>Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
                                 <br/>
                                 <%--<p>Click one or more of the following troubleshooting areas to find and fix the--%>
