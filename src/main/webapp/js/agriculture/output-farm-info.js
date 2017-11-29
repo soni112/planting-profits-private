@@ -351,29 +351,25 @@ function getStrategyForMultipleResources() {
                     localStorage.setItem('sensitivityFlag', true);
 
                     // return false;
-                }
-                //alterHTMLOfTableAndShowPopupTable(result);
-                $.each(result.Crop_Details, function (k, v) {
-                     console.log(v.land);
-                    totalAcreageResult += parseInt(removeAllCommas(v.land));
-                });
-                console.log("TotalUsed==" + totalAcreageResult);
-                $.each(resourceArray, function (key, value) {
-                    console.log("land : " + value);
-                    var resultTotalAvailable = value.split("#-#-#");
-                    for (var i = 0; i <= resultTotalAvailable.length; i++) {
-                        resultResourceChange = resultTotalAvailable[1];
+                } else {
+                    $.each(result.Crop_Details, function (k, v) {
+                        console.log(v.land);
+                        totalAcreageResult += parseInt(removeAllCommas(v.land));
+                    });
+                    $.each(resourceArray, function (key, value) {
+                        console.log("land : " + value);
+                        var resultTotalAvailable = value.split("#-#-#");
+                        for (var i = 0; i <= resultTotalAvailable.length; i++) {
+                            resultResourceChange = resultTotalAvailable[1];
+                        }
+                    });
+                    if (resultResourceChange <= totalAcreageResult) {
+                        $("#resourcesNotCompleted").hide();
+                        $("#Acreage_notPlanted").hide();
+                    } else {
+                        $("#resourcesNotCompleted").show();
+                        $("#Acreage_notPlanted").show();
                     }
-                });
-                if (resultResourceChange <= totalAcreageResult) {
-                    $("#resourcesNotCompleted").hide();
-                    $("#Acreage_notPlanted").hide();
-
-                }
-                else {
-                    $("#resourcesNotCompleted").show();
-                    $("#Acreage_notPlanted").show();
-
                 }
                 /**
                  * @changed - Abhishek
