@@ -348,11 +348,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         } else if (minOrMax.equalsIgnoreCase("max")) {
             return maximumAcres > usedAcres ? NO : YES;
         } else if (minOrMax.equalsIgnoreCase("both")) {
-//            if (usedAcres > minimumAcres && maximumAcres < usedAcres) {
-                return NO;
-//            } else {
-//                return YES;
-//            }
+            return usedAcres == minimumAcres ? YES : NO;
         } else {
             return "";
         }
