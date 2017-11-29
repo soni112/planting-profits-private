@@ -477,6 +477,7 @@ var strategyVarianceInformationInfo = "<p>If checkbox is checked, then the cropâ
 var strategyVarianceRangeInfo = "<p>This is the price and yield information previously entered that will be used to simulate uncertainty in expected income for a given strategy.</p>" +
 	"<p>To change this information, go back to the Crop Information Details page.</p>";
 
+var popoverPercentageHelp = "<p>If maxmium crop limit is 0, this crop will not be assigned any acreage in the strategy.</p>";
 
 $(document).ready(function() {
 	$(".help_Infromation_PopUp").click(function() {
@@ -692,6 +693,8 @@ function callDiv_Show13(obj) {
         contentArray.push(strategyVarianceRangeInfo);
 	} else if(id == "strategy-variance-information-info") {
         contentArray.push(strategyVarianceInformationInfo);
+	} else if(id == "popoverPercentageHelp") {
+        contentArray.push(popoverPercentageHelp);
 	}
 
 

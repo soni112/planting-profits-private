@@ -101,6 +101,7 @@ $(function () {
         // $(this).find('.maxCropAcreagePercentage').trigger('change');
     });
 
+    maxCropLimitPercentageValidate();
 
 });
 var currency = "$";
@@ -111,6 +112,16 @@ var totalAcresWhenSwitchingStrategyFieldsToAcres = 0;
 var totalAcresWhenSwitchingStrategyAcresToFields = 0;
 var flagSwitchedStrategyFieldsToAcres = false;
 var flagSwitchedStrategyAcresToFields = false;
+
+function maxCropLimitPercentageValidate(){
+    $("input.popoverPercentage").change(function(){
+        if($.trim($(this).val()) == 0 && $(this).val() !== ''){
+            $(this).parents().eq(1).find('a[id="popoverPercentageHelp"]').show();
+        } else {
+            $(this).parents().eq(1).find('a[id="popoverPercentageHelp"]').hide();
+        }
+    });
+}
 
 function rowAddOrRemovehandler(){
     var $tbody =$(this).find('tbody');
@@ -1159,11 +1170,14 @@ function addCropInAllTables(cropName) {
             '<td class="tblft1">' + cropName + '</td>' +
             '<td class="success croplimit"><input type="text" class="minCropAcreage" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMinAcreage(this);"></td>' +
             '<td class="success croplimit"><input type="text" class="minCropAcreagePercentage" onkeypress="return isValidNumberValue(event)" onchange="calculatePercentageOfMinAcreage(this);"></td>' +
-            '<td class="success croplimit"><input type="text" class="maxCropAcreage" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMaxAcreage(this);"></td>' +
-            '<td class="success croplimit"><input type="text" class="maxCropAcreagePercentage" onkeypress="return isValidNumberValue(event)" onchange="calculatePercentageOfMaxAcreage(this);"></td>' +
+            '<td class="success croplimit"><input type="text" class="maxCropAcreage" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMaxAcreage(this);">' +
+                    '<a id="popoverPercentageHelp" class="help_Infromation_PopUp" href="javascript:;" style="display: none"><img src="/images/i-img.png"></a></td>' +
+            '<td class="success croplimit"><input type="text" class="maxCropAcreagePercentage" onkeypress="return isValidNumberValue(event)" onchange="calculatePercentageOfMaxAcreage(this);">' +
+                    '<a id="popoverPercentageHelp" class="help_Infromation_PopUp" href="javascript:;" style="display: none"><img src="/images/i-img.png"></a></td>' +
             '</tr>';
     }
     $("#crop_limits_table_tbody").append(rowHTMLForCropLimit);
+    maxCropLimitPercentageValidate();
 
     var optionRowHTMLForGroupCropSelection = '<option value="' + cropName + '">' + cropName + '</option>';
     $("#gropofcrop").append(optionRowHTMLForGroupCropSelection);

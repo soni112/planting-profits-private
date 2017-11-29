@@ -2295,6 +2295,8 @@ Commented as per client requirement
                                                                    onkeypress="return isValidNumberValue(event)"
                                                                    onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMaxAcreage(this); return false;"
                                                                    value="${cropListForCropLimit.maximumAcres}">
+                                                            <a id="popoverPercentageHelp" class="help_Infromation_PopUp"
+                                                               href="javascript:;" style="display: none"><img src="<c:url value="/images/i-img.png"/>"></a>
                                                         </td>
                                                         <td class="success croplimit">
                                                             <input type="text"
@@ -2303,6 +2305,8 @@ Commented as per client requirement
                                                                    class="maxCropAcreagePercentage popoverPercentage"
                                                                    onchange="calculatePercentageOfMaxAcreage(this); return false;"
                                                                    value="${cropListForCropLimit.maximumAcresPercentage}">
+                                                            <a id="popoverPercentageHelp" class="help_Infromation_PopUp"
+                                                               href="javascript:;" style="display: none"><img src="<c:url value="/images/i-img.png"/>"></a>
                                                         </td>
 
                                                     </tr>
@@ -2717,54 +2721,6 @@ Commented as per client requirement
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $("input.popoverPercentage").mouseover(function(){
-            if($(this).val() == 0 && $(this).val() != ''){
-                $(this).popover({
-                    title: 'Warning!',
-                    content: "If maximum crop limit is 0, this crop will not be assigned any acreage in the strategy.",
-                    placement: 'bottom'
-                }).popover('show');
-            }
-            else{
-                $(this).popover('destroy');
-            }
-        });
-        $("input.popoverPercentage").mouseout(function(){
-            if($(this).val() == 0 && $(this).val() != ''){
-                $(this).popover({
-                    title: 'Warning!',
-                    content: "If maximum crop limit is 0, this crop will not be assigned any acreage in the strategy.",
-                    placement: 'bottom'
-                }).popover('hide');
-            }
-        });
-    });
-
-    /*function popover(obj){
-        console.log("result=="+obj.value);
-        if(obj.value==0) {
-            $(obj).popover({
-                title: 'Warning!',
-                content: "test data",
-                placement: 'bottom'
-            }).popover('show');
-
-        }*/
-
-//        if(obj.value==0)
-//        {
-//            $('[data-toggle="popover"]').popover({
-//                trigger: "hover",
-//                container: "body"
-//            });
-//        }
-//        else {
-//            $('[data-toggle="popover"]').popover('destroy');
-//        }
-    //}
-</script>
 
 <script type="x-jQuery-tmpl" id="additional-crop-income-tbody-tmpl">
     <tr class="tblbclgrnd text-center">
