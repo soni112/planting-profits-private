@@ -242,7 +242,25 @@ function prepareResourceUsedUnsedChart(jsonObj, chartContainer){
 		animationEnabled : false,
 		toolTip :{
 			shared : true,
-			content : "{label} {name}: {y} - <strong>#percent%</strong>"
+			// content : "{label} {name}: {y} - <strong>#percent%</strong>"
+			content : function (item){
+                console.log(item);
+                var x = item.entries[0];
+				var y = item.entries[1];
+
+				var total = x['dataPoint']['y'] + y['dataPoint']['y'];
+
+                var xPercentage = parseInt((x['dataPoint']['y'] * 100) / total);
+				var yPercentage = parseInt((y['dataPoint']['y'] * 100) / total);
+
+				var xVal = (x['dataPoint']['label'] === 'Working Capital' ? '$' : '') + addCommaSignForTextWithOutId(x['dataPoint']['y'].toString());
+				var yVal = (y['dataPoint']['label'] === 'Working Capital' ? '$' : '') + addCommaSignForTextWithOutId(y['dataPoint']['y'].toString());
+
+				var xData = x['dataPoint']['label'] + ' ' + x['dataSeries']['name'] + ' : ' + xVal + ' - <strong>' + xPercentage + '%</strong>';
+				var yData = y['dataPoint']['label'] + ' ' + y['dataSeries']['name'] + ' : ' + yVal + ' - <strong>' + yPercentage + '%</strong>';
+
+				return xData + '<br/>' + yData;
+			}
 		},
 		data : [
 			{
@@ -272,6 +290,20 @@ function prepareResourceUsedUnsedChart(jsonObj, chartContainer){
 		}
 	});
 	chart.render();
+    // chart.balloonFunction = function(item, graph) {
+    //     var result = graph.balloonText;
+    //     for (var key in item.dataContext) {
+    //         if (item.dataContext.hasOwnProperty(key) && !isNaN(item.dataContext[key])) {
+    //             var formatted = AmCharts.formatNumber(item.dataContext[key], {
+    //                 precision: chart.precision,
+    //                 decimalSeparator: chart.decimalSeparator,
+    //                 thousandsSeparator: chart.thousandsSeparator
+    //             }, 2);
+    //             result = result.replace("[[" + key + "]]", formatted);
+    //         }
+    //     }
+    //     return result;
+    // };
 }
 
 function removeWatermark(){

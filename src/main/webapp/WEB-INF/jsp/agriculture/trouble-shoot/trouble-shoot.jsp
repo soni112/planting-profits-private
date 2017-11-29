@@ -17,8 +17,11 @@
 
                 <c:choose>
                     <c:when test="${key eq 'unused'}">
-                        <h1 class="text-left troubleshoot-heading">Troubleshooting Tips</h1>
-
+                        <h1 class="text-left troubleshoot-heading">Troubleshooting Tips
+                            <a class="pull-right"
+                               onclick="navigateToCropLimits(); return false;"
+                               href="javascript:;" style="font-size: 30%">Back to Planting Profits</a>
+                        </h1>
                         <br>
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
@@ -58,7 +61,7 @@
                                         <div id="unusedResourcesField" class="collapse">
                                             There may not be enough of a particular resource to plant all of your
                                             acreage. Often this is due to insufficient working capital. However,
-                                            limitations of labor, equipment, water or some other constraint, constraint,
+                                            limitations of labor, equipment, water or some other constraint,
                                             may prevent all land from being assigned a crop. If it looks like a resource
                                             issue, try the following:
                                             <ul class="planning">
@@ -349,12 +352,10 @@
                         </c:choose>
                     </c:when>
                     <c:otherwise>
-                        <h1 class="text-left troubleshoot-heading">Troubleshooting Tips <a id="back-to-sensitivity-btn"
-                                                                                            class="pull-right"
-                                                                                            onclick="navigateToCropLimits(); return false;"
-                                                                                            href="javascript:;"
-                                                                                            style="display: block; font-size: 30%">Back
-                            to Planting Profits</a>
+                        <h1 class="text-left troubleshoot-heading">Troubleshooting Tips
+                            <a class="pull-right"
+                                onclick="navigateToCropLimits(); return false;"
+                                href="javascript:;" style="font-size: 30%">Back to Planting Profits</a>
                         </h1>
                         <br>
                         <c:choose>
@@ -462,7 +463,7 @@
                                 </ul>
                             </c:when>
                             <c:otherwise>
-                                <h2>Strategy not generated - Planning by Acres</h2>
+                                <h2><b>Strategy not generated - Planning by Acres</b></h2>
                                 <p>Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
                                 <br/>
                                 <%--<p>Click one or more of the following troubleshooting areas to find and fix the--%>
@@ -549,7 +550,6 @@
     $(function () {
         var sensitivityFlag = localStorage.getItem('sensitivityFlag');
         if (sensitivityFlag) {
-            $('#back-to-sensitivity-btn').show();
             localStorage.removeItem('sensitivityFlag');
         }
     });

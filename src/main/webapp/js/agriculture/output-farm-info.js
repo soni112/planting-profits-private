@@ -339,9 +339,6 @@ function getStrategyForMultipleResources() {
         success: function (response) {
             var status = response.status;
             var result = response.result;
-            var totalAcreageResult = 0
-            var resultResourceChange = 0;
-
             if (status == 'success') {
                 // result = JSON.parse(result);
                 if (result.Potential_Profit == "$0") {
@@ -351,29 +348,25 @@ function getStrategyForMultipleResources() {
                     localStorage.setItem('sensitivityFlag', true);
 
                     // return false;
-                }
-                //alterHTMLOfTableAndShowPopupTable(result);
-                $.each(result.Crop_Details, function (k, v) {
-                     console.log(v.land);
-                    totalAcreageResult += parseInt(removeAllCommas(v.land));
-                });
-                console.log("TotalUsed==" + totalAcreageResult);
-                $.each(resourceArray, function (key, value) {
-                    console.log("land : " + value);
-                    var resultTotalAvailable = value.split("#-#-#");
-                    for (var i = 0; i <= resultTotalAvailable.length; i++) {
-                        resultResourceChange = resultTotalAvailable[1];
+                } else {
+                    var totalAcreagePlanted = 0;
+                    var totalLand = 0;
+                    $.each(result.Crop_Details, function (k, v) {
+                        totalAcreagePlanted += parseInt(removeAllCommas(v.land));
+                    });
+
+                    $('#sa_multiple_resource_table').find('tr').each(function() {
+                        if($(this).children().eq(0).html() == 'Land'){
+                            totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
+                        }
+                    });
+                    if (totalLand <= totalAcreagePlanted) {
+                        $("#available-acreage-not-planted-msg").hide();
+                        $("#acreage-not-planted-msg").hide();
+                    } else {
+                        $("#available-acreage-not-planted-msg").show();
+                        $("#acreage-not-planted-msg").show();
                     }
-                });
-                if (resultResourceChange <= totalAcreageResult) {
-                    $("#resourcesNotCompleted").hide();
-                    $("#Acreage_notPlanted").hide();
-
-                }
-                else {
-                    $("#resourcesNotCompleted").show();
-                    $("#Acreage_notPlanted").show();
-
                 }
                 /**
                  * @changed - Abhishek
@@ -586,7 +579,7 @@ function getStrategyForMultipleCrops() {
         customAlerts('Total of the Maximum acres amount must not be more than total available land "' + maxLand + '"', type_error, time);
         return false;
     } else if (cropsArray.length == 0 && cropsGroupArray.length == 0 && cropContractArray.length == 0 && cropProposedArray.length == 0) {
-        customAlerts("These are the original crop limits so a new strategy cannot be generate", type_error, time);
+        customAlerts("These are the original crop limits <br/> So a new strategy cannot be generated", 'error', time);
         return false;
     }
 
@@ -1133,6 +1126,8 @@ function forCastGraphForSingleResource() {
      customAlerts("Value for "+resourceName+" can not be zero", type_error, time);
      return false;
      }*/
+    $('#SingleResource_Message').hide();
+
     $.ajax({
         url: 'agriculture/SensetivityAnalysisController/getSAForCastGraphForSingleResource',
         type: 'POST',
@@ -1160,6 +1155,11 @@ function forCastGraphForSingleResource() {
                 // result = JSON.parse(result);
                 //alert("hello"+result.resourceUnit);
                 changeValuesOfForCastSingleResourcechartdiv(resourceName, result);
+                $.each(result.Resource_Array, function(key, value){
+                    if(value.isAllAcreagePlanted == false){
+                        $('#SingleResource_Message').show();
+                    }
+                });
                 unitForCropResourse = result.resourceUnit;
 
             } else if (status == 'failed') {
@@ -1174,8 +1174,6 @@ function forCastGraphForSingleResource() {
 
     }).done(function () {
         hideLoadingImageForStrategy();
-        $('#SingleResource_Message').show();
-
         $('#loading-strategy-content').html('Generating strategy…')
     });
 }
@@ -1209,6 +1207,7 @@ function forCastGraphForSingleCropLimit() {
      customAlerts("Value for "+cropName+" can not be zero", type_error, time);
      return false;
      }*/
+    $('#SingleCrop_Message').hide();
     $.ajax({
         url: 'agriculture/SensetivityAnalysisController/SAForCastGraphForSingleCrop',
         type: 'POST',
@@ -1233,6 +1232,11 @@ function forCastGraphForSingleCropLimit() {
                 // result = JSON.parse(result);
                 //alert("hello3"+result.resourceUnit);
                 changeValuesOfForCastSingleCropchartdiv(cropName, result);
+                $.each(result.Resource_Array, function(key, value){
+                    if(value.isAllAcreagePlanted == false){
+                        $('#SingleCrop_Message').show();
+                    }
+                });
                 unitForCropResourse = "acres";
             } else if (status == 'failed') {
                 customAlerts('Some problem occured, Please try again later', type_error, time);
@@ -1246,7 +1250,6 @@ function forCastGraphForSingleCropLimit() {
 
     }).done(function () {
         hideLoadingImageForStrategy();
-        $('#SingleCrop_Message').show();
         $('#loading-strategy-content').html('Generating strategy…')
     });
 }
@@ -1716,20 +1719,20 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").hide();
-    }
-    else if(currentPotentialProfit == 0) {
+    } else if(currentPotentialProfit == 0) {
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").hide();
         $("#checkStrategy-pop-up").show();
-    }
-        else if (difference < 0) {
+    } else if (difference < 0) {
         $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
         // $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
+        $("#multipleResourceViewStrategy").show();
     } else {
         $(".difference_bet_potential_profit").css("color", "");
         $(".difference_bet_potential_profit").text(addCommaSignWithDollarForTextWithOutId(difference));
+        $("#multipleResourceViewStrategy").show();
     }
 }
 

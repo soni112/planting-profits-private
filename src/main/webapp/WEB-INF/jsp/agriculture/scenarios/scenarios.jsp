@@ -691,16 +691,11 @@ Date 24-11-2015
 
     $('#globalVarCostCreate').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("Scenario parameters must be between 100% and -100%.");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
-        }
-        else if($(this).val() < -100){
-            customAlerts("Scenario parameters must be between 100% and -100%.");
+        } else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
-        }
-
-        else{
-
         }
     });
 
