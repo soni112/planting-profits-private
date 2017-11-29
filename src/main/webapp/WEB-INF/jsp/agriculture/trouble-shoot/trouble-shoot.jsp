@@ -61,7 +61,7 @@
                                         <div id="unusedResourcesField" class="collapse">
                                             There may not be enough of a particular resource to plant all of your
                                             acreage. Often this is due to insufficient working capital. However,
-                                            limitations of labor, equipment, water or some other constraint, constraint,
+                                            limitations of labor, equipment, water or some other constraint,
                                             may prevent all land from being assigned a crop. If it looks like a resource
                                             issue, try the following:
                                             <ul class="planning">
