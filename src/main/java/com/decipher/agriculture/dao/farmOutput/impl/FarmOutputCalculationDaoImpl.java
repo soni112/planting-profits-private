@@ -883,7 +883,17 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                     outputDetails.setCropType(beanForOutput.getCropType());
                     outputDetails.setForContract(false);
                     outputDetails.setForProposed(false);
-                    outputDetails.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName()).doubleValue()).doubleValue());
+                    try {
+                        Number number = result.get(beanForOutput.getCropType().getCropName());
+                        if(number == null){
+                            outputDetails.setUsedAcres(zeroDouble);
+                        } else {
+                            outputDetails.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(number.doubleValue()).doubleValue());
+                        }
+
+                    } catch (Exception e) {
+                        PlantingProfitLogger.error(e.getMessage(), e);
+                    }
                     if (beanForOutput.getFirmAcres() > zeroDouble) {
                         outputDetailsForForward = new FarmOutputDetails();
                         outputDetailsForForward.setCropType(beanForOutput.getCropType());
