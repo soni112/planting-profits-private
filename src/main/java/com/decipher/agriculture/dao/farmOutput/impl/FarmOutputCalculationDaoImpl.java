@@ -894,19 +894,24 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                     } catch (Exception e) {
                         PlantingProfitLogger.error(e.getMessage(), e);
                     }
-                    if (beanForOutput.getFirmAcres() > zeroDouble) {
-                        outputDetailsForForward = new FarmOutputDetails();
-                        outputDetailsForForward.setCropType(beanForOutput.getCropType());
-                        outputDetailsForForward.setForContract(true);
-                        outputDetailsForForward.setForProposed(false);
-                        outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Contract)").doubleValue()).doubleValue());
-                    } else if (beanForOutput.getProposedAcres() > zeroDouble
-                            && result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue() > zeroDouble) {
-                        outputDetailsForForward = new FarmOutputDetails();
-                        outputDetailsForForward.setCropType(beanForOutput.getCropType());
-                        outputDetailsForForward.setForContract(false);
-                        outputDetailsForForward.setForProposed(true);
-                        outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue()).doubleValue());
+                    try {
+                        if (beanForOutput.getFirmAcres() > zeroDouble) {
+                            outputDetailsForForward = new FarmOutputDetails();
+                            outputDetailsForForward.setCropType(beanForOutput.getCropType());
+                            outputDetailsForForward.setForContract(true);
+                            outputDetailsForForward.setForProposed(false);
+                            outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Contract)").doubleValue()).doubleValue());
+                        } else if (beanForOutput.getProposedAcres() > zeroDouble
+                                && result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue() > zeroDouble) {
+                            outputDetailsForForward = new FarmOutputDetails();
+                            outputDetailsForForward.setCropType(beanForOutput.getCropType());
+                            outputDetailsForForward.setForContract(false);
+                            outputDetailsForForward.setForProposed(true);
+                            outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue()).doubleValue());
+                        }
+                    }
+                    catch (Exception ex){
+                        PlantingProfitLogger.error(ex);
                     }
                     PlantingProfitLogger.info(beanForOutput.getCropType().getCropName() + "------------" + outputDetails.getUsedAcres());
                     farmOutputDetails.add(outputDetails);

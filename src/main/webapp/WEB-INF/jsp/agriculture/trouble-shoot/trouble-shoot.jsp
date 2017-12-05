@@ -19,7 +19,7 @@
                     <c:when test="${key eq 'unused'}">
                         <h1 class="text-left troubleshoot-heading">Troubleshooting Tips
                             <a class="pull-right"
-                               onclick="navigateToCropLimits(); return false;"
+                               onclick="navigateToOutputResources(); return false;"
                                href="javascript:;" style="font-size: 30%">Back to Planting Profits</a>
                         </h1>
                         <br>
@@ -35,8 +35,7 @@
                                 </h2>
                                 <ul class="planning">
                                     <div id="moreUnusedAcreageContentField" class="collapse">
-                                        Planting Profits focuses on maximizing profit, not maximizing the amount of
-                                        acres planted.
+                                        Planting Profits focuses on maximizing profit, not maximizing acres planted.
                                         Although most of the time these objectives are the same, this is not always the
                                         case.
                                         Several factors may cause misalignment between maximizing profit and maximizing
@@ -44,25 +43,24 @@
                                         In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income or create a strategy that does not
                                         enforce all
-                                        of the constraints in the farm model.
-                                        Model parameters can easily be changed to bring any unplanted land into
-                                        production. Of course changes must be realistic.
+                                        of the your constraints.
+                                        <%--Model parameters can easily be changed to bring any unplanted land into--%>
+                                        <%--production. Of course changes must be realistic.--%>
                                             <%--Remember, when a strategy does not use all available acres Planting Profits is saying that there is either a real conflict between profitability--%>
                                             <%--and planting all available land, or there is a constraint, i.e. a management decision, that needs to be changed in order to bring the remaining acreage into production.--%>
                                         When planning by fields, there are four common causes for a strategy that has
                                         unassigned acreage.
                                     </div>
                                 </ul>
-                                <p>Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
+                                <p>Review the Troubleshooting Tips below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesField"><b>Available
                                             resources</b></a>
                                         <div id="unusedResourcesField" class="collapse">
-                                            There may not be enough of a particular resource to plant all of your
-                                            acreage. Often this is due to insufficient working capital. However,
+                                            There may not be enough of a particular resource to assign crops to all fields. Often this is due to insufficient Working Capital. However,
                                             limitations of labor, equipment, water or some other constraint,
-                                            may prevent all land from being assigned a crop. If it looks like a resource
+                                            may prevent crops from being assigned to all fields. If it looks like a resource
                                             issue, try the following:
                                             <ul class="planning">
                                                 <p>1) Are any resources all used up or almost used up?
@@ -80,13 +78,13 @@
                                                 <p>3) Re-analyze the farm model.</p>
                                             </ul>
                                                 <%--<a href="javascript:;" onclick="navigateToOutputResources();return false;">Check resource availabilities.</a><br/>--%>
-                                            If a strategy is not generated, check one of the other Troubleshooting
-                                            paths.Repeat these steps until the additional acreage is planted. After
-                                            generating a strategy you can change critical resources and/or minimum crop
-                                            acreage limits to examine the inter-play between resources, estimated income
-                                            and acreage planted<br/>
-                                            If all available acreage is not brought into production check one of the
-                                            other Troubleshooting paths.<br/>
+                                            If all fields are not assigned crops, check one of the other Troubleshooting paths.
+                                            <%--Repeat these steps until the additional acreage is planted. After--%>
+                                            <%--generating a strategy you can change critical resources and/or minimum crop--%>
+                                            <%--acreage limits to examine the inter-play between resources, estimated income--%>
+                                            <%--and acreage planted<br/>--%>
+                                            <%--If all available acreage is not brought into production check one of the--%>
+                                            <%--other Troubleshooting paths.<br/>--%>
                                         </div>
                                         <br/>
                                     </li>
@@ -95,24 +93,25 @@
                                         <a data-toggle="collapse" href="#unusedFieldsFallowField"><b>Fields designated
                                             fallow</b></a>
                                         <div id="unusedFieldsFallowField" class="collapse">
-                                            If one or more fields are marked fallow, these fields are not part of the
+                                            If one or more fields are marked Fallow, these fields are not part of the
                                             available acreage and will not be planted. These fields will be assigned a
-                                            crop called <span style="color: red">fallow</span>.<br/>
+                                            crop called <span style="color: black">fallow</span>.<br/>
                                             <ul class="planning">
-                                                <p>Are any fields designated as fallow?
+                                                <p>1) Are any fields designated as fallow?
                                                     <a href="javascript:;"
                                                        onclick="navigateToCropFieldInformation();return false;">Check
                                                         field information</a>
                                                 </p>
-                                                <p>2) To bring any fallow fields into production, uncheck the Fallow
-                                                    box. Then go to the Crop/Field Choices page. Indicate which crops
+                                                <p>2) To bring fields marked Fallow into production, uncheck the Fallow
+                                                    box. Then go to the Crop/Field Choices page and indicate. Indicate which crops
                                                     you would like to consider planting in that field.
                                                 </p>
-                                                <p>3) Repeat for all fallow fields.</p>
+                                                <p>3) Repeat for all fields marked Fallow.</p>
                                                 <p>4) Re-analyze the farm model.</p>
                                             </ul>
-                                            If all available acreage is not brought into production check one of the
-                                            other Troubleshooting paths.
+                                            <%--If all available acreage is not brought into production check one of the--%>
+                                            <%--other Troubleshooting paths.--%>
+                                            If all fields are not assigned crops check one of the other Troubleshooting paths.
                                         </div>
                                         <br/>
                                     </li>
@@ -123,7 +122,7 @@
                                             Maximum crop acreage limits limit the acreage that can be planted to one or
                                             more crops or groups of crops. If there are maximum crop acreage limits that
                                             are, in total, less than available land, when these limits are reached
-                                            depending on the profitability of other crops and other factors, there may
+                                           there may
                                             be land left over that is not assigned a crop. If it looks like a maximum
                                             crop acreage limits may be the issue, try the following:<br/>
                                             <ul class="planning">
