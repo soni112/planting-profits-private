@@ -35,8 +35,7 @@
                                 </h2>
                                 <ul class="planning">
                                     <div id="moreUnusedAcreageContentField" class="collapse">
-                                        Planting Profits focuses on maximizing profit, not maximizing the amount of
-                                        acres planted.
+                                        Planting Profits focuses on maximizing profit, not maximizing acres planted.
                                         Although most of the time these objectives are the same, this is not always the
                                         case.
                                         Several factors may cause misalignment between maximizing profit and maximizing
@@ -44,25 +43,24 @@
                                         In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income or create a strategy that does not
                                         enforce all
-                                        of the constraints in the farm model.
-                                        Model parameters can easily be changed to bring any unplanted land into
-                                        production. Of course changes must be realistic.
+                                        of the your constraints.
+                                        <%--Model parameters can easily be changed to bring any unplanted land into--%>
+                                        <%--production. Of course changes must be realistic.--%>
                                             <%--Remember, when a strategy does not use all available acres Planting Profits is saying that there is either a real conflict between profitability--%>
                                             <%--and planting all available land, or there is a constraint, i.e. a management decision, that needs to be changed in order to bring the remaining acreage into production.--%>
                                         When planning by fields, there are four common causes for a strategy that has
                                         unassigned acreage.
                                     </div>
                                 </ul>
-                                <p>Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
+                                <p>Review the Troubleshooting Tips below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesField"><b>Available
                                             resources</b></a>
                                         <div id="unusedResourcesField" class="collapse">
-                                            There may not be enough of a particular resource to plant all of your
-                                            acreage. Often this is due to insufficient working capital. However,
+                                            There may not be enough of a particular resource to assign crops to all fields. Often this is due to insufficient Working Capital. However,
                                             limitations of labor, equipment, water or some other constraint,
-                                            may prevent all land from being assigned a crop. If it looks like a resource
+                                            may prevent crops from being assigned to all fields. If it looks like a resource
                                             issue, try the following:
                                             <ul class="planning">
                                                 <p>1) Are any resources all used up or almost used up?
@@ -80,13 +78,13 @@
                                                 <p>3) Re-analyze the farm model.</p>
                                             </ul>
                                                 <%--<a href="javascript:;" onclick="navigateToOutputResources();return false;">Check resource availabilities.</a><br/>--%>
-                                            If a strategy is not generated, check one of the other Troubleshooting
-                                            paths.Repeat these steps until the additional acreage is planted. After
-                                            generating a strategy you can change critical resources and/or minimum crop
-                                            acreage limits to examine the inter-play between resources, estimated income
-                                            and acreage planted<br/>
-                                            If all available acreage is not brought into production check one of the
-                                            other Troubleshooting paths.<br/>
+                                            If all fields are not assigned crops, check one of the other Troubleshooting paths.
+                                            <%--Repeat these steps until the additional acreage is planted. After--%>
+                                            <%--generating a strategy you can change critical resources and/or minimum crop--%>
+                                            <%--acreage limits to examine the inter-play between resources, estimated income--%>
+                                            <%--and acreage planted<br/>--%>
+                                            <%--If all available acreage is not brought into production check one of the--%>
+                                            <%--other Troubleshooting paths.<br/>--%>
                                         </div>
                                         <br/>
                                     </li>
