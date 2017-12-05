@@ -163,32 +163,30 @@
                                                 onclick="navigateToCropFieldChoices();return false;">Check
                                             crop/field
                                             choices</a><br/>
-                                            If all available acreage is not brought into production check one of the
-                                            other Troubleshooting paths.
+                                            If all fields are not assigned crops check one of the other Troubleshooting paths.
                                         </div>
                                         <br/>
                                     </li>
                                     <li>
                                         <a data-toggle="collapse" href="#unusedCropsField"><b>Profitability of crops</b></a>
                                         <div id="unusedCropsField" class="collapse">
-                                            Planting Profits will not allocate land to an unprofitable crop unless you
-                                            use a minimum crop acreage limit. (Unless you have unprofitable crops it is
+                                            Planting Profits will not allocate land to unprofitable crops unless you
+                                            use a minimum crop acreage limits. Note: (Unless you have unprofitable crops it is
                                             unlikely that the (un)profitability of crops is preventing Planting Profits
                                             from generating a strategy.) But if any of your crops are unprofitable and
                                             you do not enter minimum crop acreage limits, Planting Profits will not
                                             assign any acreage to that crop. This, in combination with maximum crop
                                             acreage limits, resource limitations or crop/field choices, can prevent
-                                            Planting Profits from assigning crops to all of your land since planting
-                                            this land to unprofitable crops would decrease estimated income. <br/>
+                                            Planting Profits from assigning crops to all of your fields since planting
+                                            this land to unprofitable crops will decrease estimated income. <br/>
                                             <ul class="planning">
-                                                <p>1) Are any crops unprofitable?<a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> If not, this is not the reason Planting Profits did not assign crops to all acreage.</p>
+                                                <p>1) Are any crops unprofitable? <a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> If not, this is not the reason Planting Profits did not assign crops to all acreage.</p>
                                                 <p>2) If any crops are unprofitable, are there minimum crop acreage limits on these crops? Are they maxed out, i.e. does the acreage assigned equal or nearly equal the minimum acreage limit? <a href="javascript:;" onclick="navigateToOutputCropAcreageLimits();return false;">Check crop acreage limits</a></p>
                                                 <p>3) If yes, enter or increase minimum crop acreage limits for the unprofitable crop(s).</p>
                                                 <p>4) Go to the Crop/Field Choices page to make sure you have enough acreage across your fields in which you can plant the unprofitable crop(s).</p>
                                                 <p>5) Re-analyze the farm model.</p>
                                             </ul>
-                                            If all available acreage is not brought into production check one of the
-                                            other Troubleshooting paths.
+                                            If all fields are not assigned crops check one of the other Troubleshooting paths.
                                         </div>
                                         <br/>
                                     </li>
