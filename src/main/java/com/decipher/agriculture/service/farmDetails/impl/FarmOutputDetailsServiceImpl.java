@@ -246,9 +246,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             jsonObject.put(IMPACTING_INCOME, both);
             jsonObject.put(INC_DEC_INCOME, "--");
             if (both.equalsIgnoreCase(YES)) {
-                jsonObject.put(MESSAGE, "Minimum and maximum crop limit is impacting Estimated Income");
+                jsonObject.put(MESSAGE, "Minimum crop limit is impacting  Estimated Income.");
             } else {
-                jsonObject.put(MESSAGE, "Minimum and maximum crop limit is not impacting Estimated Income");
+                jsonObject.put(MESSAGE, "Maximum crop limit is impacting  Estimated Income.");
             }
 
         } else {
