@@ -504,9 +504,9 @@
                                                                             Working Capital
                                                                         </option>
                                                                     </c:when>
-                                                                    <c:otherwise>
+                                                                    <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS' and resource.cropResourceUse ne 'Land'}">
                                                                         <option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
-                                                                    </c:otherwise>
+                                                                    </c:when>
                                                                 </c:choose>
 
                                                             </c:if>
@@ -537,6 +537,14 @@
                                                        style="padding-left: 10px">
                                                         <img src="<c:url value="/images/i-icon.png"/>">
                                                     </a>
+                                                </div>
+                                                <div class="pull-right" style="width: 30%;">
+                                                    <div style="margin-top: 8%; padding: 1% 3%;">
+                                                        To increase the amount of Land go to<br>
+                                                        <a href="javascript:;"
+                                                           onclick="navigateToCropLimits(); return false;"
+                                                           style="text-decoration: underline;">Crop Acreage Limits</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="box box-info">
@@ -624,6 +632,15 @@
                                                     <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
                                                 </p>
                                             </div>
+                                            <div class="pull-left" style="width: 49%;">
+                                                <div style="margin-top: 8%; padding: 1% 3%;">
+                                                   To increase the amount of Land go to<br>
+                                                    <a href="javascript:;"
+                                                       onclick="navigateToCropLimits(); return false;"
+                                                       style="text-decoration: underline;">Crop Acreage Limits</a>
+                                                </div>
+                                            </div>
+
                                             <div style="width: 50%; float: right;">
                                                 <!-- <div class="yellobtn pre_next">
                                                     <a onclick="getStrategyForMultipleResourcesForCreateNewScenario()">Update</a>
