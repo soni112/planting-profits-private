@@ -171,7 +171,8 @@
                                         <a data-toggle="collapse" href="#unusedCropsField"><b>Profitability of crops</b></a>
                                         <div id="unusedCropsField" class="collapse">
                                             Planting Profits will not allocate land to unprofitable crops unless you
-                                            use a minimum crop acreage limits. Note: (Unless you have unprofitable crops it is
+                                            use a minimum crop acreage limits.<br/>
+                                            Note: (Unless you have unprofitable crops it is
                                             unlikely that the (un)profitability of crops is preventing Planting Profits
                                             from generating a strategy.) But if any of your crops are unprofitable and
                                             you do not enter minimum crop acreage limits, Planting Profits will not
