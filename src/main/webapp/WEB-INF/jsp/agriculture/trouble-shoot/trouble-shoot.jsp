@@ -93,24 +93,25 @@
                                         <a data-toggle="collapse" href="#unusedFieldsFallowField"><b>Fields designated
                                             fallow</b></a>
                                         <div id="unusedFieldsFallowField" class="collapse">
-                                            If one or more fields are marked fallow, these fields are not part of the
+                                            If one or more fields are marked Fallow, these fields are not part of the
                                             available acreage and will not be planted. These fields will be assigned a
-                                            crop called <span style="color: red">fallow</span>.<br/>
+                                            crop called <span style="color: black">fallow</span>.<br/>
                                             <ul class="planning">
-                                                <p>Are any fields designated as fallow?
+                                                <p>1) Are any fields designated as fallow?
                                                     <a href="javascript:;"
                                                        onclick="navigateToCropFieldInformation();return false;">Check
                                                         field information</a>
                                                 </p>
-                                                <p>2) To bring any fallow fields into production, uncheck the Fallow
-                                                    box. Then go to the Crop/Field Choices page. Indicate which crops
+                                                <p>2) To bring fields marked Fallow into production, uncheck the Fallow
+                                                    box. Then go to the Crop/Field Choices page and indicate. Indicate which crops
                                                     you would like to consider planting in that field.
                                                 </p>
-                                                <p>3) Repeat for all fallow fields.</p>
+                                                <p>3) Repeat for all fields marked Fallow.</p>
                                                 <p>4) Re-analyze the farm model.</p>
                                             </ul>
-                                            If all available acreage is not brought into production check one of the
-                                            other Troubleshooting paths.
+                                            <%--If all available acreage is not brought into production check one of the--%>
+                                            <%--other Troubleshooting paths.--%>
+                                            If all fields are not assigned crops check one of the other Troubleshooting paths.
                                         </div>
                                         <br/>
                                     </li>
@@ -121,8 +122,8 @@
                                             Maximum crop acreage limits limit the acreage that can be planted to one or
                                             more crops or groups of crops. If there are maximum crop acreage limits that
                                             are, in total, less than available land, when these limits are reached
-                                            depending on the profitability of other crops and other factors, there may
-                                            be land left over that is not assigned a crop. If it looks like a maximum
+                                            there may
+                                            be fields that are not assigned a crop. If it looks like maximum
                                             crop acreage limits may be the issue, try the following:<br/>
                                             <ul class="planning">
                                                 <p>1) Are there maximum crop acreage limits? If so, have most of the
@@ -138,7 +139,7 @@
                                                     There must be enough resources to support the additional acreage.
                                                     Also, there must be enough acreage among the fields where you can
                                                     plant the crop(s) for which you plan to increase the maximum acreage
-                                                    limit. Otherwise you may bump up against one of your crop/field
+                                                    limit. Otherwise you may bump up against one of your crop/field rotation
                                                     constraints. <a
                                                             href="javascript:;"
                                                             onclick="navigateToCropFieldChoices();return false;">Check
@@ -149,17 +150,15 @@
                                             </ul>
                                             In combination with the above situation for maximum crop acreage limits, if
                                             you have minimum crop acreage limits (for unprofitable crops) that have been
-                                            reached this can cause some land to go unplanted.<a
+                                            reached this can cause some fields to not be assigned crops.<a
                                                 href="javascript:;"
                                                 onclick="navigateToCropLimits();return false;">Check
                                             crop limits.</a><br/>
-                                            Increasing these minimum crop acreage limits will likely cause your
-                                            remaining land to be planted to the unprofitable crops. Of course, this will
-                                            decrease the strategy’s estimated income.<br/>
+                                            Increasing these minimum crop acreage limits will likely unprofitable crops.<br/>
                                             There must be enough resources to support the additional acreage. Also,
                                             there must be enough acreage among the fields where you can plant the
                                             crop(s) for which you plan to increase the minimum acreage limit. Otherwise
-                                            you may bump up against one of your rotation constraints. <a
+                                            you may bump up against one of your crop/field rotation constraints. <a
                                                 href="javascript:;"
                                                 onclick="navigateToCropFieldChoices();return false;">Check
                                             crop/field
