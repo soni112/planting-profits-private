@@ -465,6 +465,6 @@
 <script type="text/javascript" src="<c:url value="/js/agriculture/contribution-payment/contribution-payment.js?v=0.1"/>"></script>
 <script>
     $(function () {
-        $('body').addClass('contribute-bg');
+        $('body').addClass('contactUs-bg');
     })
 </script>

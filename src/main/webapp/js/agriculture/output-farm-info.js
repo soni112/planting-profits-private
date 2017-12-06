@@ -205,6 +205,14 @@ function alterHTMLOfTableAndShowPopupTable(result) {
     var resource_Crop_Total = 0;
     if (result.cropValue == undefined) {
         resourse_Crop_Value = result.resourceValue;
+        $.each(result, function(key, value){
+            if(value == false && key == "isAllAcreagePlanted"){
+                $('#acreage-not-planted-msg').show();
+            }
+            else{
+                $('#acreage-not-planted-msg').hide();
+            }
+        });
 
         /**
          * @changed - Abhishek
@@ -217,6 +225,15 @@ function alterHTMLOfTableAndShowPopupTable(result) {
 
         resourse_Crop_Value = result.cropValue;
         console.log("resourse_Crop_Value1"+resourse_Crop_Value);
+        $.each(result, function(key, value){
+            if(value == false && key == "isAllAcreagePlanted"){
+                $('#acreage-not-planted-msg').show();
+            }
+            else{
+                $('#acreage-not-planted-msg').hide();
+            }
+        });
+
 
         /**
          * @changed - Abhishek
@@ -579,7 +596,7 @@ function getStrategyForMultipleCrops() {
         customAlerts('Total of the Maximum acres amount must not be more than total available land "' + maxLand + '"', type_error, time);
         return false;
     } else if (cropsArray.length == 0 && cropsGroupArray.length == 0 && cropContractArray.length == 0 && cropProposedArray.length == 0) {
-        customAlerts("These are the original crop limits <br/> so a new strategy cannot be generated", 'error', time);
+        customAlerts("These are the original crop limits <br/> So a new strategy cannot be generated", 'error', time);
         return false;
     }
 
@@ -1161,7 +1178,6 @@ function forCastGraphForSingleResource() {
                     }
                 });
                 unitForCropResourse = result.resourceUnit;
-
             } else if (status == 'failed') {
                 customAlerts('Some problem occured, Please try again later', type_error, time);
             } else {
@@ -1719,8 +1735,6 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").hide();
-        $("#checkStrategy-pop-up").hide();
-
     } else if(currentPotentialProfit == 0) {
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
