@@ -1,6 +1,7 @@
 package com.decipher.agriculture.dao.scenario.impl;
 
 import com.decipher.agriculture.dao.scenario.ScenarioDao;
+import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.strategy.FarmCustomStrategy;
 import com.decipher.agriculture.data.scenario.FarmStrategyScenario;
 import com.decipher.util.PlantingProfitLogger;
@@ -145,5 +146,52 @@ public class ScenarioDaoImpl implements ScenarioDao {
             session.close();
         }
         return false;
+    }
+
+    @Override
+    public boolean deleteScenario(FarmStrategyScenario farmStrategyScenario) {
+        final Session session = sessionFactory.openSession();
+        final Transaction tx = session.beginTransaction();
+
+        try{
+            session.createQuery("delete from FarmStrategyScenario where  scenarioId= :scenarioId").setParameter("scenarioId", farmStrategyScenario.getScenarioId()).executeUpdate();
+            tx.commit();
+            return true;
+        }
+        catch (Exception ex){
+            tx.rollback();
+            PlantingProfitLogger.error(ex.getMessage(), ex);
+        }
+        finally {
+            session.close();
+        }
+        return false;
+    }
+
+    @Override
+    public FarmStrategyScenario getFarmScenarioById(int scenarioId) {
+        final Session session = sessionFactory.openSession();
+        final Transaction tx = session.beginTransaction();
+        FarmStrategyScenario farmStrategyScenario=null;
+        try {
+            Query query=session.createQuery("from FarmStrategyScenario where scenarioId = :scenarioId ");
+            query.setParameter("scenarioId",scenarioId);
+
+            farmStrategyScenario=(FarmStrategyScenario)query.uniqueResult();
+            if(farmStrategyScenario != null){
+              PlantingProfitLogger.info("Farm Strategy Scenario Name=="+farmStrategyScenario.getScenarioName());
+          }
+          else
+            {
+                PlantingProfitLogger.info("scenarioId"+scenarioId);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            PlantingProfitLogger.error(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+        return farmStrategyScenario;
     }
 }

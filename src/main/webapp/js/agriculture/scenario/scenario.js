@@ -770,3 +770,48 @@ function addCommaForValue(value){
     }
     return valueWithComma;
 }
+
+function deleteScenario(){
+
+    var scenarioArray = [];
+    var target = $('#deleteScenariosTable').find('input[name="deleteScenariosCheckbox"]:checked');
+    if (target.length == 0){
+        customAlerts("Please select scenario(s) for deletion", type_error, 0);
+        return;
+    }
+
+    target.each(function(){
+        scenarioArray.push($.trim($(this).val()));
+    });
+
+    alertify.confirm('Are you sure you want to delete scenario(s) ?', function(e) {
+        if (e) {
+            $.ajax({
+
+                url : 'ajaxRequest/deleteScenario',
+                type : 'POST',
+                data : {
+                    farmId : farmId,
+                    scenarioIdArray : scenarioArray
+
+                },
+                success : function(response) {
+                    var status = response.status;
+                    if (status == "success") {
+                        customAlerts("Scenario successfully deleted", type_success, 0);
+                    } else {
+                        customAlerts("Some problem occurred while deleting scenario(s)", type_error, 0);
+                    }
+                    var delay = 1000;
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, delay);
+                },
+                error : function(XMLHttpRequest, status, message){
+                    customAlerts("Error" + XMLHttpRequest + ":" + status + ":" + message, type_error, time);
+                }
+            });
+        }
+    });
+
+}

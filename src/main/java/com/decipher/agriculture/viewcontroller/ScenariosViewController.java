@@ -15,6 +15,7 @@ import java.util.Set;
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.farm.FarmInfo;
+import com.decipher.agriculture.data.scenario.FarmStrategyScenario;
 import com.decipher.agriculture.service.account.impl.SessionService;
 import com.decipher.agriculture.service.farm.CropTypeService;
 import com.decipher.agriculture.service.farm.FarmInfoService;
@@ -65,7 +66,7 @@ public class ScenariosViewController {
         PlantingProfitLogger.info("User requesting for view-farm-scenarios.htm page .... ");
         Farm farm = farmService.getFarmById(farmId);
 
-        if(farm != null && !farm.getSaveFlag()){
+        if (farm != null && !farm.getSaveFlag()) {
             return "redirect:farm-info.htm?farmId=" + farm.getFarmId();
         }
 
@@ -171,5 +172,33 @@ public class ScenariosViewController {
 
     }
 
+
+    @RequestMapping(value = "deleteScenario", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    JsonResponse deleteScenario(@RequestParam(value = "scenarioIdArray[]", required = false) String[] scenarioIdArray,
+                                @RequestParam(value = "farmId", required = false) int farmId) {
+
+        JsonResponse jsonResponse = new JsonResponse();
+        PlantingProfitLogger.info("inside deleteScenario");
+        boolean result = false;
+        List<Integer> scenarioIdList = new ArrayList<>();
+        try {
+            Farm farm = farmService.getFarmById(farmId);
+            for (String data : scenarioIdArray) {
+                int scenarioId = Integer.parseInt(data.split("###")[0]);
+                scenarioIdList.add(scenarioId);
+                FarmStrategyScenario farmStrategyScenario = scenarioService.getFarmScenarioById(scenarioId);
+                result = scenarioService.deleteScenario(farmStrategyScenario);
+            }
+            farmDetailsContainerService.deleteScenario(farm, scenarioIdList);
+
+            jsonResponse.setStatus(result ? JsonResponse.RESULT_SUCCESS : JsonResponse.RESULT_FAILED);
+
+        } catch (Exception ex) {
+            PlantingProfitLogger.error(ex);
+        }
+        return jsonResponse;
+    }
 
 }

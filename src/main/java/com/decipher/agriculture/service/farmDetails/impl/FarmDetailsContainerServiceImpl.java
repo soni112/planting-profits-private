@@ -432,6 +432,31 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
 
     }
 
+    @Override
+    public Boolean deleteScenario(Farm farm, List<Integer> scenarioIdArray) {
+        Account currentUser = accountService.getCurrentUser();
+        Map<Farm, Object> allFarmDetails = (Map<Farm, Object>) accountDataContainerMap.get(currentUser);
+        boolean result = false;
+        Map<String, Object> farmDetails = (Map<String, Object>) allFarmDetails.get(farm);
+        Map<FarmStrategyScenarioView, JSONObject> scenarioDetails = (Map<FarmStrategyScenarioView, JSONObject>) farmDetails.get(SCENARIO_DETAILS);
+        Set<FarmStrategyScenarioView> farmStrategyScenarioViewSet = scenarioDetails.keySet();
+        Iterator<FarmStrategyScenarioView> farmStrategyScenarioViewIterator = farmStrategyScenarioViewSet.iterator();
+
+        while (farmStrategyScenarioViewIterator.hasNext()){
+            FarmStrategyScenarioView farmStrategyScenarioView = farmStrategyScenarioViewIterator.next();
+            for (int scenarioId : scenarioIdArray) {
+                if (farmStrategyScenarioView.getScenarioId().equals(scenarioId)) {
+                    synchronized (farmStrategyScenarioView){
+                        farmStrategyScenarioViewIterator.remove();
+                        result = true;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
     private Map<String, Object> getDetailsForFarmFromDatabase(Farm farm) throws JSONException {
 
         Map<String, Object> farmDetails = Collections.synchronizedMap(new TreeMap<String, Object>());
