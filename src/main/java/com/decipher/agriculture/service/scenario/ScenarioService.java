@@ -56,4 +56,7 @@ public interface ScenarioService {
 
     JSONObject getScenarioComparisonDetails(FarmInfoView farmInfoView, int scenarioId, int[] strategyIdArray);
 
+    boolean deleteScenario(FarmStrategyScenario farmStrategyScenario);
+
+    FarmStrategyScenario getFarmScenarioById(int scenarioId);
 }

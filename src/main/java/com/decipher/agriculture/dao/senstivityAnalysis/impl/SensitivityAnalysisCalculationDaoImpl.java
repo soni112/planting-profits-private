@@ -920,7 +920,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 }
                 Long totalLand=0L;
                 Long totalUseResourceValue=0L;
-
+                double useResourceValue=0.0;
                 Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
                 Result bestResult = (Result) map.get("Best_Result");
                 String[] bestCase = (String[]) map.get("Best_Case");
@@ -929,7 +929,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         if(i == 0) {
                             jsonObject.put("Potential_Profit", currentPotentialProfit);
                         } else {
-                            jsonObject.put("Potential_Profit", bestResult.getObjective().longValue());
+                            jsonObject.put("Potential_Profit", bestResult.getObjective().doubleValue());
                         }
                     } catch (Exception e) {
 
@@ -943,13 +943,12 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                             if (fieldInfoView.getFieldName().equals(str.split("###")[0])) {
                                 for (CropBeanForOutput beanForOutput : cropBeanForOutput) {
                                     if (beanForOutput.getCropType().getCropName().equals(str.split("###")[1])) {
-                                        if (bestResult.get(str).longValue() > 0) {
+                                        if (bestResult.get(str).doubleValue() > 0) {
                                             flag = true;
                                             JSONObject object = new JSONObject();
                                             object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(bestResult.get(str).doubleValue()) + ")");
                                             object.put("Crop_Info", beanForOutput.getCropType().getCropName());
-
-                                            totalUseResourceValue += bestResult.get(str).longValue();
+                                            useResourceValue += bestResult.get(str).doubleValue();
                                             jsonArrayInner.add(object);
 
                                         }
@@ -958,7 +957,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                             JSONObject object = new JSONObject();
                                             object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(bestResult.get(str + " (Contract)").doubleValue()) + ")");
                                             object.put("Crop_Info", beanForOutput.getCropType().getCropName() + " (Contract)");
-                                            totalUseResourceValue +=bestResult.get(str).longValue();
+                                            useResourceValue +=bestResult.get(str + " (Contract)").doubleValue();
 
                                             jsonArrayInner.add(object);
 
@@ -967,7 +966,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                             JSONObject object = new JSONObject();
                                             object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(bestResult.get(str + " (Proposed)").doubleValue()) + ")");
                                             object.put("Crop_Info", beanForOutput.getCropType().getCropName() + " (Proposed)");
-                                            totalUseResourceValue += bestResult.get(str).longValue();
+                                            useResourceValue += bestResult.get(str + " (Proposed)").doubleValue();
 
                                             jsonArrayInner.add(object);
 
@@ -1023,7 +1022,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                             totalLand  += Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsageView.getCropResourceUseAmount()));
                         }
                     }
-
+                    totalUseResourceValue =(long)useResourceValue;
                     jsonObject.put("isAllAcreagePlanted", totalLand.equals(totalUseResourceValue));
 
                     if(i == 0){

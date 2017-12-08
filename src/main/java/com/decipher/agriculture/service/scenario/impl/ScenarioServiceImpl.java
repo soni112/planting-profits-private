@@ -901,5 +901,15 @@ public class ScenarioServiceImpl implements ScenarioService {
         return jsonObject;
     }
 
+    @Override
+    public boolean deleteScenario(FarmStrategyScenario farmStrategyScenario) {
+        scenarioDao.deleteScenarioCropCpecificData(farmStrategyScenario);
+        return scenarioDao.deleteScenario(farmStrategyScenario);
+    }
+
+    @Override
+    public FarmStrategyScenario getFarmScenarioById(int scenarioId) {
+       return scenarioDao.getFarmScenarioById(scenarioId);
+    }
 
 }

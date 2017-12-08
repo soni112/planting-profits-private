@@ -20,4 +20,8 @@ public interface ScenarioDao {
     boolean updateScenario(int scenarioId, FarmStrategyScenario farmStrategyScenario);
 
     boolean deleteScenarioCropCpecificData(FarmStrategyScenario farmStrategyScenario);
+
+    boolean deleteScenario(FarmStrategyScenario farmStrategyScenario);
+
+    FarmStrategyScenario getFarmScenarioById(int scenarioId);
 }

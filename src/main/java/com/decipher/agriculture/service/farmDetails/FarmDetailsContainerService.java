@@ -8,6 +8,7 @@ import com.decipher.view.form.scenario.FarmStrategyScenarioView;
 import org.codehaus.jettison.json.JSONException;
 import org.json.simple.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -63,4 +64,5 @@ public interface FarmDetailsContainerService {
 
     Set<Farm> getAllFarmForUser(Account account);
 
+    Boolean deleteScenario(Farm farm, List<Integer> scenarioIdArray);
 }

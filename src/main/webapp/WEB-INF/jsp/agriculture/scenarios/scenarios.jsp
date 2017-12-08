@@ -43,6 +43,9 @@ Date 24-11-2015
                         <li>
                             <a href="#insurance-evaluator-tab"><div class="scnr_detail">Evaluate Crop Insurance</div></a>
                         </li>
+                        <li>
+                            <a href="#delete-scenarios-tab"><div class="scnr_detail">Delete Scenarios</div></a>
+                        </li>
                     </ul>
 
                     <!-----start tab rightside description-------------------------------------->
@@ -547,6 +550,43 @@ Date 24-11-2015
                     </div>
                     <!-- @end #insurance-evaluator-tab -->
 
+                    <div id="delete-scenarios-tab" class="contentblock hidden">
+                        <div class="table-responsive col-lg-12">
+                            <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right" style="margin-bottom: 4px;">Back to Baseline</a>
+                            <table id="deleteScenariosTable" cellspacing="0" class="table table-striped tbl-bordr  tblbrdr output_table">
+                                <thead>
+                                <tr class="tblhd add-fieldi">
+                                    <td class="tblbrdr add-fieldi">Scenario Select</td>
+                                    <td class="add-fieldi">Scenario</td>
+                                </tr>
+
+                                </thead>
+                                <tbody id="deleteScenariosTbody">
+                                <c:choose>
+                                    <c:when test="${model.savedScenarioData.size() > 0}">
+                                        <c:forEach var="scenarioData" items="${model.savedScenarioData}">
+                                                    <tr class="tblgrn">
+                                                        <td class="success"><input type="checkbox" name="deleteScenariosCheckbox" value="${scenarioData.scenarioId}###${farmId}"></td>
+                                                        <td class="success">${scenarioData.scenarioName}</td>
+                                                    </tr>
+                                        </c:forEach>
+                                        </c:when>
+                                            <c:otherwise>
+                                                <tr class="tblgrn">
+                                                    <td colspan="2" class="success">No Scenario created</td>
+                                                </tr>
+                                            </c:otherwise>
+                                        </c:choose>
+                                </tbody>
+                            </table>
+                                <c:if test="${model.savedScenarioData.size() > 0}">
+                                    <button class="alertify-button alertify-button-ok pull-right" onclick="deleteScenario(); return false;">Delete</button>
+                                </c:if>
+
+                        </div>
+                    </div>
+                    <!-- @end #deleteScenariosTable -->
+
                 </div>
             </div>
         </div>
@@ -701,6 +741,20 @@ Date 24-11-2015
 
 </script>
 <script type="text/x-jQuery-tmpl" id="scenarioAnalysisOutputTmpl">
+    <tr class="tblgrn">
+        <td class="success">{{= strategyName}}</td>
+        <td class="success">{{= strategyOutput}}</td>
+        <td class="success">{{= scenarioOutput}}</td>
+        {{if typeof differenceColor != "undefined" && differenceColor == "red"}}
+            <td class="success" style="color: {{= differenceColor}}">{{= difference}}</td>
+        {{else}}
+            <td class="success">{{= difference}}</td>
+        {{/if}}
+        <td class="success">{{= acreage}}</td>
+    </tr>
+
+</script>
+<script type="text/x-jQuery-tmpl" id="deleteScenrioOutputTmpl">
     <tr class="tblgrn">
         <td class="success">{{= strategyName}}</td>
         <td class="success">{{= strategyOutput}}</td>
