@@ -542,8 +542,8 @@
                                                     <div style="margin-top: 8%; padding: 1% 3%;">
                                                         To increase the amount of Land go to<br>
                                                         <a href="javascript:;"
-                                                           onclick="navigateToCropLimits(); return false;"
-                                                           style="text-decoration: underline;">Crop Acreage Limits</a>
+                                                           onclick="navigateToResources(); return false;"
+                                                           style="text-decoration: underline;">Resources</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -602,7 +602,18 @@
                                                                         </td>
                                                                     </tr>
                                                                 </c:when>
-                                                                <c:otherwise>
+                                                                <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resource.cropResourceUse eq 'Land'}">
+                                                                    <tr class="tblgrn line_no_break">
+                                                                        <td class="success">Land</td>
+                                                                        <td class="success">${resourceList.cropResourceUseAmount}</td>
+                                                                        <td class="success croplimit"><input type="text"
+                                                                                                             value="${resourceList.cropResourceUseAmount}"
+                                                                                                             onchange="addCommaSignWithOutDollarDot(this);"
+                                                                                                             onkeypress="return isValidNumberValueForWithOutDot(event)"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:when>
+                                                                <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS' and resource.cropResourceUse ne 'Land'}">
                                                                     <tr class="tblgrn line_no_break">
                                                                         <td class="success">${resourceList.cropResourceUse}</td>
                                                                         <td class="success">${resourceList.cropResourceUseAmount}</td>
@@ -612,7 +623,7 @@
                                                                                                              onkeypress="return isValidNumberValueForWithOutDot(event)"/>
                                                                         </td>
                                                                     </tr>
-                                                                </c:otherwise>
+                                                                </c:when>
                                                             </c:choose>
                                                         </c:if>
                                                     </c:forEach>
@@ -636,8 +647,8 @@
                                                 <div style="margin-top: 8%; padding: 1% 3%;">
                                                    To increase the amount of Land go to<br>
                                                     <a href="javascript:;"
-                                                       onclick="navigateToCropLimits(); return false;"
-                                                       style="text-decoration: underline;">Crop Acreage Limits</a>
+                                                       onclick="navigateToResources(); return false;"
+                                                       style="text-decoration: underline;">Resources</a>
                                                 </div>
                                             </div>
 
@@ -1391,6 +1402,11 @@
     function navigateToCropLimits() {
         localStorage.setItem('cropLimitFlag', true);
         window.location = '<c:url value="/view-farm-info.htm?farmId="/>${farmId}';
+    }
+
+    function navigateToResources() {
+        localStorage.setItem('resourcesFlag', true);
+        window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
 
 
