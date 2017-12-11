@@ -739,6 +739,51 @@ Date 24-11-2015
         }
     });
 
+    $('#globalCropPriceEdit').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+
+        else{
+
+        }
+    });
+
+    $('#globalYieldEdit').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+
+        else{
+
+        }
+    });
+
+    $('#globalVarCostEdit').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%.");
+            $(this).val('');
+        }
+
+        else{
+
+        }
+    });
+
 </script>
 <script type="text/x-jQuery-tmpl" id="scenarioAnalysisOutputTmpl">
     <tr class="tblgrn">

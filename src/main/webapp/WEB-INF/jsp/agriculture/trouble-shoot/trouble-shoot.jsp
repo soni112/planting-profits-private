@@ -43,7 +43,7 @@
                                         In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income or create a strategy that does not
                                         enforce all
-                                        of the your constraints.
+                                        of your constraints.
                                         <%--Model parameters can easily be changed to bring any unplanted land into--%>
                                         <%--production. Of course changes must be realistic.--%>
                                             <%--Remember, when a strategy does not use all available acres Planting Profits is saying that there is either a real conflict between profitability--%>
@@ -52,7 +52,7 @@
                                         unassigned acreage.
                                     </div>
                                 </ul>
-                                <p>Review the Troubleshooting Tips below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
+                                <p>Review the Troubleshooting to Paths below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesField"><b>Available
@@ -103,7 +103,7 @@
                                                         field information</a>
                                                 </p>
                                                 <p>2) To bring fields marked Fallow into production, uncheck the Fallow
-                                                    box. Then go to the Crop/Field Choices page and indicate. Indicate which crops
+                                                    box. Then go to the Crop/Field Choices page and indicate. Which crops
                                                     you would like to consider planting in that field.
                                                 </p>
                                                 <p>3) Repeat for all fields marked Fallow.</p>
@@ -122,8 +122,7 @@
                                             Maximum crop acreage limits limit the acreage that can be planted to one or
                                             more crops or groups of crops. If there are maximum crop acreage limits that
                                             are, in total, less than available land, when these limits are reached
-                                           there may
-                                            be land left over that is not assigned a crop. If it looks like a maximum
+                                           there may be that are not assigned a crop. If it looks like maximum
                                             crop acreage limits may be the issue, try the following:<br/>
                                             <ul class="planning">
                                                 <p>1) Are there maximum crop acreage limits? If so, have most of the
@@ -139,7 +138,7 @@
                                                     There must be enough resources to support the additional acreage.
                                                     Also, there must be enough acreage among the fields where you can
                                                     plant the crop(s) for which you plan to increase the maximum acreage
-                                                    limit. Otherwise you may bump up against one of your crop/field
+                                                    limit. Otherwise you may bump up against one of your crop/field rotation
                                                     constraints. <a
                                                             href="javascript:;"
                                                             onclick="navigateToCropFieldChoices();return false;">Check
@@ -150,17 +149,16 @@
                                             </ul>
                                             In combination with the above situation for maximum crop acreage limits, if
                                             you have minimum crop acreage limits (for unprofitable crops) that have been
-                                            reached this can cause some land to go unplanted.<a
-                                                href="javascript:;"
+                                            reached this can cause some fields to not be assigned crops.
+                                            <a href="javascript:;"
                                                 onclick="navigateToCropLimits();return false;">Check
                                             crop limits.</a><br/>
-                                            Increasing these minimum crop acreage limits will likely cause your
-                                            remaining land to be planted to the unprofitable crops. Of course, this will
+                                            Increasing these minimum crop acreage limits will likely cause remaining land to be planted to but unprofitable crops. This will
                                             decrease the strategy’s estimated income.<br/>
                                             There must be enough resources to support the additional acreage. Also,
                                             there must be enough acreage among the fields where you can plant the
                                             crop(s) for which you plan to increase the minimum acreage limit. Otherwise
-                                            you may bump up against one of your rotation constraints. <a
+                                            you may bump up against one of your crop/field rotation constraints. <a
                                                 href="javascript:;"
                                                 onclick="navigateToCropFieldChoices();return false;">Check
                                             crop/field
@@ -173,24 +171,26 @@
                                     <li>
                                         <a data-toggle="collapse" href="#unusedCropsField"><b>Profitability of crops</b></a>
                                         <div id="unusedCropsField" class="collapse">
-                                            Planting Profits will not allocate land to an unprofitable crop unless you
-                                            use a minimum crop acreage limit. (Unless you have unprofitable crops it is
+                                            Planting Profits will not allocate land to unprofitable crop unless you
+                                            use minimum crop acreage limit. <br/>
+                                            Note: (Unless you have unprofitable crops it is
                                             unlikely that the (un)profitability of crops is preventing Planting Profits
                                             from generating a strategy.) But if any of your crops are unprofitable and
                                             you do not enter minimum crop acreage limits, Planting Profits will not
                                             assign any acreage to that crop. This, in combination with maximum crop
                                             acreage limits, resource limitations or crop/field choices, can prevent
-                                            Planting Profits from assigning crops to all of your land since planting
-                                            this land to unprofitable crops would decrease estimated income. <br/>
+                                            Planting Profits from assigning crops to all of your fields since planting
+                                            this land to unprofitable crops will decrease estimated income. If it looks like (un)profitability of
+                                            the crops may be the issue, try the following: <br/>
                                             <ul class="planning">
-                                                <p>1) Are any crops unprofitable?<a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> If not, this is not the reason Planting Profits did not assign crops to all acreage.</p>
+                                                <p>1) Are any crops unprofitable? <a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> If not, this is not the reason Planting Profits did not assign crops to all acreage.</p>
                                                 <p>2) If any crops are unprofitable, are there minimum crop acreage limits on these crops? Are they maxed out, i.e. does the acreage assigned equal or nearly equal the minimum acreage limit? <a href="javascript:;" onclick="navigateToOutputCropAcreageLimits();return false;">Check crop acreage limits</a></p>
                                                 <p>3) If yes, enter or increase minimum crop acreage limits for the unprofitable crop(s).</p>
                                                 <p>4) Go to the Crop/Field Choices page to make sure you have enough acreage across your fields in which you can plant the unprofitable crop(s).</p>
                                                 <p>5) Re-analyze the farm model.</p>
                                             </ul>
-                                            If all available acreage is not brought into production check one of the
-                                            other Troubleshooting paths.
+                                            If all available acreage is not brought into production check one of the other Troubleshooting paths.
+
                                         </div>
                                         <br/>
                                     </li>
@@ -216,44 +216,41 @@
                                         acres farmed.
                                         In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income
-                                        or create a strategy that does not enforce all of the constraints entered in the
-                                        farm model.
-                                        Model parameters can easily be changed to bring any unplanted land into
-                                        production. Of course changes must be realistic.
+                                        or create a strategy that does not enforce all of the constraints.
+                                        <%--Model parameters can easily be changed to bring any unplanted land into--%>
+                                        <%--production. Of course changes must be realistic.--%>
                                             <%--Remember, when a strategy does not use all available acres Planting Profits is saying that there is either a real conflict--%>
                                             <%--between profitability and planting all available land, or there is a constraint, i.e. a management decision, that needs to be changed in order to bring the remaining acreage into production.--%>
-                                        When planning by acres, there are three common causes for a strategy that has
-                                        unassigned acreage.
+                                        When planning by acres, there are three common causes for a strategy that has acreage that is not assigned a crop.
                                     </div>
                                 </ul>
+                                <p>Review the Troubleshooting paths below and make adjustments to resources, and crop acreage limits or crop so that all acreage is assigned a crop. </p>
                                 <p> Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesAcre"><b>Available resources</b></a>
                                         <div id="unusedResourcesAcre" class="collapse">
-                                            There may not be enough of a particular resource to plant all of your
+                                            There may not be enough of a particular resource to assign crops to all
                                             acreage. Often this is due to insufficient working capital. However,
-                                            limitations of other resources such as labor, equipment, water or some other
-                                            constraint, may prevent all land from being assigned a crop. If it looks
+                                            limitations of labor, equipment, water or some other constraint, may prevent crops from being assigned to all acreage. If it looks
                                             like a resource issue, try the following:<br/>
                                             <ul class="planning">
-                                                <p>1) Are any resources all used up or almost used up?<a
+                                                <p>1) Are any resources all used up or almost used up? <a
                                                         href="javascript:;"
                                                         onclick="navigateToOutputResources();return false;">Check
                                                     Resources</a>
                                                 </p>
                                                 <p>2) If yes, increase the amount of the critical resource. You can
-                                                    change it by going to the <a href="javascript:;"
-                                                                                 onclick="navigateToResources();return false;">Resources
-                                                        page</a> or use the
-                                                    <a href="javascript:;"
-                                                       onclick="navigateToOutputResources();return false;"> resources
-                                                        sensitivity analysis tool.</a>
+                                                    change it by going to the <%--<a href="javascript:;"
+                                                                                 onclick="navigateToResources();return false;">--%>Resources
+                                                        page or use the
+                                                    <%--<a href="javascript:;"
+                                                       onclick="navigateToOutputResources();return false;">--%> resources
+                                                        sensitivity analysis tool.
                                                 </p>
                                                 <p>3) Re-analyze the farm model.</p>
                                             </ul>
-                                            Repeat these steps until the additional acreage is planted. After generating
-                                            a strategy you can change critical resources and/or minimum crop acreage
+                                            After generating a strategy you can change critical resources and/or minimum crop acreage
                                             limits to examine the inter-play between resources, estimated income and
                                             acreage planted.<br/>
                                                 <%--<a href="javascript:;" onclick="navigateToOutputResources();return false;">Check resource availabilities.</a><br/>--%>
@@ -269,9 +266,8 @@
                                         <div id="maxAcreageLimitAcre" class="collapse">
                                             Maximum crop acreage limits limit the acreage that can be planted to one or
                                             more crops or groups of crops. If there are maximum crop acreage limits that
-                                            are, in total, less than available land, when these limits are reached
-                                            depending on the profitability of other crops and other factors, there may
-                                            be land left over that is not assigned a crop. If it looks like a maximum
+                                            are, in total, less than available land, when these limits are reached there may
+                                            be that fields that are not assigned a crop. If it looks like maximum
                                             crop acreage limits may be the issue, try the following: <br/>
                                             <ul>
                                                 <p>1) Are there maximum crop acreage limits? If so, have most of the
@@ -293,15 +289,17 @@
                                             </ul>
                                             In combination with the above situation for maximum crop acreage limits, if
                                             you have minimum crop acreage limits (for unprofitable crops) that have been
-                                            reached. This can cause some land to go unplanted. <a
+                                            reached, this can cause some land to not be assigned crops. <a
                                                 href="javascript:;" onclick="navigateToCropLimits();return false;">Check
                                             crop limits.</a><br/>
-                                            Increasing these minimum crop acreage limits will likely cause your
-                                            remaining land to be planted to the unprofitable crops. Of course, this will
+                                            Increasing these minimum crop acreage limits will likely cause
+                                            remaining land to be planted but unprofitable crops. This will
                                             decrease the strategy’s estimated income.<br/>
                                             There must be enough resources to support the additional acreage. Otherwise
-                                            you may bump up against one of your rotation constraints. Check crop/field
-                                            choices<br/>
+                                            you may bump up against one of your crop/field rotation constraints. <a
+                                                href="javascript:;"
+                                                onclick="navigateToCropFieldChoices();return false;">Check crop/field
+                                        </a><br/>
                                             If all available acreage is not brought into production check one of the
                                             other Troubleshooting paths.
                                         </div>
@@ -310,16 +308,16 @@
                                     <li>
                                         <a data-toggle="collapse" href="#unusedCropsAcre"><b>Profitability of crops</b></a>
                                         <div id="unusedCropsAcre" class="collapse">
-                                            Planting Profits will not allocate land to an unprofitable crop unless you
-                                            use a minimum crop acreage limit. (Unless you have unprofitable crops it is
+                                            Planting Profits will not allocate land to unprofitable crops unless you
+                                            use minimum crop acreage limits. <br/>
+                                            Note: (Unless you have unprofitable crops it is
                                             unlikely that the (un)profitability of crops is preventing Planting Profits
                                             from generating a strategy.) But if any of your crops are unprofitable and
                                             you do not enter minimum crop acreage limits, Planting Profits will not
                                             assign any acreage to that crop. This, in combination with maximum crop
                                             acreage limits or resource limitations, can prevent Planting Profits from
-                                            assigning crops to all of your land since planting this land to unprofitable
-                                            crops would decrease estimated income. If it looks like (un)profitability of
-                                            the crops may be the issue, try the following: <br/>
+                                            assigning crops to all of your land since doing so well decrease estimated income. If it looks like (un)profitability of
+                                            the crops may be the reason all acreage are not assigned crops, try the following: <br/>
                                             <ul class="planning">
                                                 <p>1) Are any crops unprofitable? <a href="javascript:;"
                                                                                      onclick="navigateToProfitableCrops();return false;">Check
@@ -506,8 +504,9 @@
                                         <a data-toggle="collapse" href="#profitabilityOfCropsAcres"><b>Profitability of
                                             crops</b></a>
                                         <div id="profitabilityOfCropsAcres" class="collapse">
-                                            Planting Profits will not allocate land to an unprofitable crop unless you
-                                            use a minimum crop acreage limit. (Unless you have unprofitable crops as
+                                            Planting Profits will not allocate land to unprofitable crop unless you
+                                            use minimum crop acreage limit.<br/>
+                                            Note: (Unless you have unprofitable crops as
                                             some of your crop choices it is unlikely that (un)profitability of crops is
                                             preventing Planting Profits from generating a strategy.) But if all of your
                                             crops are unprofitable and you do not have entered minimum crop acreage

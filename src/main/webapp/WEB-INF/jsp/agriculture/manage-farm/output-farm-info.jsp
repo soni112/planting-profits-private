@@ -539,12 +539,26 @@
                                                     </a>
                                                 </div>
                                                 <div class="pull-right" style="width: 30%;">
-                                                    <div style="margin-top: 8%; padding: 1% 3%;">
-                                                        To increase the amount of Land go to<br>
-                                                        <a href="javascript:;"
-                                                           onclick="navigateToCropLimits(); return false;"
-                                                           style="text-decoration: underline;">Crop Acreage Limits</a>
-                                                    </div>
+                                                    <c:choose>
+                                                        <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
+                                                            <div style="margin-top: 8%; padding: 1% 3%;">
+                                                                To increase the amount of Land go to<br>
+                                                                <a href="javascript:;"
+                                                                   onclick="navigateToResources(); return false;"
+                                                                   style="text-decoration: underline;">Resources</a>
+                                                            </div>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div style="margin-top: 8%; padding: 1% 3%;">
+                                                                To increase the amount of Land go to<br>
+                                                                <a href="javascript:;"
+                                                                   onclick="navigateToFieldInformation()
+
+                                                                   ; return false;"
+                                                                   style="text-decoration: underline;">Field Information</a>
+                                                            </div>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </div>
                                             <div class="box box-info">
@@ -591,6 +605,29 @@
                                                                         </td>
                                                                     </tr>
                                                                 </c:when>--%>
+                                                                <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resourceList.cropResourceUse eq 'Land'}">
+                                                                    <tr class="tblgrn line_no_break">
+                                                                        <td class="success">Land</td>
+                                                                        <td class="success">${resourceList.cropResourceUseAmount}</td>
+                                                                        <td class="success croplimit"><input type="text"
+                                                                                                             value="${resourceList.cropResourceUseAmount}"
+                                                                                                             onchange="addCommaSignWithOutDollarDot(this);"
+                                                                                                             onkeypress="return isValidNumberValueForWithOutDot(event)"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:when>
+                                                                <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS' and resourceList.cropResourceUse eq 'Land'}">
+                                                                    <tr class="tblgrn line_no_break">
+                                                                        <td class="success">${resourceList.cropResourceUse}</td>
+                                                                        <td class="success">${resourceList.cropResourceUseAmount}</td>
+                                                                        <td class="success croplimit"><input type="text"
+                                                                                                             disabled
+                                                                                                             value="${resourceList.cropResourceUseAmount}"
+                                                                                                             onchange="addCommaSignWithOutDollarDot(this);"
+                                                                                                             onkeypress="return isValidNumberValueForWithOutDot(event)"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:when>
                                                                 <c:when test="${resourceList.cropResourceUse eq 'Capital'}">
                                                                     <tr class="tblgrn line_no_break">
                                                                         <td class="success">Working Capital</td>
@@ -633,12 +670,25 @@
                                                 </p>
                                             </div>
                                             <div class="pull-left" style="width: 49%;">
+                                                <c:choose>
+                                                    <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
                                                 <div style="margin-top: 8%; padding: 1% 3%;">
                                                    To increase the amount of Land go to<br>
                                                     <a href="javascript:;"
-                                                       onclick="navigateToCropLimits(); return false;"
-                                                       style="text-decoration: underline;">Crop Acreage Limits</a>
+                                                       onclick="navigateToResources(); return false;"
+                                                       style="text-decoration: underline;">Resources</a>
                                                 </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div style="margin-top: 8%; padding: 1% 3%;">
+                                                            To increase the amount of Land go to<br>
+                                                            <a href="javascript:;"
+                                                               onclick="navigateToFieldInformation(); return false;"
+                                                               style="text-decoration: underline;">Field Information</a>
+                                                        </div>
+                                                    </c:otherwise>
+
+                                                </c:choose>
                                             </div>
 
                                             <div style="width: 50%; float: right;">
@@ -1391,6 +1441,16 @@
     function navigateToCropLimits() {
         localStorage.setItem('cropLimitFlag', true);
         window.location = '<c:url value="/view-farm-info.htm?farmId="/>${farmId}';
+    }
+
+    function navigateToResources() {
+        localStorage.setItem('resourcesFlag', true);
+        window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
+    }
+
+    function navigateToFieldInformation() {
+        localStorage.setItem('cropFieldFlag', true);
+        window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
 
 
