@@ -339,7 +339,7 @@ function getStrategyForMultipleResources() {
          * @changed - Jyoti
          * @date - 30-01-2017
          */
-        customAlerts("No resource has been changed from the original amount so a new strategy cannot be generated.", type_error, time);
+        customAlerts("No resource has been changed from the original amount so a new strategy cannot be generated", type_error, time);
         return false;
     }
     $.ajax({
