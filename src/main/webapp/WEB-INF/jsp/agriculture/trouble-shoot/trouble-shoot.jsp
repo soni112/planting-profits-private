@@ -216,44 +216,41 @@
                                         acres farmed.
                                         In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income
-                                        or create a strategy that does not enforce all of the constraints entered in the
-                                        farm model.
-                                        Model parameters can easily be changed to bring any unplanted land into
-                                        production. Of course changes must be realistic.
+                                        or create a strategy that does not enforce all of the constraints.
+                                        <%--Model parameters can easily be changed to bring any unplanted land into--%>
+                                        <%--production. Of course changes must be realistic.--%>
                                             <%--Remember, when a strategy does not use all available acres Planting Profits is saying that there is either a real conflict--%>
                                             <%--between profitability and planting all available land, or there is a constraint, i.e. a management decision, that needs to be changed in order to bring the remaining acreage into production.--%>
-                                        When planning by acres, there are three common causes for a strategy that has
-                                        unassigned acreage.
+                                        When planning by acres, there are three common causes for a strategy that has acreage that is not assigned a crop.
                                     </div>
                                 </ul>
+                                <p>Review the Troubleshooting paths below and make adjustments to resources, and crop acreage limits or crop so that all acreage is assigned a crop. </p>
                                 <p> Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesAcre"><b>Available resources</b></a>
                                         <div id="unusedResourcesAcre" class="collapse">
-                                            There may not be enough of a particular resource to plant all of your
+                                            There may not be enough of a particular resource to assign crops to all
                                             acreage. Often this is due to insufficient working capital. However,
-                                            limitations of other resources such as labor, equipment, water or some other
-                                            constraint, may prevent all land from being assigned a crop. If it looks
+                                            limitations of labor, equipment, water or some other constraint, may prevent crops from being assigned to all acreage. If it looks
                                             like a resource issue, try the following:<br/>
                                             <ul class="planning">
-                                                <p>1) Are any resources all used up or almost used up?<a
+                                                <p>1) Are any resources all used up or almost used up? <a
                                                         href="javascript:;"
                                                         onclick="navigateToOutputResources();return false;">Check
                                                     Resources</a>
                                                 </p>
                                                 <p>2) If yes, increase the amount of the critical resource. You can
-                                                    change it by going to the <a href="javascript:;"
-                                                                                 onclick="navigateToResources();return false;">Resources
-                                                        page</a> or use the
-                                                    <a href="javascript:;"
-                                                       onclick="navigateToOutputResources();return false;"> resources
-                                                        sensitivity analysis tool.</a>
+                                                    change it by going to the <%--<a href="javascript:;"
+                                                                                 onclick="navigateToResources();return false;">--%>Resources
+                                                        page or use the
+                                                    <%--<a href="javascript:;"
+                                                       onclick="navigateToOutputResources();return false;">--%> resources
+                                                        sensitivity analysis tool.
                                                 </p>
                                                 <p>3) Re-analyze the farm model.</p>
                                             </ul>
-                                            Repeat these steps until the additional acreage is planted. After generating
-                                            a strategy you can change critical resources and/or minimum crop acreage
+                                            After generating a strategy you can change critical resources and/or minimum crop acreage
                                             limits to examine the inter-play between resources, estimated income and
                                             acreage planted.<br/>
                                                 <%--<a href="javascript:;" onclick="navigateToOutputResources();return false;">Check resource availabilities.</a><br/>--%>
