@@ -103,7 +103,7 @@
                                                         field information</a>
                                                 </p>
                                                 <p>2) To bring fields marked Fallow into production, uncheck the Fallow
-                                                    box. Then go to the Crop/Field Choices page and indicate. Indicate which crops
+                                                    box. Then go to the Crop/Field Choices page and indicate. Which crops
                                                     you would like to consider planting in that field.
                                                 </p>
                                                 <p>3) Repeat for all fields marked Fallow.</p>
