@@ -308,17 +308,16 @@
                                     <li>
                                         <a data-toggle="collapse" href="#unusedCropsAcre"><b>Profitability of crops</b></a>
                                         <div id="unusedCropsAcre" class="collapse">
-                                            Planting Profits will not allocate land to an unprofitable crop unless you
-                                            use minimum crop acreage limit. <br/>
+                                            Planting Profits will not allocate land to unprofitable crops unless you
+                                            use minimum crop acreage limits. <br/>
                                             Note: (Unless you have unprofitable crops it is
                                             unlikely that the (un)profitability of crops is preventing Planting Profits
                                             from generating a strategy.) But if any of your crops are unprofitable and
                                             you do not enter minimum crop acreage limits, Planting Profits will not
                                             assign any acreage to that crop. This, in combination with maximum crop
                                             acreage limits or resource limitations, can prevent Planting Profits from
-                                            assigning crops to all of your fields since planting this land to unprofitable
-                                            crops will decrease estimated income. If it looks like (un)profitability of
-                                            the crops may be the issue, try the following: <br/>
+                                            assigning crops to all of your land since doing so well decrease estimated income. If it looks like (un)profitability of
+                                            the crops may be the reason all acreage are not assigned crops, try the following: <br/>
                                             <ul class="planning">
                                                 <p>1) Are any crops unprofitable? <a href="javascript:;"
                                                                                      onclick="navigateToProfitableCrops();return false;">Check
