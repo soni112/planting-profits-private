@@ -540,7 +540,7 @@
                                                 </div>
                                                 <div class="pull-right" style="width: 30%;">
                                                     <c:choose>
-                                                        <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
+                                                        <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
                                                             <div style="margin-top: 8%; padding: 1% 3%;">
                                                                 To increase the amount of Land go to<br>
                                                                 <a href="javascript:;"
@@ -548,6 +548,16 @@
                                                                    style="text-decoration: underline;">Resources</a>
                                                             </div>
                                                         </c:when>
+                                                        <c:otherwise>
+                                                            <div style="margin-top: 8%; padding: 1% 3%;">
+                                                                To increase the amount of Land go to<br>
+                                                                <a href="javascript:;"
+                                                                   onclick="navigateToFieldInformation()
+
+                                                                   ; return false;"
+                                                                   style="text-decoration: underline;">Field Information</a>
+                                                            </div>
+                                                        </c:otherwise>
                                                     </c:choose>
                                                 </div>
                                             </div>
@@ -595,6 +605,29 @@
                                                                         </td>
                                                                     </tr>
                                                                 </c:when>--%>
+                                                                <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resourceList.cropResourceUse eq 'Land'}">
+                                                                    <tr class="tblgrn line_no_break">
+                                                                        <td class="success">Land</td>
+                                                                        <td class="success">${resourceList.cropResourceUseAmount}</td>
+                                                                        <td class="success croplimit"><input type="text"
+                                                                                                             value="${resourceList.cropResourceUseAmount}"
+                                                                                                             onchange="addCommaSignWithOutDollarDot(this);"
+                                                                                                             onkeypress="return isValidNumberValueForWithOutDot(event)"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:when>
+                                                                <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS' and resourceList.cropResourceUse eq 'Land'}">
+                                                                    <tr class="tblgrn line_no_break">
+                                                                        <td class="success">${resourceList.cropResourceUse}</td>
+                                                                        <td class="success">${resourceList.cropResourceUseAmount}</td>
+                                                                        <td class="success croplimit"><input type="text"
+                                                                                                             disabled
+                                                                                                             value="${resourceList.cropResourceUseAmount}"
+                                                                                                             onchange="addCommaSignWithOutDollarDot(this);"
+                                                                                                             onkeypress="return isValidNumberValueForWithOutDot(event)"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:when>
                                                                 <c:when test="${resourceList.cropResourceUse eq 'Capital'}">
                                                                     <tr class="tblgrn line_no_break">
                                                                         <td class="success">Working Capital</td>
@@ -606,18 +639,7 @@
                                                                         </td>
                                                                     </tr>
                                                                 </c:when>
-                                                                <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES' and resource.cropResourceUse eq 'Land'}">
-                                                                    <tr class="tblgrn line_no_break">
-                                                                        <td class="success">Land</td>
-                                                                        <td class="success">${resourceList.cropResourceUseAmount}</td>
-                                                                        <td class="success croplimit"><input type="text"
-                                                                                                             value="${resourceList.cropResourceUseAmount}"
-                                                                                                             onchange="addCommaSignWithOutDollarDot(this);"
-                                                                                                             onkeypress="return isValidNumberValueForWithOutDot(event)"/>
-                                                                        </td>
-                                                                    </tr>
-                                                                </c:when>
-                                                                <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS' and resource.cropResourceUse ne 'Land'}">
+                                                                <c:otherwise>
                                                                     <tr class="tblgrn line_no_break">
                                                                         <td class="success">${resourceList.cropResourceUse}</td>
                                                                         <td class="success">${resourceList.cropResourceUseAmount}</td>
@@ -627,7 +649,7 @@
                                                                                                              onkeypress="return isValidNumberValueForWithOutDot(event)"/>
                                                                         </td>
                                                                     </tr>
-                                                                </c:when>
+                                                                </c:otherwise>
                                                             </c:choose>
                                                         </c:if>
                                                     </c:forEach>
@@ -649,7 +671,7 @@
                                             </div>
                                             <div class="pull-left" style="width: 49%;">
                                                 <c:choose>
-                                                    <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
+                                                    <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
                                                 <div style="margin-top: 8%; padding: 1% 3%;">
                                                    To increase the amount of Land go to<br>
                                                     <a href="javascript:;"
@@ -657,6 +679,15 @@
                                                        style="text-decoration: underline;">Resources</a>
                                                 </div>
                                                     </c:when>
+                                                    <c:otherwise>
+                                                        <div style="margin-top: 8%; padding: 1% 3%;">
+                                                            To increase the amount of Land go to<br>
+                                                            <a href="javascript:;"
+                                                               onclick="navigateToFieldInformation(); return false;"
+                                                               style="text-decoration: underline;">Field Information</a>
+                                                        </div>
+                                                    </c:otherwise>
+
                                                 </c:choose>
                                             </div>
 
@@ -1414,6 +1445,11 @@
 
     function navigateToResources() {
         localStorage.setItem('resourcesFlag', true);
+        window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
+    }
+
+    function navigateToFieldInformation() {
+        localStorage.setItem('cropFieldFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
 
