@@ -43,7 +43,7 @@
                                         In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income or create a strategy that does not
                                         enforce all
-                                        of the your constraints.
+                                        of your constraints.
                                         <%--Model parameters can easily be changed to bring any unplanted land into--%>
                                         <%--production. Of course changes must be realistic.--%>
                                             <%--Remember, when a strategy does not use all available acres Planting Profits is saying that there is either a real conflict between profitability--%>
@@ -52,7 +52,7 @@
                                         unassigned acreage.
                                     </div>
                                 </ul>
-                                <p>Review the Troubleshooting Tips below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
+                                <p>Review the Troubleshooting to Paths below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesField"><b>Available
