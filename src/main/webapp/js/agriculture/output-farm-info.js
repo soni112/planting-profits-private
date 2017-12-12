@@ -1403,9 +1403,17 @@ function getStrategyForSinghalResourcesForCreateNewScenario() {
     var resourceOverridedValue = $("#resourse_Value_Result").text().trim();
     var oldVal = 0;
     $('#resource-table').find('tbody tr').each(function () {
-        if ($(this).children("td:nth(0)").text().trim() == resourceName) {
-            oldVal = $(this).children("td:nth(1)").text().trim();
+        if(resourceName == "Capital"){
+            if ($(this).children("td:nth(0)").text().trim() == "Working Capital") {
+                oldVal = $(this).children("td:nth(1)").text().trim();
+            }
         }
+        else{
+            if ($(this).children("td:nth(0)").text().trim() == resourceName) {
+                oldVal = $(this).children("td:nth(1)").text().trim();
+            }
+        }
+
     });
 
 
