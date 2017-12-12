@@ -368,12 +368,15 @@ function getStrategyForMultipleResources() {
                 } else {
                     var totalAcreagePlanted = 0;
                     var totalLand = 0;
+
+                    if (result.Strategy == "Acreage") {
+
                     $.each(result.Crop_Details, function (k, v) {
                         totalAcreagePlanted += parseInt(removeAllCommas(v.land));
                     });
 
-                    $('#sa_multiple_resource_table').find('tr').each(function() {
-                        if($(this).children().eq(0).html() == 'Land'){
+                    $('#sa_multiple_resource_table').find('tr').each(function () {
+                        if ($(this).children().eq(0).html() == 'Land') {
                             totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
                         }
                     });
@@ -383,6 +386,17 @@ function getStrategyForMultipleResources() {
                     } else {
                         $("#available-acreage-not-planted-msg").show();
                         $("#acreage-not-planted-msg").show();
+                    }
+                }
+                else{
+                       if(result.isAllAcreagePlanted == true){
+                           $("#available-acreage-not-planted-msg").hide();
+                           $("#acreage-not-planted-msg").hide();
+                       }
+                       else{
+                           $("#available-acreage-not-planted-msg").show();
+                           $("#acreage-not-planted-msg").show();
+                       }
                     }
                 }
                 /**
@@ -1403,9 +1417,17 @@ function getStrategyForSinghalResourcesForCreateNewScenario() {
     var resourceOverridedValue = $("#resourse_Value_Result").text().trim();
     var oldVal = 0;
     $('#resource-table').find('tbody tr').each(function () {
-        if ($(this).children("td:nth(0)").text().trim() == resourceName) {
+        if(resourceName == "Capital"){
+            if ($(this).children("td:nth(0)").text().trim() == "Working Capital") {
             oldVal = $(this).children("td:nth(1)").text().trim();
         }
+    }
+        else{
+            if ($(this).children("td:nth(0)").text().trim() == resourceName) {
+                oldVal = $(this).children("td:nth(1)").text().trim();
+            }
+        }
+
     });
 
 

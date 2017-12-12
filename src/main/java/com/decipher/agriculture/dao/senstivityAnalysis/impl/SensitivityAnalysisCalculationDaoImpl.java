@@ -238,6 +238,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         Result bestResult = (Result) map.get("Best_Result");
         JSONArray jsonArray = new JSONArray();
         JSONArray jsonArrayObjectForGraphByField = new JSONArray();
+        Long totalLand = 0L;
+        Long totalUsedLand = 0L;
         if (bestResult != null) {
             PlantingProfitLogger.info("Best result is " + bestResult);
             try {
@@ -264,6 +266,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                         objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName() + " (" + beanForOutput.getCropType().getCropName() + ")");
                                         objectForGraphByField.put("Crop_Name", beanForOutput.getCropType().getCropName());
                                         objectForGraphByField.put("Land", AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str).doubleValue()));
+                                        PlantingProfitLogger.info("Value=="+AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str).doubleValue()));
+                                        totalUsedLand +=AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str).doubleValue());
 
                                         CropType cropType = beanForOutput.getCropType();
                                         String profit = hashMapForProfit.get(cropType.getCropName()).split(" ")[0];
@@ -286,6 +290,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                         objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName() + " (" + beanForOutput.getCropType().getCropName() + " (Firm)" + ")");
                                         objectForGraphByField.put("Crop_Name", beanForOutput.getCropType().getCropName() + " (Firm)");
                                         objectForGraphByField.put("Land", AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str + " (Contract)").doubleValue()));
+                                        PlantingProfitLogger.info("Value=="+AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str + " (Contract)").doubleValue()));
+                                        totalUsedLand +=AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str + " (Contract)").doubleValue());
                                         /**
                                          * @changed - Abhishek
                                          * @Date - 19-10-2016
@@ -312,7 +318,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                         objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName() + " (" + beanForOutput.getCropType().getCropName() + " (Proposed)" + ")");
                                         objectForGraphByField.put("Crop_Name", beanForOutput.getCropType().getCropName() + " (Proposed)");
                                         objectForGraphByField.put("Land", AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str + " (Proposed)").doubleValue()));
-
+                                        PlantingProfitLogger.info("Value=="+AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str + " (Proposed)").doubleValue()));
+                                        totalUsedLand +=AgricultureStandardUtils.withoutDecimalAndCommaToLong(bestResult.get(str + " (Proposed)").doubleValue());
                                         /**
                                          * @changed - Abhishek
                                          * @Date - 19-10-2016
@@ -398,6 +405,12 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
             PlantingProfitLogger.error(e);
         }
+        for(CropResourceUsageView resourceUsageView : resourceUsageViews){
+            if(resourceUsageView.getCropResourceUse().equalsIgnoreCase("Land")){
+                totalLand  += Long.parseLong(AgricultureStandardUtils.removeAllCommas(resourceUsageView.getCropResourceUseAmount()));
+            }
+        }
+        jsonObject.put("isAllAcreagePlanted", totalLand.equals(totalUsedLand));
         return jsonObject;
     }
 
