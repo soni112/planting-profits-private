@@ -292,7 +292,7 @@
                                                 href="javascript:;" onclick="navigateToCropLimits();return false;">Check
                                             crop limits.</a><br/>
                                             Increasing these minimum crop acreage limits will likely cause
-                                            remaining land to be planted but unprofitable crops. This will
+                                            remaining land to be planted but to unprofitable crops. This will
                                             decrease the strategy’s estimated income.<br/>
                                             There must be enough resources to support the additional acreage. Otherwise
                                             you may bump up against one of your crop/field rotation constraints. <a
