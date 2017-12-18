@@ -171,9 +171,9 @@
                                     <li>
                                         <a data-toggle="collapse" href="#unusedCropsField"><b>Profitability of crops</b></a>
                                         <div id="unusedCropsField" class="collapse">
-                                            Planting Profits will not allocate land to unprofitable crop unless you
-                                            use minimum crop acreage limit. <br/>
-                                            Note: (Unless you have unprofitable crops it is
+                                            Planting Profits will not allocate land to unprofitable crops unless you
+                                            use minimum crop acreage limits. <br/>
+                                            (Note: Unless you have unprofitable crops it is
                                             unlikely that the (un)profitability of crops is preventing Planting Profits
                                             from generating a strategy.) But if any of your crops are unprofitable and
                                             you do not enter minimum crop acreage limits, Planting Profits will not
@@ -189,7 +189,7 @@
                                                 <p>4) Go to the Crop/Field Choices page to make sure you have enough acreage across your fields in which you can plant the unprofitable crop(s).</p>
                                                 <p>5) Re-analyze the farm model.</p>
                                             </ul>
-                                            If all available acreage is not brought into production check one of the other Troubleshooting paths.
+                                            If all fields are not assigned crops check one of the other Troubleshooting paths.
 
                                         </div>
                                         <br/>
