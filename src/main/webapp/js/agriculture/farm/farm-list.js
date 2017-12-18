@@ -14,7 +14,7 @@ function deleteSelectedFarms() {
     var successMessage = "";
     var farmIdsArray = new Array();
     if (totalFarms == 0) {
-        customAlerts("Please select at least one farm to delete.", "error", 0);
+        customAlerts("Please select at least one farm to delete", "error", 0);
         return false;
     }
     $("input[name='farms[]']:checked").each(function() {
