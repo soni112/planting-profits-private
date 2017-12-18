@@ -316,7 +316,7 @@
                                             assign any acreage to that crop. This, in combination with maximum crop
                                             acreage limits or resource limitations, can prevent Planting Profits from
                                             assigning crops to all of your land since doing so well decrease estimated income. If it looks like (un)profitability of
-                                            the crops may be the reason all acreage are not assigned crops, try the following: <br/>
+                                            the one or more crops may be the reason all acreage are not assigned crops, try the following: <br/>
                                             <ul class="planning">
                                                 <p>1) Are any crops unprofitable? <a href="javascript:;"
                                                                                      onclick="navigateToProfitableCrops();return false;">Check
