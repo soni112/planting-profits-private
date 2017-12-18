@@ -39,7 +39,7 @@
                                         Although most of the time these objectives are the same, this is not always the
                                         case.
                                         Several factors may cause misalignment between maximizing profit and maximizing
-                                        acres farmed.
+                                        acres planted.
                                         In these cases, Planting Profits will not assign crops to all of the available land since
                                         doing so would either reduce estimated income or create a strategy that does not
                                         enforce all
@@ -52,7 +52,7 @@
                                         unassigned acreage.
                                     </div>
                                 </ul>
-                                <p>Review the Troubleshooting to Paths below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
+                                <p>Review the Troubleshooting paths below and make adjustments to resources, crop/field choices, crop acreage limits or crops so that all fields are assigned crops.</p>
                                 <ul class="planning">
                                     <li>
                                         <a data-toggle="collapse" href="#unusedResourcesField"><b>Available
