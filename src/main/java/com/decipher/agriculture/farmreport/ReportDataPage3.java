@@ -250,14 +250,14 @@ public class ReportDataPage3 {
             if(farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS) && max.equals(NO)){
                 jsonObject.put("impactingIncome", "May be");
                 jsonObject.put("incDecIncome", "Increase");
-                jsonObject.put("message", "Maximum crop limit may be impacting Estimated Income");
+                jsonObject.put("message", "Maximum crop limit may be impacting Estimated Income.");
             } else {
                 jsonObject.put("impactingIncome", max);
                 jsonObject.put("incDecIncome", max.equalsIgnoreCase(YES) ? "Increase" : "--");
                 if (max.equalsIgnoreCase(YES)) {
-                    jsonObject.put("message", "Maximum crop limit is impacting Estimated Income");
+                    jsonObject.put("message", "Maximum crop limit is impacting Estimated Income.");
                 } else {
-                    jsonObject.put("message", "Maximum crop limit is not impacting Estimated Income");
+                    jsonObject.put("message", "Maximum crop limit is not impacting Estimated Income.");
                 }
             }
 
@@ -270,9 +270,9 @@ public class ReportDataPage3 {
             jsonObject.put("incDecIncome", min.equalsIgnoreCase(YES) ? "Decrease" : "--");
 
             if (min.equalsIgnoreCase(YES)) {
-                jsonObject.put("message", "Minimum crop limit is impacting Estimated Income");
+                jsonObject.put("message", "Minimum crop limit is impacting Estimated Income.");
             } else {
-                jsonObject.put("message", "Minimum crop limit is not impacting Estimated Income");
+                jsonObject.put("message", "Minimum crop limit is not impacting Estimated Income.");
             }
 
         }/* min and max acres */ else if (!minAcres.equalsIgnoreCase("") && !maxAcres.equalsIgnoreCase("")) {
@@ -283,9 +283,9 @@ public class ReportDataPage3 {
 //            jsonObject.put("impactingIncome", "No");
             jsonObject.put("incDecIncome", "--");
             if (both.equalsIgnoreCase(YES)) {
-                jsonObject.put("message", "Minimum and maximum crop limit is impacting Estimated Income");
+                jsonObject.put("message", "Minimum and maximum crop limit is impacting Estimated Income.");
             } else {
-                jsonObject.put("message", "Minimum and maximum crop limit is not impacting Estimated Income");
+                jsonObject.put("message", "Minimum and maximum crop limit is not impacting Estimated Income.");
             }
 
         } else {

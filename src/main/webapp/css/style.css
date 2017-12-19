@@ -3775,10 +3775,11 @@ sup {
     margin: 0px;
 }
 .tbl-fixd-hdr thead > tr > td{
-    width: 14.26%;
+    width: 14.28%;
     position: relative;
     float: left;
-    height: 54px;
+    /*height: 54px;*/
+    height: 35px;
 }
 .tbl-fixd-hdr tbody > tr {
     width: 100%;
@@ -4088,7 +4089,8 @@ sup {
     overflow-x: hidden;
 }
 .contactUs-bg {
-    background-image: url(../images/contribution/contactbackgroung.png);
+    /*background-image: url(../images/contribution/contactbackgroung.png);*/
+    background-image: url(../images/contribution/contact-bg-03.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center center;

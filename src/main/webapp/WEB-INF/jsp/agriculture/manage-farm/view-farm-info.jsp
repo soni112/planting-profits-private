@@ -408,7 +408,7 @@
                                             <tr class="tblhd text-center add-fieldi">
                                                 <td>Modify</td>
                                                 <td class="tblbrdr text-center add-fieldi">Name</td>
-                                                <td class="text-center add-fieldi">Size<br>(In
+                                                <td class="text-center add-fieldi">Size (In
                                                     Acres)
                                                 </td>
                                                 <td class="text-center">Last Crop <a
