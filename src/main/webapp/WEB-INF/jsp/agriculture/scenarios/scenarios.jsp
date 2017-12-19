@@ -701,11 +701,11 @@ Date 24-11-2015
 <script>
     $('#globalCropPriceCreate').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
         else if($(this).val() < -100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
 
@@ -716,11 +716,11 @@ Date 24-11-2015
 
     $('#globalYieldCreate').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
         else if($(this).val() < -100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
 
@@ -741,11 +741,11 @@ Date 24-11-2015
 
     $('#globalCropPriceEdit').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
         else if($(this).val() < -100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
 
@@ -756,11 +756,11 @@ Date 24-11-2015
 
     $('#globalYieldEdit').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
         else if($(this).val() < -100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
 
@@ -771,11 +771,11 @@ Date 24-11-2015
 
     $('#globalVarCostEdit').keyup(function(){
         if ($(this).val() > 100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
         else if($(this).val() < -100){
-            customAlerts("Scenario parameters must be between 100% and -100%");
+            customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
             $(this).val('');
         }
 
