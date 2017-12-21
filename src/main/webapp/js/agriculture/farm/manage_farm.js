@@ -3154,8 +3154,8 @@ function addStopButtonOnLoadingImageToStopAjax(ajaxRequest) {
 
 var ajaxRequestToStop = null;
 function stopTheStrategy() {
-    changeButtonLabelForAlertifyConfirm('Continue', 'Cancel')
-    alertify.confirm('Stop the Strategy building process.', function (e) {
+    changeButtonLabelForAlertifyConfirm('Ok', 'Continue')
+    alertify.confirm('Stop the Strategy building process?', function (e) {
         if (e) {
             ajaxRequestToStop.abort();
             hideLoadingImageForStrategy();

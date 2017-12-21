@@ -540,7 +540,7 @@
                                                 </div>
                                                 <div class="pull-right" style="width: 30%;">
                                                     <c:choose>
-                                                        <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
+                                                        <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                                             <div style="margin-top: 8%; padding: 1% 3%;">
                                                                 To increase the amount of Land go to<br>
                                                                 <a href="javascript:;"
@@ -548,7 +548,7 @@
                                                                    style="text-decoration: underline;">Resources</a>
                                                             </div>
                                                         </c:when>
-                                                        <c:otherwise>
+                                                  <%--      <c:otherwise>
                                                             <div style="margin-top: 8%; padding: 1% 3%;">
                                                                 To increase the amount of Land go to<br>
                                                                 <a href="javascript:;"
@@ -557,7 +557,7 @@
                                                                    ; return false;"
                                                                    style="text-decoration: underline;">Field Information</a>
                                                             </div>
-                                                        </c:otherwise>
+                                                        </c:otherwise>--%>
                                                     </c:choose>
                                                 </div>
                                             </div>
@@ -671,22 +671,25 @@
                                             </div>
                                             <div class="pull-left" style="width: 49%;">
                                                 <c:choose>
-                                                    <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">
+                                                    <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                                 <div style="margin-top: 8%; padding: 1% 3%;">
                                                    To increase the amount of Land go to<br>
+                                                    <%--<a href="javascript:;"--%>
+                                                       <%--onclick="navigateToResources(); return false;"--%>
+                                                       <%--style="text-decoration: underline;">Resources</a>--%>
                                                     <a href="javascript:;"
-                                                       onclick="navigateToResources(); return false;"
-                                                       style="text-decoration: underline;">Resources</a>
+                                                       onclick="navigateToFieldInformation(); return false;"
+                                                       style="text-decoration: underline;">Field Information</a>
                                                 </div>
                                                     </c:when>
-                                                    <c:otherwise>
+                                                   <%-- <c:otherwise>
                                                         <div style="margin-top: 8%; padding: 1% 3%;">
                                                             To increase the amount of Land go to<br>
                                                             <a href="javascript:;"
                                                                onclick="navigateToFieldInformation(); return false;"
                                                                style="text-decoration: underline;">Field Information</a>
                                                         </div>
-                                                    </c:otherwise>
+                                                    </c:otherwise>--%>
 
                                                 </c:choose>
                                             </div>

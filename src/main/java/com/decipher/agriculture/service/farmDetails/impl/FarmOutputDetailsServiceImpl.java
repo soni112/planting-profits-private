@@ -214,14 +214,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             if(farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS) && max.equals(NO)){
                 jsonObject.put(IMPACTING_INCOME, "May be");
                 jsonObject.put(INC_DEC_INCOME, "Increase");
-                jsonObject.put(MESSAGE, "Maximum crop limit may be impacting Estimated Income");
+                jsonObject.put(MESSAGE, "Maximum crop limit may be impacting Estimated Income.");
             } else {
                 jsonObject.put(IMPACTING_INCOME, max);
                 jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) ? "Increase" : "--");
                 if (max.equalsIgnoreCase(YES)) {
-                    jsonObject.put(MESSAGE, "Maximum crop limit is impacting Estimated Income");
+                    jsonObject.put(MESSAGE, "Maximum crop limit is impacting Estimated Income.");
                 } else {
-                    jsonObject.put(MESSAGE, "Maximum crop limit is not impacting Estimated Income");
+                    jsonObject.put(MESSAGE, "Maximum crop limit is not impacting Estimated Income.");
                 }
             }
 
@@ -234,9 +234,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Decrease" : "--");
 
             if (min.equalsIgnoreCase(YES)) {
-                jsonObject.put(MESSAGE, "Minimum crop limit is impacting Estimated Income");
+                jsonObject.put(MESSAGE, "Minimum crop limit is impacting Estimated Income.");
             } else {
-                jsonObject.put(MESSAGE, "Minimum crop limit is not impacting Estimated Income");
+                jsonObject.put(MESSAGE, "Minimum crop limit is not impacting Estimated Income.");
             }
 
         }/* min and max acres */ else if (!minAcres.equalsIgnoreCase("") && !maxAcres.equalsIgnoreCase("")) {
