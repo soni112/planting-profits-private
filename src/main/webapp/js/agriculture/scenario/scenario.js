@@ -173,7 +173,13 @@ function prepareScenarioComparisonChart(object) {
 
 }
 
-
+function saveScenario(containerId) {
+    var container = $("#" + containerId);
+    if (!validateScenario(container)) {
+        return false;
+    }
+    $('#strategy-select-popup').show();
+}
 function saveScenarioData(containerId) {
     var container = $("#" + containerId);
     if (!validateScenario(container)) {
