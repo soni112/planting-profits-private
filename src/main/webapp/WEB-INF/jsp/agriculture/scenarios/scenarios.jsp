@@ -236,7 +236,7 @@ Date 24-11-2015
                         <!--------------end tab------------------------->
                         <div class="clearfix"></div>
                         <div class="yellobtn pre_next">
-                            <a href="#" onclick="openStrategySelectPopup();">Save</a>
+                            <a href="#" onclick="saveScenario('createScenario');">Save</a>
                         </div>
                         <%--</div>--%>
                     </div>
