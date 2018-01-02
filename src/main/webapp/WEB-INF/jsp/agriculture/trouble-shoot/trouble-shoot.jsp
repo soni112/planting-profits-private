@@ -35,7 +35,7 @@
                                 </h2>
                                 <ul class="planning">
                                     <div id="moreUnusedAcreageContentField" class="collapse">
-                                        Planting Profits focuses on maximizing profit, not maximizing time these objectives are the same, this is not always the
+                                        Planting Profits focuses on maximizing profit not maximizing acres planted. Although most of the time these objectives are the same, this is not always the
                                         case.
                                         Several factors may cause misalignment between maximizing profit and maximizing
                                         acres planted.
@@ -58,7 +58,7 @@
                                             resources</b></a>
                                         <div id="unusedResourcesField" class="collapse">
                                             There may not be enough of a particular resource to assign crops to all fields. Often this is due to insufficient Working Capital. However if you’re using optional resources,
-                                            limitations of labor, equipment, water or some other constraint,
+                                            limitations on labor, equipment, water or some other constraint,
                                             may prevent crops from being assigned to all fields. If it looks like a resource
                                             issue, try the following:
                                             <ul class="planning">
@@ -181,9 +181,9 @@
                                             doing so will decrease estimated income. If it looks like (un)profitability of
                                             the crops may be the issue, try the following: <br/>
                                             <ul class="planning">
-                                                <p>1) Are any crops unprofitable? <a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> If not, Planting Profits did not assign crops to all acreage.</p>
-                                                <p>2) If any crops are unprofitable, are there minimum crop acreage limits on these crops? <a href="javascript:;" onclick="navigateToOutputCropAcreageLimits();return false;">Check crop acreage limits</a> (Warning: this will likely decrease estimated income.)</p>
-                                                <p>3) If yes, enter or increase minimum crop acreage limits for the unprofitable crop(s).</p>
+                                                <p>1) Are any crops unprofitable? <a href="javascript:;" onclick="navigateToProfitableCrops();return false;">Check profitability of crops</a> If not, then this is not the reason Planting Profits did not assign crops to all acreage.</p>
+                                                <p>2) If any crops are unprofitable, are there minimum crop acreage limits on these crops? <a href="javascript:;" onclick="navigateToOutputCropAcreageLimits();return false;">Check crop acreage limits</a> </p>
+                                                <p>3) If yes, enter or increase minimum crop acreage limits for the unprofitable crop(s).(Warning: this will likely decrease estimated income.)</p>
                                                 <p>4) Go to the Crop/Field Choices page to make sure you have enough acreage across your fields in which you can plant the unprofitable crop(s).</p>
                                                 <p>5) Re-analyze the farm model.</p>
                                             </ul>
@@ -275,7 +275,7 @@
                                             </ul>
                                             In combination with the above situation for maximum crop acreage limits, if
                                             you have minimum crop acreage limits (for unprofitable crops) that have been
-                                            reached, this cause remaining land to be assigned unprofitable crops. <a
+                                            reached, this can cause remaining land to be assigned unprofitable crops. <a
                                                 href="javascript:;" onclick="navigateToCropLimits();return false;">Check
                                             crop limits.</a><br/>
                                             Increasing these minimum crop acreage limits will likely cause
