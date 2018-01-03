@@ -1962,6 +1962,7 @@ function quantityCalForwardSale(obj) {
 
 function proposedAndFirmSelection(obj) {
     $(obj).parent().siblings("td:nth(5)").find("input").prop("checked", false);
+    var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
 
     if ($(obj).parent().parent().children("td:nth(6)").find("input").prop("checked")) {
         var cropName = $(obj).parent().parent().children("td:nth(0)").text().trim();
@@ -1977,7 +1978,7 @@ function proposedAndFirmSelection(obj) {
                 '<td class="tblft1 hiddenTD"></td>' +
                 '<td class="tblft1">' + cropName + ' (' + contractIdentifier + ')</td>' +
                 '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreage" disabled="disabled"></td>' +
-                '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreagePercentage" disabled="disabled"></td>' +
+                '<td class="success croplimit"><input type="text" value="' + Math.ceil((acreValue / totalLand) * 100) + '" class="minCropAcreagePercentage" disabled="disabled"></td>' +
                 '<td class="success croplimit">NA</td>' +
                 '<td class="success croplimit">NA</td>' +
                 '</tr>';
@@ -1986,7 +1987,7 @@ function proposedAndFirmSelection(obj) {
                 '<td class="tblft1"></td>' +
                 '<td class="tblft1">' + cropName + ' (' + contractIdentifier + ')</td>' +
                 '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreage" disabled="disabled"></td>' +
-                '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreage" disabled="disabled"></td>' +
+                '<td class="success croplimit"><input type="text" value="' + Math.ceil((acreValue / totalLand) * 100) + '" class="minCropAcreage" disabled="disabled"></td>' +
                 '<td class="success croplimit">NA</td>' +
                 '<td class="success croplimit">NA</td>' +
                 '</tr>';
