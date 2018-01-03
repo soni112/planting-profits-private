@@ -2118,12 +2118,12 @@ start -->
                                                         <td class="success infotext tittle-uppercase"
                                                             id="forward_sales_information_tbody_row_uomValue__${forwardSalesRowCount}">${cropListForforwardSale.cropUOM}</td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
-                                                        <td class="success croplimit">
-                                                            <input type="text"
+                                                        <td class="success croplimit" onmouseover="popupOnNegativeValue(this)">
+                                                            <input type="text" class="border-danger"
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
-                                                                   onkeypress="return isValidNumberValue(event)"
-                                                                   onchange="addCommaSignWithDollar(this)"></td>
+                                                                   <%--onkeypress="return isValidNumberValue(event)"--%>
+                                                                   onchange="addCommaSignWithDollar(this);addPopupNegativeValue(this)"></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
                                                             <input type="text"
@@ -2355,7 +2355,7 @@ Commented as per client requirement
                                                                id="group_crop_check_acres__${groupCount}"
                                                                name="groupNameSelection[]">
                                                     </td>
-                                                    <td id="group_table_group_name_${groupCount}"
+                                           <%--onkeypress="return isValidNumberValue(event)"--%>         <td id="group_table_group_name_${groupCount}"
                                                         class="tblft1">${groupList.cropsGroupName}</td>
                                                     <td class="success croplimit">
                                                         <input type="text" id="group_crop_minimum_acres__${groupCount}"
@@ -2721,7 +2721,25 @@ Commented as per client requirement
         </div>
     </div>
 </div>
-
+<div style="display: none;" id="negative-message-pop-up">
+    <div id="popupNegativePrice">
+        <!-- Planning Form -->
+        <div class="popup_section">
+            <img src="images/cross.png" onclick="hidePotentialProfitCriticalMessagePopup()" id="close">
+            <div class="popupform messagepopup potencial_profit_popup">
+                <div class="increase_profit">
+                    <p>
+                        <span class="cropNameForPopup"></span> forward sales of (<span id="potentialProfitForPopup"></span>) is less than zero.<br>
+                        <span class="cropNameForPopup"></span> forward sales will not be included in the strategy since it has a negative profit per acre unless you check the box marked is firm</span>.
+                    </p>
+                </div>
+                <!-- <div class="decrease_profit">
+                    <p>Decreasing <span id="resourceNameDec"></span> will decreaseEstimated Income by <span id="lossBy1Dollar"></span> for eachdollar removed down to <span id="downResourceLimit"></span></p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
 <script type="x-jQuery-tmpl" id="additional-crop-income-tbody-tmpl">
     <tr class="tblbclgrnd text-center">
         <td class="tblft1 cropNameSpecific">{{= cropName}}</td>

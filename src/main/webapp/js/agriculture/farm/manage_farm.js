@@ -3382,3 +3382,14 @@ function calculatePercentageOfMaxAcreage(obj){
         currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);
     }
 }
+function addPopupNegativeValue(id) {
+    var temp=$.trim("" + $(id).val().replace('$',''));
+    console.log("-ve"+temp);
+    if(temp< 0 )
+    {
+        $(id).css("border-Color", "red");
+        $("#negative-message-pop-up").show();
+    }
+
+
+}
