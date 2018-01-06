@@ -2123,7 +2123,7 @@ start -->
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
                                                                    onkeypress="return isValidNumberValue(event)"
-                                                                   onchange="addCommaSignWithDollar(this)"></td>
+                                                                   onchange="addCommaSignWithDollar(this);addPopupNegativeValue(this)"></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
                                                             <input type="text"
@@ -2448,7 +2448,7 @@ Commented as per client requirement
               <td class="infotext"></td>
               <td class="infotext"></td>
         </tr>
-        <tr class="tblgrn text-center">
+        <tr class="tblgrn text-cenaddPopupNegativeValueter">
             <td class="tblft1">Crop3</td>
              <td class="success infotext"><input type="checkbox"></td>
              <td class="success infotext"><input type="text"></td>
@@ -2721,7 +2721,25 @@ Commented as per client requirement
         </div>
     </div>
 </div>
-
+<div style="display: none;" id="negative-message-pop-up">
+    <div id="popupContact">
+        <!-- Planning Form -->
+        <div class="popup_section">
+            <img src="<c:url value="/images/cross.png"/>" onclick="$('#negative-message-pop-up').hide(); return false;" id="close">
+            <div class="popupform messagepopup potencial_profit_popup">
+                <div class="increase_profit">
+                    <p>
+                        <span class="cropName"></span> forward sales of (<span id="negativeValue"></span>) is less than zero.<br>
+                        <span class="cropName"></span> forward sales will not be included in the strategy since it has a negative profit per acre unless you check the box marked is firm</span>.
+                    </p>
+                </div>
+                <!-- <div class="decrease_profit">
+                    <p>Decreasing <span id="resourceNameDec"></span> will decreaseEstimated Income by <span id="lossBy1Dollar"></span> for eachdollar removed down to <span id="downResourceLimit"></span></p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
 <script type="x-jQuery-tmpl" id="additional-crop-income-tbody-tmpl">
     <tr class="tblbclgrnd text-center">
         <td class="tblft1 cropNameSpecific">{{= cropName}}</td>

@@ -798,7 +798,7 @@ select {
     width: 100%;
 }
 
-#abc, #updateFarmDiv, #critical-message-pop-up, #sensetiveAnalysisCropAndResourcePopup, #createNewScenario, #criticalMessageForCropOrGroupPopUp, #scenarioPopup {
+#abc, #updateFarmDiv, #critical-message-pop-up, #negative-message-pop-up, #sensetiveAnalysisCropAndResourcePopup, #createNewScenario, #criticalMessageForCropOrGroupPopUp, #scenarioPopup {
     width: 100%;
     height: 100%;
     top: 0;

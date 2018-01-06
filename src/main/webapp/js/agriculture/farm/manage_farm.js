@@ -1962,6 +1962,7 @@ function quantityCalForwardSale(obj) {
 
 function proposedAndFirmSelection(obj) {
     $(obj).parent().siblings("td:nth(5)").find("input").prop("checked", false);
+    var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
 
     if ($(obj).parent().parent().children("td:nth(6)").find("input").prop("checked")) {
         var cropName = $(obj).parent().parent().children("td:nth(0)").text().trim();
@@ -1977,7 +1978,7 @@ function proposedAndFirmSelection(obj) {
                 '<td class="tblft1 hiddenTD"></td>' +
                 '<td class="tblft1">' + cropName + ' (' + contractIdentifier + ')</td>' +
                 '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreage" disabled="disabled"></td>' +
-                '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreagePercentage" disabled="disabled"></td>' +
+                '<td class="success croplimit"><input type="text" value="' + Math.ceil((acreValue / totalLand) * 100) + '" class="minCropAcreagePercentage" disabled="disabled"></td>' +
                 '<td class="success croplimit">NA</td>' +
                 '<td class="success croplimit">NA</td>' +
                 '</tr>';
@@ -1986,7 +1987,7 @@ function proposedAndFirmSelection(obj) {
                 '<td class="tblft1"></td>' +
                 '<td class="tblft1">' + cropName + ' (' + contractIdentifier + ')</td>' +
                 '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreage" disabled="disabled"></td>' +
-                '<td class="success croplimit"><input type="text" value="' + acreValue + '" class="minCropAcreage" disabled="disabled"></td>' +
+                '<td class="success croplimit"><input type="text" value="' + Math.ceil((acreValue / totalLand) * 100) + '" class="minCropAcreage" disabled="disabled"></td>' +
                 '<td class="success croplimit">NA</td>' +
                 '<td class="success croplimit">NA</td>' +
                 '</tr>';
@@ -3380,4 +3381,32 @@ function calculatePercentageOfMaxAcreage(obj){
         var val = Math.ceil((totalLand * maxAcreagePer) / 100);
         currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);
     }
+}
+function addPopupNegativeValue(id) {
+    var idVal = $(id).attr("id");
+    var colNo = idVal.split('__');
+    var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
+    console.log('#' + cropCol);
+    var val = $('#' + cropCol).text();
+
+    var t = $.trim("" + $(id).val().replace('$', ''));
+    if (t < 0) {
+        $(id).css("border", "1px solid red");
+        popupOnNegativeValue(val, t)
+    } else {
+        $(id).css("border", "1px solid #b7b7b7");
+        $("#negative-message-pop-up").hide();
+    }
+}
+    function popupOnNegativeValue(val,t) {
+
+        // var cropName = $(obj).parent().find("td:eq(0)").text();
+        // var potentialProfit = $(obj).find("input").val();
+
+        if(t < 0 ){
+            $(".cropName").html(val);
+            $("#negativeValue").html(t);
+            document.getElementById('negative-message-pop-up').style.display = "block";
+        }
+
 }
