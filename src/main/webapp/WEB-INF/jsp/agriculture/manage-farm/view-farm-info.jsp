@@ -2118,11 +2118,11 @@ start -->
                                                         <td class="success infotext tittle-uppercase"
                                                             id="forward_sales_information_tbody_row_uomValue__${forwardSalesRowCount}">${cropListForforwardSale.cropUOM}</td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
-                                                        <td class="success croplimit" onmouseover="popupOnNegativeValue(this)">
-                                                            <input type="text" class="border-danger"
+                                                        <td class="success croplimit">
+                                                            <input type="text"
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
-                                                                   <%--onkeypress="return isValidNumberValue(event)"--%>
+                                                                   onkeypress="return isValidNumberValue(event)"
                                                                    onchange="addCommaSignWithDollar(this);addPopupNegativeValue(this)"></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
@@ -2355,7 +2355,7 @@ Commented as per client requirement
                                                                id="group_crop_check_acres__${groupCount}"
                                                                name="groupNameSelection[]">
                                                     </td>
-                                           <%--onkeypress="return isValidNumberValue(event)"--%>         <td id="group_table_group_name_${groupCount}"
+                                                    <td id="group_table_group_name_${groupCount}"
                                                         class="tblft1">${groupList.cropsGroupName}</td>
                                                     <td class="success croplimit">
                                                         <input type="text" id="group_crop_minimum_acres__${groupCount}"
@@ -2448,7 +2448,7 @@ Commented as per client requirement
               <td class="infotext"></td>
               <td class="infotext"></td>
         </tr>
-        <tr class="tblgrn text-center">
+        <tr class="tblgrn text-cenaddPopupNegativeValueter">
             <td class="tblft1">Crop3</td>
              <td class="success infotext"><input type="checkbox"></td>
              <td class="success infotext"><input type="text"></td>
@@ -2722,15 +2722,15 @@ Commented as per client requirement
     </div>
 </div>
 <div style="display: none;" id="negative-message-pop-up">
-    <div id="popupNegativePrice">
+    <div id="popupContact">
         <!-- Planning Form -->
         <div class="popup_section">
-            <img src="images/cross.png" onclick="hidePotentialProfitCriticalMessagePopup()" id="close">
+            <img src="<c:url value="/images/cross.png"/>" onclick="$('#negative-message-pop-up').hide(); return false;" id="close">
             <div class="popupform messagepopup potencial_profit_popup">
                 <div class="increase_profit">
                     <p>
-                        <span class="cropNameForPopup"></span> forward sales of (<span id="potentialProfitForPopup"></span>) is less than zero.<br>
-                        <span class="cropNameForPopup"></span> forward sales will not be included in the strategy since it has a negative profit per acre unless you check the box marked is firm</span>.
+                        <span class="cropName"></span> forward sales of (<span id="negativeValue"></span>) is less than zero.<br>
+                        <span class="cropName"></span> forward sales will not be included in the strategy since it has a negative profit per acre unless you check the box marked is firm</span>.
                     </p>
                 </div>
                 <!-- <div class="decrease_profit">

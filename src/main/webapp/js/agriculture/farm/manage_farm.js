@@ -3383,13 +3383,30 @@ function calculatePercentageOfMaxAcreage(obj){
     }
 }
 function addPopupNegativeValue(id) {
-    var temp=$.trim("" + $(id).val().replace('$',''));
-    console.log("-ve"+temp);
-    if(temp< 0 )
-    {
-        $(id).css("border-Color", "red");
-        $("#negative-message-pop-up").show();
-    }
+    var idVal = $(id).attr("id");
+    var colNo = idVal.split('__');
+    var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
+    console.log('#' + cropCol);
+    var val = $('#' + cropCol).text();
 
+    var t = $.trim("" + $(id).val().replace('$', ''));
+    if (t < 0) {
+        $(id).css("border", "1px solid red");
+        popupOnNegativeValue(val, t)
+    } else {
+        $(id).css("border", "1px solid #b7b7b7");
+        $("#negative-message-pop-up").hide();
+    }
+}
+    function popupOnNegativeValue(val,t) {
+
+        // var cropName = $(obj).parent().find("td:eq(0)").text();
+        // var potentialProfit = $(obj).find("input").val();
+
+        if(t < 0 ){
+            $(".cropName").html(val);
+            $("#negativeValue").html(t);
+            document.getElementById('negative-message-pop-up').style.display = "block";
+        }
 
 }

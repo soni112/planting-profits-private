@@ -331,14 +331,4 @@ function hideCreateNewScenario(){
 	document.getElementById('createNewScenario').style.display = "none";
 }
 
-function popupOnNegativeValue(obj) {
 
-    var cropName = $(obj).parent().find("td:eq(0)").text();
-    var potentialProfit = $(obj).find("input").val();
-
-    if(potentialProfit.indexOf("-") != -1){
-        $(".cropNameForPopup").html(cropName);
-        $("#potentialProfitForPopup").html(potentialProfit);
-        document.getElementById('critical-message-pop-up').style.display = "block";
-    }
-}
