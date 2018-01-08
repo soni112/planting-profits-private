@@ -439,6 +439,7 @@ function validateCropsInformationDetails() {
     var validationFlag = true;
     $("#cropInformationDetailFirstTable tbody tr").each(function () {
         validationFlag = true;
+
         if ($(this).children("td:nth(2)").find("input").val() == "") {
             customAlerts('Please enter the estimated yield for "' + $(this).children("td:nth(0)").text() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
@@ -457,6 +458,10 @@ function validateCropsInformationDetails() {
             validationFlag = false;
         } else if (Number($(this).children("td:nth(5)").find("input").val()) == "") {
             customAlerts('Please enter the estimated price for  "' + $(this).children("td:nth(0)").text() + '"', type_error, time);
+            addErrorClassOnObject($(this).children("td:nth(5)").find("input"));
+            validationFlag = false;
+        } else if ($.trim("" + $(this).children("td:nth(5)").find("input").val().replace('$','')) == "0.000") {
+            customAlerts('Expected price for "' + $(this).children("td:nth(0)").text() + '" must be greater than zero', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(5)").find("input"));
             validationFlag = false;
         } else if (Number($(this).children("td:nth(6)").find("input").val()) != "" && Number(removeAllCommasAndDollar($(this).children("td:nth(5)").find("input").val())) >= Number(removeAllCommasAndDollar($(this).children("td:nth(6)").find("input").val()))) {
