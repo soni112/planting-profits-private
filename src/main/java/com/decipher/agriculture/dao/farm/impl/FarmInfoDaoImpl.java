@@ -534,17 +534,17 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                 CropUnitOfMeasure cropUnitOfMeasure = cropType.getCropUnitOfMeasure();
                                 cropUnitOfMeasure.setCropType(cropType);
                                 cropUnitOfMeasure.setUnitOfMeasure(array[1]);
-                                InternalCropYieldInfo cropYieldInfo = cropType.getCropYieldInfo();
+                                InternalCropYieldInfo cropYieldInfo = cropType.getCropYieldInfo() == null ? new InternalCropYieldInfo() : cropType.getCropYieldInfo();;
                                 cropYieldInfo.setCropType(cropType);
                                 cropYieldInfo.setIntExpCropYield((array[2].equals("")) ? "" : array[2]);
                                 cropYieldInfo.setIntMinCropYield((array[3].equals("")) ? "" : array[3]);
                                 cropYieldInfo.setIntMaxCropYield((array[4].equals("")) ? "" : array[4]);
                                 cropYieldInfo.setCropType(cropType);
-                                InternalCropPricesInfo cropPricesInfo = cropType.getCropPricesInfo();
+                                InternalCropPricesInfo cropPricesInfo = cropType.getCropPricesInfo() == null ? new InternalCropPricesInfo() : cropType.getCropPricesInfo();
                                 cropPricesInfo.setIntExpCropPrice(new BigDecimal((array[5].equals("")) ? "0" : array[5]));
                                 cropPricesInfo.setIntMinCropPrice(new BigDecimal((array[6].equals("")) ? "0" : array[6]));
                                 cropPricesInfo.setIntMaxCropPrice(new BigDecimal((array[7].equals("")) ? "0" : array[7]));
-                                InternalVariableCropProductionCosts costsCropProductionCosts = cropType.getCostsCropProductionCosts();
+                                InternalVariableCropProductionCosts costsCropProductionCosts = cropType.getCostsCropProductionCosts() == null ? new InternalVariableCropProductionCosts() : cropType.getCostsCropProductionCosts();
                                 costsCropProductionCosts.setCropType(cropType);
                                 costsCropProductionCosts.setCalculatedVariableProductionCost(new BigDecimal((array[8].equals("")) ? "0" : array[8]));
                             }
@@ -650,6 +650,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                 String[] array = str.split("#-#-#");
                                 if (array[0].equals(cropType.getCropName())) {
                                     SummaryCropInfo cropInfo = cropType.getCropInfo();
+                                    if (cropInfo == null){
+                                        cropInfo = new SummaryCropInfo();
+                                    }
                                     cropInfo.setIrrigated(array[1]);
                                     cropInfo.setConservation_Crop(array[2]);
                                     cropInfo.setHiRiskCrop(array[3]);
@@ -663,6 +666,9 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                 String[] array = str.split("#-#-#");
                                 if (array[0].equals(cropType.getCropName())) {
                                     OptionalCropPlantingDates cropPlantingDates = cropType.getCropPlantingDates();
+                                    if (cropPlantingDates == null){
+                                        cropPlantingDates = new OptionalCropPlantingDates();
+                                    }
                                     try {
                                         cropPlantingDates.setPreferredPlantingDate(FORMATTER.parse(array[1]));
                                         cropPlantingDates.setEarlyPlantingDate(FORMATTER.parse(array[2]));

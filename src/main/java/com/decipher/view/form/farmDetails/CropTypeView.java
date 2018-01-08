@@ -38,11 +38,11 @@ public class CropTypeView implements Cloneable {
     private String intMinCropYield;
     private String intMaxCropYield;
 
-    private BigDecimal intExpCropPrice;
-    private BigDecimal intMinCropPrice;
-    private BigDecimal intMaxCropPrice;
-    private BigDecimal summaryVariableProductionCost;
-    private BigDecimal calculatedVariableProductionCost;
+    private BigDecimal intExpCropPrice = BigDecimal.ZERO;
+    private BigDecimal intMinCropPrice = BigDecimal.ZERO;
+    private BigDecimal intMaxCropPrice = BigDecimal.ZERO;
+    private BigDecimal summaryVariableProductionCost = BigDecimal.ZERO;
+    private BigDecimal calculatedVariableProductionCost = BigDecimal.ZERO;
 
     private String hiRiskCrop;
     private String conservation_Crop;
@@ -79,7 +79,7 @@ public class CropTypeView implements Cloneable {
     private boolean montyCarloStatus;
     /**
      * @changed - Abhishek
-     * @date - 09-02-2016
+     * @date - 09-02-2011026
      * @desc - @JsonIgnore for removing org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Infinite recursion (StackOverflowError)
      */
     @JsonIgnore
@@ -120,6 +120,12 @@ public class CropTypeView implements Cloneable {
                 this.intMinCropYield = cropYieldInfo.getIntMinCropYield();
                 this.intMaxCropYield = cropYieldInfo.getIntMaxCropYield();
             }
+            else{
+                this.intExpCropYield = "0";
+                this.intMinCropYield = "0";
+                this.intMaxCropYield = "0";
+            }
+
             // PlantingProfitLogger.info("intExpCropYield"+intExpCropYield);
             InternalCropPricesInfo cropPricesInfo = cropType.getCropPricesInfo();
             if (cropPricesInfo != null) {
@@ -127,11 +133,20 @@ public class CropTypeView implements Cloneable {
                 this.intMinCropPrice = cropPricesInfo.getIntMinCropPrice();
                 this.intMaxCropPrice = cropPricesInfo.getIntMaxCropPrice();
             }
+            else{
+                this.intExpCropPrice = BigDecimal.ZERO;
+                this.intMinCropPrice = BigDecimal.ZERO;
+                this.intMaxCropPrice = BigDecimal.ZERO;
+            }
             //  Crop variable production cost
             InternalVariableCropProductionCosts costsCropProductionCosts = cropType.getCostsCropProductionCosts();
             if (costsCropProductionCosts != null) {
                 this.calculatedVariableProductionCost = costsCropProductionCosts.getCalculatedVariableProductionCost();
                 this.summaryVariableProductionCost = costsCropProductionCosts.getSummaryVariableProductionCost();
+            }
+            else{
+                this.calculatedVariableProductionCost = BigDecimal.ZERO;
+                this.summaryVariableProductionCost = BigDecimal.ZERO;
             }
 
             SummaryCropInfo cropInfo = cropType.getCropInfo();
@@ -462,8 +477,14 @@ public class CropTypeView implements Cloneable {
         if (montyCarloStatus) {
             Double montyCarloAnalysisProfit = getMontyCarloAnalysisProfit();
             profit = DECIMALFORMATTER.format(montyCarloAnalysisProfit);
-        } else {
+        } else if(calculatedVariableProductionCost != null && intExpCropYield != null && intExpCropPrice != null){
+            if(calculatedVariableProductionCost == null) {
+                calculatedVariableProductionCost = BigDecimal.ZERO;
+            }
             Float variableProductionCostFloat = Float.parseFloat(calculatedVariableProductionCost.toString());
+            if(intExpCropPrice == null) {
+                intExpCropPrice = BigDecimal.ZERO;
+            }
             Float yield = Float.parseFloat(intExpCropYield);
             Float price = Float.parseFloat(intExpCropPrice.toString());
             Float profitFloat = (yield * price) - variableProductionCostFloat;
@@ -486,8 +507,17 @@ public class CropTypeView implements Cloneable {
         if (montyCarloStatus) {
             profit = getMontyCarloAnalysisProfit();
 
-        } else {
+        } else if(calculatedVariableProductionCost != null && intExpCropYield != null && intExpCropPrice != null) {
+            if(calculatedVariableProductionCost == null) {
+                calculatedVariableProductionCost = BigDecimal.ZERO;
+            }
             double variableProductionCostFloat = Double.parseDouble(calculatedVariableProductionCost.toString());
+            if(intExpCropPrice == null) {
+                intExpCropPrice = BigDecimal.ZERO;
+            }
+            if(intExpCropYield == null) {
+                intExpCropYield = "0";
+            }
             double yield = Double.parseDouble(intExpCropYield);
             double price = Double.parseDouble(intExpCropPrice.toString());
             profit = (yield * price) - variableProductionCostFloat;

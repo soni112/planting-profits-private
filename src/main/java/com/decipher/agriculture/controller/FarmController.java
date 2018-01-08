@@ -217,7 +217,7 @@ public class FarmController {
         farmOutputCalculationService.calculateFarmOutputStatistics(farmInfo);
         PlantingProfitLogger.warn("************************************Output Calculation Scheduler Start************************************");
         try {
-            AgricultureScheduler.startQuartsSchedulerForFarmUpdate(farm, accountService.getCurrentUser());
+            AgricultureScheduler.startQuartsSchedulerForFarmUpdate(farmService.getFarmById(farm.getFarmId()), accountService.getCurrentUser());
         } catch (Exception e) {
             PlantingProfitLogger.error(e);
         }
