@@ -460,7 +460,7 @@ function validateCropsInformationDetails() {
             customAlerts('Please enter the estimated price for  "' + $(this).children("td:nth(0)").text() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(5)").find("input"));
             validationFlag = false;
-        } else if ($.trim("" + $(this).children("td:nth(5)").find("input").val().replace('$','')) == "0.000") {
+        } else if (removeAllCommasAndDollar($(this).children("td:nth(5)").find("input").val())== 0.00) {
             customAlerts('Expected price for "' + $(this).children("td:nth(0)").text() + '" must be greater than zero', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(5)").find("input"));
             validationFlag = false;
@@ -1075,7 +1075,7 @@ function addCropInAllTables(cropName) {
                     '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeExpectedYieldValue(this); calculateProfitByCrop(this)"></td>' +
                     '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeMaximumYieldValue(this); calculateProfitByCrop(this)"></td>' +
                     '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeMinimumYieldValue(this); calculateProfitByCrop(this)"></td>' +
-                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this);calculateProfitByCrop(this)"></td>' +
+                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this);calculateProfitByCrop(this);addPopupNegativeValue(this)"></td>' +
                     '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this); calculateProfitByCrop(this)"></td>' +
                     '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this); calculateProfitByCrop(this)"></td>' +
                     '<td class="success infotext"><input type="text" onkeypress="return isValidNumberValue(event)" placeholder="$0" onchange="addCommaSignWithDollar(this);variableProductionCostChange(this);calculateProfitByCrop(this)"> <br>	<span class="pull-right"><a onclick="showOptionalCropInformationDiv(\'' + cropName + '\')">Details</a></span></td>' +
@@ -3388,19 +3388,18 @@ function calculatePercentageOfMaxAcreage(obj){
     }
 }
 function addPopupNegativeValue(id) {
-    var idVal = $(id).attr("id");
-    var colNo = idVal.split('__');
-    var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
-    console.log('#' + cropCol);
-    var val = $('#' + cropCol).text();
+    // var idVal = removeAllCommasAndDollar($(id).val());
+    // var colNo = idVal.split('__');
+    // var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
+    // console.log('#' + cropCol);
+    // var val = $('#' + cropCol).text();
 
-    var t = $.trim("" + $(id).val().replace('$', ''));
-    if (t < 0) {
+    var val = $.trim(removeAllCommasAndDollar($(id).val()));
+    if (val <= 0) {
         $(id).css("border", "1px solid red");
-        popupOnNegativeValue(val, t)
+        customAlerts('Expected price cannot be 0 or less than 0', 'error', 0);
     } else {
         $(id).css("border", "1px solid #b7b7b7");
-        $("#negative-message-pop-up").hide();
     }
 }
     function popupOnNegativeValue(val,t) {
@@ -3411,7 +3410,7 @@ function addPopupNegativeValue(id) {
         if(t < 0 ){
             $(".cropName").html(val);
             $("#negativeValue").html(t);
-            document.getElementById('negative-message-pop-up').style.display = "block";
+            $('#negative-message-pop-up').show();
         }
 
 }
