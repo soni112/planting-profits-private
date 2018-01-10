@@ -3788,7 +3788,7 @@ sup {
 }
 .tbl-fixd-hdr tbody > tr > td{
     width: 14.28%;
-    float: left;
+    /*float: left;*/
     height: 38px;
 }
 .tbl-fixd-hdr tfoot{
