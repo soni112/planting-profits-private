@@ -1562,7 +1562,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
             hashMapForAcre.put(entry.getKey(), acreString);
             hashMapForProfit.put(entry.getKey(), profitString);
             hashMapForProfitIndex.put(entry.getKey(), "" + AgricultureStandardUtils.doubleWithOneDecimal(profitIndexString).toString() + "%");
-            hashMapForRating.put(entry.getKey(), (profitIndexString >= 1) ? "Green" : (profitIndexString < 1 && profitIndexString >= 0.6) ? "Yellow" : (profitIndexString < 0.6 && profitIndexString > 0) ? "Red" : "Grey");
+            hashMapForRating.put(entry.getKey(), (profitIndexString >= 1) ? "Green" : (profitIndexString < 1 && profitIndexString >= 0.6) ? "Yellow" : (profitIndexString < 0.6 /*&& profitIndexString > 0*/) ? "Red" : "Grey");
         }
 		/*
 		 * Total Acreage would be by Used Acres
