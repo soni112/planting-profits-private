@@ -3153,7 +3153,7 @@ function addStopButtonOnLoadingImageToStopAjax(ajaxRequest) {
     var delay = 30000;
     setTimeout(function () {
         ajaxRequestToStop = ajaxRequest;
-        var html = '<button onclick="stopTheStrategy()">Stop the strategy</button>';
+        var html = '<button onclick="stopTheStrategy()">Stop the strategy building process...</button>';
         $("#stopAjaxRequestDiv").html(html);
     }, delay);
 }
