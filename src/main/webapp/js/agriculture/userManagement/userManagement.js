@@ -428,7 +428,7 @@ function saveUser(){
                         window.location.reload();
                     }, 2000);
                 } else if (status == 'Already exists') {
-                    customAlerts("Email id is already registered, Choose another one!", "error", 0);
+                    customAlerts("Email id is already registered. <br> Please choose another email.", "error", 0);
                 }
             },
             error: function (jqXHR, textStatus, errorThrow) {
