@@ -226,34 +226,28 @@
 
 
 								<div class="ques">
-									<div class="table-responsive" <%--style="max-height: 260px;"--%>>
-										<table id="Plan_by_Fields_table"
-											class="table table-striped tbl-bordr  tblbrdr tbl-fixd-hdr"
-											cellspacing="0" width="100%">
-											<thead class="tbl-header-scrolll-width">
+									<div class="table-responsive">
+										<table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr" cellspacing="0" width="100%">
+											<thead id="Plan_by_Fields_thead" style="display: table-header-group;">
 												<tr class="tblhd text-center add-fieldi">
 													<td>Modify</td>
 													<td class="tblbrdr text-center add-fieldi">Name</td>
-													<td class="text-center add-fieldi">Size<br>(In Acres)</td>
-													<td class="text-center">Last Crop <a
-														id="Plan_by_Fields_Last_Crop"
-														class="help_Infromation_PopUp" href="#"><span
-															class="add-fieldi"><img src="images/i-img.png"></a></span></td>
-													<td class="text-center">Fallow <a
-														id="Plan_by_Fields_Fallow" class="help_Infromation_PopUp"
-														href="#"><span class="add-fieldi"><img
-																src="images/i-img.png"></a></span></td>
-													<td class="text-center">Divide <a
-														id="Plan_by_Fields_Divide" class="help_Infromation_PopUp"
-														href="#"><span class="add-fieldi"><img
-																src="images/i-img.png"></a></span></td>
-													<td class="text-center">Irrigate <a
-														id="Plan_by_Fields_Irrigate"
-														class="help_Infromation_PopUp" href="#"><span
-															class="add-fieldi"><img src="images/i-img.png"></a></span></td>
+													<td class="text-center add-fieldi">Size (In Acres)</td>
+													<td class="text-center">Last Crop
+														<a id="Plan_by_Fields_Last_Crop" class="help_Infromation_PopUp" href="#"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"/></span></a>
+													</td>
+													<td class="text-center">Fallow
+														<a id="Plan_by_Fields_Fallow" class="help_Infromation_PopUp" href="#"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"/></span></a>
+													</td>
+													<td class="text-center">Divide
+														<a id="Plan_by_Fields_Divide" class="help_Infromation_PopUp" href="#"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"/></span></a>
+													</td>
+													<td class="text-center">Irrigate
+														<a id="Plan_by_Fields_Irrigate" class="help_Infromation_PopUp" href="#"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"/></span></a>
+													</td>
 												</tr>
 											</thead>
-											<tbody></tbody>
+											<tbody id="plan-by-field-tbody" style="display: table-row-group;"></tbody>
 											<tfoot>
 												<tr id="total-field-last-row" class="tblft text-center">
 													<td class="tblft1">Total acres</td>

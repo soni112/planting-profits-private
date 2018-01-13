@@ -160,7 +160,7 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
                     farmOutputDetailsView.setUsedCapitalPercentage(AgricultureStandardUtils.doubleToInteger((farmOutputDetailsView.getProfitDouble() * 100) / totalProfit));
                     farmOutputDetailsView.setProfitIndex(AgricultureStandardUtils.doubleWithOneDecimal(((farmOutputDetailsView.getProfitDouble() * 100) / totalProfit) / ((farmOutputDetailsView.getUsedAcresAsDouble() * 100) / totalUsedAcre)));
                     farmOutputDetailsView.setRatio(AgricultureStandardUtils.doubleWithOneDecimal(farmOutputDetailsView.getProfitDouble() / farmOutputDetailsView.getUsedAcresAsDouble()));
-                    farmOutputDetailsView.setRating((farmOutputDetailsView.getProfitIndex() >= 1) ? "Green" : (farmOutputDetailsView.getProfitIndex() < 1 && farmOutputDetailsView.getProfitIndex() >= 0.6) ? "Yellow" : (farmOutputDetailsView.getProfitIndex() < 0.6 && farmOutputDetailsView.getProfitIndex() > 0) ? "Red" : "Grey");
+                    farmOutputDetailsView.setRating((farmOutputDetailsView.getProfitIndex() >= 1) ? "Green" : (farmOutputDetailsView.getProfitIndex() < 1 && farmOutputDetailsView.getProfitIndex() >= 0.6) ? "Yellow" : (farmOutputDetailsView.getProfitIndex() < 0.6 /*&& farmOutputDetailsView.getProfitIndex() > 0*/) ? "Red" : "Grey");
                 }
 //            }
         }
@@ -198,7 +198,7 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
                     farmOutputDetailsForFieldView.setUsedCapitalPercentage(AgricultureStandardUtils.doubleToInteger((farmOutputDetailsForFieldView.getProfitAsDouble() * 100) / totalProfit));
                     farmOutputDetailsForFieldView.setProfitIndex(AgricultureStandardUtils.doubleWithOneDecimal(((farmOutputDetailsForFieldView.getProfitDouble() * 100) / totalProfit) / ((farmOutputDetailsForFieldView.getUsedAcresAsDouble() * 100) / totalUsedAcre)));
                     farmOutputDetailsForFieldView.setRatio(AgricultureStandardUtils.doubleWithOneDecimal(farmOutputDetailsForFieldView.getProfitDouble() / farmOutputDetailsForFieldView.getUsedAcresAsDouble()));
-                    farmOutputDetailsForFieldView.setRating((farmOutputDetailsForFieldView.getProfitIndex() >= 1) ? "Green" : (farmOutputDetailsForFieldView.getProfitIndex() < 1 && farmOutputDetailsForFieldView.getProfitIndex() >= 0.6) ? "Yellow" : (farmOutputDetailsForFieldView.getProfitIndex() < 0.6 && farmOutputDetailsForFieldView.getProfitIndex() > 0.0) ? "Red" : "Grey");
+                    farmOutputDetailsForFieldView.setRating((farmOutputDetailsForFieldView.getProfitIndex() >= 1) ? "Green" : (farmOutputDetailsForFieldView.getProfitIndex() < 1 && farmOutputDetailsForFieldView.getProfitIndex() >= 0.6) ? "Yellow" : (farmOutputDetailsForFieldView.getProfitIndex() < 0.6 /*&& farmOutputDetailsForFieldView.getProfitIndex() > 0.0*/) ? "Red" : "Grey");
                 }
 //            }
         }

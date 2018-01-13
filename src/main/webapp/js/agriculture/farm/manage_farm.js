@@ -345,7 +345,7 @@ function onStrategyChange() {
         } else if (oldStrategy == "acres" && strategy == "fields") {
             flagSwitchedStrategyFieldsToAcres = false;
             flagSwitchedStrategyAcresToFields = true;
-            $("#land_acres_planningbyfield").text("Land entered when planning by acreage : " + $("#acres_value").val() + " acre");
+            $("#land_acres_planningbyfield").text("Land entered when planning by acres : " + $("#acres_value").val() + " acre");
             $("#total_land_available").text($("#Plan_by_Fields_table tfoot tr:nth(0) td:nth(1)").text().trim());
             totalAcresWhenSwitchingStrategyAcresToFields = Number(removeAllCommas($("#acres_value").val()));
         }
@@ -3153,18 +3153,19 @@ function addStopButtonOnLoadingImageToStopAjax(ajaxRequest) {
     var delay = 30000;
     setTimeout(function () {
         ajaxRequestToStop = ajaxRequest;
-        var html = '<button onclick="stopTheStrategy()">Stop the strategy</button>';
+        var html = '<button onclick="stopTheStrategy()">Stop the strategy building process...</button>';
         $("#stopAjaxRequestDiv").html(html);
     }, delay);
 }
 
 var ajaxRequestToStop = null;
 function stopTheStrategy() {
-    changeButtonLabelForAlertifyConfirm('Ok', 'Continue')
+    changeButtonLabelForAlertifyConfirm('Ok', 'Continue');
     alertify.confirm('Stop the Strategy building process?', function (e) {
         if (e) {
             ajaxRequestToStop.abort();
             hideLoadingImageForStrategy();
+            closeStrategyOrBaselinePopup();
             $("#stopAjaxRequestDiv").html('');
         }
     });
