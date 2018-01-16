@@ -442,11 +442,11 @@
                                             <c:forEach var="fieldList" items="${model.fieldInfoList}">
                                                 <!--get crop list from fieldInfoList View object -->
                                                 <tr class="success tblgrn text-center">
-                                                    <td><input id="row-field-manage_checkbox__${rowCount}"
+                                                    <td class="pull-left"><input id="row-field-manage_checkbox__${rowCount}"
                                                                type="checkbox" class="fields"></td>
-                                                    <td id="row-field-name__${rowCount}">${fieldList.fieldName}</td>
-                                                    <td id="row-field-size__${rowCount}">${fieldList.fieldSizeStr}</td>
-                                                    <td><select onchange="lastCropSelected(this)"
+                                                    <td id="row-field-name__${rowCount}" class="pull-left">${fieldList.fieldName}</td>
+                                                    <td id="row-field-size__${rowCount}" class="pull-left">${fieldList.fieldSizeStr}</td>
+                                                    <td class="pull-left"><select onchange="lastCropSelected(this)"
                                                                 id="selected_last_crop____${rowCount}">
                                                         <option value="No Crop">No Crop</option>
                                                         <c:forEach var="cropList" items="${model.cropTypeView}">
@@ -456,14 +456,14 @@
                                                             </c:if>
                                                         </c:forEach>
                                                     </select></td>
-                                                    <td><input name="field-follow__${rowCount}"
+                                                    <td class="pull-left"><input name="field-follow__${rowCount}"
                                                                id="field-follow__${rowCount}" type="checkbox"
                                                                onchange="fallowEnabledOrDisabled(this)" value="true"
                                                         ${fieldList.fallow ?'checked':''}></td>
-                                                    <td><input name="field-divide__${rowCount}"
+                                                    <td class="pull-left"><input name="field-divide__${rowCount}"
                                                                id="field-divide__${rowCount}" type="checkbox"
                                                                value="true" ${fieldList.divide ?'checked':''}></td>
-                                                    <td><input name="field-irrigate__${rowCount}"
+                                                    <td class="pull-left"><input name="field-irrigate__${rowCount}"
                                                                id="field-irrigate__${rowCount}" type="checkbox"
                                                                value="true" ${fieldList.irrigate ?'checked':''}></td>
                                                     <c:set var="totalSize"
