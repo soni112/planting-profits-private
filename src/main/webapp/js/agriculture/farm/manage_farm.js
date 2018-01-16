@@ -345,7 +345,7 @@ function onStrategyChange() {
         } else if (oldStrategy == "acres" && strategy == "fields") {
             flagSwitchedStrategyFieldsToAcres = false;
             flagSwitchedStrategyAcresToFields = true;
-            $("#land_acres_planningbyfield").text("Land entered when planning by acres : " + $("#acres_value").val() + " acre");
+            $("#land_acres_planningbyfield").text("Land entered when planning by acres : " + $("#acres_value").val() + " acres");
             $("#total_land_available").text($("#Plan_by_Fields_table tfoot tr:nth(0) td:nth(1)").text().trim());
             totalAcresWhenSwitchingStrategyAcresToFields = Number(removeAllCommas($("#acres_value").val()));
         }
