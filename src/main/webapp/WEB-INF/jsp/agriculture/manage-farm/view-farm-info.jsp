@@ -430,11 +430,11 @@
                                             <c:forEach var="fieldList" items="${model.fieldInfoList}">
                                                 <!--get crop list from fieldInfoList View object -->
                                                 <tr class="success tblgrn text-center">
-                                                    <td><input id="row-field-manage_checkbox__${rowCount}"
+                                                    <td class="pull-left"><input id="row-field-manage_checkbox__${rowCount}"
                                                                type="checkbox" class="fields"></td>
-                                                    <td id="row-field-name__${rowCount}">${fieldList.fieldName}</td>
-                                                    <td id="row-field-size__${rowCount}">${fieldList.fieldSizeStr}</td>
-                                                    <td><select onchange="lastCropSelected(this)"
+                                                    <td id="row-field-name__${rowCount}" class="pull-left">${fieldList.fieldName}</td>
+                                                    <td id="row-field-size__${rowCount}" class="pull-left">${fieldList.fieldSizeStr}</td>
+                                                    <td class="pull-left"><select onchange="lastCropSelected(this)"
                                                                 id="selected_last_crop____${rowCount}">
                                                         <option value="No Crop">No Crop</option>
                                                         <c:forEach var="cropList" items="${model.cropTypeView}">
@@ -444,14 +444,14 @@
                                                             </c:if>
                                                         </c:forEach>
                                                     </select></td>
-                                                    <td><input name="field-follow__${rowCount}"
+                                                    <td class="pull-left"><input name="field-follow__${rowCount}"
                                                                id="field-follow__${rowCount}" type="checkbox"
                                                                onchange="fallowEnabledOrDisabled(this)" value="true"
                                                         ${fieldList.fallow ?'checked':''}></td>
-                                                    <td><input name="field-divide__${rowCount}"
+                                                    <td class="pull-left"><input name="field-divide__${rowCount}"
                                                                id="field-divide__${rowCount}" type="checkbox"
                                                                value="true" ${fieldList.divide ?'checked':''}></td>
-                                                    <td><input name="field-irrigate__${rowCount}"
+                                                    <td class="pull-left"><input name="field-irrigate__${rowCount}"
                                                                id="field-irrigate__${rowCount}" type="checkbox"
                                                                value="true" ${fieldList.irrigate ?'checked':''}></td>
                                                     <c:set var="totalSize"
@@ -2106,7 +2106,8 @@ start -->
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
                                                                    onkeypress="return isValidNumberValue(event)"
-                                                                   onchange="addCommaSignWithDollar(this);addPopupNegativeValue(this)"></td>
+                                                                   onmouseover="addForwardNegativePricePopup(this)"
+                                                                   onchange="addCommaSignWithDollar(this)"></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
                                                             <input type="text"
@@ -2712,8 +2713,7 @@ Commented as per client requirement
             <div class="popupform messagepopup potencial_profit_popup">
                 <div class="increase_profit">
                     <p>
-                        <span class="cropName"></span> forward sales of (<span id="negativeValue"></span>) is less than zero.<br>
-                        <span class="cropName"></span> forward sales will not be included in the strategy since it has a negative profit per acre unless you check the box marked is firm</span>.
+                        Forward sales of <span class="cropName"></span> is less than zero $(<span id="negativeValue"></span>).<br>
                     </p>
                 </div>
                 <!-- <div class="decrease_profit">
