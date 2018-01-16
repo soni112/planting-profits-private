@@ -2123,7 +2123,8 @@ start -->
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
                                                                    onkeypress="return isValidNumberValue(event)"
-                                                                   onchange="addCommaSignWithDollar(this);addPopupNegativeValue(this)"></td>
+                                                                   onmouseover="addForwardNegativePricePopup(this)"
+                                                                   onchange="addCommaSignWithDollar(this)"></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
                                                             <input type="text"
@@ -2729,8 +2730,7 @@ Commented as per client requirement
             <div class="popupform messagepopup potencial_profit_popup">
                 <div class="increase_profit">
                     <p>
-                        <span class="cropName"></span> forward sales of (<span id="negativeValue"></span>) is less than zero.<br>
-                        <span class="cropName"></span> forward sales will not be included in the strategy since it has a negative profit per acre unless you check the box marked is firm</span>.
+                        Forward sales of <span class="cropName"></span> is less than zero $(<span id="negativeValue"></span>).<br>
                     </p>
                 </div>
                 <!-- <div class="decrease_profit">

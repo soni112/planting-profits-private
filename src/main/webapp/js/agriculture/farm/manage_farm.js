@@ -1152,7 +1152,7 @@ function addCropInAllTables(cropName) {
     var rowHTMLForCropForwardSales = '<tr class="tblbclgrnd text-center">' +
         '<td class="tblft1">' + cropName + '</td>' +
         '<td class="success infotext tittle-uppercase">' + defaultUOMForCrop + '</td>' +
-        '<td class="success croplimit"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this)"></td>' +
+        '<td class="success croplimit" onmouseover="addForwardNegativePricePopup(this)"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this)"></td>' +
         '<td class="success croplimit"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this);acerageCalForwardSale(this)"></td>' +
         '<td class="success croplimit"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this);quantityCalForwardSale(this)"></td>' +
         '<td class="success croplimit"><input type="checkbox" onchange="proposedAndFirmSelection(this)"></td>' +
@@ -3402,14 +3402,29 @@ function addPopupNegativeValue(id) {
         $(id).css("border", "1px solid #b7b7b7");
     }
 }
-    function popupOnNegativeValue(val,t) {
+function addForwardNegativePricePopup(id) {
+    var val = $.trim(removeAllCommasAndDollar($(id).val()));
+    var idVal = $(id).attr("id");
+    var colNo = idVal.split('__');
+    var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
+    var cropName = $('#' + cropCol).text();
+
+    if (val < 0){
+        $(id).css("border", "1px solid red");
+        popupOnNegativeValue(cropName,val);
+    }
+    else{
+        $(id).css("border", "1px solid #b7b7b7");
+    }
+}
+    function popupOnNegativeValue(cropName,value) {
 
         // var cropName = $(obj).parent().find("td:eq(0)").text();
         // var potentialProfit = $(obj).find("input").val();
 
-        if(t < 0 ){
-            $(".cropName").html(val);
-            $("#negativeValue").html(t);
+        if(value < 0 ){
+            $(".cropName").html(cropName);
+            $("#negativeValue").html(value);
             $('#negative-message-pop-up').show();
         }
 
