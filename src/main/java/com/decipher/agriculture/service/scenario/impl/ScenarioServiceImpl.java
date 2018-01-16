@@ -434,7 +434,7 @@ public class ScenarioServiceImpl implements ScenarioService {
 
                     boolean changeFlag = false;
                           /*Updating values for price Global*/
-                    if (globalCropPrice != 0) {
+                    if (globalCropPrice != 0 && cropTypeView.getCropType().getCropPricesInfo()!=null) {
                         InternalCropPricesInfo cropPricesInfo = cropTypeView.getCropType().getCropPricesInfo();
                         double valueToChange;
 
@@ -453,7 +453,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                     }
 
                           /*Updating values for yield Global  */
-                    if (globalCropYields != 0) {
+                    if (globalCropYields != 0 && cropTypeView.getCropType().getCropYieldInfo() != null) {
                         InternalCropYieldInfo cropYieldInfo = cropTypeView.getCropType().getCropYieldInfo();
                         double valueToChange;
 
@@ -472,7 +472,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                     }
 
                           /*Updating values for Variable Cost Production Global*/
-                    if (globalCropProdCost != 0) {
+                    if (globalCropProdCost != 0 && cropTypeView.getCropType().getCostsCropProductionCosts() != null) {
                         InternalVariableCropProductionCosts costsCropProductionCosts = cropTypeView.getCropType().getCostsCropProductionCosts();
                         double valueToChange;
 

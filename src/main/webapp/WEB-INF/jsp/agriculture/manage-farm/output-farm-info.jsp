@@ -746,7 +746,7 @@
                                             <td>Impacting Income</td>
                                             <td>To Increase Estimated Income</td>
                                         </c:if>
-                                        <td>Acreage Planted</td>
+                                        <td>Acreage Assigned</td>
                                     </tr>
                                     </thead>
 
