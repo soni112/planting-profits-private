@@ -27,6 +27,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -269,7 +270,21 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public List<UserCountry> getAllCountriesList() {
-		return accountDAO.getAllCountriesList();
+		List<UserCountry> allCountriesList = accountDAO.getAllCountriesList();
+		List<UserCountry> userCountries = new LinkedList<>();
+		for (UserCountry userCountry : allCountriesList) {
+			if(userCountry.getCountryName().contains("United States")){
+				userCountries.add(userCountry);
+			}
+		}
+
+		for (UserCountry userCountry : allCountriesList) {
+			if(!userCountry.getCountryName().contains("United States")){
+				userCountries.add(userCountry);
+			}
+		}
+
+		return userCountries;
 	}
 
 	@Override
