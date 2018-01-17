@@ -492,7 +492,7 @@ function deleteStrategy(){
 	var strategyArray = [];
 	var target = $('#manageStrategies').find('input[name="reportStrategyCheckbox"]:checked');
 	if (target.length == 0){
-		customAlerts("Please select strategy(s) for deletion", type_error, 0);
+		customAlerts("Please select the strategies to delete", type_error, 0);
 		return;
 	}
 
