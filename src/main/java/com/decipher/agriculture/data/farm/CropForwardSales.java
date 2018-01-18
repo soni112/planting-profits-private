@@ -33,6 +33,8 @@ public class CropForwardSales {
     private String contactIdentifier;
     @Column(name = "ACRES")
     private double acres;
+    @Column(name = "ACRES_PERCENTAGE")
+    private double acresPercentage;
     @Column(name = "UPPER_LIMIT")
     private double upperLimit;
 
@@ -108,6 +110,14 @@ public class CropForwardSales {
 
     public void setAcres(double acres) {
         this.acres = acres;
+    }
+
+    public double getAcresPercentage() {
+        return acresPercentage;
+    }
+
+    public void setAcresPercentage(double acresPercentage) {
+        this.acresPercentage = acresPercentage;
     }
 
     public Boolean getProposedchecked() {

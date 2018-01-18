@@ -2823,6 +2823,8 @@ function saveAllFarmInformation( ){
          * @Altered - Abhishek
          * @Date - 07-12-2015
          */
+        var total_land = returnZeroIfBlank(removeAllCommas($("#total_land_available").text().trim()));
+
         $("#forward_sales_information tbody tr").each(function () {
             var str = $(this).children("td:nth(0)").text().trim() + "#-#-#";
 
@@ -2867,6 +2869,9 @@ function saveAllFarmInformation( ){
             } else {
                 str += "true";
             }
+
+            str += "#-#-#" + (removeAllCommas($(this).children("td:nth(4)").find("input").val())/total_land)*100
+
             forward_sales_information_tbody_array.push(str);
             // showMessageOnConsole(str);
         });
@@ -2959,7 +2964,6 @@ function saveAllFarmInformation( ){
             crop_group_array.push(crop_groupName + "#-#-#" + maximum + "#-#-#" + maximumPercentage + "#-#-#" + minimum + "#-#-#" + minimumPercentage + "#-#-#" + cropNumber + "#-#-#" + cropName);
             // showMessageOnConsole(crop_groupName + "#-#-#" + maximum + "#-#-#" + minimum + "#-#-#" + cropNumber + "#-#-#" + cropName);
         });
-        var total_land = returnZeroIfBlank(removeAllCommas($("#total_land_available").text().trim()));
         /**
          * @added - abhishek
          * @date - 18-05-2016
