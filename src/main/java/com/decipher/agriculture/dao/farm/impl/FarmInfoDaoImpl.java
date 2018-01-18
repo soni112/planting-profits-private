@@ -640,6 +640,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                     cropForwardSales.setUpperLimit(new Double(array[5]));
                                     cropForwardSales.setContactIdentifier(array[6]);
                                     cropForwardSales.setCropType(cropType);
+                                    cropForwardSales.setAcresPercentage(new Double(array[8]));
                                     break;
                                 }
                             }
@@ -954,6 +955,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                     cropForwardSales.setUpperLimit(new Double(array[5]));
                                     cropForwardSales.setContactIdentifier(array[6]);
                                     cropForwardSales.setCropType(cropType);
+                                    cropForwardSales.setAcresPercentage(new Double(array[8]));
                                     cropType.setCropForwardSales(cropForwardSales);
                                     break;
                                 }
@@ -1127,6 +1129,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                                 cropForwardSales.setUpperLimit(new Double(array[5]));
                                 cropForwardSales.setContactIdentifier(array[6]);
                                 cropForwardSales.setCropType(cropType);
+                                cropForwardSales.setAcresPercentage(new Double(array[8]));
                                 cropType.setCropForwardSales(cropForwardSales);
                                 break;
                             }
@@ -1607,6 +1610,7 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
                             cropForwardSales.setUpperLimit(new Double(array[5]));
                             cropForwardSales.setContactIdentifier(array[6]);
                             cropForwardSales.setCropType(cropType);
+                            cropForwardSales.setAcresPercentage(new Double(array[8]));
                             break;
                         }
                     }

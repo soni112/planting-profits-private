@@ -2321,7 +2321,7 @@ Commented as per client requirement
                                                                    class="minCropAcreagePercentage"
                                                                    disabled="disabled"
                                                                    onchange="calculatePercentageOfMinAcreage(this); return false;"
-                                                                   value="${cropListForforwardSale.minimumAcresPercentage}">
+                                                                   value="${cropListForforwardSale.forwardAcresStr}">
                                                         </td>
                                                         <td class="success croplimit">NA</td>
                                                         <td class="success croplimit">NA</td>
