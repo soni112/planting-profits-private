@@ -1,7 +1,6 @@
 var farmname="";
 
 $(function() {
-	
 	addActiveClass($("#menu-strategies"));
 	applyTabingOnSidemenu();
 	registerTemplates();
@@ -11,6 +10,11 @@ $(function() {
 	openStrategyComparisonSelectionPopup();
 	// onclick="openStrategySelectionPopup(); return false;"
     resetStrategyComparisonGraph();
+    var strategyFlag = localStorage.getItem('strategyFlag');
+    if(typeof strategyFlag != 'undefined' && strategyFlag){
+        localStorage.removeItem('strategyFlag');
+        $("#sidemenu").children().eq(1).find('a').trigger('click');
+    }
 });
 
 /*	***********************		Common/Builder Specific	***********************		*/
@@ -518,7 +522,9 @@ function deleteStrategy(){
 					} else {
 						customAlerts("Some problem occurred while deleting strategy(s)", type_error, 0);
 					}
-					var delay = 1000;
+					localStorage.setItem('strategyFlag', true);
+
+                    var delay = 1000;
 					setTimeout(function() {
 						window.location.reload();
 					}, delay);

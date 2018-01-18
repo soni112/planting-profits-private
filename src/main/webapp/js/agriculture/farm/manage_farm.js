@@ -2870,7 +2870,7 @@ function saveAllFarmInformation( ){
                 str += "true";
             }
 
-            str += "#-#-#" + (removeAllCommas($(this).children("td:nth(4)").find("input").val())/total_land)*100;
+            str += "#-#-#" + (removeAllCommas($(this).children("td:nth(4)").find("input").val())/total_land)*100
 
             forward_sales_information_tbody_array.push(str);
             // showMessageOnConsole(str);
