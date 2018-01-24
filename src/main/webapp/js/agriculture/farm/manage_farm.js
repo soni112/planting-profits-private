@@ -750,7 +750,7 @@ function validateForwardSales() {
             totalForwardAcres += Number(removeAllCommas($(this).children("td:nth(4)").find("input").val()));
         }
         if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(2)").find("input").val().trim() == "" || $(this).children("td:nth(2)").find("input").val().trim() == "$0.00")) {
-            customAlerts('Need to enter the forward sales price to evaluate forward sales for crop "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
+            customAlerts('Please enter a crop price to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
             validationFlag = false;
             return validationFlag;
@@ -762,7 +762,7 @@ function validateForwardSales() {
             return validationFlag;
         }
         else if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(3)").find("input").val().trim() == "" || $(this).children("td:nth(4)").find("input").val().trim() == "" || $(this).children("td:nth(3)").find("input").val().trim() == "0" || $(this).children("td:nth(4)").find("input").val().trim() == "0")) {
-            customAlerts('Need to enter a crop quantity to evaluate forward sales for crop "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
+            customAlerts('Please enter a crop quantity to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(3)").find("input"));
             validationFlag = false;
             return validationFlag;
