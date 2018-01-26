@@ -5,6 +5,7 @@ import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.agriculture.service.farmDetails.FarmOutputDetailsService;
 import com.decipher.util.AgricultureStandardUtils;
+import com.decipher.util.PlantingProfitLogger;
 import com.decipher.view.form.farmDetails.CropResourceUsageView;
 import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.CropsGroupView;
@@ -172,11 +173,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
 
-                if(farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) && farmOutputDetailsView.getForFirm() && isFirm){
+                if(farmOutputDetailsView.getForFirm() && isFirm && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                     return farmOutputDetailsView.getUsedAcres();
                 }
 
-                if(farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) && !isFirm){
+                if(!isFirm && !cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                     return farmOutputDetailsView.getUsedAcres();
                 }
             }
@@ -274,12 +275,12 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                 if (cropTypeView != null) {
                     int usedAcres, minimumAcres, maximumAcres;
-                    if (farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) && farmOutputDetailsView.getForFirm()){
+                    if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getForFirm() && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = cropTypeView.getForwardAcres().intValue();
                         maximumAcres = 0;
                         return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
-                    } else if (farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+                    } else if (!cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
                         maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
