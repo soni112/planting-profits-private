@@ -204,7 +204,7 @@ function openStrategySelectionPopup(){
 	var selectedStrategy = $('#printStrategies').find('input[name="reportStrategyCheckbox"]:checked');
 
 	if(selectedStrategy.length == 0){
-		customAlerts("Please select strategy for report generation.", "error", 0);
+		customAlerts("Please select which strategies to include in the report", "error", 0);
 		return;
 	}
 	var strategyArray = [];

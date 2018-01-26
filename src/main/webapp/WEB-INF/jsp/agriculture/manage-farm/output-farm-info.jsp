@@ -676,7 +676,7 @@
                                                        <%--onclick="navigateToResources(); return false;"--%>
                                                        <%--style="text-decoration: underline;">Resources</a>--%>
                                                     <a href="javascript:;"
-                                                       onclick="navigateToFieldInformation; return false;"
+                                                       onclick="navigateToFieldInformation(); return false;"
                                                        style="text-decoration: underline;">Crop/Field Choices</a>
                                                 </div>
                                                     </c:when>

@@ -750,13 +750,19 @@ function validateForwardSales() {
             totalForwardAcres += Number(removeAllCommas($(this).children("td:nth(4)").find("input").val()));
         }
         if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(2)").find("input").val().trim() == "" || $(this).children("td:nth(2)").find("input").val().trim() == "$0.00")) {
-            customAlerts('Need to enter the forward sales price to evaluate forward sales for crop "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
+            customAlerts('Please enter a crop price to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
+            addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
+            validationFlag = false;
+            return validationFlag;
+        }
+        else if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(2)").find("input").val().trim() == "" || $(this).children("td:nth(2)").find("input").val().trim() == "0")) {
+            customAlerts('Please enter a crop price to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
             validationFlag = false;
             return validationFlag;
         }
         else if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(3)").find("input").val().trim() == "" || $(this).children("td:nth(4)").find("input").val().trim() == "" || $(this).children("td:nth(3)").find("input").val().trim() == "0" || $(this).children("td:nth(4)").find("input").val().trim() == "0")) {
-            customAlerts('Need to enter a crop quantity to evaluate forward sales for crop "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
+            customAlerts('Please enter a crop quantity to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(3)").find("input"));
             validationFlag = false;
             return validationFlag;
@@ -1362,7 +1368,7 @@ function addNewField() {
                     }
                 });
                 if (validationFlag_Field) {
-                    var rowHTMLForPlanByField = '<tr class="success tblgrn text-center"><td><input type="checkbox" class="fields"></td><td>' + $("#pop-up-field-name").val() + '</td><td>' + $("#pop-up-field-size").val() + '</td> <td><select onchange="lastCropSelected(this)"><option value="No Crop">No Crop</option>' + selectHTMLForOptions + '</select></td><td><input type="checkbox" value="true" onchange="fallowEnabledOrDisabled(this)"></td><td><input type="checkbox" value="true"></td><td><input type="checkbox" name="field-irrigate__1" value="true"></td></tr>';
+                    var rowHTMLForPlanByField = '<tr class="success tblgrn text-center column-left"><td><input type="checkbox" class="fields"></td><td>' + $("#pop-up-field-name").val() + '</td><td>' + $("#pop-up-field-size").val() + '</td> <td><select onchange="lastCropSelected(this)"><option value="No Crop">No Crop</option>' + selectHTMLForOptions + '</select></td><td><input type="checkbox" value="true" onchange="fallowEnabledOrDisabled(this)"></td><td><input type="checkbox" value="true"></td><td><input type="checkbox" name="field-irrigate__1" value="true"></td></tr>';
                     var totalLandByField = 0;
 //	$("#Plan_by_Fields_table tbody").children("tr:nth("+($("#Plan_by_Fields_table tbody tr").length-1)+")").remove();
                     $("#Plan_by_Fields_table tbody").append(rowHTMLForPlanByField);
