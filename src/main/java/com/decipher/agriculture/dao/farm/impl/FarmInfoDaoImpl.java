@@ -1749,15 +1749,15 @@ public class FarmInfoDaoImpl implements FarmInfoDao {
 
     @Override
     public void initializeLazy(FarmInfo farmInfo) {
-        Hibernate.initialize(farmInfo.getFarm());
-        Hibernate.initialize(farmInfo.getCropTypes());
-        Hibernate.initialize(farmInfo.getCropResourceUsage());
-        Hibernate.initialize(farmInfo.getCropsGroup());
-        Hibernate.initialize(farmInfo.getFieldInfos());
-        Hibernate.initialize(farmInfo.getFarmCustomStrategySet());
-        Hibernate.initialize(farmInfo.getCropLimitDualValues());
-        Hibernate.initialize(farmInfo.getResourceDualValues());
-        Hibernate.initialize(farmInfo.getGroupLimitDualValues());
+//        Hibernate.initialize(farmInfo.getFarm());
+//        Hibernate.initialize(farmInfo.getCropTypes());
+//        Hibernate.initialize(farmInfo.getCropResourceUsage());
+//        Hibernate.initialize(farmInfo.getCropsGroup());
+//        Hibernate.initialize(farmInfo.getFieldInfos());
+//        Hibernate.initialize(farmInfo.getFarmCustomStrategySet());
+//        Hibernate.initialize(farmInfo.getCropLimitDualValues());
+//        Hibernate.initialize(farmInfo.getResourceDualValues());
+//        Hibernate.initialize(farmInfo.getGroupLimitDualValues());
     }
 
 
