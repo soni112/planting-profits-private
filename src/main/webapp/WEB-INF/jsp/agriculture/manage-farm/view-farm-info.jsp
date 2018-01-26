@@ -429,7 +429,7 @@
                                             <c:set var="totalSize" value="0"/>
                                             <c:forEach var="fieldList" items="${model.fieldInfoList}">
                                                 <!--get crop list from fieldInfoList View object -->
-                                                <tr class="success tblgrn text-center">
+                                                <tr class="success tblgrn text-center column-left">
                                                     <td class="pull-left"><input id="row-field-manage_checkbox__${rowCount}"
                                                                type="checkbox" class="fields"></td>
                                                     <td id="row-field-name__${rowCount}" class="pull-left">${fieldList.fieldName}</td>
