@@ -122,13 +122,13 @@ public class AccountController {
 
             String msgText = "Dear "
                     + firstName + " " + lastName
-                    + "<br/><br/>You have successfully registered with Planting Profit Application and Your Account Details are following : <br>"
+                    + "<br/><br/>You have successfully registered with Planting Profits. Your account details are as follows : <br>"
                     + "<br/><b>Email Id : " + email + "<br>" + "<b>Password : " + password + "<br>"
                     + "<br/><br/><br/>To verify your account  <b>" + email
 //                    + "</b><br/><br/>Please click on below link to activate your account :<br/>"
                     + "</b><br/><br/>Please "+ linkTxt + " to activate your account<br/>"
                     + "<br><br><br>Regards" + " :  "
-                    + "Planting Profit Application Service Team ";
+                    + "Planting Profits Application Service Team ";
             emailService.sendEmail(email, "Planting Profit Verification", msgText);
 
 

@@ -26,7 +26,7 @@
                             <li>
                                 <i class="fa fa-check text-white"></i>
                                 <a href="javascript:;" onclick="$('#view-planning-process-popup').show();"
-                                   class="remove-text-deco">Production Planing Procedure</a>
+                                   class="remove-text-deco">Production Planing Process</a>
                             </li>
                         </ul>
                 </div><!-- /.col-12 -->

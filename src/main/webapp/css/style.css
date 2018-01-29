@@ -798,7 +798,7 @@ select {
     width: 100%;
 }
 
-#abc, #updateFarmDiv, #critical-message-pop-up, #sensetiveAnalysisCropAndResourcePopup, #createNewScenario, #criticalMessageForCropOrGroupPopUp, #scenarioPopup {
+#abc, #updateFarmDiv, #critical-message-pop-up, #negative-message-pop-up, #sensetiveAnalysisCropAndResourcePopup, #createNewScenario, #criticalMessageForCropOrGroupPopUp, #scenarioPopup {
     width: 100%;
     height: 100%;
     top: 0;
@@ -3775,10 +3775,11 @@ sup {
     margin: 0px;
 }
 .tbl-fixd-hdr thead > tr > td{
-    width: 14.26%;
+    width: 14.28%;
     position: relative;
     float: left;
-    height: 54px;
+    /*height: 54px;*/
+    height: 35px;
 }
 .tbl-fixd-hdr tbody > tr {
     width: 100%;
@@ -3787,7 +3788,7 @@ sup {
 }
 .tbl-fixd-hdr tbody > tr > td{
     width: 14.28%;
-    float: left;
+    /*float: left;*/
     height: 38px;
 }
 .tbl-fixd-hdr tfoot{
@@ -4088,7 +4089,8 @@ sup {
     overflow-x: hidden;
 }
 .contactUs-bg {
-    background-image: url(../images/contribution/contactbackgroung.png);
+    /*background-image: url(../images/contribution/contactbackgroung.png);*/
+    background-image: url(../images/contactus/contact-bg.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center center;
@@ -4387,4 +4389,20 @@ input.cvvNumber:hover{
 
 @keyframes blink {
     50% { opacity: 0; }
+}
+.scenrio-btn{
+    float: left;border: 0px;color: #000;font-size: 26px;
+}
+.weight-800{
+    font-weight: 800 !important;
+}
+.contact-bg-txt{
+    background-color: #ffffff;
+    color: #1b1a1a;
+    padding: 3px 3px;
+}
+.contact-text{
+    /*color: #e4b95b;*/
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+    -webkit-background-clip: text;
 }

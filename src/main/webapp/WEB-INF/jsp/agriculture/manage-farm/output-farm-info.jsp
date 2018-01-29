@@ -540,24 +540,22 @@
                                                 </div>
                                                 <div class="pull-right" style="width: 30%;">
                                                     <c:choose>
+                                                        <%--<c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_ACRES'}">--%>
+                                                            <%--<div style="margin-top: 8%; padding: 1% 3%;">--%>
+                                                                <%--To increase the amount of Land go to<br>--%>
+                                                                <%--<a href="javascript:;"--%>
+                                                                   <%--onclick="navigateToResources(); return false;"--%>
+                                                                   <%--style="text-decoration: underline;">Resources</a>--%>
+                                                            <%--</div>--%>
+                                                        <%--</c:when>--%>
                                                         <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                                             <div style="margin-top: 8%; padding: 1% 3%;">
                                                                 To increase the amount of Land go to<br>
                                                                 <a href="javascript:;"
-                                                                   onclick="navigateToResources(); return false;"
-                                                                   style="text-decoration: underline;">Resources</a>
+                                                                   onclick="navigateToCropFieldChoices(); return false;"
+                                                                   style="text-decoration: underline;">Crop/Field Choices</a>
                                                             </div>
                                                         </c:when>
-                                                  <%--      <c:otherwise>
-                                                            <div style="margin-top: 8%; padding: 1% 3%;">
-                                                                To increase the amount of Land go to<br>
-                                                                <a href="javascript:;"
-                                                                   onclick="navigateToFieldInformation()
-
-                                                                   ; return false;"
-                                                                   style="text-decoration: underline;">Field Information</a>
-                                                            </div>
-                                                        </c:otherwise>--%>
                                                     </c:choose>
                                                 </div>
                                             </div>
@@ -678,8 +676,8 @@
                                                        <%--onclick="navigateToResources(); return false;"--%>
                                                        <%--style="text-decoration: underline;">Resources</a>--%>
                                                     <a href="javascript:;"
-                                                       onclick="navigateToFieldInformation(); return false;"
-                                                       style="text-decoration: underline;">Field Information</a>
+                                                       onclick="navigateToFieldInformation; return false;"
+                                                       style="text-decoration: underline;">Crop/Field Choices</a>
                                                 </div>
                                                     </c:when>
                                                    <%-- <c:otherwise>
@@ -748,7 +746,7 @@
                                             <td>Impacting Income</td>
                                             <td>To Increase Estimated Income</td>
                                         </c:if>
-                                        <td>Acreage Planted</td>
+                                        <td>Acreage Assigned</td>
                                     </tr>
                                     </thead>
 
@@ -1440,7 +1438,10 @@
 
     var maxLand = parseInt(removeAllCommas('${maxLand}'));
 
-
+    function navigateToCropFieldChoices() {
+        localStorage.setItem('cropFieldChoicesFlag', true);
+        window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
+    }
     function navigateToCropLimits() {
         localStorage.setItem('cropLimitFlag', true);
         window.location = '<c:url value="/view-farm-info.htm?farmId="/>${farmId}';

@@ -330,3 +330,5 @@ function showCreateNewScenario() {
 function hideCreateNewScenario(){
 	document.getElementById('createNewScenario').style.display = "none";
 }
+
+

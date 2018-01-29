@@ -170,6 +170,35 @@
                                             <div id="tabStrategyComparison" class="tab-content" style="display: block">
                                                 <div class="ques">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
+
+                                                        <div class="form-group form-group1">
+                                                            <label>Y-Axis</label>
+                                                            <select class="form-control" id="yAxisValue">
+                                                                <option value="" selected>Y-Axis Value</option>
+                                                                <c:forEach var="comparisonType" items="${model.strategyComparisonType}">
+                                                                    <c:if test="${comparisonType.bit ne 3}">
+                                                                        <option value="${comparisonType.bit}">${comparisonType.comparisonStr}</option>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                                <%--<option value="0">Estimated Income</option>
+                                                                <option value="1">Land Used</option>
+                                                                <option value="2">Capital Used</option>
+                                                                &lt;%&ndash;<option value="3">Crop Acreage Per Crop</option>&ndash;%&gt;
+                                                                <option value="4">% Potenial Profit from Single Most Profitable Crop</option>
+                                                                <option value="5">% Potenial Profit from Two Most Profitable Crops</option>
+                                                                <option value="6">% Potenial Profit Forward Sold</option>
+                                                                <option value="7">% Potenial Profit in High Risk Crops</option>
+                                                                <option value="8">% Acreage in High Risk Crops</option>
+                                                                <option value="9">% Potenial Profit in Conservation Crops</option>
+                                                                <option value="10">% Acreage in Conservation Crops</option>
+                                                                <option value="11">Estimated Income Given Min Prices and Yields</option>--%>
+
+                                                                <c:forEach var="cropDetails" items="${model.cropDetailsForSelection}">
+                                                                    <option value="${cropDetails.key}">${cropDetails.value}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+
                                                         <div class="form-group form-group1">
                                                             <label>X-Axis</label>
                                                             <select class="form-control" id="xAxisValue">
@@ -197,34 +226,6 @@
                                                                     <option value="${cropDetails.key}">${cropDetails.value}</option>
                                                                 </c:forEach>
 
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="form-group form-group1">
-                                                            <label>Y-Axis</label>
-                                                            <select class="form-control" id="yAxisValue">
-                                                                <option value="" selected>Y-Axis Value</option>
-                                                                <c:forEach var="comparisonType" items="${model.strategyComparisonType}">
-                                                                    <c:if test="${comparisonType.bit ne 3}">
-                                                                        <option value="${comparisonType.bit}">${comparisonType.comparisonStr}</option>
-                                                                    </c:if>
-                                                                </c:forEach>
-                                                                <%--<option value="0">Estimated Income</option>
-                                                                <option value="1">Land Used</option>
-                                                                <option value="2">Capital Used</option>
-                                                                &lt;%&ndash;<option value="3">Crop Acreage Per Crop</option>&ndash;%&gt;
-                                                                <option value="4">% Potenial Profit from Single Most Profitable Crop</option>
-                                                                <option value="5">% Potenial Profit from Two Most Profitable Crops</option>
-                                                                <option value="6">% Potenial Profit Forward Sold</option>
-                                                                <option value="7">% Potenial Profit in High Risk Crops</option>
-                                                                <option value="8">% Acreage in High Risk Crops</option>
-                                                                <option value="9">% Potenial Profit in Conservation Crops</option>
-                                                                <option value="10">% Acreage in Conservation Crops</option>
-                                                                <option value="11">Estimated Income Given Min Prices and Yields</option>--%>
-
-                                                                <c:forEach var="cropDetails" items="${model.cropDetailsForSelection}">
-                                                                    <option value="${cropDetails.key}">${cropDetails.value}</option>
-                                                                </c:forEach>
                                                             </select>
                                                         </div>
 
@@ -550,6 +551,7 @@
         </div>
     </div>
 </div>
+
 
 <%--<script src="js/plugins/jquery.tmpl.min.js" type="text/javascript"></script>--%>
 <script src="<c:url value="/js/agriculture/farm-info-slider.js"/>" type="text/javascript"></script>

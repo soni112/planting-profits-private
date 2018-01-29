@@ -399,40 +399,28 @@
 
 
                                 <div class="ques">
-                                    <div class="table-responsive"> <%--style="max-height: 260px;"--%>
-                                        <table id="Plan_by_Fields_table"
-                                               class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr"
-                                               cellspacing="0" width="100%">
-                                            <thead id="Plan_by_Fields_thead"
-                                                   style="display: table-header-group;">
-                                            <tr class="tblhd text-center add-fieldi">
-                                                <td>Modify</td>
-                                                <td class="tblbrdr text-center add-fieldi">Name</td>
-                                                <td class="text-center add-fieldi">Size<br>(In
-                                                    Acres)
-                                                </td>
-                                                <td class="text-center">Last Crop <a
-                                                        id="Plan_by_Fields_Last_Crop"
-                                                        class="help_Infromation_PopUp" href="javascript:;"><span
-                                                        class="add-fieldi"><img
-                                                        src="<c:url value="/images/i-img.png"/>"></span></a></td>
-                                                <td class="text-center">Fallow <a
-                                                        id="Plan_by_Fields_Fallow" class="help_Infromation_PopUp"
-                                                        href="javascript:;"><span class="add-fieldi"><img
-                                                        src="<c:url value="/images/i-img.png"/>"></span></a></td>
-                                                <td class="text-center">Divide <a
-                                                        id="Plan_by_Fields_Divide" class="help_Infromation_PopUp"
-                                                        href="javascript:;"><span class="add-fieldi"><img
-                                                        src="<c:url value="/images/i-img.png"/>"></span></a></td>
-                                                <td class="text-center">Irrigate <a
-                                                        id="Plan_by_Fields_Irrigate"
-                                                        class="help_Infromation_PopUp" href="javascript:;"><span
-                                                        class="add-fieldi"><img
-                                                        src="<c:url value="/images/i-img.png"/>"></span></a></td>
-                                            </tr>
+                                    <div class="table-responsive">
+                                        <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr" cellspacing="0" width="100%">
+                                            <thead id="Plan_by_Fields_thead" style="display: table-header-group;">
+                                                <tr class="tblhd text-center add-fieldi">
+                                                    <td>Modify</td>
+                                                    <td class="tblbrdr text-center add-fieldi">Name</td>
+                                                    <td class="text-center add-fieldi">Size (In Acres) </td>
+                                                    <td class="text-center">Last Crop
+                                                        <a id="Plan_by_Fields_Last_Crop" class="help_Infromation_PopUp" href="javascript:;"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"></span></a>
+                                                    </td>
+                                                    <td class="text-center">Fallow
+                                                        <a id="Plan_by_Fields_Fallow" class="help_Infromation_PopUp" href="javascript:;"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"></span></a>
+                                                    </td>
+                                                    <td class="text-center">Divide
+                                                        <a id="Plan_by_Fields_Divide" class="help_Infromation_PopUp" href="javascript:;"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"></span></a>
+                                                    </td>
+                                                    <td class="text-center">Irrigate
+                                                        <a id="Plan_by_Fields_Irrigate" class="help_Infromation_PopUp" href="javascript:;"><span class="add-fieldi"><img src="<c:url value="/images/i-img.png"/>"></span></a>
+                                                    </td>
+                                                </tr>
                                             </thead>
-                                            <tbody id="plan-by-field-tbody"
-                                                   style="display: table-row-group;">
+                                            <tbody id="plan-by-field-tbody" style="display: table-row-group;">
 
                                             <!--          create field dynamically get field information from FarmInfoView list -->
 
@@ -442,11 +430,11 @@
                                             <c:forEach var="fieldList" items="${model.fieldInfoList}">
                                                 <!--get crop list from fieldInfoList View object -->
                                                 <tr class="success tblgrn text-center">
-                                                    <td><input id="row-field-manage_checkbox__${rowCount}"
+                                                    <td class="pull-left"><input id="row-field-manage_checkbox__${rowCount}"
                                                                type="checkbox" class="fields"></td>
-                                                    <td id="row-field-name__${rowCount}">${fieldList.fieldName}</td>
-                                                    <td id="row-field-size__${rowCount}">${fieldList.fieldSizeStr}</td>
-                                                    <td><select onchange="lastCropSelected(this)"
+                                                    <td id="row-field-name__${rowCount}" class="pull-left">${fieldList.fieldName}</td>
+                                                    <td id="row-field-size__${rowCount}" class="pull-left">${fieldList.fieldSizeStr}</td>
+                                                    <td class="pull-left"><select onchange="lastCropSelected(this)"
                                                                 id="selected_last_crop____${rowCount}">
                                                         <option value="No Crop">No Crop</option>
                                                         <c:forEach var="cropList" items="${model.cropTypeView}">
@@ -456,14 +444,14 @@
                                                             </c:if>
                                                         </c:forEach>
                                                     </select></td>
-                                                    <td><input name="field-follow__${rowCount}"
+                                                    <td class="pull-left"><input name="field-follow__${rowCount}"
                                                                id="field-follow__${rowCount}" type="checkbox"
                                                                onchange="fallowEnabledOrDisabled(this)" value="true"
                                                         ${fieldList.fallow ?'checked':''}></td>
-                                                    <td><input name="field-divide__${rowCount}"
+                                                    <td class="pull-left"><input name="field-divide__${rowCount}"
                                                                id="field-divide__${rowCount}" type="checkbox"
                                                                value="true" ${fieldList.divide ?'checked':''}></td>
-                                                    <td><input name="field-irrigate__${rowCount}"
+                                                    <td class="pull-left"><input name="field-irrigate__${rowCount}"
                                                                id="field-irrigate__${rowCount}" type="checkbox"
                                                                value="true" ${fieldList.irrigate ?'checked':''}></td>
                                                     <c:set var="totalSize"
@@ -1654,18 +1642,13 @@ start -->
                                                 </td>
                                                 <c:set var="headCount" value="4"/>
                                                 <c:forEach var="resourceHead" items="${model.resourceList}">
-                                                    <c:if test="${resourceHead.isActive()}">
-                                                        <!-- modify Bhagvan Singh on 06-04-2015 for remove start -->
-                                                        <c:if test="${resourceHead.cropResourceUse ne 'Land' and resourceHead.cropResourceUse ne 'Capital'}">
-                                                            <c:if test="${resourceHead.cropResourceUseAmount ne '' and resourceHead.cropResourceUseAmount ne '0'}">
-                                                                <td class="text-center">
-                                                                    <span id="crop_resource_usage_thead_first_row_column__${headCount}"
-                                                                          class="tittle-uppercase">${resourceHead.cropResourceUse}</span><br>
-                                                                    <span class="resub">(${resourceHead.uoMResource})</span>
-                                                                </td>
-                                                                <c:set var="headCount" value="${headCount+1}"/>
-                                                            </c:if>
-                                                        </c:if>
+                                                    <!-- modify Bhagvan Singh on 06-04-2015 for remove start -->
+                                                    <c:if test="${resourceHead.isActive() and resourceHead.cropResourceUse ne 'Land' and resourceHead.cropResourceUse ne 'Capital' and resourceHead.cropResourceUseAmount ne '' and resourceHead.cropResourceUseAmount ne '0'}">
+                                                        <td class="text-center">
+                                                            <span id="crop_resource_usage_thead_first_row_column__${headCount}" class="tittle-uppercase">${resourceHead.cropResourceUse}</span><br>
+                                                            <span class="resub">(${resourceHead.uoMResource})</span>
+                                                        </td>
+                                                        <c:set var="headCount" value="${headCount+1}"/>
                                                     </c:if>
                                                 </c:forEach>
                                             </tr>
@@ -2123,6 +2106,7 @@ start -->
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
                                                                    onkeypress="return isValidNumberValue(event)"
+                                                                   onmouseover="addForwardNegativePricePopup(this)"
                                                                    onchange="addCommaSignWithDollar(this)"></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
@@ -2300,7 +2284,7 @@ Commented as per client requirement
                                                         </td>
                                                         <td class="success croplimit">
                                                             <input type="text"
-                                                                   id="group_crop_maximum_acreage_percentage"
+                                                                   <%--id="group_crop_maximum_acreage_percentage"--%>
                                                                    onkeypress="return isValidNumberValue(event)"
                                                                    class="maxCropAcreagePercentage popoverPercentage"
                                                                    onchange="calculatePercentageOfMaxAcreage(this); return false;"
@@ -2337,7 +2321,7 @@ Commented as per client requirement
                                                                    class="minCropAcreagePercentage"
                                                                    disabled="disabled"
                                                                    onchange="calculatePercentageOfMinAcreage(this); return false;"
-                                                                   value="${cropListForforwardSale.minimumAcresPercentage}">
+                                                                   value="${cropListForforwardSale.forwardAcresStr}">
                                                         </td>
                                                         <td class="success croplimit">NA</td>
                                                         <td class="success croplimit">NA</td>
@@ -2448,7 +2432,7 @@ Commented as per client requirement
               <td class="infotext"></td>
               <td class="infotext"></td>
         </tr>
-        <tr class="tblgrn text-center">
+        <tr class="tblgrn text-cenaddPopupNegativeValueter">
             <td class="tblft1">Crop3</td>
              <td class="success infotext"><input type="checkbox"></td>
              <td class="success infotext"><input type="text"></td>
@@ -2721,7 +2705,24 @@ Commented as per client requirement
         </div>
     </div>
 </div>
-
+<div style="display: none;" id="negative-message-pop-up">
+    <div id="popupContact">
+        <!-- Planning Form -->
+        <div class="popup_section">
+            <img src="<c:url value="/images/cross.png"/>" onclick="$('#negative-message-pop-up').hide(); return false;" id="close">
+            <div class="popupform messagepopup potencial_profit_popup">
+                <div class="increase_profit">
+                    <p>
+                        Forward sales of <span class="cropName"></span> is less than zero $(<span id="negativeValue"></span>).<br>
+                    </p>
+                </div>
+                <!-- <div class="decrease_profit">
+                    <p>Decreasing <span id="resourceNameDec"></span> will decreaseEstimated Income by <span id="lossBy1Dollar"></span> for eachdollar removed down to <span id="downResourceLimit"></span></p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
 <script type="x-jQuery-tmpl" id="additional-crop-income-tbody-tmpl">
     <tr class="tblbclgrnd text-center">
         <td class="tblft1 cropNameSpecific">{{= cropName}}</td>
