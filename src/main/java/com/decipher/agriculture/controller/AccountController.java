@@ -3,6 +3,7 @@ package com.decipher.agriculture.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.decipher.agriculture.data.account.UserState;
+import com.decipher.agriculture.service.util.HTTPService;
 import com.decipher.config.ApplicationConfig;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.NameValuePair;
@@ -34,6 +35,8 @@ public class AccountController {
     private AccountService accountService;
     @Autowired
 	private EmailService emailService;
+    @Autowired
+    private HTTPService httpService;
 
     @RequestMapping(value = "registerUser", method = RequestMethod.POST)
     public JsonResponse registerUser(
@@ -137,11 +140,11 @@ public class AccountController {
             params.add(new BasicNameValuePair("first_name", account.getFirstName()));
             params.add(new BasicNameValuePair("last_name", account.getLastName()));
             params.add(new BasicNameValuePair("email", account.getEmail_Address()));
-            params.add(new BasicNameValuePair("00N3600000PEEG1", ""));
+            params.add(new BasicNameValuePair("00N3600000SnyFh", "1"));
 
             try {
 
-//                httpService.sendPost("https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8", params);
+                httpService.sendPost("https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8", params);
 
             } catch (Exception e) {
                 PlantingProfitLogger.error(e);
