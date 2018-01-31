@@ -136,11 +136,28 @@ public class AccountController {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("oid", "00D36000000jISU"));
+            params.add(new BasicNameValuePair("00N3600000SnyFh","1"));
             params.add(new BasicNameValuePair("retURL", ""));
             params.add(new BasicNameValuePair("first_name", account.getFirstName()));
             params.add(new BasicNameValuePair("last_name", account.getLastName()));
             params.add(new BasicNameValuePair("email", account.getEmail_Address()));
-            params.add(new BasicNameValuePair("00N3600000SnyFh", "1"));
+            params.add(new BasicNameValuePair("mobile", account.getPhone_No()));
+            params.add(new BasicNameValuePair("street", account.getPhysical_Address_Line_1()!=null?account.getPhysical_Address_Line_1():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfQ",account.getPhysical_Address_Line_2()!=null?account.getPhysical_Address_Line_2():"" ));
+            params.add(new BasicNameValuePair("city", account.getPhysical_Address_City()!=null?account.getPhysical_Address_City() :""));
+            params.add(new BasicNameValuePair("state", account.getPhysical_Address_State()!=null?account.getPhysical_Address_State().getStateName(): ""));
+            params.add(new BasicNameValuePair("zip", account.getPhysical_Address_Zip()));
+            params.add(new BasicNameValuePair("country", account.getPhysical_Address_Country()!=null?account.getPhysical_Address_Country().getCountryName():""));
+
+            params.add(new BasicNameValuePair("00N3600000SnyfM", account.getMailing_Address_Line_1()!=null?account.getMailing_Address_Line_1():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfN",account.getMailing_Address_Line_2()!=null?account.getMailing_Address_Line_2():"" ));
+            params.add(new BasicNameValuePair("00N3600000SnyfK", account.getMailing_Address_City()!=null?account.getMailing_Address_City():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfO", account.getMailing_Address_State()!=null?account.getMailing_Address_State().getStateName(): ""));
+            params.add(new BasicNameValuePair("00N3600000SnyfL", account.getMailing_Address_Country()!=null?account.getMailing_Address_Country().getCountryName():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfP", account.getMailing_Address_Zip()));
+
+
+//            params.add(new BasicNameValuePair("00N3600000SnyFh", "1"));
 
             try {
 
