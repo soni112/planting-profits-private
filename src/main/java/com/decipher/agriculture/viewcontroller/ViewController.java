@@ -203,8 +203,6 @@ public class ViewController {
 		return modelAndView;
 	}
 
-
-
 	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
 	@RequestMapping(value = "/management.htm", method = RequestMethod.GET)
 	public ModelAndView userManagement(){
@@ -219,6 +217,18 @@ public class ViewController {
 		model.put("currentUser", accountService.getCurrentUser());
 
 		return new ModelAndView("user-management", "model", model);
+	}
+
+	@RequestMapping(value = "/welcome.htm", method = RequestMethod.GET)
+	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
+	public ModelAndView getWelcomeScreen(){
+		return new ModelAndView("welcome");
+	}
+
+	@RequestMapping(value = "/welcome-back.htm", method = RequestMethod.GET)
+	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
+	public ModelAndView getWelcomeBackScreen(){
+		return new ModelAndView("welcome-back");
 	}
 
 }
