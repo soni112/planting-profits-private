@@ -70,7 +70,7 @@ function registerUser() {
 				customAlerts("Your account has been created.  Account information has been sent to your email address", "success", 0);
 				div_hide2();
 			} else if (status == 'Already exists') {
-				customAlerts("Email id is already registered. <br> Please choose another email.", "error", 0);
+				customAlerts("Email id is already registered. <br> Please choose another email", "error", 0);
 			}
 		},
 		error : function(XMLHttpRequest, status, message) {

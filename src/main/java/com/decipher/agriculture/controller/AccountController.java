@@ -3,6 +3,7 @@ package com.decipher.agriculture.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.decipher.agriculture.data.account.UserState;
+import com.decipher.agriculture.service.util.HTTPService;
 import com.decipher.config.ApplicationConfig;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.NameValuePair;
@@ -34,6 +35,8 @@ public class AccountController {
     private AccountService accountService;
     @Autowired
 	private EmailService emailService;
+    @Autowired
+    private HTTPService httpService;
 
     @RequestMapping(value = "registerUser", method = RequestMethod.POST)
     public JsonResponse registerUser(
@@ -119,13 +122,13 @@ public class AccountController {
 
             String msgText = "Dear "
                     + firstName + " " + lastName
-                    + "<br/><br/>You have successfully registered with Planting Profit Application and Your Account Details are following : <br>"
+                    + "<br/><br/>You have successfully registered with Planting Profits. Your account details are as follows : <br>"
                     + "<br/><b>Email Id : " + email + "<br>" + "<b>Password : " + password + "<br>"
                     + "<br/><br/><br/>To verify your account  <b>" + email
 //                    + "</b><br/><br/>Please click on below link to activate your account :<br/>"
                     + "</b><br/><br/>Please "+ linkTxt + " to activate your account<br/>"
                     + "<br><br><br>Regards" + " :  "
-                    + "Planting Profit Application Service Team ";
+                    + "Planting Profits Application Service Team ";
             emailService.sendEmail(email, "Planting Profit Verification", msgText);
 
 
@@ -133,15 +136,32 @@ public class AccountController {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("oid", "00D36000000jISU"));
+            params.add(new BasicNameValuePair("00N3600000SnyFh","1"));
             params.add(new BasicNameValuePair("retURL", ""));
             params.add(new BasicNameValuePair("first_name", account.getFirstName()));
             params.add(new BasicNameValuePair("last_name", account.getLastName()));
             params.add(new BasicNameValuePair("email", account.getEmail_Address()));
-            params.add(new BasicNameValuePair("00N3600000PEEG1", ""));
+            params.add(new BasicNameValuePair("mobile", account.getPhone_No()));
+            params.add(new BasicNameValuePair("street", account.getPhysical_Address_Line_1()!=null?account.getPhysical_Address_Line_1():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfQ",account.getPhysical_Address_Line_2()!=null?account.getPhysical_Address_Line_2():"" ));
+            params.add(new BasicNameValuePair("city", account.getPhysical_Address_City()!=null?account.getPhysical_Address_City() :""));
+            params.add(new BasicNameValuePair("state", account.getPhysical_Address_State()!=null?account.getPhysical_Address_State().getStateName(): ""));
+            params.add(new BasicNameValuePair("zip", account.getPhysical_Address_Zip()));
+            params.add(new BasicNameValuePair("country", account.getPhysical_Address_Country()!=null?account.getPhysical_Address_Country().getCountryName():""));
+
+            params.add(new BasicNameValuePair("00N3600000SnyfM", account.getMailing_Address_Line_1()!=null?account.getMailing_Address_Line_1():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfN",account.getMailing_Address_Line_2()!=null?account.getMailing_Address_Line_2():"" ));
+            params.add(new BasicNameValuePair("00N3600000SnyfK", account.getMailing_Address_City()!=null?account.getMailing_Address_City():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfO", account.getMailing_Address_State()!=null?account.getMailing_Address_State().getStateName(): ""));
+            params.add(new BasicNameValuePair("00N3600000SnyfL", account.getMailing_Address_Country()!=null?account.getMailing_Address_Country().getCountryName():""));
+            params.add(new BasicNameValuePair("00N3600000SnyfP", account.getMailing_Address_Zip()));
+
+
+//            params.add(new BasicNameValuePair("00N3600000SnyFh", "1"));
 
             try {
 
-//                httpService.sendPost("https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8", params);
+                httpService.sendPost("https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8", params);
 
             } catch (Exception e) {
                 PlantingProfitLogger.error(e);

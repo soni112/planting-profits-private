@@ -64,6 +64,7 @@ public class CropTypeView implements Cloneable {
     private Boolean proposedchecked;
     private String firmchecked;
     private Double forwardAcres;
+    private Double forwardAcresPercentage;
     private String contactIdentifier;
     private Double forwardUpperLimit;
 
@@ -180,6 +181,7 @@ public class CropTypeView implements Cloneable {
                 this.firmchecked = cropForwardSales.getFirmchecked();
                 this.contactIdentifier = cropForwardSales.getContactIdentifier();
                 this.forwardUpperLimit = cropForwardSales.getUpperLimit();
+                this.forwardAcresPercentage = cropForwardSales.getAcresPercentage();
             }
 
             CropYieldFieldVariances yieldFieldVariances = cropType.getCropYieldFieldVariances();
@@ -950,6 +952,21 @@ public class CropTypeView implements Cloneable {
 
     public void setForwardAcres(Double forwardAcres) {
         this.forwardAcres = forwardAcres;
+    }
+
+    public Double getForwardAcresPercentage() {
+        return forwardAcresPercentage;
+    }
+    public String getForwardAcresStr() {
+        if (forwardAcresPercentage == null || forwardAcresPercentage.toString().equalsIgnoreCase("0.0")) {
+            return "";
+        } else {
+            // return forwardAcres.toString();
+            return AgricultureStandardUtils.commaSeparaterForField(forwardAcresPercentage.toString());
+        }
+    }
+    public void setForwardAcresPercentage(Double forwardAcresPercentage) {
+        this.forwardAcresPercentage = forwardAcresPercentage;
     }
 
     public Integer getFieldIdForVariances() {

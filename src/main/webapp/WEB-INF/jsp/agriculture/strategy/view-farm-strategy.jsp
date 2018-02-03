@@ -552,6 +552,7 @@
     </div>
 </div>
 
+
 <%--<script src="js/plugins/jquery.tmpl.min.js" type="text/javascript"></script>--%>
 <script src="<c:url value="/js/agriculture/farm-info-slider.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/js/agriculture/strategy/view-farm-strategy.js?v=0.1"/>" type="text/javascript"></script>
