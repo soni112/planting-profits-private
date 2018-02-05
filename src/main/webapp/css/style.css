@@ -4409,3 +4409,88 @@ input.cvvNumber:hover{
 .column-left > td{
     float : left;
 }
+/**
+*  WELCOME  PAGE
+*/
+.welcome-bg{
+    background: url(../images/Hands-holding-soil.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
+.welcomeUser{
+    padding-bottom: 5rem;
+}
+.welcomeUser p{
+    font-size: 24px;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+.welcomeUser li{
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+/**
+* WELCOME BACK
+ */
+.common-bg{
+    background: url(../images/welcome-back.jpg);
+    background-attachment: scroll;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.welcomeBackUser{
+    padding-bottom: 5rem;
+    height: 95vh;
+}
+.welcomeBackUser h1{
+    font-size: 56px;
+}
+.welcomeBackUser p{
+    font-size: 20px;
+    margin-top: 1rem;
+}
+.bg-aliceblue{
+    background-color: #f3f3f3;
+}
+.todays-sponsers{
+    height:100vh;
+    min-height:100vh;
+    float: right;
+    background-color: #1f2836;
+    width: 100%;
+    display:block;
+}
+
+.body-content-middile{
+    width: 66%;
+    margin-left: 17%;
+    float: left;
+}
+.left-nav-sponsers{
+    position: absolute;
+    left: 5px;
+    width: 280px;
+    top: 20%;
+    z-index: 10;
+}
+.left-nav-info{
+    float: left;
+    background-color: #ffffff;
+    width: 100%;
+    display:block;
+    box-shadow: 1px 1px 1px 1px #1b1a1a;
+    height: 200px;
+}
+.right-nav-sponsers{
+    position: absolute;
+    right: 0%;
+}
+.text-white{
+    color: #ffffff;
+}
