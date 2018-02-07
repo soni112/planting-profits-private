@@ -32,7 +32,8 @@
                 <br/>
                 <h3 class="text-white">
                     <em> - Gary Schneider &dash; Founder and President Planting Profits</em>
-                    <a class="alertify-button alertify-button-ok remove-text-deco" href="" style="padding: 0px 15px; color: #000">Enter</a>
+                    <a class="alertify-button alertify-button-ok remove-text-deco"
+                       href="<c:url value="/farm.htm"/>" style="padding: 0px 15px; color: #000">Enter</a>
                 </h3>
             </div><!-- /.col-12 -->
         </div>

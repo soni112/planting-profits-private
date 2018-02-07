@@ -228,6 +228,11 @@ public class ViewController {
 	@RequestMapping(value = "/welcome.htm", method = RequestMethod.GET)
 	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
 	public ModelAndView getWelcomeScreen(){
+		Account currentUser = accountService.getCurrentUser();
+		if (currentUser.getWelcomeStatus() == null || !currentUser.getWelcomeStatus()) {
+			currentUser.setWelcomeStatus(Boolean.TRUE);
+			accountService.UpdateUser(currentUser);
+		}
 		return new ModelAndView("welcome");
 	}
 
@@ -236,10 +241,7 @@ public class ViewController {
 	public ModelAndView getWelcomeBackScreen(){
 		Map<String, Object> model = new HashMap<String, Object>();
 		Account account = accountService.getCurrentUser();
-		List<Farm> allFarmsForUser = farmService.getAllFarmsForUser(account.getId());
-
-			model.put("farm",allFarmsForUser);
-
+		model.put("allFarmsForUser", farmService.getAllFarmsForUser(account.getId()));
 		return new ModelAndView("welcome-back","model",model);
 	}
 
