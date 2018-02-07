@@ -7,6 +7,10 @@
 --%>
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <link rel="stylesheet" href="<c:url value="/css/sb-admin-2.css"/>" type="text/css" media="all">
+
+<script>
+    var user = '<c:out value="${model.account}" />';
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="leftside common-bg">
@@ -19,10 +23,12 @@
                     <aside class="left-nav-sponsers p-r-0">
                         <div class="left-nav-info">
                             <h2 class="weight-600 text-center">Grower</h2>
-                            <%--<ul style="float: none;list-style: none">
-                                <li>${model.account.firstName} ${model.account.lastName}</li>
-                                <li>${model.countryName}</li>
-                            </ul>--%>
+                            <ul style="float: none;list-style: none">
+                                <c:forEach var="farmdetails" items="${model.allFarmForUser}">
+                                    <li>${farmdetails.farmName}</li>
+                                    <li>${farmdetails.physicalLocation}</li>
+                                </c:forEach>
+                            </ul>
                         </div><!-- /.Grower -->
                     </aside>
 
