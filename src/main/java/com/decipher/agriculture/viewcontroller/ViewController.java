@@ -1,11 +1,14 @@
 package com.decipher.agriculture.viewcontroller;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.decipher.agriculture.data.account.UserCountry;
+import com.decipher.agriculture.data.farm.Farm;
+import com.decipher.agriculture.service.farm.FarmService;
 import com.decipher.config.StripeUtils;
 import com.decipher.util.PlantingProfitLogger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,9 @@ public class ViewController {
 
 	@Autowired
 	private SessionService sessionService;
+
+	@Autowired
+	private FarmService farmService;
 
 	@Autowired
 	private HttpSession httpSession;
@@ -203,8 +209,6 @@ public class ViewController {
 		return modelAndView;
 	}
 
-
-
 	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
 	@RequestMapping(value = "/management.htm", method = RequestMethod.GET)
 	public ModelAndView userManagement(){
@@ -219,6 +223,26 @@ public class ViewController {
 		model.put("currentUser", accountService.getCurrentUser());
 
 		return new ModelAndView("user-management", "model", model);
+	}
+
+	@RequestMapping(value = "/welcome.htm", method = RequestMethod.GET)
+	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
+	public ModelAndView getWelcomeScreen(){
+		Account currentUser = accountService.getCurrentUser();
+		if (currentUser.getWelcomeStatus() == null || !currentUser.getWelcomeStatus()) {
+			currentUser.setWelcomeStatus(Boolean.TRUE);
+			accountService.UpdateUser(currentUser);
+		}
+		return new ModelAndView("welcome");
+	}
+
+	@RequestMapping(value = "/welcome-back.htm", method = RequestMethod.GET)
+	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER"})
+	public ModelAndView getWelcomeBackScreen(){
+		Map<String, Object> model = new HashMap<String, Object>();
+		Account account = accountService.getCurrentUser();
+		model.put("allFarmsForUser", farmService.getAllFarmsForUser(account.getId()));
+		return new ModelAndView("welcome-back","model",model);
 	}
 
 }

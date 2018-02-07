@@ -1,7 +1,6 @@
 package com.decipher.agriculture.data.account;
 
 import com.decipher.agriculture.data.farm.Farm;
-import com.decipher.agriculture.data.farm.FarmInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cache;
@@ -9,7 +8,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -120,7 +118,8 @@ public class Account implements Comparable<Account>{
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = AccountDocuments.class, mappedBy = "documentHolder")
 	private Set<AccountDocuments> userDocuments;
-
+	@Column(name = "WELCOME_STATUS")
+	private Boolean welcomeStatus = Boolean.FALSE;
 
 	public Account() {
 
@@ -456,6 +455,14 @@ public class Account implements Comparable<Account>{
 
 	public void setPhysical_Address_State(UserState physical_Address_State) {
 		this.physical_Address_State = physical_Address_State;
+	}
+
+	public Boolean getWelcomeStatus() {
+		return welcomeStatus;
+	}
+
+	public void setWelcomeStatus(Boolean status) {
+		this.welcomeStatus = status;
 	}
 
 	@Override

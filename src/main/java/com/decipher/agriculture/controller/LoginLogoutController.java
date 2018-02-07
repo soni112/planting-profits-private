@@ -3,6 +3,7 @@ package com.decipher.agriculture.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.decipher.agriculture.data.account.Account;
 import com.decipher.util.PlantingProfitLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -136,19 +137,27 @@ public class LoginLogoutController {
 
 			String userRole=auth.getAuthorities().toString();
 			PlantingProfitLogger.info("userRole : " + userRole);
-//			Account account = accountService.getCurrentUser();
 
-			 if(userRole.equals("[ROLE_SUPER_ADMIN]") ||
+			String url = "redirect:/home.htm";
+
+			if(userRole.equals("[ROLE_SUPER_ADMIN]") ||
 					 userRole.equals("[ROLE_ADMIN]") ||
 					 userRole.equals("[ROLE_PROFESSIONAL]") ||
 					 userRole.equals("[ROLE_GROWER]") ||
 					 userRole.equals("[ROLE_STUDENT]")){
+
+				Account account = accountService.getCurrentUser();
 //				return "redirect:/home.htm?success=true";
-				return "redirect:/farm.htm";
+//				return "redirect:/farm.htm";
+				if (account.getWelcomeStatus() != null && account.getWelcomeStatus()) {
+					url = "redirect:/welcome-back.htm";
+				} else {
+					url =  "redirect:/welcome.htm";
+				}
 			}
-			else  {
-				return "redirect:/home.htm";	
-			}
+
+			return url;
+
 		}
 	}
 

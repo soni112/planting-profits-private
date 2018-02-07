@@ -84,5 +84,11 @@
 	<definition name="trouble-shoot" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/trouble-shoot/trouble-shoot.jsp"/>
 	</definition>
+	<definition name="welcome" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/welcome/welcome.jsp"/>
+	</definition>
+	<definition name="welcome-back" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/welcome/welcome-back.jsp"/>
+	</definition>
 
 </tiles-definitions>
