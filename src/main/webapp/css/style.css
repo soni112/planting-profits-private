@@ -4420,6 +4420,13 @@ input.cvvNumber:hover{
     background-size: cover;
     overflow-x: hidden;
 }
+.welcome-back-bg{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow-x: hidden;
+}
 .welcomeUser{
     padding-bottom: 5rem;
 }
@@ -4491,6 +4498,6 @@ input.cvvNumber:hover{
     position: absolute;
     right: 0%;
 }
-.text-white{
+.text-white, .hover-text-white:hover{
     color: #ffffff;
 }
