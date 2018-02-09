@@ -2679,12 +2679,8 @@ Commented as per client requirement
                             </div>
                             <div class="clearfix"></div>
                             <div class="text-center strategy-name-div" style="display: none">
-                                <div class="form-group">
-                                    <label>
-                                        Strategy Name
-                                        <input type="text" id="new-strategy-name">
-                                    </label>
-                                </div>
+                                <label>Strategy Name</label>
+                                <input type="text" id="new-strategy-name" style="width: 50%"/>
                             </div>
                             <div class="clearfix"></div>
                             <div style="margin-top: 1%">

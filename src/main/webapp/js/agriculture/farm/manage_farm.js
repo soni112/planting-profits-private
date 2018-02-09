@@ -3386,17 +3386,26 @@ function calculatePercentageOfMaxAcreage(obj){
     var currentTr = $(obj).closest('tr');
     var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
 
+    var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var maxAcreage = currentTr.find('.maxCropAcreage').val();
-    var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
+    if (maxAcreage <= totalLand){
+        var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
 
-    if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
-        var per = Math.ceil((maxAcreage / totalLand) * 100);
-        currentTr.find('.maxCropAcreagePercentage').val(isNaN(per) ? '' : per);
+        if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
+            var per = Math.ceil((maxAcreage / totalLand) * 100);
+            currentTr.find('.maxCropAcreagePercentage').val(isNaN(per) ? '' : per);
+        }
+        if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcreagePer && (maxAcreagePer != 0 || maxAcreagePer != '')){
+            var val = Math.ceil((totalLand * maxAcreagePer) / 100);
+            currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);
+        }
+
+    } else {
+        customAlerts('The total Maximum acreage crop limit can not be grater than Available Land '+totalLand, 'error', 0);
+        currentTr.find('.maxCropAcreage').val('');
     }
-    if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcreagePer && (maxAcreagePer != 0 || maxAcreagePer != '')){
-        var val = Math.ceil((totalLand * maxAcreagePer) / 100);
-        currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);
-    }
+
+
 }
 function addPopupNegativeValue(id) {
     // var idVal = removeAllCommasAndDollar($(id).val());
