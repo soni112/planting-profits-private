@@ -195,21 +195,21 @@ Date 24-11-2015
                                                                         <td class="success infotext infoTextCropSepecific"><input type="text"
                                                                                                             value=""
                                                                                                             class="globalCropPriceCreate"
-                                                                                                            maxlength="6"
+                                                                                                            maxlength="3"
                                                                                                             onkeypress="return isValidNumberValueForForCastSA(event)"
                                                                                                             placeholder="0 %"/>
                                                                         </td>
                                                                         <td class="success infotext infoTextCropSepecific"><input type="text"
                                                                                                             value=""
                                                                                                             class="globalYieldCreate"
-                                                                                                            maxlength="6"
+                                                                                                            maxlength="3"
                                                                                                             onkeypress="return isValidNumberValueForForCastSA(event)"
                                                                                                             placeholder="0 %"/>
                                                                         </td>
                                                                         <td class="success infotext infoTextCropSepecific"><input type="text"
                                                                                                             value=""
                                                                                                             class="globalVarCostCreate"
-                                                                                                            maxlength="6"
+                                                                                                            maxlength="3"
                                                                                                             onkeypress="return isValidNumberValueForForCastSA(event)"
                                                                                                             placeholder="0 %"/>
                                                                         </td>
@@ -413,6 +413,7 @@ Date 24-11-2015
                                                                                                             type="text"
                                                                                                             value=""
                                                                                                             class="globalCropPriceEdit"
+                                                                                                            id="globalCropPriceEditChange"
                                                                                                             onkeypress="return isValidNumberValueForForCastSA(event)"
                                                                                                             placeholder="0 %"/>
                                                                         </td>
@@ -420,6 +421,7 @@ Date 24-11-2015
                                                                                                             type="text"
                                                                                                             value=""
                                                                                                             class="globalYieldEdit"
+                                                                                                            id="globalYieldPriceEditChange"
                                                                                                             onkeypress="return isValidNumberValueForForCastSA(event)"
                                                                                                             placeholder="0 %"/>
                                                                         </td>
@@ -427,6 +429,7 @@ Date 24-11-2015
                                                                                                             type="text"
                                                                                                             value=""
                                                                                                             class="globalVarCostEdit"
+                                                                                                            id="globalVarCostEditChange"
                                                                                                             onkeypress="return isValidNumberValueForForCastSA(event)"
                                                                                                             placeholder="0 %"/>
                                                                         </td>
@@ -769,6 +772,7 @@ Date 24-11-2015
         }
     });
 
+
     $('#globalVarCostEdit').keyup(function(){
         if ($(this).val() > 100){
             customAlerts("Scenario parameters must be between 100% and -100%", 'error', 0);
@@ -798,6 +802,52 @@ Date 24-11-2015
 
         }
     });
+
+    $('#globalCropPriceEditChange').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("Scenario parameters must be between 100% and -100%");
+            $(this).val('');
+        }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%");
+            $(this).val('');
+        }
+
+        else{
+
+        }
+    });
+
+    $('#globalYieldPriceEditChange').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("Scenario parameters must be between 100% and -100%");
+            $(this).val('');
+        }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%");
+            $(this).val('');
+        }
+
+        else{
+
+        }
+    });
+
+    $('#globalVarCostEditChange').keyup(function(){
+        if ($(this).val() > 100){
+            customAlerts("Scenario parameters must be between 100% and -100%");
+            $(this).val('');
+        }
+        else if($(this).val() < -100){
+            customAlerts("Scenario parameters must be between 100% and -100%");
+            $(this).val('');
+        }
+
+        else{
+
+        }
+    });
+
 
 </script>
 <script type="text/x-jQuery-tmpl" id="scenarioAnalysisOutputTmpl">
