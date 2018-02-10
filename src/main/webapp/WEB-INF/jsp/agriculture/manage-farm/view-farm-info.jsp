@@ -2105,7 +2105,6 @@ start -->
                                                             <input type="text"
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
-                                                                   onkeypress="return isValidNumberValue(event)"
                                                                    onmouseover="addForwardNegativePricePopup(this)"
                                                                    onchange="addCommaSignWithDollar(this)"></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
