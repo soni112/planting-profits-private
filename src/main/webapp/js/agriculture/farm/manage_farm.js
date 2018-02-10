@@ -1951,6 +1951,7 @@ function acerageCalForwardSale(obj) {
 function quantityCalForwardSale(obj) {
     var cropName = $(obj).parent().siblings("td:nth(0)").text().trim();
     var cropAcrage = Number(removeAllCommas($(obj).val()));
+    var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
     var cropQuantity = 0;
     $("#cropInformationDetailFirstTable tbody tr").each(function () {
         if ($(this).children("td:nth(0)").text().trim() == cropName) {
@@ -1964,8 +1965,8 @@ function quantityCalForwardSale(obj) {
     }
     $("#crop_contract_table_tbody tr").each(function () {
         if ($(this).children("td:nth(1)").text().trim() == cropName + " (" + contractIdentifier + ")") {
-//			$(this).children("td:nth(2)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
-            $(this).children("td:nth(3)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
+			$(this).children("td:nth(2)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
+            $(this).children("td:nth(3)").find("input").val(getValueWithComma(parseInt((cropAcrage*100)/totalLand)));
             return false;
         }
     });
