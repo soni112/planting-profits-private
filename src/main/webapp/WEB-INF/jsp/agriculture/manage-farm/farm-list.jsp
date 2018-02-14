@@ -159,11 +159,15 @@
                                     <div class="input-group-addon">Farm</div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label>Physical Location</label>
                                 <!-- Commented as per client requirement on 29-07-2015-->
                                 <!-- <a id="physical_location" class="help_Infromation_PopUp"  href="#"><img src="images/i-icon.png"></a> -->
-                                <input type="text" class="form-control" id="physical-localtion"/>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="physical-localtion"/>
+                                    <div class="input-group-addon" onclick="enableLocation()">Edit</div>
+                                </div>
                             </div>
                             <!--
                             Code commented as per clients requirement

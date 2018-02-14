@@ -215,12 +215,28 @@ $(document).ready(function() {
         });
     }
 
-    $("#physical-localtion").keyup(function(event) {
-        if (event.keyCode == 13) {
-            createFarm();
+    // $("#physical-localtion").keyup(function(event) {
+    //     if (event.keyCode == 13) {
+    //         createFarm();
+    //     }
+    // });
+
+    $("#physical-localtion").on('blur', function (event) {
+        if($(this).val()!=""){
+            document.getElementById('physical-localtion').readOnly = true;
         }
-    });
+        else {
+            document.getElementById('physical-localtion').readOnly = false;
+        }
+
+    })
+
 });
+function enableLocation() {
+    document.getElementById('physical-localtion').readOnly = false;
+
+
+}
 function validCreatedFarm() {
     var isFarmValidated = true;
     var farmName = $.trim("" + $('#farm-name').val());
@@ -248,13 +264,17 @@ function validCreatedFarm() {
             isFarmValidated = false;
         }
     }
+
+
     if (physicalLocation == "") {
         if (isFarmValidated) {
-            customAlerts("Please enter farm Physical location", "error", 0);
+            customAlerts("Please enter Physical location ", "error", 0);
             addErrorClassOnObject('#physical-localtion');
             isFarmValidated = false;
         }
     }
+
+
     if (fixedCost == "") {
         if (isFarmValidated) {
             customAlerts("Please enter fixed cost", "error", 0);
