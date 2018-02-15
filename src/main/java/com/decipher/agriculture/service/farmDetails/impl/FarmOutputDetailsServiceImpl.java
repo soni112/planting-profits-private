@@ -217,6 +217,17 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 jsonObject.put(INC_DEC_INCOME, "Increase");
                 jsonObject.put(MESSAGE, "Maximum crop limit may be impacting Estimated Income.");
             } else {
+                double totalLand = 0;
+                List <CropResourceUsageView> resourceList = (List <CropResourceUsageView>) outputDetails.get ( "resourceList" );
+                for (CropResourceUsageView cropResourceUsageView : resourceList) {
+                    if(cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )){
+                        totalLand = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsageView.getCropResourceUseAmount ()));
+                    }
+                }
+
+                if(totalLand == Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) )))){
+                    max = NO;
+                }
                 jsonObject.put(IMPACTING_INCOME, max);
                 jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) ? "Increase" : "--");
                 if (max.equalsIgnoreCase(YES)) {

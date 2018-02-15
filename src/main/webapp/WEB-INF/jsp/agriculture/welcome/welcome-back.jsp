@@ -19,7 +19,7 @@
                     </div><!-- /.col-12 -->
 
                     <aside class="left-nav-sponsers p-r-0">
-                        <div class="left-nav-info">
+                        <div class="left-nav-info" style="overflow-y: auto">
                             <h2 class="weight-600 text-center">Grower</h2>
                             <ul style="float: none;list-style: none">
                                 <c:forEach var="farmdetails" items="${model.allFarmsForUser}">
