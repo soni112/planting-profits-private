@@ -2268,7 +2268,7 @@ Commented as per client requirement
                                                             <input type="text"
                                                                    onkeypress="return isValidNumberValue(event)"
                                                                    class="minCropAcreagePercentage"
-                                                                   onchange="calculatePercentageOfMinAcreage(this); return false;"
+                                                                   onchange="calculatePercentageOfMinAcreagePercent(this); return false;"
                                                                    value="${cropListForCropLimit.minimumAcresPercentage}">
                                                         </td>
                                                         <td class="success croplimit">
@@ -2285,8 +2285,8 @@ Commented as per client requirement
                                                             <input type="text"
                                                                    <%--id="group_crop_maximum_acreage_percentage"--%>
                                                                    onkeypress="return isValidNumberValue(event)"
-                                                                   class="maxCropAcreagePercentage popoverPercentage"
-                                                                   onchange="calculatePercentageOfMaxAcreage(this); return false;"
+                                                                   class="maxCropAcreagePercentage"
+                                                                   onchange="calculatePercentageOfMaxAcreagePercentage  (this); return false;"
                                                                    value="${cropListForCropLimit.maximumAcresPercentage}">
                                                             <a id="popoverPercentageHelp" class="help_Infromation_PopUp"
                                                                href="javascript:;" style="display: none"><img src="<c:url value="/images/i-img.png"/>"></a>
