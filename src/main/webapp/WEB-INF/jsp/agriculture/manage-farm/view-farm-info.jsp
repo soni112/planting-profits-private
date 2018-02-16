@@ -820,7 +820,7 @@
                                                         </td>
                                                         <td class="success infotext">
                                                             <input type="text"
-                                                                   onchange="addCommaSignWithForOnePoint(this);changeExpectedYieldValue(this);calculateProfitByCrop(this)"
+                                                                   onchange="addCommaSignWithForOnePoint(this);changeExpectedYieldValue(this);calculateProfitByCrop(this);"
                                                                    onkeypress="return isValidNumberValue(event)"
                                                                    id="crop_info_yields_expected__${rowCount}"
                                                                    name="Crop"
@@ -2105,8 +2105,8 @@ start -->
                                                             <input type="text"
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
-                                                                   onmouseover="addForwardNegativePricePopup(this)"
-                                                                   onchange="addCommaSignWithDollar(this)"></td>
+                                                                   class="ForwardPrice" onkeypress="return isValidNumberValue(event)"
+                                                                   onchange="addCommaSignWithDollar(this);addForwardNegativePricePopup(this,'${cropListForforwardSale.cropName}'); "></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
                                                             <input type="text"
