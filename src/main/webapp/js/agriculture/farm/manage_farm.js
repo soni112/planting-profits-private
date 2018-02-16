@@ -26,7 +26,7 @@ $(function () {
     }
 
     $(".multiselect", this.el).multiselect({
-        includeSelectAllOption : true
+        includeSelectAllOption: true
     });
 
     hideLoadingImage();
@@ -41,39 +41,39 @@ $(function () {
     buildBaselineStrategySeletion();
 
     var flag = localStorage.getItem('cropLimitFlag');
-    if(typeof flag != 'undefined' && flag){
+    if (typeof flag != 'undefined' && flag) {
         localStorage.removeItem('cropLimitFlag');
         showCropLimitsTab();
     }
 
     var resourceFlag = localStorage.getItem('resourcesFlag');
-    if(typeof resourceFlag != 'undefined' && resourceFlag){
+    if (typeof resourceFlag != 'undefined' && resourceFlag) {
         localStorage.removeItem('resourcesFlag');
         showResourcesTab();
     }
 
     var profitFlag = localStorage.getItem('profitCropFlag');
-    if(typeof profitFlag != 'undefined' && profitFlag){
+    if (typeof profitFlag != 'undefined' && profitFlag) {
         localStorage.removeItem('profitCropFlag');
         showCropsAndCropInformationTab();
         nextCropsAndCropsInformation();
     }
 
     var cropChoiceFlag = localStorage.getItem('cropChoicesFlag');
-    if(typeof cropChoiceFlag != 'undefined' && cropChoiceFlag){
+    if (typeof cropChoiceFlag != 'undefined' && cropChoiceFlag) {
         localStorage.removeItem('cropChoicesFlag');
         showCropsAndCropInformationTab();
     }
 
-    var cropFieldChoiceFlag=localStorage.getItem('cropFieldChoicesFlag');
-    if(typeof cropFieldChoiceFlag != 'undefined' && cropFieldChoiceFlag){
+    var cropFieldChoiceFlag = localStorage.getItem('cropFieldChoicesFlag');
+    if (typeof cropFieldChoiceFlag != 'undefined' && cropFieldChoiceFlag) {
         localStorage.removeItem('cropFieldChoicesFlag');
         showCropFieldChoicesTab();
         nextPlanByField();
     }
 
     var cropFieldFlag = localStorage.getItem('cropFieldFlag');
-    if(typeof cropFieldFlag != 'undefined' && cropFieldFlag){
+    if (typeof cropFieldFlag != 'undefined' && cropFieldFlag) {
         localStorage.removeItem('cropFieldFlag');
         showCropFieldChoicesTab();
     }
@@ -85,15 +85,15 @@ $(function () {
     $fixedTables.trigger('rowAddOrRemove');
     buildFixedTable();
 
-    $('#crop_limits_table_tbody, #crop_contract_table_tbody, #group_table_tbody').find('tr').each(function (){
-        if($(this).find('.minCropAcreage').val() != '' && $(this).find('.minCropAcreage').val() != '0') {
+    $('#crop_limits_table_tbody, #crop_contract_table_tbody, #group_table_tbody').find('tr').each(function () {
+        if ($(this).find('.minCropAcreage').val() != '' && $(this).find('.minCropAcreage').val() != '0') {
             $(this).find('.minCropAcreage').trigger('change');
-        } else if($(this).find('.minCropAcreagePercentage').val() != '' && $(this).find('.minCropAcreagePercentage').val() != '0'){
+        } else if ($(this).find('.minCropAcreagePercentage').val() != '' && $(this).find('.minCropAcreagePercentage').val() != '0') {
             $(this).find('.minCropAcreagePercentage').trigger('change');
         }
-        if($(this).find('.maxCropAcreage').val() != '' && $(this).find('.maxCropAcreage').val() != '0'){
+        if ($(this).find('.maxCropAcreage').val() != '' && $(this).find('.maxCropAcreage').val() != '0') {
             $(this).find('.maxCropAcreage').trigger('change');
-        } else if($(this).find('.maxCropAcreagePercentage').val() != '' && $(this).find('.maxCropAcreagePercentage').val() != '0'){
+        } else if ($(this).find('.maxCropAcreagePercentage').val() != '' && $(this).find('.maxCropAcreagePercentage').val() != '0') {
             $(this).find('.maxCropAcreagePercentage').trigger('change');
         }
         // $(this).find('.minCropAcreagePercentage').trigger('change');
@@ -113,9 +113,9 @@ var totalAcresWhenSwitchingStrategyAcresToFields = 0;
 var flagSwitchedStrategyFieldsToAcres = false;
 var flagSwitchedStrategyAcresToFields = false;
 
-function maxCropLimitPercentageValidate(){
-    $("input.popoverPercentage").change(function(){
-        if($.trim($(this).val()) == 0 && $(this).val() !== ''){
+function maxCropLimitPercentageValidate() {
+    $("input.popoverPercentage").change(function () {
+        if ($.trim($(this).val()) == 0 && $(this).val() !== '') {
             $(this).parents().eq(1).find('a[id="popoverPercentageHelp"]').show();
         } else {
             $(this).parents().eq(1).find('a[id="popoverPercentageHelp"]').hide();
@@ -123,36 +123,36 @@ function maxCropLimitPercentageValidate(){
     });
 }
 
-function rowAddOrRemovehandler(){
-    var $tbody =$(this).find('tbody');
-    var $thead =$(this).find('thead');
-    if($tbody.children().length > 6){
+function rowAddOrRemovehandler() {
+    var $tbody = $(this).find('tbody');
+    var $thead = $(this).find('thead');
+    if ($tbody.children().length > 6) {
         $thead.addClass('tbl-header-scrolll-width');
     } else {
         $thead.removeClass('tbl-header-scrolll-width');
     }
 }
 
-function registerTemplates(){
+function registerTemplates() {
     $.template('additional-crop-income-tbody-tmpl', $('#additional-crop-income-tbody-tmpl'));
     $.template('optional-crop-info-table-tmpl', $('#optional-crop-info-table-tmpl'));
 }
 
-function buildFixedTable(){
+function buildFixedTable() {
 
     var td = $('.fld-chc-tbl-fixd-hdr thead > tr > td');
     var avgWidth = 100 / td.length;
 
-    td.each(function(){
+    td.each(function () {
         $(this).css('width', avgWidth + '%');
     });
 
-    $('.fld-chc-tbl-fixd-hdr tbody > tr > td').each(function(){
+    $('.fld-chc-tbl-fixd-hdr tbody > tr > td').each(function () {
         $(this).css('width', avgWidth + '%');
     });
 
     var $target = $('#cropInformationDetailFirstTable');
-    if($target.find('tbody').children().length > 4){
+    if ($target.find('tbody').children().length > 4) {
         $target.find('thead').addClass('overflow-table-fixed');
     } else {
         $target.find('thead').removeClass('overflow-table-fixed');
@@ -336,7 +336,7 @@ function onStrategyChange() {
              * @changed - Abhishek
              * @date - 05-12-2015
              */
-                //$("#acres_value").attr("disabled", "disabled");
+            //$("#acres_value").attr("disabled", "disabled");
 
             $("#total_land_available").text($("#Plan_by_Fields_table tfoot tr:nth(0) td:nth(1)").text().trim());
             flagSwitchedStrategyFieldsToAcres = true;
@@ -374,11 +374,11 @@ function onCropSelectedOrRemoved(cropObject) {
          */
         /*alertify.confirm('Are you sure you want to remove this crop with name "' + $(cropObject).val() + '" ?', function (e) {
             if (e) {*/
-                removeCropFromAllTables($(cropObject).val());
-            /*} else {
-                $(cropObject).prop("checked", true);
-            }
-        });*/
+        removeCropFromAllTables($(cropObject).val());
+        /*} else {
+            $(cropObject).prop("checked", true);
+        }
+    });*/
     }
 
     buildFixedTable();
@@ -460,7 +460,7 @@ function validateCropsInformationDetails() {
             customAlerts('Please enter the estimated price for  "' + $(this).children("td:nth(0)").text() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(5)").find("input"));
             validationFlag = false;
-        } else if (removeAllCommasAndDollar($(this).children("td:nth(5)").find("input").val())== 0.00) {
+        } else if (removeAllCommasAndDollar($(this).children("td:nth(5)").find("input").val()) == 0.00) {
             customAlerts('Expected price for "' + $(this).children("td:nth(0)").text() + '" must be greater than zero', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(5)").find("input"));
             validationFlag = false;
@@ -491,6 +491,7 @@ function validateCropsInformationDetails() {
         return true;
     }
 }
+
 /*change br rohit*/
 function validateFieldDifference() {
     var fieldDifferenceflag = true;
@@ -627,7 +628,7 @@ function validateResources() {
         customAlerts("Please enter amount for Capital resource", type_error, time);
         addErrorClassOnObject("#total_capital_available");
         return false;
-    } else if(totalCapitalAvailable == 0){
+    } else if (totalCapitalAvailable == 0) {
         customAlerts("Please ensure that the amount entered are greater than zero for Capital resource", type_error, time);
         addErrorClassOnObject("#total_capital_available");
         return false;
@@ -679,7 +680,7 @@ function warningValidateResources() {
         customAlerts('In Resource screen "' + resourceName.substring(0, resourceName.length - 2) + '" resource is not selected. If you want to use this resource, go back to Resource screen and select the checkbox', type_warning, time);
         return true;
     } else {*/
-        return false;
+    return false;
     // }
 }
 
@@ -803,7 +804,7 @@ function validateCropLimits() {
 
         if (maximum_acres > totalLand || maximum_acresPercentage > 100) {
 
-            customAlerts('The total Maximum crop acreage limit for '+ cropName +' cannot be greater than the Available land: ' + totalLand + ' acres', type_error, time);
+            customAlerts('The total Maximum crop acreage limit for ' + cropName + ' cannot be greater than the Available land: ' + totalLand + ' acres', type_error, time);
             validationCropLimitFlag = false;
             return validationCropLimitFlag;
         }
@@ -813,7 +814,7 @@ function validateCropLimits() {
         totalMaximumAcre += maximum_acres;
         totalMaximumAcrePercentage += maximum_acresPercentage;
         if (($(this).children("td:nth(4)").find("input").val().trim() != "" && $(this).children("td:nth(4)").find("input").val().trim() != "0")
-                || ($(this).children("td:nth(5)").find("input").val().trim() != "" && $(this).children("td:nth(5)").find("input").val().trim() != "0")) {
+            || ($(this).children("td:nth(5)").find("input").val().trim() != "" && $(this).children("td:nth(5)").find("input").val().trim() != "0")) {
             if (Number(removeAllCommas($(this).children("td:nth(4)").find("input").val())) < minimum_acres
                 && Number(removeAllCommas($(this).children("td:nth(5)").find("input").val())) < minimum_acresPercentage) {
                 /**
@@ -856,13 +857,13 @@ function validateCropLimits() {
      * @date : 21-02-2017
      * @type : {Reword according to slide : G024 of 04232017}
      */
-    // if (totalMaximumAcre > totalLand || totalMaximumAcrePercentage >= 100) {
-    //     // customAlerts('Total of the Maximum acres amount must not be more than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
-    //     customAlerts('The total of all Maximum crop acreage limits must not be more than the total available land: "' + totalLand + '". ' +
-    //         'Reduce one or more Maximum crop acreage limits or increase Available land', type_error, time);
-    //     validationCropLimitFlag = false;
-    //     return validationCropLimitFlag;
-    // }
+        // if (totalMaximumAcre > totalLand || totalMaximumAcrePercentage >= 100) {
+        //     // customAlerts('Total of the Maximum acres amount must not be more than total available land "' + $("#total_land_available").text().trim() + '"', type_error, time);
+        //     customAlerts('The total of all Maximum crop acreage limits must not be more than the total available land: "' + totalLand + '". ' +
+        //         'Reduce one or more Maximum crop acreage limits or increase Available land', type_error, time);
+        //     validationCropLimitFlag = false;
+        //     return validationCropLimitFlag;
+        // }
     var groupMinAcres = 0;
     var groupMinAcresPercentage = 0;
     var groupMaximumAcres = 0;
@@ -958,6 +959,7 @@ function nextCropsAndCropsInformation() {
 }
 
 var validationFlagGlobal = true;
+
 function nextCropsInformationDetails() {
     var validationOutput = validateCropsInformationDetails();
     if (validationOutput && validationFlagGlobal) {
@@ -968,6 +970,7 @@ function nextCropsInformationDetails() {
 }
 
 var warningFallowPlanByFieldFlag = true;
+
 function nextPlanByField() {
     if (validatePlanByField()) {
         if (warningFallowPlanByFieldFlag == true) {
@@ -985,6 +988,7 @@ function nextPlanByField() {
 }
 
 var warningForCropFieldChoice = true;
+
 function nextCropFieldChoice() {
     if (validateCropFieldChoice()) {
         if (warningForCropFieldChoice == true) {
@@ -997,6 +1001,7 @@ function nextCropFieldChoice() {
 }
 
 var warningMessageForOneTimeOnly = true;
+
 function nextResources() {
     if (validateResources()) {
         if (warningMessageForOneTimeOnly == true) {
@@ -1031,6 +1036,7 @@ function nextFieldDifference() {
         callMethodForPageChangeAndProgressBarImage(7, 6);
     }
 }
+
 /*All Next function End*/
 
 function selectStrategyInCaseOfBoth() {
@@ -1058,15 +1064,16 @@ function selectStrategyInCaseOfBoth() {
 }
 
 var defaultUOMForCrop = "bushels";
+
 function addCropInAllTables(cropName) {
     var flag = true;
-    $("#cropInformationDetailFirstTable").find("tbody").find("tr").each(function(){
+    $("#cropInformationDetailFirstTable").find("tbody").find("tr").each(function () {
         if ($(this).children("td:nth(0)").text().trim() == cropName) {
             flag = false;
         }
     });
 
-    if(!flag){
+    if (!flag) {
         return;
     }
 
@@ -1076,16 +1083,16 @@ function addCropInAllTables(cropName) {
      * @desc - added onchange calculateProfitByCrop() for min and max yield and price
      */
     var rowHTMLForCropInformationDetails1 = '<tr class="tblbclgrnd text-center">' +
-                    '<td class="tblft1">' + cropName + '</td>' +
-                    '<td class="success uomtext"><select class="crop_selection_UOM" onchange="changeCropUOM(this)"> <option value="bushels">bushels</option><option value="crates">crates</option><option value="hundredweight">hundredweight</option><option value="kilograms">kilograms</option><option value="pounds">pounds</option><option value="tons">tons</option><option value="sacks">sacks</option><option value="bales">bales</option>	</select></td>' +
-                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeExpectedYieldValue(this); calculateProfitByCrop(this)"></td>' +
-                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeMaximumYieldValue(this); calculateProfitByCrop(this)"></td>' +
-                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeMinimumYieldValue(this); calculateProfitByCrop(this)"></td>' +
-                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this);calculateProfitByCrop(this);addPopupNegativeValue(this)"></td>' +
-                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this); calculateProfitByCrop(this)"></td>' +
-                    '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this); calculateProfitByCrop(this)"></td>' +
-                    '<td class="success infotext"><input type="text" onkeypress="return isValidNumberValue(event)" placeholder="$0" onchange="addCommaSignWithDollar(this);variableProductionCostChange(this);calculateProfitByCrop(this)"> <br>	<span class="pull-right"><a onclick="showOptionalCropInformationDiv(\'' + cropName + '\')">Details</a></span></td>' +
-                    '<td class="success infotext" onmouseover="showPotentialProfitCriticalMessagePopup(this);" ><input type="text" disabled="disabled" placeholder="$0.00"><span class="pull-right" style="color: grey;font-size: small;"></span></td></tr>';
+        '<td class="tblft1">' + cropName + '</td>' +
+        '<td class="success uomtext"><select class="crop_selection_UOM" onchange="changeCropUOM(this)"> <option value="bushels">bushels</option><option value="crates">crates</option><option value="hundredweight">hundredweight</option><option value="kilograms">kilograms</option><option value="pounds">pounds</option><option value="tons">tons</option><option value="sacks">sacks</option><option value="bales">bales</option>	</select></td>' +
+        '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeExpectedYieldValue(this); calculateProfitByCrop(this)"></td>' +
+        '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeMaximumYieldValue(this); calculateProfitByCrop(this)"></td>' +
+        '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithForOnePoint(this);changeMinimumYieldValue(this); calculateProfitByCrop(this)"></td>' +
+        '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this);calculateProfitByCrop(this);addPopupNegativeValue(this)"></td>' +
+        '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this); calculateProfitByCrop(this)"></td>' +
+        '<td class="success infotext"><input type="text" name="Crop" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this); calculateProfitByCrop(this)"></td>' +
+        '<td class="success infotext"><input type="text" onkeypress="return isValidNumberValue(event)" placeholder="$0" onchange="addCommaSignWithDollar(this);variableProductionCostChange(this);calculateProfitByCrop(this)"> <br>	<span class="pull-right"><a onclick="showOptionalCropInformationDiv(\'' + cropName + '\')">Details</a></span></td>' +
+        '<td class="success infotext" onmouseover="showPotentialProfitCriticalMessagePopup(this);" ><input type="text" disabled="disabled" placeholder="$0.00"><span class="pull-right" style="color: grey;font-size: small;"></span></td></tr>';
     /**
      * @changed - Abhishek
      * @date - 30-12-2015
@@ -1136,7 +1143,10 @@ function addCropInAllTables(cropName) {
         'Others'
     ];
 
-    $.tmpl('optional-crop-info-table-tmpl', {cropName: cropName, optionalCropInfoHeadsArr: optionalCropInfoHeadsArr}).appendTo('#optional_crop_dynamic_div');
+    $.tmpl('optional-crop-info-table-tmpl', {
+        cropName: cropName,
+        optionalCropInfoHeadsArr: optionalCropInfoHeadsArr
+    }).appendTo('#optional_crop_dynamic_div');
 
 
     // $("#optional_crop_dynamic_div").append(optionalCropInformationDetailHTML);
@@ -1182,9 +1192,9 @@ function addCropInAllTables(cropName) {
             '<td class="success croplimit"><input type="text" class="minCropAcreage" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMinAcreage(this);"></td>' +
             '<td class="success croplimit"><input type="text" class="minCropAcreagePercentage" onkeypress="return isValidNumberValue(event)" onchange="calculatePercentageOfMinAcreage(this);"></td>' +
             '<td class="success croplimit"><input type="text" class="maxCropAcreage" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMaxAcreage(this);">' +
-                    '<a id="popoverPercentageHelp" class="help_Infromation_PopUp" href="javascript:;" style="display: none"><img src="/images/i-img.png"></a></td>' +
+            '<a id="popoverPercentageHelp" class="help_Infromation_PopUp" href="javascript:;" style="display: none"><img src="/images/i-img.png"></a></td>' +
             '<td class="success croplimit"><input type="text" class="maxCropAcreagePercentage" onkeypress="return isValidNumberValue(event)" onchange="calculatePercentageOfMaxAcreage(this);">' +
-                    '<a id="popoverPercentageHelp" class="help_Infromation_PopUp" href="javascript:;" style="display: none"><img src="/images/i-img.png"></a></td>' +
+            '<a id="popoverPercentageHelp" class="help_Infromation_PopUp" href="javascript:;" style="display: none"><img src="/images/i-img.png"></a></td>' +
             '</tr>';
     }
     $("#crop_limits_table_tbody").append(rowHTMLForCropLimit);
@@ -1358,67 +1368,67 @@ function addNewField() {
         // alertify.confirm('Click OK to add a new field named "' + fieldName + '".', function (e) {
         //     if (e) {
 
-                var validationFlag_Field = true;
-                $("#Plan_by_Fields_table tbody tr").each(function () {
-                    if ($(this).children("td:nth(1)").text().trim() == fieldName) {
-                        customAlerts('"' + fieldName + '" field name is already exist', type_error, time);
-                        addErrorClassOnObject('#pop-up-field-name');
-                        validationFlag_Field = false;
-                        return false;
-                    }
-                });
-                if (validationFlag_Field) {
-                    var rowHTMLForPlanByField = '<tr class="success tblgrn text-center column-left"><td><input type="checkbox" class="fields"></td><td>' + $("#pop-up-field-name").val() + '</td><td>' + $("#pop-up-field-size").val() + '</td> <td><select onchange="lastCropSelected(this)"><option value="No Crop">No Crop</option>' + selectHTMLForOptions + '</select></td><td><input type="checkbox" value="true" onchange="fallowEnabledOrDisabled(this)"></td><td><input type="checkbox" value="true"></td><td><input type="checkbox" name="field-irrigate__1" value="true"></td></tr>';
-                    var totalLandByField = 0;
+        var validationFlag_Field = true;
+        $("#Plan_by_Fields_table tbody tr").each(function () {
+            if ($(this).children("td:nth(1)").text().trim() == fieldName) {
+                customAlerts('"' + fieldName + '" field name is already exist', type_error, time);
+                addErrorClassOnObject('#pop-up-field-name');
+                validationFlag_Field = false;
+                return false;
+            }
+        });
+        if (validationFlag_Field) {
+            var rowHTMLForPlanByField = '<tr class="success tblgrn text-center column-left"><td><input type="checkbox" class="fields"></td><td>' + $("#pop-up-field-name").val() + '</td><td>' + $("#pop-up-field-size").val() + '</td> <td><select onchange="lastCropSelected(this)"><option value="No Crop">No Crop</option>' + selectHTMLForOptions + '</select></td><td><input type="checkbox" value="true" onchange="fallowEnabledOrDisabled(this)"></td><td><input type="checkbox" value="true"></td><td><input type="checkbox" name="field-irrigate__1" value="true"></td></tr>';
+            var totalLandByField = 0;
 //	$("#Plan_by_Fields_table tbody").children("tr:nth("+($("#Plan_by_Fields_table tbody tr").length-1)+")").remove();
-                    $("#Plan_by_Fields_table tbody").append(rowHTMLForPlanByField);
-                    $("#Plan_by_Fields_table tbody tr").each(function () {
-                        totalLandByField += Number(removeAllCommas($(this).children("td:nth(2)").text()));
-                    });
+            $("#Plan_by_Fields_table tbody").append(rowHTMLForPlanByField);
+            $("#Plan_by_Fields_table tbody tr").each(function () {
+                totalLandByField += Number(removeAllCommas($(this).children("td:nth(2)").text()));
+            });
 //	var rowHtmlForLastRow = '<tr id="total-field-last-row" class="tblft text-center"><td class="tblft1">Total acres </td><td style="text-align: left" colspan="6" id="total-acres-value">'+totalLandByField+'</td></tr>';
 //	$("#Plan_by_Fields_table tbody").append(rowHtmlForLastRow);
 
-                    var rowHTMLForCropFieldChoice = '<tr class="tblgrn text-center"><td class="tblft1">' + $("#pop-up-field-name").val() + '</td>';
-                    /*var count = 0;
-                    var cropsArr = [];
-                    $("#field_choice_crop_thead tr td").each(function(){
-                        if(count != 0){
-                            cropsArr.push($(this).html());
-                        }
-                        count++;
-                    });
-
-                    count = 0;*/
-                    $("input:checkbox[class=crops]:checked").each(function () {
-                        rowHTMLForCropFieldChoice += '<td class="success"><label class="input-label">' +
-                            '<input type="checkbox" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
-                            /*cropsArr[count] + */'</label></td>';
-                        // count++;
-                    });
-                    rowHTMLForCropFieldChoice += "</tr>";
-                    $("#field_choice_crop_table tbody").append(rowHTMLForCropFieldChoice);
-                    $("#field_select_drop_down").append('<option value="' + $("#pop-up-field-name").val() + '">' + $("#pop-up-field-name").val() + '</option>');
-                    var alertMessage = "";
-                    if (totalLandByField > 10000) {
-                        alertMessage += "But the amount of land entered for \"" + fieldName + "\" field exceeds 10,000.00 acres. ";
-                    }
-                    /*if (alertMessage != "") {
-                        customAlerts('"' + fieldName + '" field added successfully. ' + alertMessage, type_warning, time);
-                    } else {
-                        customAlerts('"' + fieldName + '" field added successfully', type_success, time);
-                    }*/
-                    totalLandByField = getValueWithComma(totalLandByField);
-                    $("#total-acres-value").text(totalLandByField);
-                    $("#total_land_available").text(totalLandByField);
-                    $("#Plan_by_Fields_table").show();
+            var rowHTMLForCropFieldChoice = '<tr class="tblgrn text-center"><td class="tblft1">' + $("#pop-up-field-name").val() + '</td>';
+            /*var count = 0;
+            var cropsArr = [];
+            $("#field_choice_crop_thead tr td").each(function(){
+                if(count != 0){
+                    cropsArr.push($(this).html());
                 }
-            // }
-            $("#pop-up-field-name").val('');
-            $("#pop-up-field-size").val('');
+                count++;
+            });
+
+            count = 0;*/
+            $("input:checkbox[class=crops]:checked").each(function () {
+                rowHTMLForCropFieldChoice += '<td class="success"><label class="input-label">' +
+                    '<input type="checkbox" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                    /*cropsArr[count] + */'</label></td>';
+                // count++;
+            });
+            rowHTMLForCropFieldChoice += "</tr>";
+            $("#field_choice_crop_table tbody").append(rowHTMLForCropFieldChoice);
+            $("#field_select_drop_down").append('<option value="' + $("#pop-up-field-name").val() + '">' + $("#pop-up-field-name").val() + '</option>');
+            var alertMessage = "";
+            if (totalLandByField > 10000) {
+                alertMessage += "But the amount of land entered for \"" + fieldName + "\" field exceeds 10,000.00 acres. ";
+            }
+            /*if (alertMessage != "") {
+                customAlerts('"' + fieldName + '" field added successfully. ' + alertMessage, type_warning, time);
+            } else {
+                customAlerts('"' + fieldName + '" field added successfully', type_success, time);
+            }*/
+            totalLandByField = getValueWithComma(totalLandByField);
+            $("#total-acres-value").text(totalLandByField);
+            $("#total_land_available").text(totalLandByField);
+            $("#Plan_by_Fields_table").show();
+        }
+        // }
+        $("#pop-up-field-name").val('');
+        $("#pop-up-field-size").val('');
 
         buildFixedTable();
         $fixedTables.trigger('rowAddOrRemove');
-            div_hide4();
+        div_hide4();
         // });
     }
 }
@@ -1469,6 +1479,7 @@ function lastCropSelected(obj) {
 }
 
 var fieldNameForModify = "";
+
 function modifyExistingField() {
     fieldNameForModify = "";
     if ($("#Plan_by_Fields_table tbody tr").length == 0) {
@@ -1613,7 +1624,7 @@ function removeField() {
                 }
                 $("#field_select_drop_down option").each(function () {
                     var fieldArr = fieldNameList.split(", ");
-                    for(var key in fieldArr){
+                    for (var key in fieldArr) {
                         var fieldName = fieldArr[key];
                         if (fieldName != "" && $(this).val() == fieldName) {
                             var flag = false;
@@ -1732,9 +1743,9 @@ function addResourcesInAllTables(resourceObject) {
     var resourceName = $(resourceObject).parent().parent().children("td:nth(1)").text().trim();
     var resourceUOM = $(resourceObject).parent().parent().children("td:nth(2)").text().trim();
     var flag = true;
-    $("#crop_resource_usage thead tr").each(function(){
+    $("#crop_resource_usage thead tr").each(function () {
         console.log($(this).children().eq(0).text());
-        $(this).find('td').each(function(){
+        $(this).find('td').each(function () {
             if ($.trim($(this).find('span[class="tittle-uppercase"]').text()) == resourceName) {
                 flag = false;
             }
@@ -1742,7 +1753,7 @@ function addResourcesInAllTables(resourceObject) {
 
     });
 
-    if (flag){
+    if (flag) {
         var theadHTML = '<td class="text-center"><span class="tittle-uppercase">' + resourceName + '</span><br><span class="resub">(' + resourceUOM + ')</span></td>';
         $("#crop_resource_usage thead tr").append(theadHTML);
 
@@ -1753,7 +1764,6 @@ function addResourcesInAllTables(resourceObject) {
         var rowHTMLForFieldDifference = '<tr class="tblgrn text-center"><td class="tblft1 tittle-uppercase">' + resourceName + '</td><td class="success infotext"></td><td class="success infotext"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollar(this)"></td></tr>';
         $("#crop_resources_usages_difference_tbody").append(rowHTMLForFieldDifference);
     }
-
 
 
 }
@@ -1873,6 +1883,7 @@ function removeCrops() {
         enableDisableLeftMenu(2);
     }
 }
+
 /**
  * @changed - Abhishek
  * @date - 19-05-2016
@@ -1884,7 +1895,7 @@ function selectAllContacts() {
     var unChecked = $(".crops").length;
 
 
-    if(checked == unChecked){
+    if (checked == unChecked) {
         $('#select-unselect-img').attr('src', 'images/select_all.png');
         $(".crops").prop('checked', false);
     } else {
@@ -1893,18 +1904,19 @@ function selectAllContacts() {
     }
 
 
-    $(".crops").each(function(){
+    $(".crops").each(function () {
         $(this).trigger('change');
     });
     hideLoadingImage();
 
 }
+
 /**
  * @changed - Abhishek
  * @date - 19-05-2016
  * @desc - for implementing select all fub=nctionality
  */
-function changeSelectAllImage(){
+function changeSelectAllImage() {
     $('#select-unselect-img').attr('src', 'images/select_all.png');
 }
 
@@ -1965,8 +1977,8 @@ function quantityCalForwardSale(obj) {
     }
     $("#crop_contract_table_tbody tr").each(function () {
         if ($(this).children("td:nth(1)").text().trim() == cropName + " (" + contractIdentifier + ")") {
-			$(this).children("td:nth(2)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
-            $(this).children("td:nth(3)").find("input").val(getValueWithComma(parseInt((cropAcrage*100)/totalLand)));
+            $(this).children("td:nth(2)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
+            $(this).children("td:nth(3)").find("input").val(getValueWithComma(parseInt((cropAcrage * 100) / totalLand)));
             return false;
         }
     });
@@ -2094,6 +2106,7 @@ function removeProductionCostField(name) {
         });
     }
 }
+
 var componentNameForModify = "";
 
 function modifyProductionCostField(name) {
@@ -2264,7 +2277,9 @@ function addNewGroup() {
         });
     }
 }
+
 var modifyGroupName = "";
+
 function getGroupForModify() {
     if ($("input[name='groupNameSelection[]']").length == 0) {
         /**
@@ -2522,7 +2537,7 @@ function getFieldYieldDiffence(obj) {
 
 function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
     var $currentObj = $('#crop_select_drop_down');
-    if($currentObj == 0){
+    if ($currentObj == 0) {
         return false;
     }
 
@@ -2530,14 +2545,14 @@ function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
         if ($(this).children("td:nth(0)").text().trim() == $currentObj.val()) {
 
             var flag = false;
-            $('#yield-difference-tbody').find('input').each(function(){
-                if($.trim($(this).val()) != '' && removeAllCommasAndDollar($.trim($(this).val())) != '0'){
+            $('#yield-difference-tbody').find('input').each(function () {
+                if ($.trim($(this).val()) != '' && removeAllCommasAndDollar($.trim($(this).val())) != '0') {
                     flag = true;
                 }
             });
 
-            $('#crop_resources_usages_difference_tbody').find('input').each(function(){
-                if($.trim($(this).val()) != '' && removeAllCommasAndDollar($.trim($(this).val())) != '0'){
+            $('#crop_resources_usages_difference_tbody').find('input').each(function () {
+                if ($.trim($(this).val()) != '' && removeAllCommasAndDollar($.trim($(this).val())) != '0') {
                     flag = true;
                 }
             });
@@ -2632,14 +2647,14 @@ function checkAllValidation() {
         callMethodForPageChangeAndProgressBarImage(8, 7);
         return false;
     }
-     else if (!validateCropLimits()) {
+    else if (!validateCropLimits()) {
         return false;
     } else {
         return true;
     }
 }
 
-function saveAllFarmInformation( ){
+function saveAllFarmInformation() {
 
     if (!checkAllValidation()) {
         return false;
@@ -2756,7 +2771,7 @@ function saveAllFarmInformation( ){
          *  @desc - for additional crop income
          */
         var additionalCropCostObj = {};
-        $("#crop-info-additional-income-tbody tr").each(function(){
+        $("#crop-info-additional-income-tbody tr").each(function () {
             additionalCropCostObj[$.trim($(this).find('.cropNameSpecific').html())] = {
                 governmentPayments: returnZeroIfBlank(removeAllCommasAndDollar($(this).find('.governmentPaymentsSpecific').val())),
                 coProducts: returnZeroIfBlank(removeAllCommasAndDollar($(this).find('.coProductsSpecific').val())),
@@ -2765,21 +2780,21 @@ function saveAllFarmInformation( ){
             }
         });
 
-        manage_resource_tbody_array.push("Land" + "#-#-#" + "Acres" + "#-#-#" + returnZeroIfBlank(removeAllCommas($("#total_land_available").text().trim()))+ "#-#-#active");
+        manage_resource_tbody_array.push("Land" + "#-#-#" + "Acres" + "#-#-#" + returnZeroIfBlank(removeAllCommas($("#total_land_available").text().trim())) + "#-#-#active");
         // showMessageOnConsole("Land" + "#-#-#" + "Acres" + "#-#-#" + returnZeroIfBlank(removeAllCommas($("#total_land_available").text().trim())));
-        manage_resource_tbody_array.push("Capital" + "#-#-#" + "$/acre" + "#-#-#" + returnZeroIfBlank(removeAllCommasAndDollar($("#total_capital_available").val().trim()))+ "#-#-#active");
+        manage_resource_tbody_array.push("Capital" + "#-#-#" + "$/acre" + "#-#-#" + returnZeroIfBlank(removeAllCommasAndDollar($("#total_capital_available").val().trim())) + "#-#-#active");
         // showMessageOnConsole("Capital" + "#-#-#" + "$/acre" + "#-#-#" + returnZeroIfBlank(removeAllCommasAndDollar($("#total_capital_available").val().trim())));
         $("#manage_resource tbody tr:gt(1)").each(function () {
             var resourceAmt = $(this).children("td:nth(3)").find("input").val();
 
-            if($(this).children("td:nth(0)").find("input").prop("checked") == true
+            if ($(this).children("td:nth(0)").find("input").prop("checked") == true
                 && (resourceAmt != '' && removeAllCommasAndDollar(resourceAmt) != '0')) {
                 manage_resource_tbody_array.push($(this).children("td:nth(1)").text().trim() + "#-#-#"
                     + $(this).children("td:nth(2)").text().trim() + "#-#-#"
-                    + returnZeroIfBlank(removeAllCommas($(this).children("td:nth(3)").find("input").val().trim()))+ "#-#-#active");
+                    + returnZeroIfBlank(removeAllCommas($(this).children("td:nth(3)").find("input").val().trim())) + "#-#-#active");
                 /*showMessageOnConsole($(this).children("td:nth(1)").text().trim() + "#-#-#" + $(this).children("td:nth(2)").text().trim() + "#-#-#"
                  + returnZeroIfBlank(removeAllCommas($(this).children("td:nth(3)").find("input").val().trim())));*/
-            } else if(resourceAmt != '' && removeAllCommasAndDollar(resourceAmt) != '0'){
+            } else if (resourceAmt != '' && removeAllCommasAndDollar(resourceAmt) != '0') {
                 manage_resource_tbody_array.push($(this).children("td:nth(1)").text().trim() + "#-#-#"
                     + $(this).children("td:nth(2)").text().trim() + "#-#-#"
                     + returnZeroIfBlank(removeAllCommas($(this).children("td:nth(3)").find("input").val().trim())) + "#-#-#inactive");
@@ -2877,7 +2892,7 @@ function saveAllFarmInformation( ){
                 str += "true";
             }
 
-            str += "#-#-#" + (removeAllCommas($(this).children("td:nth(4)").find("input").val())/total_land)*100
+            str += "#-#-#" + (removeAllCommas($(this).children("td:nth(4)").find("input").val()) / total_land) * 100
 
             forward_sales_information_tbody_array.push(str);
             // showMessageOnConsole(str);
@@ -2967,7 +2982,7 @@ function saveAllFarmInformation( ){
              * @changed - Abhishek
              * @date - 02-12-2015
              */
-                //crop_group_array.push(crop_groupName + "#-#-#" + maximum + "#-#-#" + minimum + "#-#-#" + cropNumber + "#-#-#" + cropName);
+            //crop_group_array.push(crop_groupName + "#-#-#" + maximum + "#-#-#" + minimum + "#-#-#" + cropNumber + "#-#-#" + cropName);
             crop_group_array.push(crop_groupName + "#-#-#" + maximum + "#-#-#" + maximumPercentage + "#-#-#" + minimum + "#-#-#" + minimumPercentage + "#-#-#" + cropNumber + "#-#-#" + cropName);
             // showMessageOnConsole(crop_groupName + "#-#-#" + maximum + "#-#-#" + minimum + "#-#-#" + cropNumber + "#-#-#" + cropName);
         });
@@ -2980,7 +2995,7 @@ function saveAllFarmInformation( ){
 
         var baselineVal = $('input[name="baselineOrStrategyRadio"]:checked').val();
         var strategyName = "";
-        if(baselineVal == "new" && $.trim($('#new-strategy-name').val()).length == 0){
+        if (baselineVal == "new" && $.trim($('#new-strategy-name').val()).length == 0) {
             customAlerts('Please enter new strategy name', type_error, time);
             addErrorClassOnObject($('#new-strategy-name'));
             return;
@@ -3015,7 +3030,7 @@ function saveAllFarmInformation( ){
                 crop_resources_usages_difference_tbody_array: crop_resources_usages_difference_tbody_array,
                 field_difference_str: field_difference_str,
                 crop_group_array: crop_group_array,
-                montyCarloStatus:montyCarloStatus,
+                montyCarloStatus: montyCarloStatus,
                 additionalCropCostObj: JSON.stringify(additionalCropCostObj),
                 strategyName: strategyName,
                 baselineVal: baselineVal
@@ -3170,6 +3185,7 @@ function addStopButtonOnLoadingImageToStopAjax(ajaxRequest) {
 }
 
 var ajaxRequestToStop = null;
+
 function stopTheStrategy() {
     changeButtonLabelForAlertifyConfirm('Ok', 'Continue');
     alertify.confirm('Stop the Strategy building process?', function (e) {
@@ -3222,7 +3238,7 @@ function calculateProfitByCrop(obj) {
     var montyCarloStatus = $('input[name="montyCarloSwitch"]').prop('checked');
     // console.log(montyCarloStatus);
     var profitForCrop = 0;
-    if(montyCarloStatus){
+    if (montyCarloStatus) {
         var minYield = Number(removeAllCommas($(obj).parent().parent().children("td:nth(4)").find("input").val()));
         var maxYield = Number(removeAllCommas($(obj).parent().parent().children("td:nth(3)").find("input").val()));
 
@@ -3242,7 +3258,7 @@ function calculateProfitByCrop(obj) {
                 * Number(removeAllCommasAndDollar($(obj).parent().parent().children("td:nth(5)").find("input").val())))
                 - Number(removeAllCommasAndDollar($(obj).parent().parent().children("td:nth(8)").find("input").val()));
         }
-    }    
+    }
     /**
      * @added - Abhishek
      * @date - 23-01-2016
@@ -3254,10 +3270,10 @@ function calculateProfitByCrop(obj) {
             - Number(removeAllCommasAndDollar($(obj).parent().parent().children("td:nth(8)").find("input").val()));
     }
 
-    $('#crop-info-additional-income-tbody').find('tr').each(function(){
-        if ( $.trim($(obj).parent().parent().children("td:nth(0)").html()) == $.trim($(this).find('.cropNameSpecific').html()) ) {
+    $('#crop-info-additional-income-tbody').find('tr').each(function () {
+        if ($.trim($(obj).parent().parent().children("td:nth(0)").html()) == $.trim($(this).find('.cropNameSpecific').html())) {
             var additionalIncome = Number(removeAllCommasAndDollar($(this).find('.additionalIncomeSpecific').val()));
-            if(!isNaN(profitForCrop) && (typeof additionalIncome != 'undefined' && !isNaN(additionalIncome))){
+            if (!isNaN(profitForCrop) && (typeof additionalIncome != 'undefined' && !isNaN(additionalIncome))) {
                 $(obj).parent().parent()
                     .children("td:nth(9)").find('span')
                     .html(addCommaSignWithDollarWithValue(profitForCrop) + " + " + addCommaSignWithDollarWithValue(additionalIncome) + "**");
@@ -3293,37 +3309,37 @@ function getRandomNumber(min, max) {
  *  @date - 18-05-2016
  *  @desc - for handling monty carlo analysis toggle
  */
-function enableDisableMontyCarloAnalysis(){
-    
-    $('#cropInformationDetailFirstTable > tbody').find('tr').each(function(){
+function enableDisableMontyCarloAnalysis() {
+
+    $('#cropInformationDetailFirstTable > tbody').find('tr').each(function () {
         calculateProfitByCrop($(this).children("td:nth(2)").find("input"));
     });
 
-    $('#crop-info-additional-income-tbody').find('tr').each(function(){
+    $('#crop-info-additional-income-tbody').find('tr').each(function () {
         calculateAdditionalCropProfit($(this).find(".governmentPaymentsSpecific"), false);
     });
 
 }
 
-function calculateAdditionalCropProfit(currentObj, flag){
+function calculateAdditionalCropProfit(currentObj, flag) {
     var $this = $(currentObj).parents().eq(1);
-    
+
     var govtPayments = Number(removeAllCommasAndDollar($this.find(".governmentPaymentsSpecific").val()));
     var coProductsSpecific = Number(removeAllCommasAndDollar($this.find(".coProductsSpecific").val()));
     var additionalVariableCostSpecific = Number(removeAllCommasAndDollar($this.find(".additionalVariableCostSpecific").val()));
 
     var additionalIncome;
-    if( (!isNaN(govtPayments) /*&& govtPayments != 0*/) &&
+    if ((!isNaN(govtPayments) /*&& govtPayments != 0*/) &&
         (!isNaN(coProductsSpecific) /*&& coProductsSpecific != 0*/) &&
-        (!isNaN(additionalVariableCostSpecific) /*&& additionalVariableCostSpecific != 0*/)){
+        (!isNaN(additionalVariableCostSpecific) /*&& additionalVariableCostSpecific != 0*/)) {
         additionalIncome = (govtPayments + coProductsSpecific) - additionalVariableCostSpecific;
         if (!isNaN(additionalIncome)) {
             additionalIncome = addCommaSignWithDollarWithValue(additionalIncome);
             additionalIncome = typeof additionalIncome == 'undefined' ? '$0.00' : additionalIncome;
             $this.find('.additionalIncomeSpecific').val(additionalIncome);
 
-            $('#cropInformationDetailFirstTable > tbody').find('tr').each(function(){
-                if ( $.trim($(this).children("td:nth(0)").html()) == $.trim($this.find('.cropNameSpecific').html()) ) {
+            $('#cropInformationDetailFirstTable > tbody').find('tr').each(function () {
+                if ($.trim($(this).children("td:nth(0)").html()) == $.trim($this.find('.cropNameSpecific').html())) {
                     var $input = $(this).children("td:nth(9)").find("input");
                     if (flag) {
                         calculateProfitByCrop($(this).children("td:nth(2)").find("input"));
@@ -3340,13 +3356,13 @@ function calculateAdditionalCropProfit(currentObj, flag){
 
 }
 
-function buildBaselineStrategySeletion(){
+function buildBaselineStrategySeletion() {
     $('input[name="baselineOrStrategyRadio"]').change(function () {
         var $this = $(this);
 
-        if($this.prop('checked') == true && $this.val() == 'new'){
+        if ($this.prop('checked') == true && $this.val() == 'new') {
             $('.strategy-name-div').show();
-        } else if($this.prop('checked') == true && $this.val() == 'baseline'){
+        } else if ($this.prop('checked') == true && $this.val() == 'baseline') {
             $('.strategy-name-div').hide();
         } else {
             $('.strategy-name-div').hide();
@@ -3355,7 +3371,7 @@ function buildBaselineStrategySeletion(){
     })
 }
 
-function openStrategyOrBaselinePopup(){
+function openStrategyOrBaselinePopup() {
     if (!checkAllValidation()) {
         return false;
     } else {
@@ -3363,58 +3379,97 @@ function openStrategyOrBaselinePopup(){
     }
 }
 
-function closeStrategyOrBaselinePopup(){
+function closeStrategyOrBaselinePopup() {
     $('#save-strategy-popoup').hide();
 }
-
 function calculatePercentageOfMinAcreage(obj) {
     var currentTr = $(obj).closest('tr');
     var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
-    var minAcreage = currentTr.find('.minCropAcreage').val();
-    var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
-
-    if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
-        var per = Math.ceil((minAcreage / totalLand) * 100);
-        currentTr.find('.minCropAcreagePercentage').val(isNaN(per) ? '' : per);
-    }
-    if ($(obj).hasClass('minCropAcreagePercentage') && minAcreagePer && (minAcreagePer != 0 || minAcreagePer != '')) {
-        var val = Math.ceil((totalLand * minAcreagePer) / 100);
-        currentTr.find('.minCropAcreage').val(isNaN(val) ? '' : val);
+    var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
+    var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
+    var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
+        if (minAcragePer <= totalLand && minAcragePer>0) {
+            var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
+            if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
+                var per = Math.ceil((minAcreage / totalLand) * 100);
+                currentTr.find('.minCropAcreagePercentage').val(isNaN(per) ? '' : per);
+            }
+            if ($(obj).hasClass('minCropAcreagePercentage') && minAcreagePer && (minAcreagePer != 0 || minAcreagePer != '')) {
+                var val = Math.ceil((totalLand * minAcreagePer) / 100);
+                currentTr.find('.minCropAcreage').val(isNaN(val) ? '' : val);}
+        } else {
+        customAlerts("The total Minimum acreage crop limit can not be smaller than 0 grater than Available Land " + totalLand , 'error', 0);
+        currentTr.find('.minCropAcreage').val('');
     }
 }
-
-function calculatePercentageOfMaxAcreage(obj){
+function calculatePercentageOfMinAcreagePercent(obj) {
     var currentTr = $(obj).closest('tr');
     var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
-
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
-    var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
- if(maxAcreage <= totalLand)   {
-     var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
-
-     if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != ''))
-     {
-         var per = Math.ceil((maxAcreage / totalLand) * 100);
-         currentTr.find('.maxCropAcreagePercentage').val(isNaN(per) ? '' : per);
-     }
-     if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcreagePer && (maxAcreagePer != 0 || maxAcreagePer != ''))
-     {
-         var val = Math.ceil((totalLand * maxAcreagePer) / 100);
-         currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);
-     }
-
- }else {
-     customAlerts('The total Maximum acreage crop limit can not be grater than Available Land '+totalLand, 'error', 0);
-     currentTr.find('.maxCropAcreage').val('');
+    var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
+    var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
+    if (minAcreage<= 100 && minAcreage>0) {
+        var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
+        if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
+            var per = Math.ceil((minAcreage / totalLand) * 100);
+            currentTr.find('.minCropAcreagePercentage').val(isNaN(per) ? '' : per);
+        }
+        if ($(obj).hasClass('minCropAcreagePercentage') && minAcreagePer && (minAcreagePer != 0 || minAcreagePer != '')) {
+            var val = Math.ceil((totalLand * minAcreagePer) / 100);
+            currentTr.find('.minCropAcreage').val(isNaN(val) ? '' : val);}
+    } else {
+        customAlerts("The total Minimum acreage percent crop limit can not be smaller than 0 grater 100", 'error', 0);
+        currentTr.find('..minCropAcreagePercentage').val('');
     }
 }
+function calculatePercentageOfMaxAcreage(obj) {
+    var currentTr = $(obj).closest('tr');
+    var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
+    var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
+    var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
+    var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
+            if (maxAcreage <= totalLand) {
+            var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
+            if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
+                var per = Math.ceil((maxAcreage / totalLand) * 100);
+                currentTr.find('.maxCropAcreagePercentage').val(isNaN(per) ? '' : per);
+            }
+            if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcreagePer && (maxAcreagePer != 0 || maxAcreagePer != '')) {
+                var val = Math.ceil((totalLand * maxAcreagePer) / 100);
+                currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}}
+     else {
+        customAlerts("The total Maximum acreage crop limit can not be grater than Available Land " + totalLand +
+            " <br>  The Maximum Crop Acreage Limit will be set to the amount  of Available Land" + totalLand, 'error', 0);
+        currentTr.find('.maxCropAcreage').val('');
+    }
+}
+function calculatePercentageOfMaxAcreagePercentage(obj) {
+    var currentTr = $(obj).closest('tr');
+    var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
+    var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
+    var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
+    var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
+    if (maxAcragePer<= 100 && maxAcragePer>0) {
+        var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
+        if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
+            var per = Math.ceil((maxAcreage / totalLand) * 100);
+            currentTr.find('.maxCropAcreagePercentage').val(isNaN(per) ? '' : per);
+        }
+        if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcreagePer && (maxAcreagePer != 0 || maxAcreagePer != '')) {
+            var val = Math.ceil((totalLand * maxAcreagePer) / 100);
+            currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}}
+    else {
+        customAlerts("The total Maximum acreage percent crop limit can not be smaller than 0 grater 100", 'error', 0);
+        currentTr.find('.maxCropAcreagePercentage').val('');
+    }
+}
+
 function addPopupNegativeValue(id) {
     // var idVal = removeAllCommasAndDollar($(id).val());
     // var colNo = idVal.split('__');
     // var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
     // console.log('#' + cropCol);
     // var val = $('#' + cropCol).text();
-
     var val = $.trim(removeAllCommasAndDollar($(id).val()));
     if (val <= 0) {
         $(id).css("border", "1px solid red");
@@ -3423,6 +3478,7 @@ function addPopupNegativeValue(id) {
         $(id).css("border", "1px solid #b7b7b7");
     }
 }
+
 function addForwardNegativePricePopup(id) {
     var val = $.trim(removeAllCommasAndDollar($(id).val()));
     var idVal = $(id).attr("id");
@@ -3430,23 +3486,24 @@ function addForwardNegativePricePopup(id) {
     var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
     var cropName = $('#' + cropCol).text();
 
-    if (val < 0){
+    if (val < 0) {
         $(id).css("border", "1px solid red");
-        popupOnNegativeValue(cropName,val);
+        popupOnNegativeValue(cropName, val);
     }
-    else{
+    else {
         $(id).css("border", "1px solid #b7b7b7");
     }
 }
-    function popupOnNegativeValue(cropName,value) {
 
-        // var cropName = $(obj).parent().find("td:eq(0)").text();
-        // var potentialProfit = $(obj).find("input").val();
+function popupOnNegativeValue(cropName, value) {
 
-        if(value < 0 ){
-            $(".cropName").html(cropName);
-            $("#negativeValue").html(value);
-            $('#negative-message-pop-up').show();
-        }
+    // var cropName = $(obj).parent().find("td:eq(0)").text();
+    // var potentialProfit = $(obj).find("input").val();
+
+    if (value < 0) {
+        $(".cropName").html(cropName);
+        $("#negativeValue").html(value);
+        $('#negative-message-pop-up').show();
+    }
 
 }
