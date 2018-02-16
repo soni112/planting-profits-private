@@ -16,7 +16,7 @@
                         <h1 class="weight-700 text-center text-white">
                             Welcome Back!<br/>
                         <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                            <a class="alertify-button alertify-button-ok remove-text-deco btn-enter" href="href="<c:url value="/farm.htm"/>" >Enter</a>
+                            <a class="alertify-button alertify-button-ok remove-text-deco btn-enter" href="<c:url value="/farm.htm"/>" >Enter</a>
                         </div>
                     </div><!-- /.col-12 -->
 
