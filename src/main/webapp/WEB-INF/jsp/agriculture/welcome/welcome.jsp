@@ -33,7 +33,7 @@
                     <em> - Gary Schneider &dash; Founder and President Planting Profits</em>
                 </h3>
                 <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                    <a class="alertify-button alertify-button-ok remove-text-deco btn-enter" href="href="<c:url value="/farm.htm"/>" >Enter</a>
+                    <a class="alertify-button alertify-button-ok remove-text-deco btn-enter" href="<c:url value="/farm.htm"/>" >Enter</a>
                 </div>
             </div><!-- /.col-12 -->
         </div>
