@@ -1168,7 +1168,7 @@ function addCropInAllTables(cropName) {
     var rowHTMLForCropForwardSales = '<tr class="tblbclgrnd text-center">' +
         '<td class="tblft1">' + cropName + '</td>' +
         '<td class="success infotext tittle-uppercase">' + defaultUOMForCrop + '</td>' +
-        '<td class="success croplimit" onmouseover="addForwardNegativePricePopup(this)"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this)"></td>' +
+        '<td class="success croplimit"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithDollar(this);addForwardNegativePriceRedBox(this)"></td>' +
         '<td class="success croplimit"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this);acerageCalForwardSale(this)"></td>' +
         '<td class="success croplimit"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollarDot(this);quantityCalForwardSale(this)"></td>' +
         '<td class="success croplimit"><input type="checkbox" onchange="proposedAndFirmSelection(this)"></td>' +
@@ -1941,6 +1941,7 @@ function acerageCalForwardSale(obj) {
     var cropName = $(obj).parent().siblings("td:nth(0)").text().trim();
     var cropQuantity = Number(removeAllCommas($(obj).val()));
     var cropAcrage = 0;
+    var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
     $("#cropInformationDetailFirstTable tbody tr").each(function () {
         if ($(this).children("td:nth(0)").text().trim() == cropName) {
             cropAcrage = (cropQuantity / Number(removeAllCommas($(this).children("td:nth(2)").find("input").val())));
@@ -1953,8 +1954,8 @@ function acerageCalForwardSale(obj) {
     }
     $("#crop_contract_table_tbody tr").each(function () {
         if ($(this).children("td:nth(1)").text().trim() == cropName + " (" + contractIdentifier + ")") {
-//			$(this).children("td:nth(2)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
-            $(this).children("td:nth(3)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
+			$(this).children("td:nth(2)").find("input").val(getValueWithComma(parseInt(cropAcrage)));
+            $(this).children("td:nth(3)").find("input").val(getValueWithComma(parseInt((cropAcrage * 100) / totalLand)));
             return false;
         }
     });
@@ -3457,8 +3458,8 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
         }
         if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcreagePer && (maxAcreagePer != 0 || maxAcreagePer != '')) {
             var val = Math.ceil((totalLand * maxAcreagePer) / 100);
-            currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}}
-    else {
+            currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}
+    } else {
         customAlerts("The total Maximum acreage percent crop limit should be between 0 to 100", 'error', 0);
         currentTr.find('.maxCropAcreagePercentage').val('');
     }
@@ -3479,38 +3480,67 @@ function addPopupNegativeValue(id) {
     }
 }
 
-function addForwardNegativePricePopup(id,name) {
+function addForwardNegativePriceRedBox(obj) {
 
-    var val = $.trim(removeAllCommasAndDollar($(id).val()));
-    var val1 = 0;
-    var val2 = 0;
-    $('#cropInformationDetailrFirstTable > tbody  > tr').each(function() {
+    var forwardSalesPrice = removeAllCommasAndDollar($.trim($(obj).val()));
 
-        if($("td:nth-child(0)").html() == name){
-            val1 = $(this).children("td:nth(2)").find("input").val();
-            val2 = $(this).children("td:nth(5)").find("input").val();
-        }
-    });
-console.log("val1",val1);
-console.log("val2",val2);
+    if(forwardSalesPrice != "") {
+        $("#cropInformationDetailFirstTable tbody").find('tr').each(function () {
+            var cropname = $(obj).parent().parent().children("td:nth(0)").html();
+            if ($(this).children("td:nth(0)").html() == $(obj).parent().parent().children("td:nth(0)").html()) {
+                var expectedYield = Number(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val()));
+                var variableProductionCost = Number(removeAllCommasAndDollar($(this).children("td:nth(8)").find("input").val()));
+                var per = Math.ceil((expectedYield * forwardSalesPrice) - variableProductionCost);
+                if (per < 0) {
+                    addErrorClassOnObject(obj);
+                    $("#cropName").html(cropname);
+                    $("#negativeValue").html(per);
+                    $('#negative-message-pop-up').show();
+                } else {
+                    removeErrorClassFormObjects(obj);
+                }
+            }
 
-   /* if (pr < 0) {
-        $(id).css("border", "1px solid red");
-    }
-    else {
-        $(id).css("border", "1px solid #b7b7b7");
+        });
+    } /*else {
+        customAlerts('Expected price cannot be Empty', 'error', 0);
+        addErrorClassOnObject(obj);
     }*/
-}
-
-function popupOnNegativeValue(cropName, value) {
-
-    // var cropName = $(obj).parent().find("td:eq(0)").text();
-    // var potentialProfit = $(obj).find("input").val();
-
-    if (value < 0) {
-        $(".cropName").html(cropName);
-        $("#negativeValue").html(value);
-        $('#negative-message-pop-up').show();
-    }
 
 }
+// function addForwardNegativePricePopup(id){
+//     var forwardSalesPrice = $.trim(removeAllCommasAndDollar($(id).val()));
+//     var expectedYield=0;
+//     var  variableProductionCost=0;
+//     if(forwardSalesPrice != "")
+//     {
+//        var cropName = $(id).parent().parent().children("td:nth(0)").html();
+//        $("#cropInformationDetailFirstTable tbody").find('tr').each(function () {
+//            if ($(this).children("td:nth(0)").html() == $(id).parent().parent().children("td:nth(0)").html()) {
+//                 expectedYield = Number(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val()));
+//                 variableProductionCost = Number(removeAllCommasAndDollar($(this).children("td:nth(8)").find("input").val()));
+//            }
+//            var per = Math.ceil((expectedYield * forwardSalesPrice) - variableProductionCost);
+//            if (per < 0) {
+//                $(".cropName").html(cropName);
+//                $("#negativeValue").html(per);
+//                $('#negative-message-pop-up').show();
+//
+//            }
+//        });
+//    }else{
+//         $('#negative-message-pop-up').hide();   }
+// }
+
+// function popupOnNegativeValue(cropName, value) {
+//
+//     // var cropName = $(obj).parent().find("td:eq(0)").text();
+//     // var potentialProfit = $(obj).find("input").val();
+//
+//     if (value < 0) {
+//         $(".cropName").html(cropName);
+//         $("#negativeValue").html(value);
+//         $('#negative-message-pop-up').show();
+//     }
+//
+// }

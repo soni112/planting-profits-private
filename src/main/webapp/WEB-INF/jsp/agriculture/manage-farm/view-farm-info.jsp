@@ -2105,8 +2105,8 @@ start -->
                                                             <input type="text"
                                                                    id="forward_sales_information_tbody_row_crop_price__${forwardSalesRowCount}"
                                                                    value="${cropListForforwardSale.priceStr}"
-                                                                   class="ForwardPrice" onkeypress="return isValidNumberValue(event)"
-                                                                   onchange="addCommaSignWithDollar(this);addForwardNegativePricePopup(this,'${cropListForforwardSale.cropName}'); "></td>
+                                                                   onkeypress="return isValidNumberValue(event)"
+                                                                   onchange="addCommaSignWithDollar(this);addForwardNegativePriceRedBox(this); "></td>
                                                         <!--	@changed - Abhishek		@date - 31-12-2015 -->
                                                         <td class="success croplimit">
                                                             <input type="text"
@@ -2708,7 +2708,7 @@ Commented as per client requirement
             <div class="popupform messagepopup potencial_profit_popup">
                 <div class="increase_profit">
                     <p>
-                        Forward sales of <span class="cropName"></span> is less than zero $(<span id="negativeValue"></span>).<br>
+                        Forward sales of <span id="cropName"></span> is less than zero (<span id="negativeValue"></span>).<br>
                     </p>
                 </div>
                 <!-- <div class="decrease_profit">
