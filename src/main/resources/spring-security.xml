@@ -14,6 +14,7 @@
     <security:http use-expressions="true">
         <security:intercept-url pattern="/agriculture/authentication/home"
                                 access="permitAll"/>
+        <security:intercept-url pattern="/salesForceController" access="permitAll"/>
 
         <security:access-denied-handler error-page="/access-denied.htm"/>
 

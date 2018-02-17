@@ -46,6 +46,40 @@ public class ApplicationConfig {
     private static String APP_URL_UAT;
     private static String APP_URL_PRODUCTION;
 
+    private static String APP_EMAIL_INFO_LOCAL;
+    private static String APP_EMAIL_INFO_UAT;
+    private static String APP_EMAIL_INFO_PRODUCTION;
+
+    public static String getAppEmail() {
+        switch (getApplicationMode()){
+            case DEVELOPMENT:
+                return ApplicationConfig.APP_EMAIL_INFO_LOCAL;
+            case UAT:
+                return ApplicationConfig.APP_EMAIL_INFO_UAT;
+            case PRODUCTION:
+                return ApplicationConfig.APP_EMAIL_INFO_PRODUCTION;
+            default:
+                PlantingProfitLogger.warn("Current application mode is " + ApplicationConfig.APPLICATION_MODE);
+                break;
+        }
+        return "";
+    }
+
+    @Value("${app.email.info.dev}")
+    public void setAppEmailLocal(String appEmailLocal) {
+        ApplicationConfig.APP_EMAIL_INFO_LOCAL = appEmailLocal;
+    }
+
+    @Value("${app.email.info.uat}")
+    public void setAppEmailUat(String appEmailUat) {
+        ApplicationConfig.APP_EMAIL_INFO_UAT = appEmailUat;
+    }
+
+    @Value("${app.email.info.prod}")
+    public void setAppEmailProduction(String appEmailProduction) {
+        ApplicationConfig.APP_EMAIL_INFO_PRODUCTION = appEmailProduction;
+    }
+
     public static String getAppUrl() {
         switch (getApplicationMode()){
             case DEVELOPMENT:

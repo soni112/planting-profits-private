@@ -1224,7 +1224,7 @@
 															<td class="success infotext"
 																id="crop_Yield_Difference_Expected"></td>
 															<td class="success infotext"><input type="text"
-																onchange="addCommaSignWithForOnePoint(this)"
+																onchange="addCommaSignWithForOnePoint(this);"
 																onkeypress="return isValidNumberValue(event)"
 																id="field_difference_exp" name=""></td>
 														</tr>
@@ -1700,6 +1700,25 @@ Commented as per client requirement
 				<!-- <div class="decrease_profit">
 					<p>Decreasing <span id="resourceNameDec"></span> will decreaseEstimated Income by <span id="lossBy1Dollar"></span> for eachdollar removed down to <span id="downResourceLimit"></span></p>
 				</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="display: none;" id="negative-message-pop-up">
+	<div id="popupContact">
+		<!-- Planning Form -->
+		<div class="popup_section">
+			<img src="<c:url value="/images/cross.png"/>" onclick="$('#negative-message-pop-up').hide(); return false;" id="close">
+			<div class="popupform messagepopup potencial_profit_popup">
+				<div class="increase_profit">
+					<p>
+						Forward sales of <span id="cropName"></span> is less than zero (<span id="negativeValue"></span>).<br>
+					</p>
+				</div>
+				<!-- <div class="decrease_profit">
+                    <p>Decreasing <span id="resourceNameDec"></span> will decreaseEstimated Income by <span id="lossBy1Dollar"></span> for eachdollar removed down to <span id="downResourceLimit"></span></p>
+                </div> -->
 			</div>
 		</div>
 	</div>
