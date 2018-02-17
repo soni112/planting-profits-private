@@ -3398,7 +3398,7 @@ function calculatePercentageOfMinAcreage(obj) {
                 var val = Math.ceil((totalLand * minAcreagePer) / 100);
                 currentTr.find('.minCropAcreage').val(isNaN(val) ? '' : val);}
         } else {
-        customAlerts("The total Minimum acreage crop limit can not be smaller than 0 grater than Available Land " + totalLand , 'error', 0);
+        customAlerts("The total Minimum acreage crop limit should be between 0 and Available Land " + totalLand , 'error', 0);
         currentTr.find('.minCropAcreage').val('');
     }
 }
@@ -3418,8 +3418,8 @@ function calculatePercentageOfMinAcreagePercent(obj) {
             var val = Math.ceil((totalLand * minAcreagePer) / 100);
             currentTr.find('.minCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
-        customAlerts("The total Minimum acreage percent crop limit can not be smaller than 0 grater 100", 'error', 0);
-        currentTr.find('..minCropAcreagePercentage').val('');
+        customAlerts("The total Minimum acreage percent crop limit should be between 0 to 100", 'error', 0);
+        currentTr.find('.minCropAcreagePercentage').val('');
     }
 }
 function calculatePercentageOfMaxAcreage(obj) {
@@ -3428,7 +3428,7 @@ function calculatePercentageOfMaxAcreage(obj) {
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
     var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
-            if (maxAcreage <= totalLand) {
+            if (maxAcreage <= totalLand && maxAcreage>0) {
             var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
             if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
                 var per = Math.ceil((maxAcreage / totalLand) * 100);
@@ -3459,7 +3459,7 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
             var val = Math.ceil((totalLand * maxAcreagePer) / 100);
             currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}}
     else {
-        customAlerts("The total Maximum acreage percent crop limit can not be smaller than 0 grater 100", 'error', 0);
+        customAlerts("The total Maximum acreage percent crop limit should be between 0 to 100", 'error', 0);
         currentTr.find('.maxCropAcreagePercentage').val('');
     }
 }
@@ -3479,20 +3479,27 @@ function addPopupNegativeValue(id) {
     }
 }
 
-function addForwardNegativePricePopup(id) {
-    var val = $.trim(removeAllCommasAndDollar($(id).val()));
-    var idVal = $(id).attr("id");
-    var colNo = idVal.split('__');
-    var cropCol = "forward_sales_information_tbody_row_crop_name__" + colNo[1];
-    var cropName = $('#' + cropCol).text();
+function addForwardNegativePricePopup(id,name) {
 
-    if (val < 0) {
+    var val = $.trim(removeAllCommasAndDollar($(id).val()));
+    var val1 = 0;
+    var val2 = 0;
+    $('#cropInformationDetailrFirstTable > tbody  > tr').each(function() {
+
+        if($("td:nth-child(0)").html() == name){
+            val1 = $(this).children("td:nth(2)").find("input").val();
+            val2 = $(this).children("td:nth(5)").find("input").val();
+        }
+    });
+console.log("val1",val1);
+console.log("val2",val2);
+
+   /* if (pr < 0) {
         $(id).css("border", "1px solid red");
-        popupOnNegativeValue(cropName, val);
     }
     else {
         $(id).css("border", "1px solid #b7b7b7");
-    }
+    }*/
 }
 
 function popupOnNegativeValue(cropName, value) {

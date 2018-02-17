@@ -1224,7 +1224,7 @@
 															<td class="success infotext"
 																id="crop_Yield_Difference_Expected"></td>
 															<td class="success infotext"><input type="text"
-																onchange="addCommaSignWithForOnePoint(this)"
+																onchange="addCommaSignWithForOnePoint(this);addForwardNegativePricePopup(this)"
 																onkeypress="return isValidNumberValue(event)"
 																id="field_difference_exp" name=""></td>
 														</tr>
