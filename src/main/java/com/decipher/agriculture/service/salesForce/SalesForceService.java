@@ -2,6 +2,8 @@ package com.decipher.agriculture.service.salesForce;
 
 
 import com.decipher.agriculture.data.account.Account;
+import com.decipher.agriculture.data.account.UserCountry;
+import com.decipher.agriculture.data.account.UserState;
 import com.decipher.agriculture.service.account.AccountService;
 import com.decipher.agriculture.service.email.EmailService;
 import com.decipher.agriculture.service.util.HTTPService;
@@ -25,6 +27,7 @@ public class SalesForceService {
     private HTTPService httpService;
 
     public void createLead(Account account){
+
         String message = "<html>" +
                 "<head><title>Contact For SalesForce Verification</title></head>" +
                 "<body>"+
@@ -43,15 +46,15 @@ public class SalesForceService {
                 "            <td>"+ account.getPhone_No() +"</td>"+
                 "       </tr><tr>" +
                 "            <td>Physical Line 1:-</td>" +
-                "            <td>" + account.getPhysical_Address_Line_1() + "</td>" +
+                "            <td>" +account.getPhysical_Address_Line_1()+ "</td>" +
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>Physical Line 2:-</td>" +
-                "            <td>" + account.getPhysical_Address_Line_2() + "</td>" +
+                "            <td>" + account.getPhysical_Address_Line_2()+ "</td>" +
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>Physical City:-</td>" +
-                "            <td>" + account.getPhysical_Address_City() + "</td>" +
+                "            <td>" + account.getPhysical_Address_City()+ "</td>" +
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>Physical State:-</td>" +
@@ -70,15 +73,15 @@ public class SalesForceService {
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>Mailing Line 2:-</td>" +
-                "            <td>" + account.getMailing_Address_Line_2() + "</td>" +
+                "            <td>" + account.getMailing_Address_Line_2()+ "</td>" +
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>Mailing City:-</td>" +
-                "            <td>" + account.getMailing_Address_City() + "</td>" +
+                "            <td>" + account.getMailing_Address_City()+ "</td>" +
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>Mailing State:-</td>" +
-                "            <td>" + account.getMailing_Address_State().getStateName() + "</td>" +
+                "            <td>" + account.getPhysical_Address_State().getStateName()+ "</td>" +
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>Mailing Country:-</td>" +
@@ -86,13 +89,13 @@ public class SalesForceService {
                 "       </tr><tr>" +
                 "       </tr><tr>" +
                 "            <td>mailing zip code :-</td>" +
-                "            <td>" + account.getMailing_Address_Zip() + "</td>" +
+                "            <td>" + account.getMailing_Address_Zip()+ "</td>" +
                 "</tr>" +
                 "   </table>" +
                 "   <a href='" + ApplicationConfig.getAppUrl() + "/agriculture/salesForceController/sendDetailsToSalesForce?enquiryId="+account.getId()+"'>Click here to submit the same to SalesForce web portal</a>" +
                 "</body></html>";
 
-        PlantingProfitLogger.info("SalesForce confirmation url "+ ApplicationConfig.getAppUrl());
+        PlantingProfitLogger.info("SalesForce confirmation url "+ ApplicationConfig.getAppEmail());
         emailService.sendEmail(ApplicationConfig.getAppEmail(), "Planting Profits SalesForce Enquiry", message);
     }
 
@@ -114,7 +117,7 @@ public class SalesForceService {
         params.add(new BasicNameValuePair("city", account.getPhysical_Address_City()!=null?account.getPhysical_Address_City() :""));
         params.add(new BasicNameValuePair("state", account.getPhysical_Address_State()!=null?account.getPhysical_Address_State().getStateName(): ""));
         params.add(new BasicNameValuePair("zip", account.getPhysical_Address_Zip()));
-        params.add(new BasicNameValuePair("country", account.getPhysical_Address_Country()!=null?account.getPhysical_Address_Country().getCountryName():""));
+        params.add(new BasicNameValuePair("country", account.getPhysical_Address_Country()!=null?account.getPhysical_Address_Country().getCountryName(): ""));
 
         params.add(new BasicNameValuePair("00N3600000SnyfM", account.getMailing_Address_Line_1()!=null?account.getMailing_Address_Line_1():""));
         params.add(new BasicNameValuePair("00N3600000SnyfN",account.getMailing_Address_Line_2()!=null?account.getMailing_Address_Line_2():"" ));
