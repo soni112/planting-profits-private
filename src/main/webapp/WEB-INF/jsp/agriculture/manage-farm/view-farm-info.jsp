@@ -2263,6 +2263,7 @@ Commented as per client requirement
                                                                    onkeypress="return isValidNumberValue(event)"
                                                                    onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMinAcreage(this);"
                                                                    value="${cropListForCropLimit.minimumAcres}">
+
                                                         </td>
                                                         <td class="success croplimit">
                                                             <input type="text"
