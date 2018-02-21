@@ -1,11 +1,16 @@
 package com.decipher.agriculture.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.decipher.agriculture.data.account.Account;
+import com.decipher.agriculture.data.account.AppRole;
 import com.decipher.agriculture.data.account.UserState;
+import com.decipher.agriculture.service.account.AccountService;
+import com.decipher.agriculture.service.email.EmailService;
 import com.decipher.agriculture.service.salesForce.SalesForceService;
 import com.decipher.agriculture.service.util.HTTPService;
 import com.decipher.config.ApplicationConfig;
+import com.decipher.util.CryptographyUtils;
+import com.decipher.util.JsonResponse;
+import com.decipher.util.PlantingProfitLogger;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -13,16 +18,9 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.decipher.agriculture.data.account.Account;
-import com.decipher.agriculture.data.account.AppRole;
-import com.decipher.agriculture.service.account.AccountService;
-import com.decipher.util.CryptographyUtils;
-import com.decipher.util.JsonResponse;
-import com.decipher.util.PlantingProfitLogger;
-import com.decipher.agriculture.service.email.EmailService;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -87,14 +85,14 @@ public class AccountController {
             account.setPhone_No(contact);
             account.setEmail_Address(email.trim());
             account.setPassword(encodedNewPassword);
-            account.setPhysical_Address_Line_1(physical_Address_Line1!=null?physical_Address_Line1:"");
-            account.setPhysical_Address_Line_2(physical_Address_Line2!=null?physical_Address_Line2:"");
-            account.setPhysical_Address_City(physical_Address_City!=null?physical_Address_City:"");
-            account.setPhysical_Address_Zip(physical_Zip!=null?physical_Zip:"");
-            account.setMailing_Address_Line_1(mailing_Address_Line1!=null?mailing_Address_Line1:"");
-            account.setMailing_Address_Line_2(mailing_Address_Line2!=null?mailing_Address_Line2:"");
-            account.setMailing_Address_City(mailing_Address_City!=null?mailing_Address_City:"");
-            account.setMailing_Address_Zip(mailing_Zip!=null?mailing_Zip:"");
+            account.setPhysical_Address_Line_1(physical_Address_Line1 != null ? physical_Address_Line1 : "");
+            account.setPhysical_Address_Line_2(physical_Address_Line2 != null ? physical_Address_Line2 : "");
+            account.setPhysical_Address_City(physical_Address_City != null ? physical_Address_City : "");
+            account.setPhysical_Address_Zip(physical_Zip != null ? physical_Zip : "");
+            account.setMailing_Address_Line_1(mailing_Address_Line1 != null ? mailing_Address_Line1 : "");
+            account.setMailing_Address_Line_2(mailing_Address_Line2 != null ? mailing_Address_Line2 : "");
+            account.setMailing_Address_City(mailing_Address_City != null ? mailing_Address_City : "");
+            account.setMailing_Address_Zip(mailing_Zip != null ? mailing_Zip : "");
 
             if(!physical_Address_Country.equalsIgnoreCase(""))
                 account.setPhysical_Address_Country(accountService.getCountry(Integer.parseInt(physical_Address_Country)));

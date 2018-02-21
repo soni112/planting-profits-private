@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface HTTPService {
 
+    String sendGet(String url, List<NameValuePair> getParams) throws Exception;
+
     void sendPost(String url, List<NameValuePair> postParams) throws Exception;
 
 }
