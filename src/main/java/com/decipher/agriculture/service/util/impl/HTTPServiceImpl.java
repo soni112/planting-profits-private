@@ -6,7 +6,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,7 @@ import java.util.List;
  */
 @Service
 public class HTTPServiceImpl implements HTTPService {
+
     @Override
     public void sendPost(String url, List<NameValuePair> postParams) throws Exception {
         HttpClient httpclient = HttpClients.createDefault();
@@ -31,5 +35,26 @@ public class HTTPServiceImpl implements HTTPService {
         String s = EntityUtils.toString(response.getEntity());
         PlantingProfitLogger.debug("HttpPost response : \n" + s);
 
+    }
+
+    @Override
+    public String sendGet(String url, List<NameValuePair> getParams) throws Exception {
+        final HttpClient client = new DefaultHttpClient();
+        HttpGet get = new HttpGet(url);
+
+        if(getParams != null){
+            URIBuilder builder = new URIBuilder(get.getURI());
+            for (NameValuePair param : getParams) {
+                builder.addParameter(param.getName(), param.getValue());
+            }
+            get = new HttpGet(builder.build());
+        }
+
+        get.getParams().setBooleanParameter("http.protocol.expect-continue", false);
+        PlantingProfitLogger.info("Hitting URL [GET] : " + get.getURI());
+        HttpResponse httpResponse = client.execute(get);
+        String s = EntityUtils.toString(httpResponse.getEntity());
+        PlantingProfitLogger.debug("HttpGet response : \n" + s);
+        return s;
     }
 }
