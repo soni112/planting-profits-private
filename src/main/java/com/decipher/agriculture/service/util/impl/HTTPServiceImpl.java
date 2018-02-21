@@ -2,16 +2,15 @@ package com.decipher.agriculture.service.util.impl;
 
 import com.decipher.agriculture.service.util.HTTPService;
 import com.decipher.util.PlantingProfitLogger;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
 
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -29,15 +28,8 @@ public class HTTPServiceImpl implements HTTPService {
 
         //Execute and get the response.
         HttpResponse response = httpclient.execute(httppost);
-        HttpEntity entity = response.getEntity();
+        String s = EntityUtils.toString(response.getEntity());
+        PlantingProfitLogger.debug("HttpPost response : \n" + s);
 
-        if (entity != null) {
-            InputStream instream = entity.getContent();
-            try {
-                // do something useful
-            } finally {
-                instream.close();
-            }
-        }
     }
 }
