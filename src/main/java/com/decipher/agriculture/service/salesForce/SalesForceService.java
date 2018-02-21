@@ -125,6 +125,7 @@ public class SalesForceService {
         params.add(new BasicNameValuePair("00N3600000SnyfO", account.getMailing_Address_State()!=null?account.getMailing_Address_State().getStateName(): ""));
         params.add(new BasicNameValuePair("00N3600000SnyfL", account.getMailing_Address_Country()!=null?account.getMailing_Address_Country().getCountryName():""));
         params.add(new BasicNameValuePair("00N3600000SnyfP", account.getMailing_Address_Zip()));
+        params.add(new BasicNameValuePair("debug", "1"));
 
         try {
             httpService.sendPost("https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8", params);
