@@ -4483,9 +4483,9 @@ input.cvvNumber:hover{
     font-family: inherit;
 }
 .sponsers-block{
-    position: absolute;
-    left: 0;
-    top: 20%;
+    position: relative;
+    margin-left: -35%;
+    top: -25%;
 }
 .body-content-middile{
     width: 74%;
@@ -4507,7 +4507,7 @@ input.cvvNumber:hover{
     height: 200px;
     font-family: inherit;
     border-radius: 4px 4px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 .left-nav-info .farm-info-name{
     float: left;
@@ -4543,4 +4543,10 @@ input.cvvNumber:hover{
     color: #000!important;
     font-size: 24px!important;
     font-weight: 600!important;
+}
+.main-body{
+    width: 80% !important;
+}
+.right-body{
+    width: 20% !important;
 }
