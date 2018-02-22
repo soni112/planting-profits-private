@@ -3496,11 +3496,13 @@ function addForwardNegativePriceRedBox(obj) {
             if ($(this).children("td:nth(0)").html() == $(obj).parent().parent().children("td:nth(0)").html()) {
                 var expectedYield = Number(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val()));
                 var variableProductionCost = Number(removeAllCommasAndDollar($(this).children("td:nth(8)").find("input").val()));
+                var EstIncome=Number(removeAllCommasAndDollar($(this).children("td:nth(9)").find("input").val()));
                 var per = Math.ceil((expectedYield * forwardSalesPrice) - variableProductionCost);
                 if (per < 0) {
                     addErrorClassOnObject(obj);
+                    $("#acr").html(EstIncome);
                     $("#cropName").html(cropname);
-                    $("#negativeValue").html(per);
+                    $("#amount").html(per);
                     $('#negative-message-pop-up').show();
                 } else {
                     removeErrorClassFormObjects(obj);
@@ -3508,45 +3510,5 @@ function addForwardNegativePriceRedBox(obj) {
             }
 
         });
-    } /*else {
-        customAlerts('Expected price cannot be Empty', 'error', 0);
-        addErrorClassOnObject(obj);
-    }*/
-
+    }
 }
-// function addForwardNegativePricePopup(id){
-//     var forwardSalesPrice = $.trim(removeAllCommasAndDollar($(id).val()));
-//     var expectedYield=0;
-//     var  variableProductionCost=0;
-//     if(forwardSalesPrice != "")
-//     {
-//        var cropName = $(id).parent().parent().children("td:nth(0)").html();
-//        $("#cropInformationDetailFirstTable tbody").find('tr').each(function () {
-//            if ($(this).children("td:nth(0)").html() == $(id).parent().parent().children("td:nth(0)").html()) {
-//                 expectedYield = Number(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val()));
-//                 variableProductionCost = Number(removeAllCommasAndDollar($(this).children("td:nth(8)").find("input").val()));
-//            }
-//            var per = Math.ceil((expectedYield * forwardSalesPrice) - variableProductionCost);
-//            if (per < 0) {
-//                $(".cropName").html(cropName);
-//                $("#negativeValue").html(per);
-//                $('#negative-message-pop-up').show();
-//
-//            }
-//        });
-//    }else{
-//         $('#negative-message-pop-up').hide();   }
-// }
-
-// function popupOnNegativeValue(cropName, value) {
-//
-//     // var cropName = $(obj).parent().find("td:eq(0)").text();
-//     // var potentialProfit = $(obj).find("input").val();
-//
-//     if (value < 0) {
-//         $(".cropName").html(cropName);
-//         $("#negativeValue").html(value);
-//         $('#negative-message-pop-up').show();
-//     }
-//
-// }

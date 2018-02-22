@@ -817,8 +817,9 @@
                                                     <div style="margin-bottom: 3%;">
                                                         To create new Crop Acreage Limits go to<br>
                                                         <a href="javascript:;"
-                                                           onclick="navigateToCropLimits(); return false;"
-                                                           style="text-decoration: underline;">Crop Acreage Limits</a>
+                                                           onclick="navigateToFieldInformation(); return false;"
+                                                           style="text-decoration: underline;">Field Information
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -1447,6 +1448,10 @@
         window.location = '<c:url value="/view-farm-info.htm?farmId="/>${farmId}';
     }
 
+    function navigateToFieldInformationOnsamepage() {
+        localStorage.setItem('cropFieldFlag', true);
+        window.location='<c:url value="/view-farm-info.htm?farmId="/>${farmId}';
+    }
     function navigateToResources() {
         localStorage.setItem('resourcesFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
