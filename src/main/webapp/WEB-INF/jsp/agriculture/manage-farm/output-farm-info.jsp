@@ -817,7 +817,7 @@
                                                     <div style="margin-bottom: 3%;">
                                                         To create new Crop Acreage Limits go to<br>
                                                         <a href="javascript:;"
-                                                           onclick="navigateToFieldInformation(); return false;"
+                                                           onclick="navigateToFieldInformationOnsamepage(); return false;"
                                                            style="text-decoration: underline;">Field Information
                                                         </a>
                                                     </div>
