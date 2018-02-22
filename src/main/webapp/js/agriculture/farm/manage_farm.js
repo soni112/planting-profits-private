@@ -3444,7 +3444,7 @@ function calculatePercentageOfMaxAcreage(obj) {
                 currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}}
      else {
         customAlerts("The total Maximum acreage crop limit can not be grater than Available Land " + totalLand +
-            " <br>  The Maximum Crop Acreage Limit will be set to the amount  of Available Land" + totalLand, 'error', 0);
+            " <br>  The Maximum Crop Acreage Limit will be set to the amount  of Available Land " + totalLand, 'error', 0);
         currentTr.find('.maxCropAcreage').val('');
         currentTr.find('.maxCropAcreagePercentage').val('');
             }
@@ -3466,8 +3466,8 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
             currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
         customAlerts("The total Maximum acreage percent crop limit can not be grater than 100 ", 'error', 0);
-        currentTr.find('.maxCropAcreage').val('');
-        currentTr.find('.maxCropAcreagePercentage').val('');
+        currentTr.find('.maxCropAcreage').val(isNaN(totalLand)?'':totalLand);
+        currentTr.find('.maxCropAcreagePercentage').val('100');
     }
 }
 
