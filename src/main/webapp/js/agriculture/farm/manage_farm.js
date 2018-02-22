@@ -3455,7 +3455,7 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
     var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
-    if (maxAcragePer<= 100 ) {
+    if ( maxAcragePer >0 &&maxAcragePer<= 100 ) {
         var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
         if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
             var per = Math.ceil((maxAcreage / totalLand) * 100);
@@ -3465,7 +3465,7 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
             var val = Math.ceil((totalLand * maxAcreagePer) / 100);
             currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
-        customAlerts("The total Maximum acreage percent crop limit can not be grater than 100 ", 'error', 0);
+        customAlerts("The total Maximum acreage percent crop limit must be 1 to 100% ", 'error', 0);
         currentTr.find('.maxCropAcreage').val(isNaN(totalLand)?'':totalLand);
         currentTr.find('.maxCropAcreagePercentage').val('100');
     }
