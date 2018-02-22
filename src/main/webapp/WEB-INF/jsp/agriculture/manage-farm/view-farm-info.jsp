@@ -2709,7 +2709,7 @@ Commented as per client requirement
             <div class="popupform messagepopup potencial_profit_popup">
                 <div class="increase_profit">
                     <p>
-                        Warning: Estimated income <span id="acr"></span> for forward sales of
+                        Warning: Estimated income  $ <span id="acr"></span> for forward sales of
                         <span id="cropName"></span> is $<span id="amount"></span> due to the combination of crop price, yield
                         and production costs.<br>
                     </p>
