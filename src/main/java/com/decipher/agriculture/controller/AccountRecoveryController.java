@@ -55,7 +55,7 @@ public class AccountRecoveryController {
                 userName = user.getEmail_Address();
             }
             String msgText = "Dear :- " + userName +
-                    "<br/><br/><br/>To reset the password for your Planting Profits account <br/> <b>" + email +
+                    "<br/><br/><br/>To reset the password for your Planting Profits account <br/> <b>" + userName +
                     "</b> , Please click the link below:<br/>" +
                     linkTxt
                     + "<br><br><br>Regards"
