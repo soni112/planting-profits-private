@@ -28,7 +28,9 @@
                                 <c:forEach var="farmdetails" items="${model.allFarmsForUser}">
                                     <li>
                                         <a href="<c:url value="/output-edit-farm-info.htm?farmId=${farmdetails.farmId}"/>">
-                                            <span class="farm-info-name">Farm :</span> <span class="farm-info">${farmdetails.farmName} / ${farmdetails.physicalLocation}</span>
+                                           <span class="farm-info">${farmdetails.farmName}</span>
+                                            <span class="farm-info"> ${farmdetails.physicalLocation}</span>
+                                            <span class="farm-info"> ${farmdetails.farmCreatedTime}</span>
                                         </a>
                                     </li>
                                 </c:forEach>
