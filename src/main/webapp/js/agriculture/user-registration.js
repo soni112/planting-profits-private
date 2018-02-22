@@ -97,7 +97,8 @@ function validRegistrationForm() {
 	 * @date - 08-12-2015
 	 */
 	var country = $.trim("" + $('#physical-address-country').val());
-	
+	var zip=$.trim(""+ $('#physical-zip').val());
+
 	if (accountType == "--Select Account Type--") {
 		if (isFormValidated) {
 			customAlerts("Please Select account type", "error", 0);	
@@ -158,6 +159,13 @@ function validRegistrationForm() {
 			customAlerts("Please select physical address country", "error", 0);
 			focusForValidation('physical-address-country');
 			isFormValidated = false;
+		}
+	}
+	if (zip==""){
+		if(isFormValidated) {
+            customAlerts("Please select physical address Zip", "error", 0);
+            focusForValidation('physical-zip');
+            isFormValidated = false;
 		}
 	}
 

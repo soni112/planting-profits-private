@@ -451,6 +451,7 @@ function validateDetails(object) {
     var contact = $.trim($(object).find('.contact-no').val());
     var email = $.trim($(object).find('.email-id').val());
     var country = $.trim($(object).find('.physical-address-country').val());
+    var zip=$.trim($(object).find('.physical-zip').val());
 
     if (accountType == "0") {
         if (isFormValidated) {
@@ -504,6 +505,13 @@ function validateDetails(object) {
         }
     }
 
+    if(zip==""){
+        if(isFormValidated){
+            customAlerts("Please select physical address Zip","error",0);
+            applyValidation($(object).find('.physical-zip'));
+            isFormValidated=false;
+        }
+    }
     if(currentUserRole == "ROLE_SUPER_ADMIN" && accountType == "ROLE_GROWER"){
         var growerAdmin = $.trim($(object).find('.professional-admin-specific').val());
         if (growerAdmin == "0") {

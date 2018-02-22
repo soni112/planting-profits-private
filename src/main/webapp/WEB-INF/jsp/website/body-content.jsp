@@ -546,7 +546,7 @@
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">Physical address info</a>
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">Physical address info<span class="strickColor">*</span></a>
 											</h4>
 										</div>
 										<div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
@@ -602,7 +602,7 @@
 														   placeholder="Physical Address City/Town" />
 												</div>
 												<div class="form-group form-group1">
-													<label>Physical Zip</label>
+													<label>Physical Zip<span class="strickColor">*</span></label>
 													<input type="text"
 														   class="form-control physical-zip"
 														   id="physical-zip" placeholder="Physical Zip" />
