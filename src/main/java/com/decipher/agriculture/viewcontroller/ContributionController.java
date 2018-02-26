@@ -1,11 +1,13 @@
 package com.decipher.agriculture.viewcontroller;
 
+import com.decipher.agriculture.service.contribution.ContributionService;
 import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.JsonResponse;
 import com.decipher.util.PlantingProfitLogger;
 import com.decipher.config.StripeUtils;
 import com.stripe.Stripe;
 import com.stripe.model.Charge;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -27,9 +29,11 @@ public class ContributionController {
 
     @Autowired
     private HttpSession httpSession;
+    @Autowired
+    private ContributionService contributionService;
 
     @Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER", "ROLE_STUDENT"})
-    @RequestMapping(name = "/contribution.htm", method = {RequestMethod.GET})
+    @RequestMapping(value = "/contribution.htm", method = {RequestMethod.GET})
     public ModelAndView renderStripePayment() {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -51,7 +55,7 @@ public class ContributionController {
     }
 
     @Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER", "ROLE_STUDENT"})
-    @RequestMapping(name = "/acceptPayment", method = {RequestMethod.POST})
+    @RequestMapping(value = "/acceptPayment", method = {RequestMethod.POST})
     public @ResponseBody JsonResponse acceptPayment(@RequestParam(value = "stripeToken")String stripeToken,
                                @RequestParam(value = "cardName")String cardName,
                                @RequestParam(value = "cardNumber")String cardNumber,
@@ -78,6 +82,8 @@ public class ContributionController {
 
             Charge charge = Charge.create(chargeParams);
 
+            contributionService.save(contributionService.createContribution(charge));
+
             response.setStatus(JsonResponse.RESULT_SUCCESS);
 
             PlantingProfitLogger.info("Payment complete");
@@ -89,6 +95,18 @@ public class ContributionController {
 
         return response;
     }
+
+    @RequestMapping(value = "/get-payment.htm", method = {RequestMethod.GET})
+    @Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER", "ROLE_STUDENT"})
+    public @ResponseBody JsonResponse getPayment(){
+
+        JSONObject contributionFromSalesForce = contributionService.getContributionFromSalesForce();
+        JsonResponse jsonResponse = new JsonResponse();
+        jsonResponse.setResult(contributionFromSalesForce);
+        jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
+        return jsonResponse;
+    }
+
 
 
 }

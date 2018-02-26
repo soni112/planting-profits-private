@@ -1,5 +1,6 @@
 package com.decipher.agriculture.data.account;
 
+import com.decipher.agriculture.data.Contribution;
 import com.decipher.agriculture.data.farm.Farm;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
@@ -99,6 +100,10 @@ public class Account implements Comparable<Account>, Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "account")
 	@JsonIgnore
 	private Set<Farm> farmList = new HashSet<>();
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "account")
+	@JsonIgnore
+	private Set<Contribution> contributionList = new HashSet<>();
 
 	/**
 	 * CascadeType.Persist for persisting the parent object if child is updated or merged
@@ -489,6 +494,14 @@ public class Account implements Comparable<Account>, Serializable {
 
 	public void setLastActiveTime(Long lastActiveTime) {
 		this.lastActiveTime = lastActiveTime;
+	}
+
+	public Set<Contribution> getContributionList() {
+		return contributionList;
+	}
+
+	public void setContributionList(Set<Contribution> contributionList) {
+		this.contributionList = contributionList;
 	}
 
 	@Override

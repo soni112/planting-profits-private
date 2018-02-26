@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.decipher.agriculture.data.Contribution;
 import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.service.farm.FarmService;
@@ -242,13 +243,24 @@ public class ViewController {
 	public ModelAndView getWelcomeBackScreen(){
 		Map<String, Object> model = new HashMap<String, Object>();
 		Account account = accountService.getCurrentUser();
+		double amount = 0;
+		Set<Contribution> contributionList = account.getContributionList();
+		for (Contribution contribution : contributionList) {
+			amount += contribution.getAmount();
+		}
+
 		List<Farm> farmList = farmService.getAllFarmsForUser(account.getId());
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", String.format("%1$s %2$s", account.getFirstName(), account.getLastName()));
 		jsonObject.put("location", String.format("%1$s %2$s", account.getPhysical_Address_City(), account.getPhysical_Address_State() == null ? "" : account.getPhysical_Address_State().getStateName()));
 		jsonObject.put("farmcount", farmList.size());
 		jsonObject.put("lastactivity", account.getLastActiveTimeFormatted());
-		jsonObject.put("contribution", StringUtils.EMPTY);
+
+		if(amount <= 0){
+			jsonObject.put("contribution", StringUtils.EMPTY);
+		} else {
+			jsonObject.put("contribution", "Thank you for your $ " + amount);
+		}
 		model.put("userdetail", jsonObject);
 		return new ModelAndView("welcome-back","model",model);
 	}
