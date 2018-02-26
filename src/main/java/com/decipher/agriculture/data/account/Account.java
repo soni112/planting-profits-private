@@ -1,11 +1,16 @@
 package com.decipher.agriculture.data.account;
 
+import com.decipher.agriculture.data.Contribution;
 import com.decipher.agriculture.data.farm.Farm;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +28,7 @@ import javax.persistence.*;
 @Table(name = "ACCOUNT", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "ACCOUNT_ID"),
 		@UniqueConstraint(columnNames = "EMAIL_ADDRESS")})
-public class Account implements Comparable<Account>{
+public class Account implements Comparable<Account>, Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -96,6 +101,10 @@ public class Account implements Comparable<Account>{
 	@JsonIgnore
 	private Set<Farm> farmList = new HashSet<>();
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "account")
+	@JsonIgnore
+	private Set<Contribution> contributionList = new HashSet<>();
+
 	/**
 	 * CascadeType.Persist for persisting the parent object if child is updated or merged
 	 */
@@ -118,8 +127,12 @@ public class Account implements Comparable<Account>{
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = AccountDocuments.class, mappedBy = "documentHolder")
 	private Set<AccountDocuments> userDocuments;
+
 	@Column(name = "WELCOME_STATUS")
 	private Boolean welcomeStatus = Boolean.FALSE;
+
+	@Column(name = "LAST_ACTIVE_TIME")
+	private Long lastActiveTime;
 
 	public Account() {
 
@@ -463,6 +476,32 @@ public class Account implements Comparable<Account>{
 
 	public void setWelcomeStatus(Boolean status) {
 		this.welcomeStatus = status;
+	}
+
+	public Long getLastActiveTime() {
+		return lastActiveTime;
+	}
+
+	public String getLastActiveTimeFormatted() {
+		if(lastActiveTime == null){
+			return StringUtils.EMPTY;
+		} else {
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("MM-dd-yyyy");
+			return fmt.print(lastActiveTime);
+		}
+
+	}
+
+	public void setLastActiveTime(Long lastActiveTime) {
+		this.lastActiveTime = lastActiveTime;
+	}
+
+	public Set<Contribution> getContributionList() {
+		return contributionList;
+	}
+
+	public void setContributionList(Set<Contribution> contributionList) {
+		this.contributionList = contributionList;
 	}
 
 	@Override

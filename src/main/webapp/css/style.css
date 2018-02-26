@@ -4488,15 +4488,14 @@ input.cvvNumber:hover{
     top: -25%;
 }
 .body-content-middile{
-    width: 74%;
-    margin-left: 26%;
+    width: 100%;
     float: left;
 }
 .left-nav-sponsers{
     position: relative;
     left: 5px;
-    width: 280px;
-    z-index: 10;
+    width: 100%;
+    z-index: 2;
 }
 .left-nav-info{
     float: left;
@@ -4504,17 +4503,31 @@ input.cvvNumber:hover{
     width: 100%;
     display:block;
     box-shadow: 1px 1px 1px 1px #1b1a1a;
-    height: 200px;
+    height: 31.2vh;
     font-family: inherit;
     border-radius: 4px 4px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    overflow-y: auto;
 }
 .left-nav-info .farm-info-name{
     float: left;
     width: 17%;
 }
+.left-nav-info ul li{
+    border-bottom: 1px solid #c1c1c1;
+    float: left;
+    width: 100%;
+}
+.left-nav-info ul li:last-child{
+    border-bottom: 0px none;
+}
 .left-nav-info ul li a{
     color: #55493d;
+}
+.left-nav-info h2{
+    margin-top: 2px;
+    margin-bottom: 5px;
+    font-size: 24px;
 }
 .left-nav-info .farm-info{
     float: left;
@@ -4524,6 +4537,7 @@ input.cvvNumber:hover{
     position: absolute;
     right: 0%;
 }
+
 .text-white, .hover-text-white:hover{
     color: #ffffff;
 }
@@ -4545,8 +4559,14 @@ input.cvvNumber:hover{
     font-weight: 600!important;
 }
 .main-body{
-    width: 80% !important;
+    width: 60% !important;
 }
 .right-body{
     width: 20% !important;
+}
+.left-body{
+    background-color: #55493D;
+    float: left;
+    width: 20% !important;
+    height: 95vh;
 }

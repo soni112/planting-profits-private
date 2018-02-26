@@ -1396,7 +1396,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                         usedAmount += farmOutputDetailsForFieldView.getUsedAcresDouble();
                     } else if (cropResourceUsageView.getCropResourceUse().equals("Capital")) {
                         usedAmount += farmOutputDetailsForFieldView.getUsedAcresDouble() * Double.parseDouble(farmOutputDetailsForFieldView.getCropTypeView().getCalculatedVariableProductionCost().toString());
-                    } else if (farmOutputDetailsForFieldView.getCropTypeView().getFieldIdForVariances().equals(farmOutputDetailsForFieldView.getFieldInfoView().getId())
+                    } else if (farmOutputDetailsForFieldView.getCropTypeView().getFieldIdForVariances() != null && farmOutputDetailsForFieldView.getCropTypeView().getFieldIdForVariances().equals(farmOutputDetailsForFieldView.getFieldInfoView().getId())
                             && cropResourceUsageView.getResourseOverrideAmount() != null && (!cropResourceUsageView.getResourseOverrideAmount().equals(""))) {
                         //					PlantingProfitLogger.info("In Field Difference for resource---------------->>>>>>>>>>>>>>>>>>>"+cropResourceUsageView.getCropResourceUse());
                         usedAmount += farmOutputDetailsForFieldView.getUsedAcresDouble() * Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageView.getResourseOverrideAmount()));

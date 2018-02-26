@@ -79,7 +79,7 @@ public class AccountRecoveryController {
             PasswordEncoder encoder = new Md5PasswordEncoder();
             password = encoder.encodePassword(password, null);
             user.setPassword(password);
-            boolean isUpdated = accountService.UpdateUser(user);
+            boolean isUpdated = accountService.updateUser(user);
             PlantingProfitLogger.info("is user Updated " + isUpdated);
             jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
         } else {

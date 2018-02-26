@@ -3,7 +3,7 @@ package com.decipher.util.quartzScheduler.jobs;
 import com.decipher.agriculture.data.account.Account;
 import com.decipher.agriculture.service.account.AccountService;
 import com.decipher.util.PlantingProfitLogger;
-import com.decipher.util.listner.SpringApplicationContextListener;
+import com.decipher.util.listener.SpringApplicationContextListener;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -44,7 +44,7 @@ public class StudentExpirationJob implements Job {
         int count = 0;
         for (Account accountToDisable : allUsersToDisable) {
             accountToDisable.setEnabled(false);
-            accountService.UpdateUser(accountToDisable);
+            accountService.updateUser(accountToDisable);
             count++;
         }
 

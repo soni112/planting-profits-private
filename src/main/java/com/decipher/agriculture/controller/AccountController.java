@@ -128,7 +128,7 @@ public class AccountController {
                     + "Planting Profits Application Service Team ";
             emailService.sendEmail(email, "Planting Profit Verification", msgText);
 
-            salesForceService.createLead(account);
+            salesForceService.submitLead(account.getId());
 
            jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
         } else {
@@ -155,7 +155,7 @@ public class AccountController {
                 PlantingProfitLogger.info("password matched ");
                 String encodedNewPassword = encoder.encodePassword(newPassword, null);
                 user.setPassword(encodedNewPassword);
-                boolean check = accountService.UpdateUser(user);
+                boolean check = accountService.updateUser(user);
                 if (check) {
                     jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
                 } else {

@@ -1,16 +1,18 @@
 package com.decipher.agriculture.viewcontroller;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.decipher.agriculture.data.Contribution;
 import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.service.farm.FarmService;
 import com.decipher.config.StripeUtils;
 import com.decipher.util.PlantingProfitLogger;
+import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -142,7 +144,7 @@ public class ViewController {
 			 * @desc - for enable and disable feature of account
 			 */
 			user.setEnabled(true);
-			accountService.UpdateUser(user);
+			accountService.updateUser(user);
 
 			return "redirect:/home.htm?accountVerified=true";
 		} else {
@@ -231,7 +233,7 @@ public class ViewController {
 		Account currentUser = accountService.getCurrentUser();
 		if (currentUser.getWelcomeStatus() == null || !currentUser.getWelcomeStatus()) {
 			currentUser.setWelcomeStatus(Boolean.TRUE);
-			accountService.UpdateUser(currentUser);
+			accountService.updateUser(currentUser);
 		}
 		return new ModelAndView("welcome");
 	}
@@ -241,7 +243,25 @@ public class ViewController {
 	public ModelAndView getWelcomeBackScreen(){
 		Map<String, Object> model = new HashMap<String, Object>();
 		Account account = accountService.getCurrentUser();
-		model.put("allFarmsForUser", farmService.getAllFarmsForUser(account.getId()));
+		double amount = 0;
+		Set<Contribution> contributionList = account.getContributionList();
+		for (Contribution contribution : contributionList) {
+			amount += contribution.getAmount();
+		}
+
+		List<Farm> farmList = farmService.getAllFarmsForUser(account.getId());
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", String.format("%1$s %2$s", account.getFirstName(), account.getLastName()));
+		jsonObject.put("location", String.format("%1$s %2$s", account.getPhysical_Address_City(), account.getPhysical_Address_State() == null ? "" : account.getPhysical_Address_State().getStateName()));
+		jsonObject.put("farmcount", farmList.size());
+		jsonObject.put("lastactivity", account.getLastActiveTimeFormatted());
+
+		if(amount <= 0){
+			jsonObject.put("contribution", StringUtils.EMPTY);
+		} else {
+			jsonObject.put("contribution", "Thank you for your $ " + amount);
+		}
+		model.put("userdetail", jsonObject);
 		return new ModelAndView("welcome-back","model",model);
 	}
 

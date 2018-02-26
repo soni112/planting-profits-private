@@ -177,7 +177,7 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	public boolean UpdateUser(Account account) {
+	public boolean updateUser(Account account) {
 		PlantingProfitLogger.info("inside updateUser.. Updating : " + account.getEmail_Address());
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.getTransaction();

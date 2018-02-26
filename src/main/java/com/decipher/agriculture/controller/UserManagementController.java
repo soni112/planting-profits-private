@@ -3,13 +3,11 @@ package com.decipher.agriculture.controller;
 import com.decipher.agriculture.data.account.Account;
 import com.decipher.agriculture.data.account.AccountDocumentsType;
 import com.decipher.agriculture.data.account.AppRole;
-import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.agriculture.service.account.AccountService;
 import com.decipher.util.JsonResponse;
 import com.decipher.util.PlantingProfitLogger;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
@@ -279,7 +276,7 @@ public class UserManagementController {
                 child.setSuperParent(superParent);
             }
 
-            accountService.UpdateUser(child);
+            accountService.updateUser(child);
 
         }
 
@@ -307,8 +304,8 @@ public class UserManagementController {
             /*Account parent = accountService.getUserById(Integer.parseInt(parentId));
             parent.getChildrens().remove(child);
 
-            accountService.UpdateUser(parent);*/
-            accountService.UpdateUser(child);
+            accountService.updateUser(parent);*/
+            accountService.updateUser(child);
 
             response.setStatus(JsonResponse.RESULT_SUCCESS);
         } catch (NumberFormatException e) {
@@ -353,7 +350,7 @@ public class UserManagementController {
 
         grower.setParent(parent);
 
-        boolean updateUserFlag = accountService.UpdateUser(grower);
+        boolean updateUserFlag = accountService.updateUser(grower);
 
         if (updateUserFlag){
             PlantingProfitLogger.info("Successfully assigned professional : " + parent.getEmail_Address() + " to grower : " + grower.getEmail_Address());
@@ -474,7 +471,7 @@ public class UserManagementController {
         }
 
 
-        boolean saveStatus = accountService.UpdateUser(userToUpdate);
+        boolean saveStatus = accountService.updateUser(userToUpdate);
 
         if (saveStatus){
             PlantingProfitLogger.info("User updated");
@@ -498,7 +495,7 @@ public class UserManagementController {
 
             child.setParent(null);
 
-            accountService.UpdateUser(child);
+            accountService.updateUser(child);
 
         }
 
