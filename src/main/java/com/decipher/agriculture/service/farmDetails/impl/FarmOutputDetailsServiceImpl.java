@@ -180,13 +180,17 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 if(!isFirm && !cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                     return farmOutputDetailsView.getUsedAcres();
                 }
+
+                if(!isFirm && cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+                    return farmOutputDetailsView.getUsedAcres();
+                }
             }
 
         } else if (PlanByStrategy.PLAN_BY_FIELDS.equals(farmInfoView.getStrategy())){
             Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
 
             String cropName = cropTypeView.getCropName();
-            if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
+            if (isFirm && cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
                 cropName += " (Firm)";
             } /*else if (cropTypeView.getProposedchecked()) {
                 cropName += " (Proposed)";
