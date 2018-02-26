@@ -134,14 +134,22 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             if (cropTypeView.getSelected()) {
                 JSONObject jsonObject = getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
                 jsonObject.put("cropName", cropTypeView.getCropName());
-                jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, false));
+                if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")){
+                    jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, false));
+                } else {
+                    jsonObject.put("acreagePlanted", "--");
+                }
                 jsonArray.add(jsonObject);
 
                 if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")){
 
                     JSONObject jsonObjectForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
                     jsonObjectForFirm.put("cropName", cropTypeView.getCropName() + " (Firm)");
-                    jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
+                    if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
+                        jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
+                    } else {
+                        jsonObject.put("acreagePlanted", "--");
+                    }
                     jsonArray.add(jsonObjectForFirm);
                 }
             }
@@ -152,13 +160,17 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         for (CropsGroupView cropsGroupView : cropsGroupViewList) {
             JSONObject jsonObject = getCropLimit(farmInfoView, cropsGroupView.getMinimumAcres(), cropsGroupView.getMaximumAcres(), null, cropsGroupView, outputDetails);
             jsonObject.put("cropName", cropsGroupView.getCropsGroupName());
-            int totalAcreage = 0;
-            Set<CropType> cropSet = cropsGroupView.getCropSet();
-            for (CropType cropType : cropSet) {
-                CropTypeView cropTypeView = new CropTypeView(cropType);
-                totalAcreage += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(getCropAcreage(cropTypeView, outputDetails, cropTypeView.getFirmchecked().equalsIgnoreCase("true"))));
+            if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
+                int totalAcreage = 0;
+                Set<CropType> cropSet = cropsGroupView.getCropSet();
+                for (CropType cropType : cropSet) {
+                    CropTypeView cropTypeView = new CropTypeView(cropType);
+                    totalAcreage += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(getCropAcreage(cropTypeView, outputDetails, cropTypeView.getFirmchecked().equalsIgnoreCase("true"))));
+                }
+                jsonObject.put("acreagePlanted", totalAcreage);
+            } else {
+                jsonObject.put("acreagePlanted", "--");
             }
-            jsonObject.put("acreagePlanted", totalAcreage);
             jsonArray.add(jsonObject);
         }
 
