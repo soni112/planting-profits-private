@@ -332,7 +332,7 @@ public class ReportDataPage1 {
                 if (flag) {
                     totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResources.getValue())) * 100) / totalResource;
                     totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
-                    dataset.addValue(totalResource, "Used", "% " + cropResources.getKey().substring(0, 5) + "...");
+                    dataset.addValue(totalResource, "Used", "% " + ((cropResources.getKey().length() > 5) ? cropResources.getKey().substring(0, 5) + "..." : cropResources.getKey()) );
                 }
             }
         }
@@ -385,7 +385,7 @@ public class ReportDataPage1 {
                 if (flag) {
                     totalResource = (Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.getValue())) * 100) / totalResource;
                     totalResource = AgricultureStandardUtils.doubleUptoSingleDecimalPoint(totalResource);
-                    dataset.addValue(totalResource, "Unused", "% " + cropResourceUnused.getKey().substring(0, 5) + "...");
+                    dataset.addValue(totalResource, "Unused", "% " + ((cropResourceUnused.getKey().length() > 5) ? cropResourceUnused.getKey().substring(0, 5) + "..." : cropResourceUnused.getKey()) );
                 }
 
             }
