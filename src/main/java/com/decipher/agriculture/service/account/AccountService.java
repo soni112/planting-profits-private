@@ -24,7 +24,7 @@ public interface AccountService {
 
     int saveUser(Account account);
 
-    boolean UpdateUser(Account account);
+    boolean updateUser(Account account);
 
     /**
      * @added - Abhishek

@@ -25,15 +25,13 @@
                         <div class="left-nav-info" style="overflow-y: auto">
                             <h2 class="weight-600 text-center">Grower</h2>
                             <ul class="col-lg-12 col-offset-1 col-md-12 col-offset-1 list-unstyled">
-                                <c:forEach var="farmdetails" items="${model.allFarmsForUser}">
-                                    <li>
-                                        <a href="<c:url value="/output-edit-farm-info.htm?farmId=${farmdetails.farmId}"/>">
-                                           <span class="farm-info">${farmdetails.farmName}</span>
-                                            <span class="farm-info"> ${farmdetails.physicalLocation}</span>
-                                            <span class="farm-info"> ${farmdetails.farmCreatedTime}</span>
-                                        </a>
-                                    </li>
-                                </c:forEach>
+                                <li>
+                                    <span class="farm-info">${model.userdetail.name}</span>
+                                    <span class="farm-info">${model.userdetail.location}</span>
+                                    <span class="farm-info">Number of Farms : ${model.userdetail.farmcount}</span>
+                                    <span class="farm-info">Last activity: ${model.userdetail.lastactivity}</span>
+                                    <span class="farm-info">${model.userdetail.contribution}</span>
+                                </li>
                             </ul>
 
                         </div><!-- /.Grower -->

@@ -1,4 +1,4 @@
-package com.decipher.util.listner;
+package com.decipher.util.listener;
 
 /**
  * @author abhishek
@@ -27,11 +27,8 @@ public class ApplicationContextListener implements ServletContextListener{
 		try {
 			AgricultureScheduler.stopQuartzSchedulerJobs();
 		} catch (SchedulerException e) {
-			e.printStackTrace();
+			PlantingProfitLogger.error(e);
 		}
-//		System.loadLibrary("lpsolve55j");
-
-		System.gc();
 	}
 
 	@Override

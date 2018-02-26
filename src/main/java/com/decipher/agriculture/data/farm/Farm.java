@@ -3,8 +3,11 @@ package com.decipher.agriculture.data.farm;
 import com.decipher.agriculture.data.account.Account;
 import com.decipher.agriculture.data.strategy.FarmCustomStrategy;
 import com.decipher.view.form.farmDetails.FarmInfoView;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
@@ -82,6 +85,15 @@ public class Farm implements Serializable, Comparable<Farm>{
 
     public Date getFarmCreatedTime() {
         return farmCreatedTime;
+    }
+
+    public String getFarmCreatedTimeFormatted() {
+        if(farmCreatedTime == null){
+            return StringUtils.EMPTY;
+        } else {
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("MM-dd-yyyy");
+            return fmt.print(farmCreatedTime.getTime());
+        }
     }
 
     public void setFarmCreatedTime(Date farmCreatedTime) {

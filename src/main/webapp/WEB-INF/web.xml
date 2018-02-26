@@ -65,13 +65,16 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
 
     <!--
         @Changed - Abhishek
         @Date - 27-11-2015
      -->
     <listener>
-        <listener-class>com.decipher.util.listner.ApplicationContextListener</listener-class>
+        <listener-class>com.decipher.util.listener.ApplicationContextListener</listener-class>
     </listener>
 
 

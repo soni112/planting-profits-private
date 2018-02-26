@@ -74,7 +74,7 @@
      </mvc:interceptors>
 
 	<!-- @added - abhishek 		@date - 02-04-2016 		@desc - bean for application context -->
-	<bean id="eventListenerBean" class="com.decipher.util.listner.SpringApplicationContextListener" />
+	<bean id="eventListenerBean" class="com.decipher.util.listener.SpringApplicationContextListener" />
 
 <!-- Run every 5 seconds
   <task:scheduled-tasks>

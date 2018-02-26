@@ -92,8 +92,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public boolean UpdateUser(Account account) {
-		return accountDAO.UpdateUser(account);
+	public boolean updateUser(Account account) {
+		return accountDAO.updateUser(account);
 	}
 
 	/**
