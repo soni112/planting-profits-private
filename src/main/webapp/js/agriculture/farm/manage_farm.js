@@ -989,7 +989,7 @@ function nextPlanByField() {
 
 var warningForCropFieldChoice = true;
 
-function nextCropFieldChoice() {
+function nextCropFieldChoice() {F
     if (validateCropFieldChoice()) {
         if (warningForCropFieldChoice == true) {
             if (warningCropFieldChoice()) {
@@ -1216,14 +1216,14 @@ function addCropInAllTables(cropName) {
                 fallowFlag = true;
                 return false;
             }
-        });
+        })
         if (fallowFlag == true) {
             $(this).append('<td class="success"><label class="input-label">' +
-                '<input type="checkbox" disabled="" value="true" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                '<input type="checkbox" disabled="" value="true" class="cropFieldChoiceCheckbox countChoiceCheckboxChenge" onchange="cropFieldChoiceCheckboxChenge(this)">' +
                 /*cropName + */'</label></td>');
         } else {
             $(this).append('<td class="success"><label class="input-label">' +
-                '<input type="checkbox" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                '<input type="checkbox" class="cropFieldChoiceCheckbox countChoiceCheckboxChenge" onchange="cropFieldChoiceCheckboxChenge(this)">' +
                 /*cropName + */'</label></td>');
         }
     });
@@ -1401,7 +1401,7 @@ function addNewField() {
             count = 0;*/
             $("input:checkbox[class=crops]:checked").each(function () {
                 rowHTMLForCropFieldChoice += '<td class="success"><label class="input-label">' +
-                    '<input type="checkbox" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                    '<input type="checkbox" class="cropFieldChoiceCheckbox countChoiceCheckboxChenge" onchange="cropFieldChoiceCheckboxChenge(this)">' +
                     /*cropsArr[count] + */'</label></td>';
                 // count++;
             });
@@ -2439,6 +2439,23 @@ function showFieldVariencePage() {
 }
 
 function cropFieldChoiceCheckboxChenge(obj) {
+    var count=0;
+    $(".countChoiceCheckboxChenge").each(function() {
+        if($(this).is(':checked')){
+            count++;
+        }
+    });
+
+
+    if(count > 10)
+    {
+        customAlerts("Crops/fields selection is limited to 10",'error',0);
+
+        $(".countChoiceCheckboxChenge").each(function() {
+            $(this).prop("checked", false);
+        })
+
+    }
 
 }
 
