@@ -1700,7 +1700,7 @@ function addNewResource() {
                     var rowHTMLForAddResources = '<tr class="tblgrn text-center"><td class="tblft1"><input type="checkbox" name="resourceSelection" onchange="onResourceSelectedOrRemoved(this)"></td><td class="success croplimi">' + $("#resourse_name").val() + '</td><td class="success croplimit">' + $("#resourse_unit_name").val() + '</td><td class="success croplimit"><input type="text" onchange="addCommaSignWithOutDollarDot(this)" onkeypress="return isValidNumberValueForWithOutDot(event)"></td></tr>';
                     $("#manage_resource tbody").append(rowHTMLForAddResources);
 
-                    customAlerts('"' + resourse_name + '" resource name is added successfully', type_success, time);
+                    customAlerts('"' + resourse_name + '"  resource added to the strategy', type_success, time);
                 }
             }
             div_hide6();
