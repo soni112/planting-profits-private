@@ -70,8 +70,20 @@ public class ViewController {
 		model.put("countryAndCodes", allCountriesList);
 
 		PlantingProfitLogger.info("User requesting for home.htm page ....");
-		return new ModelAndView("home", "model", model);
-	}
+
+        if(accountService.getCurrentUser () != null) {
+            Account account = accountService.getCurrentUser();
+
+            if (account.getWelcomeStatus() != null && account.getWelcomeStatus()) {
+                return this.getWelcomeBackScreen();
+            } else {
+               return this.getWelcomeScreen();
+            }
+        } else {
+            return new ModelAndView("home", "model", model);
+        }
+
+    }
 
 	@RequestMapping("/login.htm")
 	public ModelAndView loginPage(@RequestParam(value = "err", required = false) String error,
