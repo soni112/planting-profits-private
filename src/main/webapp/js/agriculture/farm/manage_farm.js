@@ -3482,7 +3482,7 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
             var val = Math.ceil((totalLand * maxAcreagePer) / 100);
             currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
-        customAlerts("The total Maximum acreage percent crop limit must be 0 to 100% ", 'error', 0);
+        customAlerts("The total Maximum acreage percent crop limit must be 1 to 100% ", 'error', 0);
         currentTr.find('.maxCropAcreage').val(isNaN(totalLand)?'':totalLand);
         currentTr.find('.maxCropAcreagePercentage').val('100');
     }
