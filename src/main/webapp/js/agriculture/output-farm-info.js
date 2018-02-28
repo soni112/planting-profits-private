@@ -1607,7 +1607,7 @@ function SaveStrategyForMultipleResources(resourse_Type) {
         success: function (response) {
             var status = response.status;
             if (status == 'success') {
-                customAlerts('"' + strategyName + '" strategy has been successfully saved', type_success, time);
+                customAlerts('"' + strategyName + '" strategy has been saved', type_success, time);
                 updateCurrentPotentialProfitAndCalculateDifference($("#potential_profit_id").text());
                 hideCreateNewScenario();
 
@@ -1728,7 +1728,7 @@ function SaveStrategyForMultipleCrops(resourse_Type, updatedValue) {
         success: function (response) {
             var status = response.status;
             if (status == 'success') {
-                customAlerts('"' + strategyName + '" strategy has been successfully saved', type_success, time);
+                customAlerts('"' + strategyName + '" strategy has been saved', type_success, time);
                 updateCurrentPotentialProfitAndCalculateDifference($("#potential_profit_id").text());
                 hideCreateNewScenario();
 

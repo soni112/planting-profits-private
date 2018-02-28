@@ -2877,7 +2877,7 @@ function addNewResource()
 
 	$('#manage_resource_tbody').append(newHtml);
 	div_hide6();
-	customAlerts('"'+resourseName+'" resource name is added successfully', "success", 0);	
+	customAlerts('"'+resourseName+'"  resource added to the strategy', "success", 0);
 	$('#resource_manage__'+(rowCount-2)).focus();
 }
 function removeResourse()

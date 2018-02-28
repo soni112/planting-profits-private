@@ -1216,14 +1216,14 @@ function addCropInAllTables(cropName) {
                 fallowFlag = true;
                 return false;
             }
-        });
+        })
         if (fallowFlag == true) {
             $(this).append('<td class="success"><label class="input-label">' +
-                '<input type="checkbox" disabled="" value="true" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                '<input type="checkbox" disabled="" value="true" class="cropFieldChoiceCheckbox countChoiceCheckboxChenge" onchange="cropFieldChoiceCheckboxChenge(this)">' +
                 /*cropName + */'</label></td>');
         } else {
             $(this).append('<td class="success"><label class="input-label">' +
-                '<input type="checkbox" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                '<input type="checkbox" class="cropFieldChoiceCheckbox countChoiceCheckboxChenge" onchange="cropFieldChoiceCheckboxChenge(this)">' +
                 /*cropName + */'</label></td>');
         }
     });
@@ -1401,7 +1401,7 @@ function addNewField() {
             count = 0;*/
             $("input:checkbox[class=crops]:checked").each(function () {
                 rowHTMLForCropFieldChoice += '<td class="success"><label class="input-label">' +
-                    '<input type="checkbox" class="cropFieldChoiceCheckbox" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                    '<input type="checkbox" class="cropFieldChoiceCheckbox countChoiceCheckboxChenge" onchange="cropFieldChoiceCheckboxChenge(this)">' +
                     /*cropsArr[count] + */'</label></td>';
                 // count++;
             });
@@ -1700,7 +1700,7 @@ function addNewResource() {
                     var rowHTMLForAddResources = '<tr class="tblgrn text-center"><td class="tblft1"><input type="checkbox" name="resourceSelection" onchange="onResourceSelectedOrRemoved(this)"></td><td class="success croplimi">' + $("#resourse_name").val() + '</td><td class="success croplimit">' + $("#resourse_unit_name").val() + '</td><td class="success croplimit"><input type="text" onchange="addCommaSignWithOutDollarDot(this)" onkeypress="return isValidNumberValueForWithOutDot(event)"></td></tr>';
                     $("#manage_resource tbody").append(rowHTMLForAddResources);
 
-                    customAlerts('"' + resourse_name + '" resource name is added successfully', type_success, time);
+                    customAlerts('"' + resourse_name + '"  resource added to the strategy', type_success, time);
                 }
             }
             div_hide6();
@@ -2439,6 +2439,23 @@ function showFieldVariencePage() {
 }
 
 function cropFieldChoiceCheckboxChenge(obj) {
+    var count=0;
+    $(".countChoiceCheckboxChenge").each(function() {
+        if($(this).is(':checked')){
+            count++;
+        }
+    });
+
+
+    if(count > 10)
+    {
+        customAlerts("Crops/fields selection is limited to 10",'error',0);
+
+        $(".countChoiceCheckboxChenge").each(function() {
+            $(this).prop("checked", false);
+        })
+
+    }
 
 }
 
@@ -3455,7 +3472,7 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
     var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
-    if ( maxAcragePer >0 &&maxAcragePer<= 100 ) {
+    if ( maxAcragePer >=0 && maxAcragePer<= 100  ) {
         var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
         if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
             var per = Math.ceil((maxAcreage / totalLand) * 100);
@@ -3465,7 +3482,7 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
             var val = Math.ceil((totalLand * maxAcreagePer) / 100);
             currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
-        customAlerts("The total Maximum acreage percent crop limit must be 1 to 100% ", 'error', 0);
+        customAlerts("The total Maximum acreage percent crop limit must be 0 to 100% ", 'error', 0);
         currentTr.find('.maxCropAcreage').val(isNaN(totalLand)?'':totalLand);
         currentTr.find('.maxCropAcreagePercentage').val('100');
     }
