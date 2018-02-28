@@ -13,7 +13,7 @@
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 text-white welcomeUser">
                 <h1 style="font-size:66px ">WELCOME TO PLANTING PROFITS!</h1><br/>
                 <h2>Planting Profits<sup>&reg;</sup> is free for growers.</h2>
-                <p class="weight-600">We offer several ways to help you quickly benefit from Planting Profits.</p>
+                <p class="weight-600">We offer several ways to help you quickly benefit from Planting Profits<sup>&reg;</sup>.</p>
                 <ul class="list-unstyled">
                     <li><span class="check-icon"><i class="fa fa-check text-white"></i></span> Free training videos.</li>
                     <li><span class="check-icon"><i class="fa fa-check text-white"></i></span> Free webinars that teach the basics and advanced topics.</li>
@@ -21,7 +21,8 @@
                         needs.
                     </li>
                     <li><span class="check-icon"><i class="fa fa-check text-white"></i></span> On-line production planning service where we work with you to develop and analyze alternative
-                        crop-acreage strategies. Then compare strategies so you can select the one that is best for you.
+                        crop-acreage strategies.  </li>
+                    <li><span class="check-icon"><i class="fa fa-check text-white"></i></span>Then compare strategies so you can select the one that is best for you.
                     </li>
                 </ul>
                 <br/>
@@ -30,7 +31,7 @@
                 <br/>
                 <br/>
                 <h3 class="text-white">
-                    <em> - Gary Schneider &dash; Founder and President Planting Profits</em>
+                    <em> - Gary Schneider &dash; Founder and President Planting Profits<sup>&reg;</sup> </em>
                 </h3>
                 <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                     <a class="alertify-button alertify-button-ok remove-text-deco btn-enter" href="<c:url value="/farm.htm"/>" >Enter</a>
