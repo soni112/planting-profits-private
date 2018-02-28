@@ -352,7 +352,7 @@ public class FarmOutPutViewController {
                             jsonObject.put("Minimum", cropTypeView.getMinimumAcres());
                         }
                         if(cropTypeView.getMaximumAcres().equalsIgnoreCase("") && cropTypeView.getMinimumAcres().equalsIgnoreCase("")){
-                            jsonObject.put("No Crop Limits Specified", "");
+                            jsonObject.put("No Crop Limit Specified", "");
                         }
                     }
                 }
@@ -370,7 +370,7 @@ public class FarmOutPutViewController {
                         jsonObject.put("Minimum", cropsGroupView.getMinimumAcres());
                     }
                     if(cropsGroupView.getMaximumAcres().equalsIgnoreCase("") && cropsGroupView.getMinimumAcres().equalsIgnoreCase("")){
-                        jsonObject.put("No Crop Limits Specified", "");
+                        jsonObject.put("No Crop Limit Specified", "");
                     }
                 }
             }
