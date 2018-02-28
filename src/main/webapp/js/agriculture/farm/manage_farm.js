@@ -989,7 +989,7 @@ function nextPlanByField() {
 
 var warningForCropFieldChoice = true;
 
-function nextCropFieldChoice() {F
+function nextCropFieldChoice() {
     if (validateCropFieldChoice()) {
         if (warningForCropFieldChoice == true) {
             if (warningCropFieldChoice()) {
