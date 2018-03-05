@@ -552,8 +552,8 @@
                                                             <div style="margin-top: 8%; padding: 1% 3%;">
                                                                 To increase the amount of Land go to<br>
                                                                 <a href="javascript:;"
-                                                                   onclick="navigateToCropFieldChoices(); return false;"
-                                                                   style="text-decoration: underline;">Crop/Field Choices</a>
+                                                                   onclick="navigateToFieldInformation(); return false;"
+                                                                   style="text-decoration: underline;">Field Information </a>
                                                             </div>
                                                         </c:when>
                                                     </c:choose>
@@ -677,7 +677,7 @@
                                                        <%--style="text-decoration: underline;">Resources</a>--%>
                                                     <a href="javascript:;"
                                                        onclick="navigateToFieldInformation(); return false;"
-                                                       style="text-decoration: underline;">Crop/Field Choices</a>
+                                                       style="text-decoration: underline;">Field Information</a>
                                                 </div>
                                                     </c:when>
                                                    <%-- <c:otherwise>
