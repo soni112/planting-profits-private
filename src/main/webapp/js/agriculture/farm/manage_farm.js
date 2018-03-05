@@ -3438,7 +3438,7 @@ function calculatePercentageOfMinAcreagePercent(obj) {
             var val = Math.ceil((totalLand * minAcreagePer) / 100);
             currentTr.find('.minCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
-        customAlerts("The total Minimum acreage percent crop can not be grater than 100 ", 'error', 0);
+        customAlerts("Minimum crop acreage limit percentage cannot be greater than 100% ", 'error', 0);
         currentTr.find('.minCropAcreage').val('');
         currentTr.find('.minCropAcreagePercentage').val('');
 
