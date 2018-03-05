@@ -55,12 +55,12 @@ public class AccountRecoveryController {
                 userName = user.getEmail_Address();
             }
             String msgText = "Dear : " + userName +
-                    "<br/><br/><br/>To reset the password for your Planting Profits account, please click the link below <br/> <b>" + userName +
+                    "<br><br/>To reset the password for your Planting Profits account, please click the link below <br/> <b>" + userName +
                     "</b> , Please click the link below:<br/>" +
                     linkTxt
-                    + "<br><br><br>Regards"
+                    + "<br><br>Regards"
                     + " :  "
-                    + "Thanks from Planting Profits Service Team ";
+                    + "Thanks, from the Planting Profits Team!";
             emailService.sendEmail(email, "Planting Profit Service Account Recovery", msgText);
         } else {
             jsonResponse.setStatus(JsonResponse.RESULT_INVALID_USER_NOT_EXISTS);
