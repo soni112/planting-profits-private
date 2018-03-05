@@ -3520,8 +3520,9 @@ function addForwardNegativePriceRedBox(obj) {
                     addErrorClassOnObject(obj);
                     $("#acr").html(acr);
                     $("#cropName").html(cropname);
-                    $("#amount").html(per);
+                    $("#profitperacre").html(EstIncome);
                     $("#cropName2").html(cropname);
+                    $("#profitperacre2").html(EstIncome);
                     $('#negative-message-pop-up').show();
                 } else {
                     removeErrorClassFormObjects(obj);
