@@ -1731,7 +1731,7 @@ function removeResource() {
                         $(this).remove();
                     }
                 });
-                customAlerts('"' + ResourseNameList.substring(0, ResourseNameList.length - 2) + '"' + " Resourse removed  Successfully", type_success, time);
+                customAlerts('"' + ResourseNameList.substring(0, ResourseNameList.length - 2) + '"' + "  resource removed from the strategy", type_success, time);
             }
 
         });
