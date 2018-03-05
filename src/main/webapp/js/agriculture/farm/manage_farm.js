@@ -3510,6 +3510,7 @@ function addForwardNegativePriceRedBox(obj) {
     if(forwardSalesPrice != "") {
         $("#cropInformationDetailFirstTable tbody").find('tr').each(function () {
             var cropname = $(obj).parent().parent().children("td:nth(0)").html();
+            var acr=$(obj).parent().parent().children("td:nth(4)").find("input").val();
             if ($(this).children("td:nth(0)").html() == $(obj).parent().parent().children("td:nth(0)").html()) {
                 var expectedYield = Number(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val()));
                 var variableProductionCost = Number(removeAllCommasAndDollar($(this).children("td:nth(8)").find("input").val()));
@@ -3517,9 +3518,10 @@ function addForwardNegativePriceRedBox(obj) {
                 var per = Math.ceil((expectedYield * forwardSalesPrice) - variableProductionCost);
                 if (per < 0) {
                     addErrorClassOnObject(obj);
-                    $("#acr").html(EstIncome);
+                    $("#acr").html(acr);
                     $("#cropName").html(cropname);
                     $("#amount").html(per);
+                    $("#cropName2").html(cropname);
                     $('#negative-message-pop-up').show();
                 } else {
                     removeErrorClassFormObjects(obj);
