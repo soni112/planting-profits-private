@@ -1404,7 +1404,7 @@ start -->
                                                                 <label>
                                                                     <input type="checkbox"
                                                                            onchange="cropFieldChoiceCheckboxChenge(this)"
-                                                                           class="cropFieldChoiceCheckbox"
+                                                                           class="cropFieldChoiceCheckbox countChoiceCheckboxChenge"
                                                                            id="field_choice_crop_selected_row__${rowFieldCount}__column__${columnCropCount}"
                                                                            value="true"
                                                                         ${cropFieldsChoice.cropFieldChoice eq 'true'?'checked':''}
