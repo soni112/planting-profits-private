@@ -1613,7 +1613,7 @@ function SaveStrategyForMultipleResources(resourse_Type) {
 
             }
             else if (status == 'Already exists') {
-                customAlerts('Strategy with name "' + strategyName + '" already exists, Please enter other strategy name', type_error, time);
+                customAlerts('A strategy named "' + strategyName + '" already exists. Please use a different name for the strategy you would like to save', type_error, time);
 
             }
         },
