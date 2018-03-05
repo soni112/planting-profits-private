@@ -1097,7 +1097,7 @@
                                                     <tbody>
                                                     <c:if test="${multipleCropsLimitsFlag eq 0}">
                                                         <tr class="tblgrn">
-                                                            <td class="success" colspan="5">No Crop Limits specifed.</td>
+                                                            <td class="success" colspan="5">No Crop Limits Specified.</td>
                                                         </tr>
                                                     </c:if>
                                                     </tbody>
