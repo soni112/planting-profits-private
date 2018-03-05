@@ -1731,7 +1731,7 @@ function removeResource() {
                         $(this).remove();
                     }
                 });
-                customAlerts('"' + ResourseNameList.substring(0, ResourseNameList.length - 2) + '"' + " Resourse removed  Successfully", type_success, time);
+                customAlerts('"' + ResourseNameList.substring(0, ResourseNameList.length - 2) + '"' + "  resource removed from the strategy", type_success, time);
             }
 
         });
@@ -3438,7 +3438,7 @@ function calculatePercentageOfMinAcreagePercent(obj) {
             var val = Math.ceil((totalLand * minAcreagePer) / 100);
             currentTr.find('.minCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
-        customAlerts("The total Minimum acreage percent crop can not be grater than 100 ", 'error', 0);
+        customAlerts("Minimum crop acreage limit percentage cannot be greater than 100% ", 'error', 0);
         currentTr.find('.minCropAcreage').val('');
         currentTr.find('.minCropAcreagePercentage').val('');
 
@@ -3520,8 +3520,9 @@ function addForwardNegativePriceRedBox(obj) {
                     addErrorClassOnObject(obj);
                     $("#acr").html(acr);
                     $("#cropName").html(cropname);
-                    $("#amount").html(per);
+                    $("#profitperacre").html(EstIncome);
                     $("#cropName2").html(cropname);
+                    $("#profitperacre2").html(EstIncome);
                     $('#negative-message-pop-up').show();
                 } else {
                     removeErrorClassFormObjects(obj);

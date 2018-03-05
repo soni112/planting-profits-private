@@ -229,7 +229,7 @@ function recoverPassword() {
 				}
 				else if(data.status=="success")
 				{
-					customAlerts("Account recovery information has been sent to your email address.", "success", 0);
+					customAlerts("Account recovery information has been sent to your email address", "success", 0);
 				    $('#user-email-id-password-recovery').val('');
 				    div_hide7();
 				 	}

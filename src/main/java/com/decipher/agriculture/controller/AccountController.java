@@ -128,7 +128,7 @@ public class AccountController {
                     + "Planting Profits Application Service Team ";
             emailService.sendEmail(email, "Planting Profit Verification", msgText);
 
-            salesForceService.submitLead(account.getId());
+//            salesForceService.submitLead(account.getId());
 
            jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
         } else {
