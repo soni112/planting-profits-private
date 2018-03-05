@@ -26,8 +26,7 @@
                     </li>
                 </ul>
                 <br/>
-                <h1>If you have any questions don&apos;t hesitate to contact us.</h1>
-               <h1>We&apos;ll get back to you as soon as possible.</h1>
+                <h1>If you have any questions don&apos;t hesitate to contact us.<br/> We&apos;ll get back to you as soon as possible.</h1>
                 <br/>
                 <br/>
                 <h3 class="text-white">
