@@ -259,7 +259,7 @@ function alterHTMLOfTableAndShowPopupTable(result) {
          * @desc - according to slide#2 of 02212016
          */
         /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+" with <span id=\"resourse_Value_Result\">"+resourse_Crop_Value+"</span> "+unitForCropResourse+" of "+resourceNameForPopUp+".");*/
-        $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : " + potential_pro + "<div class='hidden'> with <span id=\"resourse_Value_Result\">" + resourse_Crop_Value + "</span> " + unitForCropResourse + " of " + resourceNameForPopUp + ".</div>");
+        $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income :"+"&nbsp;&nbsp;&nbsp;"+ potential_pro + "<div class='hidden'> with <span id=\"resourse_Value_Result\">" + resourse_Crop_Value + "</span> " + unitForCropResourse + " of " + resourceNameForPopUp + ".</div>");
     } else if ($('#Crop-Limits').css('display') == 'block') {
         /**
          * @changed - Abhishek
@@ -267,7 +267,7 @@ function alterHTMLOfTableAndShowPopupTable(result) {
          * @desc - according to slide#9 of 02052016
          */
         /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is " + potential_pro + " with " + $('#max_min_selector').val().toString().toLowerCase() + " of <span id=\"resourse_Value_Result\"> " + resourse_Crop_Value + "</span> of " + resourceNameForPopUp + " is required.");*/
-        $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income :" + potential_pro + "<div class='hidden'> with " + $('#max_min_selector').val().toString().toLowerCase() + " of <span id=\"resourse_Value_Result\"> " + resourse_Crop_Value + "</span> of " + resourceNameForPopUp + " is required.</div>");
+        $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income  :" +"&nbsp;&nbsp;&nbsp;"+ potential_pro + "<div class='hidden'> with " + $('#max_min_selector').val().toString().toLowerCase() + " of <span id=\"resourse_Value_Result\"> " + resourse_Crop_Value + "</span> of " + resourceNameForPopUp + " is required.</div>");
     }
 
 
@@ -291,7 +291,7 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
      * @desc - according to slide#2 of 02212016
      */
     /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+".");*/
-    $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : " + potential_pro);
+    $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : "+"&nbsp;&nbsp;&nbsp;" + potential_pro);
 
     var theadObj = {};
     theadObj['Strategy'] = result.Strategy;
