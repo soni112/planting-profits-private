@@ -751,19 +751,47 @@ function validateForwardSales() {
             totalForwardAcres += Number(removeAllCommas($(this).children("td:nth(4)").find("input").val()));
         }
         if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(2)").find("input").val().trim() == "" || $(this).children("td:nth(2)").find("input").val().trim() == "$0.00")) {
-            customAlerts('Please enter a crop price to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
-            addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
-            validationFlag = false;
-            return validationFlag;
+
+            if (($(this).children("td:nth(6)").find("input").prop("checked") == true)) {
+                addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
+                customAlerts('The estimated per acre profit for forward sales of  "' + $(this).children("td:nth(0)").text().trim() + '"  is less than zero <br> Since it is marked Firm, it will be included in the strategy but it will decrease estimated income by  "'+$(this).children("td:nth(2)").find("input").val().trim(), type_error, time);
+                validationFlag = false;
+                return validationFlag;}
+                else if  (($(this).children("td:nth(6)").find("input").prop("checked") == true)){
+                addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
+                customAlerts('The estimated per acre profit for forward sales of  "' + $(this).children("td:nth(0)").text().trim() + '"  is less than zero. <br> Forward sales for  "'+ $(this).children("td:nth(0)").text().trim() +'" will not be included in the strategy unless you check the box marked Firm', type_error, time);
+                validationFlag = false;
+                return validationFlag;
+            }else {
+                customAlerts('The estimated per acre profit for forward sales of  "' + $(this).children("td:nth(0)").text().trim() + '"  is less than zero. <br> Forward sales for  "'+ $(this).children("td:nth(0)").text().trim() +'" will not be included in the strategy unless you check the box marked Firm', type_error, time);
+                addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
+                validationFlag = false;
+                return validationFlag;
+                }
+
+
         }
         else if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(2)").find("input").val().trim() == "" || $(this).children("td:nth(2)").find("input").val().trim() == "0")) {
-            customAlerts('Please enter a crop price to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
-            addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
-            validationFlag = false;
-            return validationFlag;
+            if (($(this).children("td:nth(6)").find("input").prop("checked") == true)) {
+                addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
+                customAlerts('The estimated per acre profit for forward sales of  "' + $(this).children("td:nth(0)").text().trim() + '"  is less than zero <br> Since it is marked Firm, it will be included in the strategy but it will decrease estimated income by  "'+$(this).children("td:nth(2)").find("input").val().trim(), type_error, time);
+                validationFlag = false;
+                return validationFlag;}
+            else if  (($(this).children("td:nth(6)").find("input").prop("checked") == true)){
+                addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
+                customAlerts('The estimated per acre profit for forward sales of  "' + $(this).children("td:nth(0)").text().trim() + '"  is less than zero. <br> Forward sales for  "'+ $(this).children("td:nth(0)").text().trim() +'" will not be included in the strategy unless you check the box marked Firm', type_error, time);
+                validationFlag = false;
+                return validationFlag;
+            }else {
+                customAlerts('The estimated per acre profit for forward sales of  "' + $(this).children("td:nth(0)").text().trim() + '"  is less than zero. <br> Forward sales for  "'+ $(this).children("td:nth(0)").text().trim() +'" will not be included in the strategy unless you check the box marked Firm', type_error, time);
+                addErrorClassOnObject($(this).children("td:nth(2)").find("input"));
+                validationFlag = false;
+                return validationFlag;
+            }
+
         }
         else if (($(this).children("td:nth(5)").find("input").prop("checked") == true || $(this).children("td:nth(6)").find("input").prop("checked") == true) && ($(this).children("td:nth(3)").find("input").val().trim() == "" || $(this).children("td:nth(4)").find("input").val().trim() == "" || $(this).children("td:nth(3)").find("input").val().trim() == "0" || $(this).children("td:nth(4)").find("input").val().trim() == "0")) {
-            customAlerts('Please enter a crop quantity to evaluate forward sales for "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
+            customAlerts('The estimated per acre profit for forward sales of "' + $(this).children("td:nth(0)").text().trim() + '"', type_error, time);
             addErrorClassOnObject($(this).children("td:nth(3)").find("input"));
             validationFlag = false;
             return validationFlag;
