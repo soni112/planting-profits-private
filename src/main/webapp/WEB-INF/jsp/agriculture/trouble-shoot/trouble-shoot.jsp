@@ -206,9 +206,9 @@
                                 </h2>
                                 <ul class="planning">
                                     <div id="moreUnusedAcreageContent" class="collapse">
-                                        Planting Profits focuses on maximizing profit, not maximizing acres planted.
+                                        Planting Profits focuses on maximizing estimated income, not maximizing acres planted.
                                         Although most of the time these objectives are the same, this is not always the case.
-                                        Several factors may cause misalignment between maximizing profit and maximizing acres farmed.
+                                        Several factors may cause misalignment between maximizing estimated income and maximizing acres farmed.
                                         In these cases, Planting Profits will not assign crops to all of the available land since doing so would either reduce estimated income or create a strategy that does not enforce all of your constraints.
                                         When planning by acres, there are three common causes for a strategy that has acreage that is not assigned a crop.
                                     </div>
