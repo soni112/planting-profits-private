@@ -592,6 +592,27 @@ function validateCropFieldChoice() {
     }
 }
 
+function cropFieldChoiceCheckboxvalidation() {
+    var count=0;
+    $(".countChoiceCheckboxChenge").each(function() {
+        if($(this).is(':checked')){
+            count++;
+        }
+    });
+    if(count > 10)
+    {
+        customAlerts("Crops/fields selection is limited to 10",'error',0);
+
+        $(".countChoiceCheckboxChenge").each(function() {
+            $(this).prop("checked", false);
+        })
+
+        return   false;
+
+    }else {
+       return true;   }
+
+}
 function warningCropFieldChoice() {
     var cropName = "";
     $("#field_choice_crop_table thead tr td:gt(0)").each(function () {
@@ -1019,12 +1040,14 @@ var warningForCropFieldChoice = true;
 
 function nextCropFieldChoice() {
     if (validateCropFieldChoice()) {
-        if (warningForCropFieldChoice == true) {
-            if (warningCropFieldChoice()) {
-                warningForCropFieldChoice = false;
+        if (cropFieldChoiceCheckboxvalidation()) {
+            if (warningForCropFieldChoice == true) {
+                if (warningCropFieldChoice()) {
+                    warningForCropFieldChoice = false;
+                }
             }
+            callMethodForPageChangeAndProgressBarImage(6, 0);
         }
-        callMethodForPageChangeAndProgressBarImage(6, 0);
     }
 }
 
@@ -1688,7 +1711,8 @@ function allCheckboxNone() {
 }
 
 function allCheckboxSelect() {
-    $(".cropFieldChoiceCheckbox:not(:disabled)").prop("checked", true);
+
+     $(".cropFieldChoiceCheckbox:not(:disabled)").prop("checked", true);
 
 }
 
@@ -2466,15 +2490,13 @@ function showFieldVariencePage() {
     $("#field_varience").removeClass("hidden");
 }
 
-function cropFieldChoiceCheckboxChenge(obj) {
+function cropFieldChoiceCheckboxChenge() {
     var count=0;
     $(".countChoiceCheckboxChenge").each(function() {
         if($(this).is(':checked')){
             count++;
         }
     });
-
-
     if(count > 10)
     {
         customAlerts("Crops/fields selection is limited to 10",'error',0);
@@ -2486,6 +2508,7 @@ function cropFieldChoiceCheckboxChenge(obj) {
     }
 
 }
+
 
 function cropResourceUsageValueChange(obj) {
     var indexNumber = $(obj).parent().prevAll().length;
@@ -2695,7 +2718,12 @@ function checkAllValidation() {
     }
     else if (!validateCropLimits()) {
         return false;
-    } else {
+    }
+    else if (!cropFieldChoiceCheckboxvalidation()){
+        callMethodForPageChangeAndProgressBarImage(5, 0);
+        return false;
+    }
+    else {
         return true;
     }
 }
