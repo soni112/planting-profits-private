@@ -3445,17 +3445,38 @@ function buildBaselineStrategySeletion() {
     })
 }
 
-function openStrategyOrBaselinePopup() {
+function openStrategyOrBaselinePopup(obj) {
     if (!checkAllValidation()) {
         return false;
     } else {
-        $('#save-strategy-popoup').show();
+        var countMaximumAcres=0;
+        var countMinimumAcres=0;
+        var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
+
+
+        $("#crop_limits_table_tbody").find('tr').each(function (){
+
+            var maximumAcres=Number(removeAllCommasAndDollar($(this).children("td:nth(4)").find("input").val()));
+            countMaximumAcres +=maximumAcres;
+
+        });
+        if(countMaximumAcres>totalLand){
+            callMethodForPageChangeAndProgressBarImage(9, 8);
+            customAlerts("The total of all of Maximum crop acreage limits cannot be greater than available land:  "+totalLand +"  Reduce one or more Maximum crop acreage limits or increase Available land",'error',0);
+
+        }
+        else {
+            $('#save-strategy-popoup').show();
+
+        }
     }
 }
 
 function closeStrategyOrBaselinePopup() {
     $('#save-strategy-popoup').hide();
 }
+
+
 function calculatePercentageOfMinAcreage(obj) {
     var currentTr = $(obj).closest('tr');
     var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
