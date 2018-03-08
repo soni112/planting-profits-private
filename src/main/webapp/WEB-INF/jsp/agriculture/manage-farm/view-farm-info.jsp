@@ -2275,7 +2275,7 @@ Commented as per client requirement
                                                         <td class="success croplimit">
                                                             <input type="text"
                                                                    id="crop_limits_crop_maximum_acres__${rowCountForCropLimit}"
-                                                                   class="maxCropAcreage"
+                                                                   class="maxCropAcreage maxCropAcrageCount"
                                                                    onkeypress="return isValidNumberValue(event)"
                                                                    onchange="addCommaSignWithOutDollarDot(this); calculatePercentageOfMaxAcreage(this); return false;"
                                                                    value="${cropListForCropLimit.maximumAcres}">
@@ -2380,7 +2380,7 @@ Commented as per client requirement
                                     <!-- <a onclick="showCropInsurancePage()">Next</a> -->
                                     <!-- @Changed - Abhishek @Date - 25-11-2015 -->
                                     <%--<a onclick="saveAllFarmInformation()">Analyze</a>--%>
-                                    <a onclick="openStrategyOrBaselinePopup(); return false;">Analyze</a>
+                                    <a onclick="openStrategyOrBaselinePopup(this); return false;">Analyze</a>
                                 </div>
                                 <div class="yellobtn pre_next">
                                     <a id="submit"
