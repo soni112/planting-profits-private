@@ -2710,11 +2710,11 @@ Commented as per client requirement
                 <div class="increase_profit">
                     <p>
                         Warning: Estimated income for forward sales of
-                        <span id="cropName"></span>  is   $<span id="profitperacre"></span> per acre due to the combination of contract price, crop yield
+                        <span id="cropName"></span>  is   <span style="color: red" id="profitperacre"></span> per acre due to the combination of contract price, crop yield
                         and production costs.<br>
                     </p>
                     <p>
-                        Since this is a Firm contract, $<span id="acr"></span> will be assigned to <span id="cropName2"></span> even though the per acre income is  $<span id="profitperacre2"></span>
+                        Since this is a Firm contract, acreage will be assigned to  <span id="cropName2"></span> even though the per acre income is- <span style="color: red" id="profitperacre2"></span>
                     </p>
                 </div>
                 <!-- <div class="decrease_profit">
