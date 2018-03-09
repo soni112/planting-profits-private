@@ -3593,13 +3593,14 @@ function addForwardNegativePriceRedBox(obj) {
                 var variableProductionCost = Number(removeAllCommasAndDollar($(this).children("td:nth(8)").find("input").val()));
                 var EstIncome=Number(removeAllCommasAndDollar($(this).children("td:nth(9)").find("input").val()));
                 var per = Math.ceil((expectedYield * forwardSalesPrice) - variableProductionCost);
+                var prfittPer="$"+per;
                 if (per < 0) {
                     addErrorClassOnObject(obj);
                     $("#acr").html(acr);
                     $("#cropName").html(cropname);
-                    $("#profitperacre").html(EstIncome);
+                    $("#profitperacre").html(prfittPer);
                     $("#cropName2").html(cropname);
-                    $("#profitperacre2").html(EstIncome);
+                    $("#profitperacre2").html(prfittPer);
                     $('#negative-message-pop-up').show();
                 } else {
                     removeErrorClassFormObjects(obj);
