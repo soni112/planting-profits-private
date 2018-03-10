@@ -36,7 +36,7 @@
 
             <article class="left-nav-sponsers p-r-0">
                 <div class="left-nav-info">
-                    <h2 class="weight-600 text-center">Latest News</h2>
+                    <h2 class="weight-600 text-center">Farm Data</h2>
                 </div><!-- /.Latest News -->
             </article>
         </aside>
