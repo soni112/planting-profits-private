@@ -1165,7 +1165,17 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <span>${model.mapDifferentValues["usedForwardAcresP"]}% of Estimated Income forward sold</span>
+
+
+
+                            <span> <c:if test="${model.mapDifferentValues['usedForwardAcresP'] gt 0.0}">
+                                ${model.mapDifferentValues['usedForwardAcresP']} % of Estimated Income forward sold
+                                    </c:if>
+                                <c:if test="${model.mapDifferentValues['usedForwardAcresP'] lt 0.0}">
+                                    Warning: Per acre income for forward sales of ${model.forwardSalesJsonArray[0].cropName } is
+                                    -$ ${model.mapDifferentValues['usedForwardAcresP']} due to the combination of contract price, yield and variable production costs.                                </c:if>
+                            </span>
+
                         </div>
                         <!-- @end #Forward-Sales -->
                     </div>

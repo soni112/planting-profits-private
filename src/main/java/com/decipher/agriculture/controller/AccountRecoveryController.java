@@ -54,8 +54,8 @@ public class AccountRecoveryController {
             if (userName.trim().equals("")) {
                 userName = user.getEmail_Address();
             }
-            String msgText ="To reset the password for your Planting Profits account <br/> <b>" + userName +
-                    "</b> , Please click the link below :<br/>" +
+            String msgText =  userName + ", <br>To reset the password for your Planting Profits account, <br/> " +
+                    "Please click the link below :<br><br>" +
                     linkTxt
 
                     + "<br><br>Thanks, from the Planting Profits Team!";

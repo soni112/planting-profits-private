@@ -4527,11 +4527,11 @@ input.cvvNumber:hover{
 .left-nav-info h2{
     margin-top: 2px;
     margin-bottom: 5px;
-    font-size: 24px;
+    font-size: 36px;
 }
 .left-nav-info .farm-info{
     float: left;
-    width: 83%;
+    width: 100%;
 }
 .right-nav-sponsers{
     position: absolute;
@@ -4553,7 +4553,8 @@ input.cvvNumber:hover{
     height: 30px;
 }
 .btn-enter{
-    padding: 8px 25px!important;
+    /*padding: 8px 25px!important;*/
+    padding: 10px 45px!important;
     color: #000!important;
     font-size: 24px!important;
     font-weight: 600!important;
@@ -4569,4 +4570,7 @@ input.cvvNumber:hover{
     float: left;
     width: 20% !important;
     height: 95vh;
+}
+.pt-10{
+    padding-top: 10px;
 }
