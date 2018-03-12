@@ -2711,11 +2711,11 @@ Commented as per client requirement
                     <p>
                         Warning: Estimated income for forward sales of
                         <span id="cropName"></span>  is   <span style="color: red" id="profitperacre"></span> per acre due to the combination of contract price, crop yield
-                        and production costs.<br>
-                    </p>
-                    <p>
-                        Since this is a Firm contract, acreage will be assigned to  <span id="cropName2"></span> even though the per acre income is- <span style="color: red" id="profitperacre2"></span>
-                    </p>
+                        and production costs .<br>
+                        Since this is a Firm contract, acreage will be assigned to  <span id="cropName2"></span> even though the per acre income is <span style="color: red" id="profitperacre2"></span> .<br>
+                        If you do not want any acres assigned to forward sales of <span id="cropName3"></span>, uncheck the “Firm” box .
+                    <p/>
+
                 </div>
                 <!-- <div class="decrease_profit">
                     <p>Decreasing <span id="resourceNameDec"></span> will decreaseEstimated Income by <span id="lossBy1Dollar"></span> for eachdollar removed down to <span id="downResourceLimit"></span></p>
