@@ -13,9 +13,9 @@
         <aside class="left-body">
             <article class="left-nav-sponsers p-r-0">
                 <div class="left-nav-info" style="overflow-y: auto">
-                    <h2 class="weight-600 text-center">Grower</h2>
+                    <%--<h2 class="weight-600 text-center">Grower</h2>--%>
                     <div class="clearfix"></div>
-                    <ul class="col-lg-12 col-offset-1 col-md-12 col-offset-1 list-unstyled">
+                    <ul class="col-lg-12 col-offset-1 col-md-12 col-offset-1 list-unstyled pt-10">
                         <li>
                             <span class="farm-info">${model.userdetail.name}</span>
                             <span class="farm-info">${model.userdetail.location}</span>
@@ -30,13 +30,13 @@
 
             <article class="left-nav-sponsers p-r-0">
                 <div class="left-nav-info">
-                    <h2 class="weight-600 text-center">Latest News</h2>
+                    <h2 class="col-lg-12 col-md-12 weight-600 text-right">Latest News</h2>
                 </div><!-- /.Latest News -->
             </article>
 
             <article class="left-nav-sponsers p-r-0">
                 <div class="left-nav-info">
-                    <h2 class="weight-600 text-center">Farm Data</h2>
+                    <h2 class="weight-600 text-center">Local Farm Data </h2>
                 </div><!-- /.Latest News -->
             </article>
         </aside>
@@ -44,7 +44,7 @@
         <div class="leftside common-bg main-body">
             <section class="body-content-middile margin-top-3 welcomeBackUser">
                 <div class="m-b-2">
-                    <h1 class="weight-700 text-center text-white">Welcome Back!</h1><br/>
+                    <h1 class="weight-700 text-center text-white">Welcome Back!</h1>
                     <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                         <a class="alertify-button alertify-button-ok remove-text-deco btn-enter" href="<c:url value="/farm.htm"/>" >Enter</a>
                     </div>
