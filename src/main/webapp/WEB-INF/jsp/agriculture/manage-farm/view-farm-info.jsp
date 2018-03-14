@@ -420,7 +420,7 @@
                                                     </td>
                                                 </tr>
                                             </thead>
-                                            <tbody id="plan-by-field-tbody" style="display: table-row-group;">
+                                            <tbody id="plan-by-field-tbody" class="scrollbar-dynamic" style="display: table-row-group;">
 
                                             <!--          create field dynamically get field information from FarmInfoView list -->
 
@@ -2778,5 +2778,6 @@ Commented as per client requirement
 
 
 </script>
+
 
 <%@ include file="common/right_slider.jsp" %>
