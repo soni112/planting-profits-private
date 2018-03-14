@@ -4073,7 +4073,7 @@ sup {
     height: 40px;
 }*/
 .tbl-header-scrolll-width{
-    width: 98.2%!important;
+    width: 97.9%!important;
 }
 .overflow-y-fixed-height{
     overflow-y: auto;
@@ -4503,7 +4503,7 @@ input.cvvNumber:hover{
     width: 100%;
     display:block;
     box-shadow: 1px 1px 1px 1px #1b1a1a;
-    height: 31.2vh;
+    height: 31.1vh;
     font-family: inherit;
     border-radius: 4px 4px;
     margin-bottom: 5px;
@@ -4532,6 +4532,27 @@ input.cvvNumber:hover{
 .left-nav-info .farm-info{
     float: left;
     width: 100%;
+}
+.welcome-right-nav-sponsers{
+    left: 5px;
+    width: 100%;
+    z-index: 2;
+}
+.welcome-left-nav-info{
+    float: left;
+    background-color: #e1e1e1;
+    width: 100%;
+    display:block;
+    box-shadow: 1px 1px 1px 1px #1b1a1a;
+    height: 23.5vh;
+    font-family: inherit;
+    border-radius: 4px 4px;
+    margin-bottom: 2px;
+    overflow-y: auto;
+}
+.welcome-left-nav-info > .adver-margin-top > h3{
+    margin: 5px;
+    line-height: 1em;
 }
 .right-nav-sponsers{
     position: absolute;
@@ -4574,3 +4595,6 @@ input.cvvNumber:hover{
 .pt-10{
     padding-top: 10px;
 }
+
+/*************** SCROLLBAR BASE CSS ***************/
+

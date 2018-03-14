@@ -2501,9 +2501,9 @@ function cropFieldChoiceCheckboxChenge() {
     {
         customAlerts("Crops/fields selection is limited to 10",'error',0);
 
-        $(".countChoiceCheckboxChenge").each(function() {
+      /*  $(".countChoiceCheckboxChenge").each(function() {
             $(this).prop("checked", false);
-        })
+        })*/
 
     }
 
