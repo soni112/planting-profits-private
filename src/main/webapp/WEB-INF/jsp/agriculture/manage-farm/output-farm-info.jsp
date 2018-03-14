@@ -1176,6 +1176,7 @@
                                     -$ ${model.mapDifferentValues['usedForwardAcresP']} due to the combination of contract price, yield and variable production costs.                                </c:if>
                             </span>
 
+
                         </div>
                         <!-- @end #Forward-Sales -->
                     </div>
