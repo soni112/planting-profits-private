@@ -30,13 +30,13 @@
 
             <article class="left-nav-sponsers p-r-0">
                 <div class="left-nav-info">
-                    <h2 class="col-lg-12 col-md-12 weight-600 text-right">Latest News</h2>
+                    <h2 class="col-lg-12 col-md-12  text-left">Latest News</h2>
                 </div><!-- /.Latest News -->
             </article>
 
             <article class="left-nav-sponsers p-r-0">
                 <div class="left-nav-info">
-                    <h2 class="weight-600 text-center">Local Farm Data</h2>
+                    <h2 class="col-lg-12 col-md-12  text-left">Local Farm Data</h2>
                 </div><!-- /.Latest News -->
             </article>
         </aside>
@@ -61,23 +61,24 @@
             <div class="right_side_add right-body">
                 <article class="welcome-right-nav-sponsers p-r-0">
                     <div class="welcome-left-nav-info">
-                        <div class="adver-margin-top"><h3>Today&#39;s Sponsor</h3></div>
+                        <div class="adver-margin-top text-left"><h3>Today&#39;s Sponsor</h3></div>
                     </div><!-- /.Latest News -->
                 </article>
                 <article class="welcome-right-nav-sponsers p-r-0">
                     <div class="welcome-left-nav-info">
-                        <div class="adver-margin-top"><h3>Ad Sense Ad</h3></div>
+                        <div class="adver-margin-top"><h3 style="font-size: 17px">Offers; page specific (crop info, resources, forward sales)</h3></div>
+
                     </div><!-- /.Latest News -->
                 </article>
                 <article class="welcome-right-nav-sponsers p-r-0">
                     <div class="welcome-left-nav-info">
-                        <div class="adver-margin-top"><h3>Ad Sense Ad</h3></div>
+                        <div class="adver-margin-top"><h3>&lt Ad Sense Ad &gt</h3></div>
                     </div><!-- /.Latest News -->
                 </article>
                 <article class="welcome-right-nav-sponsers p-r-0">
                     <div class="welcome-left-nav-info">
                         <%--<div class="adver-margin-top"><h3>Today&#39;s Sponsor</h3></div>--%>
-                        <p>Offers; page specific (crop info, resources, forward sales)</p>
+                            <div class="adver-margin-top"><h3>&lt Ad Sense Ad &gt</h3></div>
                     </div><!-- /.Latest News -->
                 </article>
             </div>
