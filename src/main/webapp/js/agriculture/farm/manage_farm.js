@@ -599,13 +599,13 @@ function cropFieldChoiceCheckboxvalidation() {
             count++;
         }
     });
-    if(count > 10)
+    if(count > 20)
     {
-        customAlerts("Crops/fields selection is limited to 10",'error',0);
+        customAlerts("Crops/fields selection is limited to 20",'error',0);
 
-        $(".countChoiceCheckboxChenge").each(function() {
+       /* $(".countChoiceCheckboxChenge").each(function() {
             $(this).prop("checked", false);
-        })
+        })*/
 
         return   false;
 
@@ -2497,9 +2497,9 @@ function cropFieldChoiceCheckboxChenge() {
             count++;
         }
     });
-    if(count > 10)
+    if(count > 20)
     {
-        customAlerts("Crops/fields selection is limited to 10",'error',0);
+        customAlerts("Crops/fields selection is limited to 20",'error',0);
 
       /*  $(".countChoiceCheckboxChenge").each(function() {
             $(this).prop("checked", false);
