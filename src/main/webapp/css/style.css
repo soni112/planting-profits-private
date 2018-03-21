@@ -3688,23 +3688,23 @@ sup {
     display: inline-block;
 }*/
 .table-fixed thead > tr > td:nth-child(1){
-    width: 9.8%;
+    width: 10%;
 }
 .table-fixed thead > tr > td:nth-child(2){
-    width: 11%;
+    width: 12%;
 }
 .table-fixed thead > tr > td:nth-child(3){
-    width: 29.2%;
+    width: 28%;
 }
 .table-fixed thead > tr > td:nth-child(4){
-    width: 29.3%;
+    width: 28.1%;
 }
 
 .table-fixed thead > tr > td:nth-child(5) {
-    width: 10.8%;
+    width: 11%;
 }
 .table-fixed thead > tr > td:nth-child(6){
-    width: 10.1%;
+    width: 11%;
 }
 
 /*overflow start*/
@@ -3735,16 +3735,16 @@ sup {
     width: 10%;
 }
 .table-fixed tbody > tr > td:nth-child(2){
-    width: 11.1%;
+    width: 12.2%;
 }
 .table-fixed tbody > tr > td:nth-child(3){
-    width: 9.9%;
+    width: 9.33%;
 }
 .table-fixed tbody > tr > td:nth-child(9){
-    width: 10.8%;
+    width: 11%;
 }
 .table-fixed tbody > tr > td:nth-child(10){
-     width: 10%;
+     width: 11%;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
     padding: 5px 5px 5px 5px;
@@ -3802,7 +3802,7 @@ sup {
 }
 .tbl-fixd-hdr tfoot > tr > td:nth-child(1){
     /*width: 14.28%;*/
-    width: 9%;
+    width: 8.9%;
 }
 .tbl-fixd-hdr tfoot > tr > td:nth-child(2){
     width: 54.72%;
@@ -4073,7 +4073,7 @@ sup {
     height: 40px;
 }*/
 .tbl-header-scrolll-width{
-    width: 97.5555%!important;
+    width: 97.9%!important;
 }
 .overflow-y-fixed-height{
     overflow-y: auto;
