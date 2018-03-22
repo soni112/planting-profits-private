@@ -599,9 +599,9 @@ function cropFieldChoiceCheckboxvalidation() {
             count++;
         }
     });
-    if(count > 20)
+    if(count > 30)
     {
-        customAlerts("Crops/fields selection is limited to 20",'error',0);
+        customAlerts("Crops/fields selection is limited to 30",'error',0);
 
        /* $(".countChoiceCheckboxChenge").each(function() {
             $(this).prop("checked", false);
@@ -2491,21 +2491,21 @@ function showFieldVariencePage() {
 }
 
 function cropFieldChoiceCheckboxChenge() {
-    var count=0;
-    $(".countChoiceCheckboxChenge").each(function() {
-        if($(this).is(':checked')){
-            count++;
-        }
-    });
-    if(count > 20)
-    {
-        customAlerts("Crops/fields selection is limited to 20",'error',0);
+       /* var count=0;
+        $(".countChoiceCheckboxChenge").each(function() {
+            if($(this).is(':checked')){
+                count++;
+            }
+        });
+        if(count > 30)
+        {
+            customAlerts("Crops/fields selection is limited to 30",'error',0);
 
-      /*  $(".countChoiceCheckboxChenge").each(function() {
-            $(this).prop("checked", false);
-        })*/
+          /!*  $(".countChoiceCheckboxChenge").each(function() {
+                $(this).prop("checked", false);
+            })*!/
 
-    }
+        }*/
 
 }
 
