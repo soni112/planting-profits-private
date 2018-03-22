@@ -3,6 +3,7 @@
 <%@ taglib prefix="cfun" uri="/WEB-INF/tld/functions.tld" %>
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-multiselect.css"/>" type="text/css"/>
 <link rel="stylesheet" href="<c:url value="/css/sb-admin-2.css"/>" type="text/css" media="all">
+<script src="<c:url value="/js/plugins/jquery.slimscroll.js"/>"></script>
 <script>
     showLoadingImage();
     var farmId = '<c:out value="${model.farm.farmId}" />';
@@ -400,7 +401,7 @@
 
                                 <div class="ques">
                                     <div class="table-responsive">
-                                        <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr" cellspacing="0" width="100%">
+                                        <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr scroll" cellspacing="0" width="100%">
                                             <thead id="Plan_by_Fields_thead" style="display: table-header-group;">
                                                 <tr class="tblhd text-center add-fieldi">
                                                     <td>Modify</td>
@@ -420,10 +421,9 @@
                                                     </td>
                                                 </tr>
                                             </thead>
-                                            <tbody id="plan-by-field-tbody" class="scrollbar-dynamic" style="display: table-row-group;">
+                                            <tbody id="plan-by-field-tbody" class="scrollbar-dynamic scrollDiv" style="display: table-row-group;">
 
                                             <!--          create field dynamically get field information from FarmInfoView list -->
-
 
                                             <c:set var="rowCount" value="1"/>
                                             <c:set var="totalSize" value="0"/>
@@ -459,6 +459,7 @@
                                                 </tr>
                                                 <c:set var="rowCount" value="${rowCount+1}"/>
                                             </c:forEach>
+
                                             </tbody>
                                             <tfoot>
                                             <tr id="total-field-last-row" class="tblft text-center">
@@ -2778,6 +2779,15 @@ Commented as per client requirement
 
 
 </script>
+
+<script type="text/javascript">
+    $(function(){
+        $('.scrollDiv').slimScroll({
+//            height: 'auto',
+        });
+    });
+</script>
+
 
 
 <%@ include file="common/right_slider.jsp" %>
