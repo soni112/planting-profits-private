@@ -753,9 +753,9 @@
                                                         <span class="add-fieldi">Yields (UoM/acre) <img
                                                                 src="<c:url value="/images/i-img.png"/>"></span>
                                                     </a><br>
-                                                    <span class="infosubhead expected_range">Expected*</span> <span
-                                                        class="infosubhead max_range">Max</span> <span
-                                                        class="infosubhead min_range">Min</span></td>
+                                                    <span class="infosubhead expected_range">Expected*</span>
+                                                    <span class="infosubhead max_range">Max</span>
+                                                    <span class="infosubhead min_range">Min</span></td>
                                                 <td class="text-center" colspan="3"><a
                                                         id="Crop_Information_Details_price"
                                                         class="help_Infromation_PopUp" href="javascript:;"><span
@@ -779,7 +779,7 @@
                                             </tr>
 
                                             </thead>
-                                            <tbody id="crop_information_tbody">
+                                            <tbody id="crop_information_tbody" class="scrollDiv">
 
                                             <!--         start update by Bhagvan Singh on 06-04-2015-->
                                             <c:set var="rowCount" value="1"/>
@@ -1373,7 +1373,7 @@ start -->
                                                 </c:forEach>
                                             </tr>
                                             </thead>
-                                            <tbody id="field_choice_crop_tbody">
+                                            <tbody id="field_choice_crop_tbody" class="scrollDiv">
                                             <!--         start row cropFieldsDetails -->
                                             <c:set var="rowFieldCount" value="1"/>
                                             <c:forEach var="cropFieldsList" items="${model.fieldInfoList}">
@@ -2087,7 +2087,7 @@ start -->
                                             </tr>
                                             </thead>
                                             <!--         Modify by Bhagvan Singh 06-04-2015 start -->
-                                            <tbody id="forward_sales_information_tbody">
+                                            <tbody id="forward_sales_information_tbody" class="scrollDiv">
                                             <c:set var="forwardSalesRowCount" value="1"/>
                                             <c:set var="ContactIdentifierValue" value=""/>
                                             <c:forEach var="cropListForforwardSale" items="${model.cropTypeView}">
@@ -2775,8 +2775,6 @@ Commented as per client requirement
 			</tfoot>
         </table>
     </div>
-
-
 
 </script>
 
