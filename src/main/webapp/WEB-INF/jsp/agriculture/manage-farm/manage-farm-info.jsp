@@ -747,7 +747,7 @@
 													</td>
 												</tr>
 											</thead>
-											<tbody></tbody>
+											<tbody class="scrollDiv"></tbody>
 										</table>
 										<span class="pull-right">** Additional net income</span>
 									</div>
