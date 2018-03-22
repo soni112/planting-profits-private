@@ -3774,6 +3774,15 @@ sup {
 .tbl-fixd-hdr thead > tr > td:nth-child(2){
     margin: 0px;
 }
+.tbl-bordr tbody>tr>td{
+    border: 1px solid #839a67;
+}
+.table tbody>tr.success>td{
+    background-color: #dff0d8;
+}
+.table tbody >tr> td{
+    padding: 5px 5px 5px 5px;
+}
 .tbl-fixd-hdr thead > tr > td{
     width: 14.28%;
     position: relative;
@@ -3781,12 +3790,12 @@ sup {
     /*height: 54px;*/
     height: 35px;
 }
-.tbl-fixd-hdr tbody > tr {
+.tbl-fixd-hdr tbody>tr {
     width: 100%;
     float: left;
     margin: 0px;
 }
-.tbl-fixd-hdr tbody > tr > td{
+.tbl-fixd-hdr tbody>tr>td{
     width: 14.28%;
     /*float: left;*/
     height: 38px;
@@ -3802,7 +3811,7 @@ sup {
 }
 .tbl-fixd-hdr tfoot > tr > td:nth-child(1){
     /*width: 14.28%;*/
-    width: 8.9%;
+    width: 9%;
 }
 .tbl-fixd-hdr tfoot > tr > td:nth-child(2){
     width: 54.72%;
@@ -4073,7 +4082,7 @@ sup {
     height: 40px;
 }*/
 .tbl-header-scrolll-width{
-    width: 97.9%!important;
+    /*width: 97.9%!important;*/
 }
 .overflow-y-fixed-height{
     overflow-y: auto;

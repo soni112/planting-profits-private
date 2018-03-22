@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 <link href="<c:url value="/css/bootstrap-multiselect.css"/>" rel="stylesheet"
 	type="text/css" />
+<script src="<c:url value="/js/plugins/jquery.slimscroll.js"/>"></script>
 <script>
 	showLoadingImage();
 	var farmId = '<c:out value="${model.farm.farmId}" />';
@@ -247,7 +248,7 @@
 													</td>
 												</tr>
 											</thead>
-											<tbody id="plan-by-field-tbody" style="display: table-row-group;"></tbody>
+											<tbody id="plan-by-field-tbody" class="scrollDiv" style="display: table-row-group;"></tbody>
 											<tfoot>
 												<tr id="total-field-last-row" class="tblft text-center">
 													<td class="tblft1">Total acres</td>
@@ -1842,4 +1843,11 @@ Commented as per client requirement
         </table>
         </div>
 	
+</script>
+<script type="text/javascript">
+    $(function(){
+        $('.scrollDiv').slimScroll({
+//            height: '250px',
+        });
+    });
 </script>
