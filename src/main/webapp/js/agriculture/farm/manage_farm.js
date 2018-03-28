@@ -1600,10 +1600,10 @@ function modifyField() {
                             alertMessage += "But the amount of land entered for \"" + fieldName + "\" field exceeds 10,000.00 acres. ";
                         }
                         if (alertMessage != "") {
-                            customAlerts('"' + fieldName + '" field updated successfully. '
+                            customAlerts('"update  ' + fieldName + '" ?'
                                 + alertMessage, type_warning, time);
                         } else {
-                            customAlerts('"' + fieldName + '" field updated successfully', type_success, time);
+                            customAlerts('"update  ' + fieldName + '" ?', type_success, time);
                         }
                         totalLandByField = getValueWithComma(totalLandByField);
                         $("#total-acres-value").text(totalLandByField);
