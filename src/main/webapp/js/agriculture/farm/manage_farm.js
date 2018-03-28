@@ -3449,7 +3449,9 @@ function openStrategyOrBaselinePopup(obj) {
     if (!checkAllValidation()) {
         return false;
     } else {
-        var countMaximumAcres=0;
+        $('#save-strategy-popoup').show();
+
+       /* var countMaximumAcres=0;
         var countMinimumAcres=0;
         var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
 
@@ -3468,7 +3470,7 @@ function openStrategyOrBaselinePopup(obj) {
         else {
             $('#save-strategy-popoup').show();
 
-        }
+        }*/
     }
 }
 
