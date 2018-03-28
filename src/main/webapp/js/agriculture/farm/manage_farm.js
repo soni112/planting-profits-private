@@ -554,7 +554,7 @@ function warningFallowPlanByField() {
         }
     });
     if (fallowFieldName.length > 0) {
-        customAlerts('You marked "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '" as Fallow so this field is not available for planting. If you would like to plant or consider planting "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '", uncheck the Fallow box', type_warning, time);
+        customAlerts('You marked "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '" as Fallow so this field will not be assigned any crops. If you would like to assign crops to "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '", uncheck the box', type_warning, time);
         return true;
     } else {
         return false;
