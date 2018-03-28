@@ -708,7 +708,7 @@ public class SectionOnePDFGenerator {
 	}
 
 	private PdfPTable getCropContributionMarginTable() {
-		PdfPTable cropContributionMarginTable = new PdfPTable(4);
+		PdfPTable cropContributionMarginTable = new PdfPTable(3);
 		cropContributionMarginTable.setWidthPercentage(100);
 
 		// Create Table Header
@@ -730,11 +730,11 @@ public class SectionOnePDFGenerator {
 		ratingHead.setBorder(Rectangle.BOTTOM);
 		cropContributionMarginTable.addCell(ratingHead);
 
-		PdfPCell estimateHead = new PdfPCell(new Phrase("Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL));
+		/*PdfPCell estimateHead = new PdfPCell(new Phrase("Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL));
 		estimateHead.setUseBorderPadding(true);
 		estimateHead.setBorderWidth(0.5f);
 		estimateHead.setBorder(Rectangle.BOTTOM);
-		cropContributionMarginTable.addCell(estimateHead);
+		cropContributionMarginTable.addCell(estimateHead);*/
 
 
 		cropContributionMarginTable.completeRow();
@@ -808,16 +808,19 @@ public class SectionOnePDFGenerator {
 				}
 				cropContributionMarginTable.addCell(rating);
 
-				String estimatedIncommeFormatted = estimatedIncome.replaceAll("\\$", "") ;
+				/*String estimatedIncommeFormatted = estimatedIncome.replaceAll("\\$", "") ;
 
-				farmOutputDetails.getUsedAcresDouble ();
-//					double estimateIncamePerAcr = Double.parseDouble(formatter.format((Acres 	/ estimatedIncommeFormatted )));
+				int estimateincame = Integer.parseInt (  estimatedIncommeFormatted );
+
+				Double Acrrease = farmOutputDetails.getUsedAcresDouble ();
+				Double EstPer=estimateincame/Acrrease;*/
+/*
 				PdfPCell estimate = new PdfPCell(new Phrase(" ", ReportTemplate.TIMESROMAN_10_NORMAL));
 				estimate.setUseBorderPadding(true);
 				estimate.setBorderWidth(0);
 				estimate.setBorder(Rectangle.NO_BORDER);
 
-				cropContributionMarginTable.addCell (estimate);
+				cropContributionMarginTable.addCell (estimate);*/
 
 				cropContributionMarginTable.completeRow();
 			}
