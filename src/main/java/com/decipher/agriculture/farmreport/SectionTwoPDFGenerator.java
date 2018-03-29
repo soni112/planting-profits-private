@@ -331,7 +331,7 @@ public class SectionTwoPDFGenerator {
 
 
 
-            List<FarmOutputDetailsView> farmOutputDetailsViewList1 = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
+           /* List<FarmOutputDetailsView> farmOutputDetailsViewList1 = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
             Double totalAcerage1 = 0.0;
             Double totalProfit=0.0;
             Double estimatePerAcr  =0.0;
@@ -346,22 +346,32 @@ public class SectionTwoPDFGenerator {
                }else{
                    break;
                }
-            }
+            }*/
 
 
-Crop            if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
+            if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
                 List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
                 Double totalAcerage = 0.0;
+                Double totalProfit=0.0;
+                Double estimatePerAcr  =0.0;
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView().getSelected()) {
                         totalAcerage += farmOutputDetailsView.getUsedAcresDouble();
+                        totalProfit = farmOutputDetailsView.getProfitDouble ();
+                        if(totalAcerage!=0.0 && totalProfit!=0.0)
+                        {
+                            estimatePerAcr = totalProfit / totalAcerage;
+                            table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( estimatePerAcr ) ) );
+                        }else{
+                            break;
+                        }
                     }
                 }
-
                 table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(AgricultureStandardUtils.commaSeparaterForDoublePrice(totalAcerage)));
 
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView().getSelected()) {
+
                         table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(farmOutputDetailsView.getUsedAcresAsDouble().toString()));
                     }
                 }
@@ -369,11 +379,16 @@ Crop            if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo()
             } else if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS)){
 
                 Double totalAcerage = 0.0;
+
+
                 Map<String, String> hashMapForAcre = (Map<String, String>) strategyDataJsonObject.get("hashMapForAcre");
+
+                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( totalAcerage) ) );
 
                 Set<String> keySet = hashMapForAcre.keySet();
                 for (String cropKey : keySet) {
                     totalAcerage += Double.parseDouble(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropKey).split(" ")[0]));
+
                 }
 
                 table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(totalAcerage.toString()));

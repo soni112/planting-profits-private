@@ -41,6 +41,9 @@ public class SectionOnePDFGenerator {
 		SectionOnePDFGenerator.estimateIncomeInDouble = estimateIncomeInDouble;
 	}
 
+	Double acrease=0.0;
+	Double totalProfit=0.0 ;
+
 	private static Double estimateIncomeInDouble;
 	private ReportDataPage1 reportDataPage1;
 	private SectionTwoPDFGenerator sectionTwoPDFGenerator;
@@ -817,8 +820,8 @@ public class SectionOnePDFGenerator {
 				}
 				cropContributionMarginTable.addCell(rating);
 
-				Double acrease = farmOutputDetails.getUsedAcresDouble ();
-				Double totalProfit = farmOutputDetails.getProfitAsDouble ();
+				acrease = farmOutputDetails.getUsedAcresDouble ();
+				totalProfit = farmOutputDetails.getProfitAsDouble ();
 				Double estimateIncamePerAcr=totalProfit/acrease;
 
 				PdfPCell estimate = new PdfPCell(new Phrase(" "+ estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL));
@@ -888,6 +891,19 @@ public class SectionOnePDFGenerator {
 					rating.setBackgroundColor(BaseColor.GRAY);
 				}
 				cropContributionMarginTable.addCell(rating);
+
+				/*Double acrease = hashMapForProfitIndex.get ("ac"  )
+				Double totalProfit = farmOutputDetails.getProfitAsDouble ();
+				*/
+
+				Double estimateIncamePerAcr=totalProfit/acrease;
+
+				PdfPCell estimate = new PdfPCell(new Phrase(" "+ estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL));
+				estimate.setUseBorderPadding(true);
+				estimate.setBorderWidth(0);
+				estimate.setBorder(Rectangle.NO_BORDER);
+
+				cropContributionMarginTable.addCell (estimate);
 
 				cropContributionMarginTable.completeRow();
 			}
