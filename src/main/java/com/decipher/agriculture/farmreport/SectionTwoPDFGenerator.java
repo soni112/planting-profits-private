@@ -333,16 +333,23 @@ public class SectionTwoPDFGenerator {
 
             List<FarmOutputDetailsView> farmOutputDetailsViewList1 = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
             Double totalAcerage1 = 0.0;
+            Double totalProfit=0.0;
+            Double estimatePerAcr  =0.0;
 
             for (FarmOutputDetailsView farmOutputDetailsView1 : farmOutputDetailsViewList1) {
-                totalAcerage1 += farmOutputDetailsView1.getUsedAcresDouble();
+                totalAcerage1 += farmOutputDetailsView1.getUsedAcresDouble ();
+                totalProfit = farmOutputDetailsView1.getProfitDouble ();
+               if(totalAcerage1!=0.0 && totalProfit!=0.0)
+               {
+                   estimatePerAcr = totalProfit / totalAcerage1;
+                   table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( estimatePerAcr ) ) );
+               }else{
+                   break;
+               }
             }
 
-            strategyDataJsonObject.get ("potentialProfit");
 
-            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell (AgricultureStandardUtils.commaSeparaterForDoublePrice(totalAcerage1)));
-
-            if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
+Crop            if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
                 List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
                 Double totalAcerage = 0.0;
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
