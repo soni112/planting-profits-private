@@ -554,7 +554,7 @@ function warningFallowPlanByField() {
         }
     });
     if (fallowFieldName.length > 0) {
-        customAlerts('You marked "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '" as Fallow so this field is not available for planting. If you would like to plant or consider planting "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '", uncheck the Fallow box', type_warning, time);
+        customAlerts('You marked "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '" as Fallow so this field will not be assigned any crops. If you would like to assign crops to "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '", uncheck the box', type_warning, time);
         return true;
     } else {
         return false;
@@ -1600,10 +1600,10 @@ function modifyField() {
                             alertMessage += "But the amount of land entered for \"" + fieldName + "\" field exceeds 10,000.00 acres. ";
                         }
                         if (alertMessage != "") {
-                            customAlerts('"' + fieldName + '" field updated successfully. '
+                            customAlerts('"update  ' + fieldName + '" ?'
                                 + alertMessage, type_warning, time);
                         } else {
-                            customAlerts('"' + fieldName + '" field updated successfully', type_success, time);
+                            customAlerts('"update  ' + fieldName + '" ?', type_success, time);
                         }
                         totalLandByField = getValueWithComma(totalLandByField);
                         $("#total-acres-value").text(totalLandByField);
@@ -3449,7 +3449,9 @@ function openStrategyOrBaselinePopup(obj) {
     if (!checkAllValidation()) {
         return false;
     } else {
-        var countMaximumAcres=0;
+        $('#save-strategy-popoup').show();
+
+       /* var countMaximumAcres=0;
         var countMinimumAcres=0;
         var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
 
@@ -3468,7 +3470,7 @@ function openStrategyOrBaselinePopup(obj) {
         else {
             $('#save-strategy-popoup').show();
 
-        }
+        }*/
     }
 }
 

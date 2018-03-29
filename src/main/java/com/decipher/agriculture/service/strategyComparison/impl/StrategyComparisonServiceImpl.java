@@ -606,7 +606,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put("amount", "$" + cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
 //                    jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
-                    jsonObject.put("name", "To-be Planted");
+                    jsonObject.put("name", "Available Assigned");
                     jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 } else {
                     jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
@@ -621,7 +621,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                 if (counter == 0) {
                     if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")){
 //                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
-                        jsonArrayForResourceHeader.add("To-be Planted");
+                        jsonArrayForResourceHeader.add("Available Assigned");
                     } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")){
                         jsonArrayForResourceHeader.add("Working Capital Used");
                     } else {
@@ -737,8 +737,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private JSONArray getConservationCropHeader(){
         JSONArray conservationCropHeader = new JSONArray();
 
-        conservationCropHeader.add("% Est. Income in <br> Conservation Crops");
-        conservationCropHeader.add("% Acreage in <br> Conservation Crops");
+        conservationCropHeader.add("% Est. Income in Assigned to Conservation Crops");
+        conservationCropHeader.add("% Acreage in Assigned to Conservation Crops");
 
         return conservationCropHeader;
     }
