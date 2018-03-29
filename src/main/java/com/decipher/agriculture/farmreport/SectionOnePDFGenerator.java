@@ -32,6 +32,19 @@ public class SectionOnePDFGenerator {
 	 */
 	private static String selectedStrategy;
 	private static String estimatedIncome;
+
+	public static Double getEstimateIncomeInDouble() {
+		return estimateIncomeInDouble;
+	}
+
+	public static void setEstimateIncomeInDouble(Double estimateIncomeInDouble) {
+		SectionOnePDFGenerator.estimateIncomeInDouble = estimateIncomeInDouble;
+	}
+
+	Double acrease=0.0;
+	Double totalProfit=0.0 ;
+
+	private static Double estimateIncomeInDouble;
 	private ReportDataPage1 reportDataPage1;
 	private SectionTwoPDFGenerator sectionTwoPDFGenerator;
 	private List<String> profitList;
@@ -64,7 +77,6 @@ public class SectionOnePDFGenerator {
 	public static String getEstimatedIncome() {
 		return estimatedIncome;
 	}
-
 	public void setEstimatedIncome(String estimatedIncome) {
 		this.estimatedIncome = estimatedIncome;
 	}
@@ -472,7 +484,7 @@ public class SectionOnePDFGenerator {
 		 * @desc - If no data for forward sales then display message
 		 */
 		if (forwardCropCount == 0) {
-			PdfPCell filledDataCell = new PdfPCell(new Phrase("No crop selected for Forward Sales", ReportTemplate.TIMESROMAN_10_NORMAL));
+			PdfPCell filledDataCell = new PdfPCell(new Phrase("No Forward Sales", ReportTemplate.TIMESROMAN_10_NORMAL));
 			filledDataCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			filledDataCell.setBorderWidth(0.5f);
 			filledDataCell.setColspan(3);
@@ -708,7 +720,7 @@ public class SectionOnePDFGenerator {
 	}
 
 	private PdfPTable getCropContributionMarginTable() {
-		PdfPTable cropContributionMarginTable = new PdfPTable(3);
+		PdfPTable cropContributionMarginTable = new PdfPTable(4);
 		cropContributionMarginTable.setWidthPercentage(100);
 
 		// Create Table Header
@@ -730,11 +742,11 @@ public class SectionOnePDFGenerator {
 		ratingHead.setBorder(Rectangle.BOTTOM);
 		cropContributionMarginTable.addCell(ratingHead);
 
-		/*PdfPCell estimateHead = new PdfPCell(new Phrase("Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL));
+		PdfPCell estimateHead = new PdfPCell(new Phrase("Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL));
 		estimateHead.setUseBorderPadding(true);
 		estimateHead.setBorderWidth(0.5f);
 		estimateHead.setBorder(Rectangle.BOTTOM);
-		cropContributionMarginTable.addCell(estimateHead);*/
+		cropContributionMarginTable.addCell(estimateHead);
 
 
 		cropContributionMarginTable.completeRow();
@@ -808,19 +820,16 @@ public class SectionOnePDFGenerator {
 				}
 				cropContributionMarginTable.addCell(rating);
 
-				/*String estimatedIncommeFormatted = estimatedIncome.replaceAll("\\$", "") ;
+				acrease = farmOutputDetails.getUsedAcresDouble ();
+				totalProfit = farmOutputDetails.getProfitAsDouble ();
+				Double estimateIncamePerAcr=totalProfit/acrease;
 
-				int estimateincame = Integer.parseInt (  estimatedIncommeFormatted );
-
-				Double Acrrease = farmOutputDetails.getUsedAcresDouble ();
-				Double EstPer=estimateincame/Acrrease;*/
-/*
-				PdfPCell estimate = new PdfPCell(new Phrase(" ", ReportTemplate.TIMESROMAN_10_NORMAL));
+				PdfPCell estimate = new PdfPCell(new Phrase(" "+ estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL));
 				estimate.setUseBorderPadding(true);
 				estimate.setBorderWidth(0);
 				estimate.setBorder(Rectangle.NO_BORDER);
 
-				cropContributionMarginTable.addCell (estimate);*/
+				cropContributionMarginTable.addCell (estimate);
 
 				cropContributionMarginTable.completeRow();
 			}
@@ -882,6 +891,19 @@ public class SectionOnePDFGenerator {
 					rating.setBackgroundColor(BaseColor.GRAY);
 				}
 				cropContributionMarginTable.addCell(rating);
+
+				/*Double acrease = hashMapForProfitIndex.get ("ac"  )
+				Double totalProfit = farmOutputDetails.getProfitAsDouble ();
+				*/
+
+				Double estimateIncamePerAcr=totalProfit/acrease;
+
+				PdfPCell estimate = new PdfPCell(new Phrase(" "+ estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL));
+				estimate.setUseBorderPadding(true);
+				estimate.setBorderWidth(0);
+				estimate.setBorder(Rectangle.NO_BORDER);
+
+				cropContributionMarginTable.addCell (estimate);
 
 				cropContributionMarginTable.completeRow();
 			}

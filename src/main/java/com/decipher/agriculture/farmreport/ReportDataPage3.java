@@ -32,6 +32,8 @@ public class ReportDataPage3 {
      * @date - 11-01-2016
      * @desc - Only data objects to be used are used not using any service to populate data objects
      */
+    private static final String IMPACTING_INCOME = "impactingIncome";
+
     private JSONObject baseSelectedStrategyOutputDetailsJsonObj;
 
     private static final String YES = "Yes";
@@ -170,22 +172,53 @@ public class ReportDataPage3 {
 
         List<CropTypeView> cropTypeViewList = (List<CropTypeView>) outputDetails.get("cropTypeView");
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+
         for (CropTypeView cropTypeView : cropTypeViewList) {
             if (cropTypeView.getSelected()) {
                 JSONObject jsonObject = getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
                 jsonObject.put("cropName", cropTypeView.getCropName());
-                jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails));
+                if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")){
+                    jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, false));
+                } else {
+                    jsonObject.put("acreagePlanted", "--");
+                }
                 jsonArray.add(jsonObject);
 
                 if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")){
 
                     JSONObject jsonObjectForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
                     jsonObjectForFirm.put("cropName", cropTypeView.getCropName() + " (Firm)");
-                    jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails));
+                    if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
+                        jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
+                    }else  if(jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
+                        jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
+                    }
+                    else {
+                        jsonObject.put("acreagePlanted", "--");
+                    }
                     jsonArray.add(jsonObjectForFirm);
                 }
             }
         }
+
+/*
+        for (CropTypeView cropTypeView : cropTypeViewList) {
+            if (cropTypeView.getSelected()) {
+                JSONObject jsonObject = getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
+                jsonObject.put("cropName", cropTypeView.getCropName());
+                jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails,false));
+                jsonArray.add(jsonObject);
+
+                if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")){
+
+                    JSONObject jsonObjectForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
+                    jsonObjectForFirm.put("cropName", cropTypeView.getCropName() + " (Firm)");
+                    jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails,true));
+                    jsonArray.add(jsonObjectForFirm);
+                }
+            }
+        }
+*/
 
         List<CropsGroupView> cropsGroupViewList = (List<CropsGroupView>) outputDetails.get("cropsGroupViews");
 
@@ -195,16 +228,56 @@ public class ReportDataPage3 {
             int totalAcreage = 0;
             Set<CropType> cropSet = cropsGroupView.getCropSet();
             for (CropType cropType : cropSet) {
-                totalAcreage += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(getCropAcreage(new CropTypeView(cropType), outputDetails)));
+
+                totalAcreage += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(getCropAcreage(new CropTypeView(cropType), outputDetails,false)));
             }
             jsonObject.put("acreagePlanted", totalAcreage);
+
             jsonArray.add(jsonObject);
         }
 
         return jsonArray;
     }
 
-    private String getCropAcreage(CropTypeView cropTypeView, JSONObject outputDetails){
+    private String getCropAcreage(CropTypeView cropTypeView, JSONObject outputDetails, boolean isFirm){
+        FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+
+        if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
+            List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+
+            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+
+                if(farmOutputDetailsView.getForFirm() && isFirm && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+                    return farmOutputDetailsView.getUsedAcres();
+                }
+
+                if(!isFirm && !cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+                    return farmOutputDetailsView.getUsedAcres();
+                }
+
+                if(!isFirm && cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+                    return farmOutputDetailsView.getUsedAcres();
+                }
+            }
+
+        } else if (PlanByStrategy.PLAN_BY_FIELDS.equals(farmInfoView.getStrategy())){
+            Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
+
+            String cropName = cropTypeView.getCropName();
+            if (isFirm && cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
+                cropName += " (Firm)";
+            } /*else if (cropTypeView.getProposedchecked()) {
+                cropName += " (Proposed)";
+            }*/
+
+            return hashMapForAcre.get(cropName) != null ? hashMapForAcre.get(cropName).split(" ")[0] : "--";
+        }
+
+        return "";
+    }
+
+/*
+    private String getCropAcreage(CropTypeView cropTypeView, JSONObject outputDetails,boolean isFirm){
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
 
         if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
@@ -221,17 +294,21 @@ public class ReportDataPage3 {
             Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
 
             String cropName = cropTypeView.getCropName();
+
             if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
                 cropName += " (Firm)";
-            } /*else if (cropTypeView.getProposedchecked()) {
+            } */
+/*else if (cropTypeView.getProposedchecked()) {
                 cropName += " (Proposed)";
-            }*/
+            }*//*
+
 
             return hashMapForAcre.get(cropName) != null ? hashMapForAcre.get(cropName).split(" ")[0] : "--";
         }
 
         return "";
     }
+*/
 
     private JSONObject getCropLimit(FarmInfoView farmInfoView, String minAcres, String maxAcres, CropTypeView cropTypeView, CropsGroupView cropsGroupView, JSONObject outputDetails) {
 
