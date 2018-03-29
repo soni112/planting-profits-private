@@ -481,7 +481,7 @@ public class SectionOnePDFGenerator {
 		 * @desc - If no data for forward sales then display message
 		 */
 		if (forwardCropCount == 0) {
-			PdfPCell filledDataCell = new PdfPCell(new Phrase("No crop selected for Forward Sales", ReportTemplate.TIMESROMAN_10_NORMAL));
+			PdfPCell filledDataCell = new PdfPCell(new Phrase("No Forward Sales", ReportTemplate.TIMESROMAN_10_NORMAL));
 			filledDataCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			filledDataCell.setBorderWidth(0.5f);
 			filledDataCell.setColspan(3);
