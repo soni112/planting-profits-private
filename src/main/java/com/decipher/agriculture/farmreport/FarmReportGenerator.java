@@ -64,7 +64,8 @@ public class FarmReportGenerator extends AbstractItextPdfView {
         Rectangle rect = new Rectangle(36, 54, 559, 788);
         rect.setBorder(Rectangle.BOTTOM);
         writer.setBoxSize("art", rect);
-        String filePath = request.getServletContext().getRealPath("/images/logo_pdf.png");
+//        String filePath = request.getServletContext().getRealPath("/images/logo_pdf.png");
+        String filePath = request.getServletContext().getRealPath("/images/logo.png");
 
         ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
 
