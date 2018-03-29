@@ -83,7 +83,7 @@ public class SectionOnePDFGenerator {
 		titleTable.setWidthPercentage(100);
 
 		// Strategy
-		titleTable.addCell(ReportTemplate.getSectionHeaderCell("Selected Strategy: " + selectedStrategy));
+		titleTable.addCell(ReportTemplate.getSectionHeaderCell("Featured Strategy:" + selectedStrategy));
 
         /**
          * @changed - Abhishek
@@ -652,7 +652,7 @@ public class SectionOnePDFGenerator {
 		 * @desc - changed according to slide#4 of 12282015
 		 */
 		/*PdfPCell cropContributionMargin = new PdfPCell(new Phrase("Crop Contribution Margin", ReportTemplate.TIMESROMAN_12_BOLD));*/
-		PdfPCell cropContributionMargin = new PdfPCell(new Phrase(" Land Profitability Index", ReportTemplate.TIMESROMAN_12_BOLD));
+		PdfPCell cropContributionMargin = new PdfPCell(new Phrase(" Land Profitability ", ReportTemplate.TIMESROMAN_12_BOLD));
 		cropContributionMargin.setUseBorderPadding(true);
 		cropContributionMargin.setBorderWidth(0);
 		cropContributionMargin.setPaddingTop(10);
@@ -724,11 +724,17 @@ public class SectionOnePDFGenerator {
 		cmHead.setBorder(Rectangle.BOTTOM);
 		cropContributionMarginTable.addCell(cmHead);
 
-		PdfPCell ratingHead = new PdfPCell(new Phrase("Rating", ReportTemplate.TIMESROMAN_10_NORMAL));
+		PdfPCell ratingHead = new PdfPCell(new Phrase(" ", ReportTemplate.TIMESROMAN_10_NORMAL));
 		ratingHead.setUseBorderPadding(true);
 		ratingHead.setBorderWidth(0.5f);
 		ratingHead.setBorder(Rectangle.BOTTOM);
 		cropContributionMarginTable.addCell(ratingHead);
+
+		/*PdfPCell estimateHead = new PdfPCell(new Phrase("Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL));
+		estimateHead.setUseBorderPadding(true);
+		estimateHead.setBorderWidth(0.5f);
+		estimateHead.setBorder(Rectangle.BOTTOM);
+		cropContributionMarginTable.addCell(estimateHead);*/
 
 
 		cropContributionMarginTable.completeRow();
@@ -801,6 +807,20 @@ public class SectionOnePDFGenerator {
 					rating.setBackgroundColor(BaseColor.GRAY);
 				}
 				cropContributionMarginTable.addCell(rating);
+
+				/*String estimatedIncommeFormatted = estimatedIncome.replaceAll("\\$", "") ;
+
+				int estimateincame = Integer.parseInt (  estimatedIncommeFormatted );
+
+				Double Acrrease = farmOutputDetails.getUsedAcresDouble ();
+				Double EstPer=estimateincame/Acrrease;*/
+/*
+				PdfPCell estimate = new PdfPCell(new Phrase(" ", ReportTemplate.TIMESROMAN_10_NORMAL));
+				estimate.setUseBorderPadding(true);
+				estimate.setBorderWidth(0);
+				estimate.setBorder(Rectangle.NO_BORDER);
+
+				cropContributionMarginTable.addCell (estimate);*/
 
 				cropContributionMarginTable.completeRow();
 			}
