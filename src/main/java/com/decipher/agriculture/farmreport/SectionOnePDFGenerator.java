@@ -11,6 +11,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.codehaus.jettison.json.JSONException;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class SectionOnePDFGenerator {
 	 */
 	private static String selectedStrategy;
 	private static String estimatedIncome;
+	public static int index=0;
 
 	public static Double getEstimateIncomeInDouble() {
 		return estimateIncomeInDouble;
@@ -410,55 +412,55 @@ public class SectionOnePDFGenerator {
 
 		}*/
 
-		/**
-		 * @changed - Abhishek
-		 * @date - 16-01-2016
-		 * @desc - added condition to check for data in Forward sales
-		 */
-		int forwardCropCount = 0;
-			for (CropTypeView cropDetails : forwardSalesList) {
+        /**
+         * @changed - Abhishek
+         * @date - 16-01-2016
+         * @desc - added condition to check for data in Forward sales
+         */
+        int forwardCropCount = 0;
+        for (CropTypeView cropDetails : forwardSalesList) {
 
-                if (cropDetails.getSelected()
-						&& (cropDetails.getFirmchecked().equalsIgnoreCase("true") || cropDetails.getProposedchecked())
-						&& !cropDetails.getAcresStr().equalsIgnoreCase("")) {
+            if (cropDetails.getSelected ()
+                    && (cropDetails.getFirmchecked ().equalsIgnoreCase ( "true" ) || cropDetails.getProposedchecked ())
+                    && !cropDetails.getAcresStr ().equalsIgnoreCase ( "" )) {
 
-                	forwardCropCount++;
-                	/**
-                     * @changed - Abhishek
-                     * @date - 09-12-2015
-                     */
-                    String cropName;
-                    if(cropDetails.getFirmchecked().equalsIgnoreCase("true"))
-                        cropName = cropDetails.getCropName() + " (Firm)";
-                    else if(cropDetails.getProposedchecked())
-                        cropName = cropDetails.getCropName() + " (Proposed)";
-                    else
-                        cropName = cropDetails.getCropName();
-
-
-                    PdfPCell cropNameDataCell = new PdfPCell(new Phrase(cropName, ReportTemplate.TIMESROMAN_10_NORMAL));
-                    cropNameDataCell.setBorderWidth(0.5f);
-                    cropNameDataCell.setBorderColor(new BaseColor(131, 154, 103));
-                    cropNameDataCell.setBorder(Rectangle.BOX);
-                    cropNameDataCell.setUseBorderPadding(true);
-                    cropNameDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
-                    forwardSalesTable.addCell(cropNameDataCell);
-
-                    String amountStr = "";
-                    if (cropDetails.getFirmchecked().equalsIgnoreCase("true") || cropDetails.getProposedchecked()) {
-                        amountStr = cropDetails.getAcresStr() + " acres at " + cropDetails.getForwardPrice();
-                    }
-
-                    PdfPCell amountDataCell = new PdfPCell(new Phrase(amountStr, ReportTemplate.TIMESROMAN_10_NORMAL));
-                    amountDataCell.setBorderWidth(0.5f);
-                    amountDataCell.setBorderColor(new BaseColor(131, 154, 103));
-                    amountDataCell.setBorder(Rectangle.BOX);
-                    amountDataCell.setUseBorderPadding(true);
-                    amountDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
-                    forwardSalesTable.addCell(amountDataCell);
+                forwardCropCount++;
+                /**
+                 * @changed - Abhishek
+                 * @date - 09-12-2015
+                 */
+                String cropName;
+                if (cropDetails.getFirmchecked ().equalsIgnoreCase ( "true" ))
+                    cropName = cropDetails.getCropName () + " (Firm)";
+                else if (cropDetails.getProposedchecked ())
+                    cropName = cropDetails.getCropName () + " (Proposed)";
+                else
+                    cropName = cropDetails.getCropName ();
 
 
-					String filledStatus = reportDataPage1.getForwardSalesStatus(cropDetails);
+                PdfPCell cropNameDataCell = new PdfPCell ( new Phrase ( cropName, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                cropNameDataCell.setBorderWidth ( 0.5f );
+                cropNameDataCell.setBorderColor ( new BaseColor ( 131, 154, 103 ) );
+                cropNameDataCell.setBorder ( Rectangle.BOX );
+                cropNameDataCell.setUseBorderPadding ( true );
+                cropNameDataCell.setBackgroundColor ( new BaseColor ( 223, 240, 216 ) );
+                forwardSalesTable.addCell ( cropNameDataCell );
+
+                String amountStr = "";
+                if (cropDetails.getFirmchecked ().equalsIgnoreCase ( "true" ) || cropDetails.getProposedchecked ()) {
+                    amountStr = cropDetails.getAcresStr () + " acres at " + cropDetails.getForwardPrice ();
+                }
+
+                PdfPCell amountDataCell = new PdfPCell ( new Phrase ( amountStr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                amountDataCell.setBorderWidth ( 0.5f );
+                amountDataCell.setBorderColor ( new BaseColor ( 131, 154, 103 ) );
+                amountDataCell.setBorder ( Rectangle.BOX );
+                amountDataCell.setUseBorderPadding ( true );
+                amountDataCell.setBackgroundColor ( new BaseColor ( 223, 240, 216 ) );
+                forwardSalesTable.addCell ( amountDataCell );
+
+
+                String filledStatus = reportDataPage1.getForwardSalesStatus ( cropDetails );
 					/*if(cropDetails.getFirmchecked().equalsIgnoreCase("true")){
 						filledStatus = "Yes";
 					} else if(cropDetails.getProposedchecked()){
@@ -467,47 +469,46 @@ public class SectionOnePDFGenerator {
 						filledStatus = "No";
 					}*/
 
-                    PdfPCell filledDataCell = new PdfPCell(new Phrase(filledStatus, ReportTemplate.TIMESROMAN_10_NORMAL));
-                    filledDataCell.setBorderWidth(0.5f);
-                    filledDataCell.setBorderColor(new BaseColor(131, 154, 103));
-                    filledDataCell.setBorder(Rectangle.BOX);
-                    filledDataCell.setUseBorderPadding(true);
-                    filledDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
-                    forwardSalesTable.addCell(filledDataCell);
-                    forwardSalesTable.completeRow();
-                }
+                PdfPCell filledDataCell = new PdfPCell ( new Phrase ( filledStatus, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                filledDataCell.setBorderWidth ( 0.5f );
+                filledDataCell.setBorderColor ( new BaseColor ( 131, 154, 103 ) );
+                filledDataCell.setBorder ( Rectangle.BOX );
+                filledDataCell.setUseBorderPadding ( true );
+                filledDataCell.setBackgroundColor ( new BaseColor ( 223, 240, 216 ) );
+                forwardSalesTable.addCell ( filledDataCell );
+                forwardSalesTable.completeRow ();
             }
+        }
 
-		/**
-		 * @added - Abhishek
-		 * @date - 16-01-2016
-		 * @desc - If no data for forward sales then display message
-		 */
-		if (forwardCropCount == 0) {
-			PdfPCell filledDataCell = new PdfPCell(new Phrase("No Forward Sales", ReportTemplate.TIMESROMAN_10_NORMAL));
-			filledDataCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			filledDataCell.setBorderWidth(0.5f);
-			filledDataCell.setColspan(3);
-			filledDataCell.setBorderColor(new BaseColor(131, 154, 103));
-			filledDataCell.setBorder(Rectangle.BOX);
-			filledDataCell.setUseBorderPadding(true);
-			filledDataCell.setBackgroundColor(new BaseColor(223, 240, 216));
-			forwardSalesTable.addCell(filledDataCell);
-			forwardSalesTable.completeRow();
-		}
+        /**
+         * @added - Abhishek
+         * @date - 16-01-2016
+         * @desc - If no data for forward sales then display message
+         */
+        if (forwardCropCount == 0) {
+            PdfPCell filledDataCell = new PdfPCell ( new Phrase ( "No Forward Sales", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+            filledDataCell.setHorizontalAlignment ( Element.ALIGN_CENTER );
+            filledDataCell.setBorderWidth ( 0.5f );
+            filledDataCell.setColspan ( 3 );
+            filledDataCell.setBorderColor ( new BaseColor ( 131, 154, 103 ) );
+            filledDataCell.setBorder ( Rectangle.BOX );
+            filledDataCell.setUseBorderPadding ( true );
+            filledDataCell.setBackgroundColor ( new BaseColor ( 223, 240, 216 ) );
+            forwardSalesTable.addCell ( filledDataCell );
+            forwardSalesTable.completeRow ();
+        }
 
-		PdfPCell forwardSalesTableCell = new PdfPCell(forwardSalesTable);
-		forwardSalesTableCell.setUseBorderPadding(true);
-		forwardSalesTableCell.setBorderWidth(0);
-		//cropsAcreageCell.setPaddingLeft(10);
-		riskManagementTable.addCell(forwardSalesTableCell);
+        PdfPCell forwardSalesTableCell = new PdfPCell ( forwardSalesTable );
+        forwardSalesTableCell.setUseBorderPadding ( true );
+        forwardSalesTableCell.setBorderWidth ( 0 );
+        //cropsAcreageCell.setPaddingLeft(10);
+        riskManagementTable.addCell ( forwardSalesTableCell );
 
 
-
-		/**
-		 * @changed - Abhishek
-		 * @date - 09-02-2015
-		 */
+        /**
+         * @changed - Abhishek
+         * @date - 09-02-2015
+         */
 		/*ReportDataPage1.ForwardSales forwardSales = reportDataPage1.getTotalForwardSales(farmInfoView);
 
 		int incomeForwardSalesPercentage = 0;
@@ -517,39 +518,38 @@ public class SectionOnePDFGenerator {
 		}*/
 
 
+        DecimalFormat formatter = new DecimalFormat ( "#.0" );
 
-		DecimalFormat formatter = new DecimalFormat("#.0");
+        // Add Crop Contribution Margin Table Footer
 
-		// Add Crop Contribution Margin Table Footer
+        int firstCropProfit = Integer.MIN_VALUE;
+        int secondCropProfit = Integer.MIN_VALUE;
 
-		int firstCropProfit = Integer.MIN_VALUE;
-		int secondCropProfit = Integer.MIN_VALUE;
+        for (String profit : profitList) {
+            int profitInInteger = Integer.parseInt ( profit.replaceAll ( ",", "" ) );
+            if (profitInInteger > firstCropProfit) {
+                secondCropProfit = firstCropProfit;
+                firstCropProfit = profitInInteger;
+            } else if (profitInInteger > secondCropProfit)
+                secondCropProfit = profitInInteger;
+        }
 
-		for (String profit : profitList) {
-			int profitInInteger =  Integer.parseInt(profit.replaceAll(",", ""));
-			if (profitInInteger > firstCropProfit) {
-				secondCropProfit = firstCropProfit;
-				firstCropProfit = profitInInteger;
-			} else if (profitInInteger > secondCropProfit)
-				secondCropProfit = profitInInteger;
-		}
+        /**
+         * @changed - Abhishek
+         * @date - 12-12-2015
+         */
 
-		/**
-		 * @changed - Abhishek
-		 * @date - 12-12-2015
-		 */
+        String estimatedIncomeFormatted = estimatedIncome.replaceAll ( "\\$", "" );
+        estimatedIncomeFormatted = estimatedIncomeFormatted.replaceAll ( "\\,", "" );
 
-		String estimatedIncomeFormatted = estimatedIncome.replaceAll("\\$", "");
-		estimatedIncomeFormatted = estimatedIncomeFormatted.replaceAll("\\,", "");
+        Double singleProfit = ((100 * firstCropProfit) / Double.parseDouble ( estimatedIncomeFormatted ));
 
-		Double singleProfit = ((100 * firstCropProfit) / Double.parseDouble(estimatedIncomeFormatted));
-
-		Double twoCropProfit = ((100 * (firstCropProfit + secondCropProfit))/ Double.parseDouble(estimatedIncomeFormatted));
-		/**
-		 * @chanegd - Abhishek
-		 * @date - 12-01-2016
-		 * @desc - Applied formatter for decimal output
-		 */
+        Double twoCropProfit = ((100 * (firstCropProfit + secondCropProfit)) / Double.parseDouble ( estimatedIncomeFormatted ));
+        /**
+         * @chanegd - Abhishek
+         * @date - 12-01-2016
+         * @desc - Applied formatter for decimal output
+         */
 //		PdfPCell cropContributionMarginTableFooterCell = new PdfPCell(new Phrase("% Est Income in single crop : " + formatter.format(singleProfit) +
 //				"\n% Est Income in two crops : " + formatter.format(twoCropProfit), ReportTemplate.TIMESROMAN_10_NORMAL));
 //		cropContributionMarginTableFooterCell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
@@ -559,16 +559,16 @@ public class SectionOnePDFGenerator {
 //		riskManagementTable.addCell(cropContributionMarginTableFooterCell);
 
 
-		String incomeForwardSalesPercentage = reportDataPage1.getTotalForwardSales(farmInfoView);
-		/**
-		 * @changed - Abhishek
-		 * @date - 12-12-2015
-		 */
-		Paragraph forwardSalesTableFotterParagraph = new Paragraph();
-		forwardSalesTableFotterParagraph.add(new Chunk(incomeForwardSalesPercentage + "% Est. Income in crops forward sold \n", ReportTemplate.TIMESROMAN_10_NORMAL));
-		forwardSalesTableFotterParagraph.add(new Chunk(formatter.format(singleProfit) + "% Est. Income in single crop" +
-				"\n" + formatter.format(twoCropProfit)+"% Est. Income in two crops", ReportTemplate.TIMESROMAN_10_NORMAL));
-		forwardSalesTableFotterParagraph.add(ReportTemplate.getNewLineChunk());
+        String incomeForwardSalesPercentage = reportDataPage1.getTotalForwardSales ( farmInfoView );
+        /**
+         * @changed - Abhishek
+         * @date - 12-12-2015
+         */
+        Paragraph forwardSalesTableFotterParagraph = new Paragraph ();
+        forwardSalesTableFotterParagraph.add ( new Chunk ( incomeForwardSalesPercentage + "% Est. Income in crops forward sold \n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        forwardSalesTableFotterParagraph.add ( new Chunk ( formatter.format ( singleProfit ) + "% Est. Income in single crop" +
+                "\n" + formatter.format ( twoCropProfit ) + "% Est. Income in two crops", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        forwardSalesTableFotterParagraph.add ( ReportTemplate.getNewLineChunk () );
 
 
         /**
@@ -577,66 +577,66 @@ public class SectionOnePDFGenerator {
          * @desc - changed according to slide#2 of 02102016
          */
 		/*forwardSalesTableFotterParagraph.add(new Chunk("Crop Insurance\n", ReportTemplate.TIMESROMAN_10_BOLD));*/
-        forwardSalesTableFotterParagraph.add(new Chunk("\nHi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_BOLD));
-		/**
-		 * @changed - Abhishek
-		 * @date - 25-01-2016
-		 * @desc - changed according to slide#
-		 */
+        forwardSalesTableFotterParagraph.add ( new Chunk ( "\nHi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_BOLD ) );
+        /**
+         * @changed - Abhishek
+         * @date - 25-01-2016
+         * @desc - changed according to slide#
+         */
 		/*forwardSalesTableFotterParagraph.add(new Chunk("% of Acres covered w/ xx crop insurance\n", ReportTemplate.TIMESROMAN_10_NORMAL));
 		forwardSalesTableFotterParagraph.add(new Chunk("% of Acres covered with yy  crop insurance:", ReportTemplate.TIMESROMAN_10_NORMAL));*/
-		ReportDataPage1.ConservationPracticeBean riskManagementLandProfit = reportDataPage1.getRiskManagementLandProfit();
-		forwardSalesTableFotterParagraph.add(new Chunk(riskManagementLandProfit.getProfitFromConservation() + "% Est. Income in one or more Hi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_NORMAL));
-		forwardSalesTableFotterParagraph.add(new Chunk(riskManagementLandProfit.getLandUnderConservation() +  "% Acreage in one or more Hi-Risk Crops", ReportTemplate.TIMESROMAN_10_NORMAL));
+        ReportDataPage1.ConservationPracticeBean riskManagementLandProfit = reportDataPage1.getRiskManagementLandProfit ();
+        forwardSalesTableFotterParagraph.add ( new Chunk ( riskManagementLandProfit.getProfitFromConservation () + "% Est. Income in one or more Hi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        forwardSalesTableFotterParagraph.add ( new Chunk ( riskManagementLandProfit.getLandUnderConservation () + "% Acreage in one or more Hi-Risk Crops", ReportTemplate.TIMESROMAN_10_NORMAL ) );
 
-		PdfPCell forwardSalesTableFooterCell = new PdfPCell(forwardSalesTableFotterParagraph);
-		forwardSalesTableFooterCell.setUseBorderPadding(true);
-		forwardSalesTableFooterCell.setBorderWidth(0);
-		//cropsAcreageCell.setPaddingLeft(10);
-		riskManagementTable.addCell(forwardSalesTableFooterCell);
+        PdfPCell forwardSalesTableFooterCell = new PdfPCell ( forwardSalesTableFotterParagraph );
+        forwardSalesTableFooterCell.setUseBorderPadding ( true );
+        forwardSalesTableFooterCell.setBorderWidth ( 0 );
+        //cropsAcreageCell.setPaddingLeft(10);
+        riskManagementTable.addCell ( forwardSalesTableFooterCell );
 
-		PlantingProfitLogger.info("riskManagementTable = " + riskManagementTable);
+        PlantingProfitLogger.info ( "riskManagementTable = " + riskManagementTable );
 
-		return riskManagementTable;
-	}
+        return riskManagementTable;
+    }
 
-	private PdfPTable getPieChartSection() throws IOException, BadElementException {
-		PdfPTable pieChartTable = new PdfPTable(1);
-		pieChartTable.setWidthPercentage(100);
+    private PdfPTable getPieChartSection() throws IOException, BadElementException {
+        PdfPTable pieChartTable = new PdfPTable ( 1 );
+        pieChartTable.setWidthPercentage ( 100 );
 
-		DecimalFormat formatter = new DecimalFormat("#.00");
+        DecimalFormat formatter = new DecimalFormat ( "#.00" );
 
-		PdfPCell cropsAcreageCell = new PdfPCell(new Phrase("Crop Acreage", ReportTemplate.TIMESROMAN_12_NORMAL));
-		cropsAcreageCell.setUseBorderPadding(true);
-		cropsAcreageCell.setBorderWidth(0);
-		//cropsAcreageCell.setPaddingLeft(10);
-		pieChartTable.addCell(cropsAcreageCell);
+        PdfPCell cropsAcreageCell = new PdfPCell ( new Phrase ( "Crop Acreage", ReportTemplate.TIMESROMAN_12_NORMAL ) );
+        cropsAcreageCell.setUseBorderPadding ( true );
+        cropsAcreageCell.setBorderWidth ( 0 );
+        //cropsAcreageCell.setPaddingLeft(10);
+        pieChartTable.addCell ( cropsAcreageCell );
 
-		// Pie Chart Cell & Content
-		/**
-		 * @Chanegd - Abhishek
-		 * @date - 11-01-2016
-		 * @desc - According to the updated syntax of ReportDataPage1
-		 */
-		PdfPCell pieChartCell = new PdfPCell(reportDataPage1.getCropsAndAcreagePieChart(), false);
-		pieChartCell.setUseBorderPadding(true);
-		pieChartCell.setBorderWidth(0);
-		//pieChartCell.setPaddingLeft(10);
-		pieChartTable.addCell(pieChartCell);
+        // Pie Chart Cell & Content
+        /**
+         * @Chanegd - Abhishek
+         * @date - 11-01-2016
+         * @desc - According to the updated syntax of ReportDataPage1
+         */
+        PdfPCell pieChartCell = new PdfPCell ( reportDataPage1.getCropsAndAcreagePieChart (), false );
+        pieChartCell.setUseBorderPadding ( true );
+        pieChartCell.setBorderWidth ( 0 );
+        //pieChartCell.setPaddingLeft(10);
+        pieChartTable.addCell ( pieChartCell );
 
-		// Create CropAcreageProfit Table
-		PdfPCell cropTableCell = new PdfPCell();
-		cropTableCell.addElement(getCropAcreageProfitTable());
-		cropTableCell.setUseBorderPadding(true);
-		cropTableCell.setBorderWidth(0);
-		//cropTableCell.setPaddingLeft(10);
-		pieChartTable.addCell(cropTableCell);
+        // Create CropAcreageProfit Table
+        PdfPCell cropTableCell = new PdfPCell ();
+        cropTableCell.addElement ( getCropAcreageProfitTable () );
+        cropTableCell.setUseBorderPadding ( true );
+        cropTableCell.setBorderWidth ( 0 );
+        //cropTableCell.setPaddingLeft(10);
+        pieChartTable.addCell ( cropTableCell );
 
-		/**
-		 * @Added - Abhishek
-		 * @date - 25-01-2016
-		 * @desc - Added according to slide#3 of 12282015
-		 */
+        /**
+         * @Added - Abhishek
+         * @date - 25-01-2016
+         * @desc - Added according to slide#3 of 12282015
+         */
 //		ReportDataPage1.ConservationPracticeBean landUnderConservationPractice = reportDataPage1.getLandUnderConservationPractice();
 //		String profitFromConservation = landUnderConservationPractice.getProfitFromConservation();
 //		String landUnderConservation = landUnderConservationPractice.getLandUnderConservation();
@@ -649,35 +649,34 @@ public class SectionOnePDFGenerator {
 //		pieChartTable.addCell(cropConservationDetailsCell);
 
 
+        // Add Crop Field Assignment
+        PdfPCell cropFieldAssignment = new PdfPCell ( new Phrase ( "Crop/Field Assignments - See Exhibit 1", ReportTemplate.TIMESROMAN_12_BOLD ) );
+        cropFieldAssignment.setUseBorderPadding ( true );
+        cropFieldAssignment.setBorderWidth ( 0 );
+        cropTableCell.setPaddingTop ( 5 );
+        pieChartTable.addCell ( cropFieldAssignment );
 
-		// Add Crop Field Assignment
-		PdfPCell cropFieldAssignment = new PdfPCell(new Phrase("Crop/Field Assignments - See Exhibit 1", ReportTemplate.TIMESROMAN_12_BOLD));
-		cropFieldAssignment.setUseBorderPadding(true);
-		cropFieldAssignment.setBorderWidth(0);
-		cropTableCell.setPaddingTop(5);
-		pieChartTable.addCell(cropFieldAssignment);
-
-		// Add Crop Contribution Margin
-		/**
-		 * @changed - Abhishek
-		 * @date - 25-01-2016
-		 * @desc - changed according to slide#4 of 12282015
-		 */
+        // Add Crop Contribution Margin
+        /**
+         * @changed - Abhishek
+         * @date - 25-01-2016
+         * @desc - changed according to slide#4 of 12282015
+         */
 		/*PdfPCell cropContributionMargin = new PdfPCell(new Phrase("Crop Contribution Margin", ReportTemplate.TIMESROMAN_12_BOLD));*/
-		PdfPCell cropContributionMargin = new PdfPCell(new Phrase(" Land Profitability ", ReportTemplate.TIMESROMAN_12_BOLD));
-		cropContributionMargin.setUseBorderPadding(true);
-		cropContributionMargin.setBorderWidth(0);
-		cropContributionMargin.setPaddingTop(10);
-		pieChartTable.addCell(cropContributionMargin);
+        PdfPCell cropContributionMargin = new PdfPCell ( new Phrase ( " Land Profitability ", ReportTemplate.TIMESROMAN_12_BOLD ) );
+        cropContributionMargin.setUseBorderPadding ( true );
+        cropContributionMargin.setBorderWidth ( 0 );
+        cropContributionMargin.setPaddingTop ( 10 );
+        pieChartTable.addCell ( cropContributionMargin );
 
-		// Add Crop Contribution Margin Table
-		PdfPCell cropContributionMarginTableCell = new PdfPCell();
-		cropContributionMarginTableCell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-		cropContributionMarginTableCell.addElement(getCropContributionMarginTable());
-		cropContributionMarginTableCell.setUseBorderPadding(true);
-		cropContributionMarginTableCell.setBorderWidth(0);
-		//cropTableCell.setPaddingLeft(10);
-		pieChartTable.addCell(cropContributionMarginTableCell);
+        // Add Crop Contribution Margin Table
+        PdfPCell cropContributionMarginTableCell = new PdfPCell ();
+        cropContributionMarginTableCell.setHorizontalAlignment ( PdfPCell.ALIGN_LEFT );
+        cropContributionMarginTableCell.addElement ( getCropContributionMarginTable () );
+        cropContributionMarginTableCell.setUseBorderPadding ( true );
+        cropContributionMarginTableCell.setBorderWidth ( 0 );
+        //cropTableCell.setPaddingLeft(10);
+        pieChartTable.addCell ( cropContributionMarginTableCell );
 
 //		// Add Crop Contribution Margin Table Footer
 //
@@ -715,206 +714,210 @@ public class SectionOnePDFGenerator {
 //		cropContributionMarginTableFooterCell.setBorderWidth(0);
 //		//cropTableCell.setPaddingLeft(10);
 //		pieChartTable.addCell(cropContributionMarginTableFooterCell);
-		return pieChartTable;
+        return pieChartTable;
 
-	}
+    }
 
-	private PdfPTable getCropContributionMarginTable() {
-		PdfPTable cropContributionMarginTable = new PdfPTable(4);
-		cropContributionMarginTable.setWidthPercentage(100);
+    private PdfPTable getCropContributionMarginTable() {
+        PdfPTable cropContributionMarginTable = new PdfPTable ( 4 );
+        cropContributionMarginTable.setWidthPercentage ( 100 );
 
-		// Create Table Header
-		PdfPCell cropHead = new PdfPCell(new Phrase("Crop", ReportTemplate.TIMESROMAN_10_NORMAL));
-		cropHead.setUseBorderPadding(true);
-		cropHead.setBorderWidth(0.5f);
-		cropHead.setBorder(Rectangle.BOTTOM);
-		cropContributionMarginTable.addCell(cropHead);
+        // Create Table Header
+        PdfPCell cropHead = new PdfPCell ( new Phrase ( "Crop", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        cropHead.setUseBorderPadding ( true );
+        cropHead.setBorderWidth ( 0.5f );
+        cropHead.setBorder ( Rectangle.BOTTOM );
+        cropContributionMarginTable.addCell ( cropHead );
 
-		PdfPCell cmHead = new PdfPCell(new Phrase("% Profit / % of Land", ReportTemplate.TIMESROMAN_10_NORMAL));
-		cmHead.setUseBorderPadding(true);
-		cmHead.setBorderWidth(0.5f);
-		cmHead.setBorder(Rectangle.BOTTOM);
-		cropContributionMarginTable.addCell(cmHead);
+        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        cmHead.setUseBorderPadding ( true );
+        cmHead.setBorderWidth ( 0.5f );
+        cmHead.setBorder ( Rectangle.BOTTOM );
+        cropContributionMarginTable.addCell ( cmHead );
 
-		PdfPCell ratingHead = new PdfPCell(new Phrase(" ", ReportTemplate.TIMESROMAN_10_NORMAL));
-		ratingHead.setUseBorderPadding(true);
-		ratingHead.setBorderWidth(0.5f);
-		ratingHead.setBorder(Rectangle.BOTTOM);
-		cropContributionMarginTable.addCell(ratingHead);
+        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        estimateHead.setUseBorderPadding ( true );
+        estimateHead.setBorderWidth ( 0.5f );
+        estimateHead.setBorder ( Rectangle.BOTTOM );
+        cropContributionMarginTable.addCell ( estimateHead );
 
-		PdfPCell estimateHead = new PdfPCell(new Phrase("Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL));
-		estimateHead.setUseBorderPadding(true);
-		estimateHead.setBorderWidth(0.5f);
-		estimateHead.setBorder(Rectangle.BOTTOM);
-		cropContributionMarginTable.addCell(estimateHead);
+        PdfPCell ratingHead = new PdfPCell ( new Phrase ( " ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        ratingHead.setUseBorderPadding ( true );
+        ratingHead.setBorderWidth ( 0.5f );
+        ratingHead.setBorder ( Rectangle.BOTTOM );
+        cropContributionMarginTable.addCell ( ratingHead );
 
+        cropContributionMarginTable.completeRow ();
 
-		cropContributionMarginTable.completeRow();
+        // Add Table Data
+        /**
+         * @changed - Abhishek
+         * @date - 09-12-2015
+         */
+        if (farmInfoView.getStrategy ().equals ( PlanByStrategy.PLAN_BY_ACRES )) {
+            /**
+             * @changed - Abhishek
+             * @date - 09-01-2016
+             * According to the updated syntax of ReportDataPage1
+             */
+            List <FarmOutputDetailsView> outputDetailsForFarm = reportDataPage1.getOutputDetailsForFarm ();
+            for (FarmOutputDetailsView farmOutputDetails : outputDetailsForFarm) {
+                /**
+                 * @changed - Abhishek
+                 * @date - 09-12-2015
+                 */
+                String cropNameStr;
+                if (farmOutputDetails.getForFirm ())
+                    cropNameStr = farmOutputDetails.getCropTypeView ().getCropName () + " (Firm)";
+                else if (farmOutputDetails.getForProposed ())
+                    cropNameStr = farmOutputDetails.getCropTypeView ().getCropName () + " (Proposed)";
+                else
+                    cropNameStr = farmOutputDetails.getCropTypeView ().getCropName ();
 
-		// Add Table Data
-		/**
-		 * @changed - Abhishek
-		 * @date - 09-12-2015
-		 */
-		if(farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)){
-			/**
-			 * @changed - Abhishek
-			 * @date - 09-01-2016
-			 * According to the updated syntax of ReportDataPage1
-			 */
-			List<FarmOutputDetailsView> outputDetailsForFarm = reportDataPage1.getOutputDetailsForFarm();
-			for (FarmOutputDetailsView farmOutputDetails : outputDetailsForFarm) {
-				/**
-				 * @changed - Abhishek
-				 * @date - 09-12-2015
-				 */
-				String cropNameStr;
-				if(farmOutputDetails.getForFirm())
-					cropNameStr = farmOutputDetails.getCropTypeView().getCropName() + " (Firm)";
-				else if(farmOutputDetails.getForProposed())
-					cropNameStr = farmOutputDetails.getCropTypeView().getCropName() + " (Proposed)";
-				else
-					cropNameStr = farmOutputDetails.getCropTypeView().getCropName();
+                PdfPCell cropName = new PdfPCell ( new Phrase ( cropNameStr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                cropName.setUseBorderPadding ( true );
+                cropName.setBorderWidth ( 0 );
+                cropName.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( cropName );
 
-				PdfPCell cropName = new PdfPCell(new Phrase(cropNameStr, ReportTemplate.TIMESROMAN_10_NORMAL));
-				cropName.setUseBorderPadding(true);
-				cropName.setBorderWidth(0);
-				cropName.setBorder(Rectangle.NO_BORDER);
-				cropContributionMarginTable.addCell(cropName);
-
-				/**
-				 * @chanegd - Abhishek
-				 * @date - 09-02-2016
-				 */
+                /**
+                 * @chanegd - Abhishek
+                 * @date - 09-02-2016
+                 */
 //				Double cropContriM = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetails.getProfit())) / Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetails.getUsedAcres()));
 
-				/**
-				 * @chanegd - Abhishek
-				 * @date - 12-01-2016
-				 * @desc - Applied formatter for decimal output
-				 */
-				DecimalFormat formatter = new DecimalFormat("#.00");
-				/**
-				 * @chanegd - Abhishek
-				 * @date - 09-02-2016
-				 */
+                /**
+                 * @chanegd - Abhishek
+                 * @date - 12-01-2016
+                 * @desc - Applied formatter for decimal output
+                 */
+                DecimalFormat formatter = new DecimalFormat ( "#.00" );
+                /**
+                 * @chanegd - Abhishek
+                 * @date - 09-02-2016
+                 */
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
-				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + farmOutputDetails.getProfitIndex().toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
-				cropContriMargin.setUseBorderPadding(true);
-				cropContriMargin.setBorderWidth(0);
-				cropContriMargin.setBorder(Rectangle.NO_BORDER);
-				cropContributionMarginTable.addCell(cropContriMargin);
+                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + farmOutputDetails.getProfitIndex ().toString (), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                cropContriMargin.setUseBorderPadding ( true );
+                cropContriMargin.setBorderWidth ( 0 );
+                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( cropContriMargin );
+                String estimateIncamePerAcr = null;
+                if (farmOutputDetails.getRatio () == 0.0) {
+                    estimateIncamePerAcr = "NA";
+                } else {
+                    estimateIncamePerAcr = String.valueOf ( farmOutputDetails.getRatio () );
+                }
 
-				PdfPCell rating = new PdfPCell(new Phrase("", ReportTemplate.TIMESROMAN_10_NORMAL));
-				rating.setUseBorderPadding(true);
-				rating.setBorderWidth(0);
-				rating.setBorder(Rectangle.NO_BORDER);
-				if(farmOutputDetails.getRating().equalsIgnoreCase("green")){
-					rating.setBackgroundColor(BaseColor.GREEN);
-				} else if (farmOutputDetails.getRating().equalsIgnoreCase("red")){
-					rating.setBackgroundColor(BaseColor.RED);
-				} else if (farmOutputDetails.getRating().equalsIgnoreCase("yellow")){
-					rating.setBackgroundColor(BaseColor.YELLOW);
-				} else {
-					rating.setBackgroundColor(BaseColor.GRAY);
-				}
-				cropContributionMarginTable.addCell(rating);
+                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                estimate.setUseBorderPadding ( true );
+                estimate.setBorderWidth ( 0 );
+                estimate.setBorder ( Rectangle.NO_BORDER );
 
-				acrease = farmOutputDetails.getUsedAcresDouble ();
-				totalProfit = farmOutputDetails.getProfitAsDouble ();
-				Double estimateIncamePerAcr=totalProfit/acrease;
+                cropContributionMarginTable.addCell ( estimate );
+                PdfPCell rating = new PdfPCell ( new Phrase ( "", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                rating.setUseBorderPadding ( true );
+                rating.setBorderWidth ( 0 );
+                rating.setBorder ( Rectangle.NO_BORDER );
+                if (farmOutputDetails.getRating ().equalsIgnoreCase ( "green" )) {
+                    rating.setBackgroundColor ( BaseColor.GREEN );
+                } else if (farmOutputDetails.getRating ().equalsIgnoreCase ( "red" )) {
+                    rating.setBackgroundColor ( BaseColor.RED );
+                } else if (farmOutputDetails.getRating ().equalsIgnoreCase ( "yellow" )) {
+                    rating.setBackgroundColor ( BaseColor.YELLOW );
+                } else if (farmOutputDetails.getRating ().equalsIgnoreCase ( "NA" )) {
+                    rating.setBackgroundColor ( BaseColor.LIGHT_GRAY );
+                } else {
+                    rating.setBackgroundColor ( BaseColor.LIGHT_GRAY );
 
-				PdfPCell estimate = new PdfPCell(new Phrase(" "+ estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL));
-				estimate.setUseBorderPadding(true);
-				estimate.setBorderWidth(0);
-				estimate.setBorder(Rectangle.NO_BORDER);
+                }
+                cropContributionMarginTable.addCell ( rating );
 
-				cropContributionMarginTable.addCell (estimate);
+                cropContributionMarginTable.completeRow ();
+            }
+        } else if (farmInfoView.getStrategy ().equals ( PlanByStrategy.PLAN_BY_FIELDS )) {
+            /**
+             * @changed - Abhishek
+             * @date - 09-01-2016
+             * @updated - 09-0-2016
+             * According to the updated syntax of ReportDataPage1
+             */
+            JSONObject baseSelectedOutpuDetailsJsonObject = reportDataPage1.getBaseSelectedDetailsOutputDetails ();
 
-				cropContributionMarginTable.completeRow();
-			}
-		} else if(farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS)){
-			/**
-			 * @changed - Abhishek
-			 * @date - 09-01-2016
-			 * @updated - 09-0-2016
-			 * According to the updated syntax of ReportDataPage1
-			 */
-			JSONObject baseSelectedOutpuDetailsJsonObject = reportDataPage1.getBaseSelectedDetailsOutputDetails();
-			/*List<FarmOutputDetailsForFieldView> FarmOutputDetailsForFieldList = (List<FarmOutputDetailsForFieldView>)baseSelectedOutpuDetailsJsonObject.get("farmOutputDetails");
+            List <CropTypeView> cropTypeViewList = (List <CropTypeView>) baseSelectedOutpuDetailsJsonObject.get ( "cropTypeView" );
+            Map <String, String> hashMapForProfitIndex = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForProfitIndex" );
+            Map <String, String> hashMapForRating = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForRating" );
+            List <String> ratioList = new ArrayList <String> ();
 
-			for (FarmOutputDetailsForFieldView farmOutputDetailsForField : FarmOutputDetailsForFieldList) {*/
+            Set <String> keySet = hashMapForRating.keySet ();
+            for (String cropKey : keySet) {
 
-			List<CropTypeView> cropTypeViewList = (List<CropTypeView>)baseSelectedOutpuDetailsJsonObject.get("cropTypeView");
-			Map<String, String> hashMapForProfitIndex = (Map<String, String>)baseSelectedOutpuDetailsJsonObject.get("hashMapForProfitIndex");
-			Map<String, String> hashMapForRating = (Map<String, String>)baseSelectedOutpuDetailsJsonObject.get("hashMapForRating");
-
-			Set<String> keySet = hashMapForRating.keySet();
-			for (String cropKey : keySet) {
-				PdfPCell cropName = new PdfPCell(new Phrase(cropKey, ReportTemplate.TIMESROMAN_10_NORMAL));
-				cropName.setUseBorderPadding(true);
-				cropName.setBorderWidth(0);
-				cropName.setBorder(Rectangle.NO_BORDER);
-				cropContributionMarginTable.addCell(cropName);
+                PdfPCell cropName = new PdfPCell ( new Phrase ( cropKey, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                cropName.setUseBorderPadding ( true );
+                cropName.setBorderWidth ( 0 );
+                cropName.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( cropName );
 
 //				Double cropContriM =  Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsForField.getProfit())) / Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsForField.getUsedAcres()));
 
-				/**
-				 * @chanegd - Abhishek
-				 * @date - 12-01-2016
-				 * @desc - Applied formatter for decimal output
-				 */
-				DecimalFormat formatter = new DecimalFormat("#.00");
-				/**
-				 * @chanegd - Abhishek
-				 * @date - 11-02-2016
-				 * @desc - replaced % with space for land profitability index
-				 */
+                /**
+                 * @chanegd - Abhishek
+                 * @date - 12-01-2016
+                 * @desc - Applied formatter for decimal output
+                 */
+                DecimalFormat formatter = new DecimalFormat ( "#.00" );
+                /**
+                 * @chanegd - Abhishek
+                 * @date - 11-02-2016
+                 * @desc - replaced % with space for land profitability index
+                 */
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
-				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + hashMapForProfitIndex.get(cropKey).replaceAll("%",""), ReportTemplate.TIMESROMAN_10_NORMAL));
-				cropContriMargin.setUseBorderPadding(true);
-				cropContriMargin.setBorderWidth(0);
-				cropContriMargin.setBorder(Rectangle.NO_BORDER);
-				cropContributionMarginTable.addCell(cropContriMargin);
+                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ).replaceAll ( "%", "" ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                cropContriMargin.setUseBorderPadding ( true );
+                cropContriMargin.setBorderWidth ( 0 );
+                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( cropContriMargin );
 
-				PdfPCell rating = new PdfPCell(new Phrase("   ", ReportTemplate.TIMESROMAN_10_NORMAL));
-				rating.setUseBorderPadding(true);
-				rating.setBorderWidth(0);
-				rating.setBorder(Rectangle.NO_BORDER);
-				if(hashMapForRating.get(cropKey).equalsIgnoreCase("green")){
-					rating.setBackgroundColor(BaseColor.GREEN);
-				} else if (hashMapForRating.get(cropKey).equalsIgnoreCase("red")){
-					rating.setBackgroundColor(BaseColor.RED);
-				} else if (hashMapForRating.get(cropKey).equalsIgnoreCase("yellow")){
-					rating.setBackgroundColor(BaseColor.YELLOW);
-				} else {
-					rating.setBackgroundColor(BaseColor.GRAY);
-				}
-				cropContributionMarginTable.addCell(rating);
 
-				/*Double acrease = hashMapForProfitIndex.get ("ac"  )
-				Double totalProfit = farmOutputDetails.getProfitAsDouble ();
-				*/
+                JSONArray cropAcreageJsonArray = (JSONArray) baseSelectedOutpuDetailsJsonObject.get ( "cropAcreageJsonArray" );
+                for (int i = 0; i < cropAcreageJsonArray.size (); i++) {
+                    Map <String, String> hashMapForAcreage = (Map <String, String>) cropAcreageJsonArray.get ( i );
+                    String key = hashMapForAcreage.get ( "ratio" );
+                    ratioList.add ( key );
+                }
 
-				Double estimateIncamePerAcr=totalProfit/acrease;
+                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + ratioList.get ( index ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                index++;
+                estimate.setUseBorderPadding ( true );
+                estimate.setBorderWidth ( 0 );
+                estimate.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( estimate );
 
-				PdfPCell estimate = new PdfPCell(new Phrase(" "+ estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL));
-				estimate.setUseBorderPadding(true);
-				estimate.setBorderWidth(0);
-				estimate.setBorder(Rectangle.NO_BORDER);
+                PdfPCell rating = new PdfPCell ( new Phrase ( "   ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                rating.setUseBorderPadding ( true );
+                rating.setBorderWidth ( 0 );
+                rating.setBorder ( Rectangle.NO_BORDER );
+                if (hashMapForRating.get ( cropKey ).equalsIgnoreCase ( "green" )) {
+                    rating.setBackgroundColor ( BaseColor.GREEN );
+                } else if (hashMapForRating.get ( cropKey ).equalsIgnoreCase ( "red" )) {
+                    rating.setBackgroundColor ( BaseColor.RED );
+                } else if (hashMapForRating.get ( cropKey ).equalsIgnoreCase ( "yellow" )) {
+                    rating.setBackgroundColor ( BaseColor.YELLOW );
+                } else {
+                    rating.setBackgroundColor ( BaseColor.GRAY );
+                }
+                cropContributionMarginTable.addCell ( rating );
+                cropContributionMarginTable.completeRow ();
+            }
 
-				cropContributionMarginTable.addCell (estimate);
-
-				cropContributionMarginTable.completeRow();
-			}
 
 
 			/*for(CropTypeView cropTypeView : cropTypeViewList){
 				if (cropTypeView.getSelected()) {
 					*//**
-                     * @changed - Abhishek
-                     * @date - 09-12-2015
-                     *//*
+             * @changed - Abhishek
+             * @date - 09-12-2015
+             *//*
 					String cropNameStr;
 					if(cropTypeView.getFirmchecked().equalsIgnoreCase("true"))
                         cropNameStr = cropTypeView.getCropName() + " (Firm)";
@@ -932,16 +935,16 @@ public class SectionOnePDFGenerator {
 //				Double cropContriM =  Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsForField.getProfit())) / Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsForField.getUsedAcres()));
 
 					*//**
-                     * @chanegd - Abhishek
-                     * @date - 12-01-2016
-                     * @desc - Applied formatter for decimal output
-                     *//*
+             * @chanegd - Abhishek
+             * @date - 12-01-2016
+             * @desc - Applied formatter for decimal output
+             *//*
 					DecimalFormat formatter = new DecimalFormat("#.00");
 					*//**
-                     * @chanegd - Abhishek
-                     * @date - 11-02-2016
-                     * @desc - replaced % with space for land profitability index
-                     *//*
+             * @chanegd - Abhishek
+             * @date - 11-02-2016
+             * @desc - replaced % with space for land profitability index
+             *//*
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
 					PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + hashMapForProfitIndex.get(cropTypeView.getCropName()).replaceAll("%",""), ReportTemplate.TIMESROMAN_10_NORMAL));
 					cropContriMargin.setUseBorderPadding(true);
@@ -968,45 +971,45 @@ public class SectionOnePDFGenerator {
 				}
 
 			}*/
-		}
+        }
 
 
-		return cropContributionMarginTable;
+        return cropContributionMarginTable;
 
-	}
+    }
 
-	private PdfPTable getCropAcreageProfitTable() {
-		PdfPTable table = new PdfPTable(3);
-		table.setWidthPercentage(100);
+    private PdfPTable getCropAcreageProfitTable() {
+        PdfPTable table = new PdfPTable ( 3 );
+        table.setWidthPercentage ( 100 );
 
-		// Create header Crop , Acreage, Profit
-		PdfPCell cropNameCell = new PdfPCell(new Phrase("Crop", ReportTemplate.TIMESROMAN_10_NORMAL));
-		cropNameCell.setBorderWidth(0.5f);
-		cropNameCell.setBorderColor(new BaseColor(131, 154, 103));
-		cropNameCell.setBorder(Rectangle.BOX);
-		cropNameCell.setUseBorderPadding(true);
-		cropNameCell.setBackgroundColor(new BaseColor(247, 205, 114));
-		table.addCell(cropNameCell);
+        // Create header Crop , Acreage, Profit
+        PdfPCell cropNameCell = new PdfPCell ( new Phrase ( "Crop", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        cropNameCell.setBorderWidth ( 0.5f );
+        cropNameCell.setBorderColor ( new BaseColor ( 131, 154, 103 ) );
+        cropNameCell.setBorder ( Rectangle.BOX );
+        cropNameCell.setUseBorderPadding ( true );
+        cropNameCell.setBackgroundColor ( new BaseColor ( 247, 205, 114 ) );
+        table.addCell ( cropNameCell );
 
-		PdfPCell acreageCell = new PdfPCell(new Phrase("Acreage", ReportTemplate.TIMESROMAN_10_NORMAL));
-		acreageCell.setBorderWidth(0.5f);
-		acreageCell.setBorderColor(new BaseColor(131, 154, 103));
-		acreageCell.setBorder(Rectangle.BOX);
-		acreageCell.setUseBorderPadding(true);
-		acreageCell.setBackgroundColor(new BaseColor(247, 205, 114));
-		table.addCell(acreageCell);
+        PdfPCell acreageCell = new PdfPCell ( new Phrase ( "Acreage", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        acreageCell.setBorderWidth ( 0.5f );
+        acreageCell.setBorderColor ( new BaseColor ( 131, 154, 103 ) );
+        acreageCell.setBorder ( Rectangle.BOX );
+        acreageCell.setUseBorderPadding ( true );
+        acreageCell.setBackgroundColor ( new BaseColor ( 247, 205, 114 ) );
+        table.addCell ( acreageCell );
 
-		PdfPCell profitCell = new PdfPCell(new Phrase("Est. Income", ReportTemplate.TIMESROMAN_10_NORMAL));
-		profitCell.setBorderWidth(0.5f);
-		profitCell.setBorderColor(new BaseColor(131, 154, 103));
-		profitCell.setBorder(Rectangle.BOX);
-		profitCell.setUseBorderPadding(true);
-		profitCell.setBackgroundColor(new BaseColor(247, 205, 114));
-		table.addCell(profitCell);
+        PdfPCell profitCell = new PdfPCell ( new Phrase ( "Est. Income", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        profitCell.setBorderWidth ( 0.5f );
+        profitCell.setBorderColor ( new BaseColor ( 131, 154, 103 ) );
+        profitCell.setBorder ( Rectangle.BOX );
+        profitCell.setUseBorderPadding ( true );
+        profitCell.setBackgroundColor ( new BaseColor ( 247, 205, 114 ) );
+        table.addCell ( profitCell );
 
-		table.completeRow();
+        table.completeRow ();
 
-		profitList = new ArrayList<String>();
+        profitList = new ArrayList <String> ();
 
 
 		// Create table data dynamically
