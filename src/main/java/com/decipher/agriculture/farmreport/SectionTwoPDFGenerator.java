@@ -116,15 +116,15 @@ public class SectionTwoPDFGenerator {
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("UoM"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Yield"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Price"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Costs"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Production Costs Per Acre"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Income\nPer Acre"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Price"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Quantity"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Acres"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sold Acres"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Min Crop\nAcreage Limits"));
-//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Max Crop\nAcreage Limits"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Other Resources"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Max Crop\nAcreage Limits"));
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Other Resources"));
 
         // Add Data Dynamically
         /**
@@ -167,8 +167,8 @@ public class SectionTwoPDFGenerator {
 
 
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getMinimumAcres()));
-//                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getMaximumAcres()));
-                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(""));
+                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getMaximumAcres()));
+//                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(""));
             }
         }
 

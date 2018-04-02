@@ -227,6 +227,7 @@ public class FarmReportGenerator extends AbstractItextPdfView {
 
             Chunk farmAddress = new Chunk(farmAddressString.toString(), ReportTemplate.TIMESROMAN_12_NORMAL);
             farmInfoPara.add(ReportTemplate.getNewLineChunk());
+            farmInfoPara.add ( "\n" );
             farmInfoPara.add(farmAddress);
 
             PdfPCell farmInfoCell = new PdfPCell(farmInfoPara);
@@ -240,7 +241,7 @@ public class FarmReportGenerator extends AbstractItextPdfView {
             farmInfoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             headerTable.addCell(farmInfoCell);
 
-            Chunk datePrinted = new Chunk("Date Printed\n", ReportTemplate.TIMESROMAN_10_NORMAL);
+            Chunk datePrinted = new Chunk("Date Printed\n", ReportTemplate.TIMESROMAN_12_NORMAL);
             Chunk date = new Chunk(AgricultureStandard.FORMATTER.format(Calendar.getInstance().getTime()), ReportTemplate.TIMESROMAN_10_NORMAL);
 
             Paragraph datePara = new Paragraph();

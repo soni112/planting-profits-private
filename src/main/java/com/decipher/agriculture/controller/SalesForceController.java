@@ -21,7 +21,10 @@ public class SalesForceController {
      */
     @RequestMapping(value = "/sendDetailsToSalesForce", method = {RequestMethod.GET, RequestMethod.POST})
     public String sendDetailsToSalesForce(@RequestParam(value = "enquiryId") Integer enquiryId) {
-        salesForceService.submitLead(enquiryId);
+
+       /*salesForceService.submitLead(enquiryId);
+
+*/
         return "redirect:/";
     }
 }
