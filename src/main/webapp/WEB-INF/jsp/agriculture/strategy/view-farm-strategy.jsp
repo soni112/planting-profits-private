@@ -44,6 +44,7 @@
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
                                     </div>
+
                                     <div class="clearfix"></div>
 
                                     <div class="addcrop">
