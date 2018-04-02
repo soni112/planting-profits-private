@@ -33,7 +33,7 @@ public class SectionOnePDFGenerator {
 	 */
 	private static String selectedStrategy;
 	private static String estimatedIncome;
-	public static int index=0;
+//	public static int index=0;
 
 	public static Double getEstimateIncomeInDouble() {
 		return estimateIncomeInDouble;
@@ -735,17 +735,17 @@ public class SectionOnePDFGenerator {
         cmHead.setBorder ( Rectangle.BOTTOM );
         cropContributionMarginTable.addCell ( cmHead );
 
-        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
-        estimateHead.setUseBorderPadding ( true );
-        estimateHead.setBorderWidth ( 0.5f );
-        estimateHead.setBorder ( Rectangle.BOTTOM );
-        cropContributionMarginTable.addCell ( estimateHead );
-
         PdfPCell ratingHead = new PdfPCell ( new Phrase ( " ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         ratingHead.setUseBorderPadding ( true );
         ratingHead.setBorderWidth ( 0.5f );
         ratingHead.setBorder ( Rectangle.BOTTOM );
         cropContributionMarginTable.addCell ( ratingHead );
+
+		PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+		estimateHead.setUseBorderPadding ( true );
+		estimateHead.setBorderWidth ( 0.5f );
+		estimateHead.setBorder ( Rectangle.BOTTOM );
+		cropContributionMarginTable.addCell ( estimateHead );
 
         cropContributionMarginTable.completeRow ();
 
@@ -850,6 +850,7 @@ public class SectionOnePDFGenerator {
             List <String> ratioList = new ArrayList <String> ();
 
             Set <String> keySet = hashMapForRating.keySet ();
+            int index=0;
             for (String cropKey : keySet) {
 
                 PdfPCell cropName = new PdfPCell ( new Phrase ( cropKey, ReportTemplate.TIMESROMAN_10_NORMAL ) );
@@ -886,13 +887,6 @@ public class SectionOnePDFGenerator {
                     ratioList.add ( key );
                 }
 
-                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + ratioList.get ( index ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
-                index++;
-                estimate.setUseBorderPadding ( true );
-                estimate.setBorderWidth ( 0 );
-                estimate.setBorder ( Rectangle.NO_BORDER );
-                cropContributionMarginTable.addCell ( estimate );
-
                 PdfPCell rating = new PdfPCell ( new Phrase ( "   ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 rating.setUseBorderPadding ( true );
                 rating.setBorderWidth ( 0 );
@@ -907,6 +901,13 @@ public class SectionOnePDFGenerator {
                     rating.setBackgroundColor ( BaseColor.GRAY );
                 }
                 cropContributionMarginTable.addCell ( rating );
+
+                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + ratioList.get ( index ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                index += 1;
+                estimate.setUseBorderPadding ( true );
+                estimate.setBorderWidth ( 0 );
+                estimate.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( estimate );
                 cropContributionMarginTable.completeRow ();
             }
 
