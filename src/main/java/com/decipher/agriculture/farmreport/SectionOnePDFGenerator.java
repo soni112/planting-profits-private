@@ -10,6 +10,7 @@ import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import javafx.beans.binding.MapExpression;
 import org.codehaus.jettison.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -802,19 +803,8 @@ public class SectionOnePDFGenerator {
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropContriMargin );
-                String estimateIncamePerAcr = null;
-                if (farmOutputDetails.getRatio () == 0.0) {
-                    estimateIncamePerAcr = "NA";
-                } else {
-                    estimateIncamePerAcr = String.valueOf ( farmOutputDetails.getRatio () );
-                }
 
-                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
-                estimate.setUseBorderPadding ( true );
-                estimate.setBorderWidth ( 0 );
-                estimate.setBorder ( Rectangle.NO_BORDER );
 
-                cropContributionMarginTable.addCell ( estimate );
                 PdfPCell rating = new PdfPCell ( new Phrase ( "", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 rating.setUseBorderPadding ( true );
                 rating.setBorderWidth ( 0 );
@@ -833,6 +823,19 @@ public class SectionOnePDFGenerator {
                 }
                 cropContributionMarginTable.addCell ( rating );
 
+                String estimateIncamePerAcr = null;
+                if (farmOutputDetails.getRatio () == 0.0) {
+                    estimateIncamePerAcr = "NA";
+                } else {
+                    estimateIncamePerAcr = String.valueOf ( farmOutputDetails.getRatio () );
+                }
+
+                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estimateIncamePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                estimate.setUseBorderPadding ( true );
+                estimate.setBorderWidth ( 0 );
+                estimate.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( estimate );
+
                 cropContributionMarginTable.completeRow ();
             }
         } else if (farmInfoView.getStrategy ().equals ( PlanByStrategy.PLAN_BY_FIELDS )) {
@@ -848,6 +851,17 @@ public class SectionOnePDFGenerator {
             Map <String, String> hashMapForProfitIndex = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForProfitIndex" );
             Map <String, String> hashMapForRating = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForRating" );
             List <String> ratioList = new ArrayList <String> ();
+
+            Map<String,String> map = new LinkedHashMap<String,String>();
+            JSONArray cropAcreageJsonArray = (JSONArray) baseSelectedOutpuDetailsJsonObject.get ( "cropAcreageJsonArray" );
+            for (int i = 0; i < cropAcreageJsonArray.size (); i++) {
+                Map <String, String> hashMapForAcreage = (Map <String, String>) cropAcreageJsonArray.get ( i );
+                String value = hashMapForAcreage.get ( "ratio" );
+                String key = hashMapForAcreage.get ( "cropName" );
+                ratioList.add ( value );
+                map.put(hashMapForAcreage.get ( "cropName" ),hashMapForAcreage.get ( "ratio" ));
+
+            }
 
             Set <String> keySet = hashMapForRating.keySet ();
             int index=0;
@@ -880,12 +894,6 @@ public class SectionOnePDFGenerator {
                 cropContributionMarginTable.addCell ( cropContriMargin );
 
 
-                JSONArray cropAcreageJsonArray = (JSONArray) baseSelectedOutpuDetailsJsonObject.get ( "cropAcreageJsonArray" );
-                for (int i = 0; i < cropAcreageJsonArray.size (); i++) {
-                    Map <String, String> hashMapForAcreage = (Map <String, String>) cropAcreageJsonArray.get ( i );
-                    String key = hashMapForAcreage.get ( "ratio" );
-                    ratioList.add ( key );
-                }
 
                 PdfPCell rating = new PdfPCell ( new Phrase ( "   ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 rating.setUseBorderPadding ( true );
@@ -902,7 +910,7 @@ public class SectionOnePDFGenerator {
                 }
                 cropContributionMarginTable.addCell ( rating );
 
-                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + ratioList.get ( index ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + map.get ( cropKey ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 index += 1;
                 estimate.setUseBorderPadding ( true );
                 estimate.setBorderWidth ( 0 );
