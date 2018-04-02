@@ -606,7 +606,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put("amount", "$" + cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
 //                    jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
-                    jsonObject.put("name", "Available Assigned");
+                    jsonObject.put("name", "Acreage Assigned");
                     jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 } else {
                     jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
@@ -621,7 +621,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                 if (counter == 0) {
                     if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")){
 //                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
-                        jsonArrayForResourceHeader.add("Available Assigned");
+                        jsonArrayForResourceHeader.add("Acreage Assigned");
                     } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")){
                         jsonArrayForResourceHeader.add("Working Capital Used");
                     } else {
@@ -737,8 +737,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private JSONArray getConservationCropHeader(){
         JSONArray conservationCropHeader = new JSONArray();
 
-        conservationCropHeader.add("% Est. Income in Assigned to Conservation Crops");
-        conservationCropHeader.add("% Acreage in Assigned to Conservation Crops");
+        conservationCropHeader.add("% Est. Income Assigned to Conservation Crops");
+        conservationCropHeader.add("% Acreage Assigned to Conservation Crops");
 
         return conservationCropHeader;
     }
@@ -748,8 +748,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         highRiskCropHeader.add("Working Capital Used");
         highRiskCropHeader.add("Return on Land $/acre");
-        highRiskCropHeader.add("% Est. Income in 1 Crop");
-        highRiskCropHeader.add("% Est. Income in 2 Crops");
+        highRiskCropHeader.add("% Est. Income in Top One Crop");
+        highRiskCropHeader.add("% Est. Income in Top Two Crops");
         highRiskCropHeader.add("% Est. Income Forward Sold");
         highRiskCropHeader.add("Est. Income Given Min Prices and Min Yields");
         highRiskCropHeader.add("% Est. Income in Hi-Risk Crops");

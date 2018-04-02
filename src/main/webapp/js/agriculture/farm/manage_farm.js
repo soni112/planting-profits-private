@@ -1567,7 +1567,7 @@ function modifyField() {
         return false;
     }
     else {
-        alertify.confirm('Are you sure you want to update field named "' + fieldName + '"?', function (e) {
+        alertify.confirm('Are you sure you want to update "' + fieldName + '"?', function (e) {
             if (e) {
 
                 var validationFlag_Field = true;
@@ -1603,7 +1603,7 @@ function modifyField() {
                             customAlerts('"update  ' + fieldName + '" ?'
                                 + alertMessage, type_warning, time);
                         } else {
-                            customAlerts('"update  ' + fieldName + '" ?', type_success, time);
+                            customAlerts('"update field ' + fieldName + '" ?', type_success, time);
                         }
                         totalLandByField = getValueWithComma(totalLandByField);
                         $("#total-acres-value").text(totalLandByField);
