@@ -328,7 +328,7 @@ public class SectionThreePDFGenerator {
             table.addCell(toIncreaseIncome);
         }
 
-        PdfPCell cropCell = new PdfPCell(new Phrase("Acreage Planted", ReportTemplate.TIMESROMAN_10_NORMAL));
+        PdfPCell cropCell = new PdfPCell(new Phrase("Acreage Assigned       ", ReportTemplate.TIMESROMAN_10_NORMAL));
         cropCell.setBorderWidth(0.5f);
         cropCell.setBorderColor(new BaseColor(131, 154, 103));
         cropCell.setBorder(Rectangle.BOX);
