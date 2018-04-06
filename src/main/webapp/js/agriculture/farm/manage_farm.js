@@ -3486,6 +3486,9 @@ function calculatePercentageOfMinAcreage(obj) {
     var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
     var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
         if (minAcreage <= totalLand) {
+            if(minAcreage==0) {
+            currentTr.find('.minCropAcreagePercentage').val(0);
+            }
             var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
             if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
                 var per = Math.ceil((minAcreage / totalLand) * 100);
@@ -3530,6 +3533,10 @@ function calculatePercentageOfMaxAcreage(obj) {
     var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
     var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
             if (maxAcreage <= totalLand ) {
+                if(maxAcreage==0){
+                    currentTr.find('.maxCropAcreagePercentage').val(0);
+
+                }
             var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
             if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
                 var per = Math.ceil((maxAcreage / totalLand) * 100);
