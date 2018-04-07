@@ -390,7 +390,7 @@ function onResourceSelectedOrRemoved(resourceObject) {
     } else if ($(resourceObject).prop("checked") == false) {
         /* @author Jyoti    @date 02-01-2017  PPT NO : 12312106 Slide no : 3*/
         /*alertify.confirm('Are you sure you want to remove this resource with name "' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + '" ?', function (e) {*/
-        alertify.confirm('Would you like to de-activate "' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + ' in the current analysis? ' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + ' will not be deleted. It can be reactivated later.', function (e) {
+        alertify.confirm('Would you like to de-activate "' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + '? ', function (e) {
             if (e) {
                 removeResourceFromAllTables(resourceObject);
             } else {
@@ -754,7 +754,7 @@ function warningCropResourceUsage() {
     if (resourceName.length > 0) {
         resourceName = resourceName.substring(0, resourceName.length - 2);
         /* @author Jyoti    @date 02-01-2017  PPT NO : 12312106 Slide no : 11*/
-        alertify.confirm('You included "' + resourceName + '" as a resource for generating cropping strategies but none of the crops you are considering are currently using that resource.<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the resource used by each crop.', function (e) {
+        alertify.confirm( resourceName  + '"  is activated as an optional resource, but none of the crops are using that resource.<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crop.', function (e) {
             if (e) {
                 callMethodForPageChangeAndProgressBarImage(8, 7);
             }
@@ -1603,7 +1603,7 @@ function modifyField() {
                             customAlerts('"update  ' + fieldName + '" ?'
                                 + alertMessage, type_warning, time);
                         } else {
-                            customAlerts('"update field ' + fieldName + '" ?', type_success, time);
+                            customAlerts( fieldName + '" Updated', type_success, time);
                         }
                         totalLandByField = getValueWithComma(totalLandByField);
                         $("#total-acres-value").text(totalLandByField);
@@ -3486,6 +3486,9 @@ function calculatePercentageOfMinAcreage(obj) {
     var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
     var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
         if (minAcreage <= totalLand) {
+            if(minAcreage==0) {
+            currentTr.find('.minCropAcreagePercentage').val(0);
+            }
             var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
             if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
                 var per = Math.ceil((minAcreage / totalLand) * 100);
@@ -3530,6 +3533,10 @@ function calculatePercentageOfMaxAcreage(obj) {
     var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
     var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
             if (maxAcreage <= totalLand ) {
+                if(maxAcreage==0){
+                    currentTr.find('.maxCropAcreagePercentage').val(0);
+
+                }
             var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
             if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
                 var per = Math.ceil((maxAcreage / totalLand) * 100);

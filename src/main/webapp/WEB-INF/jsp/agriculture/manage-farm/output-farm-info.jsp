@@ -341,7 +341,7 @@
                                             <td class="tblbrdr add-fieldi">Total Available</td>
                                             <td class="add-fieldi">Used</td>
                                             <td>Unused</td>
-                                            <td>Impacting Profit</td>
+                                            <td>Impacting Est. Income</td>
                                         </tr>
                                         </thead>
                                         <tbody>
