@@ -320,6 +320,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
                         maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
+//                       String d= farmOutputDetailsView.getProfit ();
                         return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
                     }
                 } else if (cropsGroupView != null) {
