@@ -10,7 +10,6 @@ import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import javafx.beans.binding.MapExpression;
 import org.codehaus.jettison.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
