@@ -3691,20 +3691,20 @@ sup {
     width: 9.8%;
 }
 .table-fixed thead > tr > td:nth-child(2){
-    width: 11%;
+    width: 11.8%;
 }
 .table-fixed thead > tr > td:nth-child(3){
-    width: 29.2%;
+    width: 27.8%;
 }
 .table-fixed thead > tr > td:nth-child(4){
-    width: 29.3%;
+    width: 27.9%;
 }
 
 .table-fixed thead > tr > td:nth-child(5) {
-    width: 10.8%;
+    width: 11%;
 }
 .table-fixed thead > tr > td:nth-child(6){
-    width: 10.1%;
+    width: 11%;
 }
 
 /*overflow start*/
@@ -3713,38 +3713,55 @@ sup {
     width: 9.8%;
 }
 .table-fixed thead.overflow-table-fixed > tr > td:nth-child(2){
-    width: 10.9%;
+    width: 11.8%;
 }
 .table-fixed thead.overflow-table-fixed > tr > td:nth-child(3){
-    width: 28.6%;
+    width: 27.8%;
 }
 .table-fixed thead.overflow-table-fixed > tr > td:nth-child(4){
-    width: 28.7%;
+    width: 27.9%;
 }
 
 .table-fixed thead.overflow-table-fixed > tr > td:nth-child(5) {
-    width: 10.6%;
+    width: 11%;
 }
 .table-fixed thead.overflow-table-fixed > tr > td:nth-child(6){
-    width: 0%;
+    width: 11%;
 }
 
 /*overflow end*/
 
 .table-fixed tbody > tr > td:nth-child(1){
     width: 10%;
+    word-spacing: normal;
+    word-break: break-word;
 }
 .table-fixed tbody > tr > td:nth-child(2){
-    width: 11.1%;
+    width: 12%;
 }
 .table-fixed tbody > tr > td:nth-child(3){
-    width: 9.9%;
+    width: 9.33%;
+}
+.table-fixed tbody > tr > td:nth-child(4){
+    width: 9.33%;
+}
+.table-fixed tbody > tr > td:nth-child(5){
+    width: 9.33%;
+}
+.table-fixed tbody > tr > td:nth-child(6){
+    width: 9.33%;
+}
+.table-fixed tbody > tr > td:nth-child(7){
+    width: 9.33%;
+}
+.table-fixed tbody > tr > td:nth-child(8){
+    width: 9.33%;
 }
 .table-fixed tbody > tr > td:nth-child(9){
-    width: 10.8%;
+    width: 11%;
 }
 .table-fixed tbody > tr > td:nth-child(10){
-     width: 10%;
+     width: 11%;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
     padding: 5px 5px 5px 5px;
@@ -3774,6 +3791,18 @@ sup {
 .tbl-fixd-hdr thead > tr > td:nth-child(2){
     margin: 0px;
 }
+.tbl-bordr tbody>tr>td{
+    border: 1px solid #839a67;
+}
+.table tbody>tr.success>td{
+    background-color: #dff0d8;
+}
+.table tbody>tr>td.success{
+    background-color: #dff0d8;
+}
+.table tbody >tr> td{
+    padding: 5px 5px 5px 5px;
+}
 .tbl-fixd-hdr thead > tr > td{
     width: 14.28%;
     position: relative;
@@ -3781,12 +3810,12 @@ sup {
     /*height: 54px;*/
     height: 35px;
 }
-.tbl-fixd-hdr tbody > tr {
+.tbl-fixd-hdr tbody>tr {
     width: 100%;
     float: left;
     margin: 0px;
 }
-.tbl-fixd-hdr tbody > tr > td{
+.tbl-fixd-hdr tbody>tr>td{
     width: 14.28%;
     /*float: left;*/
     height: 38px;
@@ -4073,7 +4102,7 @@ sup {
     height: 40px;
 }*/
 .tbl-header-scrolll-width{
-    width: 97.5555%!important;
+    /*width: 97.9%!important;*/
 }
 .overflow-y-fixed-height{
     overflow-y: auto;
