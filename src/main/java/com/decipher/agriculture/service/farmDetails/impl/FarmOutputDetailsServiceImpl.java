@@ -41,6 +41,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
     private static final String YES = "Yes";
     private static final String NO = "No";
+    private static final String Likely = "Likely";
+
 
     private static final String RESOURCE_STATUS = "status";
     private static final String RESOURCE_NAME = "resourceName";
@@ -274,7 +276,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         }/* min and max acres */ else if (!minAcres.equalsIgnoreCase("") && !maxAcres.equalsIgnoreCase("")) {
             jsonObject.put(MIN_LIMIT, "At least " + minAcres + " acres");
             jsonObject.put(MAX_LIMIT, "No more than " + maxAcres + " acres");
-            String both = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "both");
+                String both = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "both");
             /*if(599 == Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) )))){
                 both = NO;
             }*/
@@ -375,7 +377,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
     public String getYesNo(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
         if (minOrMax.equalsIgnoreCase("min")) {
             if (usedAcres == minimumAcres)
-                return YES;
+                    return YES;
             else if (usedAcres > minimumAcres)
                 return NO;
             else
@@ -384,10 +386,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             return maximumAcres > usedAcres ? NO : YES;
         } else if (minOrMax.equalsIgnoreCase("both")) {
             if(usedAcres == minimumAcres || usedAcres>minimumAcres) {
-                return NO;}
-                else{
-                    return YES;
-                }
+                 if(usedAcres>=(.85*maximumAcres)){return Likely;}
+                else{     return NO; }}
+                else {return NO;}
 
         } else {
             return "";
@@ -525,7 +526,6 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put(RESOURCE_NAME, cropResourceUsageView.getCropResourceUse());
                     flagStatusObj.put(cropResourceUsageView.getCropResourceUse(), false);
                 }
-
                 jsonObject.put(RESOURCE_TOTAL_AVAILABLE, cropResourceUsageView.getCropResourceUseAmount());
                 jsonObject.put(RESOURCE_USED, cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 jsonObject.put(RESOURCE_UNUSED, cropResourceUnused.get(cropResourceUsageView.getCropResourceUse()));
