@@ -754,7 +754,9 @@
                                     <c:forEach var="cropLimit" items="${model.cropLimitsJsonArray}">
                                         <tr class="tblgrn">
                                             <td class="success">${cropLimit.cropName}</td>
-                                            <td class="success">${cropLimit.minLimit}</td>
+                                            <%--<td class="success">${cropLimit.minLimit}</td>--%>
+                                            <td class="success">  </td>
+
                                             <td class="success">${cropLimit.maxLimit}</td>
                                             <c:if test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
                                                 <td class="success">
@@ -778,6 +780,34 @@
                                             </c:if>
                                             <td class="success">${cropLimit.acreagePlanted}</td>
                                         </tr>
+                                        <tr class="tblgrn">
+                                            <td class="success">${cropLimit.cropName}</td>
+                                                <td class="success">${cropLimit.minLimit}</td>
+                                            <td class="success">  </td>
+                                            <%--<td class="success">${cropLimit.maxLimit}</td>--%>
+                                            <c:if test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
+                                                <td class="success">
+                                                    <c:choose>
+                                                        <c:when test="${cropLimit.impactingIncome ne '--'}">
+                                                            <a href="javascript:void(0)"
+                                                               class="remove-text-deco"
+                                                               data-toggle="popover"
+                                                               data-trigger="hover"
+                                                               data-placement="top"
+                                                               style="color:#337ab7"
+                                                               data-content="${cropLimit.message}">${cropLimit.impactingIncome}</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            ${cropLimit.impactingIncome}
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </td>
+                                                <td class="success">${cropLimit.incDecIncome}</td>
+                                            </c:if>
+                                            <td class="success">${cropLimit.acreagePlanted}</td>
+                                        </tr>
+
                                     </c:forEach>
 
                                     </tbody>
