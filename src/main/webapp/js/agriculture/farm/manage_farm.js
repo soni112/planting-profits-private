@@ -754,8 +754,10 @@ function warningCropResourceUsage() {
     if (resourceName.length > 0) {
         resourceName = resourceName.substring(0, resourceName.length - 2);
         /* @author Jyoti    @date 02-01-2017  PPT NO : 12312106 Slide no : 11*/
-        alertify.confirm( resourceName  + '"  is activated as an optional resource, but none of the crops are using that resource.<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crop.', function (e) {
-            if (e) {
+        // alertify.confirm( resourceName  + '"  is activated as an optional resource, but none of the crops are using that resource.<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crops.', function (e) {
+         alertify.confirm( resourceName  + '" is activated as an optional resource, but none of the crops are using  resource "' +resourceName+'"<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crops.', function (e) {
+
+        if (e) {
                 callMethodForPageChangeAndProgressBarImage(8, 7);
             }
         });
