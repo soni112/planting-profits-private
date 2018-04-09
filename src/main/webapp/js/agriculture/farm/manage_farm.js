@@ -3548,10 +3548,11 @@ function calculatePercentageOfMaxAcreage(obj) {
                 var val = Math.ceil((totalLand * maxAcreagePer) / 100);
                 currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}}
      else {
-        customAlerts("The total Maximum acreage crop limit can not be grater than Available Land " + totalLand +
-            " <br>  The Maximum Crop Acreage Limit will be set to the amount  of Available Land " + totalLand, 'error', 0);
-        currentTr.find('.maxCropAcreage').val('');
-        currentTr.find('.maxCropAcreagePercentage').val('');
+       /* customAlerts("The total Maximum acreage crop limit can not be grater than Available Land " + totalLand +
+            " <br>  The Maximum Crop Acreage Limit will be set to the amount  of Available Land " + totalLand, 'error', 0);*/
+
+        currentTr.find('.maxCropAcreage').val(totalLand);
+        currentTr.find('.maxCropAcreagePercentage').val(100);
             }
 }
 function calculatePercentageOfMaxAcreagePercentage(obj) {
