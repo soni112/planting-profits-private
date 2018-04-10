@@ -753,6 +753,7 @@
                                     <tbody>
                                     <c:forEach var="cropLimit" items="${model.cropLimitsJsonArray}">
                                         <tr class="tblgrn">
+                                            <c:if test="${cropLimit.maxLimit!='--'}">
                                             <td class="success">${cropLimit.cropName}</td>
                                             <%--<td class="success">${cropLimit.minLimit}</td>--%>
                                             <td class="success">  </td>
@@ -779,8 +780,10 @@
                                                 <td class="success">${cropLimit.incDecIncome}</td>
                                             </c:if>
                                             <td class="success">${cropLimit.acreagePlanted}</td>
+                                            </c:if>
                                         </tr>
                                         <tr class="tblgrn">
+                                            <c:if test="${cropLimit.minLimit!='--'}">
                                             <td class="success">${cropLimit.cropName}</td>
                                                 <td class="success">${cropLimit.minLimit}</td>
                                             <td class="success">  </td>
@@ -807,7 +810,7 @@
                                             </c:if>
                                             <td class="success">${cropLimit.acreagePlanted}</td>
                                         </tr>
-
+                                            </c:if>
                                     </c:forEach>
 
                                     </tbody>

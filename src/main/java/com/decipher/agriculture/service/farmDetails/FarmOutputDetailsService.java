@@ -16,6 +16,7 @@ public interface FarmOutputDetailsService {
     JSONArray buildForwardSalesContent(JSONObject outputDetails);
 
     JSONArray buildCropLimitContent(JSONObject outputDetails);
+    String getYesNoForFirm(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax);
 
     String getYesNo(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax);
 
