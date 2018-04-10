@@ -5,7 +5,6 @@ import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.agriculture.service.farmDetails.FarmOutputDetailsService;
 import com.decipher.util.AgricultureStandardUtils;
-import com.decipher.util.PlantingProfitLogger;
 import com.decipher.view.form.farmDetails.CropResourceUsageView;
 import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.CropsGroupView;
@@ -134,28 +133,37 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
         for (CropTypeView cropTypeView : cropTypeViewList) {
             if (cropTypeView.getSelected()) {
-                JSONObject jsonObject = getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
-                jsonObject.put("cropName", cropTypeView.getCropName());
+              JSONArray jsonArray1= getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
+                JSONObject jsonObject = new JSONObject ();
+
+                for(int i=0;i<jsonArray1.size ();i++){
+
+                    jsonObject= (JSONObject) jsonArray1.get ( i );
+
+                 jsonObject.put("cropName", cropTypeView.getCropName());
                 if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")){
                     jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, false));
                 } else {
                     jsonObject.put("acreagePlanted", "--");
                 }
                 jsonArray.add(jsonObject);
-
+                }
                 if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")){
 
-                    JSONObject jsonObjectForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
-                    jsonObjectForFirm.put("cropName", cropTypeView.getCropName() + " (Firm)");
-                    if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
-                        jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
-                    }else  if(jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
-                        jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
+                    JSONArray jsonArrayForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
+                    JSONObject jsonObjectForFirm = new JSONObject ();
+                    for(int i=0;i<jsonArrayForFirm.size ();i++) {
+                        jsonObject= (JSONObject) jsonArrayForFirm.get ( i );
+                    jsonObjectForFirm.put ( "cropName", cropTypeView.getCropName () + " (Firm)" );
+                    if (!jsonObject.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
+                        jsonObjectForFirm.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, true ) );
+                    } else if (jsonObject.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
+                        jsonObjectForFirm.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, true ) );
+                    } else {
+                        jsonObject.put ( "acreagePlanted", "--" );
                     }
-                    else {
-                        jsonObject.put("acreagePlanted", "--");
-                    }
-                    jsonArray.add(jsonObjectForFirm);
+                    jsonArray.add ( jsonObjectForFirm );
+                }
                 }
             }
         }
@@ -163,8 +171,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         List<CropsGroupView> cropsGroupViewList = (List<CropsGroupView>) outputDetails.get("cropsGroupViews");
 
         for (CropsGroupView cropsGroupView : cropsGroupViewList) {
-            JSONObject jsonObject = getCropLimit(farmInfoView, cropsGroupView.getMinimumAcres(), cropsGroupView.getMaximumAcres(), null, cropsGroupView, outputDetails);
+            JSONArray jsonArray1 = getCropLimit(farmInfoView, cropsGroupView.getMinimumAcres(), cropsGroupView.getMaximumAcres(), null, cropsGroupView, outputDetails);
+            JSONObject jsonObject = new JSONObject ();
+
+            for(int i=1;i<jsonArray.size ();i++){
+                jsonObject= (JSONObject) jsonArray1.get ( i );
             jsonObject.put("cropName", cropsGroupView.getCropsGroupName());
+
             if(!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
                 int totalAcreage = 0;
                 Set<CropType> cropSet = cropsGroupView.getCropSet();
@@ -176,11 +189,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             } else {
                 jsonObject.put("acreagePlanted", "--");
             }
-            jsonArray.add(jsonObject);
+            jsonArray.add(jsonObject);}
         }
 
         return jsonArray;
     }
+
+
 
     private String getCropAcreage(CropTypeView cropTypeView, JSONObject outputDetails, boolean isFirm){
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
@@ -219,15 +234,17 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         return "";
     }
 
-    private JSONObject getCropLimit(FarmInfoView farmInfoView, String minAcres, String maxAcres, CropTypeView cropTypeView, CropsGroupView cropsGroupView, JSONObject outputDetails) {
+    private JSONArray getCropLimit(FarmInfoView farmInfoView, String minAcres, String maxAcres, CropTypeView cropTypeView, CropsGroupView cropsGroupView, JSONObject outputDetails) {
 
         JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray ();
         /* no max and no min acres */ if (minAcres.equalsIgnoreCase("") && maxAcres.equalsIgnoreCase("")) {
             jsonObject.put(MIN_LIMIT, "--");
             jsonObject.put(MAX_LIMIT, "--");
             jsonObject.put(IMPACTING_INCOME, "--");
             jsonObject.put(INC_DEC_INCOME, "--");
             jsonObject.put(MESSAGE, "No Limit Specified");
+            jsonArray.add ( jsonObject );
 
         }/* max acres */ else if (minAcres.equalsIgnoreCase("") && !maxAcres.equalsIgnoreCase("")) {
             jsonObject.put(MIN_LIMIT, "--");
@@ -245,7 +262,6 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         totalLand = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsageView.getCropResourceUseAmount ()));
                     }
                 }
-
                     if(totalLand == Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) )))){
                         max = NO;
                     }
@@ -257,36 +273,82 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put(MESSAGE, "Maximum crop limit is not impacting Estimated Income.");
                 }
             }
-
+        jsonArray.add ( jsonObject );
 
         }/* min acres */ else if (!minAcres.equalsIgnoreCase("") && maxAcres.equalsIgnoreCase("")) {
             jsonObject.put(MIN_LIMIT, "At least " + minAcres + " acres");
             jsonObject.put(MAX_LIMIT, "--");
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
-//            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Decrease" : "--");
-            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
+            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Decrease" : "--");
+//            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
 
             if (min.equalsIgnoreCase(YES)) {
                 jsonObject.put(MESSAGE, "Minimum crop limit is impacting Estimated Income.");
             } else {
                 jsonObject.put(MESSAGE, "Minimum crop limit is not impacting Estimated Income.");
             }
-
+            jsonArray.add ( jsonObject );
         }/* min and max acres */ else if (!minAcres.equalsIgnoreCase("") && !maxAcres.equalsIgnoreCase("")) {
+
             jsonObject.put(MIN_LIMIT, "At least " + minAcres + " acres");
+            jsonObject.put(MAX_LIMIT, "--");
+            String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
+            jsonObject.put(IMPACTING_INCOME, min);
+            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Decrease" : "--");
+//            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
+
+            if (min.equalsIgnoreCase(YES)) {
+                jsonObject.put(MESSAGE, "Minimum crop limit is impacting Estimated Income.");
+            } else {
+                jsonObject.put(MESSAGE, "Minimum crop limit is not impacting Estimated Income.");
+            }
+            jsonArray.add ( jsonObject );
+
+            JSONObject jsonObject1= new JSONObject ();
+            jsonObject1.put(MIN_LIMIT, "--");
+            jsonObject1.put(MAX_LIMIT, "No more than " + maxAcres + " acres");
+            String max = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "max");
+            if(farmInfoView.getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS) && max.equals(NO)){
+                jsonObject1.put(IMPACTING_INCOME, "May be");
+                jsonObject1.put(INC_DEC_INCOME, "Increase");
+                jsonObject1.put(MESSAGE, "Maximum crop limit may be impacting Estimated Income.");
+            } else {
+                double totalLand = 0;
+                List <CropResourceUsageView> resourceList = (List <CropResourceUsageView>) outputDetails.get ( "resourceList" );
+                for (CropResourceUsageView cropResourceUsageView : resourceList) {
+                    if(cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )){
+                        totalLand = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsageView.getCropResourceUseAmount ()));
+                    }
+                }
+
+                if(totalLand == Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) )))){
+                    max = NO;
+                }
+                jsonObject1.put(IMPACTING_INCOME, max);
+                jsonObject1.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) ? "Increase" : "--");
+                if (max.equalsIgnoreCase(YES)) {
+                    jsonObject1.put(MESSAGE, "Maximum crop limit is impacting Estimated Income.");
+                } else {
+                    jsonObject1.put(MESSAGE, "Maximum crop limit is not impacting Estimated Income.");
+                }
+            }
+            jsonArray.add ( jsonObject1 );
+
+
+           /* jsonObject.put(MIN_LIMIT, "At least " + minAcres + " acres");
             jsonObject.put(MAX_LIMIT, "No more than " + maxAcres + " acres");
                 String both = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "both");
             /*if(599 == Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) )))){
                 both = NO;
-            }*/
+            }*//*
             jsonObject.put(IMPACTING_INCOME, both);
             jsonObject.put(INC_DEC_INCOME, "--");
             if (both.equalsIgnoreCase(YES)) {
                 jsonObject.put(MESSAGE, "Minimum crop limit is impacting  Estimated Income.");
             } else {
                 jsonObject.put(MESSAGE, "Maximum crop limit is impacting  Estimated Income.");
-            }
+            }*/
 
         } else {
             jsonObject.put(MIN_LIMIT, "--");
@@ -294,10 +356,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             jsonObject.put(IMPACTING_INCOME, "--");
             jsonObject.put(INC_DEC_INCOME, "--");
             jsonObject.put(MESSAGE, "--");
+            jsonArray.add ( jsonObject );
         }
 
-
-        return jsonObject;
+        return jsonArray;
+//        return jsonObject;
     }
 
     private String isIncomeImpactedForCropLimit(CropTypeView cropTypeView, CropsGroupView cropsGroupView,
@@ -356,7 +419,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
 
-                return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                return getYesNoForFirm(usedAcres, minimumAcres, maximumAcres, minOrMax);
 
             } else if (cropsGroupView != null) {
                 Set<CropType> cropSet = cropsGroupView.getCropSet();
@@ -367,7 +430,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 int minimumAcres = Integer.parseInt(cropsGroupView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMinimumAcresWithoutComma());
                 int maximumAcres = Integer.parseInt(cropsGroupView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMaximumAcresWithoutComma());
 
-                return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                return getYesNoForFirm(usedAcres, minimumAcres, maximumAcres, minOrMax);
             }
 
         }
@@ -375,28 +438,94 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         return "";
     }
     @Override
-    public String getYesNo(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
+    public String getYesNoForFirm(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
         if (minOrMax.equalsIgnoreCase("min")) {
-            if (usedAcres == minimumAcres)
+
+            if((usedAcres-minimumAcres)==0)
+            {
+                return YES;
+            }else if((usedAcres-minimumAcres)/minimumAcres<=0.25)
+            {
+                return Likely;
+            }else if((usedAcres-minimumAcres)/minimumAcres>0.25)
+            {
+                return NO;
+            }
+            /*if (usedAcres == minimumAcres)
                     return YES;
             else if (usedAcres > minimumAcres)
                 return NO;
             else
-                return YES;
+                return YES;*/
         } else if (minOrMax.equalsIgnoreCase("max")) {
-            return maximumAcres > usedAcres ? NO : YES;
-        } else if (minOrMax.equalsIgnoreCase("both")) {
+
+            if(maximumAcres-usedAcres==0)
+            {
+                return YES;
+            }else if((maximumAcres-usedAcres)/maximumAcres<=0.25)
+            {
+                return Likely;
+            }else if((maximumAcres-usedAcres)/maximumAcres>0.25)
+            {
+                return NO;
+            }
+//            return maximumAcres > usedAcres ? NO : YES;
+        }/* else if (minOrMax.equalsIgnoreCase("both")) {
             if(usedAcres == minimumAcres || usedAcres>minimumAcres) {
                  if(usedAcres>=(.85*maximumAcres)){return Likely;}
                 else{     return NO; }}
                 else {return NO;}
 
-        } else {
+        } */else {
             return "";
         }
-    }
+        return "";    }
+    @Override
+    public String getYesNo(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
+        if (minOrMax.equalsIgnoreCase("min")) {
+
+            if((usedAcres-minimumAcres)==0)
+            {
+                return YES;
+            }else if((usedAcres-minimumAcres)/minimumAcres<=0.15)
+            {
+                return Likely;
+            }else if((usedAcres-minimumAcres)/minimumAcres>0.15)
+            {
+                return NO;
+            }
+            /*if (usedAcres == minimumAcres)
+                    return YES;
+            else if (usedAcres > minimumAcres)
+                return NO;
+            else
+                return YES;*/
+        } else if (minOrMax.equalsIgnoreCase("max")) {
+
+            if((maximumAcres-usedAcres)==0)
+            {
+                return YES;
+            }else if((maximumAcres-usedAcres)/maximumAcres<=0.20)
+            {
+                return Likely;
+            }else if((maximumAcres-usedAcres)/maximumAcres>0.20)
+            {
+                return NO;
+            }
+//            return maximumAcres > usedAcres ? NO : YES;
+        }/* else if (minOrMax.equalsIgnoreCase("both")) {
+            if(usedAcres == minimumAcres || usedAcres>minimumAcres) {
+                 if(usedAcres>=(.85*maximumAcres)){return Likely;}
+                else{     return NO; }}
+                else {return NO;}
+
+        } */else {
+            return "";
+        }
+        return "";}
 
     @Override
+
     public JSONArray buildCropAcreageContent(JSONObject outputDetails) {
         JSONArray jsonArray = new JSONArray();
 
