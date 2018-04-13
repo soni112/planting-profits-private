@@ -36,6 +36,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
     private static final String PROFIT = "profit";
     private static final String RATIO = "ratio";
     private static final String INDEX = "index";
+    private static final String WORKRETURN = "workreturn";
     private static final String RATING = "rating";
 
     private static final String YES = "Yes";
@@ -267,7 +268,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         max = NO;
                     }
                 jsonObject.put(IMPACTING_INCOME, max);
-                jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) ? "Increase" : "--");
+                jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
                 if (max.equalsIgnoreCase(YES)) {
                     jsonObject.put(MESSAGE, "Maximum crop limit is impacting Estimated Income.");
                 } else {
@@ -281,7 +282,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             jsonObject.put(MAX_LIMIT, "--");
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
-            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Decrease" : "--");
+            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
 //            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
 
             if (min.equalsIgnoreCase(YES)) {
@@ -296,7 +297,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             jsonObject.put(MAX_LIMIT, "--");
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
-            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Decrease" : "--");
+            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
 //            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
 
             if (min.equalsIgnoreCase(YES)) {
@@ -327,7 +328,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     max = NO;
                 }
                 jsonObject1.put(IMPACTING_INCOME, max);
-                jsonObject1.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) ? "Increase" : "--");
+                jsonObject1.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
                 if (max.equalsIgnoreCase(YES)) {
                     jsonObject1.put(MESSAGE, "Maximum crop limit is impacting Estimated Income.");
                 } else {
