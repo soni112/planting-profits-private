@@ -442,7 +442,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
     public String getYesNoForFirm(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
         if (minOrMax.equalsIgnoreCase("min")) {
             int value = usedAcres - minimumAcres;
-            if(maximumAcres <= 0){
+            if(minimumAcres <= 0){
                 return NO;
             } else if (value == 0) {
                 return YES;
@@ -459,7 +459,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 return YES;*/
         } else if (minOrMax.equalsIgnoreCase("max")) {
             int value = maximumAcres - usedAcres;
-            if(minimumAcres <= 0){
+            if(maximumAcres <= 0){
                 return NO;
             } else if (value == 0) {
                 return YES;
