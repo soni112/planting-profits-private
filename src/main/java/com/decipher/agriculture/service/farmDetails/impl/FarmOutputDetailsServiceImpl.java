@@ -38,6 +38,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
     private static final String INDEX = "index";
     private static final String WORKRETURN = "workreturn";
     private static final String RATING = "rating";
+    private static final String RATINGFORWORKRETURN = "ratingforworkreturn";
 
     private static final String YES = "Yes";
     private static final String NO = "No";
@@ -529,6 +530,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         JSONArray jsonArray = new JSONArray();
 
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+        double workReturn=0.0;
 
         if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
             List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
@@ -570,7 +572,30 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 } else {
                     jsonObject.put(RATING, farmOutputDetailsView.getRating());
                 }
+                if(farmOutputDetailsView.getProfit ().equalsIgnoreCase ( "0" )){
+                    jsonObject.put ( WORKRETURN,"NA" );
+                } else {
+                    CropTypeView cropTypeView = farmOutputDetailsView.getCropTypeView ();
 
+                    workReturn= farmOutputDetailsView.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+
+                    jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( farmOutputDetailsView.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ));
+                }
+                if (farmOutputDetailsView.getProfit ().equalsIgnoreCase ( "0" )) {
+                    jsonObject.put ( WORKRETURN, "LIGHT_GRAY" );
+                } else {
+                    if (workReturn < 0.5) {
+                        jsonObject.put ( RATINGFORWORKRETURN,"RED");
+
+                    } else if (0.15 < workReturn && workReturn <= 0.9) {
+                        jsonObject.put ( RATINGFORWORKRETURN,"Yellow" );
+
+                    } else if (workReturn > 0.9) {
+                        jsonObject.put ( RATINGFORWORKRETURN,"Green" );
+                    } else {
+                        jsonObject.put ( RATINGFORWORKRETURN, "LIGHT_GRAY");
+                    }
+                }
                 jsonArray.add(jsonObject);
 
             }
@@ -585,6 +610,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
             Set<String> cropTypeKeySet = hashMapForAcre.keySet();
             for (String cropTypeKey : cropTypeKeySet) {
+                Double workreturn=0.0;
 
                 JSONObject jsonObject = new JSONObject();
 
@@ -617,11 +643,46 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                 jsonObject.put(RATING, hashMapForRating.get(cropTypeKey));
 
+                if (profit.equalsIgnoreCase("0 (0.0%)")
+                        || profit.equalsIgnoreCase("0 (-0.0%)")){
+                    jsonObject.put ( WORKRETURN,"NA" );
+                } else {
+                    String profitStr = hashMapForProfit.get ( cropTypeKey );
+                    Double profitDouble = new Double (AgricultureStandardUtils.removeAllCommas (profitStr.split ( " \\(" )[0]));
+                    String cropName = cropTypeKey;
+                    if (cropTypeKey.contains (" (Firm)")) {
+                        cropName = cropTypeKey.split ( " \\(Firm\\)" )[0    ];
+                    } else if (cropTypeKey.contains (" (Proposed)")) {
+                        cropName = cropTypeKey.split ( " \\(Proposed\\)" )[0];
+                    }
 
+                    List <CropTypeView> cropTypeViews = (List <CropTypeView>) outputDetails.get ( "cropTypeView" );
+                    for (CropTypeView cropTypeView : cropTypeViews) {
+                        if (cropTypeView.getSelected () && cropTypeView.getCropName ().equalsIgnoreCase ( cropName )){
+                                    workreturn=profitDouble / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                            jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( profitDouble / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ) );
+                            break;
+                        }
+                    }
+                }
+                if (profit.equalsIgnoreCase("0 (0.0%)")
+                        || profit.equalsIgnoreCase("0 (-0.0%)")){
+                    jsonObject.put ( WORKRETURN,"Gray" );}
+                else {
+                    if (workreturn < 0.5) {
+                        jsonObject.put ( RATINGFORWORKRETURN,"RED");
+                    } else if (0.15 < workReturn && workReturn <= 0.9) {
+                        jsonObject.put ( RATINGFORWORKRETURN,"YELLOW" );
+                    } else if (workReturn > 0.9) {
+                        jsonObject.put ( RATINGFORWORKRETURN,"Green" );
+                    } else {
+                        jsonObject.put ( RATINGFORWORKRETURN, "Green");
+                    }
+                }
                 jsonArray.add(jsonObject);
-
             }
         }
+
 
 
         return jsonArray;
