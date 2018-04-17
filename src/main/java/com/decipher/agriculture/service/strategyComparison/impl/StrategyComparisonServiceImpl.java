@@ -14,7 +14,6 @@ import com.decipher.view.form.farmDetails.FarmOutputDetailsForFieldView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.decipher.view.form.farmDetails.FieldInfoView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
-import com.stripe.model.Plan;
 import org.codehaus.jettison.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -39,6 +38,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private FarmOutputCalculationService farmOutputCalculationService;
 
     private StrategyComparisonDataBuilder strategyComparisonDataBuilder;
+
 
     @Override
     public JSONObject getGraphComparisonResult(StrategyComparisonType xAxisType,
@@ -67,51 +67,6 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
         return jsonObject;
     }
 
-    @Override
-    public JSONObject getGraphComparisonResult(int xAxisIndex,
-                                               int yAxisIndex,
-                                               FarmInfoView farmInfoView,
-                                               int[] strategyIdArray) throws JSONException {
-
-        Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getDetailsFromDatabase(farmInfoView);
-        strategyComparisonDataBuilder = new StrategyComparisonDataBuilder(strategyDetailsForFarm, strategyIdArray);
-
-        JSONObject jsonObject = new JSONObject();
-        JSONObject xAxisData, yAxisData;
-
-        String xAxisText, yAxisText;
-
-        if(xAxisIndex > 11){
-            xAxisData = getDetailsForStrategyType(xAxisIndex, "x", farmInfoView);
-            xAxisText = getAxisText(xAxisIndex);
-        } else {
-            xAxisData = getDetailsForStrategyType(StrategyComparisonType.values()[xAxisIndex], "x", farmInfoView);
-            xAxisText = StrategyComparisonType.values()[xAxisIndex].getComparisonStr();
-        }
-
-        if(yAxisIndex > 11){
-            yAxisData = getDetailsForStrategyType(yAxisIndex, "y", farmInfoView);
-            yAxisText = getAxisText(yAxisIndex);
-        } else {
-            yAxisData = getDetailsForStrategyType(StrategyComparisonType.values()[yAxisIndex], "y", farmInfoView);
-            yAxisText = StrategyComparisonType.values()[yAxisIndex].getComparisonStr();
-        }
-
-
-        xAxisData.putAll(yAxisData);
-
-        JSONArray graphObject = strategyComparisonDataBuilder.getGraphObject(xAxisText, yAxisText);
-
-        JSONArray jsonArrayForGraphData = new JSONArray();
-        jsonArrayForGraphData.add(xAxisData);
-
-        jsonObject.put("graphDataJsonObject", jsonArrayForGraphData);
-        jsonObject.put("graphJsonObject", graphObject);
-        jsonObject.put("xAxisText", xAxisText);
-        jsonObject.put("yAxisText", yAxisText);
-
-        return jsonObject;
-    }
 
     private String getAxisText(int axisIndex){
 
@@ -314,6 +269,63 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         return strategyComparisonDataBuilder.getAcreageForCrop(axis, farmInfoView, cropName);
 
+    }
+    @Override
+    public JSONObject getGraphComparisonResult(int xAxisIndex,
+                                               int yAxisIndex,
+                                               FarmInfoView farmInfoView,
+                                               int[] strategyIdArray) throws JSONException {
+
+        Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getDetailsFromDatabase(farmInfoView);
+        strategyComparisonDataBuilder = new StrategyComparisonDataBuilder(strategyDetailsForFarm, strategyIdArray);
+
+        JSONObject jsonObject = new JSONObject();
+        JSONObject xAxisData, yAxisData;
+
+        String xAxisText, yAxisText;
+
+        if(xAxisIndex > 11){
+            xAxisData = getDetailsForStrategyType(xAxisIndex, "x", farmInfoView);
+            xAxisText = getAxisText(xAxisIndex);
+        } else {
+            xAxisData = getDetailsForStrategyType(StrategyComparisonType.values()[xAxisIndex], "x", farmInfoView);
+            xAxisText = StrategyComparisonType.values()[xAxisIndex].getComparisonStr();
+        }
+
+        if(yAxisIndex > 11){
+            yAxisData = getDetailsForStrategyType(yAxisIndex, "y", farmInfoView);
+            yAxisText = getAxisText(yAxisIndex);
+        } else {
+            yAxisData = getDetailsForStrategyType(StrategyComparisonType.values()[yAxisIndex], "y", farmInfoView);
+            yAxisText = StrategyComparisonType.values()[yAxisIndex].getComparisonStr();
+        }
+
+
+        xAxisData.putAll(yAxisData);
+
+        JSONArray graphObject = strategyComparisonDataBuilder.getGraphObject(xAxisText, yAxisText);
+
+        JSONArray jsonArrayForGraphData = new JSONArray();
+        jsonArrayForGraphData.add(xAxisData);
+
+        jsonObject.put("graphDataJsonObject", jsonArrayForGraphData);
+        jsonObject.put("graphJsonObject", graphObject);
+        jsonObject.put("xAxisText", xAxisText);
+        jsonObject.put("yAxisText", yAxisText);
+
+        return jsonObject;
+    }
+    @Override
+    public JSONObject getGenueComparisonResult( FarmInfoView farmInfoView,int[] strategyIdArray)throws JSONException {
+        Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm(farmInfoView);
+
+        Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("jsonArrayForConservationCrop", highRiskAngConservationForStrategy.get("jsonArrayForConservationCrop"));
+
+
+        return jsonObject;
     }
 
     @Override

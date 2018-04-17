@@ -52,6 +52,8 @@ public class StrategyViewController {
 	private FarmDetailsContainerService farmDetailsContainerService;
 	@Autowired
 	private FarmService farmService;
+	@Autowired
+	private FarmOutPutViewController farmOutPutViewController;
 
 	@Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER", "ROLE_STUDENT"})
 	@RequestMapping(value = "/view-farm-strategy.htm")
@@ -81,6 +83,7 @@ public class StrategyViewController {
 			JSONObject baseLineOutputDetails = farmDetailsContainerService.getBaseLineDetails(farm);
 
 			model.put("cropTypeViewList", baseLineOutputDetails.get("cropTypeView"));
+			model.put ( "outputDetail" ,baseLineOutputDetails.get ( "farmOutputDetails" ));
 
 			List<FarmCustomStrategyView> farmCustomStrategyViewListView = farmCustomStrategyService.getDataForCustomStrategy(farm.getFarmId());
 			if (farmCustomStrategyViewListView.size() > 0) {
@@ -95,7 +98,9 @@ public class StrategyViewController {
 			PlantingProfitLogger.info("User requesting for farm.htm page .... farmId " + farmId);
 			page = "home";
 		}
-		return new ModelAndView(page, "model", model);
+
+
+        return new ModelAndView(page, "model", model);
 
 	}
 	
@@ -176,6 +181,8 @@ public class StrategyViewController {
 
 		return response;
 	}
+
+
 
 	@RequestMapping(value = "getStrategyComparisonChartData", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse getStrategyComparisonChartData(@RequestParam(value="xAxisValue", required = false) int xAxisValue,

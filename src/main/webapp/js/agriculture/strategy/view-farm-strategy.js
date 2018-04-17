@@ -32,6 +32,11 @@ function toggleGraphSection(){
 	$("#graphSectionForStrategy").show();
 	// $("#headerText").html("Graphical Comparison Of Strategies")
 }
+function toggleGaugeSection(){
+    $("#tableSectionForStrategy").hide();
+    $("#gaugeSectionForStrategy").show();
+    // $("#headerText").html("Graphical Comparison Of Strategies")
+}
 
 function resetStrategyComparisonGraph(){
     $('#xAxisValue').val('2');
@@ -41,8 +46,246 @@ function resetStrategyComparisonGraph(){
 function toggleTableSection(){
 	$("#tableSectionForStrategy").show();
 	$("#graphSectionForStrategy").hide();
-	// $("#headerText").html("Strategy Comparison")
+	$("#gaugeSectionForStrategy").hide();
+
+    // $("#headerText").html("Strategy Comparison")
 }
+function buildGaugeMeterComponent() {
+    var data = {};
+
+    data.target = "productionGaugeMeter";
+    data.interval = 3000;
+    prepareVarianceGenue1(data);
+
+    data.target = "marketGaugeMeter";
+    data.interval = 3000;
+    prepareVarianceGenue2(data);
+
+    data.target = "cropGaugeMeter";
+    data.interval = 3000;
+    prepareVarianceGenue3(data);
+}
+
+function prepareVarianceGenue1(object) {
+
+    var gaugeChart = AmCharts.makeChart(object.target, {
+        "type": "gauge",
+        "theme": "black",
+        "marginBottom": 2,
+        "marginLeft": 2,
+        "marginRight": 2,
+        "marginTop": 2,
+        "fontSize": 0,
+
+        "axes": [{
+            "axisThickness": 1,
+            "axisAlpha": 0.2,
+            "tickAlpha": 0.2,
+            "valueInterval": 20,
+            "endAngle": 90,
+            "endValue": 120,
+            "startAngle": -90,
+            "bottomTextYOffset": -20,
+            "bands": [{
+                "alpha": 1,
+                "color": "#FF0F00",
+                "endValue": 40,
+                "startValue": 0
+            }, {
+                "alpha": 1,
+                "color": "#F8FF01",
+                "endValue": 80,
+                "startValue": 40
+            }, {
+                "alpha": 1,
+                "color": "#84b761",
+                "endValue": 120,
+                //"innerRadius": "95%",
+                "startValue": 80
+            }],
+            //"bottomText": "0 km/h",
+
+        }],
+        "arrows": [{
+            /*"startWidth": 8,
+             "value": 0*/
+            "alpha": 1,
+            "borderAlpha": 1,
+            "id": "GaugeArrow-1",
+            "innerRadius": "0%",
+            "nailAlpha": 1,
+            "nailRadius": 5,
+            "startWidth": 5
+        }],
+
+    });
+
+        setInterval( randomValue );
+
+// set random value
+
+    function randomValue() {
+        var value = 40;
+        if ( gaugeChart ) {
+            if ( gaugeChart.arrows ) {
+                if ( gaugeChart.arrows[ 0 ] ) {
+                    if ( gaugeChart.arrows[ 0 ].setValue ) {
+                        gaugeChart.arrows[ 0 ].setValue( value );
+                        //gaugeChart.axes[ 0 ].setBottomText( value + " km/h" );
+                    }
+                }
+            }
+        }
+    }
+    }
+function prepareVarianceGenue2(object) {
+    var gaugeChart = AmCharts.makeChart( "marketGaugeMeter", {
+        "type": "gauge",
+        "theme": "black",
+        "marginBottom": 2,
+        "marginLeft": 2,
+        "marginRight": 2,
+        "marginTop": 2,
+        "fontSize": 0,
+
+        "axes": [ {
+            "axisThickness": 1,
+            "axisAlpha": 0.2,
+            "tickAlpha": 0.2,
+            "valueInterval": 20,
+            "endAngle": 90,
+            "endValue": 120,
+            "startAngle": -90,
+            "bottomTextYOffset": -20,
+            "bands": [ {
+                "alpha":1,
+                "color": "#FF0F00",
+                "endValue": 40,
+                "startValue": 0
+            }, {
+                "alpha":1,
+                "color": "#F8FF01",
+                "endValue": 80,
+                "startValue": 40
+            }, {
+                "alpha":1,
+                "color": "#84b761",
+                "endValue": 120,
+                //"innerRadius": "95%",
+                "startValue": 80
+            } ],
+            //"bottomText": "0 km/h",
+
+        } ],
+        "arrows": [ {
+            /*"startWidth": 8,
+             "value": 0*/
+            "alpha": 1,
+            "borderAlpha": 1,
+            "id": "GaugeArrow-1",
+            "innerRadius": "0%",
+            "nailAlpha": 1,
+            "nailRadius": 5,
+            "startWidth": 5
+        } ],
+
+    } );
+
+    setInterval( randomValue);
+
+// set random value
+
+    function randomValue() {
+        var value = 80;
+        if ( gaugeChart ) {
+            if ( gaugeChart.arrows ) {
+                if ( gaugeChart.arrows[ 0 ] ) {
+                    if ( gaugeChart.arrows[ 0 ].setValue ) {
+                        gaugeChart.arrows[ 0 ].setValue( value );
+                        //gaugeChart.axes[ 0 ].setBottomText( value + " km/h" );
+                    }
+                }
+            }
+        }
+    }
+}
+function prepareVarianceGenue3(object) {
+    var gaugeChart = AmCharts.makeChart( "cropGaugeMeter", {
+        "type": "gauge",
+        "theme": "black",
+        "marginBottom": 2,
+        "marginLeft": 2,
+        "marginRight": 2,
+        "marginTop": 2,
+        "fontSize": 0,
+
+        "axes": [ {
+            "axisThickness": 1,
+            "axisAlpha": 0.2,
+            "tickAlpha": 0.2,
+            "valueInterval": 20,
+            "endAngle": 90,
+            "endValue": 120,
+            "startAngle": -90,
+            "bottomTextYOffset": -20,
+            "bands": [ {
+                "alpha":1,
+                "color": "#FF0F00",
+                "endValue": 40,
+                "startValue": 0
+            }, {
+                "alpha":1,
+                "color": "#F8FF01",
+                "endValue": 80,
+                "startValue": 40
+            }/*, {
+                "alpha":1,
+                "color": "#84b761",
+                "endValue": 120,
+                //"innerRadius": "95%",
+                "startValue": 80
+            } */],
+            //"bottomText": "0 km/h",
+
+        } ],
+        "arrows": [ {
+            /*"startWidth": 8,
+             "value": 0*/
+            "alpha": 1,
+            "borderAlpha": 1,
+            "id": "GaugeArrow-1",
+            "innerRadius": "0%",
+            "nailAlpha": 1,
+            "nailRadius": 5,
+            "startWidth": 5
+        } ],
+
+    } );
+
+    setInterval( randomValue);
+
+// set random value
+
+    function randomValue() {
+        var value = 50;
+        if ( gaugeChart ) {
+            if ( gaugeChart.arrows ) {
+                if ( gaugeChart.arrows[ 0 ] ) {
+                    if ( gaugeChart.arrows[ 0 ].setValue ) {
+                        gaugeChart.arrows[ 0 ].setValue( value );
+                        //gaugeChart.axes[ 0 ].setBottomText( value + " km/h" );
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
 
 function prepareStrategyAnalysisGraph(object){
 	/*var chart = AmCharts.makeChart( "multipleStrategyAnalysisChartDiv", {
@@ -289,7 +532,7 @@ function applyValidation(object) {
 /*	***********************		Strategy Specific	***********************		*/
 
 function processStrategyComparison(){
-	
+
 	var strategyArray = [];
 	var checkedStrategyCheckBox = $('input[name="strategyComparisonCheckbox"]:checked');
 
@@ -304,7 +547,7 @@ function processStrategyComparison(){
 
 	localStorage.removeItem("strategyArrayForComparison");
 	localStorage.setItem("strategyArrayForComparison", strategyArray);
-	
+
 	var comparisonDetails = _strategyOutput;
 	comparisonDetails['strategyDetails'] = getStrategyComparisonDetails(strategyArray);
 
@@ -363,7 +606,7 @@ function getStrategyForFarm(farmId){
 
 					_strategyOutput = result;
 
-					
+
 					// applyHtmlThroughTemplate("#strategyCheckboxTemplate", result.strategyDetails, "#strategySelectionDiv");
 
 					//	applying strategy details on deletion section
@@ -385,7 +628,7 @@ function getStrategyForFarm(farmId){
 					prepareStrategyAnalysisGraph(data);*/
                     getAndApplyComparisonData();
 
-					
+
 					var varianceGraphData = {};
 					varianceGraphData["varianceGraphData"] = result.jsonArrayForVarianceGraphData;
 					prepareVarianceGraph(varianceGraphData);
@@ -580,6 +823,38 @@ function generateReport(){
 		customAlerts("Select maximum of three strategies for generating report", "error", 0);
 	}
 
+}
+
+function getAndApplyComparisonDataInGenue() {
+    var farmID = $('#sidemenu').find('.open').attr('delta');
+    var strategyArray = localStorage.getItem("strategyArrayForComparison");
+    var ganueData=50;
+
+
+    $.ajax({
+        url: 'ajaxRequest/getStrategyComparisonChartDataInGenue',
+        type: 'POST',
+        beforeSend: showLoadingImageForStrategy(),
+        data: {
+
+            farmId : farmID,
+            strategyArray: strategyArray,
+            ganueData:ganueData
+        },
+        success: function (response) {
+            var status = response.status;
+              var result = response.result;
+            if (status == 'success') {
+                    prepareVarianceGenue(result);
+
+            }
+        },
+        error: function (XMLHttpRequest, status, message) {
+            customAlerts("Error" + XMLHttpRequest + ":" + status + ":" + message, type_error, time);
+        }
+    }).complete(function () {
+        hideLoadingImageForStrategy();
+    });
 }
 
 function getAndApplyComparisonData(){
