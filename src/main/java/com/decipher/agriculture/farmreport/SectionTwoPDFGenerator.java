@@ -108,7 +108,7 @@ public class SectionTwoPDFGenerator {
     }
 
     private PdfPTable getFarmInformationTable(){
-        PdfPTable table = new PdfPTable(13);
+        PdfPTable table = new PdfPTable(12);
         table.setWidthPercentage(100);
 
         // Create Table header cells
@@ -116,15 +116,15 @@ public class SectionTwoPDFGenerator {
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("UoM"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Yield"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Price"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Costs"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Production Costs Per Acre"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Income\nPer Acre"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Crop"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Price"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Quantity"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Acres"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Price"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Quantity"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sold Acres"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Min Crop\nAcreage Limits"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Max Crop\nAcreage Limits"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Other Resources"));
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Other Resources"));
 
         // Add Data Dynamically
         /**
@@ -168,7 +168,7 @@ public class SectionTwoPDFGenerator {
 
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getMinimumAcres()));
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getMaximumAcres()));
-                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(""));
+//                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(""));
             }
         }
 
@@ -232,17 +232,11 @@ public class SectionTwoPDFGenerator {
         estimatedIncomeCell.setRowspan(3);
         table.addCell(estimatedIncomeCell);
 
-        PdfPCell blankCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("");
-        blankCell.setRowspan(3);
-        /**
-         * @Added - Abhishek
-         * @date - 12-1-2016
-         * @desc - Blank cell for table
-         */
-        blankCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-        table.addCell(blankCell);
+        PdfPCell AvgEstIncomeperAcre = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Avg Est. Income per Acre");
+        AvgEstIncomeperAcre.setRowspan(3);
+        table.addCell(AvgEstIncomeperAcre);
 
-        PdfPCell acreagePlantedCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Acreage Planted");
+        PdfPCell acreagePlantedCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Acreage Assigned");
         acreagePlantedCell.setRowspan(3);
         table.addCell(acreagePlantedCell);
 
@@ -334,22 +328,46 @@ public class SectionTwoPDFGenerator {
              * @desc - Applied format of $xxx,xxx
              */
             table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + strategyDataJsonObject.get("potentialProfit").toString()));
-            /*table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(""));*/
-            table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getBlankCell());
+
+
+
+           /* List<FarmOutputDetailsView> farmOutputDetailsViewList1 = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
+            Double totalAcerage1 = 0.0;
+            Double totalProfit=0.0;
+            Double estimatePerAcr  =0.0;
+
+            for (FarmOutputDetailsView farmOutputDetailsView1 : farmOutputDetailsViewList1) {
+                totalAcerage1 += farmOutputDetailsView1.getUsedAcresDouble ();
+                totalProfit = farmOutputDetailsView1.getProfitDouble ();
+               if(totalAcerage1!=0.0 && totalProfit!=0.0)
+               {
+                   estimatePerAcr = totalProfit / totalAcerage1;
+                   table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( estimatePerAcr ) ) );
+               }else{
+                   break;
+               }
+            }*/
+
 
             if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_ACRES)) {
                 List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) strategyDataJsonObject.get("farmOutputDetails");
                 Double totalAcerage = 0.0;
+                Double estimatePerAcr  =0.0;
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView().getSelected()) {
                         totalAcerage += farmOutputDetailsView.getUsedAcresDouble();
+                                if(farmOutputDetailsView.getRatio ()==0.0){
+                                    break;}
+                                    else {
+                                    estimatePerAcr +=  farmOutputDetailsView.getRatio ();}
                     }
                 }
-
+                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( estimatePerAcr ) ) );
                 table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(AgricultureStandardUtils.commaSeparaterForDoublePrice(totalAcerage)));
 
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView().getSelected()) {
+
                         table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(farmOutputDetailsView.getUsedAcresAsDouble().toString()));
                     }
                 }
@@ -357,11 +375,22 @@ public class SectionTwoPDFGenerator {
             } else if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS)){
 
                 Double totalAcerage = 0.0;
-                Map<String, String> hashMapForAcre = (Map<String, String>) strategyDataJsonObject.get("hashMapForAcre");
+                int ratio=0;
+                JSONArray cropAcreageJsonArray = (JSONArray)strategyDataJsonObject.get ( "cropAcreageJsonArray" );
+                for(int i =0; i<cropAcreageJsonArray.size ();i++){
+                    Map<String,String> hashMapForRatio = (HashMap<String,String>)cropAcreageJsonArray.get ( i);
+                    if(hashMapForRatio.get ( "ratio" )=="NA"){
+                        break;
+                    }else {
+                        ratio += Integer.parseInt ( hashMapForRatio.get ( "ratio" ) );}
+                    }
+                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForInteger ( ratio ) ) );
 
+                Map<String, String> hashMapForAcre = (Map<String, String>) strategyDataJsonObject.get("hashMapForAcre");
                 Set<String> keySet = hashMapForAcre.keySet();
                 for (String cropKey : keySet) {
                     totalAcerage += Double.parseDouble(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropKey).split(" ")[0]));
+
                 }
 
                 table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(totalAcerage.toString()));
@@ -400,7 +429,7 @@ public class SectionTwoPDFGenerator {
         estimatedIncomeCell.setRowspan(3);
         table.addCell(estimatedIncomeCell);
 
-        PdfPCell blankCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("");
+        PdfPCell blankCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell(" ");
         blankCell.setRowspan(3);
         /**
          * @Added - Abhishek

@@ -723,7 +723,7 @@
 
     <td>Strategy</td>
     <td>Estimated Income</td>
-    <td>Total Acreage</td>
+    <td>Available Acreage</td>
     {{each(key, header) headerDetails }}
         <td>{{html header}}</td>
 	{{/each}}

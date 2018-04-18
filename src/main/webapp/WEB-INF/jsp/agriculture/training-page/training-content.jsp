@@ -124,7 +124,7 @@
                     <!-- Training Video 1 -->
                     <div class="about-author">
                         <a href="#" onclick="switchVideo(this); return false;"
-                           data-link="http://plantingprofits.com:82/module1.mp4">
+                           data-link="http://dev.plantingprofits.com:82/module1.mp4">
                             <div class="image-thumb fl">
                                 <img src="<c:url value="/images/training/planting_training1.png"/>" alt="Module 1 - Introduction to Planting Profits">
                             </div>
@@ -141,7 +141,7 @@
                     <!-- Training Video 2 -->
                     <div class="about-author">
                         <a href="#" onclick="switchVideo(this); return false;"
-                        data-link="http://plantingprofits.com:82/module2.mp4">
+                        data-link="http://dev.plantingprofits.com:82/module2.mp4">
                             <div class="image-thumb fl">
                                 <img src="<c:url value="/images/training/planting_training2.png"/>" alt="Module 2 - Navigation and Terminology">
                             </div>
@@ -158,7 +158,7 @@
                     <!-- Training Video 3 -->
                     <div class="about-author">
                         <a href="#" onclick="switchVideo(this); return false;"
-                           data-link="http://plantingprofits.com:82/module3.mp4">
+                           data-link="http://dev.plantingprofits.com:82/module3.mp4">
                             <div class="image-thumb fl">
                                 <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 3 - Collecting Farm Information">
                             </div>
@@ -175,7 +175,7 @@
                     <!-- Training Video 4A -->
                     <div class="about-author">
                         <a href="#" onclick="switchVideo(this); return false;"
-                           data-link="http://plantingprofits.com:82/module4A.mp4">
+                           data-link="http://dev.plantingprofits.com:82/module4A.mp4">
                             <div class="image-thumb fl">
                                 <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 4 - Entering Farm Information and Generating a Baseline Strategy">
                             </div>
@@ -192,7 +192,7 @@
                     <!-- Training Video 4B -->
                     <div class="about-author">
                         <a href="#" onclick="switchVideo(this); return false;"
-                           data-link="http://plantingprofits.com:82/module4B.mp4">
+                           data-link="http://dev.plantingprofits.com:82/module4B.mp4">
                             <div class="image-thumb fl">
                                 <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 4 - Entering Farm Information and Generating a Baseline Strategy">
                             </div>
@@ -208,7 +208,7 @@
                     <!-- Training Video 5 -->
                     <div class="about-author">
                         <a href="#" onclick="switchVideo(this); return false;"
-                           data-link="http://plantingprofits.com:82/module5.mp4">
+                           data-link="http://dev.plantingprofits.com:82/module5.mp4">
                             <div class="image-thumb fl">
                                 <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 4 - Entering Farm Information and Generating a Baseline Strategy">
                             </div>

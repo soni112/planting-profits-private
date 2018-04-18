@@ -341,7 +341,7 @@
                                             <td class="tblbrdr add-fieldi">Total Available</td>
                                             <td class="add-fieldi">Used</td>
                                             <td>Unused</td>
-                                            <td>Impacting Profit</td>
+                                            <td>Impacting Est. Income</td>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -753,8 +753,11 @@
                                     <tbody>
                                     <c:forEach var="cropLimit" items="${model.cropLimitsJsonArray}">
                                         <tr class="tblgrn">
+                                            <c:if test="${cropLimit.maxLimit!='--'}">
                                             <td class="success">${cropLimit.cropName}</td>
-                                            <td class="success">${cropLimit.minLimit}</td>
+                                            <%--<td class="success">${cropLimit.minLimit}</td>--%>
+                                            <td class="success">  </td>
+
                                             <td class="success">${cropLimit.maxLimit}</td>
                                             <c:if test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
                                                 <td class="success">
@@ -777,7 +780,37 @@
                                                 <td class="success">${cropLimit.incDecIncome}</td>
                                             </c:if>
                                             <td class="success">${cropLimit.acreagePlanted}</td>
+                                            </c:if>
                                         </tr>
+                                        <tr class="tblgrn">
+                                            <c:if test="${cropLimit.minLimit!='--'}">
+                                            <td class="success">${cropLimit.cropName}</td>
+                                                <td class="success">${cropLimit.minLimit}</td>
+                                            <td class="success">  </td>
+                                            <%--<td class="success">${cropLimit.maxLimit}</td>--%>
+                                            <c:if test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
+                                                <td class="success">
+                                                    <c:choose>
+                                                        <c:when test="${cropLimit.impactingIncome ne '--'}">
+                                                            <a href="javascript:void(0)"
+                                                               class="remove-text-deco"
+                                                               data-toggle="popover"
+                                                               data-trigger="hover"
+                                                               data-placement="top"
+                                                               style="color:#337ab7"
+                                                               data-content="${cropLimit.message}">${cropLimit.impactingIncome}</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            ${cropLimit.impactingIncome}
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </td>
+                                                <td class="success">${cropLimit.incDecIncome}</td>
+                                            </c:if>
+                                            <td class="success">${cropLimit.acreagePlanted}</td>
+                                        </tr>
+                                            </c:if>
                                     </c:forEach>
 
                                     </tbody>

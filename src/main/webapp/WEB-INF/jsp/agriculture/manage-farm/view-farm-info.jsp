@@ -3,6 +3,7 @@
 <%@ taglib prefix="cfun" uri="/WEB-INF/tld/functions.tld" %>
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-multiselect.css"/>" type="text/css"/>
 <link rel="stylesheet" href="<c:url value="/css/sb-admin-2.css"/>" type="text/css" media="all">
+<script src="<c:url value="/js/plugins/jquery.slimscroll.js"/>"></script>
 <script>
     showLoadingImage();
     var farmId = '<c:out value="${model.farm.farmId}" />';
@@ -400,7 +401,7 @@
 
                                 <div class="ques">
                                     <div class="table-responsive">
-                                        <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr" cellspacing="0" width="100%">
+                                        <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr scroll" cellspacing="0" width="100%">
                                             <thead id="Plan_by_Fields_thead" style="display: table-header-group;">
                                                 <tr class="tblhd text-center add-fieldi">
                                                     <td>Modify</td>
@@ -420,10 +421,9 @@
                                                     </td>
                                                 </tr>
                                             </thead>
-                                            <tbody id="plan-by-field-tbody" class="scrollbar-dynamic" style="display: table-row-group;">
+                                            <tbody id="plan-by-field-tbody" class="scrollbar-dynamic scrollDiv" style="display: table-row-group;">
 
                                             <!--          create field dynamically get field information from FarmInfoView list -->
-
 
                                             <c:set var="rowCount" value="1"/>
                                             <c:set var="totalSize" value="0"/>
@@ -459,6 +459,7 @@
                                                 </tr>
                                                 <c:set var="rowCount" value="${rowCount+1}"/>
                                             </c:forEach>
+
                                             </tbody>
                                             <tfoot>
                                             <tr id="total-field-last-row" class="tblft text-center">
@@ -752,9 +753,9 @@
                                                         <span class="add-fieldi">Yields (UoM/acre) <img
                                                                 src="<c:url value="/images/i-img.png"/>"></span>
                                                     </a><br>
-                                                    <span class="infosubhead expected_range">Expected*</span> <span
-                                                        class="infosubhead max_range">Max</span> <span
-                                                        class="infosubhead min_range">Min</span></td>
+                                                    <span class="infosubhead expected_range">Expected*</span>
+                                                    <span class="infosubhead max_range">Max</span>
+                                                    <span class="infosubhead min_range">Min</span></td>
                                                 <td class="text-center" colspan="3"><a
                                                         id="Crop_Information_Details_price"
                                                         class="help_Infromation_PopUp" href="javascript:;"><span
@@ -778,7 +779,7 @@
                                             </tr>
 
                                             </thead>
-                                            <tbody id="crop_information_tbody">
+                                            <tbody id="crop_information_tbody" class="scrollDiv">
 
                                             <!--         start update by Bhagvan Singh on 06-04-2015-->
                                             <c:set var="rowCount" value="1"/>
@@ -1372,7 +1373,7 @@ start -->
                                                 </c:forEach>
                                             </tr>
                                             </thead>
-                                            <tbody id="field_choice_crop_tbody">
+                                            <tbody id="field_choice_crop_tbody" class="scrollDiv">
                                             <!--         start row cropFieldsDetails -->
                                             <c:set var="rowFieldCount" value="1"/>
                                             <c:forEach var="cropFieldsList" items="${model.fieldInfoList}">
@@ -2086,7 +2087,7 @@ start -->
                                             </tr>
                                             </thead>
                                             <!--         Modify by Bhagvan Singh 06-04-2015 start -->
-                                            <tbody id="forward_sales_information_tbody">
+                                            <tbody id="forward_sales_information_tbody" class="scrollDiv">
                                             <c:set var="forwardSalesRowCount" value="1"/>
                                             <c:set var="ContactIdentifierValue" value=""/>
                                             <c:forEach var="cropListForforwardSale" items="${model.cropTypeView}">
@@ -2775,9 +2776,16 @@ Commented as per client requirement
         </table>
     </div>
 
-
-
 </script>
+
+<script type="text/javascript">
+    $(function(){
+        $('.scrollDiv').slimScroll({
+//            height: 'auto',
+        });
+    });
+</script>
+
 
 
 <%@ include file="common/right_slider.jsp" %>

@@ -390,7 +390,7 @@ function onResourceSelectedOrRemoved(resourceObject) {
     } else if ($(resourceObject).prop("checked") == false) {
         /* @author Jyoti    @date 02-01-2017  PPT NO : 12312106 Slide no : 3*/
         /*alertify.confirm('Are you sure you want to remove this resource with name "' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + '" ?', function (e) {*/
-        alertify.confirm('Would you like to de-activate "' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + ' in the current analysis? ' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + ' will not be deleted. It can be reactivated later.', function (e) {
+        alertify.confirm('Would you like to de-activate "' + $(resourceObject).parent().parent().children("td:nth(1)").text().trim() + '? ', function (e) {
             if (e) {
                 removeResourceFromAllTables(resourceObject);
             } else {
@@ -554,7 +554,7 @@ function warningFallowPlanByField() {
         }
     });
     if (fallowFieldName.length > 0) {
-        customAlerts('You marked "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '" as Fallow so this field is not available for planting. If you would like to plant or consider planting "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '", uncheck the Fallow box', type_warning, time);
+        customAlerts('You marked "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '" as Fallow so this field will not be assigned any crops. If you would like to assign crops to "' + fallowFieldName.substring(0, fallowFieldName.length - 2) + '", uncheck the box', type_warning, time);
         return true;
     } else {
         return false;
@@ -599,13 +599,13 @@ function cropFieldChoiceCheckboxvalidation() {
             count++;
         }
     });
-    if(count > 10)
+    if(count > 30)
     {
-        customAlerts("Crops/fields selection is limited to 10",'error',0);
+        customAlerts("Crops/fields selection is limited to 30",'error',0);
 
-        $(".countChoiceCheckboxChenge").each(function() {
+       /* $(".countChoiceCheckboxChenge").each(function() {
             $(this).prop("checked", false);
-        })
+        })*/
 
         return   false;
 
@@ -754,8 +754,10 @@ function warningCropResourceUsage() {
     if (resourceName.length > 0) {
         resourceName = resourceName.substring(0, resourceName.length - 2);
         /* @author Jyoti    @date 02-01-2017  PPT NO : 12312106 Slide no : 11*/
-        alertify.confirm('You included "' + resourceName + '" as a resource for generating cropping strategies but none of the crops you are considering are currently using that resource.<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the resource used by each crop.', function (e) {
-            if (e) {
+        // alertify.confirm( resourceName  + '"  is activated as an optional resource, but none of the crops are using that resource.<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crops.', function (e) {
+         alertify.confirm( resourceName  + '" is activated as an optional resource, but none of the crops are using  resource "' +resourceName+'"<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crops.', function (e) {
+
+        if (e) {
                 callMethodForPageChangeAndProgressBarImage(8, 7);
             }
         });
@@ -1567,7 +1569,7 @@ function modifyField() {
         return false;
     }
     else {
-        alertify.confirm('Are you sure you want to update field named "' + fieldName + '"?', function (e) {
+        alertify.confirm('Are you sure you want to update "' + fieldName + '"?', function (e) {
             if (e) {
 
                 var validationFlag_Field = true;
@@ -1600,10 +1602,10 @@ function modifyField() {
                             alertMessage += "But the amount of land entered for \"" + fieldName + "\" field exceeds 10,000.00 acres. ";
                         }
                         if (alertMessage != "") {
-                            customAlerts('"' + fieldName + '" field updated successfully. '
+                            customAlerts('"update  ' + fieldName + '" ?'
                                 + alertMessage, type_warning, time);
                         } else {
-                            customAlerts('"' + fieldName + '" field updated successfully', type_success, time);
+                            customAlerts( fieldName + '" Updated', type_success, time);
                         }
                         totalLandByField = getValueWithComma(totalLandByField);
                         $("#total-acres-value").text(totalLandByField);
@@ -2491,21 +2493,21 @@ function showFieldVariencePage() {
 }
 
 function cropFieldChoiceCheckboxChenge() {
-    var count=0;
-    $(".countChoiceCheckboxChenge").each(function() {
-        if($(this).is(':checked')){
-            count++;
-        }
-    });
-    if(count > 10)
-    {
-        customAlerts("Crops/fields selection is limited to 10",'error',0);
+       /* var count=0;
+        $(".countChoiceCheckboxChenge").each(function() {
+            if($(this).is(':checked')){
+                count++;
+            }
+        });
+        if(count > 30)
+        {
+            customAlerts("Crops/fields selection is limited to 30",'error',0);
 
-      /*  $(".countChoiceCheckboxChenge").each(function() {
-            $(this).prop("checked", false);
-        })*/
+          /!*  $(".countChoiceCheckboxChenge").each(function() {
+                $(this).prop("checked", false);
+            })*!/
 
-    }
+        }*/
 
 }
 
@@ -3449,7 +3451,9 @@ function openStrategyOrBaselinePopup(obj) {
     if (!checkAllValidation()) {
         return false;
     } else {
-        var countMaximumAcres=0;
+        $('#save-strategy-popoup').show();
+
+       /* var countMaximumAcres=0;
         var countMinimumAcres=0;
         var totalLand = Number(removeAllCommas($.trim($("#total_land_available").text())));
 
@@ -3468,7 +3472,7 @@ function openStrategyOrBaselinePopup(obj) {
         else {
             $('#save-strategy-popoup').show();
 
-        }
+        }*/
     }
 }
 
@@ -3484,6 +3488,9 @@ function calculatePercentageOfMinAcreage(obj) {
     var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
     var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
         if (minAcreage <= totalLand) {
+            if(minAcreage==0) {
+            currentTr.find('.minCropAcreagePercentage').val(0);
+            }
             var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
             if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
                 var per = Math.ceil((minAcreage / totalLand) * 100);
@@ -3528,6 +3535,10 @@ function calculatePercentageOfMaxAcreage(obj) {
     var maxAcreage = Number(removeAllCommas(currentTr.find('.maxCropAcreage').val()));
     var maxAcragePer = Number(removeAllCommas(currentTr.find('.maxCropAcreagePercentage').val()));
             if (maxAcreage <= totalLand ) {
+                if(maxAcreage==0){
+                    currentTr.find('.maxCropAcreagePercentage').val(0);
+
+                }
             var maxAcreagePer = currentTr.find('.maxCropAcreagePercentage').val();
             if ($(obj).hasClass('maxCropAcreage') && maxAcreage && (maxAcreage != 0 || maxAcreage != '')) {
                 var per = Math.ceil((maxAcreage / totalLand) * 100);
@@ -3537,10 +3548,11 @@ function calculatePercentageOfMaxAcreage(obj) {
                 var val = Math.ceil((totalLand * maxAcreagePer) / 100);
                 currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}}
      else {
-        customAlerts("The total Maximum acreage crop limit can not be grater than Available Land " + totalLand +
-            " <br>  The Maximum Crop Acreage Limit will be set to the amount  of Available Land " + totalLand, 'error', 0);
-        currentTr.find('.maxCropAcreage').val('');
-        currentTr.find('.maxCropAcreagePercentage').val('');
+       /* customAlerts("The total Maximum acreage crop limit can not be grater than Available Land " + totalLand +
+            " <br>  The Maximum Crop Acreage Limit will be set to the amount  of Available Land " + totalLand, 'error', 0);*/
+
+        currentTr.find('.maxCropAcreage').val(totalLand);
+        currentTr.find('.maxCropAcreagePercentage').val(100);
             }
 }
 function calculatePercentageOfMaxAcreagePercentage(obj) {

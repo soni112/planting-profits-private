@@ -64,7 +64,8 @@ public class FarmReportGenerator extends AbstractItextPdfView {
         Rectangle rect = new Rectangle(36, 54, 559, 788);
         rect.setBorder(Rectangle.BOTTOM);
         writer.setBoxSize("art", rect);
-        String filePath = request.getServletContext().getRealPath("/images/logo_pdf.png");
+//        String filePath = request.getServletContext().getRealPath("/images/logo_pdf.png");
+        String filePath = request.getServletContext().getRealPath("/images/logo.png");
 
         ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
 
@@ -226,6 +227,7 @@ public class FarmReportGenerator extends AbstractItextPdfView {
 
             Chunk farmAddress = new Chunk(farmAddressString.toString(), ReportTemplate.TIMESROMAN_12_NORMAL);
             farmInfoPara.add(ReportTemplate.getNewLineChunk());
+            farmInfoPara.add ( "\n" );
             farmInfoPara.add(farmAddress);
 
             PdfPCell farmInfoCell = new PdfPCell(farmInfoPara);
@@ -239,8 +241,8 @@ public class FarmReportGenerator extends AbstractItextPdfView {
             farmInfoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             headerTable.addCell(farmInfoCell);
 
-            Chunk datePrinted = new Chunk("Date Printed\n", ReportTemplate.TIMESROMAN_14_BOLD);
-            Chunk date = new Chunk(AgricultureStandard.FORMATTER.format(Calendar.getInstance().getTime()), ReportTemplate.TIMESROMAN_12_NORMAL);
+            Chunk datePrinted = new Chunk("Date Printed\n", ReportTemplate.TIMESROMAN_12_NORMAL);
+            Chunk date = new Chunk(AgricultureStandard.FORMATTER.format(Calendar.getInstance().getTime()), ReportTemplate.TIMESROMAN_10_NORMAL);
 
             Paragraph datePara = new Paragraph();
             datePara.setAlignment(Paragraph.ALIGN_CENTER);

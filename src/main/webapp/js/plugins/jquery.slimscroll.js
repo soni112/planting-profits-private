@@ -1,9 +1,5 @@
-/*! Copyright (c) 2011 Piotr Rochala (http://rocha.la)
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
- * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
- *
- * Version: 1.3.8
- *
+/*
+ *SlimScroll Jquery
  */
 (function($) {
 
@@ -13,10 +9,10 @@
       var defaults = {
 
         // width in pixels of the visible scroll area
-        width : 'auto',
+        width : '100%',
 
         // height in pixels of the visible scroll area
-        height : '250px',
+        height : '100%',
 
         // width in pixels of the scrollbar and rail
         size : '7px',
@@ -162,9 +158,10 @@
           .addClass(o.wrapperClass)
           .css({
             position: 'relative',
-            overflow: 'hidden',
+            overflow: 'unset',
             width: o.width,
-            height: o.height
+            height: o.height,
+            float: 'left'
           });
 
         // update style for the div

@@ -283,8 +283,6 @@ public class SectionThreePDFGenerator {
             table = new PdfPTable(4);
         }
 
-
-
         table.setWidthPercentage(100);
 
         // Create Header Cells Field, Acreage, Crop
@@ -330,12 +328,13 @@ public class SectionThreePDFGenerator {
             table.addCell(toIncreaseIncome);
         }
 
-        PdfPCell cropCell = new PdfPCell(new Phrase("Acreage Planted", ReportTemplate.TIMESROMAN_10_NORMAL));
+        PdfPCell cropCell = new PdfPCell(new Phrase("Acreage Assigned       ", ReportTemplate.TIMESROMAN_10_NORMAL));
         cropCell.setBorderWidth(0.5f);
         cropCell.setBorderColor(new BaseColor(131, 154, 103));
         cropCell.setBorder(Rectangle.BOX);
         cropCell.setUseBorderPadding(true);
         cropCell.setBackgroundColor(new BaseColor(247, 205, 114));
+
         table.addCell(cropCell);
 
         table.completeRow();
@@ -388,7 +387,9 @@ public class SectionThreePDFGenerator {
                 table.addCell(toIncreaseIncomeDataCell);
             }
 
-            PdfPCell impactingProfitDataCell = new PdfPCell(new Phrase(cropLimitDetails.get("acreagePlanted").toString(), ReportTemplate.TIMESROMAN_10_NORMAL));
+           Object ACRAGE= cropLimitDetails.get ( "acreagePlanted" );
+
+            PdfPCell impactingProfitDataCell = new PdfPCell(new Phrase(""+ACRAGE, ReportTemplate.TIMESROMAN_10_NORMAL));
             impactingProfitDataCell.setBorderWidth(0.5f);
             impactingProfitDataCell.setBorderColor(new BaseColor(131, 154, 103));
             impactingProfitDataCell.setBorder(Rectangle.BOX);
