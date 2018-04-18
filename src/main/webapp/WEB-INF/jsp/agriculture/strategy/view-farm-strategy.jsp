@@ -44,7 +44,10 @@
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
                                     </div>
-
+                                    <button class="btn btn-default pull-right"
+                                            onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
+                                        <i class="fa fa-bar-chart-o"></i> Granular Comparison
+                                    </button>
                                     <div class="clearfix"></div>
 
                                     <div class="addcrop">
@@ -250,14 +253,107 @@
                                                 </button>
                                                 <div id="varianceGraphChartDiv" class="chart-base"></div>
                                             </div>
-
-
                                         </div>
                                     </div>
+                                </div>
+                                <div id="gaugeSectionForStrategy" style="display: none">
+                                    <div class="pull-right cursor-pointer">
+                                        <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
+                                    </div>
+                                    <%--<button class="alertify-button alertify-button-ok pull-right"
+                                            onclick="buildGaugeMeterComponent(); return false;"
+                                            style="margin-right: 15px;">Graph</button>--%>
+
+                                    <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center">
+                                        <thead>
+                                        <tr class="tblhd add-fieldi">
+                                            <td> Strategy</td>
+                                            <td>Estimated Income</td>
+                                            <td colspan="4">Risk Profile
+                                                <table>
+                                                    <tr>
+                                                        <td>Production Risk</td>
+                                                        <td>Market Risk</td>
+                                                        <td>Crop Insurance</td>
+                                                        <td>Scenario Analysis</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td colspan="2">Asset Utilization
+                                                <table>
+                                                    <tr>
+                                                        <td>Return on Working</td>
+                                                        <td>Acreage Under Conservation Practices</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                        </tr>
+
+                                        </thead>
+                                        <tbody id="enhancedProfitOutpou">
+
+                                        <c:forEach var="farmCustomStrategyView" items="${model.farmCustomStrategyList}">
+                                        <tr>
+                                            <td class="success">
+                                                <c:set value="${farmCustomStrategyView.strategyName}" var="jugad"/>
+                                                    ${jugad}
+                                            </td>
+                                            <td class="success">
+                                                <c:set var="total" value="${0}"/>
+                                                <c:forEach var="outputDetail" items="${model.outputDetail}">
+                                                <fmt:parseNumber var="totalEstmate" type="number" value="${outputDetail.profit}"/>
+                                                <c:set var="total" value="${total + totalEstmate}" />
+
+                                            </c:forEach>
+                                            <div class="est-income-graph">
+                                                    <span class="est-income-category">1</span>
+                                                        <small class="est-income-total">$ ${total}</small>
+
+                                                </div>
+                                            </td>
+                                            <td colspan="4" class="success">
+                                                <div align="right" id="cropGaugeMeter${jugad}${total}" class="progress-graphs gauge_meter pull-left"></div>
+
+                                                <div align="center" id="marketGaugeMeter${jugad}${total}" class="progress-graphs gauge_meter pull-left"></div>
+
+                                                <div align="left" id="productionGaugeMeter${jugad}${total}" class="progress-graphs gauge_meter pull-left"></div>
+
+                                                <div class="gauge_meter">
+                                                    <div class="secnario-analysis">
+                                                        <span class="est-income-category">2</span>
+                                                        <small class="est-income-total">$ ${total}</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            </td>
+                                            <td colspan="2" class="success">
+                                                <div style="width: 50%;float: left">
+                                                    <div class="est-income-graph">
+                                                        <span class="est-income-category">1</span>
+                                                        <small class="est-income-total">$ ${total}</small>
+                                                    </div>
+                                                </div>
+                                                <div style="width: 50%;float: left">
+                                                    <div class="est-income-graph">
+                                                        <i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        </c:forEach>
+
+                                        </tbody>
+                                    </table>
+
+
 
 
 
                                 </div>
+
+
 
                             </div>
                         </div>
@@ -635,7 +731,7 @@
 
     <td>Strategy</td>
     <td>Estimated Income</td>
-    <td>Available Acreage</td>
+    <td>Total Acreage</td>
     {{each(key, header) headerDetails }}
         <td>{{html header}}</td>
 	{{/each}}

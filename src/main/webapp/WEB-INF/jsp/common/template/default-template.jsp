@@ -57,6 +57,10 @@
     <script src="<c:url value="/js/pie_chart_graph/light.js"/>" type="text/javascript"></script>
     <script src="<c:url value="/js/plugins/jquery.tmpl.min.js"/>" type="text/javascript"></script>
     <script src="<c:url value="/js/plugins/jquery.slimscroll.js"/>" type="text/javascript"></script>
+    <%--<script src="<c:url value="/js/gegueChart/amcharts.js"/>" type="text/javascript"></script>--%>
+    <%--<script src="<c:url value="/js/gegueChart/export.css"/>" type="text/css"></script>--%>
+    <script src="<c:url value="/js/gegueChart/export.min.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/js/gegueChart/gauge.js"/>" type="text/javascript"></script>
 
 
     <script type="text/javascript">
