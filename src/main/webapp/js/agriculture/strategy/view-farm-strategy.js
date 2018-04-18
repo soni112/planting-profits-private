@@ -51,24 +51,22 @@ function toggleTableSection(){
     // $("#headerText").html("Strategy Comparison")
 }
 function buildGaugeMeterComponent() {
-    var data = {};
 
-    data.target = "productionGaugeMeter";
-    data.interval = 3000;
-    prepareVarianceGenue1(data);
+    $('#enhancedProfitOutpou').find('tr').each(function () {
+        var val = 20;
+        $(this).find('.progress-graphs').each(function () {
+            var data = {};
+            data.target = $(this).attr('id');
+            data.value = val + 30;
+            prepareVarianceGenue(data);
+        });
+    });
 
-    data.target = "marketGaugeMeter";
-    data.interval = 3000;
-    prepareVarianceGenue2(data);
-
-    data.target = "cropGaugeMeter";
-    data.interval = 3000;
-    prepareVarianceGenue3(data);
 }
 
-function prepareVarianceGenue1(object) {
+function prepareVarianceGenue(object) {
 
-    var gaugeChart = AmCharts.makeChart(object.target, {
+    var gaugeChart = AmCharts.makeChart(object.target , {
         "type": "gauge",
         "theme": "black",
         "marginBottom": 2,
@@ -120,170 +118,24 @@ function prepareVarianceGenue1(object) {
 
     });
 
-        setInterval( randomValue );
+        // setInterval( randomValue,Object.interval );
 
 // set random value
 
-    function randomValue() {
-        var value = 40;
+    // function randomValue() {
+        var value = object.value;
         if ( gaugeChart ) {
             if ( gaugeChart.arrows ) {
                 if ( gaugeChart.arrows[ 0 ] ) {
                     if ( gaugeChart.arrows[ 0 ].setValue ) {
-                        gaugeChart.arrows[ 0 ].setValue( value );
+                        gaugeChart.arrows[ 0 ].setValue( object.value );
                         //gaugeChart.axes[ 0 ].setBottomText( value + " km/h" );
                     }
                 }
             }
         }
-    }
-    }
-function prepareVarianceGenue2(object) {
-    var gaugeChart = AmCharts.makeChart( "marketGaugeMeter", {
-        "type": "gauge",
-        "theme": "black",
-        "marginBottom": 2,
-        "marginLeft": 2,
-        "marginRight": 2,
-        "marginTop": 2,
-        "fontSize": 0,
-
-        "axes": [ {
-            "axisThickness": 1,
-            "axisAlpha": 0.2,
-            "tickAlpha": 0.2,
-            "valueInterval": 20,
-            "endAngle": 90,
-            "endValue": 120,
-            "startAngle": -90,
-            "bottomTextYOffset": -20,
-            "bands": [ {
-                "alpha":1,
-                "color": "#FF0F00",
-                "endValue": 40,
-                "startValue": 0
-            }, {
-                "alpha":1,
-                "color": "#F8FF01",
-                "endValue": 80,
-                "startValue": 40
-            }, {
-                "alpha":1,
-                "color": "#84b761",
-                "endValue": 120,
-                //"innerRadius": "95%",
-                "startValue": 80
-            } ],
-            //"bottomText": "0 km/h",
-
-        } ],
-        "arrows": [ {
-            /*"startWidth": 8,
-             "value": 0*/
-            "alpha": 1,
-            "borderAlpha": 1,
-            "id": "GaugeArrow-1",
-            "innerRadius": "0%",
-            "nailAlpha": 1,
-            "nailRadius": 5,
-            "startWidth": 5
-        } ],
-
-    } );
-
-    setInterval( randomValue);
-
-// set random value
-
-    function randomValue() {
-        var value = 80;
-        if ( gaugeChart ) {
-            if ( gaugeChart.arrows ) {
-                if ( gaugeChart.arrows[ 0 ] ) {
-                    if ( gaugeChart.arrows[ 0 ].setValue ) {
-                        gaugeChart.arrows[ 0 ].setValue( value );
-                        //gaugeChart.axes[ 0 ].setBottomText( value + " km/h" );
-                    }
-                }
-            }
-        }
-    }
+    // }
 }
-function prepareVarianceGenue3(object) {
-    var gaugeChart = AmCharts.makeChart( "cropGaugeMeter", {
-        "type": "gauge",
-        "theme": "black",
-        "marginBottom": 2,
-        "marginLeft": 2,
-        "marginRight": 2,
-        "marginTop": 2,
-        "fontSize": 0,
-
-        "axes": [ {
-            "axisThickness": 1,
-            "axisAlpha": 0.2,
-            "tickAlpha": 0.2,
-            "valueInterval": 20,
-            "endAngle": 90,
-            "endValue": 120,
-            "startAngle": -90,
-            "bottomTextYOffset": -20,
-            "bands": [ {
-                "alpha":1,
-                "color": "#FF0F00",
-                "endValue": 40,
-                "startValue": 0
-            }, {
-                "alpha":1,
-                "color": "#F8FF01",
-                "endValue": 80,
-                "startValue": 40
-            }/*, {
-                "alpha":1,
-                "color": "#84b761",
-                "endValue": 120,
-                //"innerRadius": "95%",
-                "startValue": 80
-            } */],
-            //"bottomText": "0 km/h",
-
-        } ],
-        "arrows": [ {
-            /*"startWidth": 8,
-             "value": 0*/
-            "alpha": 1,
-            "borderAlpha": 1,
-            "id": "GaugeArrow-1",
-            "innerRadius": "0%",
-            "nailAlpha": 1,
-            "nailRadius": 5,
-            "startWidth": 5
-        } ],
-
-    } );
-
-    setInterval( randomValue);
-
-// set random value
-
-    function randomValue() {
-        var value = 50;
-        if ( gaugeChart ) {
-            if ( gaugeChart.arrows ) {
-                if ( gaugeChart.arrows[ 0 ] ) {
-                    if ( gaugeChart.arrows[ 0 ].setValue ) {
-                        gaugeChart.arrows[ 0 ].setValue( value );
-                        //gaugeChart.axes[ 0 ].setBottomText( value + " km/h" );
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-
-
 
 
 
@@ -856,6 +708,7 @@ function getAndApplyComparisonDataInGenue() {
         hideLoadingImageForStrategy();
     });
 }
+
 
 function getAndApplyComparisonData(){
 
