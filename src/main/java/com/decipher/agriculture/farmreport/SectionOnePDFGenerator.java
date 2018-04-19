@@ -102,7 +102,7 @@ public class SectionOnePDFGenerator {
         titleTable.setWidthPercentage ( 100 );
 
         // Strategy
-        titleTable.addCell ( ReportTemplate.getSectionHeaderCell ( "Featured Strategy:" + selectedStrategy ) );
+        titleTable.addCell ( ReportTemplate.getSectionHeaderCell ( "Featured Strategy:  " + selectedStrategy ) );
 
         /**
          * @changed - Abhishek
@@ -312,12 +312,12 @@ public class SectionOnePDFGenerator {
 
             if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "land (Acres)" )) {
                 resourceParagraph.add ( new Chunk ( "Return on " + resourceUsage.get ( "resource" )
-                        + ": $" + formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total )
+                        + ": $" + formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total ).split ( "\\." )[0]
                         + " of gross income per one acre\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "capital ($)" )) {
 
                 resourceParagraph.add ( new Chunk ( "Return on Working " + resourceUsage.get ( "resource" )
-                        + ": $" + formatter.format ( Double.parseDouble ( estimatedIncommeFormatted ) / total )
+                        + ": $" + formatter.format ( Double.parseDouble ( estimatedIncommeFormatted ) / total ).split ( "\\." )[0]
                         + " of gross income per one $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else {
                 /*resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
