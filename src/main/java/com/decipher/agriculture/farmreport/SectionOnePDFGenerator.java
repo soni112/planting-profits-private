@@ -125,7 +125,7 @@ public class SectionOnePDFGenerator {
 
         // Create Bar Chart Section
         PdfPCell barChartSectionCell = ReportTemplate.getBoxBorderCell ();
-        barChartSectionCell.addElement ( getResourceManagementTable () );
+            barChartSectionCell.addElement ( getResourceManagementTable () );
         contentTable.addCell ( barChartSectionCell );
         document.add ( contentTable );
         //document.newPage();
@@ -865,26 +865,26 @@ public class SectionOnePDFGenerator {
                 returnWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( returnWorkingCapital );
 
-
-                PdfPCell ratingforWorkingCapital = new PdfPCell ( new Phrase ( "Rating", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell ratingforWorkingCapital = new PdfPCell ( new Phrase ( " ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 ratingforWorkingCapital.setUseBorderPadding ( true );
                 ratingforWorkingCapital.setBorderWidth ( 0 );
                 ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 if (farmOutputDetails.getProfitDouble () == 0.0) {
                     ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
-                } else {
+                }
+                else {
                     if (workReturn < 0.5) {
                         ratingforWorkingCapital.setBackgroundColor ( BaseColor.RED );
-                    } else if ((0.51 < workReturn)) {
-                        if (workReturn <= 0.9) {
+                    } else if (0.15 < workReturn && workReturn <= 0.9){
                             ratingforWorkingCapital.setBackgroundColor ( BaseColor.YELLOW );
+                        }else if (workReturn > 0.9) {
+                            ratingforWorkingCapital.setBackgroundColor ( BaseColor.GREEN );
+                        } else {
+                            ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
                         }
-                    } else if (workReturn > 0.9) {
-                        ratingforWorkingCapital.setBackgroundColor ( BaseColor.GREEN );
-                    } else {
-                        ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
                     }
-                }
+                cropContributionMarginTable.addCell ( ratingforWorkingCapital );
+
                 cropContributionMarginTable.completeRow ();
             }
         } else if (farmInfoView.getStrategy ().equals ( PlanByStrategy.PLAN_BY_FIELDS )) {
@@ -996,7 +996,7 @@ public class SectionOnePDFGenerator {
                 returnWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( returnWorkingCapital );
 
-                PdfPCell ratingforWorkingCapital = new PdfPCell ( new Phrase ( "Rating", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell ratingforWorkingCapital = new PdfPCell ( new Phrase ( "", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 ratingforWorkingCapital.setUseBorderPadding ( true );
                 ratingforWorkingCapital.setBorderWidth ( 0 );
                 ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
@@ -1007,17 +1007,15 @@ public class SectionOnePDFGenerator {
                 } else {
                     if (workReturn < 0.5) {
                         ratingforWorkingCapital.setBackgroundColor ( BaseColor.RED );
-                    } else if ((0.51 < workReturn)) {
-                        if (workReturn <= 0.9) {
+                    } else if ((0.51 < workReturn) && workReturn <= 0.9) {
                             ratingforWorkingCapital.setBackgroundColor ( BaseColor.YELLOW );
-                        }
                     } else if (workReturn > 0.9) {
                         ratingforWorkingCapital.setBackgroundColor ( BaseColor.GREEN );
                     } else {
                         ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
-
                     }
                 }
+                cropContributionMarginTable.addCell ( ratingforWorkingCapital );
 
                 cropContributionMarginTable.completeRow ();
             }
