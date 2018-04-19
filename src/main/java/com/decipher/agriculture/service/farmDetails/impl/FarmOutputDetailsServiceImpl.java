@@ -582,7 +582,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( farmOutputDetailsView.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ));
                 }
                 if (farmOutputDetailsView.getProfit ().equalsIgnoreCase ( "0" )) {
-                    jsonObject.put ( WORKRETURN, "LIGHT_GRAY" );
+                    jsonObject.put ( RATINGFORWORKRETURN, "LIGHT_GRAY" );
                 } else {
                     if (workReturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"RED");
@@ -592,8 +592,6 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                     } else if (workReturn > 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Green" );
-                    } else {
-                        jsonObject.put ( RATINGFORWORKRETURN, "LIGHT_GRAY");
                     }
                 }
                 jsonArray.add(jsonObject);
@@ -651,7 +649,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     Double profitDouble = new Double (AgricultureStandardUtils.removeAllCommas (profitStr.split ( " \\(" )[0]));
                     String cropName = cropTypeKey;
                     if (cropTypeKey.contains (" (Firm)")) {
-                        cropName = cropTypeKey.split ( " \\(Firm\\)" )[0    ];
+                        cropName = cropTypeKey.split ( " \\(Firm\\)" )[0];
                     } else if (cropTypeKey.contains (" (Proposed)")) {
                         cropName = cropTypeKey.split ( " \\(Proposed\\)" )[0];
                     }
@@ -667,7 +665,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if (profit.equalsIgnoreCase("0 (0.0%)")
                         || profit.equalsIgnoreCase("0 (-0.0%)")){
-                    jsonObject.put ( WORKRETURN,"Gray" );}
+                    jsonObject.put ( RATINGFORWORKRETURN,"LIGHT_GRAY" );}
                 else {
                     if (workreturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"RED");
@@ -675,8 +673,6 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         jsonObject.put ( RATINGFORWORKRETURN,"YELLOW" );
                     } else if (workReturn > 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Green" );
-                    } else {
-                        jsonObject.put ( RATINGFORWORKRETURN, "Green");
                     }
                 }
                 jsonArray.add(jsonObject);
