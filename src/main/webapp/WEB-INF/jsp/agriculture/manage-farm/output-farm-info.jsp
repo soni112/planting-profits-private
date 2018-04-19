@@ -103,6 +103,13 @@
                                                     <img src="<c:url value="/images/i-icon.png"/>">
                                                 </a>
                                             </td>
+                                            <td>
+                                                Return on Working Capital
+
+                                            </td>
+                                            <td>
+                                                Rating
+                                            </td>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -114,6 +121,9 @@
                                                 <td class="success">${acrageDetails.ratio}</td>
                                                 <td class="success">${acrageDetails.index}</td>
                                                 <td class="success rating${acrageDetails.rating}"></td>
+                                                <td class="success">${acrageDetails.workreturn}</td>
+                                                <td class="success rating${acrageDetails.ratingforworkreturn}"></td>
+
                                             </tr>
                                         </c:forEach>
                                         </tbody>
