@@ -142,7 +142,7 @@ public class SectionOnePDFGenerator {
 
         Paragraph conservationParagraph = new Paragraph ();
 
-        conservationParagraph.add ( new Chunk ( "Conservation Management\n\n", ReportTemplate.TIMESROMAN_12_NORMAL ) );
+        conservationParagraph.add ( new Chunk ( "Conservation Management\n\n", ReportTemplate.TIMESROMAN_12_BOLD ) );
         conservationParagraph.add ( new Chunk ( "Conservation Goals\n", ReportTemplate.TIMESROMAN_10_BOLD ) );
         /**
          * @changed - Abhishek
@@ -312,13 +312,13 @@ public class SectionOnePDFGenerator {
 
             if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "land (Acres)" )) {
                 resourceParagraph.add ( new Chunk ( "Return on " + resourceUsage.get ( "resource" )
-                        + ": $" + formatter.format ( Integer.parseInt ( estimatedIncommeFormatted ) / total )
+                        + ": $" + formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total )
                         + " of gross income per one acre\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "capital ($)" )) {
 
                 resourceParagraph.add ( new Chunk ( "Return on Working " + resourceUsage.get ( "resource" )
-                        + ": $" + formatter.format ( Integer.parseInt ( estimatedIncommeFormatted ) / total )
-                        + " of gross income per $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                        + ": $" + formatter.format ( Double.parseDouble ( estimatedIncommeFormatted ) / total )
+                        + " of gross income per one $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else {
                 /*resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
 						+ ": $" + formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)
@@ -357,7 +357,7 @@ public class SectionOnePDFGenerator {
         PdfPTable riskManagementTable = new PdfPTable ( 1 );
         riskManagementTable.setWidthPercentage ( 100 );
 
-        PdfPCell riskManagementCell = new PdfPCell ( new Phrase ( "Risk Management", ReportTemplate.TIMESROMAN_12_NORMAL ) );
+        PdfPCell riskManagementCell = new PdfPCell ( new Phrase ( "Risk Management", ReportTemplate.TIMESROMAN_12_BOLD ) );
         riskManagementCell.setUseBorderPadding ( true );
         riskManagementCell.setBorderWidth ( 0 );
         //cropsAcreageCell.setPaddingLeft(10);
@@ -569,7 +569,7 @@ public class SectionOnePDFGenerator {
          * @date - 12-12-2015
          */
         Paragraph forwardSalesTableFotterParagraph = new Paragraph ();
-        forwardSalesTableFotterParagraph.add ( new Chunk ( incomeForwardSalesPercentage + "% Est. Income in crops forward sold \n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        forwardSalesTableFotterParagraph.add ( new Chunk ( incomeForwardSalesPercentage + "% Est. Income in forward sales \n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         forwardSalesTableFotterParagraph.add ( new Chunk ( formatter.format ( singleProfit ) + "% Est. Income in single crop" +
                 "\n" + formatter.format ( twoCropProfit ) + "% Est. Income in two crops", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         forwardSalesTableFotterParagraph.add ( ReportTemplate.getNewLineChunk () );
@@ -667,7 +667,7 @@ public class SectionOnePDFGenerator {
          * @desc - changed according to slide#4 of 12282015
          */
 		/*PdfPCell cropContributionMargin = new PdfPCell(new Phrase("Crop Contribution Margin", ReportTemplate.TIMESROMAN_12_BOLD));*/
-        PdfPCell cropContributionMargin = new PdfPCell ( new Phrase ( " Profitability Measures ", ReportTemplate.TIMESROMAN_12_BOLD ) );
+        PdfPCell cropContributionMargin = new PdfPCell ( new Phrase ( " Profitability Measures ", ReportTemplate.TIMESROMAN_12_NORMAL ) );
         cropContributionMargin.setUseBorderPadding ( true );
         cropContributionMargin.setBorderWidth ( 0 );
         cropContributionMargin.setPaddingTop ( 10 );
@@ -733,7 +733,7 @@ public class SectionOnePDFGenerator {
         cropHead.setBorder ( Rectangle.BOTTOM );
         cropContributionMarginTable.addCell ( cropHead );
 
-        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / <br> % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         cmHead.setUseBorderPadding ( true );
         cmHead.setBorderWidth ( 0.5f );
         cmHead.setBorder ( Rectangle.BOTTOM );
