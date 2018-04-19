@@ -113,7 +113,7 @@ public class SectionTwoPDFGenerator {
 
         // Create Table header cells
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Crop"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("UoM"));
+        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Units"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Yield"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Price"));
         table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Production Costs Per Acre"));
@@ -143,7 +143,7 @@ public class SectionTwoPDFGenerator {
                 table.addCell(cropYieldDataCell);
 
                 PdfPCell priceDataCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getIntExpCropPrice() != null ? AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal(crop.getIntExpCropPrice().toString()) : "--");
-                priceDataCell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+                priceDataCell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
                 table.addCell(priceDataCell);
 
                 table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getCalculatedVariableProductionCostFloat()));

@@ -308,12 +308,12 @@ public class SectionOnePDFGenerator {
 
 			if(resourceUsage.get("resource").equalsIgnoreCase("land (Acres)")){
 				resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
-						+ ": $"+ formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)
-						+ " of gross income per acre\n", ReportTemplate.TIMESROMAN_10_NORMAL));
+						+ ": $"+ formatter.format(Integer.parseInt (estimatedIncommeFormatted)/ total)
+						+ " of gross income per one acre\n", ReportTemplate.TIMESROMAN_10_NORMAL));
 			} else if (resourceUsage.get("resource").equalsIgnoreCase("capital ($)")) {
 
 				resourceParagraph.add(new Chunk("Return on Working " + resourceUsage.get("resource")
-						+ ": $"+ formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)
+						+ ": $"+ formatter.format(Integer.parseInt (estimatedIncommeFormatted)/ total)
 						+ " of gross income per $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL));
 			} else {
 				/*resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
@@ -663,7 +663,7 @@ public class SectionOnePDFGenerator {
          * @desc - changed according to slide#4 of 12282015
          */
 		/*PdfPCell cropContributionMargin = new PdfPCell(new Phrase("Crop Contribution Margin", ReportTemplate.TIMESROMAN_12_BOLD));*/
-        PdfPCell cropContributionMargin = new PdfPCell ( new Phrase ( " Land Profitability ", ReportTemplate.TIMESROMAN_12_BOLD ) );
+        PdfPCell cropContributionMargin = new PdfPCell ( new Phrase ( " Profitability Measures ", ReportTemplate.TIMESROMAN_12_BOLD ) );
         cropContributionMargin.setUseBorderPadding ( true );
         cropContributionMargin.setBorderWidth ( 0 );
         cropContributionMargin.setPaddingTop ( 10 );
