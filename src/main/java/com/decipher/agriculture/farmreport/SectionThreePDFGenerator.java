@@ -65,7 +65,7 @@ public class SectionThreePDFGenerator {
         titleTable.setWidthPercentage(100);
 
         // Strategy
-        titleTable.addCell(ReportTemplate.getSectionHeaderCell("Exhibit 1 - Crop Field Assignments for " + selectedStrategy));
+        titleTable.addCell(ReportTemplate.getSectionHeaderCell("Exhibit 1 - Most Profitable Crop Field Assignments for " + selectedStrategy));
 
         // Estimated Income
 //        Chunk potentialProfitText = new Chunk("Estimated Income: ", ReportTemplate.TIMESROMAN_14_BOLD_RED);
@@ -116,7 +116,7 @@ public class SectionThreePDFGenerator {
          * @desc - Added table for crop acreage limits
          */
         // Strategy
-        titleTable.addCell(ReportTemplate.getSectionHeaderCell("Crop Acreage Limits for " + selectedStrategy));
+        titleTable.addCell(ReportTemplate.getSectionHeaderCell("Exhibit 3 -Crop Acreage Limits for " + selectedStrategy));
 
         // Create  Crop Acreage Limits Table
         PdfPCell cropAcreageLimitsTableCell = new PdfPCell();

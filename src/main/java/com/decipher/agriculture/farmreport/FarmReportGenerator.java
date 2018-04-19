@@ -181,8 +181,8 @@ public class FarmReportGenerator extends AbstractItextPdfView {
 
             // First Row is added, now add second row to header table
             Paragraph accountInfoPara = new Paragraph();
-            accountInfoPara.setFont(ReportTemplate.FONT[5]);
-            Chunk accountName = new Chunk(parentInstance.sectionOnePDFGenerator.getAccountView().getFirstName() + " " + parentInstance.sectionOnePDFGenerator.getAccountView().getLastName(), ReportTemplate.FONT[5]);
+            accountInfoPara.setFont(ReportTemplate.FONT[6]);
+            Chunk accountName = new Chunk(parentInstance.sectionOnePDFGenerator.getAccountView().getFirstName() + " " + parentInstance.sectionOnePDFGenerator.getAccountView().getLastName(), ReportTemplate.FONT[6]);
             accountInfoPara.add(accountName);
             accountInfoPara.add(ReportTemplate.getNewLineChunk());
             StringBuilder address = new StringBuilder();
@@ -225,7 +225,7 @@ public class FarmReportGenerator extends AbstractItextPdfView {
             if (parentInstance.sectionOnePDFGenerator.getFarmInfoView().getPhysicalLocation() != null)
                 farmAddressString.append(parentInstance.sectionOnePDFGenerator.getFarmInfoView().getPhysicalLocation());
 
-            Chunk farmAddress = new Chunk(farmAddressString.toString(), ReportTemplate.TIMESROMAN_12_NORMAL);
+            Chunk farmAddress = new Chunk(farmAddressString.toString(), ReportTemplate.TIMESROMAN_12_BOLD);
             farmInfoPara.add(ReportTemplate.getNewLineChunk());
             farmInfoPara.add ( "\n" );
             farmInfoPara.add(farmAddress);

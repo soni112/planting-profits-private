@@ -636,6 +636,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                         jsonArrayForResourceHeader.add("Acreage Assigned");
                     } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")){
                         jsonArrayForResourceHeader.add("Working Capital Used");
+//                        jsonArrayForResourceHeader.add ( "Return on Working Capital" );
                     } else {
                         jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
                     }
