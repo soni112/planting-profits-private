@@ -1605,7 +1605,7 @@ function modifyField() {
                             customAlerts('"update  ' + fieldName + '" ?'
                                 + alertMessage, type_warning, time);
                         } else {
-                            customAlerts( fieldName + '" Updated', type_success, time);
+                            customAlerts( fieldName + '" updated', type_success, time);
                         }
                         totalLandByField = getValueWithComma(totalLandByField);
                         $("#total-acres-value").text(totalLandByField);
