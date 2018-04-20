@@ -733,7 +733,7 @@ public class SectionOnePDFGenerator {
         cropHead.setBorder ( Rectangle.BOTTOM );
         cropContributionMarginTable.addCell ( cropHead );
 
-        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / <br> % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / \n % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         cmHead.setUseBorderPadding ( true );
         cmHead.setBorderWidth ( 0.5f );
         cmHead.setBorder ( Rectangle.BOTTOM );
