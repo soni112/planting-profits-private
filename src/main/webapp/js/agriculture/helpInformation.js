@@ -451,7 +451,7 @@ var cropSpecificCropYeild = "<p>For the given scenario, enter the percentage to 
 
 var cropSpecificVarCost = "<p>For the given scenario, enter the percentage to increase or decrease a crop production cost.</p>";
 
-var landProfitablityIndex = "Land Profitability Index is a relative measure of the profitability of acreage for each crop. It is the ratio of the % of profit and the % acreage.";
+var landProfitablityIndex = "<p>Land Profitability Index is a measure of the profitability of  acreage assigned to each crop. It is the % profit from a  crop divided by the % acreage assigned to the crop.</p>";
 
 var landProfitablityIndexRating = "<p>Land Profitability Index rating is as follows:</p>" +
 	"<p>Green : Land Profitability Index is greater than 1 </p>" +
