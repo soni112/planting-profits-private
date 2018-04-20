@@ -755,7 +755,7 @@ function warningCropResourceUsage() {
         resourceName = resourceName.substring(0, resourceName.length - 2);
         /* @author Jyoti    @date 02-01-2017  PPT NO : 12312106 Slide no : 11*/
         // alertify.confirm( resourceName  + '"  is activated as an optional resource, but none of the crops are using that resource.<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crops.', function (e) {
-         alertify.confirm( resourceName  + '" is activated as an optional resource, but none of the crops are using  resource "' +resourceName+'"<br/><br/>Press OK to continue or Cancel to go back and enter the amount of the '+resourceName+' used by one or more crops.', function (e) {
+         alertify.confirm( resourceName  + '" is activated as an optional resource, but none of the crops are using  resource "' +resourceName+'". <br/><br/>Press OK to continue or Cancel to go back and enter the amount of '+resourceName+' used by one or more crops.', function (e) {
 
         if (e) {
                 callMethodForPageChangeAndProgressBarImage(8, 7);
@@ -1605,7 +1605,7 @@ function modifyField() {
                             customAlerts('"update  ' + fieldName + '" ?'
                                 + alertMessage, type_warning, time);
                         } else {
-                            customAlerts( fieldName + '" Updated', type_success, time);
+                            customAlerts( fieldName + '" updated', type_success, time);
                         }
                         totalLandByField = getValueWithComma(totalLandByField);
                         $("#total-acres-value").text(totalLandByField);
@@ -3571,7 +3571,7 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
             var val = Math.ceil((totalLand * maxAcreagePer) / 100);
             currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);}
     } else {
-        customAlerts("The total Maximum acreage percent crop limit must be 1 to 100% ", 'error', 0);
+        customAlerts("The total Maximum crop acreage limit  percent (%) must be less than 100% ", 'error', 0);
         currentTr.find('.maxCropAcreage').val(isNaN(totalLand)?'':totalLand);
         currentTr.find('.maxCropAcreagePercentage').val('100');
     }
