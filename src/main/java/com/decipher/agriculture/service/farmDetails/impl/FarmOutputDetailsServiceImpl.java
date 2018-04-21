@@ -134,37 +134,35 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         List<CropTypeView> cropTypeViewList = (List<CropTypeView>) outputDetails.get("cropTypeView");
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
         for (CropTypeView cropTypeView : cropTypeViewList) {
-            if (cropTypeView.getSelected()) {
-                JSONArray jsonArray1 = getCropLimit(farmInfoView, cropTypeView.getMinimumAcres(), cropTypeView.getMaximumAcres(), cropTypeView, null, outputDetails);
-                JSONObject jsonObject = new JSONObject();
+            if (cropTypeView.getSelected ()) {
+                JSONArray jsonArray1 = getCropLimit ( farmInfoView, cropTypeView.getMinimumAcres (), cropTypeView.getMaximumAcres (), cropTypeView, null, outputDetails );
+                JSONObject jsonObject = new JSONObject ();
 
-                for (int i = 0; i < jsonArray1.size(); i++) {
-
-                    jsonObject = (JSONObject) jsonArray1.get(i);
-
-                    jsonObject.put("cropName", cropTypeView.getCropName());
-                    if (!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
-                        jsonObject.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, false));
+                for (int i = 0; i < jsonArray1.size (); i++) {
+                    jsonObject = (JSONObject) jsonArray1.get ( i );
+                    jsonObject.put ( "cropName", cropTypeView.getCropName () );
+                    if (!jsonObject.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
+                        jsonObject.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, false ) );
                     } else {
-                        jsonObject.put("acreagePlanted", "--");
+                        jsonObject.put ( "acreagePlanted", "--" );
                     }
-                    jsonArray.add(jsonObject);
+                    jsonArray.add ( jsonObject );
                 }
-                if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
+                if (cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )) {
 
-                    JSONArray jsonArrayForFirm = getCropLimit(farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma(cropTypeView.getForwardAcres()), "", cropTypeView, null, outputDetails);
-                    JSONObject jsonObjectForFirm = new JSONObject();
-                    for (int i = 0; i < jsonArrayForFirm.size(); i++) {
-                        jsonObject = (JSONObject) jsonArrayForFirm.get(i);
-                        jsonObjectForFirm.put("cropName", cropTypeView.getCropName() + " (Firm)");
-                        if (!jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
-                            jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
-                        } else if (jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("--")) {
-                            jsonObjectForFirm.put("acreagePlanted", getCropAcreage(cropTypeView, outputDetails, true));
+                    JSONArray jsonArrayForFirm = getCropLimit ( farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma ( cropTypeView.getForwardAcres () ), "", cropTypeView, null, outputDetails );
+                    JSONObject jsonObjectForFirm = new JSONObject ();
+                    for (int i = 0; i < jsonArrayForFirm.size (); i++) {
+                        jsonObjectForFirm = (JSONObject) jsonArrayForFirm.get ( i );
+                        jsonObjectForFirm.put ( "cropName", cropTypeView.getCropName () + " (Firm)" );
+                        if (!jsonObjectForFirm.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
+                            jsonObjectForFirm.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, true ) );
+                        } else if (jsonObjectForFirm.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
+                            jsonObjectForFirm.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, true ) );
                         } else {
-                            jsonObject.put("acreagePlanted", "--");
+                            jsonObjectForFirm.put ( "acreagePlanted", "--" );
                         }
-                        jsonArray.add(jsonObjectForFirm);
+                        jsonArray.add ( jsonObjectForFirm );
                     }
                 }
             }
@@ -590,7 +588,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( farmOutputDetailsView.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ));
                 }
                 if (farmOutputDetailsView.getProfit ().equalsIgnoreCase ( "0" )) {
-                    jsonObject.put ( RATINGFORWORKRETURN, "LIGHT_GRAY" );
+                    jsonObject.put ( RATINGFORWORKRETURN, "Grey" );
                 } else {
                     if (workReturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"RED");
@@ -673,13 +671,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if (profit.equalsIgnoreCase("0 (0.0%)")
                         || profit.equalsIgnoreCase("0 (-0.0%)")){
-                    jsonObject.put ( RATINGFORWORKRETURN,"LIGHT_GRAY" );}
+                    jsonObject.put ( RATINGFORWORKRETURN,"Grey" );}
                 else {
                     if (workreturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"RED");
-                    } else if (0.15 < workReturn && workReturn <= 0.9) {
+                    } else if (0.15 < workreturn && workreturn <= 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"YELLOW" );
-                    } else if (workReturn > 0.9) {
+                    } else if (workreturn > 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Green" );
                     }
                 }
