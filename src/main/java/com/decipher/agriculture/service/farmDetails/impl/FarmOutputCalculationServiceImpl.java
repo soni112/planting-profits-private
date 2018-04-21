@@ -203,26 +203,26 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
                 totalProfit += farmOutputDetailsForField.getProfit ();
             }
 
-//            if (totalUsedAcre > 0 && totalProfit > 0) {
-            for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViews) {
-                farmOutputDetailsForFieldView.setUsedAcresPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getUsedAcresAsDouble () * 100) / totalUsedAcre ) );
-                farmOutputDetailsForFieldView.setUsedCapitalPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getProfitAsDouble () * 100) / totalProfit ) );
-                int acreage = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getProfit ().split ( "//." )[0] ) );
-                int totalProfitInInteger = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalProfit ) ).split ( "//." )[0] ) );
-                int acreageInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (acreage * 100) / totalProfitInInteger ).split ( "//." )[0] ) );
-                int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getUsedAcres ().split ( "//." )[0] ) );
-                int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
-                int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
-                if (acreageInPer != 0||estimateIncomeInPer!=0) {
-                    farmOutputDetailsForFieldView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal ( Double.valueOf ( acreageInPer / estimateIncomeInPer ) ) );
-                } else {
-                    farmOutputDetailsForFieldView.setProfitIndex ( 0.0 );
+            if (totalUsedAcre > 0 && totalProfit > 0) {
+                for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViews) {
+                    farmOutputDetailsForFieldView.setUsedAcresPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getUsedAcresAsDouble () * 100) / totalUsedAcre ) );
+                    farmOutputDetailsForFieldView.setUsedCapitalPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getProfitAsDouble () * 100) / totalProfit ) );
+                    int acreage = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getProfit ().split ( "//." )[0] ) );
+                    int totalProfitInInteger = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalProfit ) ).split ( "//." )[0] ) );
+                    int acreageInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (acreage * 100) / totalProfitInInteger ).split ( "//." )[0] ) );
+                    int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getUsedAcres ().split ( "//." )[0] ) );
+                    int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
+                    int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
+                    if (acreageInPer != 0 && estimateIncomeInPer != 0) {
+                        farmOutputDetailsForFieldView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal((double) (acreageInPer / estimateIncomeInPer)));
+                    } else {
+                        farmOutputDetailsForFieldView.setProfitIndex ( 0.0 );
+                    }
+        //                  farmOutputDetailsForFieldView.setProfitIndex(AgricultureStandardUtils.doubleWithOneDecimal(((farmOutputDetailsForFieldView.getProfitDouble() * 100) / totalProfit) / ((farmOutputDetailsForFieldView.getUsedAcresAsDouble() * 100) / totalUsedAcre)));
+                    farmOutputDetailsForFieldView.setRatio ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetailsForFieldView.getProfitDouble () / farmOutputDetailsForFieldView.getUsedAcresAsDouble () ) );
+                    farmOutputDetailsForFieldView.setRating ( (farmOutputDetailsForFieldView.getProfitIndex () >= 1) ? "Green" : (farmOutputDetailsForFieldView.getProfitIndex () < 1 && farmOutputDetailsForFieldView.getProfitIndex () >= 0.6) ? "Yellow" : (farmOutputDetailsForFieldView.getProfitIndex () < 0.6 /*&& farmOutputDetailsForFieldView.getProfitIndex() > 0.0*/) ? "Red" : "Grey" );
                 }
-//                  farmOutputDetailsForFieldView.setProfitIndex(AgricultureStandardUtils.doubleWithOneDecimal(((farmOutputDetailsForFieldView.getProfitDouble() * 100) / totalProfit) / ((farmOutputDetailsForFieldView.getUsedAcresAsDouble() * 100) / totalUsedAcre)));
-                farmOutputDetailsForFieldView.setRatio ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetailsForFieldView.getProfitDouble () / farmOutputDetailsForFieldView.getUsedAcresAsDouble () ) );
-                farmOutputDetailsForFieldView.setRating ( (farmOutputDetailsForFieldView.getProfitIndex () >= 1) ? "Green" : (farmOutputDetailsForFieldView.getProfitIndex () < 1 && farmOutputDetailsForFieldView.getProfitIndex () >= 0.6) ? "Yellow" : (farmOutputDetailsForFieldView.getProfitIndex () < 0.6 /*&& farmOutputDetailsForFieldView.getProfitIndex() > 0.0*/) ? "Red" : "Grey" );
             }
-//            }
         }
 
         return farmOutputDetailsForFieldViews;
