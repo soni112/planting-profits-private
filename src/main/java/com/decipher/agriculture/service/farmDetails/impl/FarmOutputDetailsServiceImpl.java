@@ -677,9 +677,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 else {
                     if (workreturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"RED");
-                    } else if (0.15 < workReturn && workReturn <= 0.9) {
+                    } else if (0.15 < workreturn && workreturn <= 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"YELLOW" );
-                    } else if (workReturn > 0.9) {
+                    } else if (workreturn > 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Green" );
                     }
                 }
