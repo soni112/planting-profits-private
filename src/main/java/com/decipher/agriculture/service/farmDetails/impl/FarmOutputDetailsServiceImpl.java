@@ -590,7 +590,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( farmOutputDetailsView.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ));
                 }
                 if (farmOutputDetailsView.getProfit ().equalsIgnoreCase ( "0" )) {
-                    jsonObject.put ( RATINGFORWORKRETURN, "LIGHT_GRAY" );
+                    jsonObject.put ( RATINGFORWORKRETURN, "Grey" );
                 } else {
                     if (workReturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"RED");
@@ -673,7 +673,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if (profit.equalsIgnoreCase("0 (0.0%)")
                         || profit.equalsIgnoreCase("0 (-0.0%)")){
-                    jsonObject.put ( RATINGFORWORKRETURN,"LIGHT_GRAY" );}
+                    jsonObject.put ( RATINGFORWORKRETURN,"Grey" );}
                 else {
                     if (workreturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"RED");
