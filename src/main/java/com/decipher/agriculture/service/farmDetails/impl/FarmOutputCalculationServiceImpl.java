@@ -164,7 +164,7 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
                 int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getUsedAcres ().split ( "//." )[0] ) );
                 int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
                 int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
-                if (acreageInPer != 0) {
+                if (acreageInPer != 0 ||estimateIncomeInPer!=0) {
                     farmOutputDetailsView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal ( Double.valueOf ( acreageInPer / estimateIncomeInPer ) ) );
                 } else {
                     farmOutputDetailsView.setProfitIndex ( 0.0 );
@@ -213,7 +213,7 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
                 int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getUsedAcres ().split ( "//." )[0] ) );
                 int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
                 int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
-                if (acreageInPer != 0) {
+                if (acreageInPer != 0||estimateIncomeInPer!=0) {
                     farmOutputDetailsForFieldView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal ( Double.valueOf ( acreageInPer / estimateIncomeInPer ) ) );
                 } else {
                     farmOutputDetailsForFieldView.setProfitIndex ( 0.0 );
