@@ -622,11 +622,11 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 } else {
                     jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
-                    if(cropResourceUsed.get(cropResourceUsageView.getCropResourceUse())== null){
+                    if(cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )||cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )){
                         jsonObject.put("amount","N/A");
                     }
                     else{
-                        jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
+                        jsonObject.put("amount", cropResourceUsageView.getCropResourceUseAmount ());
                     }
                 }
                 jsonArray.add(jsonObject);
