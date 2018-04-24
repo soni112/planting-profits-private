@@ -9,6 +9,7 @@ import com.decipher.agriculture.service.strategyComparison.StrategyComparisonSer
 import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.PlantingProfitLogger;
 import com.decipher.view.form.farmDetails.CropResourceUsageView;
+import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.FarmInfoView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsForFieldView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
@@ -586,102 +587,127 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
     }
 
-    private Map<String, JSONArray> getResourceDetailsForStrategy(Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm){
+    private Map <String, JSONArray> getResourceDetailsForStrategy(Map <FarmCustomStrategyView, JSONObject> strategyDetailsForFarm) {
 
-        JSONArray jsonArrayForResource = new JSONArray();
-        JSONArray jsonArrayForResourceHeader = new JSONArray();
+        JSONArray jsonArrayForResource = new JSONArray ();
+        JSONArray jsonArrayForResourceHeader = new JSONArray ();
+        JSONObject jsonObjectForWorkReturn = new JSONObject ();
 
-        Set<Map.Entry<FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet();
+        Set <Map.Entry <FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet ();
 
         int counter = 0;
-        for (Map.Entry<FarmCustomStrategyView, JSONObject> entry : entries) {
+        for (Map.Entry <FarmCustomStrategyView, JSONObject> entry : entries) {
 
-            FarmCustomStrategyView farmCustomStrategyView = entry.getKey();
-            JSONObject strategyDetails = entry.getValue();
+            FarmCustomStrategyView farmCustomStrategyView = entry.getKey ();
+            JSONObject strategyDetails = entry.getValue ();
 
-            JSONObject jsonObjectForStrategy = new JSONObject();
-            JSONArray jsonArray = new JSONArray();
+            JSONObject jsonObjectForStrategy = new JSONObject ();
+            JSONArray jsonArray = new JSONArray ();
 
-            jsonObjectForStrategy.put("strategyName", farmCustomStrategyView.getStrategyName());
-            jsonObjectForStrategy.put("strategyId", farmCustomStrategyView.getId());
+            jsonObjectForStrategy.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
+            jsonObjectForStrategy.put ( "strategyId", farmCustomStrategyView.getId () );
 
-            Map<String, String> cropResourceUsed = (Map<String, String>) strategyDetails.get("cropResourceUsed");
+            Map <String, String> cropResourceUsed = (Map <String, String>) strategyDetails.get ( "cropResourceUsed" );
+            double variableCostProduction = 0.0;
+            double estimateIncome = 0.0;
+            List <CropTypeView> cropTypeViews = (List <CropTypeView>) strategyDetails.get ( "cropTypeView" );
+            for (CropTypeView cropTypeView : cropTypeViews) {
+                if (cropTypeView.getSelected ()) {
+                    variableCostProduction += cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                }
+            }
+            if (Objects.equals ( farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy (), PlanByStrategy.PLAN_BY_ACRES )) {
+                List <FarmOutputDetailsView> farmOutputDetailsViewList = (List <FarmOutputDetailsView>) strategyDetails.get ( "farmOutputDetails" );
+                for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                    estimateIncome += farmOutputDetailsView.getProfitDouble ();
+                }
+            } else if (Objects.equals ( farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy (), PlanByStrategy.PLAN_BY_FIELDS )) {
+                List <FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List <FarmOutputDetailsForFieldView>) strategyDetails.get ( "farmOutputDetails" );
+                for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
+                    estimateIncome += farmOutputDetailsForFieldView.getProfitAsDouble ();
+                }
+            }
+            if (estimateIncome == 0.0 || variableCostProduction == 0.0) {
+                jsonObjectForWorkReturn.put ( "amount", "NA" );
+            } else {
+                double returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / variableCostProduction ));
+                jsonObjectForWorkReturn.put ( "amount", "" + returnWorkingCapital );
+            }
 
+            for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDetails.get ( "resourceList" )) {
 
-            for (CropResourceUsageView cropResourceUsageView : (List<CropResourceUsageView>)strategyDetails.get("resourceList")) {
-
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("strategyName", farmCustomStrategyView.getStrategyName());
-                if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")){
-//                    jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
-                    jsonObject.put("name", "Working Capital Used");
-                    jsonObject.put("amount", "$" + cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
-                } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
-//                    jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
-                    jsonObject.put("name", "Acreage Assigned");
-                    jsonObject.put("amount", cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
+                JSONObject jsonObject = new JSONObject ();
+                jsonObject.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
+                if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
+                    jsonObject.put ( "name", "Working Capital Used" );
+                    jsonObject.put ( "amount", "$" + cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) );
+                } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
+                    jsonObject.put ( "name", "Acreage Assigned" );
+                    jsonObject.put ( "amount", cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) );
                 } else {
-                    jsonObject.put("name", cropResourceUsageView.getCropResourceUse());
-                    if(cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )||cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )){
-                        jsonObject.put("amount","N/A");
-                    }
-                    else{
-                        jsonObject.put("amount", cropResourceUsageView.getCropResourceUseAmount ());
+                    jsonObject.put ( "name", cropResourceUsageView.getCropResourceUse () );
+                    if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ) || cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )) {
+                        jsonObject.put ( "amount", "N/A" );
+                    } else {
+                        jsonObject.put ( "amount", cropResourceUsageView.getCropResourceUseAmount () );
                     }
                 }
-                jsonArray.add(jsonObject);
+                jsonArray.add ( jsonObject );
                 if (counter == 0) {
-                    if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")){
+                    if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
 //                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
-                        jsonArrayForResourceHeader.add("Acreage Assigned");
-                    } else if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")){
-                        jsonArrayForResourceHeader.add("Working Capital Used");
+                        jsonArrayForResourceHeader.add ( "Acreage Assigned" );
+                    } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
+                        jsonArrayForResourceHeader.add ( "Working Capital Used" );
 //                        jsonArrayForResourceHeader.add ( "Return on Working Capital" );
                     } else {
-                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
+                        jsonArrayForResourceHeader.add ( cropResourceUsageView.getCropResourceUse () );
                     }
                 }
             }
-            jsonObjectForStrategy.put("details", jsonArray);
+            jsonArray.add ( jsonObjectForWorkReturn );
 
-            jsonArrayForResource.add(jsonObjectForStrategy);
+            jsonObjectForStrategy.put ( "details", jsonArray );
+
+            jsonArrayForResource.add ( jsonObjectForStrategy );
             counter++;
         }
 
-        Map<String, JSONArray> resourceDetails = new HashMap<>();
+        Map <String, JSONArray> resourceDetails = new HashMap <> ();
 
         for (Object o : jsonArrayForResource) {
 
-            JSONObject jsonObject = (JSONObject)o;
+            JSONObject jsonObject = (JSONObject) o;
 
-            String strategyNameObject = jsonObject.get("strategyName").toString();
-            JSONArray resourceDetailsObject = (JSONArray) jsonObject.get("details");
+            String strategyNameObject = jsonObject.get ( "strategyName" ).toString ();
+            JSONArray resourceDetailsObject = (JSONArray) jsonObject.get ( "details" );
 
-            for(Object o1 :jsonArrayForResourceHeader) {
+            for (Object o1 : jsonArrayForResourceHeader) {
                 Boolean flag = false;
-                String headerResourceName = o1.toString();
+                String headerResourceName = o1.toString ();
 
                 for (Object s : resourceDetailsObject) {
-                    JSONObject resourceNameInDetails = (JSONObject)s;
-                    String resourceName = resourceNameInDetails.get("name").toString();
-                    if (resourceName.equals(headerResourceName)) {
+                    JSONObject resourceNameInDetails = (JSONObject) s;
+                    String resourceName = resourceNameInDetails.get ( "name" ).toString ();
+                    if (resourceName.equals ( headerResourceName )) {
                         flag = true;
                         break;
                     }
                 }
 
-                if(!flag){
-                    JSONObject jsonObjectAdd = new JSONObject();
-                    jsonObjectAdd.put("amount", 0);
-                    jsonObjectAdd.put("strategyName", strategyNameObject);
-                    jsonObjectAdd.put("name", headerResourceName);
-                    resourceDetailsObject.add(jsonObjectAdd);
+                if (!flag) {
+                    JSONObject jsonObjectAdd = new JSONObject ();
+                    jsonObjectAdd.put ( "amount", 0 );
+                    jsonObjectAdd.put ( "strategyName", strategyNameObject );
+                    jsonObjectAdd.put ( "name", headerResourceName );
+                    resourceDetailsObject.add ( jsonObjectAdd );
                 }
             }
         }
 
-        resourceDetails.put("jsonArrayForResource", jsonArrayForResource);
-        resourceDetails.put("jsonArrayForResourceHeader", jsonArrayForResourceHeader);
+        jsonArrayForResourceHeader.add ( "Return on Working Capital Use" );
+        resourceDetails.put ( "jsonArrayForResource", jsonArrayForResource );
+        resourceDetails.put ( "jsonArrayForResourceHeader", jsonArrayForResourceHeader );
 
         return resourceDetails;
 
