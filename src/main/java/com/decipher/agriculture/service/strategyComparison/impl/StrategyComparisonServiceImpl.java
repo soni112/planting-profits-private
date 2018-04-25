@@ -591,7 +591,6 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         JSONArray jsonArrayForResource = new JSONArray ();
         JSONArray jsonArrayForResourceHeader = new JSONArray ();
-        JSONObject jsonObjectForWorkReturn = new JSONObject ();
 
         Set <Map.Entry <FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet ();
 
@@ -608,8 +607,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             jsonObjectForStrategy.put ( "strategyId", farmCustomStrategyView.getId () );
 
             Map <String, String> cropResourceUsed = (Map <String, String>) strategyDetails.get ( "cropResourceUsed" );
-            double variableCostProduction = 0.0;
-            double estimateIncome = 0.0;
+            double variableCostProduction = 0.0, estimateIncome = 0.0, returnWorkingCapital=0.0;
             List <CropTypeView> cropTypeViews = (List <CropTypeView>) strategyDetails.get ( "cropTypeView" );
             for (CropTypeView cropTypeView : cropTypeViews) {
                 if (cropTypeView.getSelected ()) {
@@ -626,16 +624,13 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                 for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
                     estimateIncome += farmOutputDetailsForFieldView.getProfitAsDouble ();
                 }
-            }
-            if (estimateIncome == 0.0 || variableCostProduction == 0.0) {
-                jsonObjectForWorkReturn.put ( "amount", "NA" );
-            } else {
-                double returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / variableCostProduction ));
-                jsonObjectForWorkReturn.put ( "amount", "" + returnWorkingCapital );
-            }
-
+            }if(variableCostProduction!=0){
+            returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / variableCostProduction ));}
+            int index=0;
+            int sizeOfList=((List<CropResourceUsageView>) strategyDetails.get ( "resourceList"  )).size ();
             for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDetails.get ( "resourceList" )) {
-
+                index++;
+                JSONObject jsonObjectForWorkReturn = new JSONObject ();
                 JSONObject jsonObject = new JSONObject ();
                 jsonObject.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
                 if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
@@ -646,29 +641,34 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put ( "amount", cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) );
                 } else {
                     jsonObject.put ( "name", cropResourceUsageView.getCropResourceUse () );
+
                     if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ) || cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )) {
                         jsonObject.put ( "amount", "N/A" );
                     } else {
                         jsonObject.put ( "amount", cropResourceUsageView.getCropResourceUseAmount () );
                     }
                 }
+                if (index == sizeOfList) {
+                    jsonObjectForWorkReturn.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
+                    jsonObjectForWorkReturn.put ( "name", "Return on Working Capital Use" );
+                    jsonObjectForWorkReturn.put ( "amount", "" + returnWorkingCapital );
+                }
                 jsonArray.add ( jsonObject );
+                if (!(jsonObjectForWorkReturn.isEmpty ())) {
+                    jsonArray.add ( jsonObjectForWorkReturn );
+                }
                 if (counter == 0) {
                     if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
 //                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
                         jsonArrayForResourceHeader.add ( "Acreage Assigned" );
                     } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
                         jsonArrayForResourceHeader.add ( "Working Capital Used" );
-//                        jsonArrayForResourceHeader.add ( "Return on Working Capital" );
                     } else {
                         jsonArrayForResourceHeader.add ( cropResourceUsageView.getCropResourceUse () );
                     }
                 }
             }
-            jsonArray.add ( jsonObjectForWorkReturn );
-
             jsonObjectForStrategy.put ( "details", jsonArray );
-
             jsonArrayForResource.add ( jsonObjectForStrategy );
             counter++;
         }
@@ -687,7 +687,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                 String headerResourceName = o1.toString ();
 
                 for (Object s : resourceDetailsObject) {
-                    JSONObject resourceNameInDetails = (JSONObject) s;
+                            JSONObject resourceNameInDetails = (JSONObject) s;
                     String resourceName = resourceNameInDetails.get ( "name" ).toString ();
                     if (resourceName.equals ( headerResourceName )) {
                         flag = true;
