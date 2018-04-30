@@ -488,3 +488,6 @@ blockquote cite {
     line-height: 43px;
     text-align: center;
 }
+.amcharts-export-menu {
+    display: none !important;
+}
