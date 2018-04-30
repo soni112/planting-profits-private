@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by abhishek on 20/4/16.
  */
 public interface StrategyComparisonService {
-    JSONObject getGenueComparisonResult( FarmInfoView farmInfoView,int[] strategyIdArray)throws JSONException;
+    JSONObject getGranularComparisonResult( FarmInfoView farmInfoView)throws JSONException;
 
     JSONObject getGraphComparisonResult(StrategyComparisonType xAxisType, StrategyComparisonType yAxisType, FarmInfoView farmInfoView, int[] strategyIdArray) throws JSONException;
 

@@ -1,5 +1,6 @@
 package com.decipher.agriculture.viewcontroller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,8 +64,11 @@ public class StrategyViewController {
 		httpSessionService.removeAttribute("strategyContainer");
 		httpSessionService.removeAttribute("allStrategyOutputDetailsContainer");
 		httpSessionService.removeAttribute("strategyIdArray");
+       int strategyIdArray[]=null;
 
-		Map<String, Object> model = new HashMap<String, Object>();
+
+
+        Map<String, Object> model = new HashMap<String, Object>();
 		PlantingProfitLogger.info("User requesting for view-farm-strategy.htm page .... ");
 
 		Farm farm = farmService.getFarmById(farmId);
@@ -83,11 +87,43 @@ public class StrategyViewController {
 			JSONObject baseLineOutputDetails = farmDetailsContainerService.getBaseLineDetails(farm);
 
 			model.put("cropTypeViewList", baseLineOutputDetails.get("cropTypeView"));
-			model.put ( "outputDetail" ,baseLineOutputDetails.get ( "farmOutputDetails" ));
+            JsonResponse response = new JsonResponse();
 
+            Map<String, JSONArray> granularComparisonResult = strategyComparisonService.getGranularComparisonResult ( farmInfoView);
+            JSONArray jsonArrayForHighRisk=granularComparisonResult.get ( "jsonArrayForHighRiskCropForGranular" );
+            JSONArray jsonArrayForConservationCrop= granularComparisonResult.get ( "jsonArrayForConservationCropForGranular" );
+            JSONArray jsonArrayEstimateIncome=granularComparisonResult.get ( "DataForStrategy" );
+            HashMap <String, String> detailsDataForGenuer;
+
+            ArrayList list=new ArrayList (  );
+
+            for (int i = 0; i < jsonArrayEstimateIncome.size (); i++) {
+                detailsDataForGenuer=new HashMap <> (  );
+                JSONObject jsonObjectForHighRisk   = (JSONObject) jsonArrayForHighRisk.get ( i );
+                JSONObject jsonObjectConservationCrop   = (JSONObject) jsonArrayForConservationCrop.get ( i );
+                String strategyName   = (String) jsonObjectForHighRisk.get ( "strategyName" );
+                detailsDataForGenuer.put ("strategyName",strategyName );
+                JSONObject jsonObjectEstimateIncome   = (JSONObject) jsonArrayEstimateIncome.get ( i );
+                detailsDataForGenuer.put ( "EstimateIncome",jsonObjectEstimateIncome.get ( "EstimateIncome" ).toString ());
+                detailsDataForGenuer.put ( "ReturnWorkingCapital",jsonObjectEstimateIncome.get ( "returnWorkingCapital" ).toString ());
+
+                JSONArray jsonArrayDetails= (JSONArray) jsonObjectForHighRisk.get ( "details" );
+                JSONArray jsonArrayConservationDetails= (JSONArray) jsonObjectConservationCrop.get ( "details" );
+//                Map<String,String> hashMapForAverageInConservationCrop= (Map <String, String>)  jsonArrayConservationDetails.get ( 1 );
+                Map<String,String> hashMapForAverageInConservationCrop= (Map <String, String>)  jsonArrayConservationDetails.get ( 1 );
+
+                Map <String,String>hashMapForEstIncomeInOneCrop= (Map <String, String>) jsonArrayDetails.get ( 2 );
+                detailsDataForGenuer.put ("EstIncomeInOneCrop",hashMapForEstIncomeInOneCrop.get ( "amount" ) );
+                Map <String,String>hashMapForEstIncomeInForwardSale= (Map <String, String>) jsonArrayDetails.get ( 4);
+                detailsDataForGenuer.put ("EstIncomeInForwardSale",hashMapForEstIncomeInForwardSale.get ( "amount" ) );
+                detailsDataForGenuer.put ("AverageInConservationCrop",hashMapForAverageInConservationCrop.get ( "amount" ));
+
+                list.add (detailsDataForGenuer );
+
+            }
+            model.put ( "dataForGenuerChart",list );
 			List<FarmCustomStrategyView> farmCustomStrategyViewListView = farmCustomStrategyService.getDataForCustomStrategy(farm.getFarmId());
-			if (farmCustomStrategyViewListView.size() > 0) {
-
+				if (farmCustomStrategyViewListView.size() > 0) {
 				model.put("farmCustomStrategyList", farmCustomStrategyViewListView);
 				model.put("strategyComparisonType", StrategyComparisonType.values());
 				model.put("cropDetailsForSelection", farmCustomStrategyService.getCropDetailsForSelection(farmInfoView, baseLineOutputDetails));
@@ -103,7 +139,7 @@ public class StrategyViewController {
         return new ModelAndView(page, "model", model);
 
 	}
-	
+
 	/**
 	 * @added - Abhishek
 	 * @date - 27-11-2015
