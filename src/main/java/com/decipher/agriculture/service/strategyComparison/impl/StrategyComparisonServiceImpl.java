@@ -317,13 +317,47 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
         return jsonObject;
     }
     @Override
-    public JSONObject getGenueComparisonResult( FarmInfoView farmInfoView,int[] strategyIdArray)throws JSONException {
+    public JSONObject getGranularComparisonResult( FarmInfoView farmInfoView)throws JSONException {
         Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm(farmInfoView);
-
         Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm);
+//        Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, strategyIdArray);
+
+        Set <Map.Entry <FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet ();
+        JSONArray jsonArrayEstimateIncome = new JSONArray ();
+        for (Map.Entry <FarmCustomStrategyView, JSONObject> entry : entries) {
+            JSONObject jsonObjectEstimateIncome = new JSONObject ();
+            FarmCustomStrategyView farmCustomStrategyView = entry.getKey ();
+            JSONObject strategyDetails = entry.getValue ();
+            int estimateIncome = 0;
+            double variableCostProduction = 0.0;
+
+            List <CropTypeView> cropTypeViews = (List <CropTypeView>) strategyDetails.get ( "cropTypeView" );
+            for (CropTypeView cropTypeView : cropTypeViews) {
+                if (cropTypeView.getSelected ()) {
+                    variableCostProduction += cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                }
+            }
+            if (Objects.equals ( farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy (), PlanByStrategy.PLAN_BY_ACRES )) {
+                List <FarmOutputDetailsView> farmOutputDetailsViewList = (List <FarmOutputDetailsView>) strategyDetails.get ( "farmOutputDetails" );
+                for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                    estimateIncome += farmOutputDetailsView.getProfitAsDouble ();
+                }
+            } else if (Objects.equals ( farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy (), PlanByStrategy.PLAN_BY_FIELDS )) {
+                List <FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List <FarmOutputDetailsForFieldView>) strategyDetails.get ( "farmOutputDetails" );
+                for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
+                    estimateIncome += farmOutputDetailsForFieldView.getProfitDouble ();
+                }
+            }
+
+            double returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / variableCostProduction ));
+            jsonObjectEstimateIncome.put ( "EstimateIncome",estimateIncome);
+            jsonObjectEstimateIncome.put ( "returnWorkingCapital", "" + returnWorkingCapital );
+            jsonArrayEstimateIncome.add ( jsonObjectEstimateIncome);        }
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("jsonArrayForConservationCrop", highRiskAngConservationForStrategy.get("jsonArrayForConservationCrop"));
+        jsonObject.put ( "DataForStrategy",jsonArrayEstimateIncome );
+        jsonObject.put("jsonArrayForHighRiskCropForGranular", highRiskAngConservationForStrategy.get("jsonArrayForHighRiskCrop"));
+        jsonObject.put("jsonArrayForConservationCropForGranular", highRiskAngConservationForStrategy.get("jsonArrayForConservationCrop"));
 
 
         return jsonObject;

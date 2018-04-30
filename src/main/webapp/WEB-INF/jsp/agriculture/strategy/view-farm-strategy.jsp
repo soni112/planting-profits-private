@@ -41,13 +41,14 @@
                             <div class="update_values result_str">
                                 <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right">Back to Baseline</a>
                                 <div id="tableSectionForStrategy" class="text-center">
-                                    <div class="pull-right cursor-pointer">
-                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
-                                    </div>
-                                    <button class="btn btn-default pull-right"
+                                    <button class="alertify-button alertify-button-ok pull-right"
                                             onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
                                         <i class="fa fa-bar-chart-o"></i> Granular Comparison
                                     </button>
+                                    <div class="pull-right cursor-pointer">
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
+                                    </div>
+
                                     <div class="clearfix"></div>
 
                                     <div class="addcrop">
@@ -291,33 +292,31 @@
                                         </tr>
 
                                         </thead>
-                                        <tbody id="enhancedProfitOutpou">
-
-                                        <c:forEach var="farmCustomStrategyView" items="${model.farmCustomStrategyList}">
+                                        <tbody id="enhancedProfitOutpout">
+                                        <c:set var = "i" value = "${1}"/>
+                                        <c:forEach var="dataForGenuerChart" items="${model.dataForGenuerChart}">
                                         <tr>
                                             <td class="success">
-                                                <c:set value="${farmCustomStrategyView.strategyName}" var="jugad"/>
-                                                    ${jugad}
+                                            <h4 style="color : #337ab7; cursor : pointer" onclick="openStrategyDetailsPopup('{{= strategy.id}}'); return false;">${dataForGenuerChart.strategyName}<h4>
+
+                                            <%--<small class="est-income-total">${dataForGenuerChart.strategyName}</small>--%>
                                             </td>
                                             <td class="success">
-                                                <c:set var="total" value="${0}"/>
-                                                <c:forEach var="outputDetail" items="${model.outputDetail}">
-                                                <fmt:parseNumber var="totalEstmate" type="number" value="${outputDetail.profit}"/>
-                                                <c:set var="total" value="${total + totalEstmate}" />
 
-                                            </c:forEach>
                                             <div class="est-income-graph">
-                                                    <span class="est-income-category">1</span>
-                                                        <small class="est-income-total">$ ${total}</small>
+                                                    <span class="est-income-category">${i}</span>
+                                                        <small class="est-income-total">$ ${dataForGenuerChart.EstimateIncome}</small>
 
                                                 </div>
                                             </td>
                                             <td colspan="4" class="success">
-                                                <div align="right" id="cropGaugeMeter${jugad}${total}" class="progress-graphs gauge_meter pull-left"></div>
-
-                                                <div align="center" id="marketGaugeMeter${jugad}${total}" class="progress-graphs gauge_meter pull-left"></div>
-
-                                                <div align="left" id="productionGaugeMeter${jugad}${total}" class="progress-graphs gauge_meter pull-left"></div>
+                                                <div align="right" id="cropGaugeMeter${i}" value="${dataForGenuerChart.EstIncomeInOneCrop}" class="progress-graphs gauge_meter pull-left"></div>
+                                                <div align="center" id="marketGaugeMeter${i}" value="${dataForGenuerChart.EstIncomeInForwardSale}" class="progress-graphs gauge_meter pull-left">
+                                                </div>
+                                                <%--<div align="left" id="productionGaugeMeter${dataForGenuerChart.EstIncomeInForwardSale}" value="${dataForGenuerChart.EstIncomeInForwardSale}" class="progress-graphs gauge_meter pull-left"></div>--%>
+                                                <div align="left" id="productionGaugeMeter" >
+                                                <small class=" gauge_meter pull-left">Coming-Soon</small>
+                                                </div>
 
                                                 <div class="gauge_meter">
                                                     <div class="secnario-analysis">
@@ -330,18 +329,38 @@
                                             <td colspan="2" class="success">
                                                 <div style="width: 50%;float: left">
                                                     <div class="est-income-graph">
-                                                        <span class="est-income-category">1</span>
-                                                        <small class="est-income-total">$ ${total}</small>
+                                                        <span class="est-income-category">${i}</span>
+                                                        <small class="est-income-total">$ ${dataForGenuerChart.ReturnWorkingCapital}</small>
                                                     </div>
                                                 </div>
                                                 <div style="width: 50%;float: left">
-                                                    <div class="est-income-graph">
-                                                        <i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>
-                                                    </div>
+                                                    <c:if test="${dataForGenuerChart.AverageInConservationCrop>=50.0}">
+                                                        <div class="secnario-analysis">
+                                                            <i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>
+                                                            <small class="est-income-total">$ ${dataForGenuerChart.AverageInConservationCrop}</small>
+
+                                                        </div>
+                                                    </c:if>
+                                                    <c:if test="${dataForGenuerChart.AverageInConservationCrop<50.0 && dataForGenuerChart.AverageInConservationCrop>25.0}">
+                                                        <div class="secnario-analysis">
+                                                            <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>
+                                                            <small class="est-income-total">$ ${dataForGenuerChart.AverageInConservationCrop}</small>
+
+                                                        </div>
+                                                    </c:if>
+                                                    <c:if test="${dataForGenuerChart.AverageInConservationCrop<25.0}">
+                                                        <div class="secnario-analysis-red">
+                                                            <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>
+                                                            <small class="est-income-total">$ ${dataForGenuerChart.AverageInConservationCrop}</small>
+
+                                                        </div>
+                                                    </c:if>
+
                                                 </div>
 
                                             </td>
                                         </tr>
+                                            <c:set var = "i" value = "${i+1}"/>
                                         </c:forEach>
 
                                         </tbody>

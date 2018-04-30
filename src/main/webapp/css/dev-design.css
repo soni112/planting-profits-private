@@ -456,6 +456,7 @@ blockquote cite {
     text-align:  center;
     display: inherit;
     font-size: 8px;
+    font-weight: bold;
 }
 .secnario-analysis{
     width: 50px;
@@ -487,4 +488,7 @@ blockquote cite {
     font-size: 26px;
     line-height: 43px;
     text-align: center;
+}
+.amcharts-export-menu {
+    display: none !important;
 }

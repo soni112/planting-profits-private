@@ -52,12 +52,12 @@ function toggleTableSection(){
 }
 function buildGaugeMeterComponent() {
 
-    $('#enhancedProfitOutpou').find('tr').each(function () {
+    $('#enhancedProfitOutpout').find('tr').each(function () {
         var val = 20;
         $(this).find('.progress-graphs').each(function () {
             var data = {};
             data.target = $(this).attr('id');
-            data.value = val + 30;
+            data.value =$(this).attr('value');
             prepareVarianceGenue(data);
         });
     });
@@ -129,7 +129,7 @@ function prepareVarianceGenue(object) {
                 if ( gaugeChart.arrows[ 0 ] ) {
                     if ( gaugeChart.arrows[ 0 ].setValue ) {
                         gaugeChart.arrows[ 0 ].setValue( object.value );
-                        //gaugeChart.axes[ 0 ].setBottomText( value + " km/h" );
+                        gaugeChart.axes[ 0 ].setBottomText( value + " %" );
                     }
                 }
             }
@@ -680,18 +680,16 @@ function generateReport(){
 function getAndApplyComparisonDataInGenue() {
     var farmID = $('#sidemenu').find('.open').attr('delta');
     var strategyArray = localStorage.getItem("strategyArrayForComparison");
-    var ganueData=50;
 
 
     $.ajax({
-        url: 'ajaxRequest/getStrategyComparisonChartDataInGenue',
+        url: 'ajaxRequest/getStrategyComparisonGenurData',
         type: 'POST',
         beforeSend: showLoadingImageForStrategy(),
         data: {
 
             farmId : farmID,
             strategyArray: strategyArray,
-            ganueData:ganueData
         },
         success: function (response) {
             var status = response.status;
