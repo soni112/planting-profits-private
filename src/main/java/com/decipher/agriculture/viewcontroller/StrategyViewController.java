@@ -1,5 +1,6 @@
 package com.decipher.agriculture.viewcontroller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import com.decipher.agriculture.service.farm.FarmInfoService;
 import com.decipher.agriculture.service.farm.FarmService;
 import com.decipher.agriculture.service.farmDetails.FarmDetailsContainerService;
 import com.decipher.agriculture.service.strategyComparison.StrategyComparisonService;
+import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.JsonResponse;
 import com.decipher.util.PlantingProfitLogger;
 
@@ -87,41 +89,6 @@ public class StrategyViewController {
 			JSONObject baseLineOutputDetails = farmDetailsContainerService.getBaseLineDetails(farm);
 
 			model.put("cropTypeViewList", baseLineOutputDetails.get("cropTypeView"));
-            JsonResponse response = new JsonResponse();
-
-            Map<String, JSONArray> granularComparisonResult = strategyComparisonService.getGranularComparisonResult ( farmInfoView);
-            JSONArray jsonArrayForHighRisk=granularComparisonResult.get ( "jsonArrayForHighRiskCropForGranular" );
-            JSONArray jsonArrayForConservationCrop= granularComparisonResult.get ( "jsonArrayForConservationCropForGranular" );
-            JSONArray jsonArrayEstimateIncome=granularComparisonResult.get ( "DataForStrategy" );
-            HashMap <String, String> detailsDataForGenuer;
-
-            ArrayList list=new ArrayList (  );
-
-            for (int i = 0; i < jsonArrayEstimateIncome.size (); i++) {
-                detailsDataForGenuer=new HashMap <> (  );
-                JSONObject jsonObjectForHighRisk   = (JSONObject) jsonArrayForHighRisk.get ( i );
-                JSONObject jsonObjectConservationCrop   = (JSONObject) jsonArrayForConservationCrop.get ( i );
-                String strategyName   = (String) jsonObjectForHighRisk.get ( "strategyName" );
-                detailsDataForGenuer.put ("strategyName",strategyName );
-                JSONObject jsonObjectEstimateIncome   = (JSONObject) jsonArrayEstimateIncome.get ( i );
-                detailsDataForGenuer.put ( "EstimateIncome",jsonObjectEstimateIncome.get ( "EstimateIncome" ).toString ());
-                detailsDataForGenuer.put ( "ReturnWorkingCapital",jsonObjectEstimateIncome.get ( "returnWorkingCapital" ).toString ());
-
-                JSONArray jsonArrayDetails= (JSONArray) jsonObjectForHighRisk.get ( "details" );
-                JSONArray jsonArrayConservationDetails= (JSONArray) jsonObjectConservationCrop.get ( "details" );
-//                Map<String,String> hashMapForAverageInConservationCrop= (Map <String, String>)  jsonArrayConservationDetails.get ( 1 );
-                Map<String,String> hashMapForAverageInConservationCrop= (Map <String, String>)  jsonArrayConservationDetails.get ( 1 );
-
-                Map <String,String>hashMapForEstIncomeInOneCrop= (Map <String, String>) jsonArrayDetails.get ( 2 );
-                detailsDataForGenuer.put ("EstIncomeInOneCrop",hashMapForEstIncomeInOneCrop.get ( "amount" ) );
-                Map <String,String>hashMapForEstIncomeInForwardSale= (Map <String, String>) jsonArrayDetails.get ( 4);
-                detailsDataForGenuer.put ("EstIncomeInForwardSale",hashMapForEstIncomeInForwardSale.get ( "amount" ) );
-                detailsDataForGenuer.put ("AverageInConservationCrop",hashMapForAverageInConservationCrop.get ( "amount" ));
-
-                list.add (detailsDataForGenuer );
-
-            }
-            model.put ( "dataForGenuerChart",list );
 			List<FarmCustomStrategyView> farmCustomStrategyViewListView = farmCustomStrategyService.getDataForCustomStrategy(farm.getFarmId());
 				if (farmCustomStrategyViewListView.size() > 0) {
 				model.put("farmCustomStrategyList", farmCustomStrategyViewListView);
@@ -167,33 +134,91 @@ public class StrategyViewController {
 	public @ResponseBody JsonResponse getStrategyForFarm(@RequestParam(value = "farmId", required = false) int farmId,
 														 @RequestParam(value = "strategyIdArray[]", required = false) int[] strategyIdArray){
 
-		httpSessionService.removeAttribute("strategyIdArray");
-		JsonResponse jsonResponse = new JsonResponse();
+        httpSessionService.removeAttribute ( "strategyIdArray" );
+        JsonResponse jsonResponse = new JsonResponse ();
 
-		FarmInfoView farmInfoView = farmService.getBaselineFarmDetails(farmId);
+        FarmInfoView farmInfoView = farmService.getBaselineFarmDetails ( farmId );
 
-		JSONObject strategyComparisonDetails;
-		try {
-			strategyComparisonDetails = strategyComparisonService.getStrategyComparisonDetails(farmInfoView, strategyIdArray);
-		} catch (JSONException e) {
-			strategyComparisonDetails = new JSONObject();
-			PlantingProfitLogger.error(e);
-		}
+        JSONObject strategyComparisonDetails;
+        ArrayList list = new ArrayList ();
 
-		jsonResponse.setResult(strategyComparisonDetails);
-		jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
+        try {
+            strategyComparisonDetails = strategyComparisonService.getStrategyComparisonDetails ( farmInfoView, strategyIdArray );
+            Map <String, JSONArray> granularComparisonResult = strategyComparisonService.getGranularComparisonResult ( farmInfoView, strategyIdArray );
+            JSONArray jsonArrayForHighRisk = granularComparisonResult.get ( "jsonArrayForHighRiskCropForGranular" );
+            JSONArray jsonArrayForConservationCrop = granularComparisonResult.get ( "jsonArrayForConservationCropForGranular" );
+            JSONArray jsonArrayStrategyData = granularComparisonResult.get ( "DataForStrategy" );
+            JSONArray jsonArrayForStrategy = granularComparisonResult.get ( "jsonArrayForStrategy" );
 
-		return jsonResponse;
-	}
+            HashMap <String, String> detailsDataForGauge;
+            String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size ()];
+            for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
+                JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get ( i );
+                returnWorkingCapitalArray[i] = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
+            }
+            for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
+                for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
+                    if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( returnWorkingCapitalArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( returnWorkingCapitalArray[l] ) )) {
+                        String temp = returnWorkingCapitalArray[i];
+                        returnWorkingCapitalArray[i] = returnWorkingCapitalArray[l];
+                        returnWorkingCapitalArray[l] = temp;
+                    }
 
-	@RequestMapping(value = "getVarianceGraphDetails", method = RequestMethod.POST)
-	public @ResponseBody JsonResponse getVarianceGraphDetails(@RequestParam(value = "farmId", required = false) int farmId,
-															  @RequestParam(value = "strategyIdArray[]", required = false) int[] strategyIdArray,
-															  @RequestParam(value = "cropPriceSelection[]", required = false) int[] cropPriceSelection,
-															  @RequestParam(value = "cropYieldSelection[]", required = false) int[] cropYieldSelection,
-															  @RequestParam(value = "cropProductionCostSelection[]", required = false) int[] cropProductionCostSelection,
-															  @RequestParam(value = "rangeValues", required = false) String rangeValues) throws JSONException {
-		JsonResponse response = new JsonResponse();
+                }
+            }
+            for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
+                detailsDataForGauge = new HashMap <> ();
+                FarmCustomStrategyView farmCustomStrategyView = (FarmCustomStrategyView) jsonArrayForStrategy.get ( i );
+                JSONObject jsonObjectForHighRisk = (JSONObject) jsonArrayForHighRisk.get ( i );
+                JSONObject jsonObjectConservationCrop = (JSONObject) jsonArrayForConservationCrop.get ( i );
+                JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get ( i );
+
+                detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString () );
+                detailsDataForGauge.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
+                detailsDataForGauge.put ( "EstimateIncome", jsonObjectStrategyData.get ( "EstimateIncome" ).toString () );
+                detailsDataForGauge.put ( "ReturnWorkingCapital", jsonObjectStrategyData.get ( "returnWorkingCapital" ).toString () );
+                String tt = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
+                int count = 0;
+                for (String returnWorkingCapital :
+                        returnWorkingCapitalArray) {
+                    count++;
+                    if (returnWorkingCapital.equals ( tt )) {
+                        detailsDataForGauge.put ( "count", "" + count );
+                        break;
+                    }
+                }
+
+                JSONArray jsonArrayDetails = (JSONArray) jsonObjectForHighRisk.get ( "details" );
+                JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationCrop.get ( "details" );
+                Map <String, String> hashMapForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
+                Map <String, String> hashMapForEstIncomeInOneCrop = (Map <String, String>) jsonArrayDetails.get ( 2 );
+                detailsDataForGauge.put ( "EstIncomeInOneCrop", hashMapForEstIncomeInOneCrop.get ( "amount" ) );
+                Map <String, String> hashMapForEstIncomeInForwardSale = (Map <String, String>) jsonArrayDetails.get ( 4 );
+                detailsDataForGauge.put ( "EstIncomeInForwardSale", hashMapForEstIncomeInForwardSale.get ( "amount" ) );
+                detailsDataForGauge.put ( "AverageInConservationCrop", hashMapForAverageInConservationCrop.get ( "amount" ) );
+                list.add ( detailsDataForGauge );
+                strategyComparisonDetails.put ( "jsonArrayForGaugeChart", list );
+
+            }
+        } catch (JSONException e) {
+            strategyComparisonDetails = new JSONObject ();
+            PlantingProfitLogger.error ( e );
+        }
+        jsonResponse.setResult ( strategyComparisonDetails );
+        jsonResponse.setStatus ( JsonResponse.RESULT_SUCCESS );
+
+        return jsonResponse;
+    }
+
+    @RequestMapping(value = "getVarianceGraphDetails", method = RequestMethod.POST)
+    public @ResponseBody
+    JsonResponse getVarianceGraphDetails(@RequestParam(value = "farmId", required = false) int farmId,
+                                         @RequestParam(value = "strategyIdArray[]", required = false) int[] strategyIdArray,
+                                         @RequestParam(value = "cropPriceSelection[]", required = false) int[] cropPriceSelection,
+                                         @RequestParam(value = "cropYieldSelection[]", required = false) int[] cropYieldSelection,
+                                         @RequestParam(value = "cropProductionCostSelection[]", required = false) int[] cropProductionCostSelection,
+                                         @RequestParam(value = "rangeValues", required = false) String rangeValues) throws JSONException {
+        JsonResponse response = new JsonResponse ();
 
 		JSONParser jsonParser = new JSONParser();
 		JSONObject rangeValuesObject = new JSONObject();

@@ -317,15 +317,15 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
         return jsonObject;
     }
     @Override
-    public JSONObject getGranularComparisonResult( FarmInfoView farmInfoView)throws JSONException {
+    public JSONObject getGranularComparisonResult( FarmInfoView farmInfoView,int[] strategyIdArray)throws JSONException {
         Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm(farmInfoView);
         Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm);
-//        Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, strategyIdArray);
+        Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, strategyIdArray);
 
         Set <Map.Entry <FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet ();
-        JSONArray jsonArrayEstimateIncome = new JSONArray ();
+        JSONArray jsonArrayStrategyData = new JSONArray ();
         for (Map.Entry <FarmCustomStrategyView, JSONObject> entry : entries) {
-            JSONObject jsonObjectEstimateIncome = new JSONObject ();
+            JSONObject jsonObjectStrategyData = new JSONObject ();
             FarmCustomStrategyView farmCustomStrategyView = entry.getKey ();
             JSONObject strategyDetails = entry.getValue ();
             int estimateIncome = 0;
@@ -350,12 +350,13 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             }
 
             double returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / variableCostProduction ));
-            jsonObjectEstimateIncome.put ( "EstimateIncome",estimateIncome);
-            jsonObjectEstimateIncome.put ( "returnWorkingCapital", "" + returnWorkingCapital );
-            jsonArrayEstimateIncome.add ( jsonObjectEstimateIncome);        }
+            jsonObjectStrategyData.put ( "EstimateIncome",estimateIncome);
+            jsonObjectStrategyData.put ( "returnWorkingCapital", "" + returnWorkingCapital );
+            jsonArrayStrategyData.add ( jsonObjectStrategyData);        }
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put ( "DataForStrategy",jsonArrayEstimateIncome );
+        jsonObject.put ( "DataForStrategy",jsonArrayStrategyData );
+        jsonObject.put ( "jsonArrayForStrategy", strategyOutputDetails.get ( "jsonArrayForStrategy" ) );
         jsonObject.put("jsonArrayForHighRiskCropForGranular", highRiskAngConservationForStrategy.get("jsonArrayForHighRiskCrop"));
         jsonObject.put("jsonArrayForConservationCropForGranular", highRiskAngConservationForStrategy.get("jsonArrayForConservationCrop"));
 
