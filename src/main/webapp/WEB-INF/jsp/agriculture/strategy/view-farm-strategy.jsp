@@ -265,41 +265,38 @@
                                             onclick="buildGaugeMeterComponent(); return false;"
                                             style="margin-right: 15px;">Graph</button>--%>
 
-                                    <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center">
+
+                                    <table cellspacing="0"
+                                           class="table table-striped tbl-bordr tblbrdr output_table text-center">
                                         <thead>
                                         <tr class="tblhd add-fieldi">
-                                            <td> Strategy</td>
-                                            <td>Estimated Income</td>
-                                            <td colspan="4">Risk Profile
-                                                <table>
-                                                    <tr>
-                                                        <td>Production Risk</td>
-                                                        <td>Market Risk</td>
-                                                        <td>Crop Insurance</td>
-                                                        <td>Scenario Analysis</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td colspan="2">Asset Utilization
-                                                <table>
-                                                    <tr>
-                                                        <td>Return on Working</td>
-                                                        <td>Acreage Under Conservation Practices</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-
+                                            <td rowspan="2"> Strategy</td>
+                                            <td rowspan="2">Estimated Income</td>
+                                            <td colspan="4">Risk Profile</td>
+                                            <td colspan="2">Asset Utilization</td>
                                         </tr>
+                                        <tr class="tblhd add-fieldi">
+                                            <td>Production Risk</td>
+                                            <td>Market Risk</td>
+                                            <td>Crop Insurance</td>
+                                            <td>Scenario Analysis</td>
+                                            <td>Return on Working</td>
+                                            <td>Acreage Under Conservation Practices</td>
+                                        </tr>
+
 
                                         </thead>
                                         <tbody id="enhancedProfitOutpout">
-                                        <c:set var = "i" value = "${1}"/>
+                                        <tr>
+                                            <td class="success" colspan="8">No strategies created</td>
+                                        </tr>
+                                      <%--  <c:set var = "i" value = "${1}"/>
                                         <c:forEach var="dataForGenuerChart" items="${model.dataForGenuerChart}">
                                         <tr>
                                             <td class="success">
                                             <h4 style="color : #337ab7; cursor : pointer" onclick="openStrategyDetailsPopup('{{= strategy.id}}'); return false;">${dataForGenuerChart.strategyName}<h4>
 
-                                            <%--<small class="est-income-total">${dataForGenuerChart.strategyName}</small>--%>
+                                            &lt;%&ndash;<small class="est-income-total">${dataForGenuerChart.strategyName}</small>&ndash;%&gt;
                                             </td>
                                             <td class="success">
 
@@ -313,7 +310,7 @@
                                                 <div align="right" id="cropGaugeMeter${i}" value="${dataForGenuerChart.EstIncomeInOneCrop}" class="progress-graphs gauge_meter pull-left"></div>
                                                 <div align="center" id="marketGaugeMeter${i}" value="${dataForGenuerChart.EstIncomeInForwardSale}" class="progress-graphs gauge_meter pull-left">
                                                 </div>
-                                                <%--<div align="left" id="productionGaugeMeter${dataForGenuerChart.EstIncomeInForwardSale}" value="${dataForGenuerChart.EstIncomeInForwardSale}" class="progress-graphs gauge_meter pull-left"></div>--%>
+                                                &lt;%&ndash;<div align="left" id="productionGaugeMeter${dataForGenuerChart.EstIncomeInForwardSale}" value="${dataForGenuerChart.EstIncomeInForwardSale}" class="progress-graphs gauge_meter pull-left"></div>&ndash;%&gt;
                                                 <div align="left" id="productionGaugeMeter" >
                                                 <small class=" gauge_meter pull-left">Coming-Soon</small>
                                                 </div>
@@ -361,19 +358,11 @@
                                             </td>
                                         </tr>
                                             <c:set var = "i" value = "${i+1}"/>
-                                        </c:forEach>
+                                        </c:forEach>--%>
 
                                         </tbody>
                                     </table>
-
-
-
-
-
                                 </div>
-
-
-
                             </div>
                         </div>
 
@@ -699,7 +688,56 @@
     {{/each}}
 
 </script>
+    <script type="text/x-jQuery-tmpl" id="enhancedOutputTemplate">
+    {{each(key, strategy) gaugeGraphData}}
+        <tr>
+            <td class="success"><h4 style="color : #337ab7; cursor : pointer" onclick="openStrategyDetailsPopup('{{= strategy.id}}'); return false;">{{= strategy.strategyName}}<h4></td>
+            <td class="success">
+             <div class="est-income-graph">
+             <span class="est-income-category">{{= key+1}}</span>
+                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.EstimateIncome)}}</small>
+              </div></td>
+            <td class="success"><div align="center" id="cropGaugeMeter{{= strategy.id}}" value="{{= strategy.EstIncomeInOneCrop}}" class="progress-graphs gauge_meter "></div></td>
+            <td class="success"><div align="center"  id="marketGaugeMeter{{= strategy.id}}" value="{{= strategy.EstIncomeInForwardSale}}" class="progress-graphs gauge_meter "></td>
+            <td class="success">Coming Soon</td>
+            <td class="success">
+              <div class="gauge_meter">
+              <div class="secnario-analysis">
+                <span class="est-income-category">{{= key+1}}</span>
+                    <small class="est-income-total">0.0</small>
+                  </div>
+            </div>
+            </td>
+            <td class="success">
+            <div class="est-income-graph">
+                 <span class="est-income-category">{{= strategy.count}}</span>
 
+                   <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.ReturnWorkingCapital)}}</small>
+                </div>
+            </div></td>
+            <td class="success">
+           {{if strategy.AverageInConservationCrop >= 50.0  }}
+            <div class="est-income-graph">
+                 <i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>
+                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                </div>
+           {{/if}}
+           {{if strategy.AverageInConservationCrop > 25.0 && strategy.AverageInConservationCrop < 50.0 }}
+            <div class="secnario-analysis">
+                 <i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>
+                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                </div>
+            </div>
+           {{/if}}
+           {{if strategy.AverageInConservationCrop < 25.0 }}
+           <div class="secnario-analysis-red">
+                 <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>
+                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                </div>
+           {{/if}}</td>
+        </tr>
+    {{/each}}
+    </script>
 <script type="text/x-jQuery-tmpl" id="strategyCheckboxTemplate">
 
     <div class="form-group form-group1">

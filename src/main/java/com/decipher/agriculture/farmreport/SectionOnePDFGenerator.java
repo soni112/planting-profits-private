@@ -312,13 +312,12 @@ public class SectionOnePDFGenerator {
 
             if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "land (Acres)" )) {
                 resourceParagraph.add ( new Chunk ( "Return on " + resourceUsage.get ( "resource" )
-                        + ": $" + formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total ).split ( "\\." )[0]
+                        + ": $" + AgricultureStandardUtils.priceWithOneDecimal (  formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total ))
                         + " of gross income per one acre\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "capital ($)" )) {
 
                 resourceParagraph.add ( new Chunk ( "Return on Working " + resourceUsage.get ( "resource" )
-                        + ": $" + formatter.format ( Double.parseDouble ( estimatedIncommeFormatted ) / total ).split ( "\\." )[0]
-                        + " of gross income per one $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                        + ": $" + AgricultureStandardUtils.priceWithOneDecimal (formatter.format ( Double.parseDouble ( estimatedIncommeFormatted ) / total ) )                      + " of gross income per one $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else {
                 /*resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
 						+ ": $" + formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)
@@ -853,10 +852,10 @@ public class SectionOnePDFGenerator {
 
                 Double workReturn = 0.0;
                 String workReturnInString = null;
-                if (farmOutputDetails.getProfitDouble () == 0.0) {
+                if (farmOutputDetails.getRatio () == 0.0) {
                     workReturnInString = "NA";
                 } else {
-                    workReturn = farmOutputDetails.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                    workReturn = farmOutputDetails.getRatio () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
                     workReturnInString = String.valueOf ( workReturn );
                 }
                 PdfPCell returnWorkingCapital = new PdfPCell ( new Phrase ( " " + workReturnInString, ReportTemplate.TIMESROMAN_10_NORMAL ) );
@@ -960,7 +959,6 @@ public class SectionOnePDFGenerator {
                 cropContributionMarginTable.addCell ( rating );
 
                 PdfPCell estimate = new PdfPCell ( new Phrase ( " " + map.get ( cropKey ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
-                index += 1;
                 estimate.setUseBorderPadding ( true );
                 estimate.setBorderWidth ( 0 );
                 estimate.setBorder ( Rectangle.NO_BORDER );
@@ -974,7 +972,10 @@ public class SectionOnePDFGenerator {
                         || profitStr.equalsIgnoreCase ( "0 (-0.0%)" )) {
                     workReturnInString = "NA";
                 } else {
-                    Double profitDouble = new Double ( AgricultureStandardUtils.removeAllCommas ( profitStr.split ( " \\(" )[0] ) );
+                  double ratio= Double.parseDouble (AgricultureStandardUtils.removeAllCommas (  map.get ( cropKey ) ));
+//                    Double profitDouble = new Double ( AgricultureStandardUtils.removeAllCommas ( profitStr.split ( " \\(" )[0] ) );
+                    index += 1;
+
                     String cropName1 = cropKey;
                     if (cropKey.contains ( " (Firm)" )) {
                         cropName1 = cropKey.split ( " \\(Firm\\)" )[0];
@@ -984,7 +985,7 @@ public class SectionOnePDFGenerator {
                     List <CropTypeView> cropTypeViews = (List <CropTypeView>) baseSelectedOutpuDetailsJsonObject.get ( "cropTypeView" );
                     for (CropTypeView cropTypeView : cropTypeViews) {
                         if (cropTypeView.getSelected () && cropTypeView.getCropName ().equalsIgnoreCase ( cropName1 )) {
-                            workReturn = profitDouble / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                            workReturn = ratio / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
                             workReturnInString = String.valueOf ( workReturn );
                             break;
                         }
