@@ -465,7 +465,7 @@ function getStrategyForMultipleCrops() {
             maxValue = parseFloat(removeAllCommas(maxValue));
             if (maxOverridedValue > maxLand) {
                 $.trim($(this).children("td:nth(4)").find("input").val(maxLand));
-                // customAlerts("Maximum acreage limit of " + cropName + " cannot be more than total acreage i.e. " + maxLand + " acres", type_error, time);
+                customAlerts("Maximum acreage limit of " + cropName + " cannot be more than total acreage i.e. " + maxLand + " acres", type_error, time);
                 focusForValidationForObject($(this).children("td:nth(4)").find("input"));
                 limitFlag = true;
                 return false;
