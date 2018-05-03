@@ -492,13 +492,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         if (minOrMax.equalsIgnoreCase("min")) {
 
             int value = usedAcres - minimumAcres;
+           int values=  value/minimumAcres;
             if(minimumAcres <= 0){
                 return NO;
             } else if (value == 0) {
                 return YES;
-            } else if (value / minimumAcres <= 0.15) {
+            } else if (values <= 0.15) {
                 return Likely;
-            } else if (value / minimumAcres > 0.15) {
+            } else if (values > 0.15) {
                 return NO;
             }
             /*if (usedAcres == minimumAcres)
@@ -508,14 +509,16 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             else
                 return YES;*/
         } else if (minOrMax.equalsIgnoreCase("max")) {
-            int value = maximumAcres - usedAcres;
+            double value = maximumAcres - usedAcres;
+            double values =value / maximumAcres;
+
             if(maximumAcres <= 0){
                 return NO;
             } else if (value == 0) {
                 return YES;
-            } else if (value / maximumAcres <= 0.20) {
+            } else if ( values<= 0.20) {
                 return Likely;
-            } else if (value / maximumAcres > 0.20) {
+            } else if (values > 0.20) {
                 return NO;
             }
 //            return maximumAcres > usedAcres ? NO : YES;
@@ -583,15 +586,15 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 } else {
                     CropTypeView cropTypeView = farmOutputDetailsView.getCropTypeView ();
 
-                    workReturn= farmOutputDetailsView.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                    workReturn= farmOutputDetailsView.getRatio () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
 
-                    jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( farmOutputDetailsView.getProfitDouble () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ));
+                    jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( workReturn ));
                 }
                 if (farmOutputDetailsView.getProfit ().equalsIgnoreCase ( "0" )) {
                     jsonObject.put ( RATINGFORWORKRETURN, "Grey" );
                 } else {
                     if (workReturn < 0.5) {
-                        jsonObject.put ( RATINGFORWORKRETURN,"RED");
+                        jsonObject.put ( RATINGFORWORKRETURN,"Red");
 
                     } else if (0.15 < workReturn && workReturn <= 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Yellow" );
@@ -651,8 +654,10 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         || profit.equalsIgnoreCase("0 (-0.0%)")){
                     jsonObject.put ( WORKRETURN,"NA" );
                 } else {
-                    String profitStr = hashMapForProfit.get ( cropTypeKey );
+                   /* String profitStr = hashMapForRatio.get ( cropTypeKey );
                     Double profitDouble = new Double (AgricultureStandardUtils.removeAllCommas (profitStr.split ( " \\(" )[0]));
+*/
+                    Double ratio= new Double ( AgricultureStandardUtils.removeAllCommas ( hashMapForRatio.get(cropTypeKey)));
                     String cropName = cropTypeKey;
                     if (cropTypeKey.contains (" (Firm)")) {
                         cropName = cropTypeKey.split ( " \\(Firm\\)" )[0];
@@ -663,8 +668,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     List <CropTypeView> cropTypeViews = (List <CropTypeView>) outputDetails.get ( "cropTypeView" );
                     for (CropTypeView cropTypeView : cropTypeViews) {
                         if (cropTypeView.getSelected () && cropTypeView.getCropName ().equalsIgnoreCase ( cropName )){
-                                    workreturn=profitDouble / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
-                            jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( profitDouble / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ) );
+                                    workreturn=ratio / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                            jsonObject.put ( WORKRETURN, AgricultureStandardUtils.commaSeparaterForDoublePrice ( ratio / cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ) );
                             break;
                         }
                     }
@@ -674,9 +679,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put ( RATINGFORWORKRETURN,"Grey" );}
                 else {
                     if (workreturn < 0.5) {
-                        jsonObject.put ( RATINGFORWORKRETURN,"RED");
+                        jsonObject.put ( RATINGFORWORKRETURN,"Red");
                     } else if (0.15 < workreturn && workreturn <= 0.9) {
-                        jsonObject.put ( RATINGFORWORKRETURN,"YELLOW" );
+                        jsonObject.put ( RATINGFORWORKRETURN,"Yellow" );
                     } else if (workreturn > 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Green" );
                     }
