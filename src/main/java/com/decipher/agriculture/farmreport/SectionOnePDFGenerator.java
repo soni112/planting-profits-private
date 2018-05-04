@@ -985,8 +985,13 @@ public class SectionOnePDFGenerator {
                     List <CropTypeView> cropTypeViews = (List <CropTypeView>) baseSelectedOutpuDetailsJsonObject.get ( "cropTypeView" );
                     for (CropTypeView cropTypeView : cropTypeViews) {
                         if (cropTypeView.getSelected () && cropTypeView.getCropName ().equalsIgnoreCase ( cropName1 )) {
-                            workReturn = ratio / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
-                            workReturnInString = String.valueOf ( workReturn );
+                           double variableCostProduction= cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                            if (variableCostProduction != 0) {
+                                workReturn = ratio / variableCostProduction;
+                                workReturnInString = String.valueOf ( workReturn );
+                            }else {
+                                workReturnInString="NA";
+                            }
                             break;
                         }
                     }
