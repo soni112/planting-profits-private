@@ -240,8 +240,9 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
             jsonObject = strategyComparisonDataBuilder.getPpForMinGivenPriceAndYield(axis, farmInfoView);
 
+        } else if (StrategyComparisonType.Return_on_Working_Capital.equals ( strategyComparisonType )) {
+            jsonObject = strategyComparisonDataBuilder.getReturnonWorkingCapitalComparisonDetails ( axis );
         }
-
         return jsonObject;
     }
 
@@ -285,7 +286,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         String xAxisText, yAxisText;
 
-        if(xAxisIndex > 11){
+        if(xAxisIndex > 12){
             xAxisData = getDetailsForStrategyType(xAxisIndex, "x", farmInfoView);
             xAxisText = getAxisText(xAxisIndex);
         } else {
@@ -293,7 +294,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             xAxisText = StrategyComparisonType.values()[xAxisIndex].getComparisonStr();
         }
 
-        if(yAxisIndex > 11){
+        if(yAxisIndex > 12){
             yAxisData = getDetailsForStrategyType(yAxisIndex, "y", farmInfoView);
             yAxisText = getAxisText(yAxisIndex);
         } else {
