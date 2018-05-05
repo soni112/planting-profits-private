@@ -681,7 +681,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ) || cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )) {
                         jsonObject.put ( "amount", "N/A" );
                     } else {
-                        workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
+//                        workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
                         jsonObject.put ( "amount", cropResourceUsageView.getCropResourceUseAmount () );
                     }
                 }
