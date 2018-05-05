@@ -856,7 +856,7 @@ public class SectionOnePDFGenerator {
                     workReturnInString = "NA";
                 } else {
                     workReturn = farmOutputDetails.getRatio () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
-                    workReturnInString = String.valueOf ( workReturn );
+                    workReturnInString = AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal ( String.valueOf ( workReturn ));
                 }
                 PdfPCell returnWorkingCapital = new PdfPCell ( new Phrase ( " " + workReturnInString, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 returnWorkingCapital.setUseBorderPadding ( true );
@@ -985,8 +985,13 @@ public class SectionOnePDFGenerator {
                     List <CropTypeView> cropTypeViews = (List <CropTypeView>) baseSelectedOutpuDetailsJsonObject.get ( "cropTypeView" );
                     for (CropTypeView cropTypeView : cropTypeViews) {
                         if (cropTypeView.getSelected () && cropTypeView.getCropName ().equalsIgnoreCase ( cropName1 )) {
-                            workReturn = ratio / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
-                            workReturnInString = String.valueOf ( workReturn );
+                           double variableCostProduction= cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                            if (variableCostProduction != 0) {
+                                workReturn = ratio / variableCostProduction;
+                                workReturnInString = String.valueOf ( workReturn );
+                            }else {
+                                workReturnInString="NA";
+                            }
                             break;
                         }
                     }
