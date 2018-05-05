@@ -856,7 +856,7 @@ public class SectionOnePDFGenerator {
                     workReturnInString = "NA";
                 } else {
                     workReturn = farmOutputDetails.getRatio () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
-                    workReturnInString = String.valueOf ( workReturn );
+                    workReturnInString = AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal ( String.valueOf ( workReturn ));
                 }
                 PdfPCell returnWorkingCapital = new PdfPCell ( new Phrase ( " " + workReturnInString, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 returnWorkingCapital.setUseBorderPadding ( true );

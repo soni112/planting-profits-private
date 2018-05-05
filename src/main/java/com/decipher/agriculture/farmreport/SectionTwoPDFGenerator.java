@@ -465,7 +465,7 @@ public class SectionTwoPDFGenerator {
              */
             Map <String, String> cropResourceUse = (Map <String, String>) strategyDataJsonObject.get ( "cropResourceUsed" );
             Double potentialProfit = Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( strategyDataJsonObject.get ( "potentialProfit" ).toString () ) );
-            double workingCapitalUsed ;
+            double workingCapitalUsed=0.0 ;
             String returnWorkingCapital=null;
             int index=0;
             int sizeOfList=((List<CropResourceUsageView>) strategyDataJsonObject.get ( "resourceList"  )).size ();
@@ -474,10 +474,8 @@ public class SectionTwoPDFGenerator {
 
                 if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get ( cropResourceUsageView.getCropResourceUse () ) ) );
-                } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
-                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get ( cropResourceUsageView.getCropResourceUse () ) ) );
-                } else {
-
+                } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" ))
+                {
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get ( cropResourceUsageView.getCropResourceUse () ) ) );
                 }
                 if (index == sizeOfList) {
