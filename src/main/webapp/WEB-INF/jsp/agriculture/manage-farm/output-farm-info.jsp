@@ -16,7 +16,7 @@
                     <a class="alertify-button alertify-button-ok remove-text-deco" href="view-farm-info.htm?farmId=${farmId}">Change Farm Information</a>
                 </div>
                 <div class="output_base">
-                    <h3>${model.farmInfoView.farmName} (Baseline Strategy)</h3>
+                    <h3>${model.farmInfoView.farmName} (${model.strategyName})</h3>
                     <div class="base_white">
                         <ul class="total_output" id="sidemenu">
                             <c:choose>
