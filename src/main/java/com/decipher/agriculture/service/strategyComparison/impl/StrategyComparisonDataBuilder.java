@@ -141,6 +141,45 @@ class StrategyComparisonDataBuilder {
         return graphDataJsonObject;
 
     }
+    JSONObject getReturnonWorkingCapitalComparisonDetails(String axis) {
+
+        Set<Map.Entry<FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet();
+
+        JSONObject graphDataJsonObject = new JSONObject();
+
+        int count = 0,index=0;
+        double workingCapitalUsed=0.0;
+        String returnWorkingCapital=null;
+
+        for (Map.Entry<FarmCustomStrategyView, JSONObject> entry : entries) {
+            FarmCustomStrategyView farmCustomStrategyView = entry.getKey ();
+            JSONObject strategyOutput = entry.getValue ();
+            double potentialProfit = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( strategyOutput.get ( "potentialProfit" ).toString () ) );
+            Map <String, String> cropResourceUsed = (Map <String, String>) strategyOutput.get ( "cropResourceUsed" );
+
+            for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyOutput.get ( "resourceList" )) {
+                index++;
+                if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
+                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
+                } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
+                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
+                }
+                if (workingCapitalUsed != 0 && workingCapitalUsed != 0) {
+                    returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( potentialProfit / workingCapitalUsed ).toString ());
+                }
+            }
+                graphDataJsonObject.put(axis + count, returnWorkingCapital);
+                graphDataJsonObject.put ( "value" + count, farmCustomStrategyView.getStrategyName () );
+
+                count++;
+
+        }
+
+
+        return graphDataJsonObject;
+
+    }
+
 
     JSONObject getLandUsageComparisonDetails(String axis) {
         Set<Map.Entry<FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet();

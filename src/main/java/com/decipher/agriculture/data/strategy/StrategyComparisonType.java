@@ -19,7 +19,9 @@ public enum StrategyComparisonType {
     Percentage_Acreage_High_Risk_Crops(8, "% Acreage in High Risk Crops"),
     Percentage_PP_Conservation_Crops(9, "% Estimated Income Assigned to Conservation Crops"),
     Percentage_Acreage_Conservation_Crops(10, "% Acreage Assigned to Conservation Crops"),
-    PP_Given_Min_Price_And_Yield(11, "Estimated Income Given Min Prices and Yields");
+    PP_Given_Min_Price_And_Yield(11, "Estimated Income Given Min Prices and Yields"),
+    Return_on_Working_Capital(12, "Return on Working Capital");
+
 
 
     Integer bit;
