@@ -1,5 +1,6 @@
 package com.decipher.agriculture.viewcontroller;
 
+import com.decipher.AppConstants;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.service.farm.FarmService;
 import com.decipher.agriculture.service.farmDetails.FarmDetailsContainerService;
@@ -9,6 +10,8 @@ import com.decipher.util.PlantingProfitLogger;
 import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.CropsGroupView;
 import com.decipher.view.form.farmDetails.FarmInfoView;
+import com.decipher.view.form.strategy.FarmCustomStrategyView;
+import com.google.common.collect.Lists;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -80,7 +84,8 @@ public class FarmOutPutViewController {
     @SuppressWarnings("unchecked")
     @Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER", "ROLE_STUDENT"})
     @RequestMapping(value = "/output-farm-info.htm")
-    public ModelAndView outputFarmInfoPage(@RequestParam(value = "farmId", required = true) int farmId) {
+    public ModelAndView outputFarmInfoPage(@RequestParam(value = "farmId", required = true) int farmId,
+                                           @RequestParam(value = "strategyId", required = false) Integer strategyId) {
 
         JSONObject myModel = new JSONObject();
 //        Account account = accountService.getCurrentUser();
@@ -301,7 +306,18 @@ public class FarmOutPutViewController {
 //            }
 //        } else {
 //        }
-        myModel = farmDetailsContainerService.getBaseLineDetails(farmInfoView.getFarmInfo().getFarm());
+
+        if (strategyId != null) {
+            int[] strategyIdArr = {strategyId};
+            Map<FarmCustomStrategyView, JSONObject> specificStrategiesDetails = farmDetailsContainerService.getSpecificStrategiesDetails(farmInfoView, strategyIdArr);
+            for (FarmCustomStrategyView farmCustomStrategyView : specificStrategiesDetails.keySet()) {
+                myModel = specificStrategiesDetails.get(farmCustomStrategyView);
+                myModel.put("strategyName", farmCustomStrategyView.getStrategyName());
+            }
+        } else {
+            myModel = farmDetailsContainerService.getBaseLineDetails(farmInfoView.getFarmInfo().getFarm());
+            myModel.put("strategyName", AppConstants.BASELINE_STRATEGY);
+        }
 
         JSONArray forwardSalesJsonArray = farmOutputDetailsService.buildForwardSalesContent(myModel);
         myModel.put("forwardSalesJsonArray", forwardSalesJsonArray);

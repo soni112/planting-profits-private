@@ -23,4 +23,5 @@ public class AppConstants {
     public static final String STRATEGY_ID_ARRAY = "strategy-id-array";
 
     public static final String WORKING_CAPITAL = "Working Capital";
+    public static final String BASELINE_STRATEGY = "Baseline Strategy";
 }
