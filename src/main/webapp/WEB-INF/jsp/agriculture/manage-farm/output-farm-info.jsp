@@ -89,8 +89,8 @@
                                         <tr class="tblhd add-fieldi">
                                             <td class="tblbrdr add-fieldi">Crop</td>
                                             <td class="add-fieldi">Acreage</td>
-                                            <td>Estimated Income</td>
-                                            <td>Estimated Income per Acre ($/acre)</td>
+                                            <td>Est. Income</td>
+                                            <td>Est. Income per Acre ($/acre)</td>
                                             <td style="text-align: center;">
                                                 Land Profitability Index
                                                 <a class="help_Infromation_PopUp" id="landProfitablityIndex">
