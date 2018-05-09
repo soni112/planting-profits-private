@@ -1569,7 +1569,7 @@ function modifyField() {
         return false;
     }
     else {
-        alertify.confirm('Are you sure you want to update "' + fieldName + '"?', function (e) {
+        alertify.confirm(' Update "' + fieldName + '"?', function (e) {
             if (e) {
 
                 var validationFlag_Field = true;
