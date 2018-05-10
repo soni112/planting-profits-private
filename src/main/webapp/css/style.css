@@ -3866,7 +3866,19 @@ sup {
 .tbl-fixd-hdr thead > tr > td:nth-child(7){
     width: 13.7rem;
 }*/
-
+/*======   Crop-Acreage-table   ==========*/
+.Crop-Acreage-tabel .tbl-fixd-hdr thead > tr > td {
+    width: 12.49%;
+    position: relative;
+    float: left;
+    height: 78px;
+}
+.Crop-Acreage-tabel .tbl-fixd-hdr tbody > tr > td {
+    width: 12.49%;
+    position: relative;
+    float: left;
+    height: 55px;
+}
 /*======   Field Choices   ==========*/
 .fld-chc-tbl-fixd-hdr{
     width: 100%;

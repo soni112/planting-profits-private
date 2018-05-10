@@ -264,10 +264,9 @@
                                     <%--<button class="alertify-button alertify-button-ok pull-right"
                                             onclick="buildGaugeMeterComponent(); return false;"
                                             style="margin-right: 15px;">Graph</button>--%>
-
-
-                                    <table cellspacing="0"
-                                           class="table table-striped tbl-bordr tblbrdr output_table text-center">
+                                    <div class="ques">
+                                        <div class="table-responsive">
+                                        <table cellspacing="0" class="table table-striped tbl-bordr tblbrdr output_table text-center" width="100%">
                                         <thead>
                                         <tr class="tblhd add-fieldi">
                                             <td rowspan="2"> Strategy</td>
@@ -362,6 +361,8 @@
 
                                         </tbody>
                                     </table>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -787,7 +788,7 @@
 
 
     <td>Strategy</td>
-    <td>Estimated Income</td>
+    <td>Est. Income</td>
     <td>Total Acreage</td>
     {{each(key, header) headerDetails }}
         <td>{{html header}}</td>

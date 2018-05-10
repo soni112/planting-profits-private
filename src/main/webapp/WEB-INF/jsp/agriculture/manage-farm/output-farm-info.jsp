@@ -3,6 +3,7 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <link href="<c:url value="/css/bootstrap-multiselect.css"/>" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="<c:url value="/css/sb-admin-2.css"/>" type="text/css" media="all">
+<script src="<c:url value="/js/plugins/jquery.slimscroll.js"/>"></script>
 <!-- @changed - Jyoti @date - 30-01-2017 -->
 <c:set var="farmId" value="${model.farm.farmId}"/>
 <!-- end -->
@@ -82,10 +83,10 @@
                                             src="<c:url value="/images/graph_tab.png"/>"></a>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div class="table-responsive Crop-Acreage-tabel" style="max-height: 298px;">
+                                <div class="table-responsive Crop-Acreage-tabel">
                                     <table width="100%" cellspacing="0" id="cropAcreageAndProfit"
-                                           class="table table-striped tbl-bordr  tblbrdr output_table">
-                                        <thead>
+                                           class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll" width="100%">
+                                        <thead style="display: table-header-group;">
                                         <tr class="tblhd add-fieldi">
                                             <td class="tblbrdr add-fieldi">Crop</td>
                                             <td class="add-fieldi">Acreage</td>
@@ -112,7 +113,7 @@
                                             </td>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="scrollbar-dynamic scrollDiv" style="display: table-row-group;">
                                         <c:forEach var="acrageDetails" items="${model.cropAcreageJsonArray}">
                                             <tr class="tblgrn">
                                                 <td class="success">${acrageDetails.cropName}</td>
@@ -1655,4 +1656,11 @@
 
 
 
+</script>
+<script type="text/javascript">
+    $(function(){
+        $('.scrollDiv').slimScroll({
+//            height: 'auto',
+        });
+    });
 </script>

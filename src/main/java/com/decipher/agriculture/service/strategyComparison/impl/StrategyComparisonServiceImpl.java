@@ -332,6 +332,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             int estimateIncome = 0;
             String returnWorkingCapital = null;
             double variableCostProduction = 0.0;
+            double workingCapitalUsed = 0.0;
+
 
             List <CropTypeView> cropTypeViews = (List <CropTypeView>) strategyDetails.get ( "cropTypeView" );
 
@@ -347,19 +349,24 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                 }
             }
             int index = 0;
+            Map <String, String> cropResourceUsed = (Map <String, String>) strategyDetails.get ( "cropResourceUsed" );
             int sizeOfList = ((List <CropResourceUsageView>) strategyDetails.get ( "resourceList" )).size ();
             for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDetails.get ( "resourceList" )) {
                 index++;
-                Map <String, String> cropResourceUsed = (Map <String, String>) strategyDetails.get ( "cropResourceUsed" );
 
-                double workingCapitalUsed = 0.0;
                 if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
                 } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
-                }
+                }/*else {
+                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
+                }*/
+
+
+
+
                 if (index == sizeOfList) {
-                    if (workingCapitalUsed != 0 && workingCapitalUsed != 0) {
+                    if (workingCapitalUsed != 0 || estimateIncome != 0) {
                         returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / workingCapitalUsed ).toString ());
                     } else {
                         returnWorkingCapital = "NA";
@@ -379,6 +386,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
 
         return jsonObject;
+
     }
 
     @Override
@@ -703,13 +711,13 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     }
                 }
                 if (index == sizeOfList) {
-                    if (workingCapitalUsed != 0 && workingCapitalUsed !=0) {
-                        returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / workingCapitalUsed ).toString ());
+                    if (workingCapitalUsed != 0 && estimateIncome!=0) {
+                        returnWorkingCapital = AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal ( String.valueOf ( ( estimateIncome / workingCapitalUsed ) ));
                     }else {
                         returnWorkingCapital="NA";
                     }
                     jsonObjectForWorkReturn.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
-                    jsonObjectForWorkReturn.put ( "name", "Return on Working Capital Use" );
+                    jsonObjectForWorkReturn.put ( "name", "Return on Working Capital" );
                     jsonObjectForWorkReturn.put ( "amount", "" + returnWorkingCapital );
                 }
                 jsonArray.add ( jsonObject );
@@ -764,7 +772,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             }
         }
 
-        jsonArrayForResourceHeader.add ( "Return on Working Capital Use" );
+        jsonArrayForResourceHeader.add ( "Return on Working Capital" );
         resourceDetails.put ( "jsonArrayForResource", jsonArrayForResource );
         resourceDetails.put ( "jsonArrayForResourceHeader", jsonArrayForResourceHeader );
 
