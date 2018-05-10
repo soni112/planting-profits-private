@@ -4,6 +4,7 @@ import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.PlantingProfitLogger;
 import com.decipher.view.form.account.AccountView;
+import com.decipher.view.form.farmDetails.CropResourceUsageView;
 import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.FarmInfoView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
@@ -306,7 +307,10 @@ public class SectionOnePDFGenerator {
          * @decs - Added decimal formatter for decimal values upto two decimal values
          */
         DecimalFormat formatter = new DecimalFormat ( "#.00" );
+        int sizeOfList=resourceUsages.size ();
+        int index=0;
         for (HashMap <String, String> resourceUsage : resourceUsages) {
+            index++;
             Double total = Double.parseDouble ( resourceUsage.get ( "used" ).replaceAll ( "\\,", "" ) )
                     + Double.parseDouble ( resourceUsage.get ( "unused" ).replaceAll ( "\\,", "" ) );
 
@@ -315,9 +319,10 @@ public class SectionOnePDFGenerator {
                         + ": $" + AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal (  formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total ))
                         + " of gross income per one acre\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "capital ($)" )) {
-
-                resourceParagraph.add ( new Chunk ( "Return on Working " + resourceUsage.get ( "resource" )
-                        + ": $" + AgricultureStandardUtils.doubleWithOneDecimal ( Double.parseDouble ( estimatedIncommeFormatted ) / total  )  + " of gross income per one $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                if (index == sizeOfList) {
+                    resourceParagraph.add ( new Chunk ( "Return on Working " + resourceUsage.get ( "resource" )
+                            + ": $" + AgricultureStandardUtils.doubleWithOneDecimal ( Double.parseDouble ( estimatedIncommeFormatted ) / total ) + " of gross income per one $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                }
             } else {
                 /*resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
 						+ ": $" + formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)
@@ -855,8 +860,8 @@ public class SectionOnePDFGenerator {
                 if (farmOutputDetails.getRatio () == 0.0) {
                     workReturnInString = "NA";
                 } else {
-                    workReturn = AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ());
-                    workReturnInString =  String.valueOf ( workReturn );
+                    workReturn = farmOutputDetails.getRatio () / cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
+                    workReturnInString = String.valueOf (  AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio ()/cropTypeView.getCalculatedVariableProductionCost ().doubleValue ()));
                 }
                 PdfPCell returnWorkingCapital = new PdfPCell ( new Phrase ( " " + workReturnInString, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 returnWorkingCapital.setUseBorderPadding ( true );
@@ -986,9 +991,10 @@ public class SectionOnePDFGenerator {
                     for (CropTypeView cropTypeView : cropTypeViews) {
                         if (cropTypeView.getSelected () && cropTypeView.getCropName ().equalsIgnoreCase ( cropName1 )) {
                            double variableCostProduction= cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
-                            if (variableCostProduction != 0 ||ratio!=0) {
-                                workReturn = AgricultureStandardUtils.doubleWithOneDecimal (  ratio / variableCostProduction);
-                                workReturnInString = String.valueOf ( workReturn );
+                            if (variableCostProduction != 0) {
+                                workReturn = ratio / variableCostProduction;
+                                workReturnInString = String.valueOf (  AgricultureStandardUtils.doubleWithOneDecimal ( ratio/cropTypeView.getCalculatedVariableProductionCost ().doubleValue ()));
+
                             }else {
                                 workReturnInString="NA";
                             }
@@ -1013,9 +1019,9 @@ public class SectionOnePDFGenerator {
                 } else {
                     if (workReturn < 0.5) {
                         ratingforWorkingCapital.setBackgroundColor ( BaseColor.RED );
-                    } else if ((0.51 < workReturn) && workReturn <= 0.9) {
+                    } else if ((0.50 <= workReturn) && workReturn <= 0.9) {
                             ratingforWorkingCapital.setBackgroundColor ( BaseColor.YELLOW );
-                    } else if (workReturn > 0.9) {
+                    } else if (workReturn >= 0.9) {
                         ratingforWorkingCapital.setBackgroundColor ( BaseColor.GREEN );
                     } else {
                         ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
