@@ -717,7 +717,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                         returnWorkingCapital="NA";
                     }
                     jsonObjectForWorkReturn.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
-                    jsonObjectForWorkReturn.put ( "name", "Return on Working Capital Use" );
+                    jsonObjectForWorkReturn.put ( "name", "Return on Working Capital" );
                     jsonObjectForWorkReturn.put ( "amount", "" + returnWorkingCapital );
                 }
                 jsonArray.add ( jsonObject );
@@ -772,7 +772,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             }
         }
 
-        jsonArrayForResourceHeader.add ( "Return on Working Capital Use" );
+        jsonArrayForResourceHeader.add ( "Return on Working Capital" );
         resourceDetails.put ( "jsonArrayForResource", jsonArrayForResource );
         resourceDetails.put ( "jsonArrayForResourceHeader", jsonArrayForResourceHeader );
 
