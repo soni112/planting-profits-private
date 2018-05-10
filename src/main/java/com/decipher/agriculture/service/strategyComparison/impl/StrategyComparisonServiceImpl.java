@@ -711,8 +711,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     }
                 }
                 if (index == sizeOfList) {
-                    if (workingCapitalUsed != 0 && workingCapitalUsed !=0) {
-                        returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / workingCapitalUsed ).toString ());
+                    if (workingCapitalUsed != 0 && estimateIncome!=0) {
+                        returnWorkingCapital = AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal ( String.valueOf ( ( estimateIncome / workingCapitalUsed ) ));
                     }else {
                         returnWorkingCapital="NA";
                     }
