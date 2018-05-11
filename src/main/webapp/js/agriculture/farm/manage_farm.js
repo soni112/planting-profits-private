@@ -1486,6 +1486,98 @@ function addNewField() {
     }
 }
 
+function addMultiNewField() {
+    var selectHTMLForOptions = '';
+    $("input:checkbox[class=crops]:checked").each(function () {
+        selectHTMLForOptions += '<option value="' + $(this).val() + '">' + $(this).val() + '</option>';
+    });
+    /*change by rohit*/
+    var fieldName = $('#pop-up-field-name').val().trim();
+    var fieldSize = $('#pop-up-field-size').val().trim();
+    if (fieldName == "") {
+        customAlerts("Please enter field name", type_error, time);
+        addErrorClassOnObject('#pop-up-field-name');
+        return false;
+    }
+    else if (fieldSize == "") {
+        customAlerts("Please enter field size", type_error, time);
+        addErrorClassOnObject('#pop-up-field-size');
+        return false;
+    }
+    else if (!validateNumberOnly(fieldSize) || fieldSize < 1) {
+        customAlerts("Please ensure that the value entered are greater than zero for Field size", type_error, time);
+        addErrorClassOnObject('#pop-up-field-size');
+        return false;
+    }
+    else {
+        // alertify.confirm('Click OK to add a new field named "' + fieldName + '".', function (e) {
+        //     if (e) {
+
+        var validationFlag_Field = true;
+        $("#Plan_by_Fields_table tbody tr").each(function () {
+            if ($(this).children("td:nth(1)").text().trim() == fieldName) {
+                customAlerts('"' + fieldName + '" field name is already exist', type_error, time);
+                addErrorClassOnObject('#pop-up-field-name');
+                validationFlag_Field = false;
+                return false;
+            }
+        });
+        if (validationFlag_Field) {
+            var rowHTMLForPlanByField = '<tr class="success tblgrn text-center column-left"><td><input type="checkbox" class="fields"></td><td>' + $("#pop-up-field-name").val() + '</td><td>' + $("#pop-up-field-size").val() + '</td> <td><select onchange="lastCropSelected(this)"><option value="No Crop">No Crop</option>' + selectHTMLForOptions + '</select></td><td><input type="checkbox" value="true" onchange="fallowEnabledOrDisabled(this)"></td><td><input type="checkbox" value="true"></td><td><input type="checkbox" name="field-irrigate__1" value="true"></td></tr>';
+            var totalLandByField = 0;
+//	$("#Plan_by_Fields_table tbody").children("tr:nth("+($("#Plan_by_Fields_table tbody tr").length-1)+")").remove();
+            $("#Plan_by_Fields_table tbody").append(rowHTMLForPlanByField);
+            $("#Plan_by_Fields_table tbody tr").each(function () {
+                totalLandByField += Number(removeAllCommas($(this).children("td:nth(2)").text()));
+            });
+//	var rowHtmlForLastRow = '<tr id="total-field-last-row" class="tblft text-center"><td class="tblft1">Total acres </td><td style="text-align: left" colspan="6" id="total-acres-value">'+totalLandByField+'</td></tr>';
+//	$("#Plan_by_Fields_table tbody").append(rowHtmlForLastRow);
+
+            var rowHTMLForCropFieldChoice = '<tr class="tblgrn text-center"><td class="tblft1">' + $("#pop-up-field-name").val() + '</td>';
+            /*var count = 0;
+            var cropsArr = [];
+            $("#field_choice_crop_thead tr td").each(function(){
+                if(count != 0){
+                    cropsArr.push($(this).html());
+                }
+                count++;
+            });
+
+            count = 0;*/
+            $("input:checkbox[class=crops]:checked").each(function () {
+                rowHTMLForCropFieldChoice += '<td class="success"><label class="input-label">' +
+                    '<input type="checkbox" class="cropFieldChoiceCheckbox countChoiceCheckboxChenge" onchange="cropFieldChoiceCheckboxChenge(this)">' +
+                    /*cropsArr[count] + */'</label></td>';
+                // count++;
+            });
+            rowHTMLForCropFieldChoice += "</tr>";
+            $("#field_choice_crop_table tbody").append(rowHTMLForCropFieldChoice);
+            $("#field_select_drop_down").append('<option value="' + $("#pop-up-field-name").val() + '">' + $("#pop-up-field-name").val() + '</option>');
+            var alertMessage = "";
+            if (totalLandByField > 10000) {
+                alertMessage += "But the amount of land entered for \"" + fieldName + "\" field exceeds 10,000.00 acres. ";
+            }
+            /*if (alertMessage != "") {
+                customAlerts('"' + fieldName + '" field added successfully. ' + alertMessage, type_warning, time);
+            } else {
+                customAlerts('"' + fieldName + '" field added successfully', type_success, time);
+            }*/
+            totalLandByField = getValueWithComma(totalLandByField);
+            $("#total-acres-value").text(totalLandByField);
+            $("#total_land_available").text(totalLandByField);
+            $("#Plan_by_Fields_table").show();
+        }
+        // }
+        $("#pop-up-field-name").val('');
+        $("#pop-up-field-size").val('');
+
+        buildFixedTable();
+        $fixedTables.trigger('rowAddOrRemove');
+      /*  div_hide4();*/
+        // });
+    }
+}
+
 function fallowEnabledOrDisabled(obj) {
     var fieldName = $(obj).parent().parent().children("td:nth(1)").text().trim();
     if ($(obj).prop("checked") == true) {

@@ -270,6 +270,99 @@ function addNewField() {
 	//$('input[name="pop-up-field-divide"]').prop("checked", false);
 	//$('input[name="pop-up-field-irrigate"]').prop("checked", false);
 }
+function addMultiNewField() {
+
+    var fieldName = $.trim("" + $('#pop-up-field-name').val());
+    var fieldSize = $.trim("" + $('#pop-up-field-size').val());
+    //var fieldLastCrop = $.trim("" + $('#pop-up-field-last-crop').val());
+    //var fieldFollow = false;
+    //var fieldDivide = false;
+    //var fieldIrrigate = false;
+    //fieldFollow = $('input[name="pop-up-field-follow"]:checked').val();
+//	fieldDivide = $('input[name="pop-up-field-divide"]:checked').val();
+    //fieldIrrigate = $('input[name="pop-up-field-irrigate"]:checked').val();
+    if (fieldName == "") {
+        customAlerts("Please enter field name", "error", 0);
+        return false;
+    }
+    if (fieldSize == "") {
+        customAlerts("Please enter field size", "error", 0);
+        return false;
+    }
+    if (!validateNumberOnly(fieldSize) || fieldSize < 1) {
+        customAlerts("Please ensure that the value entered are greater than zero for Field size", "error", 0);
+        return false;
+    }
+    var total = 0;
+    var rowCount = $('#plan-by-field-tbody >tr').length;
+    if (rowCount != 0) {
+        rowCount = rowCount - 1;
+    }
+    for (var i = 1; i <= rowCount; i++) {
+        var rowFieldSize = $.trim("" + $('#row-field-size__' + i).html().replace(/,/g, ''));
+        total += Number(rowFieldSize);
+        // alert($('#row-field-size__' + i).html());
+        var rowFieldName = $.trim("" + $('#row-field-name__' + i).html());
+        // alert(rowFieldName);
+        if (fieldName.toLowerCase() === rowFieldName.toLowerCase()) {
+            customAlerts('"'+fieldName+'" field name is already exist', "error", 0);
+            return false;
+        }
+    }
+    field_name.push(fieldName);
+    total += Number(fieldSize.replace(/,/g, ''));
+    /*if (fieldLastCrop == "") {
+        fieldLastCrop = "No Crop";
+    }*/
+    var rowCount = $('#plan-by-field-tbody >tr').length;
+    if (rowCount != 0) {
+        rowCount = rowCount - 1;
+    }
+
+    $('#total-field-last-row').remove();
+
+    var newHtml = "";
+
+    if (rowCount % 2 == 0) {
+
+        newHtml += "<tr class=\"success tblgrn text-center\">";
+    } else {
+
+        newHtml += "<tr class=\"tblbclgrnd text-center\">";
+    }
+    var optionValue="";
+    optionValue+="<option value=\"No Crop\">No Crop</option>";
+    for (var l = 0; l < field_crop.length; l++) {
+        optionValue+="<option value="+field_crop[l]+">"+field_crop[l]+"</option>";
+    }
+    rowCount++;
+    var totalWithComma=addCommaSignOnValue(total);
+    newHtml += "<td><input id=\"row-field-manage_checkbox__"+ rowCount + "\" type=\"checkbox\"></td><td id=\"row-field-name__" + rowCount + "\">" + fieldName+ "</td>" + "<td id=\"row-field-size__" + rowCount + "\">"	+ fieldSize + "</td> " + "<td><select id=\"selected_last_crop____"+rowCount+"\">"+optionValue+"</select></td>"
+        + "<td><input value=\"true\" name=\"field-follow__"+rowCount+"\" id=\"field-follow__"+rowCount+"\" type=\"checkbox\" ></td>"+ "<td><input value=\"true\" name=\"field-divide__"+rowCount+"\" id=\"field-divide__"+rowCount+"\" type=\"checkbox\"></td>" + "<td><input value=\"true\" name=\"field-irrigate__"+rowCount+"\" id=\"field-irrigate__"+rowCount+"\" type=\"checkbox\"></td>"
+        + "</tr> <tr class=\"tblft text-center\" id=\"total-field-last-row\">"	+ "<td class=\"tblft1\">Total acres </td><td id=\"total-acres-value\" colspan=\"6\" style=\"text-align: left\">"	+ totalWithComma	+ "</td></tr>";
+    total_land = total;
+    $('#plan-by-field-tbody').append(newHtml);
+    div_hidePlanByField();
+    // div_hide4();
+    var alertMessage = "";
+    if(total > 10000)
+    {
+        alertMessage += "But the amount of land entered for \""+fieldName+"\" field exceeds 10,000.00 acres. ";
+    }
+    if (alertMessage != "") {
+        customAlerts('"' + fieldName + '" field added successfully. '
+            + alertMessage, "warning", 0);
+    } else {
+        customAlerts('"' + fieldName + '" field added successfully', "success",
+            0);
+    }
+    $('#pop-up-field-name').val("");
+    $('#pop-up-field-size').val("");
+    //$('#pop-up-field-last-crop').val("");
+    //$('input[name="pop-up-field-follow"]').prop("checked", false);
+    //$('input[name="pop-up-field-divide"]').prop("checked", false);
+    //$('input[name="pop-up-field-irrigate"]').prop("checked", false);
+}
 function showFarmInfoPage() {
 	callMethodForPageChangeAndProgressBarImage(2, 3);
 }
@@ -2682,7 +2775,9 @@ function modifyExistingField()
 
 	return false;
 	}
-	$("#add_field_button").hide();
+    $("#add_field_button_new").hide();
+
+    $("#add_field_button").hide();
 	$("#modify_field_button").show();
 	$("#add-field-span-dynamic").html("Update Field");
 	for(var i=1;i<rowLength;i++)
@@ -2700,7 +2795,9 @@ function modifyExistingField()
 function addNewFieldValidation()
 {
 	$("#modify_field_button").hide();
-	$("#add_field_button").show();
+    $("#add_field_button_new").show();
+
+    $("#add_field_button").show();
 	$('#pop-up-field-name').val("");
 	$('#pop-up-field-size').val("");
 }
@@ -2762,7 +2859,7 @@ function modifyField()
 	$('#total-acres-value').html(total.toLocaleString('en'));
 	$('#row-field-size__' +rowCount).html(fieldSize);
 	$('#row-field-name__' +rowCount).html(fieldName);
-	div_hide4(); 
+	div_hide4();
 	div_hidePlanByField();
 	var alertMessage = "";
 	if(total > 10000)
