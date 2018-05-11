@@ -297,6 +297,10 @@
 													<a id="submit" onclick="addNewField()">Add Field</a>
 												</div>
 												<div style="margin: 10px 0px;" class="yellobtn submit"
+													 id="add_field_button_new">
+													<a id="submit" onclick="addMultiNewField()">Save & New</a>
+												</div>
+												<div style="margin: 10px 0px;" class="yellobtn submit"
 													id="modify_field_button">
 													<a id="submit" onclick="modifyField()">Update Field</a>
 												</div>

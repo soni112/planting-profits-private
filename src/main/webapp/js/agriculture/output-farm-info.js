@@ -610,7 +610,7 @@ function getStrategyForMultipleCrops() {
     } else if (totalMaximumAcre > maxLand) {
 
         totalMaximumAcre=maxLand;
-        // customAlerts('Total of MAX acreage limits can not be more than total available acreage "' + maxLand + '"It will automatically convert in Max Land       "', type_error, time);
+        customAlerts('Total of MAX acreage limits can not be more than total available acreage "' + maxLand + '"It will automatically convert in Max Land       "', type_error, time);
         return false;
     } else if (cropsArray.length == 0 && cropsGroupArray.length == 0 && cropContractArray.length == 0 && cropProposedArray.length == 0) {
         customAlerts("These are the original crop limits <br/> so a new strategy cannot be generated", 'error', time);

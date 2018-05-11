@@ -50,13 +50,17 @@ function div_show4() {
 	$("#add-field-span-dynamic").html("Update Field");
 	document.getElementById('modify_field_button').style.display = "block";
 	document.getElementById('add_field_button').style.display = "none";
-	document.getElementById('add-new-crop-pop-up').style.display = "block";
+    document.getElementById('add_field_button_new').style.display = "none";
+
+    document.getElementById('add-new-crop-pop-up').style.display = "block";
 }
 
 function div_show4ForAddField() {
 	$("#add-field-span-dynamic").html("Add Field");
 	document.getElementById('modify_field_button').style.display = "none";
-	document.getElementById('add_field_button').style.display = "block";
+    document.getElementById('add_field_button_new').style.display = "block";
+
+    document.getElementById('add_field_button').style.display = "block";
 	document.getElementById('add-new-crop-pop-up').style.display = "block";
 }
 
