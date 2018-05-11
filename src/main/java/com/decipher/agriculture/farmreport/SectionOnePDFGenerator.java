@@ -311,18 +311,23 @@ public class SectionOnePDFGenerator {
         int index=0;
         for (HashMap <String, String> resourceUsage : resourceUsages) {
             index++;
-            Double total = Double.parseDouble ( resourceUsage.get ( "used" ).replaceAll ( "\\,", "" ) )
-                    + Double.parseDouble ( resourceUsage.get ( "unused" ).replaceAll ( "\\,", "" ) );
+
 
             if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "land (Acres)" )) {
+
+                Double total = Double.parseDouble ( resourceUsage.get ( "used" ).replaceAll ( "\\,", "" ) )
+                        + Double.parseDouble ( resourceUsage.get ( "unused" ).replaceAll ( "\\,", "" ) );
+
                 resourceParagraph.add ( new Chunk ( "Return on " + resourceUsage.get ( "resource" )
                         + ": $" + AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal (  formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total ))
                         + " of gross income per one acre\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "capital ($)" )) {
-                if (index == sizeOfList) {
-                    resourceParagraph.add ( new Chunk ( "Return on Working " + resourceUsage.get ( "resource" )
+
+                Double total = Double.parseDouble ( resourceUsage.get ( "used" ).replaceAll ( "\\,", "" ) );
+
+                resourceParagraph.add ( new Chunk ( "Return on Working " + resourceUsage.get ( "resource" )
                             + ": $" + AgricultureStandardUtils.doubleWithOneDecimal ( Double.parseDouble ( estimatedIncommeFormatted ) / total ) + " of gross income per one $ of working capital\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
-                }
+
             } else {
                 /*resourceParagraph.add(new Chunk("Return on " + resourceUsage.get("resource")
 						+ ": $" + formatter.format(Double.parseDouble(estimatedIncommeFormatted)/ total)

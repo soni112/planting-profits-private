@@ -367,7 +367,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
                 if (index == sizeOfList) {
                     if (workingCapitalUsed != 0 || estimateIncome != 0) {
-                        returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( estimateIncome / workingCapitalUsed ).toString ());
+                        returnWorkingCapital = String.valueOf ( (AgricultureStandardUtils.doubleWithOneDecimal  ( estimateIncome / workingCapitalUsed ) ) );
                     } else {
                         returnWorkingCapital = "NA";
                     }
@@ -669,12 +669,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             Map <String, String> cropResourceUsed = (Map <String, String>) strategyDetails.get ( "cropResourceUsed" );
             double workingCapitalUsed = 0.0, estimateIncome = 0.0;
            String returnWorkingCapital="null";
-            /*List <CropTypeView> cropTypeViews = (List <CropTypeView>) strategyDetails.get ( "cropTypeView" );
-            for (CropTypeView cropTypeView : cropTypeViews) {
-                if (cropTypeView.getSelected ()) {
-                    variableCostProduction += cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
-                }
-            } */
+
             if (Objects.equals ( farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy (), PlanByStrategy.PLAN_BY_ACRES )) {
                 List <FarmOutputDetailsView> farmOutputDetailsViewList = (List <FarmOutputDetailsView>) strategyDetails.get ( "farmOutputDetails" );
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
@@ -712,7 +707,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                 }
                 if (index == sizeOfList) {
                     if (workingCapitalUsed != 0 && estimateIncome!=0) {
-                        returnWorkingCapital = AgricultureStandardUtils.commaSeparatedForPriceWithThreeDecimal ( String.valueOf ( ( estimateIncome / workingCapitalUsed ) ));
+                        returnWorkingCapital = String.valueOf ( (AgricultureStandardUtils.doubleWithOneDecimal  ( estimateIncome / workingCapitalUsed ) ) );
                     }else {
                         returnWorkingCapital="NA";
                     }
