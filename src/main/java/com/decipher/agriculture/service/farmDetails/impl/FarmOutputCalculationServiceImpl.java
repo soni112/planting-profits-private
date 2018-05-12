@@ -158,20 +158,21 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                 farmOutputDetailsView.setUsedAcresPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsView.getUsedAcresDouble () * 100) / totalUsedAcre ) );
                 farmOutputDetailsView.setUsedCapitalPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsView.getProfitDouble () * 100) / totalProfit ) );
-                int acreage = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getProfit ().split ( "//." )[0] ) );
-                int totalProfitInInteger = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalProfit ) ).split ( "//." )[0] ) );
-                int acreageInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (acreage * 100) / totalProfitInInteger ).split ( "//." )[0] ) );
-                int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getUsedAcres ().split ( "//." )[0] ) );
-                int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
-                int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
-              /*  if (acreageInPer != 0 ||estimateIncomeInPer!=0) {
-                    farmOutputDetailsView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal ( Double.valueOf ( acreageInPer / estimateIncomeInPer ) ) );
-                } else {
-                    farmOutputDetailsView.setProfitIndex ( 0.0 );
-                }*/
-                farmOutputDetailsView.setProfitIndex(AgricultureStandardUtils.doubleWithOneDecimal(((farmOutputDetailsView.getProfitDouble() * 100) / totalProfit) / ((farmOutputDetailsView.getUsedAcresAsDouble() * 100) / totalUsedAcre)));
-                farmOutputDetailsView.setRatio ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetailsView.getProfitDouble () / farmOutputDetailsView.getUsedAcresAsDouble () ) );
-                farmOutputDetailsView.setRating ( (farmOutputDetailsView.getProfitIndex () >= 1) ? "Green" : (farmOutputDetailsView.getProfitIndex () < 1 && farmOutputDetailsView.getProfitIndex () >= 0.6) ? "Yellow" : (farmOutputDetailsView.getProfitIndex () < 0.6 /*&& farmOutputDetailsView.getProfitIndex() > 0*/) ? "Red" : "Grey" );
+                if (!farmOutputDetailsView.getProfit ().equalsIgnoreCase ( "0" ) || !farmOutputDetailsView.getUsedAcres ().equalsIgnoreCase ( "0" )) {
+                    int acreage = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getProfit ().split ( "//." )[0] ) );
+                    int totalProfitInInteger = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalProfit ) ).split ( "//." )[0] ) );
+                    int acreageInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (acreage * 100) / totalProfitInInteger ).split ( "//." )[0] ) );
+                    int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getUsedAcres ().split ( "//." )[0] ) );
+                    int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
+                    int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
+                    farmOutputDetailsView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal ( ((farmOutputDetailsView.getProfitDouble () * 100) / totalProfit) / ((farmOutputDetailsView.getUsedAcresAsDouble () * 100) / totalUsedAcre) ) );
+                    farmOutputDetailsView.setRatio ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetailsView.getProfitDouble () / farmOutputDetailsView.getUsedAcresAsDouble () ) );
+                    farmOutputDetailsView.setRating ( (farmOutputDetailsView.getProfitIndex () >= 1) ? "Green" : (farmOutputDetailsView.getProfitIndex () < 1 && farmOutputDetailsView.getProfitIndex () >= 0.6) ? "Yellow" : (farmOutputDetailsView.getProfitIndex () < 0.6 /*&& farmOutputDetailsView.getProfitIndex() > 0*/) ? "Red" : "Grey" );
+                }else{
+                    farmOutputDetailsView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal ( 0.0 ) );
+                    farmOutputDetailsView.setRatio ( AgricultureStandardUtils.doubleWithOneDecimal ( 0.0 ) );
+                    farmOutputDetailsView.setRating (  "Grey" );
+                }
             }
 //            }
         }
@@ -205,22 +206,20 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
 
             if (totalUsedAcre > 0 && totalProfit > 0) {
                 for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViews) {
-                    farmOutputDetailsForFieldView.setUsedAcresPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getUsedAcresAsDouble () * 100) / totalUsedAcre ) );
-                    farmOutputDetailsForFieldView.setUsedCapitalPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getProfitAsDouble () * 100) / totalProfit ) );
-                    int acreage = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getProfit ().split ( "//." )[0] ) );
-                    int totalProfitInInteger = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalProfit ) ).split ( "//." )[0] ) );
-                    int acreageInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (acreage * 100) / totalProfitInInteger ).split ( "//." )[0] ) );
-                    int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getUsedAcres ().split ( "//." )[0] ) );
-                    int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
-                    int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
-                 /*   if (acreageInPer != 0 && estimateIncomeInPer != 0) {
-                        farmOutputDetailsForFieldView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal((double) (acreageInPer / estimateIncomeInPer)));
-                    } else {
-                        farmOutputDetailsForFieldView.setProfitIndex ( 0.0 );
-                    }*/
-                    farmOutputDetailsForFieldView.setProfitIndex(AgricultureStandardUtils.doubleWithOneDecimal(((farmOutputDetailsForFieldView.getProfitDouble() * 100) / totalProfit) / ((farmOutputDetailsForFieldView.getUsedAcresAsDouble() * 100) / totalUsedAcre)));
-                    farmOutputDetailsForFieldView.setRatio ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetailsForFieldView.getProfitDouble () / farmOutputDetailsForFieldView.getUsedAcresAsDouble () ) );
-                    farmOutputDetailsForFieldView.setRating ( (farmOutputDetailsForFieldView.getProfitIndex () >= 1) ? "Green" : (farmOutputDetailsForFieldView.getProfitIndex () < 1 && farmOutputDetailsForFieldView.getProfitIndex () >= 0.6) ? "Yellow" : (farmOutputDetailsForFieldView.getProfitIndex () < 0.6 /*&& farmOutputDetailsForFieldView.getProfitIndex() > 0.0*/) ? "Red" : "Grey" );
+                    if (farmOutputDetailsForFieldView.getProfitAsDouble () != 0.0 || farmOutputDetailsForFieldView.getUsedAcresAsDouble () != 0.0) {
+
+                        farmOutputDetailsForFieldView.setUsedAcresPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getUsedAcresAsDouble () * 100) / totalUsedAcre ) );
+                        farmOutputDetailsForFieldView.setUsedCapitalPercentage ( AgricultureStandardUtils.doubleToInteger ( (farmOutputDetailsForFieldView.getProfitAsDouble () * 100) / totalProfit ) );
+                        int acreage = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getProfit ().split ( "//." )[0] ) );
+                        int totalProfitInInteger = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalProfit ) ).split ( "//." )[0] ) );
+                        int acreageInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (acreage * 100) / totalProfitInInteger ).split ( "//." )[0] ) );
+                        int estimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsForFieldView.getUsedAcres ().split ( "//." )[0] ) );
+                        int totalEstimateIncome = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( totalUsedAcre ).split ( "//." )[0] ) ) );
+                        int estimateIncomeInPer = Integer.parseInt ( AgricultureStandardUtils.removeAllCommas ( String.valueOf ( (estimateIncome * 100) / totalEstimateIncome ).split ( "//." )[0] ) );
+                        farmOutputDetailsForFieldView.setProfitIndex ( AgricultureStandardUtils.doubleWithOneDecimal ( ((farmOutputDetailsForFieldView.getProfitDouble () * 100) / totalProfit) / ((farmOutputDetailsForFieldView.getUsedAcresAsDouble () * 100) / totalUsedAcre) ) );
+                        farmOutputDetailsForFieldView.setRatio ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetailsForFieldView.getProfitDouble () / farmOutputDetailsForFieldView.getUsedAcresAsDouble () ) );
+                        farmOutputDetailsForFieldView.setRating ( (farmOutputDetailsForFieldView.getProfitIndex () >= 1) ? "Green" : (farmOutputDetailsForFieldView.getProfitIndex () < 1 && farmOutputDetailsForFieldView.getProfitIndex () >= 0.6) ? "Yellow" : (farmOutputDetailsForFieldView.getProfitIndex () < 0.6 /*&& farmOutputDetailsForFieldView.getProfitIndex() > 0.0*/) ? "Red" : "Grey" );
+                    }
                 }
             }
         }
