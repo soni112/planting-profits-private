@@ -106,10 +106,15 @@
                                             </td>
                                             <td>
                                                 Return on Working Capital
-
+                                                <a class="help_Infromation_PopUp" id="ReturnOnWorkingCapital">
+                                                    <img src="<c:url value="/images/i-icon.png"/>">
+                                                </a>
                                             </td>
                                             <td>
                                                 Rating
+                                                <a class="help_Infromation_PopUp" id="RatingForReturnOnWorkingCapital">
+                                                    <img src="<c:url value="/images/i-icon.png"/>">
+                                                </a>
                                             </td>
                                         </tr>
                                         </thead>
