@@ -523,6 +523,10 @@
                                                                     <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS' and resource.cropResourceUse ne 'Land'}">
                                                                         <option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
                                                                     </c:when>
+
+                                                                    <c:when test="${resource.cropResourceUse ne 'Land' and resource.cropResourceUse ne 'Capital'}">
+                                                                        <option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
+                                                                    </c:when>
                                                                 </c:choose>
 
                                                             </c:if>
