@@ -465,7 +465,7 @@ function getStrategyForMultipleCrops() {
             maxValue = parseFloat(removeAllCommas(maxValue));
             if (maxOverridedValue > maxLand) {
                 $.trim($(this).children("td:nth(4)").find("input").val(maxLand));
-                customAlerts("Maximum acreage limit of " + cropName + " cannot be more than total acreage i.e. " + maxLand + " acres", type_error, time);
+                // customAlerts("Maximum acreage limit of " + cropName + " cannot be more than total acreage i.e. " + maxLand + " acres", type_error, time);
                 focusForValidationForObject($(this).children("td:nth(4)").find("input"));
                 limitFlag = true;
                 return false;
@@ -609,8 +609,8 @@ function getStrategyForMultipleCrops() {
         return false;
     } else if (totalMaximumAcre > maxLand) {
 
-        totalMaximumAcre=maxLand;
-        customAlerts('Total of MAX acreage limits can not be more than total available acreage "' + maxLand + '"It will automatically convert in Max Land       "', type_error, time);
+        customAlerts('The total Maximum crop acreage limit cannot be more than the total available acreage "' + maxLand , type_error, time);
+
         return false;
     } else if (cropsArray.length == 0 && cropsGroupArray.length == 0 && cropContractArray.length == 0 && cropProposedArray.length == 0) {
         customAlerts("These are the original crop limits <br/> so a new strategy cannot be generated", 'error', time);

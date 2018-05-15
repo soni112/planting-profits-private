@@ -43,7 +43,7 @@
                                 <div id="tableSectionForStrategy" class="text-center">
                                     <button class="alertify-button alertify-button-ok pull-right"
                                             onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
-                                        <i class="fa fa-bar-chart-o"></i> Granular Comparison
+                                        <i class="fa fa-bar-chart-o"></i> Dashboard
                                     </button>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />

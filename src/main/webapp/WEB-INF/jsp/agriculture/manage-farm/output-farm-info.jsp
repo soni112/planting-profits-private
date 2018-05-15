@@ -106,10 +106,15 @@
                                             </td>
                                             <td>
                                                 Return on Working Capital
-
+                                                <a class="help_Infromation_PopUp" id="ReturnOnWorkingCapital">
+                                                    <img src="<c:url value="/images/i-icon.png"/>">
+                                                </a>
                                             </td>
                                             <td>
                                                 Rating
+                                                <a class="help_Infromation_PopUp" id="RatingForReturnOnWorkingCapital">
+                                                    <img src="<c:url value="/images/i-icon.png"/>">
+                                                </a>
                                             </td>
                                         </tr>
                                         </thead>
@@ -516,6 +521,10 @@
                                                                         </option>
                                                                     </c:when>
                                                                     <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS' and resource.cropResourceUse ne 'Land'}">
+                                                                        <option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
+                                                                    </c:when>
+
+                                                                    <c:when test="${resource.cropResourceUse ne 'Land' and resource.cropResourceUse ne 'Capital'}">
                                                                         <option value="${resource.cropResourceUse}">${resource.cropResourceUse}</option>
                                                                     </c:when>
                                                                 </c:choose>
