@@ -729,10 +729,21 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 jsonObject.put(RESOURCE_USED, cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 jsonObject.put(RESOURCE_UNUSED, cropResourceUnused.get(cropResourceUsageView.getCropResourceUse()));
 
-                if(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse()).equalsIgnoreCase("0")){
+                Double usedCrop= Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( cropResourceUnused.get ( cropResourceUsageView.getCropResourceUse() )) );
+                Double totalAvalable= Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsageView.getCropResourceUseAmount ()) );
+               Double impactingEstIncome=0.0;
+                if(usedCrop!=0 || totalAvalable!=0){
+                    impactingEstIncome=   usedCrop/totalAvalable;
+               }
+                if(impactingEstIncome<=0.05){
                     jsonObject.put(RESOURCE_IMPACTING_PROFIT, "Yes");
-                } else {
-                    jsonObject.put(RESOURCE_IMPACTING_PROFIT, "No");
+                } else if(impactingEstIncome>0.05 && impactingEstIncome<=0.15){
+                    jsonObject.put(RESOURCE_IMPACTING_PROFIT, "Likely");
+                }else if(impactingEstIncome>0.15){
+                    jsonObject.put(RESOURCE_IMPACTING_PROFIT, "No ");
+                }else{
+                    jsonObject.put(RESOURCE_IMPACTING_PROFIT, "NA");
+
                 }
                 jsonArray.add(jsonObject);
             }
