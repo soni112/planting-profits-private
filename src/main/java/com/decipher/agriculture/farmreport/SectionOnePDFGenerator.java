@@ -909,21 +909,9 @@ public class SectionOnePDFGenerator {
             Map <String, String> hashMapForProfitIndex = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForProfitIndex" );
             Map <String, String> hashMapForRating = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForRating" );
             Map <String, String> hashMapForProfit = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForProfit" );
-            List <String> ratioList = new ArrayList <String> ();
-
-            Map <String, String> map = new LinkedHashMap <String, String> ();
-            JSONArray cropAcreageJsonArray = (JSONArray) baseSelectedOutpuDetailsJsonObject.get ( "cropAcreageJsonArray" );
-            for (int i = 0; i < cropAcreageJsonArray.size (); i++) {
-                Map <String, String> hashMapForAcreage = (Map <String, String>) cropAcreageJsonArray.get ( i );
-                String value = hashMapForAcreage.get ( "ratio" );
-                String key = hashMapForAcreage.get ( "cropName" );
-                ratioList.add ( value );
-                map.put ( hashMapForAcreage.get ( "cropName" ), hashMapForAcreage.get ( "ratio" ) );
-
-            }
+            Map <String, String> hashMapForAcre = (Map <String, String>) baseSelectedOutpuDetailsJsonObject.get ( "hashMapForAcre" );
 
             Set <String> keySet = hashMapForRating.keySet ();
-            int index = 0;
             for (String cropKey : keySet) {
 
                 PdfPCell cropName = new PdfPCell ( new Phrase ( cropKey, ReportTemplate.TIMESROMAN_10_NORMAL ) );
@@ -967,8 +955,12 @@ public class SectionOnePDFGenerator {
                     rating.setBackgroundColor ( BaseColor.GRAY );
                 }
                 cropContributionMarginTable.addCell ( rating );
-
-                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + map.get ( cropKey ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                double profit= Double.parseDouble (  AgricultureStandardUtils.removeAllCommas ( hashMapForProfit.get ( cropKey ).split ( "\\(" )[0]));
+                double acreage= Double.parseDouble (AgricultureStandardUtils.removeAllCommas (  hashMapForAcre.get ( cropKey ).split ( "\\(" )[0] ));
+                double estIncomePerAcr=0.0;
+                if(profit!=0.0 && acreage!=0.0){
+                 estIncomePerAcr=profit/acreage;}
+                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estIncomePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 estimate.setUseBorderPadding ( true );
                 estimate.setBorderWidth ( 0 );
                 estimate.setBorder ( Rectangle.NO_BORDER );
@@ -982,9 +974,6 @@ public class SectionOnePDFGenerator {
                         || profitStr.equalsIgnoreCase ( "0 (-0.0%)" )) {
                     workReturnInString = "NA";
                 } else {
-                  double ratio= Double.parseDouble (AgricultureStandardUtils.removeAllCommas (  map.get ( cropKey ) ));
-//                    Double profitDouble = new Double ( AgricultureStandardUtils.removeAllCommas ( profitStr.split ( " \\(" )[0] ) );
-                    index += 1;
 
                     String cropName1 = cropKey;
                     if (cropKey.contains ( " (Firm)" )) {
@@ -997,8 +986,8 @@ public class SectionOnePDFGenerator {
                         if (cropTypeView.getSelected () && cropTypeView.getCropName ().equalsIgnoreCase ( cropName1 )) {
                            double variableCostProduction= cropTypeView.getCalculatedVariableProductionCost ().doubleValue ();
                             if (variableCostProduction != 0) {
-                                workReturn = ratio / variableCostProduction;
-                                workReturnInString = String.valueOf (  AgricultureStandardUtils.doubleWithOneDecimal ( ratio/cropTypeView.getCalculatedVariableProductionCost ().doubleValue ()));
+                                workReturn = estIncomePerAcr / variableCostProduction;
+                                workReturnInString = String.valueOf (  AgricultureStandardUtils.doubleWithOneDecimal ( estIncomePerAcr/cropTypeView.getCalculatedVariableProductionCost ().doubleValue ()));
 
                             }else {
                                 workReturnInString="NA";

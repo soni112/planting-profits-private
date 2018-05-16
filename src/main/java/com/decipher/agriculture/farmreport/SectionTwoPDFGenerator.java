@@ -342,46 +342,50 @@ public class SectionTwoPDFGenerator {
                         }
                     }
                 }
-                estimatePerAcr = (totalEstimateIncome / totalAcreage);
+                if (totalAcreage != 0.0 || totalEstimateIncome != 0.0) {
+                    estimatePerAcr = (totalEstimateIncome / totalAcreage);
+                } else {
+                    estimatePerAcr = 0.0;
+                }
                 table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( estimatePerAcr ) ) );
-
                 table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( totalAcreage ) ) );
-
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView ().getSelected ()) {
-
                         table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( farmOutputDetailsView.getUsedAcresAsDouble ().toString () ) );
                     }
                 }
 
             } else if (farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy ().equals ( PlanByStrategy.PLAN_BY_FIELDS )) {
                 Double totalAcreage = 0.0;
-                Double totalEstimateIncome = 0.0;
-                Double estimateIncome = 0.0;
-                String tt = null;
-                JSONArray cropAcreageJsonArray = (JSONArray) strategyDataJsonObject.get ( "cropAcreageJsonArray" );
-                for (int i = 0; i < cropAcreageJsonArray.size (); i++) {
-                    Map <String, String> hashMapForRatio = (HashMap <String, String>) cropAcreageJsonArray.get ( i );
-                    if (hashMapForRatio.get ( "profit" ) != "NA") {
-                        estimateIncome += new Double ( AgricultureStandardUtils.removeAllCommas ( hashMapForRatio.get ( "profit" ).split ( " " )[0] ) );
-                    }
-                }
+                String totalEstimateIncome = null;
                 Map <String, String> hashMapForAcre = (Map <String, String>) strategyDataJsonObject.get ( "hashMapForAcre" );
+                Map <String, String> hashMapForProfit = (Map <String, String>) strategyDataJsonObject.get ( "hashMapForProfit" );
+                double sumOfEstIncomePerAcr = 0.0;
                 Set <String> keySet = hashMapForAcre.keySet ();
                 for (String cropKey : keySet) {
-                    totalAcreage += Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( hashMapForAcre.get ( cropKey ).split ( " " )[0] ) );
-                }
-                totalEstimateIncome = (estimateIncome / totalAcreage);
+                    double acreage = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( hashMapForAcre.get ( cropKey ).split ( " \\(" )[0] ) );
+                    double profit = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( hashMapForProfit.get ( cropKey ).split ( "\\(" )[0] ) );
+                    if (acreage != 0.0 || profit != 0.0) {
+                        sumOfEstIncomePerAcr += profit / acreage;
+                        totalAcreage += Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( hashMapForAcre.get ( cropKey ).split ( " " )[0] ) );
+                    }}
+                    if (totalAcreage != 0.0 || sumOfEstIncomePerAcr != 0.0) {
+                        totalEstimateIncome = String.valueOf ( (AgricultureStandardUtils.doubleWithOneDecimal ( sumOfEstIncomePerAcr / totalAcreage )) );
+                    } else {
+                        totalEstimateIncome = "NA";
+                    }
 
-                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( totalEstimateIncome ) ) );
-                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( totalAcreage ) ) );
-                for (String cropKey : keySet) {
-                    table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( hashMapForAcre.get ( cropKey ).split ( " " )[0] ) );
+                    table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( totalEstimateIncome ) );
+                    table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( totalAcreage ) ) );
+                    for (String cropKey : keySet) {
+                        table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( hashMapForAcre.get ( cropKey ).split ( " " )[0] ) );
+                    }
                 }
+                table.completeRow ();
             }
-            table.completeRow ();
-        }
+
         return table;
+
     }
 
     private PdfPTable getResourcesTable() {
