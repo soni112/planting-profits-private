@@ -850,7 +850,7 @@ public class SectionOnePDFGenerator {
                 if (farmOutputDetails.getRatio () == 0.0) {
                     estimateIncomePerAce = "NA";
                 } else {
-                    estimateIncomePerAce = String.valueOf ( farmOutputDetails.getRatio () );
+                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () ));
 
                 }
                 PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
