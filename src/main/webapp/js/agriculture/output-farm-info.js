@@ -74,10 +74,10 @@ function registerTemplates() {
 }
 
 function applyDetailsThroughTemplate(templateId, datalist, targetId) {
-    if(datalist.length > 0){
+    // if(datalist.length > 0){
     $(targetId).html("");
     $(templateId).tmpl(datalist).appendTo(targetId);
-    }
+    // }
 }
 
 function applyGraphTableToggleAndSAToggle() {
