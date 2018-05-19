@@ -734,6 +734,8 @@ public class ScenarioServiceImpl implements ScenarioService {
                 jsonObjectForStrategyCompleteData.put("hashMapForRatio", mapForCropsForField.get("hashMapForRatio"));
                 jsonObjectForStrategyCompleteData.put("hashMapForProfitIndex", mapForCropsForField.get("hashMapForProfitIndex"));
                 jsonObjectForStrategyCompleteData.put("hashMapForRating", mapForCropsForField.get("hashMapForRating"));
+                jsonObjectForStrategyCompleteData.put ( "hashMapForWorkReturn",mapForCropsForField.get ( "hashMapForWorkReturn" ) );
+                jsonObjectForStrategyCompleteData.put ( "hashMapForWorkReturnForRating",mapForCropsForField.get ( "hashMapForWorkReturnForRating" ) );
                 jsonObjectForStrategyCompleteData.put("potentialProfit", potentialProfit);
             }
 

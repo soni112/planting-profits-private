@@ -1442,6 +1442,9 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
         Map<String, String> hashMapForRatio = new TreeMap<>();
         Map<String, String> hashMapForProfitIndex = new TreeMap<>();
         Map<String, String> hashMapForRating = new TreeMap<>();
+        Map <String,String> hashMapForWorkReturn = new TreeMap<>();
+        Map <String,String> hashMapForWorkReturnForRating = new TreeMap<>();
+
         long profitTotalOfAllCrops = 0;
         long acreTotalOfAllCrops = 0;
         for (CropTypeView typeView : cropTypeView) {
@@ -1563,6 +1566,29 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
             hashMapForProfit.put(entry.getKey(), profitString);
             hashMapForProfitIndex.put(entry.getKey(), "" + AgricultureStandardUtils.doubleWithOneDecimal(profitIndexString).toString() + "%");
             hashMapForRating.put(entry.getKey(), (profitIndexString >= 1) ? "Green" : (profitIndexString < 1 && profitIndexString >= 0.6) ? "Yellow" : (profitIndexString < 0.6 /*&& profitIndexString > 0*/) ? "Red" : "Grey");
+            double ratio= Double.parseDouble ( AgricultureStandardUtils.withoutDecimalAndComma ( hashMapForRatio.get ( entry.getKey () )) );
+            double workReturn=0.0;
+            for (CropTypeView cropType : cropTypeView) {
+                if (cropType.getSelected () ){
+                        hashMapForWorkReturn.put (entry.getKey (), ""+ AgricultureStandardUtils.doubleWithOneDecimal (  ratio / cropType.getCalculatedVariableProductionCost ().doubleValue ()));
+                    workReturn=  AgricultureStandardUtils.doubleWithOneDecimal (  ratio / cropType.getCalculatedVariableProductionCost ().doubleValue ());
+                    break;
+                }
+            }
+            if (workReturn == 0.0){
+                hashMapForWorkReturnForRating.put ( entry.getKey(),"Grey" );}
+            else {
+                if (workReturn < 0.5) {
+                    hashMapForWorkReturnForRating.put ( entry.getKey(),"Red");
+                } else if (0.50 <= workReturn && workReturn < 0.9) {
+                    hashMapForWorkReturnForRating.put ( entry.getKey(),"Yellow" );
+                } else if (workReturn >= 0.9) {
+                    hashMapForWorkReturnForRating.put (entry.getKey(),"Green" );
+                }
+            }
+//            hashMapForWorkReturnForRating.put(entry.getKey(), (workReturn >= 0.9) ? "Green" : (0.50 <= workReturn && workReturn < 0.9 ) ? "Yellow" : (workReturn < 0.5 ) ? "Red" : "Grey");
+
+
         }
 		/*
 		 * Total Acreage would be by Used Acres
@@ -1585,6 +1611,8 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
         mapForCropsForField.put("hashMapForAcre", AgricultureStandardUtils.sortUsingComparatorByValue(hashMapForAcre));
         mapForCropsForField.put("hashMapForProfit", hashMapForProfit);
         mapForCropsForField.put("hashMapForRatio", hashMapForRatio);
+        mapForCropsForField.put ( "hashMapForWorkReturn",hashMapForWorkReturn );
+        mapForCropsForField.put ( "hashMapForWorkReturnForRating",hashMapForWorkReturnForRating );
         mapForCropsForField.put("hashMapForProfitIndex", hashMapForProfitIndex);
         mapForCropsForField.put("hashMapForRating", hashMapForRating);
         mapCompleteObject.put("jsonObjectForGraphs", jsonObjectForGraphs);

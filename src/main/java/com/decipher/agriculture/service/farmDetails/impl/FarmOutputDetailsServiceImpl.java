@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -544,6 +545,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
             List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                Map<String,String> hashMapForWorkReturn=new HashMap <> (  );
+                Map<String,String> hashMapForWorkReturnRating=new HashMap <> (  );
                 JSONObject jsonObject = new JSONObject();
 
                 String cropName = farmOutputDetailsView.getCropTypeView().getCropName();
@@ -603,6 +606,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         jsonObject.put ( RATINGFORWORKRETURN,"Green" );
                     }
                 }
+                hashMapForWorkReturn.put ( "count","1" );
+                hashMapForWorkReturnRating.put ("con","1");
                 jsonArray.add(jsonObject);
 
             }
@@ -614,6 +619,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             Map<String, String> hashMapForRatio = (Map<String, String>) outputDetails.get("hashMapForRatio");
             Map<String, String> hashMapForProfitIndex = (Map<String, String>) outputDetails.get("hashMapForProfitIndex");
             Map<String, String> hashMapForRating = (Map<String, String>) outputDetails.get("hashMapForRating");
+            Map<String,String> hashMapForWorkReturn=(Map<String,String>) outputDetails.get ( "hashMapForWorkReturn" );
+            Map<String,String> hashMapForWorkReturnRating= (Map<String, String>) outputDetails.get ( "hashMapForWorkReturnForRating" );
 
             Set<String> cropTypeKeySet = hashMapForAcre.keySet();
             for (String cropTypeKey : cropTypeKeySet) {
@@ -641,8 +648,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put(RATIO, hashMapForRatio.get(cropTypeKey));
                 }
 
-                if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0")
-                        || hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0")) {
+                if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0%")
+                         ) {
                     jsonObject.put(INDEX, "NA");
                 } else {
                     jsonObject.put(INDEX, hashMapForProfitIndex.get(cropTypeKey).replace("%", ""));
@@ -650,14 +657,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                 jsonObject.put(RATING, hashMapForRating.get(cropTypeKey));
 
-                if (profit.equalsIgnoreCase("0 (0.0%)")
-                        || profit.equalsIgnoreCase("0 (-0.0%)")){
+                if (hashMapForWorkReturn.get ( cropTypeKey ).equalsIgnoreCase ( "0.0" ) ){
                     jsonObject.put ( WORKRETURN,"NA" );
                 } else {
-                   /* String profitStr = hashMapForRatio.get ( cropTypeKey );
-                    Double profitDouble = new Double (AgricultureStandardUtils.removeAllCommas (profitStr.split ( " \\(" )[0]));
-*/
-                    Double ratio= new Double ( AgricultureStandardUtils.removeAllCommas ( hashMapForRatio.get(cropTypeKey)));
+                    jsonObject.put ( WORKRETURN, hashMapForWorkReturn.get ( cropTypeKey ));}
+                 /*   Double ratio= new Double ( AgricultureStandardUtils.removeAllCommas ( hashMapForRatio.get(cropTypeKey)));
                     String cropName = cropTypeKey;
                     if (cropTypeKey.contains (" (Firm)")) {
                         cropName = cropTypeKey.split ( " \\(Firm\\)" )[0];
@@ -675,27 +679,28 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             break;
                         }
                     }
-                }
-                if (profit.equalsIgnoreCase("0 (0.0%)")
+                }*/
+                /*if (profit.equalsIgnoreCase("0 (0.0%)")
                         || profit.equalsIgnoreCase("0 (-0.0%)")){
                     jsonObject.put ( RATINGFORWORKRETURN,"Grey" );}
                 else {
                     if (workreturn < 0.5) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Red");
+
                     } else if (0.50 <= workreturn && workreturn < 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Yellow" );
                     } else if (workreturn >= 0.9) {
                         jsonObject.put ( RATINGFORWORKRETURN,"Green" );
                     }
-                }
-                jsonArray.add(jsonObject);
+                }*/
+                    jsonObject.put ( RATINGFORWORKRETURN,hashMapForWorkReturnRating.get ( cropTypeKey ));
+                    jsonArray.add(jsonObject);
             }
         }
-
-
-
         return jsonArray;
     }
+
+
 
     @Override
     public JSONObject buildResourcesContent(JSONObject outputDetails) {
