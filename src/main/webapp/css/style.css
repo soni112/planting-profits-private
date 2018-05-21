@@ -3879,6 +3879,14 @@ sup {
     float: left;
     height: 55px;
 }
+
+#Crop-Limits .tbl-fixd-hdr thead > tr > td, #Crop-Limits .tbl-fixd-hdr tbody > tr > td {
+    width: 25%;
+    position: relative;
+    float: left;
+    /* height: 54px; */
+    height: 35px;
+}
 /*======   Field Choices   ==========*/
 .fld-chc-tbl-fixd-hdr{
     width: 100%;

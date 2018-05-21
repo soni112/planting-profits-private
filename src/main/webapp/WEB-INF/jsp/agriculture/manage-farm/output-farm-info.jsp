@@ -754,10 +754,10 @@
                         <!-- @end #Resource-Use -->
 
                         <div class="contentblock hidden" id="Crop-Limits">
-                            <div class="table-responsive" style="max-height: 330px;">
+                            <div class="table-responsive">
                                 <table width="100%" cellspacing="0"
-                                       class="table table-striped tbl-bordr  tblbrdr output_table">
-                                    <thead>
+                                       class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll">
+                                    <thead style="display: table-header-group;">
                                     <tr class="tblhd add-fieldi">
                                         <td class="tblbrdr add-fieldi">Crop</td>
                                         <td>Minimum Limit</td>
@@ -770,7 +770,7 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody class="scrollbar-dynamic scrollDiv" style="display: table-row-group;">
                                     <c:forEach var="cropLimit" items="${model.cropLimitsJsonArray}">
                                         <tr class="tblgrn">
                                             <c:if test="${cropLimit.maxLimit!='--'}">
