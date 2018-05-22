@@ -2540,7 +2540,13 @@ input {
 .multiselect {
     width: 100%;
 }
-
+.displayMessage{
+    margin-top: 88px;
+    top: 0;
+    position: relative;
+    top: -3px;
+     margin-left: 59px;
+}
 .multiselect-container {
     max-height: 120px;
     overflow-y: auto;
@@ -3878,6 +3884,14 @@ sup {
     position: relative;
     float: left;
     height: 55px;
+}
+
+#Crop-Limits .tbl-fixd-hdr thead > tr > td, #Crop-Limits .tbl-fixd-hdr tbody > tr > td {
+    width: 25%;
+    position: relative;
+    float: left;
+    /* height: 54px; */
+    height: 35px;
 }
 /*======   Field Choices   ==========*/
 .fld-chc-tbl-fixd-hdr{

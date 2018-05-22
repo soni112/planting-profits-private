@@ -25,7 +25,7 @@
                                 <a href="<c:url value="/documents/Planting%20Profits%20Data%20Collection%20Worksheet.zip"/>" class="remove-text-deco" target="_blank">Farm Data Worksheets</a></li>
                             <li>
                                 <i class="fa fa-check text-white"></i>
-                                <a href="<c:url value="/documents/Planting Profits Planning Process.pdf"/>"                                    class="remove-text-deco">Production Planing Process
+                                <a href="<c:url value="/documents/Planting Profits 5-Step Planning Process.pdf"/>"                                    class="remove-text-deco">Production Planing Process
                                 </a>
 
                             <%--<a href="javascript:; " onclick="$('#view-planning-process-popup').show();"--%>

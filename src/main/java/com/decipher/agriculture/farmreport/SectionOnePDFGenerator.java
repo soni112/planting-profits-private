@@ -320,7 +320,7 @@ public class SectionOnePDFGenerator {
 
                 resourceParagraph.add ( new Chunk ( "Return on " + resourceUsage.get ( "resource" )
                         + ": $" + AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal (  formatter.format ( Double.parseDouble  ( estimatedIncommeFormatted ) / total ))
-                        + " of gross income per one acre\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                        + " of gross income per acre\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
             } else if (resourceUsage.get ( "resource" ).equalsIgnoreCase ( "capital ($)" )) {
 
                 Double total = Double.parseDouble ( resourceUsage.get ( "used" ).replaceAll ( "\\,", "" ) );
@@ -746,7 +746,9 @@ public class SectionOnePDFGenerator {
 //        cropHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cropHead );
 
-        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / \n % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        cmHead.setColspan ( 2 );
+
         cmHead.setUseBorderPadding ( true );
         cmHead.setBorderWidth (0);
         cmHead.setBorderWidthBottom(1);
@@ -754,17 +756,13 @@ public class SectionOnePDFGenerator {
 //        cmHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cmHead );
 
-        PdfPCell ratingHead = new PdfPCell ( new Phrase ( " ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+       /* PdfPCell ratingHead = new PdfPCell ( new Phrase ( " ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         ratingHead.setUseBorderPadding ( true );
-        ratingHead.setBorderWidth (0);
-        ratingHead.setBorderWidthBottom(1);
-        ratingHead.setBorderWidthTop(1);
-//        ratingHead.setBorderWidthLeft(1);
-//        ratingHead.setBorderWidthRight(1);
-//        ratingHead.setBorder ( Rectangle.NO_BORDER );
-        cropContributionMarginTable.addCell ( ratingHead );
+        ratingHead.setBorderWidth ( 0.5f );
+        ratingHead.setBorder ( Rectangle.BOTTOM );
+        cropContributionMarginTable.addCell ( ratingHead );*/
 
-        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         estimateHead.setUseBorderPadding ( true );
         estimateHead.setBorderWidth (0);
         estimateHead.setBorderWidthBottom(1);
@@ -775,21 +773,21 @@ public class SectionOnePDFGenerator {
         cropContributionMarginTable.addCell ( estimateHead );
 
         PdfPCell returnWorkingCapitalHead = new PdfPCell ( new Phrase ( "Return Working Capital", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        returnWorkingCapitalHead.setColspan ( 2 );
         returnWorkingCapitalHead.setUseBorderPadding ( true );
         returnWorkingCapitalHead.setBorderWidth (0);
         returnWorkingCapitalHead.setBorderWidthBottom(1);
         returnWorkingCapitalHead.setBorderWidthTop(1);
 //        returnWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( returnWorkingCapitalHead );
+/*
 
         PdfPCell ratingforWorkingCapitalHead = new PdfPCell ( new Phrase ( "Rating", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         ratingforWorkingCapitalHead.setUseBorderPadding ( true );
-        ratingforWorkingCapitalHead.setBorderWidth (0);
-        ratingforWorkingCapitalHead.setBorderWidthBottom(1);
-        ratingforWorkingCapitalHead.setBorderWidthTop(1);
-        ratingforWorkingCapitalHead.setBorderWidthRight(1);
-//        ratingforWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
-        cropContributionMarginTable.addCell (ratingforWorkingCapitalHead );
+        ratingforWorkingCapitalHead.setBorderWidth ( 0.5f );
+        ratingforWorkingCapitalHead.setBorder ( Rectangle.BOTTOM );
+        cropContributionMarginTable.addCell ( ratingforWorkingCapitalHead );
+*/
 
         cropContributionMarginTable.completeRow ();
 

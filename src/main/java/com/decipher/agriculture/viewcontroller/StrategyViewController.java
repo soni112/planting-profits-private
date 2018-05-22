@@ -152,9 +152,12 @@ public class StrategyViewController {
 
             HashMap <String, String> detailsDataForGauge;
             String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size ()];
-            for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
+			Integer[] EstimateIncomeArray = new Integer[jsonArrayForStrategy.size ()];
+
+			for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
                 JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get ( i );
                 returnWorkingCapitalArray[i] = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
+				EstimateIncomeArray[i] = (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
             }
             for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
                 for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
@@ -166,6 +169,16 @@ public class StrategyViewController {
 
                 }
             }
+			for (int i = 0; i < EstimateIncomeArray.length; i++) {
+				for (int l = i + 1; l < EstimateIncomeArray.length; l++) {
+					if ( EstimateIncomeArray[i]  < EstimateIncomeArray[l]) {
+						int temp = EstimateIncomeArray[i];
+						EstimateIncomeArray[i] = EstimateIncomeArray[l];
+						EstimateIncomeArray[l] = temp;
+					}
+
+				}
+			}
             for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
                 detailsDataForGauge = new HashMap <> ();
                 FarmCustomStrategyView farmCustomStrategyView = (FarmCustomStrategyView) jsonArrayForStrategy.get ( i );
@@ -177,17 +190,27 @@ public class StrategyViewController {
                 detailsDataForGauge.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
                 detailsDataForGauge.put ( "EstimateIncome", jsonObjectStrategyData.get ( "EstimateIncome" ).toString () );
                 detailsDataForGauge.put ( "ReturnWorkingCapital", jsonObjectStrategyData.get ( "returnWorkingCapital" ).toString () );
-                String tt = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
-                int count = 0;
+                String returnWorking = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
+				int EstimateIncome= (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
+
+				int countReturnWorking = 0;
                 for (String returnWorkingCapital :
                         returnWorkingCapitalArray) {
-                    count++;
-                    if (returnWorkingCapital.equals ( tt )) {
-                        detailsDataForGauge.put ( "count", "" + count );
+					countReturnWorking++;
+                    if (returnWorkingCapital.equals ( returnWorking )) {
+                        detailsDataForGauge.put ( "countReturnWorking", "" + countReturnWorking );
                         break;
                     }
                 }
-
+				int countEstimateIncome = 0;
+				for (int EstimateIncomeArrayValue :
+						EstimateIncomeArray) {
+					countEstimateIncome++;
+					if (EstimateIncomeArrayValue== EstimateIncome) {
+						detailsDataForGauge.put ( "countEstimateIncome", "" + countEstimateIncome );
+						break;
+					}
+				}
                 JSONArray jsonArrayDetails = (JSONArray) jsonObjectForHighRisk.get ( "details" );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationCrop.get ( "details" );
                 Map <String, String> hashMapForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
