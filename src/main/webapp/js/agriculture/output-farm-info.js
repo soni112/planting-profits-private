@@ -656,6 +656,11 @@ function getStrategyForMultipleCrops() {
                     localStorage.setItem('sensitivityFlag', true);
                     $('#checkStrategy-pop-up-close-btn').show();
                     $('#checkStrategy-pop-up').hide();
+                    $("#allAcreageNotPlanted").show();
+                    $("#allAcreagePlanted").hide();
+                }else if(difference>0){
+                    $("#allAcreageNotPlanted").hide();
+                    $("#allAcreagePlanted").show();
                 }
 
                 $("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
