@@ -3886,12 +3886,19 @@ sup {
     height: 55px;
 }
 
-#Crop-Limits .tbl-fixd-hdr thead > tr > td, #Crop-Limits .tbl-fixd-hdr tbody > tr > td {
+.tbl-fixd-hdr.Crop-Limits-fixed-hdr-4 thead > tr > td, .tbl-fixd-hdr tbody .Crop-Limits-fixed-hdr-4 > tr > td {
     width: 25%;
     position: relative;
     float: left;
     /* height: 54px; */
     height: 35px;
+}
+.tbl-fixd-hdr.Crop-Limits-fixed-hdr-6 thead > tr > td, .tbl-fixd-hdr tbody .Crop-Limits-fixed-hdr-6 > tr > td {
+    width: 16.66%;
+    position: relative;
+    float: left;
+    /* height: 54px; */
+    height: 50px;
 }
 /*======   Field Choices   ==========*/
 .fld-chc-tbl-fixd-hdr{
