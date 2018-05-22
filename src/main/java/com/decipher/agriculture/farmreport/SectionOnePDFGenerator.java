@@ -738,39 +738,58 @@ public class SectionOnePDFGenerator {
         // Create Table Header
         PdfPCell cropHead = new PdfPCell ( new Phrase ( "Crop", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         cropHead.setUseBorderPadding ( true );
-        cropHead.setBorderWidth ( 0.5f );
-        cropHead.setBorder ( Rectangle.BOTTOM );
+        cropHead.setBorderWidth (0);
+        cropHead.setBorderWidthBottom(1);
+        cropHead.setBorderWidthTop(1);
+        cropHead.setBorderWidthLeft(1);
+        cropHead.setBorderWidthRight(1);
+//        cropHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cropHead );
 
         PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / \n % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         cmHead.setUseBorderPadding ( true );
-        cmHead.setBorderWidth ( 0.5f );
-        cmHead.setBorder ( Rectangle.BOTTOM );
+        cmHead.setBorderWidth (0);
+        cmHead.setBorderWidthBottom(1);
+        cmHead.setBorderWidthTop(1);
+//        cmHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cmHead );
 
         PdfPCell ratingHead = new PdfPCell ( new Phrase ( " ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         ratingHead.setUseBorderPadding ( true );
-        ratingHead.setBorderWidth ( 0.5f );
-        ratingHead.setBorder ( Rectangle.BOTTOM );
+        ratingHead.setBorderWidth (0);
+        ratingHead.setBorderWidthBottom(1);
+        ratingHead.setBorderWidthTop(1);
+//        ratingHead.setBorderWidthLeft(1);
+//        ratingHead.setBorderWidthRight(1);
+//        ratingHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( ratingHead );
 
         PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Estimated Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         estimateHead.setUseBorderPadding ( true );
-        estimateHead.setBorderWidth ( 0.5f );
-        estimateHead.setBorder ( Rectangle.BOTTOM );
+        estimateHead.setBorderWidth (0);
+        estimateHead.setBorderWidthBottom(1);
+        estimateHead.setBorderWidthTop(1);
+        estimateHead.setBorderWidthLeft(1);
+        estimateHead.setBorderWidthRight(1);
+//        estimateHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( estimateHead );
 
         PdfPCell returnWorkingCapitalHead = new PdfPCell ( new Phrase ( "Return Working Capital", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         returnWorkingCapitalHead.setUseBorderPadding ( true );
-        returnWorkingCapitalHead.setBorderWidth ( 0.5f );
-        returnWorkingCapitalHead.setBorder ( Rectangle.BOTTOM );
+        returnWorkingCapitalHead.setBorderWidth (0);
+        returnWorkingCapitalHead.setBorderWidthBottom(1);
+        returnWorkingCapitalHead.setBorderWidthTop(1);
+//        returnWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( returnWorkingCapitalHead );
 
         PdfPCell ratingforWorkingCapitalHead = new PdfPCell ( new Phrase ( "Rating", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         ratingforWorkingCapitalHead.setUseBorderPadding ( true );
-        ratingforWorkingCapitalHead.setBorderWidth ( 0.5f );
-        ratingforWorkingCapitalHead.setBorder ( Rectangle.BOTTOM );
-        cropContributionMarginTable.addCell ( ratingforWorkingCapitalHead );
+        ratingforWorkingCapitalHead.setBorderWidth (0);
+        ratingforWorkingCapitalHead.setBorderWidthBottom(1);
+        ratingforWorkingCapitalHead.setBorderWidthTop(1);
+        ratingforWorkingCapitalHead.setBorderWidthRight(1);
+//        ratingforWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
+        cropContributionMarginTable.addCell (ratingforWorkingCapitalHead );
 
         cropContributionMarginTable.completeRow ();
 
@@ -801,8 +820,11 @@ public class SectionOnePDFGenerator {
 
                 PdfPCell cropName = new PdfPCell ( new Phrase ( cropNameStr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropName.setUseBorderPadding ( true );
-                cropName.setBorderWidth ( 0 );
-                cropName.setBorder ( Rectangle.NO_BORDER );
+                cropName.setBorderWidth (0);
+                cropName.setBorderWidthBottom(1);
+                cropName.setBorderWidthLeft(1);
+                cropName.setBorderWidthRight(1);
+//                cropName.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropName );
 
                 /**
@@ -825,13 +847,16 @@ public class SectionOnePDFGenerator {
                 PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + farmOutputDetails.getProfitIndex ().toString (), ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
-                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
+                cropContriMargin.setBorderWidthBottom(1);
+//                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropContriMargin );
 
                 PdfPCell rating = new PdfPCell ( new Phrase ( "", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 rating.setUseBorderPadding ( true );
                 rating.setBorderWidth ( 0 );
-                rating.setBorder ( Rectangle.NO_BORDER );
+                rating.setBorderWidthBottom(1);
+                rating.setBorderWidthRight(1);
+//                rating.setBorder ( Rectangle.NO_BORDER );
                 if (farmOutputDetails.getRating ().equalsIgnoreCase ( "green" )) {
                     rating.setBackgroundColor ( BaseColor.GREEN );
                 } else if (farmOutputDetails.getRating ().equalsIgnoreCase ( "red" )) {
@@ -856,7 +881,9 @@ public class SectionOnePDFGenerator {
                 PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 estimate.setUseBorderPadding ( true );
                 estimate.setBorderWidth ( 0 );
-                estimate.setBorder ( Rectangle.NO_BORDER );
+                estimate.setBorderWidthBottom(1);
+                estimate.setBorderWidthRight(1);
+//                estimate.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( estimate );
                 CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
 
@@ -871,13 +898,16 @@ public class SectionOnePDFGenerator {
                 PdfPCell returnWorkingCapital = new PdfPCell ( new Phrase ( " " + workReturnInString, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 returnWorkingCapital.setUseBorderPadding ( true );
                 returnWorkingCapital.setBorderWidth ( 0 );
-                returnWorkingCapital.setBorder ( Rectangle.NO_BORDER );
+                returnWorkingCapital.setBorderWidthBottom(1);
+//                returnWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( returnWorkingCapital );
 
                 PdfPCell ratingforWorkingCapital = new PdfPCell ( new Phrase ( " ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 ratingforWorkingCapital.setUseBorderPadding ( true );
                 ratingforWorkingCapital.setBorderWidth ( 0 );
-                ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
+                ratingforWorkingCapital.setBorderWidthBottom(1);
+                ratingforWorkingCapital.setBorderWidthRight(1);
+//                ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 if (farmOutputDetails.getProfitDouble () == 0.0) {
                     ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
                 }
@@ -917,7 +947,9 @@ public class SectionOnePDFGenerator {
                 PdfPCell cropName = new PdfPCell ( new Phrase ( cropKey, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropName.setUseBorderPadding ( true );
                 cropName.setBorderWidth ( 0 );
-                cropName.setBorder ( Rectangle.NO_BORDER );
+                cropName.setBorderWidthBottom(1);
+                cropName.setBorderWidthLeft(1);
+//                cropName.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropName );
 
 //				Double cropContriM =  Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsForField.getProfit())) / Double.parseDouble(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsForField.getUsedAcres()));
@@ -937,14 +969,18 @@ public class SectionOnePDFGenerator {
                 PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ).replaceAll ( "%", "" ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
-                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
+                cropContriMargin.setBorderWidthBottom(1);
+                cropContriMargin.setBorderWidthLeft(1);
+//                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropContriMargin );
 
 
                 PdfPCell rating = new PdfPCell ( new Phrase ( "   ", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 rating.setUseBorderPadding ( true );
                 rating.setBorderWidth ( 0 );
-                rating.setBorder ( Rectangle.NO_BORDER );
+                rating.setBorderWidthBottom(1);
+                rating.setBorderWidthRight(1);
+//                rating.setBorder ( Rectangle.NO_BORDER );
                 if (hashMapForRating.get ( cropKey ).equalsIgnoreCase ( "green" )) {
                     rating.setBackgroundColor ( BaseColor.GREEN );
                 } else if (hashMapForRating.get ( cropKey ).equalsIgnoreCase ( "red" )) {
@@ -963,7 +999,9 @@ public class SectionOnePDFGenerator {
                 PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estIncomePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 estimate.setUseBorderPadding ( true );
                 estimate.setBorderWidth ( 0 );
-                estimate.setBorder ( Rectangle.NO_BORDER );
+                estimate.setBorderWidthBottom(1);
+                estimate.setBorderWidthRight(1);
+//                estimate.setBorder ( Rectangle.NO_BORDER );
 
                 cropContributionMarginTable.addCell ( estimate );
                 Double workReturn = 0.0;
@@ -999,13 +1037,16 @@ public class SectionOnePDFGenerator {
                 PdfPCell returnWorkingCapital = new PdfPCell ( new Phrase ( " " + workReturnInString, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 returnWorkingCapital.setUseBorderPadding ( true );
                 returnWorkingCapital.setBorderWidth ( 0 );
-                returnWorkingCapital.setBorder ( Rectangle.NO_BORDER );
+                returnWorkingCapital.setBorderWidthBottom(1);
+//                returnWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( returnWorkingCapital );
 
                 PdfPCell ratingforWorkingCapital = new PdfPCell ( new Phrase ( "", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 ratingforWorkingCapital.setUseBorderPadding ( true );
                 ratingforWorkingCapital.setBorderWidth ( 0 );
-                ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
+                ratingforWorkingCapital.setBorderWidthBottom(1);
+                ratingforWorkingCapital.setBorderWidthRight(1);
+//                ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
 
                 if (profitStr.equalsIgnoreCase ( "0 (0.0%)" )
                         || profitStr.equalsIgnoreCase ( "0 (-0.0%)" )) {
