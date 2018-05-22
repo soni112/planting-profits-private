@@ -754,10 +754,10 @@
                         <!-- @end #Resource-Use -->
 
                         <div class="contentblock hidden" id="Crop-Limits">
-                            <div class="table-responsive" style="max-height: 330px;">
+                            <div class="table-responsive">
                                 <table width="100%" cellspacing="0"
-                                       class="table table-striped tbl-bordr  tblbrdr output_table">
-                                    <thead>
+                                       class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll">
+                                    <thead style="display: table-header-group;">
                                     <tr class="tblhd add-fieldi">
                                         <td class="tblbrdr add-fieldi">Crop</td>
                                         <td>Minimum Limit</td>
@@ -770,7 +770,7 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody class="scrollbar-dynamic scrollDiv" style="display: table-row-group;">
                                     <c:forEach var="cropLimit" items="${model.cropLimitsJsonArray}">
                                         <tr class="tblgrn">
                                             <c:if test="${cropLimit.maxLimit!='--'}">
@@ -1168,6 +1168,18 @@
                                                 <p class="static_result_shown">
                                                     <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
                                                 </p>
+                                                <div  class="displayMessage" id="allAcreageNotPlanted" style="display: none; text-decoration: underline">
+                                                    All Acreage Not Planted
+                                                    <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                                        <c:param name="farmId" value="${farmId}"/>
+                                                        <c:param name="key" value="unused"/>
+                                                    </c:url>
+                                                    <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+
+                                                </div>
+                                                <div  class="displayMessage" id="allAcreagePlanted" style="display: none; text-decoration: underline">
+                                                    All Acreage Planted
+                                                </div>
                                                 <div class="yellobtn pre_next" onclick="getStrategyForMultipleCrops()">
                                                     <a>Analyze</a>
                                                 </div>
