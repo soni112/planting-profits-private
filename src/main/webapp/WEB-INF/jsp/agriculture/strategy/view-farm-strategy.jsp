@@ -275,8 +275,8 @@
                                             <td colspan="2">Asset Utilization</td>
                                         </tr>
                                         <tr class="tblhd add-fieldi">
-                                            <td>Production Risk</td>
-                                            <td>Market Risk</td>
+                                            <td>Diversification</td>
+                                            <td>Forward Sales</td>
                                             <td>Crop Insurance</td>
                                             <td>Scenario Analysis</td>
                                             <td>Return on Working Capital </td>
@@ -695,7 +695,7 @@
             <td class="success"><h4 style="color : #337ab7; cursor : pointer" onclick="openStrategyDetailsPopup('{{= strategy.id}}'); return false;">{{= strategy.strategyName}}<h4></td>
             <td class="success">
              <div class="est-income-graph">
-             <span class="est-income-category">{{= key+1}}</span>
+                 <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
                 <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.EstimateIncome)}}</small>
               </div></td>
             <td class="success"><div align="center" id="cropGaugeMeter{{= strategy.id}}" value="{{= strategy.EstIncomeInOneCrop}}" class="progress-graphs gauge_meter "></div></td>
@@ -711,28 +711,38 @@
             </td>
             <td class="success">
             <div class="est-income-graph">
-                 <span class="est-income-category">{{= strategy.count}}</span>
-
+                 <span class="est-income-category">{{= strategy.countReturnWorking}}</span>
                    <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.ReturnWorkingCapital)}}</small>
                 </div>
             </div></td>
             <td class="success">
            {{if strategy.AverageInConservationCrop >= 50.0  }}
-            <div class="est-income-graph">
-                 <i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>
+          <div class="gauge_meter">
+           <div class="secnario-analysis">
+                 <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
+
+            <%--<div class="est-income-graph">--%>
+                 <%--<i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>--%>
                 <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                </div>
                 </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop > 25.0 && strategy.AverageInConservationCrop < 50.0 }}
-            <div class="secnario-analysis">
-                 <i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>
+            <%--<div class="secnario-analysis">--%>
+                 <%--<i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>--%>
+                  <div class="gauge_meter">
+           <div class="secnario-analysis">
+                 <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
                 <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
                 </div>
             </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop < 25.0 }}
-           <div class="secnario-analysis-red">
-                 <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>
+            <div class="gauge_meter">
+           <div class="secnario-analysis">
+                 <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
+         <%--  <div class="secnario-analysis-red">
+                 <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>--%>
                 <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
                 </div>
            {{/if}}</td>

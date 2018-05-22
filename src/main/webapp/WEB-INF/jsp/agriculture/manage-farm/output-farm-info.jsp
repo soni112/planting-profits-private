@@ -1168,6 +1168,18 @@
                                                 <p class="static_result_shown">
                                                     <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
                                                 </p>
+                                                <div  class="displayMessage" id="allAcreageNotPlanted" style="display: none; text-decoration: underline">
+                                                    All Acreage Not Planted
+                                                    <c:url value="/troubleshoot.htm" var="troubleshooturl">
+                                                        <c:param name="farmId" value="${farmId}"/>
+                                                        <c:param name="key" value="unused"/>
+                                                    </c:url>
+                                                    <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
+
+                                                </div>
+                                                <div  class="displayMessage" id="allAcreagePlanted" style="display: none; text-decoration: underline">
+                                                    All Acreage Planted
+                                                </div>
                                                 <div class="yellobtn pre_next" onclick="getStrategyForMultipleCrops()">
                                                     <a>Analyze</a>
                                                 </div>
