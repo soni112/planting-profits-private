@@ -722,7 +722,7 @@
                                                     @Date - 25-11-2015
                                                 -->
                                                 <div id="available-acreage-not-planted-msg" style="display: none;margin-left: -10px;">
-                                                    All available acreage not planted.
+                                                    All available acreage not assigned crops.
                                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                         <c:param name="farmId" value="${farmId}"/>
                                                         <c:param name="key" value="unused"/>
@@ -1343,7 +1343,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="acreage-not-planted-msg" style="display: none">All available acreage not planted.</div>
+                <div id="acreage-not-planted-msg" style="display: none"><span class="difference_bet_potential_profit rightspan">$0</span> acres not assigned crops</div>
                 <div id="field_crop_button"></div>
             </div>
         </div>
