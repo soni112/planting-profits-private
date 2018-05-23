@@ -756,7 +756,15 @@
                         <div class="contentblock hidden" id="Crop-Limits">
                             <div class="table-responsive">
                                 <table width="100%" cellspacing="0"
-                                       class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll">
+                                       class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll
+                                        <c:choose>
+                                            <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
+                                            Crop-Limits-fixed-hdr-6
+                                            </c:when>
+                                            <c:otherwise>Crop-Limits-fixed-hdr-4 </c:otherwise>
+                                        </c:choose>
+
+                                    ">
                                     <thead style="display: table-header-group;">
                                     <tr class="tblhd add-fieldi">
                                         <td class="tblbrdr add-fieldi">Crop</td>
@@ -770,7 +778,13 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody class="scrollbar-dynamic scrollDiv" style="display: table-row-group;">
+                                    <tbody class="scrollbar-dynamic scrollDiv
+                                        <c:choose>
+                                            <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
+                                            Crop-Limits-fixed-hdr-6
+                                            </c:when>
+                                            <c:otherwise>Crop-Limits-fixed-hdr-4 </c:otherwise>
+                                        </c:choose>" style="display: table-row-group;">
                                     <c:forEach var="cropLimit" items="${model.cropLimitsJsonArray}">
                                         <tr class="tblgrn">
                                             <c:if test="${cropLimit.maxLimit!='--'}">
