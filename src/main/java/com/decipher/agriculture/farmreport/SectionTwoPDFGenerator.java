@@ -141,18 +141,21 @@ public class SectionTwoPDFGenerator {
                 cropNameCell.setBorderWidthLeft(1);
                 cropNameCell.setBorderWidthBottom(1);
                 cropNameCell.setBorderWidthRight(1);
+                cropNameCell.setBorderWidthTop(1);
                 table.addCell(cropNameCell);
 
                 PdfPCell cropUOMCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getCropUOM());
                 cropUOMCell.setBorderWidth(0);
                 cropUOMCell.setBorderWidthBottom(1);
                 cropUOMCell.setBorderWidthRight(1);
+                cropUOMCell.setBorderWidthTop(1);
                 table.addCell(cropUOMCell);
 
                 PdfPCell cropYieldDataCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getIntExpCropYield());
                 cropYieldDataCell.setBorderWidth(0);
                 cropYieldDataCell.setBorderWidthBottom(1);
                 cropYieldDataCell.setBorderWidthRight(1);
+                cropYieldDataCell.setBorderWidthTop(1);
                 cropYieldDataCell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
                 table.addCell(cropYieldDataCell);
 
@@ -160,6 +163,7 @@ public class SectionTwoPDFGenerator {
                 priceDataCell.setBorderWidth(0);
                 priceDataCell.setBorderWidthBottom(1);
                 priceDataCell.setBorderWidthRight(1);
+                priceDataCell.setBorderWidthTop(1);
                 priceDataCell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
                 table.addCell(priceDataCell);
 
@@ -167,22 +171,28 @@ public class SectionTwoPDFGenerator {
                 calculationCell.setBorderWidth(0);
                 calculationCell.setBorderWidthBottom(1);
                 calculationCell.setBorderWidthRight(1);
+                calculationCell.setBorderWidthTop(1);
                 table.addCell(calculationCell);
 
                 PdfPCell calculatedProfitCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getCalculatedProfitString() != null ? crop.getCalculatedProfitString() : "--");
                 calculatedProfitCell.setBorderWidth(0);
                 calculatedProfitCell.setBorderWidthBottom(1);
                 calculatedProfitCell.setBorderWidthRight(1);
+                calculatedProfitCell.setBorderWidthTop(1);
                 table.addCell(calculatedProfitCell);
                 if(crop.getFirmchecked().equalsIgnoreCase("true")){
                     PdfPCell firmCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell("Yes");
                     firmCell.setBorderWidth(0);
                     firmCell.setBorderWidthRight(1);
+                    firmCell.setBorderWidthTop(1);
+                    firmCell.setBorderWidthBottom(1);
 
                     table.addCell(firmCell);
                     PdfPCell priceStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getPriceStr());
                     priceStrCell.setBorderWidth(0);
                     priceStrCell.setBorderWidthRight(1);
+                    priceStrCell.setBorderWidthTop(1);
+                    priceStrCell.setBorderWidthBottom(1);
                     table.addCell(priceStrCell);
 
                     PdfPCell quantityStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getQuantityStr());
@@ -196,6 +206,7 @@ public class SectionTwoPDFGenerator {
                     acresStrCell.setBorderWidth(0);
                     acresStrCell.setBorderWidthBottom(1);
                     acresStrCell.setBorderWidthRight(1);
+                    acresStrCell.setBorderWidthTop(1);
                     table.addCell(acresStrCell);
 
                 } else if(crop.getProposedchecked()){
@@ -204,48 +215,56 @@ public class SectionTwoPDFGenerator {
                     proposedCheckedCell.setBorderWidth(0);
                     proposedCheckedCell.setBorderWidthBottom(1);
                     proposedCheckedCell.setBorderWidthRight(1);
+                    proposedCheckedCell.setBorderWidthTop(1);
                     table.addCell(proposedCheckedCell);
 
                     PdfPCell priceStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getPriceStr());
                     priceStrCell.setBorderWidth(0);
                     priceStrCell.setBorderWidthBottom(1);
                     priceStrCell.setBorderWidthRight(1);
+                    priceStrCell.setBorderWidthTop(1);
                     table.addCell(priceStrCell);
 
                     PdfPCell quantityStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getQuantityStr());
                     quantityStrCell.setBorderWidth(0);
                     quantityStrCell.setBorderWidthBottom(1);
                     quantityStrCell.setBorderWidthRight(1);
+                    quantityStrCell.setBorderWidthTop(1);
                     table.addCell(quantityStrCell);
 
                     PdfPCell acresStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getAcresStr());
                     acresStrCell.setBorderWidth(0);
                     acresStrCell.setBorderWidthBottom(1);
                     acresStrCell.setBorderWidthRight(1);
+                    acresStrCell.setBorderWidthTop(1);
                     table.addCell(acresStrCell);
                 } else {
                     PdfPCell elseStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell("No");
                     elseStrCell.setBorderWidth(0);
                     elseStrCell.setBorderWidthBottom(1);
                     elseStrCell.setBorderWidthRight(1);
+                    elseStrCell.setBorderWidthTop(1);
                     table.addCell(elseStrCell);
 
                     PdfPCell elseFStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell("");
                     elseFStrCell.setBorderWidth(0);
                     elseFStrCell.setBorderWidthBottom(1);
                     elseFStrCell.setBorderWidthRight(1);
+                    elseFStrCell.setBorderWidthTop(1);
                     table.addCell(elseFStrCell);
 
                     PdfPCell elseSecStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell("");
                     elseSecStrCell.setBorderWidth(0);
                     elseSecStrCell.setBorderWidthBottom(1);
                     elseSecStrCell.setBorderWidthRight(1);
+                    elseSecStrCell.setBorderWidthTop(1);
                     table.addCell(elseSecStrCell);
 
                     PdfPCell elseThiStrCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell("");
                     elseThiStrCell.setBorderWidth(0);
                     elseThiStrCell.setBorderWidthBottom(1);
                     elseThiStrCell.setBorderWidthRight(1);
+                    elseThiStrCell.setBorderWidthTop(1);
                     table.addCell(elseThiStrCell);
                 }
 
@@ -254,12 +273,14 @@ public class SectionTwoPDFGenerator {
                 minimumAcresCell.setBorderWidth(0);
                 minimumAcresCell.setBorderWidthBottom(1);
                 minimumAcresCell.setBorderWidthRight(1);
+                minimumAcresCell.setBorderWidthTop(1);
                 table.addCell(minimumAcresCell);
 
                 PdfPCell maximumAcresCell = ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(crop.getMaximumAcres());
                 maximumAcresCell.setBorderWidth(0);
                 maximumAcresCell.setBorderWidthBottom(1);
                 maximumAcresCell.setBorderWidthRight(1);
+                maximumAcresCell.setBorderWidthTop(1);
                 table.addCell(maximumAcresCell);
 //                table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getDataCell(""));
             }
