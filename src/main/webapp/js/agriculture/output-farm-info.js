@@ -389,14 +389,25 @@ function getStrategyForMultipleResources() {
                     }
                 }
                 else{
-                       if(result.isAllAcreagePlanted == true){
+                        var currentPotentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
+                        var changePotentialProfit = Number(removeAllCommasAndDollar( result.Potential_Profit));
+
+                        var diffrence=changePotentialProfit-currentPotentialProfit;
+                        if(diffrence>0){
+                            $("#available-acreage-not-planted-msg").hide();
+                            $("#acreage-not-planted-msg").hide();
+                        }else {
+                            $("#available-acreage-not-planted-msg").show();
+                            $("#acreage-not-planted-msg").show();
+                        }
+                     /*   if(result.isAllAcreagePlanted === true){
                            $("#available-acreage-not-planted-msg").hide();
                            $("#acreage-not-planted-msg").hide();
                        }
                        else{
                            $("#available-acreage-not-planted-msg").show();
                            $("#acreage-not-planted-msg").show();
-                       }
+                       }*/
                     }
                 }
                 /**
@@ -652,15 +663,19 @@ function getStrategyForMultipleCrops() {
                 }
 
                 var difference = potential_pro - potentialProfit;
-                if (difference < 0) {
+                if (difference > 0) {
+                    localStorage.setItem('sensitivityFlag', true);
+                    $('#checkStrategy-pop-up-close-btn').show();
+                    $("#allAcreageNotPlanted").hide();
+                    $('#checkStrategy-pop-up').hide();
+                    $("#allAcreageNotPlanted").hide();
+
+
+                }else {
                     localStorage.setItem('sensitivityFlag', true);
                     $('#checkStrategy-pop-up-close-btn').show();
                     $('#checkStrategy-pop-up').hide();
                     $("#allAcreageNotPlanted").show();
-                    $("#allAcreagePlanted").hide();
-                }else if(difference>0){
-                    $("#allAcreageNotPlanted").hide();
-                    $("#allAcreagePlanted").show();
                 }
 
                 $("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForMultipleCropsForCreateNewScenario();hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");

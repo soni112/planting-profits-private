@@ -1191,9 +1191,7 @@
                                                     <a class="remove-text-deco" style="color: red" href="<c:out value="${troubleshooturl}"/>" target="_blank">${resourceList.impactingProfit}Troubleshooting </a>
 
                                                 </div>
-                                                <div  class="displayMessage" id="allAcreagePlanted" style="display: none; text-decoration: underline">
-                                                    All Acreage Planted
-                                                </div>
+
                                                 <div class="yellobtn pre_next" onclick="getStrategyForMultipleCrops()">
                                                     <a>Analyze</a>
                                                 </div>
