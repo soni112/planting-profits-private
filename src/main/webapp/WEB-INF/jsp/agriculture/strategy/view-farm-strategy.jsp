@@ -699,9 +699,9 @@
                 <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.EstimateIncome)}}</small>
               </div></td>
             <td class="success"><div align="center" id="cropGaugeMeter{{= strategy.id}}" value="{{= strategy.EstIncomeInOneCrop}}" class="progress-graphs gauge_meter "></div>
-            {{= strategy.EstIncomeInOneCrop}} </td>
+            <small>{{= strategy.EstIncomeInOneCrop}}</small> </td>
             <td class="success"><div align="center"  id="marketGaugeMeter{{= strategy.id}}" value="{{= strategy.EstIncomeInForwardSale}}" class="progress-graphs gauge_meter "></div>
-            {{= strategy.EstIncomeInForwardSale}}</td>
+           <small> {{= strategy.EstIncomeInForwardSale}}</small></td>
             <td class="success">Coming Soon</td>
             <td class="success">
               <div class="gauge_meter">
