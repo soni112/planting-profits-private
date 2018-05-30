@@ -448,21 +448,23 @@ public class SectionTwoPDFGenerator {
                 Double totalAcreage = 0.0;
                 Double estimatePerAcr = 0.0;
                 Double totalEstimateIncome = 0.0;
+
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView ().getSelected ()) {
-                        totalAcreage += farmOutputDetailsView.getUsedAcresDouble ();
+                        totalAcreage += AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetailsView.getUsedAcresDouble ());
                         if (farmOutputDetailsView.getRatio () != 0.0) {
                             totalEstimateIncome += farmOutputDetailsView.getProfitDouble ();
                         }
                     }
                 }
                 if (totalAcreage != 0.0 || totalEstimateIncome != 0.0) {
-                    estimatePerAcr = (totalEstimateIncome / totalAcreage);
+                    estimatePerAcr = AgricultureStandardUtils.doubleWithOneDecimal (totalEstimateIncome / totalAcreage);
                 } else {
                     estimatePerAcr = 0.0;
                 }
-                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( estimatePerAcr ) ) );
-                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( AgricultureStandardUtils.commaSeparaterForDoublePrice ( totalAcreage ) ) );
+
+                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( ""+ estimatePerAcr  ) );
+                table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( ""+ totalAcreage  ) );
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (farmOutputDetailsView.getCropTypeView ().getSelected ()) {
                         table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( farmOutputDetailsView.getUsedAcresAsDouble ().toString () ) );
@@ -598,7 +600,7 @@ public class SectionTwoPDFGenerator {
                 }
                 if (index == sizeOfList) {
                     if (workingCapitalUsed != 0 && potentialProfit != 0) {
-                        returnWorkingCapital = (AgricultureStandardUtils.doubleUptoSingleDecimalPoint ( potentialProfit / workingCapitalUsed ).toString ());
+                        returnWorkingCapital = (AgricultureStandardUtils.doubleWithOneDecimal ( potentialProfit / workingCapitalUsed ).toString ());
                     } else {
                         returnWorkingCapital = "NA";
                     }

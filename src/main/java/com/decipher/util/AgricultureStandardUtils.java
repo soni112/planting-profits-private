@@ -98,7 +98,7 @@ public class AgricultureStandardUtils {
 	}
 	
 	public static Double doubleWithOneDecimal(Double value) {
-		DecimalFormat formatter = new DecimalFormat("#.00");
+		DecimalFormat formatter = new DecimalFormat("#.0");
 //		PlantingProfitLogger.info(formatter.format(value));
 		try{
 			value = Double.parseDouble(formatter.format(value));

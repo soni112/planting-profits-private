@@ -778,7 +778,8 @@ public class SectionOnePDFGenerator {
         returnWorkingCapitalHead.setBorderWidth (0);
         returnWorkingCapitalHead.setBorderWidthBottom(1);
         returnWorkingCapitalHead.setBorderWidthTop(1);
-//        returnWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
+        returnWorkingCapitalHead.setBorderWidthRight ( 1 );
+//  returnWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( returnWorkingCapitalHead );
 /*
 
@@ -846,6 +847,7 @@ public class SectionOnePDFGenerator {
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorderWidthBottom(1);
+                cropContriMargin.setBorderWidthRight ( 1 );
 //                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropContriMargin );
 
@@ -876,7 +878,7 @@ public class SectionOnePDFGenerator {
                     estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () ));
 
                 }
-                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell estimate = new PdfPCell ( new Phrase ( "$" + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 estimate.setUseBorderPadding ( true );
                 estimate.setBorderWidth ( 0 );
                 estimate.setBorderWidthBottom(1);
@@ -897,6 +899,7 @@ public class SectionOnePDFGenerator {
                 returnWorkingCapital.setUseBorderPadding ( true );
                 returnWorkingCapital.setBorderWidth ( 0 );
                 returnWorkingCapital.setBorderWidthBottom(1);
+                returnWorkingCapital.setBorderWidthRight ( 1 );
 //                returnWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( returnWorkingCapital );
 
@@ -904,7 +907,7 @@ public class SectionOnePDFGenerator {
                 ratingforWorkingCapital.setUseBorderPadding ( true );
                 ratingforWorkingCapital.setBorderWidth ( 0 );
                 ratingforWorkingCapital.setBorderWidthBottom(1);
-                ratingforWorkingCapital.setBorderWidthRight(1);
+//                ratingforWorkingCapital.setBorderWidthRight(1);
 //                ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 if (farmOutputDetails.getProfitDouble () == 0.0) {
                     ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
@@ -969,6 +972,7 @@ public class SectionOnePDFGenerator {
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorderWidthBottom(1);
                 cropContriMargin.setBorderWidthLeft(1);
+                cropContriMargin.setBorderWidthRight ( 1 );
 //                cropContriMargin.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropContriMargin );
 
@@ -994,7 +998,7 @@ public class SectionOnePDFGenerator {
                 double estIncomePerAcr=0.0;
                 if(profit!=0.0 && acreage!=0.0){
                  estIncomePerAcr=profit/acreage;}
-                PdfPCell estimate = new PdfPCell ( new Phrase ( " " + estIncomePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell estimate = new PdfPCell ( new Phrase ( " $" + estIncomePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 estimate.setUseBorderPadding ( true );
                 estimate.setBorderWidth ( 0 );
                 estimate.setBorderWidthBottom(1);
@@ -1044,6 +1048,7 @@ public class SectionOnePDFGenerator {
                 ratingforWorkingCapital.setBorderWidth ( 0 );
                 ratingforWorkingCapital.setBorderWidthBottom(1);
                 ratingforWorkingCapital.setBorderWidthRight(1);
+                ratingforWorkingCapital.setBorderWidthLeft ( 1 );
 //                ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
 
                 if (profitStr.equalsIgnoreCase ( "0 (0.0%)" )
