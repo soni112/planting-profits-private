@@ -3918,7 +3918,7 @@ sup {
     width: 12.49%;
     position: relative;
     float: left;
-    height: 55px;
+    height: 72px;
 }
 
 .tbl-fixd-hdr.Crop-Limits-fixed-hdr-4 thead > tr > td, .tbl-fixd-hdr tbody.Crop-Limits-fixed-hdr-4 > tr > td {
@@ -4124,7 +4124,7 @@ sup {
 .forward-sales-tbl-fixd-hdr tbody > tr > td{
     width: 14.28%;
     float: left;
-    height: 40px;
+    height: 50px;
 }
 
 /*======  Crop Limits  ========*/
