@@ -401,7 +401,7 @@
 
                                 <div class="ques">
                                     <div class="table-responsive">
-                                        <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr scroll" cellspacing="0" width="100%">
+                                        <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tbl-fixd-hdr-manag tblbrdr scroll" cellspacing="0" width="100%">
                                             <thead id="Plan_by_Fields_thead" style="display: table-header-group;">
                                                 <tr class="tblhd text-center add-fieldi">
                                                     <td>Modify</td>
@@ -2221,9 +2221,8 @@ Commented as per client requirement
                                 </div>
 
                                 <div class="ques">
-                                    <div class="table-responsive"
-                                         style="max-height: 230px;">  <%--crop-limits-tbl-fixd-hdr--%>
-                                        <table id="crop_limits_table" class="table table-striped tbl-bordr  tblbrdr"
+                                    <div class="table-responsive">  <%--crop-limits-tbl-fixd-hdr--%>
+                                        <table id="crop_limits_table" class="table table-striped crop-limits-tbl tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll"
                                                cellspacing="0" width="100%">
                                             <thead>
                                             <tr class="tblhd text-center add-fieldi">
@@ -2250,7 +2249,7 @@ Commented as per client requirement
                                                 </td>
                                             </tr>
                                             </thead>
-                                            <tbody id="crop_limits_table_tbody">
+                                            <tbody class="scrollbar-dynamic scrollDiv" id="crop_limits_table_tbody">
 
                                             <c:set var="rowCountForCropLimit" value="1"/>
                                             <c:forEach var="cropListForCropLimit" items="${model.cropTypeView}">

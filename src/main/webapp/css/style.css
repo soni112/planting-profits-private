@@ -3822,9 +3822,9 @@ sup {
     margin: 0px;
 }
 .tbl-fixd-hdr tbody>tr>td{
-    width: 14.28%;
-    /*float: left;*/
-    height: 38px;
+    width: 16.66%;
+    float: left;
+    height: 49px;
 }
 .tbl-fixd-hdr tfoot{
     /*width: 100%;
@@ -3841,6 +3841,23 @@ sup {
 }
 .tbl-fixd-hdr tfoot > tr > td:nth-child(2){
     width: 54.72%;
+}
+.crop-limits-tbl thead tr td{
+    width: 20%;
+    position: relative;
+    float: left;
+    /*height: 54px;*/
+    height: 35px;
+}
+.crop-limits-tbl tbody>tr {
+    width: 100%;
+    float: left;
+    margin: 0px;
+}
+.crop-limits-tbl tbody>tr>td{
+    width: 20%;
+    float: left;
+    height: 49px;
 }
 /*.tbl-fixd-hdr thead, .tbl-fixd-hdr tbody, .tbl-fixd-hdr tr, .tbl-fixd-hdr td, .tbl-fixd-hdr th {
     display: inline-block !important;
@@ -3872,6 +3889,24 @@ sup {
 .tbl-fixd-hdr thead > tr > td:nth-child(7){
     width: 13.7rem;
 }*/
+.tbl-fixd-hdr-manag thead > tr > td{
+    width: 14.28%;
+    position: relative;
+    float: left;
+    /* height: 54px; */
+    height: 35px;
+}
+.tbl-fixd-hdr-manag tbody>tr {
+    width: 100%;
+    float: left;
+    margin: 0px;
+}
+.tbl-fixd-hdr-manag tbody>tr>td {
+    width: 14.28%;
+    float: left;
+    height: 49px;
+}
+
 /*======   Crop-Acreage-table   ==========*/
 .Crop-Acreage-tabel .tbl-fixd-hdr thead > tr > td {
     width: 12.49%;
