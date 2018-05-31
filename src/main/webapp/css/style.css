@@ -3822,9 +3822,9 @@ sup {
     margin: 0px;
 }
 .tbl-fixd-hdr tbody>tr>td{
-    width: 14.28%;
-    /*float: left;*/
-    height: 38px;
+    width: 16.66%;
+    float: left;
+    height: 49px;
 }
 .tbl-fixd-hdr tfoot{
     /*width: 100%;
