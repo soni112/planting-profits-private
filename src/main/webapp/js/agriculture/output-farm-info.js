@@ -1787,7 +1787,7 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $("#multipleResourceViewStrategy").hide();
         $("#checkStrategy-pop-up").show();
     } else if (difference < 0) {
-        $(".difference_bet_potential_profit").text("-" + addCommaSignWithDollarForTextWithOutId(Math.abs(difference)));
+        $(".difference_bet_potential_profit").text("-" + (Math.abs(difference)));
         // $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").show();
