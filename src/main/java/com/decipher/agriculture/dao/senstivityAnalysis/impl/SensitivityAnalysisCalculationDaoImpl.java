@@ -1421,11 +1421,11 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         if ((profit < currentPotentialProfit) || (profit < oldProfit)) {
 
                             jsonObject.put("bubbleMessage", "Decreasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
-                                    " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) decreases Estimated Income by $" + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit - profit < 0 ? 0 : currentPotentialProfit - profit) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
+                                    " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) decrease Estimated Income by $" + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit - profit < 0 ? 0 : currentPotentialProfit - profit) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
                         } else if ((profit == currentPotentialProfit) || (profit == oldProfit)) {
 
                             jsonObject.put("bubbleMessage", "Decreasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
-                                    " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) will not decreases Estimated Income below the amount in the previous increment, i.e $" + AgricultureStandardUtils.commaSeparaterForLong(profit) + ", "+(totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
+                                    " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) will not decrease Estimated Income below the amount in the previous increment, i.e $" + AgricultureStandardUtils.commaSeparaterForLong(profit) + ", "+(totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
                         } else {
 
                             jsonObject.put("bubbleMessage", "Decreasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
