@@ -3921,14 +3921,14 @@ sup {
     height: 55px;
 }
 
-.tbl-fixd-hdr.Crop-Limits-fixed-hdr-4 thead > tr > td, .tbl-fixd-hdr tbody .Crop-Limits-fixed-hdr-4 > tr > td {
-    width: 25%;
+.tbl-fixd-hdr.Crop-Limits-fixed-hdr-4 thead > tr > td, .tbl-fixd-hdr tbody.Crop-Limits-fixed-hdr-4 > tr > td {
+    width: 24.96%;
     position: relative;
     float: left;
     /* height: 54px; */
-    height: 35px;
+    height: 50px;
 }
-.tbl-fixd-hdr.Crop-Limits-fixed-hdr-6 thead > tr > td, .tbl-fixd-hdr tbody .Crop-Limits-fixed-hdr-6 > tr > td {
+.tbl-fixd-hdr.Crop-Limits-fixed-hdr-6 thead > tr > td, .tbl-fixd-hdr tbody.Crop-Limits-fixed-hdr-6 > tr > td {
     width: 16.66%;
     position: relative;
     float: left;
