@@ -228,7 +228,7 @@
 
 								<div class="ques">
 									<div class="table-responsive">
-										<table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr" cellspacing="0" width="100%">
+										<table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tbl-fixd-hdr-manag tblbrdr" cellspacing="0" width="100%">
 											<thead id="Plan_by_Fields_thead" style="display: table-header-group;">
 												<tr class="tblhd text-center add-fieldi">
 													<td>Modify</td>
@@ -1425,8 +1425,8 @@ Commented as per client requirement
 
 								</div>
 								<div class="ques">
-									<div class="table-responsive" style="max-height: 230px;">  <%--crop-limits-tbl-fixd-hdr"--%>
-										<table class="table table-striped tbl-bordr  tblbrdr" id="crop_limits_table" cellspacing="0" width="100%">
+									<div class="table-responsive" >  <%--crop-limits-tbl-fixd-hdr"--%>
+										<table class="table table-striped tbl-bordr tbl-fixd-hdr crop-limits-tbl tblbrdr output_table scroll" id="crop_limits_table" cellspacing="0" width="100%">
 											<thead>
 												<tr class="tblhd text-center add-fieldi">
 													<td class="tblbrdr text-center add-fieldi">Modify</td>
@@ -1445,9 +1445,9 @@ Commented as per client requirement
 													</td>
 												</tr>
 											</thead>
-											<tbody id="crop_limits_table_tbody"></tbody>
-											<tbody id="crop_contract_table_tbody" style="border-top: 0px"></tbody>
-											<tbody id="group_table_tbody" style="border-top: 0px"></tbody>
+											<tbody class="scrollbar-dynamic scrollDiv" id="crop_limits_table_tbody"></tbody>
+											<tbody class="scrollbar-dynamic scrollDiv" id="crop_contract_table_tbody" style="border-top: 0px"></tbody>
+											<tbody class="scrollbar-dynamic scrollDiv" id="group_table_tbody" style="border-top: 0px"></tbody>
 										</table>
 									</div>
 								</div>
