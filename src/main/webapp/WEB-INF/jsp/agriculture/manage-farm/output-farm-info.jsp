@@ -1341,7 +1341,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="acreage-not-planted-msg" style="display: none"><span class="difference_bet_potential_profit rightspan">$0</span> acres not assigned crops</div>
+                <div id="acreage-not-planted-msg" style="display: none"><span class="difference_bet_potential_profit rightspan">0</span> acres not assigned crops</div>
                 <div id="field_crop_button"></div>
             </div>
         </div>
