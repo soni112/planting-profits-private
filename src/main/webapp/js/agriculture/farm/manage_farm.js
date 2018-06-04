@@ -3687,12 +3687,14 @@ function addPopupNegativeValue(id) {
 function addForwardNegativePriceRedBox(obj) {
 
     var forwardSalesPrice = removeAllCommasAndDollar($.trim($(obj).val()));
-
-    if(forwardSalesPrice != "") {
+    if(forwardSalesPrice == "0.00") {
+        customAlerts('Forward sales price cannot be 0', 'error', 0);
+    }else {
         $("#cropInformationDetailFirstTable tbody").find('tr').each(function () {
             var cropname = $(obj).parent().parent().children("td:nth(0)").html();
             var acr=$(obj).parent().parent().children("td:nth(4)").find("input").val();
-            if ($(this).children("td:nth(0)").html() == $(obj).parent().parent().children("td:nth(0)").html()) {
+
+             if ($(this).children("td:nth(0)").html() == $(obj).parent().parent().children("td:nth(0)").html()) {
                 var expectedYield = Number(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val()));
                 var variableProductionCost = Number(removeAllCommasAndDollar($(this).children("td:nth(8)").find("input").val()));
                 var EstIncome=Number(removeAllCommasAndDollar($(this).children("td:nth(9)").find("input").val()));
