@@ -663,12 +663,13 @@ public class SectionOnePDFGenerator {
 
 
         // Add Crop Field Assignment
-        PdfPCell cropFieldAssignment = new PdfPCell ( new Phrase ( "Crop/Field Assignments - See Exhibit 1", ReportTemplate.TIMESROMAN_12_BOLD ) );
-        cropFieldAssignment.setUseBorderPadding ( true );
-        cropFieldAssignment.setBorderWidth ( 0 );
-        cropTableCell.setPaddingTop ( 5 );
-        pieChartTable.addCell ( cropFieldAssignment );
-
+        if (farmInfoView.getStrategy ().equals ( PlanByStrategy.PLAN_BY_ACRES )) {
+            PdfPCell cropFieldAssignment = new PdfPCell(new Phrase("Crop/Field Assignments - See Exhibit 1", ReportTemplate.TIMESROMAN_12_BOLD));
+            cropFieldAssignment.setUseBorderPadding(true);
+            cropFieldAssignment.setBorderWidth(0);
+            cropTableCell.setPaddingTop(5);
+            pieChartTable.addCell(cropFieldAssignment);
+        }
         // Add Crop Contribution Margin
         /**
          * @changed - Abhishek
