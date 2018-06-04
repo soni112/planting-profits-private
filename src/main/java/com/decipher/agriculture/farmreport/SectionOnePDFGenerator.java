@@ -144,7 +144,7 @@ public class SectionOnePDFGenerator {
         Paragraph conservationParagraph = new Paragraph ();
 
         conservationParagraph.add ( new Chunk ( "Conservation Management\n\n", ReportTemplate.TIMESROMAN_12_BOLD ) );
-        conservationParagraph.add ( new Chunk ( "Conservation Goals\n", ReportTemplate.TIMESROMAN_10_BOLD ) );
+        conservationParagraph.add ( new Chunk ( "Conservation Goals\n", ReportTemplate.TIMESROMAN_10_NORMAL) );
         /**
          * @changed - Abhishek
          * @date - 12-12-2015
@@ -174,7 +174,7 @@ public class SectionOnePDFGenerator {
         PdfPTable resourceManagementTable = new PdfPTable ( 1 );
         resourceManagementTable.setWidthPercentage ( 100 );
 
-        PdfPCell resoucekManagementCell = new PdfPCell ( new Phrase ( "Resource Management", ReportTemplate.TIMESROMAN_12_NORMAL ) );
+        PdfPCell resoucekManagementCell = new PdfPCell ( new Phrase ( "Resource Management", ReportTemplate.TIMESROMAN_14_BOLD ) );
         resoucekManagementCell.setUseBorderPadding ( true );
         resoucekManagementCell.setBorderWidth ( 0 );
         //cropsAcreageCell.setPaddingLeft(10);
@@ -298,7 +298,7 @@ public class SectionOnePDFGenerator {
 
 
         Paragraph resourceParagraph = new Paragraph ();
-        resourceParagraph.add ( new Chunk ( "Return on Resources\n\n", ReportTemplate.TIMESROMAN_10_BOLD ) );
+        resourceParagraph.add ( new Chunk ( "Return on Resources\n\n", ReportTemplate.TIMESROMAN_14_BOLD ) );
 
         /**
          * @changed - Abhishek
@@ -619,7 +619,7 @@ public class SectionOnePDFGenerator {
 
         DecimalFormat formatter = new DecimalFormat ( "#.00" );
 
-        PdfPCell cropsAcreageCell = new PdfPCell ( new Phrase ( "Crop Acreage", ReportTemplate.TIMESROMAN_12_NORMAL ) );
+        PdfPCell cropsAcreageCell = new PdfPCell ( new Phrase ( "Crop Acreage", ReportTemplate.TIMESROMAN_14_BOLD ) );
         cropsAcreageCell.setUseBorderPadding ( true );
         cropsAcreageCell.setBorderWidth ( 0 );
         //cropsAcreageCell.setPaddingLeft(10);
