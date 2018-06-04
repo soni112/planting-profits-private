@@ -526,7 +526,7 @@ public class SectionTwoPDFGenerator {
         estimatedIncomeCell.setRowspan ( 3 );
         table.addCell ( estimatedIncomeCell );
 
-        PdfPCell returnOnWorkingCapitalUse = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell ( "Return on Working Capital Use" );
+        PdfPCell returnOnWorkingCapitalUse = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell ( "Return on Working Capital" );
         returnOnWorkingCapitalUse.setRowspan ( 3 );
         /**
          * @Added - Abhishek
