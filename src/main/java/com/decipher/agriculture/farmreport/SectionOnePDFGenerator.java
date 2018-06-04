@@ -907,7 +907,7 @@ public class SectionOnePDFGenerator {
                 ratingforWorkingCapital.setUseBorderPadding ( true );
                 ratingforWorkingCapital.setBorderWidth ( 0 );
                 ratingforWorkingCapital.setBorderWidthBottom(1);
-//                ratingforWorkingCapital.setBorderWidthRight(1);
+                ratingforWorkingCapital.setBorderWidthRight(1);
 //                ratingforWorkingCapital.setBorder ( Rectangle.NO_BORDER );
                 if (farmOutputDetails.getProfitDouble () == 0.0) {
                     ratingforWorkingCapital.setBackgroundColor ( BaseColor.GRAY );
