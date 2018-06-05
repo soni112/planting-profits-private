@@ -1752,7 +1752,7 @@ Commented as per client requirement
 			   <tr class="tblhd add-fieldi">
 				   <td class="text-center">Modify</td>
 				   <td class="tblbrdr add-fieldi">Component</td>
-				   <td class="text-center add-fieldi">Units</td>
+				   <td class="text-center add-fieldi">Units per acre</td>
 				   <td class="text-center">$ per Unit</td>
 				   <td class="text-center">$ per Acre</td>
 			   </tr>
