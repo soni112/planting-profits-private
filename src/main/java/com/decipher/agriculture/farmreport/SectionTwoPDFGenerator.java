@@ -549,18 +549,20 @@ public class SectionTwoPDFGenerator {
         //  Adding header for resources that are in use
         for (CropResourceUsageView cropResourceUsageView : resourceUsageForFarm) {
             PdfPCell resourceHeaderCell;
-            if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ))
+            if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land"))
+                resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( cropResourceUsageView.getCropResourceUse () );
+
+             else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ))
                 resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( "Working\n" + cropResourceUsageView.getCropResourceUse () );
             else
-                resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( cropResourceUsageView.getCropResourceUse () );
-            resourceHeaderCell.setRowspan ( 2 );
+            resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( cropResourceUsageView.getCropResourceUse () +"\n" + cropResourceUsageView.getUoMResource() );
+                resourceHeaderCell.setRowspan ( 2 );
 //            resourceHeaderCell.setRotation(90);
 //            resourceHeaderCell.rotate();
             table.addCell ( resourceHeaderCell );
         }
 
         table.completeRow ();
-
 
         /**
          * @changed - Abhishek
