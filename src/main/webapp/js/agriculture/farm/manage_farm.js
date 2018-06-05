@@ -3687,7 +3687,7 @@ function addPopupNegativeValue(id) {
 function addForwardNegativePriceRedBox(obj) {
 
     var forwardSalesPrice = removeAllCommasAndDollar($.trim($(obj).val()));
-    if(forwardSalesPrice == "0.00") {
+    if(forwardSalesPrice == "0.00"||forwardSalesPrice == "0.0"||forwardSalesPrice == "0") {
         customAlerts('Forward sales price cannot be 0', 'error', 0);
     }else {
         $("#cropInformationDetailFirstTable tbody").find('tr').each(function () {
