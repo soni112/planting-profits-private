@@ -851,7 +851,8 @@ public class SectionTwoPDFGenerator {
             }*/
 
 
-            Map<String, String> mapDifferentValues = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("mapDifferentValues");
+//            Map<String, String> mapDifferentValues = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("mapDifferentValues");
+            Map<String, String> mapDifferentValues = (Map<String, String>) strategyDataJsonObject.get("mapDifferentValues");
             String usedForwardAcresP = mapDifferentValues.get("usedForwardAcresP");
             table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(usedForwardAcresP));
 
