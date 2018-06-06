@@ -1083,20 +1083,21 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         jsonObject.put("bubbleMessage", "A feasible solution cannot be generated if " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
                                 + " acres of " : "") + cropName) : (resourceStr + " resource")) + " is increased by " + (differenceString) + (resourceStr == null ? " acres" : ""));
                     } else {
+                        jsonObject.put("bubbleMessage", "Decreasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) + " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) increases Estimated Income by $" + AgricultureStandardUtils.commaSeparaterForLong(oldProfit - currentPotentialProfit < 0 ? 0 : oldProfit - currentPotentialProfit) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
 
-                        String msg = "A feasible solution cannot be generated if " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
-                                + " acres of " : "") + cropName) : (resourceStr + " resource")) + " is reduced by " + (differenceString) + (resourceStr == null ? " acres" : "");
-
-                        if(resourceStr == null) {
-                            msg += ". The analysis increment will not support generating additional strategies because crop limits cannot be negative";
-                        }
-                        else{
-                            msg += ". The analysis increment will not support generating additional strategies because resources cannot be negative";
-
-                        }
-
-                        jsonObject.put("bubbleMessage", msg);
-                        continueFlag = false;
+//                        String msg = "A feasible solution cannot be generated if " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
+//                                + " acres of " : "") + cropName) : (resourceStr + " resource")) + " is reduced by " + (differenceString) + (resourceStr == null ? " acres" : "");
+//
+//                        if(resourceStr == null) {
+//                            msg += ". The analysis increment will not support generating additional strategies because crop limits cannot be negative";
+//                        }
+//                        else{
+//                            msg += ". The analysis increment will not support generating additional strategies because resources cannot be negative";
+//
+//                        }
+//
+//                        jsonObject.put("bubbleMessage", msg);
+//                        continueFlag = false;
 
                     }
 
