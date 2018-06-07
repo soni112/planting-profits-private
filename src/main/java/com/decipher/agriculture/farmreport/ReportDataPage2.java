@@ -190,9 +190,12 @@ public class ReportDataPage2 {
 							&& cropTypeView.getHiRiskCrop().equalsIgnoreCase("true")
 							&& cropKey.contains(cropTypeView.getCropName())) {
 						String land = hashMapForAcre.get(cropKey);
-						landUnderRisk += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
-						String income = hashMapForProfit.get(cropKey);
-						incomeUnderRisk += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+						if (!cropKey.contains("(Firm)") && !cropKey.contains("(Proposed)")) {
+
+							landUnderRisk += Double.parseDouble(land.substring(land.indexOf('(') + 1, land.indexOf('%')).replaceAll("\\,", ""));
+							String income = hashMapForProfit.get(cropKey);
+							incomeUnderRisk += Double.parseDouble(income.substring(income.indexOf('(') + 1, income.indexOf('%')).replaceAll("\\,", ""));
+						}
 					}
 				}
 			}
