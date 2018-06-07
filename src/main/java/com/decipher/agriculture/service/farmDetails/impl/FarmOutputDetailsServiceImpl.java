@@ -580,7 +580,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 if (farmOutputDetailsView.getProfit().equalsIgnoreCase("0")) {
-                    jsonObject.put(RATING, "NA");
+                    jsonObject.put(RATING, "Grey");
                 } else {
                     jsonObject.put(RATING, farmOutputDetailsView.getRating());
                 }
