@@ -993,18 +993,19 @@ public class SectionOnePDFGenerator {
                 } else {
                     rating.setBackgroundColor ( BaseColor.GRAY );
                 }
-                cropContributionMarginTable.addCell ( rating );
-                double profit= Double.parseDouble (  AgricultureStandardUtils.removeAllCommas ( hashMapForProfit.get ( cropKey ).split ( "\\(" )[0]));
-                double acreage= Double.parseDouble (AgricultureStandardUtils.removeAllCommas (  hashMapForAcre.get ( cropKey ).split ( "\\(" )[0] ));
-                double estIncomePerAcr=0.0;
-                if(profit!=0.0 && acreage!=0.0){
-                 estIncomePerAcr=profit/acreage;}
-                PdfPCell estimate = new PdfPCell ( new Phrase ( " $" + estIncomePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL ) );
-                estimate.setUseBorderPadding ( true );
-                estimate.setBorderWidth ( 0 );
+                cropContributionMarginTable.addCell(rating);
+                double profit = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(hashMapForProfit.get(cropKey).split("\\(")[0]));
+                double acreage = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropKey).split("\\(")[0]));
+                double estIncomePerAcr = 0.0;
+                if (profit != 0.0 && acreage != 0.0) {
+                    estIncomePerAcr = AgricultureStandardUtils.doubleWithOneDecimal(profit / acreage);
+                }
+                PdfPCell estimate = new PdfPCell(new Phrase(" $" + estIncomePerAcr, ReportTemplate.TIMESROMAN_10_NORMAL));
+                estimate.setUseBorderPadding(true);
+                estimate.setBorderWidth(0);
                 estimate.setBorderWidthBottom(1);
                 estimate.setBorderWidthRight(1);
-//                estimate.setBorder ( Rectangle.NO_BORDER );
+//              estimate.setBorder ( Rectangle.NO_BORDER );
 
                 cropContributionMarginTable.addCell ( estimate );
                 Double workReturn = 0.0;
