@@ -542,7 +542,27 @@ function applyComparisonDetails(outputDetails){
     var comparisonDetails1 = {};
     comparisonDetails1["strategyDetails"] = outputDetails.strategyDetails;
     comparisonDetails1["reportFlag"] = false;
-	comparisonDetails1["outputDetails"] = outputDetails.jsonArrayForResource;
+
+    var arrayForResourceDetails = [];
+    var arrayForResourceHeader = outputDetails.jsonArrayForResourceHeader;
+    var arrayForResource = outputDetails.jsonArrayForResource;
+    for(var i=0;i<arrayForResource.length; i++){
+        var abArr = [];
+        for (var j = 0; j < arrayForResourceHeader.length; j++){
+            for (var k = 0; k < arrayForResource[i]['details'].length; k++){
+                if(arrayForResourceHeader[j] === arrayForResource[i]['details'][k].name){
+                    abArr.push(arrayForResource[i]['details'][k]);
+					break;
+                }
+            }
+        }
+        arrayForResourceDetails.push(abArr);
+	}
+	for(var l=0;l<arrayForResourceDetails.length;l++){
+        arrayForResource[l]['details'] = arrayForResourceDetails[l];
+	}
+
+	comparisonDetails1["outputDetails"] = arrayForResource;
 	applyHtmlThroughTemplate("#strategyOutputDetailsTbodyTemplate", comparisonDetails1, "#resourceOutputDetailsTbody");
 
 //	conservation output details
