@@ -721,7 +721,7 @@
                                                     @Changed - Abhishek
                                                     @Date - 25-11-2015
                                                 -->
-                                                <div id="available-acreage-not-planted-msg" style="display: none;margin-left: -10px;">
+                                                <div id="available-acreage-not-planted-msg" style="margin-left: -10px;">
                                                     All available acreage not assigned crops.
                                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                         <c:param name="farmId" value="${farmId}"/>
@@ -1341,14 +1341,17 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="acreage-not-planted-msg" style="display: none"><span class="difference_bet_potential_profit rightspan">0</span> acres not assigned crops</div>
+                <c:set var ="totalLand" value="${model.farmInfoView.land}"/>
+                <fmt:parseNumber var="usedLand" value="${model.cropResourceUsed.Land}"/>
+                <c:set var="unusedLand" value="${totalLand-usedLand}"/>
+              <div id="acreage-not-planted-msg" style="display: none"><span><c:out value="${unusedLand}"></c:out></span> acres not assigned crops</div>
                 <div id="field_crop_button"></div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Edited By :- sawai singh start -->
+<!-- Edited By :- sawai singh start -->$
 <div id="createNewScenario" style="display: none;">
     <div id="popupContact">
         <!-- Planning Form -->
