@@ -1341,10 +1341,9 @@
                         </tbody>
                     </table>
                 </div>
-                <c:set var ="totalLand" value="${model.farmInfoView.land}"/>
-                <fmt:parseNumber var="usedLand" value="${model.cropResourceUsed.Land}"/>
-                <c:set var="unusedLand" value="${totalLand-usedLand}"/>
-              <div id="acreage-not-planted-msg" style="display: none"><span><c:out value="${unusedLand}"></c:out></span> acres not assigned crops</div>
+                    <div id="acreage-not-planted-msg" style="display: none"><span
+                            id="sensetiveAnalysisCropAndResourceUnusedSpan"></span></div>
+                <%--<div id="acreage-not-planted-msg" style="display: none"><span><c:out value="${resourceList.unused}"></c:out></span> acres not assigned crops</div>--%>
                 <div id="field_crop_button"></div>
             </div>
         </div>
