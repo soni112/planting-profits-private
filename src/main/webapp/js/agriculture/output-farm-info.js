@@ -284,6 +284,28 @@ function alterHTMLOfTableAndShowPopupTable(result) {
 function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     var totalResourceValue=result.resourceValueNew;
     var resource_Crop_Total=0;
+    var usedCropDetail = new Array();
+    var usedLand = 0;
+    var totalLand = 0;
+    $('#sa_multiple_resource_table').find('tr').each(function () {
+        if ($(this).children().eq(0).html() == 'Land') {
+            totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
+        }
+    });
+    if (result.Field_Crop_Info != null) {
+        usedCropDetail = result.Field_Crop_Info;
+        for (var i = 0; i < usedCropDetail.length; i++) {
+            var landArray = new Array();
+            var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
+            usedLand += parseInt(landArray[1]);
+        }
+    } else {
+        usedCropDetail = result.Crop_Details;
+        for (var i = 0; i < usedCropDetail.length; i++) {
+            usedLand += parseInt(usedCropDetail[i]['land']);
+        }
+    }
+    var unusedLand=totalLand-usedLand;
     var potential_pro = result.Potential_Profit;
     /**
      * @chanegd - Abhishek
@@ -292,7 +314,7 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
      */
     /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+".");*/
     $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : "+"&nbsp;&nbsp;&nbsp;" + potential_pro);
-
+    $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
     var theadObj = {};
     theadObj['Strategy'] = result.Strategy;
     var table = $("#sensetiveAnalysisCropAndResourceTable");
