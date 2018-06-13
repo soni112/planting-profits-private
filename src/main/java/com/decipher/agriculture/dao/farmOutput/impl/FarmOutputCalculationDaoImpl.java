@@ -1566,7 +1566,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
             hashMapForProfit.put(entry.getKey(), profitString);
             hashMapForProfitIndex.put(entry.getKey(), "" + AgricultureStandardUtils.doubleWithOneDecimal(profitIndexString).toString() + "%");
             hashMapForRating.put(entry.getKey(), (profitIndexString >= 1) ? "Green" : (profitIndexString < 1 && profitIndexString >= 0.6) ? "Yellow" : (profitIndexString < 0.6 /*&& profitIndexString > 0*/) ? "Red" : "Grey");
-            double ratio= Double.parseDouble ( AgricultureStandardUtils.withoutDecimalAndComma ( hashMapForRatio.get ( entry.getKey () )) );
+            double ratio= Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( hashMapForRatio.get ( entry.getKey () )) );
             double workReturn=0.0;
             for (CropTypeView cropType : cropTypeView) {
                 if (cropType.getSelected () ){
