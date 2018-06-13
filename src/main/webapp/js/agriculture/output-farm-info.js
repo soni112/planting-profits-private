@@ -283,6 +283,7 @@ function alterHTMLOfTableAndShowPopupTable(result) {
 
 function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     var totalResourceValue=result.resourceValueNew;
+    var Strategy=result.Strategy;
     var resource_Crop_Total=0;
     var usedCropDetail = new Array();
     var usedLand = 0;
@@ -297,12 +298,12 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
         for (var i = 0; i < usedCropDetail.length; i++) {
             var landArray = new Array();
             var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
-            usedLand += parseInt(landArray[1]);
+            usedLand += parseInt(landArray[1].replace(",",""));
         }
     } else {
         usedCropDetail = result.Crop_Details;
         for (var i = 0; i < usedCropDetail.length; i++) {
-            usedLand += parseInt(usedCropDetail[i]['land']);
+            usedLand += parseInt(usedCropDetail[i]['land'].replace(",",""));
         }
     }
     var unusedLand=totalLand-usedLand;
