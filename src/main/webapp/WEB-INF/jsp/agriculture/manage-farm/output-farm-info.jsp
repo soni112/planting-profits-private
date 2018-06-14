@@ -1182,7 +1182,7 @@
                                                 <p class="static_result_shown">
                                                     <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
                                                 </p>
-                                                <div  class="displayMessage" id="allAcreageNotPlanted" style="display: none; text-decoration: underline">
+                                                <div  class="displayMessage" id="allAcreageNotPlanted1" style="display: none; text-decoration: underline">
                                                     All Acreage Not Planted
                                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                         <c:param name="farmId" value="${farmId}"/>
