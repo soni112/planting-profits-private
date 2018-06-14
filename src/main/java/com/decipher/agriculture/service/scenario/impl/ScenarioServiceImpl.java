@@ -347,7 +347,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                      * @desc - included crops which are not contracted
                      */
                     if (cropTypeView.getCropName().equalsIgnoreCase(farmStrategyScenarioCropSpecific.getCropType().getCropName())
-                            && !cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
+                            /*&& !cropTypeView.getFirmchecked().equalsIgnoreCase("true")*/) {
 
                         /*  Adding crop name to identify values updated by crop specific updation*/
                         cropNameIfUpdatedByCropSpecific.add(cropTypeView.getCropName());
@@ -425,7 +425,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                  * @desc - included crops which are not contracted
                  */
                 /*      Global Updation      */
-                if (!cropNameIfUpdatedByCropSpecific.contains(cropTypeView) && !cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
+                if (!cropNameIfUpdatedByCropSpecific.contains(cropTypeView.getCropName ()) /*&& !cropTypeView.getFirmchecked().equalsIgnoreCase("true")*/) {
                     DecimalFormat decimalFormatter = new DecimalFormat("#.00");
 
                     /**
