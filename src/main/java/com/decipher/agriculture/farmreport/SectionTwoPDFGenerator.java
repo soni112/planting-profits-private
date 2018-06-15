@@ -595,9 +595,8 @@ public class SectionTwoPDFGenerator {
                 index++;
 
                 if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get ( cropResourceUsageView.getCropResourceUse () ) ) );
-                } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" ))
-                {
+                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get (cropResourceUsageView.getCropResourceUse())));
+                } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get ( cropResourceUsageView.getCropResourceUse () ) ) );
                 }
                 if (index == sizeOfList) {
@@ -607,27 +606,36 @@ public class SectionTwoPDFGenerator {
                         returnWorkingCapital = "NA";
                     }
                 }
+
             }
             table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( ""+returnWorkingCapital ) );
 
-            List<CropResourceUsageView> resourceList = (List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList");
-            Map<String, String> cropResourceUsed = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("cropResourceUsed");
-            for (CropResourceUsageView cropResourceUsageView : resourceList) {
-                /**
-                 * @changed - Abhishek
-                 * @date - 11-02-2016
-                 * @desc - Applied format of $xxx,xxx
-                 */
-                if(cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")){
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + cropResourceUsed.get(cropResourceUsageView.getCropResourceUse())));
-                } else {
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUsed.get(cropResourceUsageView.getCropResourceUse())));
+            for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDataJsonObject.get ( "resourceList" )) {
+                index++;
+
+                if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                }else {
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
                 }
+
             }
+    //            List<CropResourceUsageView> resourceList = (List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList");
+    //            Map<String, String> cropResourceUsed = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("cropResourceUsed");
+    //            for (CropResourceUsageView cropResourceUsageView : resourceList) {
+    //                /**
+    //                 * @changed - Abhishek
+    //                 * @date - 11-02-2016
+    //                 * @desc - Applied format of $xxx,xxx
+    //                 */
+    //
+    //            }
 
-            table.completeRow();
+        table.completeRow();
 
-        }
+    }
 
 
         return table;
