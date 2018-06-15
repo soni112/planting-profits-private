@@ -721,7 +721,7 @@
                                                     @Changed - Abhishek
                                                     @Date - 25-11-2015
                                                 -->
-                                                <div id="available-acreage-not-planted-msg" style="margin-left: -10px;">
+                                                <div id="available-acreage-not-planted-msg" style="margin-left: -10px; display: none">
                                                     All available acreage not assigned crops.
                                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                         <c:param name="farmId" value="${farmId}"/>
