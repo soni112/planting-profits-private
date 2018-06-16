@@ -682,6 +682,7 @@ function getStrategyForMultipleCrops() {
                     localStorage.setItem('sensitivityFlag', true);
                     $('#checkStrategy-pop-up-close-btn').show();
                     $('#checkStrategy-pop-up').show();
+                    $("#allAcreageNotPlanted").hide();
                     $('#viewStrategyMultipleCrops').hide();
                 }
 
