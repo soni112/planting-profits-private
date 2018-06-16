@@ -586,6 +586,8 @@ public class SectionTwoPDFGenerator {
              * @desc - Blank cell for table
              */
             Map <String, String> cropResourceUse = (Map <String, String>) strategyDataJsonObject.get ( "cropResourceUsed" );
+            Map <String, String> cropResourceUnused = (Map <String, String>) strategyDataJsonObject.get ( "cropResourceUnused" );
+
             Double potentialProfit = Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( strategyDataJsonObject.get ( "potentialProfit" ).toString () ) );
             double workingCapitalUsed=0.0 ;
             String returnWorkingCapital=null;
@@ -595,6 +597,8 @@ public class SectionTwoPDFGenerator {
                 index++;
 
                 if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
+
+
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get (cropResourceUsageView.getCropResourceUse())));
                 } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get ( cropResourceUsageView.getCropResourceUse () ) ) );
@@ -611,14 +615,25 @@ public class SectionTwoPDFGenerator {
             table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( ""+returnWorkingCapital ) );
 
             for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDataJsonObject.get ( "resourceList" )) {
-                index++;
+                int resources;
 
                 if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
+                    resources = used+unused;
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" +resources));
                 } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
+                    resources = used+unused;
+
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(""+resources));
                 }else {
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
+                    resources = used+unused;
+
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" +resources));
                 }
 
             }
