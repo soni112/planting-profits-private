@@ -681,7 +681,7 @@
                                                 </p>
                                                 <p class="static_result_shown">
                                                     <span class="leftspan">Estimated Income from change to Baseline:</span> <span
-                                                        class="new_potential_profit rightspan">$${model.potentialProfit}</span>
+                                                        class="new_potential_profit rightspan" STYLE="border-bottom: 2px solid"> $${model.potentialProfit}</span>
                                                 </p>
                                                 <p class="static_result_shown">
                                                     <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
