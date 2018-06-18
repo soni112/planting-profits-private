@@ -663,25 +663,26 @@ public class SectionOnePDFGenerator {
 
 
         // Add Crop Field Assignment
-        if (farmInfoView.getStrategy ().equals ( PlanByStrategy.PLAN_BY_ACRES )) {
+        if (farmInfoView.getStrategy ().equals ( PlanByStrategy.PLAN_BY_FIELDS )) {
             PdfPCell cropFieldAssignment = new PdfPCell(new Phrase("Crop/Field Assignments - See Exhibit 1", ReportTemplate.TIMESROMAN_12_BOLD));
             cropFieldAssignment.setUseBorderPadding(true);
             cropFieldAssignment.setBorderWidth(0);
             cropTableCell.setPaddingTop(5);
             pieChartTable.addCell(cropFieldAssignment);
-        }
-        // Add Crop Contribution Margin
-        /**
-         * @changed - Abhishek
-         * @date - 25-01-2016
-         * @desc - changed according to slide#4 of 12282015
-         */
+
+            // Add Crop Contribution Margin
+            /**
+             * @changed - Abhishek
+             * @date - 25-01-2016
+             * @desc - changed according to slide#4 of 12282015
+             */
 		/*PdfPCell cropContributionMargin = new PdfPCell(new Phrase("Crop Contribution Margin", ReportTemplate.TIMESROMAN_12_BOLD));*/
-        PdfPCell cropContributionMargin = new PdfPCell ( new Phrase ( " Profitability Measures ", ReportTemplate.TIMESROMAN_12_NORMAL ) );
-        cropContributionMargin.setUseBorderPadding ( true );
-        cropContributionMargin.setBorderWidth ( 0 );
-        cropContributionMargin.setPaddingTop ( 10 );
-        pieChartTable.addCell ( cropContributionMargin );
+            PdfPCell cropContributionMargin = new PdfPCell(new Phrase(" Profitability Measures ", ReportTemplate.TIMESROMAN_12_NORMAL));
+            cropContributionMargin.setUseBorderPadding(true);
+            cropContributionMargin.setBorderWidth(0);
+            cropContributionMargin.setPaddingTop(10);
+            pieChartTable.addCell(cropContributionMargin);
+        }
 
         // Add Crop Contribution Margin Table
         PdfPCell cropContributionMarginTableCell = new PdfPCell ();

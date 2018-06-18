@@ -414,6 +414,9 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p class="static_result_shown pull-left" style="font-size: 18px">
+                                    Select up to three Strategies to include in the report.
+                                </p>
                                 <button class="alertify-button alertify-button-ok pull-right"
                                         onclick="openStrategySelectionPopup(); return false;">Print</button>
                             </div>
