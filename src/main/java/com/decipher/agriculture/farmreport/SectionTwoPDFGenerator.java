@@ -627,14 +627,10 @@ public class SectionTwoPDFGenerator {
                     }
                     table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" +resources));
                 } else {
-                    if (cropResourceUse.get(cropResourceUsageView.getCropResourceUse())!= null||cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())!= null) {
                         int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
                         int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
-                        resources = used+unused;
-                    }else {
-                       resources = 0;
-                    }
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" +resources));
+                        int resourcesData = used+unused;
+                        table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" +resourcesData));
                 }
 
             }
