@@ -631,8 +631,8 @@ public class SectionTwoPDFGenerator {
                 } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
                     if (cropResourceUse.get(cropResourceUsageView.getCropResourceUse())!= null||cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())!= null) {
                         int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
-                        int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
-                        resourceData = used+unused;
+//                        int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
+                        resourceData = used;
                     }else {
                         resourceData = 0;
                     }
@@ -640,8 +640,8 @@ public class SectionTwoPDFGenerator {
                 }else {
                     if (cropResourceUse.get(cropResourceUsageView.getCropResourceUse())!= null||cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())!= null) {
                         int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
-                        int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
-                        resourceValue = used + unused;
+//                        int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
+                        resourceValue = used ;
                     }else {
                         resourceValue = 0;
                     }
