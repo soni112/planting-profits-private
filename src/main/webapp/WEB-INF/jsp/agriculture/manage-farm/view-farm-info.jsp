@@ -1868,6 +1868,7 @@ start -->
                                                     <!-- create By Bhagvan Singh on 13-04-2015 for unselected condition create Yield Difference
     start -->
                                                     <c:if test="${yieldDifferenceStatus eq 1}">
+                                                        <c:forEach var="listCrop" items="${model.cropTypeView}">
                                                         <tr class="tblgrn text-center">
                                                             <td class="tblft1">Expected</td>
                                                             <td class="success infotext"
@@ -1875,7 +1876,8 @@ start -->
                                                             <td class="success infotext">
                                                                 <input type="text" id="field_difference_exp"
                                                                        onchange="addCommaSignWithForOnePoint(this)"
-                                                                       onkeypress="return isValidNumberValue(event)"/>
+                                                                       onkeypress="return isValidNumberValue(event)"
+                                                                       value="${listCrop.expCropYieldField}"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="tblbclgrnd text-center">
@@ -1885,7 +1887,8 @@ start -->
                                                             <td class="infotext">
                                                                 <input type="text" id="field_difference_min"
                                                                        onchange="addCommaSignWithForOnePoint(this)"
-                                                                       onkeypress="return isValidNumberValue(event)"/>
+                                                                       onkeypress="return isValidNumberValue(event)"
+                                                                       value="${listCrop.minCropYieldField}"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="tblgrn text-center">
@@ -1895,9 +1898,11 @@ start -->
                                                             <td class="success infotext">
                                                                 <input type="text" id="field_difference_max"
                                                                        onchange="addCommaSignWithForOnePoint(this)"
-                                                                       onkeypress="return isValidNumberValue(event)"/>
+                                                                       onkeypress="return isValidNumberValue(event)"
+                                                                       value="${listCrop.maxCropYieldField}"/>
                                                             </td>
                                                         </tr>
+                                                        </c:forEach>
                                                     </c:if>
                                                     <!-- end -->
                                                     </tbody>
