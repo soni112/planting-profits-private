@@ -615,40 +615,13 @@ public class SectionTwoPDFGenerator {
             table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( ""+returnWorkingCapital ) );
 
             for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDataJsonObject.get ( "resourceList" )) {
-                int resources;
-                int resourceData;
-                int resourceValue;
-
                 if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                    if (cropResourceUse.get(cropResourceUsageView.getCropResourceUse())!= null||cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())!= null) {
-                        int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
-                        int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
-                        resources = used+unused;
-                    }else {
-                        resources = 0;
-                    }
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" +resources));
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" +cropResourceUsageView.getCropResourceUseAmount()));
                 } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
-                    if (cropResourceUse.get(cropResourceUsageView.getCropResourceUse())!= null||cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())!= null) {
-                        int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
-//                        int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
-                        resourceData = used;
-                    }else {
-                        resourceData = 0;
-                    }
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(""+resourceData));
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(""+cropResourceUsageView.getCropResourceUseAmount()));
                 }else {
-                    if (cropResourceUse.get(cropResourceUsageView.getCropResourceUse())!= null||cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())!= null) {
-                        int used = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
-//                        int unused = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(cropResourceUnused.get(cropResourceUsageView.getCropResourceUse())));
-                        resourceValue = used ;
-                    }else {
-                        resourceValue = 0;
-                    }
-
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" +resourceValue));
+                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" +cropResourceUsageView.getCropResourceUseAmount()));
                 }
-
             }
     //            List<CropResourceUsageView> resourceList = (List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList");
     //            Map<String, String> cropResourceUsed = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("cropResourceUsed");
