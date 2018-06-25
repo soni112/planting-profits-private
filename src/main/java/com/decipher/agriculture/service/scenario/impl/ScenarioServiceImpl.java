@@ -349,8 +349,8 @@ public class ScenarioServiceImpl implements ScenarioService {
                     if (cropTypeView.getCropName().equalsIgnoreCase(farmStrategyScenarioCropSpecific.getCropType().getCropName())
                             /*&& !cropTypeView.getFirmchecked().equalsIgnoreCase("true")*/) {
 
-                        /*  Adding crop name to identify values updated by crop specific updation*/
-                        cropNameIfUpdatedByCropSpecific.add(cropTypeView.getCropName());
+//                        /*  Adding crop name to identify values updated by crop specific updation*/
+//                        cropNameIfUpdatedByCropSpecific.add(cropTypeView.getCropName());
 
                         DecimalFormat decimalFormatter = new DecimalFormat("#.00");
 
@@ -368,6 +368,8 @@ public class ScenarioServiceImpl implements ScenarioService {
                             cropTypeView.setIntExpCropPrice(new BigDecimal(decimalFormatter.format(cropTypeView.getIntExpCropPrice().doubleValue() + valueToChange)));
                             cropTypeView.getCropType().setCropPricesInfo(cropPricesInfo);
 
+                            /*  Adding crop name to identify values updated by crop specific updation*/
+                            cropNameIfUpdatedByCropSpecific.add(cropTypeView.getCropName());
                             changeFlag = true;
 
                         }
@@ -384,6 +386,8 @@ public class ScenarioServiceImpl implements ScenarioService {
                             cropTypeView.setIntExpCropYield(decimalFormatter.format(Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropTypeView.getIntExpCropYield())) + valueToChange));
                             cropTypeView.getCropType().setCropYieldInfo(cropYieldInfo);
 
+                             /*  Adding crop name to identify values updated by crop specific updation*/
+                            cropNameIfUpdatedByCropSpecific.add(cropTypeView.getCropName());
                             changeFlag = true;
                         }
 
@@ -404,6 +408,9 @@ public class ScenarioServiceImpl implements ScenarioService {
 //                            }
 //                            cropTypeView.setCalculatedVariableProductionCost(new BigDecimal(decimalFormatter.format(cropTypeView.getCalculatedVariableProductionCost().doubleValue() + valueToChange)));
                             cropTypeView.getCropType().setCostsCropProductionCosts(costsCropProductionCosts);
+
+                            /*  Adding crop name to identify values updated by crop specific updation*/
+                            cropNameIfUpdatedByCropSpecific.add(cropTypeView.getCropName());
 
                             changeFlag = true;
                         }
