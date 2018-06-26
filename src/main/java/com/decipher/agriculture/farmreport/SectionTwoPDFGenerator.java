@@ -435,7 +435,8 @@ public class SectionTwoPDFGenerator {
             for (int i = 0; i < hashMapForAcreForMultiStrategy.size (); i++) {
                 Map <String, String> hashMapForAcre = hashMapForAcreForMultiStrategy.get ( i );
                 for (String cropKey : hashMapForAcre.keySet ()) {
-                    setForCropHeader.add ( cropKey );
+                    if(cropKey!=null){
+                    setForCropHeader.add ( cropKey );}
                 }
             }
             table = generateHeaderForEstimatedIncomeCropAcreage ( setForCropHeader.size () );
