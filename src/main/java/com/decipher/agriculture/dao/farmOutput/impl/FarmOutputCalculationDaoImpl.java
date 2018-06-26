@@ -533,7 +533,8 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
         } else {
             List<Object> objectList = calculateFarmOutputStatistics(outputBeanForStrategy);
             for (Object objects : objectList) {
-                farmOutputDetailsList.add((FarmOutputDetails) objects);
+                if(!objects.equals ( null )){
+                farmOutputDetailsList.add((FarmOutputDetails) objects);}
             }
 
         }
