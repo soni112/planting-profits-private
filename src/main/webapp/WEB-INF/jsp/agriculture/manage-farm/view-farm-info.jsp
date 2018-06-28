@@ -1791,7 +1791,7 @@ start -->
                                         </select>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <div class="ques">
+                                    <div class="ques" id="selectFieldDifference">
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <p class="text-left variancesub"> Yield Difference
                                                 <%--@changed - Abhishek 	@date - 29-12-2015 	@desc - Added help information functionality--%>
@@ -1899,6 +1899,21 @@ start -->
                                                             </td>
                                                         </tr>
                                                     </c:if>
+
+
+                                                    <c:if test="${yieldDifferenceStatus ne 1}">
+                                                        <script>
+                                                            var e1 = document.getElementById("field_select_drop_down");
+                                                            var e2 = document.getElementById("crop_select_drop_down");
+                                                            var strSelect1 = e1.options[e1.selectedIndex].value;
+                                                            var strSelect2 = e2.options[e2.selectedIndex].value;
+                                                            console.log("select : ",strSelect1, strSelect2);
+                                                            sessionStorage.clear();
+                                                            sessionStorage.setItem('selectFirst',strSelect1.toString());
+                                                            sessionStorage.setItem('selectTwo',strSelect2.toString());
+                                                            sessionStorage.setItem('newInputHtml',$('#selectFieldDifference').html());
+                                                        </script>
+                                                    </c:if>
                                                     <!-- end -->
                                                     </tbody>
                                                 </table>
@@ -1984,6 +1999,19 @@ start -->
                                                             </td>
                                                         </tr>
                                                     </c:if>
+                                                    <c:if test="${resourceUsageDifferenceStatus ne 1}">
+                                                        <script>
+                                                            var e1 = document.getElementById("field_select_drop_down");
+                                                            var e2 = document.getElementById("crop_select_drop_down");
+                                                            var strSelect1 = e1.options[e1.selectedIndex].value;
+                                                            var strSelect2 = e2.options[e2.selectedIndex].value;
+                                                            console.log("select : ",strSelect1, strSelect2);
+                                                            sessionStorage.clear();
+                                                            sessionStorage.setItem('selectFirst',strSelect1.toString());
+                                                            sessionStorage.setItem('selectTwo',strSelect2.toString());
+                                                            sessionStorage.setItem('newInputHtml',$('#selectFieldDifference').html());
+                                                        </script>
+                                                    </c:if>
                                                     <!--             end -->
                                                     <c:set var="resourceNo" value="1"/>
                                                     <c:forEach var="resourceListForCropResourcesUsages"
@@ -2035,7 +2063,7 @@ start -->
 
                                     <div class="yellobtn pre_next"
                                          id="dynamic_button_for_yeild_differnce">
-                                        <a onclick="nextFieldDifference()">Ok</a>
+                                        <a onclick="nextFieldDifference(); saveFieldDifference()">Ok</a>
                                     </div>
                                 </div>
                             </div>
