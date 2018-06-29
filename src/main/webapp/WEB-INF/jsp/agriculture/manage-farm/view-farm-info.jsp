@@ -2035,7 +2035,7 @@ start -->
 
                                     <div class="yellobtn pre_next"
                                          id="dynamic_button_for_yeild_differnce">
-                                        <a onclick="nextFieldDifference()">Ok</a>
+                                        <a onclick="nextFieldDifference(); saveFieldDifference()">Ok</a>
                                     </div>
                                 </div>
                             </div>
