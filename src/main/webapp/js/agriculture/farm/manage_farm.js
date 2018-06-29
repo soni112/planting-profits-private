@@ -1090,6 +1090,41 @@ function nextFieldDifference() {
     }
 }
 
+function saveFieldDifference() {
+    var fieldName = $("#field_select_drop_down").val();
+    var cropName = $("#crop_select_drop_down").val();
+    var value = {};
+    if(fieldName != 0 && cropName !=0) {
+        var exp = "", min = "", max = "", cost = "";
+        if($("#field_difference_exp").val()!="") {
+            exp = $("#field_difference_exp").val();
+        }
+        if($("#field_difference_min").val()!="") {
+            min = $("#field_difference_min").val();
+        }
+        if($("#field_difference_max").val()!="") {
+            max = $("#field_difference_max").val();
+        }
+        if($("#resources_usages_production_cost_resource_override").val()!="") {
+            cost = $("#resources_usages_production_cost_resource_override").val();
+        }
+        value["minOverride"] = min;
+        value["maxOverride"] = max;
+        value["expOverride"] = exp;
+        value["resourceOverride"] = cost;
+    }
+    var item = localStorage.getItem("fieldDifference");
+    item = item ? JSON.parse(item) : item;
+    if (!item){
+        item = {};
+        item[fieldName] = {};
+    } else if (typeof item[fieldName] == "undefined") {
+        item[fieldName] = {};
+    }
+    item[fieldName][cropName] = value;
+    localStorage.setItem("fieldDifference", JSON.stringify(item));
+}
+
 /*All Next function End*/
 
 function selectStrategyInCaseOfBoth() {
@@ -2692,10 +2727,20 @@ function getFieldYieldDiffence(obj) {
                 return false;
             }
         });
-
     }
-    // setIconOnCropForFieldDifferenceOnCropResourceUsage($(obj));
 
+    var item = localStorage.getItem("fieldDifference");
+    if(item){
+        item = JSON.parse(item);
+        var fieldName = $('#field_select_drop_down').val();
+        var cropName = $('#crop_select_drop_down').val();
+        if(typeof item[fieldName] != "undefined" && typeof item[fieldName][cropName] != "undefined"){
+            $("#field_difference_exp").val(item[fieldName][cropName]["expOverride"]);
+            $("#field_difference_min").val(item[fieldName][cropName]["minOverride"]);
+            $("#field_difference_max").val(item[fieldName][cropName]["maxOverride"]);
+            $("#resources_usages_production_cost_resource_override").val(item[fieldName][cropName]["resourceOverride"]);
+        }
+    }
 }
 
 function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
@@ -3105,26 +3150,19 @@ function saveAllFarmInformation() {
             // showMessageOnConsole($(this).children("td:nth(0)").text().trim() + "#-#-#" + returnZeroIfBlank(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val().trim())));
         });
         if ($("#field_select_drop_down").val() != 0 && $("#crop_select_drop_down").val() != 0) {
-            field_difference_str = $("#field_select_drop_down").val() + "#-#-#" + $("#crop_select_drop_down").val() + "#-#-#";
-            if ($("#field_difference_exp").val() != "") {
-                field_difference_str += removeAllCommasAndDollar($("#field_difference_exp").val()) + "#-#-#";
-            } else {
-                field_difference_str += "0#-#-#";
-            }
-            if ($("#field_difference_min").val() != "") {
-                field_difference_str += removeAllCommasAndDollar($("#field_difference_min").val()) + "#-#-#";
-            } else {
-                field_difference_str += "0#-#-#";
-            }
-            if ($("#field_difference_max").val() != "") {
-                field_difference_str += removeAllCommasAndDollar($("#field_difference_max").val()) + "#-#-#";
-            } else {
-                field_difference_str += "0#-#-#";
-            }
-            if ($("#resources_usages_production_cost_resource_override").val() != "") {
-                field_difference_str += removeAllCommasAndDollar($("#resources_usages_production_cost_resource_override").val());
-            } else {
-                field_difference_str += "0";
+            var item = localStorage.getItem("fieldDifference");
+            if(item){
+                item = JSON.parse(item);
+                for (var field in item){
+                    for (var crop in item[field]){
+                        var data = item[field][crop];
+                        field_difference_str = field + "#-#-#" + crop + "#-#-#";
+                        field_difference_str += data["expOverride"] != "" ? removeAllCommasAndDollar(data["expOverride"]) + "#-#-#" : "0#-#-#";
+                        field_difference_str += data["minOverride"] != "" ? removeAllCommasAndDollar(data["minOverride"]) + "#-#-#" : "0#-#-#";
+                        field_difference_str += data["maxOverride"] != "" ? removeAllCommasAndDollar(data["maxOverride"]) + "#-#-#" : "0#-#-#";
+                        field_difference_str += data["resourceOverride"] != "" ? removeAllCommasAndDollar(data["resourceOverride"]) + "#-#-#" : "0#-#-#";
+                    }
+                }
             }
         }
         // showMessageOnConsole(field_difference_str);
