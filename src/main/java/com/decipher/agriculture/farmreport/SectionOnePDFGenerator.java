@@ -156,8 +156,8 @@ public class SectionOnePDFGenerator {
          * @changed - Abhishek
          * @updated - 11-01-2016
          */
-        conservationParagraph.add ( new Chunk ( conservationBean.getProfitFromConservation () + " % Est. Income under conservation practices\n" +
-                conservationBean.getLandUnderConservation () + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        conservationParagraph.add ( new Chunk ( AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getProfitFromConservation ()) + " % Est. Income under conservation practices\n" +
+                AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getLandUnderConservation ()) + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
 
         PdfPCell conservationManagementSectionCell = ReportTemplate.getBoxBorderWithoutLeftPaddingCell ();
         conservationManagementSectionCell.addElement ( conservationParagraph );
@@ -590,7 +590,7 @@ public class SectionOnePDFGenerator {
          * @desc - changed according to slide#2 of 02102016
          */
 		/*forwardSalesTableFotterParagraph.add(new Chunk("Crop Insurance\n", ReportTemplate.TIMESROMAN_10_BOLD));*/
-        forwardSalesTableFotterParagraph.add ( new Chunk ( "\nHi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_BOLD ) );
+        forwardSalesTableFotterParagraph.add ( new Chunk ( "\nHi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         /**
          * @changed - Abhishek
          * @date - 25-01-2016
@@ -784,6 +784,8 @@ public class SectionOnePDFGenerator {
         returnWorkingCapitalHead.setBorderWidthBottom(1);
         returnWorkingCapitalHead.setBorderWidthTop(1);
         returnWorkingCapitalHead.setBorderWidthRight ( 1 );
+        returnWorkingCapitalHead.setBorderWidthLeft(1);
+
 //  returnWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( returnWorkingCapitalHead );
 /*
@@ -794,6 +796,15 @@ public class SectionOnePDFGenerator {
         ratingforWorkingCapitalHead.setBorder ( Rectangle.BOTTOM );
         cropContributionMarginTable.addCell ( ratingforWorkingCapitalHead );
 */
+
+        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        estimateHead.setUseBorderPadding ( true );
+        estimateHead.setBorderWidth (0);
+        estimateHead.setBorderWidthBottom(1);
+        estimateHead.setBorderWidthTop(1);
+        estimateHead.setBorderWidthRight(1);
+//        estimateHead.setBorder ( Rectangle.NO_BORDER );
+        cropContributionMarginTable.addCell ( estimateHead );
 
         cropContributionMarginTable.completeRow ();
 
@@ -908,6 +919,7 @@ public class SectionOnePDFGenerator {
 //                estimate.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( estimate );*/
                 // CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
+                CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
 
                 Double workReturn = 0.0;
                 String workReturnInString = null;
@@ -946,6 +958,21 @@ public class SectionOnePDFGenerator {
                         }
                     }
                 cropContributionMarginTable.addCell ( ratingforWorkingCapital );
+
+                String estimateIncomePerAce = null;
+                if (farmOutputDetails.getRatio () == 0.0) {
+                    estimateIncomePerAce = "NA";
+                } else {
+                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () ));
+
+                }
+                PdfPCell estimate = new PdfPCell ( new Phrase ( "$" + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                estimate.setUseBorderPadding ( true );
+                estimate.setBorderWidth ( 0 );
+                estimate.setBorderWidthBottom(1);
+                estimate.setBorderWidthRight(1);
+//                estimate.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( estimate );
 
                 cropContributionMarginTable.completeRow ();
             }
