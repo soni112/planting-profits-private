@@ -315,7 +315,16 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
      */
     /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+".");*/
     $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : "+"&nbsp;&nbsp;&nbsp;" + potential_pro);
-    $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
+    if (unusedLand > 0) {
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
+    }
+    else if (unusedLand == 0)
+    {
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" +"All acres are assigned crops");
+    }
+    else {
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
+    }
     var theadObj = {};
     theadObj['Strategy'] = result.Strategy;
     var table = $("#sensetiveAnalysisCropAndResourceTable");
