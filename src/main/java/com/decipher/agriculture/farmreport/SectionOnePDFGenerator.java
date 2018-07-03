@@ -156,8 +156,8 @@ public class SectionOnePDFGenerator {
          * @changed - Abhishek
          * @updated - 11-01-2016
          */
-        conservationParagraph.add ( new Chunk ( conservationBean.getProfitFromConservation () + " % Est. Income under conservation practices\n" +
-                conservationBean.getLandUnderConservation () + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        conservationParagraph.add ( new Chunk ( AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getProfitFromConservation ()) + " % Est. Income under conservation practices\n" +
+                AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getLandUnderConservation ()) + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
 
         PdfPCell conservationManagementSectionCell = ReportTemplate.getBoxBorderWithoutLeftPaddingCell ();
         conservationManagementSectionCell.addElement ( conservationParagraph );
@@ -590,7 +590,7 @@ public class SectionOnePDFGenerator {
          * @desc - changed according to slide#2 of 02102016
          */
 		/*forwardSalesTableFotterParagraph.add(new Chunk("Crop Insurance\n", ReportTemplate.TIMESROMAN_10_BOLD));*/
-        forwardSalesTableFotterParagraph.add ( new Chunk ( "\nHi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_BOLD ) );
+        forwardSalesTableFotterParagraph.add ( new Chunk ( "\nHi-Risk Crops\n", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         /**
          * @changed - Abhishek
          * @date - 25-01-2016
@@ -784,6 +784,8 @@ public class SectionOnePDFGenerator {
         returnWorkingCapitalHead.setBorderWidthBottom(1);
         returnWorkingCapitalHead.setBorderWidthTop(1);
         returnWorkingCapitalHead.setBorderWidthRight ( 1 );
+        returnWorkingCapitalHead.setBorderWidthLeft(1);
+
 //  returnWorkingCapitalHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( returnWorkingCapitalHead );
 /*
