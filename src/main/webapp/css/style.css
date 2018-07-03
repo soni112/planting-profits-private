@@ -4694,4 +4694,7 @@ input.cvvNumber:hover{
 }
 
 /*************** SCROLLBAR BASE CSS ***************/
-
+#Crop–Field-Assignments table thead tr td,
+#Crop–Field-Assignments table tbody tr td{
+    width: 33.33%;
+}

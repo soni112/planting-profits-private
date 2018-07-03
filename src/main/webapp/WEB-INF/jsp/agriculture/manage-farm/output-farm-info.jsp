@@ -288,17 +288,22 @@
 
                         <c:if test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                             <div class="contentblock hidden" id="Crop&ndash;Field-Assignments">
-                                <div class="table-responsive" style="max-height: 298px;">
+                                <div class="table-responsive">
                                     <table width="100%" cellspacing="0"
+                                           class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll" width="100%">
+                                        <thead style="display: table-header-group;">
+
+                                    <%--<table width="100%" cellspacing="0"
                                            class="table table-striped tbl-bordr tblbrdr output_table">
-                                        <thead>
+                                        <thead>--%>
                                         <tr class="tblhd add-fieldi">
                                             <td class="tblbrdr add-fieldi">Field</td>
                                             <td class="add-fieldi">Acreage</td>
                                             <td>Crop</td>
                                         </tr>
                                         </thead>
-                                        <tbody id="crop_Field_Assignment">
+                                        <tbody id="crop_Field_Assignment" class="scrollbar-dynamic scrollDiv" style="display: table-row-group;">
+                                        <%--<tbody id="crop_Field_Assignment">--%>
                                         <c:set var="cropFieldRowCount" value="1"/>
                                         <c:forEach var="cropFieldsList" items="${model.fieldInfoList}">
                                             <c:set var="planted" value="false"/>
