@@ -1812,7 +1812,7 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $("#checkStrategy-pop-up").show();
     } else if (difference < 0) {
         //$(".difference_bet_potential_profit").text("-"+(Math.abs(difference)));
-        $(".difference_bet_potential_profit").text(addCommaSignWithDollarWithValue(Math.abs(difference)));
+        $(".difference_bet_potential_profit").text("$"+(difference));
         // $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").show();
