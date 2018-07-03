@@ -414,7 +414,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p class="static_result_shown pull-left" style="font-size: 18px">
+                                <p id="show_msg" class="static_result_shown pull-left" style="font-size: 16px">
                                     Select up to three Strategies to include in the report.
                                 </p>
                                 <button class="alertify-button alertify-button-ok pull-right"
