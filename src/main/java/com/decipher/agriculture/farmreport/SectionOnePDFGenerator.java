@@ -753,7 +753,7 @@ public class SectionOnePDFGenerator {
         estimateHead.setBorderWidth (0);
         estimateHead.setBorderWidthBottom(1);
         estimateHead.setBorderWidthTop(1);
-        estimateHead.setBorderWidthLeft(1);
+//        estimateHead.setBorderWidthLeft(1);
         estimateHead.setBorderWidthRight(1);
 //        estimateHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( estimateHead );
@@ -765,8 +765,8 @@ public class SectionOnePDFGenerator {
         cmHead.setBorderWidth (0);
         cmHead.setBorderWidthBottom(1);
         cmHead.setBorderWidthTop(1);
-        cmHead.setBorderWidthLeft(1);
-        cmHead.setBorderWidthRight(1);
+//        cmHead.setBorderWidthLeft(1);
+//        cmHead.setBorderWidthRight(1);
 //        cmHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cmHead );
 
