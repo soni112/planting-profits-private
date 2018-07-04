@@ -296,9 +296,11 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     if (result.Field_Crop_Info != null) {
         usedCropDetail = result.Field_Crop_Info;
         for (var i = 0; i < usedCropDetail.length; i++) {
+            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
             var landArray = new Array();
             var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
             usedLand += parseInt(landArray[1].replace(",",""));
+            }
         }
     } else {
         usedCropDetail = result.Crop_Details;
@@ -453,7 +455,7 @@ function getStrategyForMultipleResources() {
                 var currentPotentialProfit = Number(removeAllCommasAndDollar(result.Potential_Profit));
                 var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
                 var difference = currentPotentialProfit - potentialProfit;
-                console.log("Difference " + difference);
+                // console.log("Difference " + difference);
                 if (potentialProfit == currentPotentialProfit) {
                     localStorage.setItem('sensitivityFlag', true);
                     $('#checkStrategy-pop-up-close-btn').show();
