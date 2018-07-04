@@ -797,15 +797,6 @@ public class SectionOnePDFGenerator {
         cropContributionMarginTable.addCell ( ratingforWorkingCapitalHead );
 */
 
-        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
-        estimateHead.setUseBorderPadding ( true );
-        estimateHead.setBorderWidth (0);
-        estimateHead.setBorderWidthBottom(1);
-        estimateHead.setBorderWidthTop(1);
-        estimateHead.setBorderWidthRight(1);
-//        estimateHead.setBorder ( Rectangle.NO_BORDER );
-        cropContributionMarginTable.addCell ( estimateHead );
-
         cropContributionMarginTable.completeRow ();
 
         // Add Table Data
@@ -919,7 +910,6 @@ public class SectionOnePDFGenerator {
 //                estimate.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( estimate );*/
                 // CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
-                CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
 
                 Double workReturn = 0.0;
                 String workReturnInString = null;
@@ -958,21 +948,6 @@ public class SectionOnePDFGenerator {
                         }
                     }
                 cropContributionMarginTable.addCell ( ratingforWorkingCapital );
-
-                String estimateIncomePerAce = null;
-                if (farmOutputDetails.getRatio () == 0.0) {
-                    estimateIncomePerAce = "NA";
-                } else {
-                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () ));
-
-                }
-                PdfPCell estimate = new PdfPCell ( new Phrase ( "$" + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
-                estimate.setUseBorderPadding ( true );
-                estimate.setBorderWidth ( 0 );
-                estimate.setBorderWidthBottom(1);
-                estimate.setBorderWidthRight(1);
-//                estimate.setBorder ( Rectangle.NO_BORDER );
-                cropContributionMarginTable.addCell ( estimate );
 
                 cropContributionMarginTable.completeRow ();
             }
