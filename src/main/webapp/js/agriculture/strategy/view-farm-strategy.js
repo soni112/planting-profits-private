@@ -271,7 +271,14 @@ function applyHtmlThroughTemplate(templateId, dataList, targetId){
 
 		$(targetId).html("");
 		$(templateId).tmpl(dataList).appendTo(targetId);
+
+		if($(targetId).children().length > 3 ){
+			$('#show_msg').show();
+		}else{
+            $('#show_msg').hide();
+		}
 	}
+
 }
 
 function applyCheckBoxValidation(){

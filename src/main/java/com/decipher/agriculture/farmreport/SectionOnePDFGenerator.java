@@ -748,6 +748,16 @@ public class SectionOnePDFGenerator {
 //        cropHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cropHead );
 
+        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        estimateHead.setUseBorderPadding ( true );
+        estimateHead.setBorderWidth (0);
+        estimateHead.setBorderWidthBottom(1);
+        estimateHead.setBorderWidthTop(1);
+        estimateHead.setBorderWidthLeft(1);
+        estimateHead.setBorderWidthRight(1);
+//        estimateHead.setBorder ( Rectangle.NO_BORDER );
+        cropContributionMarginTable.addCell ( estimateHead );
+
         PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
         cmHead.setColspan ( 2 );
 
@@ -755,6 +765,8 @@ public class SectionOnePDFGenerator {
         cmHead.setBorderWidth (0);
         cmHead.setBorderWidthBottom(1);
         cmHead.setBorderWidthTop(1);
+        cmHead.setBorderWidthLeft(1);
+        cmHead.setBorderWidthRight(1);
 //        cmHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cmHead );
 
@@ -784,15 +796,6 @@ public class SectionOnePDFGenerator {
         ratingforWorkingCapitalHead.setBorder ( Rectangle.BOTTOM );
         cropContributionMarginTable.addCell ( ratingforWorkingCapitalHead );
 */
-
-        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
-        estimateHead.setUseBorderPadding ( true );
-        estimateHead.setBorderWidth (0);
-        estimateHead.setBorderWidthBottom(1);
-        estimateHead.setBorderWidthTop(1);
-        estimateHead.setBorderWidthRight(1);
-//        estimateHead.setBorder ( Rectangle.NO_BORDER );
-        cropContributionMarginTable.addCell ( estimateHead );
 
         cropContributionMarginTable.completeRow ();
 
@@ -829,6 +832,23 @@ public class SectionOnePDFGenerator {
                 cropName.setBorderWidthRight(1);
 //                cropName.setBorder ( Rectangle.NO_BORDER );
                 cropContributionMarginTable.addCell ( cropName );
+
+                String estimateIncomePerAce = null;
+                if (farmOutputDetails.getRatio () == 0.0) {
+                    estimateIncomePerAce = "NA";
+                } else {
+                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () ));
+
+                }
+                PdfPCell estimate = new PdfPCell ( new Phrase ( "$" + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                estimate.setUseBorderPadding ( true );
+                estimate.setBorderWidth ( 0 );
+                estimate.setBorderWidthBottom(1);
+                estimate.setBorderWidthRight(1);
+//                estimate.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( estimate );
+                CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
+
 
                 /**
                  * @chanegd - Abhishek
@@ -874,8 +894,22 @@ public class SectionOnePDFGenerator {
                 }
 
                 cropContributionMarginTable.addCell ( rating );
+                // String estimateIncomePerAce = null;
+                String returnWorking = null;
+                if (farmOutputDetails.getRatio () == 0.0) {
+                    estimateIncomePerAce = "NA";
+                } else {
+                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () ));
 
-                CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
+                }
+                /*PdfPCell estimate = new PdfPCell ( new Phrase ( "$" + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                estimate.setUseBorderPadding ( true );
+                estimate.setBorderWidth ( 0 );
+                estimate.setBorderWidthBottom(1);
+                estimate.setBorderWidthRight(1);
+//                estimate.setBorder ( Rectangle.NO_BORDER );
+                cropContributionMarginTable.addCell ( estimate );*/
+                // CropTypeView cropTypeView = farmOutputDetails.getCropTypeView ();
 
                 Double workReturn = 0.0;
                 String workReturnInString = null;
@@ -914,21 +948,6 @@ public class SectionOnePDFGenerator {
                         }
                     }
                 cropContributionMarginTable.addCell ( ratingforWorkingCapital );
-
-                String estimateIncomePerAce = null;
-                if (farmOutputDetails.getRatio () == 0.0) {
-                    estimateIncomePerAce = "NA";
-                } else {
-                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( farmOutputDetails.getRatio () ));
-
-                }
-                PdfPCell estimate = new PdfPCell ( new Phrase ( "$" + estimateIncomePerAce, ReportTemplate.TIMESROMAN_10_NORMAL ) );
-                estimate.setUseBorderPadding ( true );
-                estimate.setBorderWidth ( 0 );
-                estimate.setBorderWidthBottom(1);
-                estimate.setBorderWidthRight(1);
-//                estimate.setBorder ( Rectangle.NO_BORDER );
-                cropContributionMarginTable.addCell ( estimate );
 
                 cropContributionMarginTable.completeRow ();
             }

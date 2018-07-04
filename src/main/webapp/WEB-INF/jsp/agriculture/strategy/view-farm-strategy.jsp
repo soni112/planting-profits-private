@@ -414,7 +414,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p class="static_result_shown pull-left" style="font-size: 18px">
+                                <p id="show_msg" class="static_result_shown pull-left" style="font-size: 16px">
                                     Select up to three Strategies to include in the report.
                                 </p>
                                 <button class="alertify-button alertify-button-ok pull-right"
@@ -451,7 +451,7 @@
                             </div>
                         </div>
 
-                        <button class="alertify-button alertify-button-ok pull-right" onclick="generateReport(); return false;">Generate Report</button>
+                        <button class="alertify-button alertify-button-ok pull-right" onclick="generateReport(); closeStrategySelectionPopup(); return false;">Generate Report</button>
                         <button class="alertify-button alertify-button-cancel pull-right" onclick="closeStrategySelectionPopup(); return false;">Back</button>
 
                     </div>
