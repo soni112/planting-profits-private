@@ -1,11 +1,6 @@
 package com.decipher.agriculture.farmreport;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.PlanByStrategy;
@@ -54,7 +49,7 @@ public class ReportDataPage3 {
         List<CropTypeView> cropTypeView = (List<CropTypeView>)baseSelectedStrategyOutputDetailsJsonObj.get("cropTypeView");
         int numberOfCrops = 0;
         List<CropTypeView> cropsHeaderList = new ArrayList<CropTypeView>();
-        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> dataMap = new LinkedHashMap<>();
         int[] cropIdArray = new int[cropTypeView.size()];
         for (CropTypeView view : cropTypeView) {
             if (view.getSelected()) {
