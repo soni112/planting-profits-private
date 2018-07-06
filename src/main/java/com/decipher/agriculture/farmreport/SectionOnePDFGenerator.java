@@ -163,6 +163,7 @@ public class SectionOnePDFGenerator {
         conservationManagementSectionCell.addElement ( conservationParagraph );
         contentTable2.addCell ( conservationManagementSectionCell );
 
+        contentTable2.setKeepTogether(true);
         document.add ( contentTable2 );
 
 
