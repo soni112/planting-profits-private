@@ -228,8 +228,8 @@ public class FarmOutputCalculationServiceImpl implements FarmOutputCalculationSe
     }
 
     @Override
-    public Double calculateProfit(double expectedYield, double expectedprice, double minAcres, double variableProductionCost) {
-        return farmOutputCalculationDao.calculateProfit(expectedYield, expectedprice, minAcres, variableProductionCost);
+    public Double calculateProfit(double expectedYield, double expectedprice, double usedAcres, double variableProductionCost) {
+        return farmOutputCalculationDao.calculateProfit(expectedYield, expectedprice, usedAcres, variableProductionCost);
     }
 
 

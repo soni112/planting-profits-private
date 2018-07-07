@@ -246,6 +246,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
                 double maxYield = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropTypeView.getIntMaxCropYield()));
                 double maxPrice = cropTypeView.getIntMaxCropPrice().doubleValue();
+                double usedAcres = outputDetails.getUsedAcres().doubleValue();
 
                 if (outputDetails.getCropType().getCropYieldFieldVariances() != null && outputDetails.getCropType().getCropYieldFieldVariances().getFieldInfo().getId().equals(outputDetails.getFieldInfo().getId())) {
 
@@ -271,17 +272,17 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 //					outputDetails.setMaximumProfit(calculateProfit(maxYield,maxPrice,outputDetails.getUsedAcres(), productionCost));
                     if ((maxPrice != 0 && maxYield != 0) && (minPrice != 0 && minYield != 0)) {
 
-                        double minProfit = calculateProfit(minYield, minPrice, outputDetails.getUsedAcres(), productionCost);
+                        double minProfit = calculateProfit(minYield, minPrice, usedAcres, productionCost);
                         minProfit += cropTypeView.getAdditionalIncome();
 
                         outputDetails.setMinimumProfit(minProfit);
 
-                        double maxProfit = calculateProfit(maxYield, maxPrice, outputDetails.getUsedAcres(), productionCost);
+                        double maxProfit = calculateProfit(maxYield, maxPrice, usedAcres, productionCost);
                         maxProfit += cropTypeView.getAdditionalIncome();
 
                         outputDetails.setMaximumProfit(maxProfit);
                     } else {
-                        double profit = calculateProfit(expectedYield, expectedPrice, outputDetails.getUsedAcres(), productionCost);
+                        double profit = calculateProfit(expectedYield, expectedPrice, usedAcres, productionCost);
                         profit += cropTypeView.getAdditionalIncome();
                         outputDetails.setMinimumProfit(profit);
                         outputDetails.setMaximumProfit(profit);
@@ -294,19 +295,19 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                     if ((maxPrice != 0 && maxYield != 0) && (minPrice != 0 && minYield != 0)) {
 //						outputDetails.setMinimumProfit(calculateProfit(minYield,minPrice,outputDetails.getUsedAcres(), productionCost));
 //						outputDetails.setMaximumProfit(calculateProfit(maxYield,maxPrice,outputDetails.getUsedAcres(), productionCost));
-                        double minProfit = calculateProfit(minYield, minPrice, outputDetails.getUsedAcres(), productionCost);
+                        double minProfit = calculateProfit(minYield, minPrice, usedAcres, productionCost);
                         minProfit += cropTypeView.getAdditionalIncome();
 
                         outputDetails.setMinimumProfit(minProfit);
 
-                        double maxProfit = calculateProfit(maxYield, maxPrice, outputDetails.getUsedAcres(), productionCost);
+                        double maxProfit = calculateProfit(maxYield, maxPrice, usedAcres, productionCost);
                         maxProfit += cropTypeView.getAdditionalIncome();
 
                         outputDetails.setMaximumProfit(maxProfit);
                     } else {
 //						outputDetails.setMinimumProfit(calculateProfit(expectedYield,expectedprice,outputDetails.getUsedAcres(), productionCost));
 //						outputDetails.setMaximumProfit(calculateProfit(expectedYield,expectedprice,outputDetails.getUsedAcres(), productionCost));
-                        double profit = calculateProfit(expectedYield, expectedPrice, outputDetails.getUsedAcres(), productionCost);
+                        double profit = calculateProfit(expectedYield, expectedPrice, usedAcres, productionCost);
                         profit += cropTypeView.getAdditionalIncome();
                         outputDetails.setMinimumProfit(profit);
                         outputDetails.setMaximumProfit(profit);
@@ -382,6 +383,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
 
                 double maxYield = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropTypeView.getIntMaxCropYield()));
                 double maxPrice = cropTypeView.getIntMaxCropPrice().doubleValue();
+                double usedAcres = outputDetails.getUsedAcres().doubleValue();
 
                 if (outputDetails.getUsedAcres() != zeroDouble) {
 
@@ -410,15 +412,15 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                     } else {
                         outputDetails.setProfit(calculateProfit(expectedYield, expectedprice, outputDetails.getUsedAcres(), Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost())));
                         if ((maxPrice != 0 && maxYield != 0) && (minPrice != 0 && minYield != 0)) {
-                            double minProfit = calculateProfit(minYield, minPrice, outputDetails.getUsedAcres(), Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
+                            double minProfit = calculateProfit(minYield, minPrice, usedAcres, Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
                             minProfit = minProfit + cropTypeView.getAdditionalIncome();
                             outputDetails.setMinimumProfit(minProfit);
 
-                            double maxProfit = calculateProfit(maxYield, maxPrice, outputDetails.getUsedAcres(), Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
+                            double maxProfit = calculateProfit(maxYield, maxPrice, usedAcres, Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
                             maxProfit = maxProfit + cropTypeView.getAdditionalIncome();
                             outputDetails.setMaximumProfit(maxProfit);
                         } else {
-                            double profit = calculateProfit(expectedYield, expectedprice, outputDetails.getUsedAcres(), Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
+                            double profit = calculateProfit(expectedYield, expectedprice, usedAcres, Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
                             profit = profit + cropTypeView.getAdditionalIncome();
 
                             outputDetails.setMinimumProfit(profit);
@@ -441,7 +443,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                         } else {
 //							outputDetails.setMinimumProfit(calculateProfit(expectedYield,expectedprice,outputDetails.getUsedAcres(), Double.parseDouble(""+ cropTypeView.getCalculatedVariableProductionCost())));
 //							outputDetails.setMaximumProfit(calculateProfit(expectedYield,expectedprice,outputDetails.getUsedAcres(), Double.parseDouble(""+ cropTypeView.getCalculatedVariableProductionCost())));
-                            double profit = calculateProfit(expectedYield, expectedprice, outputDetails.getUsedAcres(), Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
+                            double profit = calculateProfit(expectedYield, expectedprice, usedAcres, Double.parseDouble("" + cropTypeView.getCalculatedVariableProductionCost()));
                             profit = profit + cropTypeView.getAdditionalIncome();
 
                             outputDetails.setMinimumProfit(profit);
@@ -1110,8 +1112,9 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
     }
 
     @Override
-    public Double calculateProfit(double expectedYield, double expectedprice, double minAcres, double varibleProductionCost) {
-        double profit = (expectedprice * minAcres * expectedYield) - (minAcres * varibleProductionCost);
+    public Double calculateProfit(double expectedYield, double expectedprice, double usedAcres, double varibleProductionCost) {
+        double profit1 = (expectedprice * expectedYield ) - (varibleProductionCost);
+        double profit = (profit1*usedAcres);
         PlantingProfitLogger.info("Profit : " + profit);
         return profit;
     }
