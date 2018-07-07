@@ -70,7 +70,7 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
          * */
         SolverFactory factory = new SolverFactoryLpSolve();   // use lp_solve
 //		SolverFactory factory = new SolverFactoryGLPK();
-//		SolverFactoryCPLEX factory = new SolverFactoryCPLEX();
+//		SolverFactorproblemyCPLEX factory = new SolverFactoryCPLEX();
 
         factory.setParameter(Solver.VERBOSE, 0);
         factory.setParameter(Solver.TIMEOUT, 1000);

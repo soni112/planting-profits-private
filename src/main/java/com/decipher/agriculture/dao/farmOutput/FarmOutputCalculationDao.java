@@ -102,5 +102,5 @@ public interface FarmOutputCalculationDao {
             List<CropResourceUsageView> resourceUsageViews);
 
 
-    Double calculateProfit(double expectedYield, double expectedprice, double minAcres, double variableProductionCost);
+    Double calculateProfit(double expectedYield, double expectedprice, double usedAcres, double variableProductionCost);
 }
