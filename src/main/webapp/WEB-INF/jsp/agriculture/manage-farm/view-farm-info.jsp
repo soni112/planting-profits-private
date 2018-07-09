@@ -1651,7 +1651,7 @@ start -->
                                                     <c:if test="${resourceHead.isActive() and resourceHead.cropResourceUse ne 'Land' and resourceHead.cropResourceUse ne 'Capital' and resourceHead.cropResourceUseAmount ne '' and resourceHead.cropResourceUseAmount ne '0'}">
                                                         <td class="text-center">
                                                             <span id="crop_resource_usage_thead_first_row_column__${headCount}" class="tittle-uppercase">${resourceHead.cropResourceUse}</span><br>
-                                                            <span class="resub">(${resourceHead.uoMResource})</span>
+                                                            <span class="resub">(${resourceHead.uoMResource}) per acre</span>
                                                         </td>
                                                         <c:set var="headCount" value="${headCount+1}"/>
                                                     </c:if>
