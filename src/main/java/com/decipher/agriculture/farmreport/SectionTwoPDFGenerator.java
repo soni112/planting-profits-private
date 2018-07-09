@@ -342,7 +342,7 @@ public class SectionTwoPDFGenerator {
          * @desc - changed according to slide#3 of 02102016
          */
         /*PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Estimated Income");*/
-        PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est Income");
+        PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est. Income");
         estimatedIncomeCell.setRowspan(3);
         table.addCell(estimatedIncomeCell);
 
@@ -742,7 +742,7 @@ public class SectionTwoPDFGenerator {
         }
         table.addCell(strategyCell);
 
-        PdfPCell incomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est Income");
+        PdfPCell incomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est. Income");
         if (reportDataPage2.getTotalScenarioCount() !=0 ) {
             incomeCell.setRowspan(4);
         } else {
@@ -764,7 +764,7 @@ public class SectionTwoPDFGenerator {
         table.completeRow();
 
 //        PdfPCell estimateIncomeContractedCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Est Income Contracted");
-        PdfPCell estimateIncomeContractedCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Est Income Forward Sold");
+        PdfPCell estimateIncomeContractedCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Est. Income Forward Sold");
         if (reportDataPage2.getTotalScenarioCount() !=0 ) {
             estimateIncomeContractedCell.setRowspan(3);
         } else {
@@ -779,7 +779,7 @@ public class SectionTwoPDFGenerator {
          */
         /*PdfPCell coveredCropInsCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Covered w/xx Crop Ins");*/
 //        PdfPCell coveredCropInsCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% of profit in Hi-risk Crops");
-        PdfPCell coveredCropInsCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% of Est Income in \n Hi-Risk Crops");
+        PdfPCell coveredCropInsCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% of Est. Income in \n Hi-Risk Crops");
         if (reportDataPage2.getTotalScenarioCount() !=0 ) {
             coveredCropInsCell.setRowspan(3);
         } else {
@@ -1030,7 +1030,7 @@ public class SectionTwoPDFGenerator {
         strategyCell.setRowspan(3);
         table.addCell(strategyCell);
 
-        PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est Income");
+        PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est. Income");
         estimatedIncomeCell.setRowspan(3);
         table.addCell(estimatedIncomeCell);
 
@@ -1041,10 +1041,10 @@ public class SectionTwoPDFGenerator {
 
         table.completeRow();
 
-        PdfPCell incomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Est Acreage Under\nConservation Practices");
+        PdfPCell incomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Est. Acreage Under\nConservation Practices");
         table.addCell(incomeCell);
 
-        PdfPCell acreageCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Est Income Under\nConservation Practices");
+        PdfPCell acreageCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("% Est. Income Under\nConservation Practices");
         table.addCell(acreageCell);
 
         PdfPCell emptyCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("");

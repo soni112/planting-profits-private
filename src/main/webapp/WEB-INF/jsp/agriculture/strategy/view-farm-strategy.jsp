@@ -277,12 +277,28 @@
                                             <td colspan="2">Asset Utilization</td>
                                         </tr>
                                         <tr class="tblhd add-fieldi">
-                                            <td>Diversification</td>
-                                            <td>Forward Sales</td>
+                                            <td>Diversification
+                                                <span><a id="diversification" class="help_Infromation_PopUp" href="javascript:;">
+                                                    <img src="<c:url value="/images/i-icon.png"/>"></a>
+                                                </span>
+                                            </td>
+                                            <td>Forward Sales
+                                                <span><a id="forwardSales" class="help_Infromation_PopUp" href="javascript:;">
+                                                    <img src="<c:url value="/images/i-icon.png"/>"></a>
+                                                </span>
+                                            </td>
                                             <td>Crop Insurance</td>
                                             <td>Scenario Analysis</td>
-                                            <td>Return on Working Capital </td>
-                                            <td>Acreage Under Conservation Practices</td>
+                                            <td>Return on Working Capital
+                                                <span><a id="returnOnWorkingCapital" class="help_Infromation_PopUp" href="javascript:;">
+                                                    <img src="<c:url value="/images/i-icon.png"/>"></a>
+                                                </span>
+                                            </td>
+                                            <td>Acreage Under Conservation Practices
+                                                <span><a id="acreageUnderConservationPractice" class="help_Infromation_PopUp" href="javascript:;">
+                                                    <img src="<c:url value="/images/i-icon.png"/>"></a>
+                                                </span>
+                                            </td>
                                         </tr>
 
 
@@ -719,7 +735,8 @@
             <td class="success">
             <div class="est-income-graph">
                  <span class="est-income-category">{{= strategy.countReturnWorking}}</span>
-                   <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.ReturnWorkingCapital)}}</small>
+                   <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.ReturnWorkingCapital)}}</small>--%>
+                   <small class="est-income-total">{{= strategy.ReturnWorkingCapital}}</small>
                 </div>
             </div></td>
             <td class="success">
