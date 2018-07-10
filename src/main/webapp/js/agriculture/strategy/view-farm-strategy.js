@@ -28,13 +28,15 @@ function registerTemplates(){
 }
 
 function toggleGraphSection(){
-	$("#tableSectionForStrategy").show();
+	$("#tableSectionForStrategy").hide();
 	$("#graphSectionForStrategy").show();
+    $("#gaugeSectionForStrategy").hide();
 	// $("#headerText").html("Graphical Comparison Of Strategies")
 }
 function toggleGaugeSection(){
-    $("#tableSectionForStrategy").show();
+    $("#tableSectionForStrategy").hide();
     $("#gaugeSectionForStrategy").show();
+    $("#graphSectionForStrategy").hide();
     // $("#headerText").html("Graphical Comparison Of Strategies")
 }
 
