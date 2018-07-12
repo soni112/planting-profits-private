@@ -1112,9 +1112,8 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
     }
 
     @Override
-    public Double calculateProfit(double expectedYield, double expectedprice, double usedAcres, double varibleProductionCost) {
-        double profit1 = (expectedprice * expectedYield ) - (varibleProductionCost);
-        double profit = (profit1*usedAcres);
+    public Double calculateProfit(double expectedYield, double expectedprice, double minAcres, double varibleProductionCost) {
+        double profit = (expectedprice * minAcres * expectedYield ) - (minAcres * varibleProductionCost);
         PlantingProfitLogger.info("Profit : " + profit);
         return profit;
     }
