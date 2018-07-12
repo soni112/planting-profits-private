@@ -155,10 +155,17 @@
                                 </div>
 
                                 <div id="graphSectionForStrategy" style="display: none">
-
+                                    <button class="alertify-button alertify-button-ok pull-right"
+                                            onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
+                                        <i class="fa fa-bar-chart-o"></i> Dashboard
+                                    </button>
+                                    <div class="pull-right cursor-pointer">
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
+                                    </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
                                     </div>
+
                                     <div class="clearfix"></div>
 
                                     <div class="addcrop">
@@ -260,6 +267,13 @@
                                     </div>
                                 </div>
                                 <div id="gaugeSectionForStrategy" style="display: none">
+                                    <button class="alertify-button alertify-button-ok pull-right"
+                                            onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
+                                        <i class="fa fa-bar-chart-o"></i> Dashboard
+                                    </button>
+                                    <div class="pull-right cursor-pointer">
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
+                                    </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
                                     </div>
