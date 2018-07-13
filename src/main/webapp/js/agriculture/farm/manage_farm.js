@@ -585,7 +585,7 @@ function validateCropFieldChoice() {
         }
     });
     if (outerValidateCropFieldChoice == false) {
-        customAlerts('There are no crops selected for field "' + fieldName + '"?', type_error, time);
+        customAlerts('There are no crops selected for field "' + fieldName , type_error, time);
         return false;
     } else {
         return true;
