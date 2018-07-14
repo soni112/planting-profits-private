@@ -1419,8 +1419,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
                         }
                     } else {
-                        if ((profit < currentPotentialProfit) || (profit < oldProfit)) {
-
+                        if ((profit < currentPotentialProfit) && (profit < oldProfit)) {
                             jsonObject.put("bubbleMessage", "Decreasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
                                     " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) decreases Estimated Income by $" + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit - profit < 0 ? 0 : currentPotentialProfit - profit) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
                         } else if ((profit == currentPotentialProfit) || (profit == oldProfit)) {
