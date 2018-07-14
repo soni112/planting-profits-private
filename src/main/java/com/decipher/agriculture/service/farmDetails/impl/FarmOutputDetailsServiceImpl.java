@@ -284,7 +284,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             jsonObject.put(MAX_LIMIT, "--");
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
-            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
+            if(cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )){
+                jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
+            }else{
+                jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
+            }
 //            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
 
             if (min.equalsIgnoreCase ( YES )) {
@@ -388,7 +392,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = cropTypeView.getForwardAcres().intValue();
                         maximumAcres = 0;
-                        return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                        return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
                     } else if (!cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
@@ -422,15 +426,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName() + " (Firm)").split(" ")[0]));
                     minimumAcres = cropTypeView.getForwardAcres().intValue();
                     maximumAcres = 0;
+                    return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
                 } else {
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName()).split(" ")[0]));
                     minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
                     maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
+                    return getYesNoForFirm(usedAcres, minimumAcres, maximumAcres, minOrMax);
                 }
-
-
-                return getYesNoForFirm(usedAcres, minimumAcres, maximumAcres, minOrMax);
-
             } else if (cropsGroupView != null) {
                 Set<CropType> cropSet = cropsGroupView.getCropSet();
                 int usedAcres = 0;
@@ -488,6 +490,17 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             return "";
         }
         return "";    }
+
+    public String getYesNoForFirmChecked(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax){
+        double value = usedAcres - minimumAcres;
+        double values=  value/minimumAcres;
+        if(minimumAcres >=0.8){
+            return YES;
+        } else if (value < 0.8) {
+            return NO;
+        }
+        return "";
+    }
     @Override
     public String getYesNo(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
         if (minOrMax.equalsIgnoreCase("min")) {
