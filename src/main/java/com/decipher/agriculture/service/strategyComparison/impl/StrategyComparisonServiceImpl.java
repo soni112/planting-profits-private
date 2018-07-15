@@ -722,13 +722,15 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonArray.add ( jsonObjectForWorkReturn );
                 }
                 if (counter == 0) {
-                    if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
+                    if(cropResourceUsageView.isActive()) {
+                        if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
 //                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
-                        jsonArrayForResourceHeader.add ( "Acreage Assigned" );
-                    } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                        jsonArrayForResourceHeader.add ( "Working Capital Used" );
-                    } else {
-                        jsonArrayForResourceHeader.add ( cropResourceUsageView.getCropResourceUse ()   );
+                            jsonArrayForResourceHeader.add("Acreage Assigned");
+                        } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
+                            jsonArrayForResourceHeader.add("Working Capital Used");
+                        } else {
+                            jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
+                        }
                     }
                 }
             }
