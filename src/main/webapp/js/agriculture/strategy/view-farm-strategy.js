@@ -494,7 +494,7 @@ function getStrategyForFarm(farmId){
 					varianceGraphData["varianceGraphData"] = result.jsonArrayForVarianceGraphData;
 					prepareVarianceGraph(varianceGraphData);
 
-                    var gaugeGraphData = {}
+                    var gaugeGraphData = {};
                     gaugeGraphData["gaugeGraphData"] = result.jsonArrayForGaugeChart;
                     applyHtmlThroughTemplate("#enhancedOutputTemplate",gaugeGraphData,"#enhancedProfitOutpout");
 

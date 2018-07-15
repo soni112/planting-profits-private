@@ -145,10 +145,12 @@ public class StrategyViewController {
         try {
             strategyComparisonDetails = strategyComparisonService.getStrategyComparisonDetails ( farmInfoView, strategyIdArray );
             Map <String, JSONArray> granularComparisonResult = strategyComparisonService.getGranularComparisonResult ( farmInfoView, strategyIdArray );
+
             JSONArray jsonArrayForHighRisk = granularComparisonResult.get ( "jsonArrayForHighRiskCropForGranular" );
             JSONArray jsonArrayForConservationCrop = granularComparisonResult.get ( "jsonArrayForConservationCropForGranular" );
             JSONArray jsonArrayStrategyData = granularComparisonResult.get ( "DataForStrategy" );
             JSONArray jsonArrayForStrategy = granularComparisonResult.get ( "jsonArrayForStrategy" );
+            JSONArray jsonArrayForConversion = granularComparisonResult.get ( "jsonArrayForConversion" );
 
             HashMap <String, String> detailsDataForGauge;
             String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size ()];
@@ -185,6 +187,7 @@ public class StrategyViewController {
                 JSONObject jsonObjectForHighRisk = (JSONObject) jsonArrayForHighRisk.get ( i );
                 JSONObject jsonObjectConservationCrop = (JSONObject) jsonArrayForConservationCrop.get ( i );
                 JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get ( i );
+                JSONObject jsonObjectForConversion= (JSONObject) jsonArrayForConversion.get(i);
 
                 detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString () );
                 detailsDataForGauge.put ( "strategyName", farmCustomStrategyView.getStrategyName () );
@@ -213,12 +216,15 @@ public class StrategyViewController {
 				}
                 JSONArray jsonArrayDetails = (JSONArray) jsonObjectForHighRisk.get ( "details" );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationCrop.get ( "details" );
+                JSONArray jsonArrayConversionDetails = (JSONArray) jsonObjectForConversion.get ( "details" );
                 Map <String, String> hashMapForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
-                Map <String, String> hashMapForEstIncomeInOneCrop = (Map <String, String>) jsonArrayDetails.get ( 2 );
+				Map <String, String> hashMapForAverageInConservation = (Map <String, String>) jsonArrayConversionDetails.get ( 0 );
+				Map <String, String> hashMapForEstIncomeInOneCrop = (Map <String, String>) jsonArrayDetails.get ( 2 );
                 detailsDataForGauge.put ( "EstIncomeInOneCrop", hashMapForEstIncomeInOneCrop.get ( "amount" ) );
                 Map <String, String> hashMapForEstIncomeInForwardSale = (Map <String, String>) jsonArrayDetails.get ( 4 );
                 detailsDataForGauge.put ( "EstIncomeInForwardSale", hashMapForEstIncomeInForwardSale.get ( "amount" ) );
                 detailsDataForGauge.put ( "AverageInConservationCrop", hashMapForAverageInConservationCrop.get ( "amount" ) );
+				detailsDataForGauge.put ( "AverageInConversion", hashMapForAverageInConservation.get("amount1"));
                 list.add ( detailsDataForGauge );
                 strategyComparisonDetails.put ( "jsonArrayForGaugeChart", list );
 

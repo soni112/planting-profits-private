@@ -771,7 +771,8 @@
                   <div class="gauge_meter">
            <div class="secnario-analysis">
                  <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
-                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                 <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConversion)}}</small>
                 </div>
             </div>
            {{/if}}
