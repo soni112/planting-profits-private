@@ -698,13 +698,15 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put ( "amount", cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) );
                 } else {
                     jsonObject.put ( "name", cropResourceUsageView.getCropResourceUse () );
-                    if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ) || cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )) {
+                    jsonObject.put ( "amount", cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) );
+                }
+                    /*if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ) || cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )) {
                         jsonObject.put ( "amount", "N/A" );
                     } else {
 //                        workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
                         jsonObject.put ( "amount", cropResourceUsageView.getCropResourceUseAmount () );
                     }
-                }
+                }*/
                 if (index == sizeOfList) {
                     if (workingCapitalUsed != 0 && estimateIncome!=0) {
                         returnWorkingCapital = String.valueOf ( (AgricultureStandardUtils.doubleWithOneDecimal  ( estimateIncome / workingCapitalUsed ) ) );
@@ -720,13 +722,15 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonArray.add ( jsonObjectForWorkReturn );
                 }
                 if (counter == 0) {
-                    if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
+                    if(cropResourceUsageView.isActive()) {
+                        if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
 //                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
-                        jsonArrayForResourceHeader.add ( "Acreage Assigned" );
-                    } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                        jsonArrayForResourceHeader.add ( "Working Capital Used" );
-                    } else {
-                        jsonArrayForResourceHeader.add ( cropResourceUsageView.getCropResourceUse ()  +" Used" );
+                            jsonArrayForResourceHeader.add("Acreage Assigned");
+                        } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
+                            jsonArrayForResourceHeader.add("Working Capital Used");
+                        } else {
+                            jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
+                        }
                     }
                 }
             }
