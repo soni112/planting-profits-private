@@ -383,6 +383,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
         jsonObject.put ( "jsonArrayForStrategy", strategyOutputDetails.get ( "jsonArrayForStrategy" ) );
         jsonObject.put ( "jsonArrayForHighRiskCropForGranular", highRiskAngConservationForStrategy.get ( "jsonArrayForHighRiskCrop" ) );
         jsonObject.put ( "jsonArrayForConservationCropForGranular", highRiskAngConservationForStrategy.get ( "jsonArrayForConservationCrop" ) );
+        jsonObject.put ( "jsonArrayForConversion", highRiskAngConservationForStrategy.get ( "jsonArrayForConversion" ) );
 
 
         return jsonObject;
@@ -782,6 +783,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private Map<String, JSONArray> getHighRiskAndConservationForStrategy(Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm){
 
         JSONArray jsonArrayForConservationCrop = new JSONArray();
+        JSONArray jsonArrayForConversion = new JSONArray();
         JSONArray jsonArrayForHighRiskCrop = new JSONArray();
 
 
@@ -806,6 +808,18 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             conservationObject.put("details", conservationArray);
 
             jsonArrayForConservationCrop.add(conservationObject);
+
+
+            JSONObject conversionObject = new JSONObject();
+            conversionObject.put("strategyName", farmCustomStrategyView.getStrategyName());
+            conversionObject.put("strategyId", farmCustomStrategyView.getId());
+
+            JSONArray conversionArray = new JSONArray();
+            conversionArray.add(dataBuilder.getAcreageConservation(farmInfoView, strategyDetails));
+            conversionObject.put("details", conversionArray);
+            jsonArrayForConversion.add(conversionObject);
+
+
 
             JSONObject highRiskObject = new JSONObject();
             highRiskObject.put("strategyName", farmCustomStrategyView.getStrategyName());
@@ -834,6 +848,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         output.put("jsonArrayForConservationCropHeader", getConservationCropHeader());
         output.put("jsonArrayForConservationCrop", jsonArrayForConservationCrop);
+        output.put("jsonArrayForConversion", jsonArrayForConversion);
 
         return output;
 
