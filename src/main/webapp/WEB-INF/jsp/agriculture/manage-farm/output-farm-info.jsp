@@ -689,7 +689,7 @@
                                                         class="new_potential_profit rightspan" STYLE="border-bottom: 2px solid"> $${model.potentialProfit}</span>
                                                 </p>
                                                 <p class="static_result_shown">
-                                                    <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
+                                                    <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">0</span>
                                                 </p>
                                             </div>
                                             <div class="pull-left" style="width: 49%;">
@@ -1185,7 +1185,7 @@
                                                         class="new_potential_profit rightspan" STYLE="border-bottom: 2px solid">$${model.potentialProfit}</span>
                                                 </p>
                                                 <p class="static_result_shown">
-                                                    <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">$0</span>
+                                                    <span class="leftspan">Difference:</span> <span class="difference_bet_potential_profit rightspan">0</span>
                                                 </p>
                                                 <div  class="displayMessage" id="allAcreageNotPlanted1" style="display: none; text-decoration: underline">
                                                     All Acreage Not Planted

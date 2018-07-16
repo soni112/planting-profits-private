@@ -320,7 +320,7 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     if (unusedLand > 0) {
         $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
     }
-    else if (unusedLand == 0)
+    else if (usedLand===0)
     {
         $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" +"All acres are assigned crops");
     }
@@ -1811,6 +1811,7 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
     var currentPotentialProfit = Number(removeAllCommasAndDollar(updatedPotentialProfit));
     var potentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
     var difference = currentPotentialProfit - potentialProfit;
+
     if (potentialProfit == currentPotentialProfit) {
         $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
@@ -1823,7 +1824,7 @@ function updateCurrentPotentialProfitAndCalculateDifference(updatedPotentialProf
         $("#checkStrategy-pop-up").show();
     } else if (difference < 0) {
         //$(".difference_bet_potential_profit").text("-"+(Math.abs(difference)));
-        $(".difference_bet_potential_profit").text("$"+(difference));
+        $(".difference_bet_potential_profit").text("-"+addCommaSignWithDollarForTextWithOutId(Number(difference.toString().replace("-",""))));
         // $(".difference_bet_potential_profit").text("N/A");
         $(".difference_bet_potential_profit").css("color", "red");
         $("#multipleResourceViewStrategy").show();
