@@ -494,7 +494,7 @@ function getStrategyForFarm(farmId){
 					varianceGraphData["varianceGraphData"] = result.jsonArrayForVarianceGraphData;
 					prepareVarianceGraph(varianceGraphData);
 
-                    var gaugeGraphData = {}
+                    var gaugeGraphData = {};
                     gaugeGraphData["gaugeGraphData"] = result.jsonArrayForGaugeChart;
                     applyHtmlThroughTemplate("#enhancedOutputTemplate",gaugeGraphData,"#enhancedProfitOutpout");
 
@@ -624,6 +624,10 @@ function deleteStrategy(){
 	var strategyArray = [];
 	var target = $('#manageStrategies').find('input[name="reportStrategyCheckbox"]:checked');
 	if (target.length == 0){
+		if($("#deleteStrategiesTbody tr:eq(0) td:nth-child(2)").text() === 'Baseline Strategy'){
+            customAlerts("Baseline Strategy can not be deleted.", type_error, 0);
+			return;
+		}
 		customAlerts("Please select the strategies to delete", type_error, 0);
 		return;
 	}

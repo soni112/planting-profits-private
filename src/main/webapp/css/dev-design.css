@@ -457,6 +457,7 @@ blockquote cite {
     display: inherit;
     font-size: 8px;
     font-weight: bold;
+    padding-bottom: 6px;
 }
 .secnario-analysis{
     width: 50px;

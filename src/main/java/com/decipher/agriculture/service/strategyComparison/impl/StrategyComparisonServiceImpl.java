@@ -383,6 +383,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
         jsonObject.put ( "jsonArrayForStrategy", strategyOutputDetails.get ( "jsonArrayForStrategy" ) );
         jsonObject.put ( "jsonArrayForHighRiskCropForGranular", highRiskAngConservationForStrategy.get ( "jsonArrayForHighRiskCrop" ) );
         jsonObject.put ( "jsonArrayForConservationCropForGranular", highRiskAngConservationForStrategy.get ( "jsonArrayForConservationCrop" ) );
+        jsonObject.put ( "jsonArrayForConversion", highRiskAngConservationForStrategy.get ( "jsonArrayForConversion" ) );
 
 
         return jsonObject;
@@ -698,13 +699,15 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put ( "amount", cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) );
                 } else {
                     jsonObject.put ( "name", cropResourceUsageView.getCropResourceUse () );
-                    if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ) || cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )) {
+                    jsonObject.put ( "amount", cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) );
+                }
+                    /*if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ) || cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "Land" )) {
                         jsonObject.put ( "amount", "N/A" );
                     } else {
 //                        workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
                         jsonObject.put ( "amount", cropResourceUsageView.getCropResourceUseAmount () );
                     }
-                }
+                }*/
                 if (index == sizeOfList) {
                     if (workingCapitalUsed != 0 && estimateIncome!=0) {
                         returnWorkingCapital = String.valueOf ( (AgricultureStandardUtils.doubleWithOneDecimal  ( estimateIncome / workingCapitalUsed ) ) );
@@ -720,13 +723,15 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonArray.add ( jsonObjectForWorkReturn );
                 }
                 if (counter == 0) {
-                    if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
+                    if(cropResourceUsageView.isActive()) {
+                        if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
 //                        jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
-                        jsonArrayForResourceHeader.add ( "Acreage Assigned" );
-                    } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                        jsonArrayForResourceHeader.add ( "Working Capital Used" );
-                    } else {
-                        jsonArrayForResourceHeader.add ( cropResourceUsageView.getCropResourceUse ()  +" Used" );
+                            jsonArrayForResourceHeader.add("Acreage Assigned");
+                        } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
+                            jsonArrayForResourceHeader.add("Working Capital Used");
+                        } else {
+                            jsonArrayForResourceHeader.add(cropResourceUsageView.getCropResourceUse());
+                        }
                     }
                 }
             }
@@ -778,6 +783,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private Map<String, JSONArray> getHighRiskAndConservationForStrategy(Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm){
 
         JSONArray jsonArrayForConservationCrop = new JSONArray();
+        JSONArray jsonArrayForConversion = new JSONArray();
         JSONArray jsonArrayForHighRiskCrop = new JSONArray();
 
 
@@ -802,6 +808,18 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             conservationObject.put("details", conservationArray);
 
             jsonArrayForConservationCrop.add(conservationObject);
+
+
+            JSONObject conversionObject = new JSONObject();
+            conversionObject.put("strategyName", farmCustomStrategyView.getStrategyName());
+            conversionObject.put("strategyId", farmCustomStrategyView.getId());
+
+            JSONArray conversionArray = new JSONArray();
+            conversionArray.add(dataBuilder.getAcreageConservation(farmInfoView, strategyDetails));
+            conversionObject.put("details", conversionArray);
+            jsonArrayForConversion.add(conversionObject);
+
+
 
             JSONObject highRiskObject = new JSONObject();
             highRiskObject.put("strategyName", farmCustomStrategyView.getStrategyName());
@@ -830,6 +848,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         output.put("jsonArrayForConservationCropHeader", getConservationCropHeader());
         output.put("jsonArrayForConservationCrop", jsonArrayForConservationCrop);
+        output.put("jsonArrayForConversion", jsonArrayForConversion);
 
         return output;
 
