@@ -528,7 +528,7 @@ function applyHeaders(outputDetails){
 
 //	resource comparison header
 	header["headerDetails"] = outputDetails.jsonArrayForResourceHeader;
-	applyHtmlThroughTemplate("#strategyTableHeaderTemplate", header, "#resourceComparisonThead");
+	applyHtmlThroughTemplate("#resourceTableHeaderTemplate", header, "#resourceComparisonThead");
 
 //	conservation comparison header
 	header["headerDetails"] = outputDetails.jsonArrayForConservationCropHeader;

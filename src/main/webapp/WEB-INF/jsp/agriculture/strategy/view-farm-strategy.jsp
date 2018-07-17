@@ -845,3 +845,23 @@
 
 
 </script>
+
+<script type="text/x-jquery-tmpl" id="resourceTableHeaderTemplate">
+
+
+    <td>Strategy</td>
+    <td>Est. Income</td>
+    <td>Total Acreage</td>
+    {{each(key, header) headerDetails }}
+    {{if header == "Acreage Assigned" || header == "Return on Working Capital"}}
+        <td>{{html header}}</td>
+        {{else}}
+        <td>{{html header}} Used</td>
+     {{/if}}
+
+	{{/each}}
+
+
+
+
+</script>
