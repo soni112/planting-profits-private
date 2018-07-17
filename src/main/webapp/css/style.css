@@ -4698,3 +4698,11 @@ input.cvvNumber:hover{
 #Crop–Field-Assignments table tbody tr td{
     width: 33.33%;
 }
+.width-50{
+    width: 50%;
+    margin: 0 auto;
+}
+.width-75{
+    width: 75%;
+    margin: 0 auto;
+}
