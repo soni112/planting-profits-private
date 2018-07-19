@@ -776,7 +776,8 @@
 
             <%--<div class="est-income-graph">--%>
                  <%--<i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>--%>
-                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
+                <small class="est-income-total">{{=strategy.AverageInConservationCrop}}</small>
                 </div>
                 </div>
            {{/if}}
@@ -786,8 +787,10 @@
                   <div class="gauge_meter">
            <div class="secnario-analysis">
                  <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
-                 <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
-                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConversion)}}</small>
+                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
+                <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConversion)}}</small>--%>
+                <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
+                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>
                 </div>
             </div>
            {{/if}}
@@ -797,7 +800,8 @@
                  <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
          <%--  <div class="secnario-analysis-red">
                  <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>--%>
-                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>
+                <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
+                <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
                 </div>
            {{/if}}</td>
         </tr>
