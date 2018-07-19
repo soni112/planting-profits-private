@@ -3246,6 +3246,7 @@ function saveAllFarmInformation() {
             }),
             success: function (response) {
                 var status = response.status;
+                var strategyId = response.result;
                 if (status == 'success') {
                     customAlerts('Generating the most profitable strategy for "' + farmName + '"<br> and preparing output... Please be patient', type_success, time);
 
@@ -3253,7 +3254,12 @@ function saveAllFarmInformation() {
                     var delay = 1000; //Your delay in milliseconds by rohit 14-04-15
 //		            setTimeout(function(){ window.location = "output-edit-farm-info.htm?farmId="+farmId; }, delay);
                     setTimeout(function () {
-                        window.location = "output-farm-info.htm?farmId=" + farmId;
+                        if(strategyId !== null){
+                            window.location = "output-farm-info.htm?farmId=" + farmId + '&strategyId='+strategyId;
+                        }else{
+                            window.location = "output-farm-info.htm?farmId=" + farmId;
+                        }
+
                     }, delay);
                     //window.location = "farm.htm";
                 } else if (status == 'Already exists') {

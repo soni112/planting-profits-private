@@ -660,7 +660,7 @@ public class SectionTwoPDFGenerator {
         table.completeRow();*/
 
 
-        //  Adding header for resources that are in use
+        //  Adding header for resources that are in use dynamically
 
         Set<String> setForResourceHeader = new HashSet<>();
         //PdfPCell resourceHeaderCell;
@@ -680,25 +680,24 @@ public class SectionTwoPDFGenerator {
             for (CropResourceUsageView cropResourceUsageView : cropResourceUsageViews) {
                 PdfPCell resourceHeaderCell;
                 String resourceName = "";
-                if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
-                    //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUsageView.getCropResourceUse());
-                    resourceName = cropResourceUsageView.getCropResourceUse();
-                }
-
-                else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
-                    //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("Working\n" + cropResourceUsageView.getCropResourceUse());
-                    resourceName = cropResourceUsageView.getCropResourceUse();
-                }
-                else {
-                    //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUsageView.getCropResourceUse() + "\n" + cropResourceUsageView.getUoMResource());
-                    resourceName = cropResourceUsageView.getCropResourceUse() + "\n" + cropResourceUsageView.getUoMResource();
-                }
-                // resourceHeaderCell.setRowspan(2);
+                if (cropResourceUsageView.isActive()) {
+                    if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
+                        //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUsageView.getCropResourceUse());
+                        resourceName = cropResourceUsageView.getCropResourceUse();
+                    } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
+                        //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("Working\n" + cropResourceUsageView.getCropResourceUse());
+                        resourceName = cropResourceUsageView.getCropResourceUse();
+                    } else {
+                        //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUsageView.getCropResourceUse() + "\n" + cropResourceUsageView.getUoMResource());
+                        resourceName = cropResourceUsageView.getCropResourceUse() + "\n" + cropResourceUsageView.getUoMResource();
+                    }
+                    // resourceHeaderCell.setRowspan(2);
 //            resourceHeaderCell.setRotation(90);
 //            resourceHeaderCell.rotate();
-                setForResourceHeader.add(resourceName);
+                    setForResourceHeader.add(resourceName);
 
-                //resourceName = cropResourceUsageView.getCropResourceUse() + "/n" + cropResourceUsageView.getUoMResource();
+                    //resourceName = cropResourceUsageView.getCropResourceUse() + "/n" + cropResourceUsageView.getUoMResource();
+                }
             }
         }
         noOfResource = setForResourceHeader.size();

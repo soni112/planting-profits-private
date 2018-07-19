@@ -90,5 +90,9 @@
 	<definition name="welcome-back" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/welcome/welcome-back.jsp"/>
 	</definition>
+	<definition name="faq" extends="defaultTemplate">
+		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/faq/faq.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
+	</definition>
 
 </tiles-definitions>
