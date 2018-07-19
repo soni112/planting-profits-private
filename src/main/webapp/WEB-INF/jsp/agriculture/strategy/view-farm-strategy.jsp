@@ -41,12 +41,17 @@
                             <div class="update_values result_str">
                                 <a href="<c:url value="output-farm-info.htm?farmId=${farmId}"/>" class="alertify-button alertify-button-ok pull-right">Back to Baseline</a>
                                 <div id="tableSectionForStrategy" class="text-center">
-                                    <button class="alertify-button alertify-button-ok pull-right"
+                                    <%--<button class="alertify-button alertify-button-ok pull-right"
                                             onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
                                         <i class="fa fa-bar-chart-o"></i> Dashboard
-                                    </button>
+                                    </button>--%>
+                                        <div class="pull-right cursor-pointer">
+                                            <button onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 12px; height: 34px; border: none; background-color: #f2f2f2">
+                                                <i class="fa fa-bar-chart-o"></i> Dashboard
+                                            </button>
+                                        </div>
                                     <div class="pull-right cursor-pointer">
-                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;" />
                                     </div>
                                     <div class="pull-right cursor-pointer">
                                     <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
@@ -155,12 +160,17 @@
                                 </div>
 
                                 <div id="graphSectionForStrategy" style="display: none">
-                                    <button class="alertify-button alertify-button-ok pull-right"
+                                    <%--<button class="alertify-button alertify-button-ok pull-right"
                                             onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
                                         <i class="fa fa-bar-chart-o"></i> Dashboard
-                                    </button>
+                                    </button>--%>
+                                        <div class="pull-right cursor-pointer">
+                                            <button onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 12px; height: 34px; border: none; background-color: #f2f2f2">
+                                                <i class="fa fa-bar-chart-o"></i> Dashboard
+                                            </button>
+                                        </div>
                                     <div class="pull-right cursor-pointer">
-                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;/>
                                     </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
@@ -267,12 +277,17 @@
                                     </div>
                                 </div>
                                 <div id="gaugeSectionForStrategy" style="display: none">
-                                    <button class="alertify-button alertify-button-ok pull-right"
+                                    <%--<button class="alertify-button alertify-button-ok pull-right"
                                             onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;">
                                         <i class="fa fa-bar-chart-o"></i> Dashboard
-                                    </button>
+                                    </button>--%>
+                                        <div class="pull-right cursor-pointer">
+                                            <button onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 12px; height: 34px; border: none; background-color: #f2f2f2">
+                                                <i class="fa fa-bar-chart-o"></i> Dashboard
+                                            </button>
+                                        </div>
                                     <div class="pull-right cursor-pointer">
-                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" />
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;/>
                                     </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
