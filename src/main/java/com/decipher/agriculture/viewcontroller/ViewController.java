@@ -185,6 +185,13 @@ public class ViewController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/faq.htm", method = {RequestMethod.GET})
+	public ModelAndView getFaq(){
+		ModelAndView modelAndView = new ModelAndView("faq");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/consultant-corner.htm", method = {RequestMethod.GET})
 	public ModelAndView getConsultantCorner(){
 		ModelAndView modelAndView = new ModelAndView("consultant-corner");
