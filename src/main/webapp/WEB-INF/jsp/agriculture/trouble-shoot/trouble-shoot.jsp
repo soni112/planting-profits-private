@@ -421,7 +421,8 @@
                                                     the amount of one or more crops that have a <b>firm</b> forward sales
                                                     contract.
                                                     <a href="javascript:;" onclick="navigateToCropLimits();return false;">Check
-                                                        crop acreage limits and/or forward sales</a></p>
+                                                        crop acreage limits</a> and/or
+                                                    <a href="javascript:;" onclick="navigateToForwardSales();return false;">forward sales</a></p>
                                                 <p>3) Use a combination of 1 and 2. After generating a strategy you
                                                     can back down the critical resource(s) that you increased in order
                                                     to generate your strategy. You can also change the minimum crop
@@ -499,7 +500,8 @@
                             <c:otherwise>
                                 <h2><b>Planning by Acres - Strategy not generated</b></h2>
                                 <p>Please make adjustments to resources, crop/field choices, crop acreage limits or
-                                    crops to generate a strategy. Click on the parameters below to find and fix the
+                                    crops to generate a strategy.Remember than <b>firm</b> forward sales contracts
+                                    create minimum acreage limits.Click on the parameters below to find and fix the
                                     problem.</p>
                                 <br/>
                                 <%--<p>Click one or more of the following troubleshooting areas to find and fix the--%>
@@ -509,8 +511,7 @@
                                         <a data-toggle="collapse" href="#resourcesAcres"><b>Available Resources</b></a>
                                         <div id="resourcesAcres" class="collapse">
                                             There may not be enough of a particular resource to meet the minimum crop
-                                            acreage limits you entered. Remember than <b>firm</b> forward sales contracts
-                                            create minimum acreage limits. These resources may be flexible, such as working
+                                            acreage limits you entered. These resources may be flexible, such as working
                                             capital, and can easily be changed. Some resources, such as on-farm storage,
                                             are not easily changed. If you have minimum crop acreage limits, try one or
                                             both of the following to generate a strategy: <br/>
@@ -530,7 +531,7 @@
                                                     more minimum crop acreage limits or the amount of acreage that has
                                                     <b>firm</b> forward sales contracts.
                                                     <a href="javascript:;" onclick="navigateToCropLimits();return false;">Check
-                                                        crop acreage limits and/or forward sales</a></p>
+                                                        crop acreage limits</a> and/or <a href="javascript:;" onclick="navigateToForwardSales();return false;">forward sales</a> </p>
                                                 <p>3) Use a combination of 1 and 2. After generating a strategy you can
                                                     back down the critical resource(s) that you increased in order to
                                                     generate your strategy. You can also change the minimum crop acreage
@@ -627,6 +628,10 @@
 
     function navigateToCropLimits() {
         localStorage.setItem('cropLimitFlag', true);
+        window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
+    }
+    function navigateToForwardSales() {
+        localStorage.setItem('forwardSalesFlag', true);
         window.open('<c:url value="/view-farm-info.htm?farmId="/>${farmId}');
     }
 

@@ -46,6 +46,12 @@ $(function () {
         showCropLimitsTab();
     }
 
+    var flag = localStorage.getItem('forwardSalesFlag');
+    if (typeof flag != 'undefined' && flag) {
+        localStorage.removeItem('forwardSalesFlag');
+        showForwardSalesTab();
+    }
+
     var resourceFlag = localStorage.getItem('resourcesFlag');
     if (typeof resourceFlag != 'undefined' && resourceFlag) {
         localStorage.removeItem('resourcesFlag');
