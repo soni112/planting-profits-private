@@ -208,7 +208,55 @@ public class RiskAndConservationMgmtDataBuilder {
         return jsonObject;
     }
 
-    private String getHighRiskAndConservationDetails(FarmInfoView farmInfoView, JSONObject outputDetails, String key, String cnsrvatnOrRisk){
+    public JSONObject getAcreageConservation(FarmInfoView farmInfoView, JSONObject outputDetails) {
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("name", "Acreage conservation");
+        jsonObject.put("amount1", getHighRiskAndConversionDetails(farmInfoView, outputDetails, "acreage", "landConservation"));
+
+        return jsonObject;
+    }
+
+
+    private String getHighRiskAndConversionDetails(FarmInfoView farmInfoView, JSONObject outputDetails, String key, String cnsrvatnOrRisk) {
+        DecimalFormat formatter = new DecimalFormat("#.0");
+        Double conversionAcres = 0.0;
+
+        if (Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
+
+            List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+
+            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                if (cnsrvatnOrRisk.equalsIgnoreCase("landConservation")) {
+                    if (farmOutputDetailsView.getCropTypeView().getConservation_Crop().equalsIgnoreCase("true")) {
+                        conversionAcres += farmOutputDetailsView.getUsedAcresDouble();
+                    }
+                }
+            }
+        } else if (Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
+            List<CropTypeView> cropTypeViewList = (List<CropTypeView>) outputDetails.get("cropTypeView");
+
+            for (CropTypeView cropTypeView : cropTypeViewList) {
+                if (cnsrvatnOrRisk.equalsIgnoreCase("landConservation")) {
+                    if (cropTypeView.getSelected() && cropTypeView.getConservation_Crop().equalsIgnoreCase("true")) {
+                        String land = ((Map<String, String>) outputDetails.get("hashMapForAcre")).get(cropTypeView.getCropName());
+                        conversionAcres += Double.parseDouble(land.substring(land.indexOf(0) + 1, land.indexOf('(')).replaceAll("\\,", ""));
+                    }
+                }
+            }
+        }
+        if (cnsrvatnOrRisk.equalsIgnoreCase("landConservation")) {
+            if (key.equalsIgnoreCase("acreage")) {
+                return conversionAcres == 0.0 ? "0.0" : AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(conversionAcres.toString());
+            }
+        }
+
+        return "0.0";
+    }
+
+
+    private String getHighRiskAndConservationDetails(FarmInfoView farmInfoView, JSONObject outputDetails, String key, String cnsrvatnOrRisk) {
         DecimalFormat formatter = new DecimalFormat("#.0");
         Double landUnderHighRisk = 0.0, incomeUnderHighRisk = 0.0, landUnderConservation = 0.0, incomeUnderConservation = 0.0;
 

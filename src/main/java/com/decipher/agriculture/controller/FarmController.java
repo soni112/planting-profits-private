@@ -116,6 +116,7 @@ public class FarmController {
         JsonResponse jsonResponse = new JsonResponse();
         FarmInfo farmInfo;
         boolean isUpdated;
+        Integer strategyId = null;
         Farm farm = farmService.getFarmById(farmId);
 
         //  if farm do not have any information
@@ -187,7 +188,7 @@ public class FarmController {
             farmCustomStrategy.setStrategyForResourse(false);
             farmCustomStrategy.setFarm(farm);
             farmCustomStrategy.setFarmInfo(farmInfo);
-            farmCustomStrategyService.saveFarmCustomStrategy(farmCustomStrategy);
+          strategyId=  farmCustomStrategyService.saveFarmCustomStrategy(farmCustomStrategy);
         } else {
             FarmInfoView farmInfoView = farmService.getBaselineFarmDetails(farmId);
             farmInfo = farmInfoView.getFarmInfo();
@@ -224,6 +225,7 @@ public class FarmController {
         PlantingProfitLogger.warn("************************************Output Calculation Scheduler End************************************");
         if (isUpdated) {
             jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
+            jsonResponse.setResult(strategyId);
         } else {
             jsonResponse.setStatus(JsonResponse.RESULT_FAILED);
         }

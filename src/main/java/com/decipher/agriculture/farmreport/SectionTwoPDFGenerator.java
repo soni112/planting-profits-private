@@ -323,6 +323,35 @@ public class SectionTwoPDFGenerator {
 
         return table;
     }
+    private PdfPTable generateHeaderForResource(int noOfResource) {
+        //  New table for resources     /#  Col size dynamic
+        PdfPTable table = new PdfPTable(noOfResource + 3);
+        table.setWidthPercentage(100);
+
+        PdfPCell strategyCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Strategy");
+        strategyCell.setRowspan(3);
+        table.addCell(strategyCell);
+
+        PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est. Income");
+        estimatedIncomeCell.setRowspan(3);
+        table.addCell(estimatedIncomeCell);
+
+        PdfPCell returnOnWorkingCapitalUse = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Return on Working Capital");
+        returnOnWorkingCapitalUse.setRowspan(3);
+
+//        blankCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        table.addCell(returnOnWorkingCapitalUse);
+
+
+        // Add Resource Usage, colspan will be dynamic depending upon the number of resources
+        PdfPCell cropAcreage = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Resource Use");
+        cropAcreage.setColspan(noOfResource);
+        table.addCell(cropAcreage);
+
+        table.completeRow();
+
+        return table;
+    }
 
     private PdfPTable generateHeaderForEstimatedIncomeCropAcreage(int noOfCrops) {
 
@@ -588,142 +617,214 @@ public class SectionTwoPDFGenerator {
     }
 
     private PdfPTable getResourcesTable() {
+        int noOfResource = 0;
+        PdfPTable table = null;
         //  Loading data for resources
         /**
          * @Chanegd - Abhishek
          * @date - 11-01-2016
          * @desc - According to the updated syntax of ReportDataPage2
          */
-        List <CropResourceUsageView> resourceUsageForFarm = reportDataPage2.getResourceUsageForFarm ();
+        /*List<CropResourceUsageView> resourceUsageForFarm = reportDataPage2.getResourceUsageForFarm();
 
 
         //  New table for resources     /#  Col size dynamic
-        PdfPTable table = new PdfPTable ( resourceUsageForFarm.size () + 3 );
-        table.setWidthPercentage ( 100 );
+        PdfPTable table = new PdfPTable(resourceUsageForFarm.size() + 3);
+        table.setWidthPercentage(100);
 
-        PdfPCell strategyCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell ( "Strategy" );
-        strategyCell.setRowspan ( 3 );
-        table.addCell ( strategyCell );
+        PdfPCell strategyCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Strategy");
+        strategyCell.setRowspan(3);
+        table.addCell(strategyCell);
 
-        PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell ( "Est. Income" );
-        estimatedIncomeCell.setRowspan ( 3 );
-        table.addCell ( estimatedIncomeCell );
+        PdfPCell estimatedIncomeCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Est. Income");
+        estimatedIncomeCell.setRowspan(3);
+        table.addCell(estimatedIncomeCell);
 
-        PdfPCell returnOnWorkingCapitalUse = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell ( "Return on Working Capital" );
-        returnOnWorkingCapitalUse.setRowspan ( 3 );
-        /**
+        PdfPCell returnOnWorkingCapitalUse = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Return on Working Capital");
+        returnOnWorkingCapitalUse.setRowspan(3);
+        *//**
          * @Added - Abhishek
          * @date - 12-1-2016
          * @desc - Blank cell for table
-         */
+         *//*
 //        blankCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
 
-        table.addCell ( returnOnWorkingCapitalUse );
+        table.addCell(returnOnWorkingCapitalUse);
 
 
         // Add Resource Usage, colspan will be dynamic depending upon the number of resources
-        PdfPCell cropAcreage = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell ( "Resource Use" );
-        cropAcreage.setColspan ( resourceUsageForFarm.size () );
-        table.addCell ( cropAcreage );
+        PdfPCell cropAcreage = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Resource Use");
+        cropAcreage.setColspan(resourceUsageForFarm.size());
+        table.addCell(cropAcreage);
 
-        table.completeRow ();
+        table.completeRow();*/
 
 
-        //  Adding header for resources that are in use
-        for (CropResourceUsageView cropResourceUsageView : resourceUsageForFarm) {
-            PdfPCell resourceHeaderCell;
-            if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land"))
-                resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( cropResourceUsageView.getCropResourceUse () );
+        //  Adding header for resources that are in use dynamically
 
-             else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" ))
-                resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( "Working\n" + cropResourceUsageView.getCropResourceUse () );
-            else
-            resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( cropResourceUsageView.getCropResourceUse () +"\n" + cropResourceUsageView.getUoMResource() );
-                resourceHeaderCell.setRowspan ( 2 );
-//            resourceHeaderCell.setRotation(90);
-//            resourceHeaderCell.rotate();
-            table.addCell ( resourceHeaderCell );
+        Set<String> setForResourceHeader = new HashSet<>();
+        //PdfPCell resourceHeaderCell;
+        // PdfPTable table1 = null;
+        List<List> resourceListOfAllStrategy = new ArrayList<>();
+
+        List<JSONObject> totalStrategy = reportDataPage2.getStrategiesDataForFarm();
+
+        for (int i = 0; i < reportDataPage2.getStrategiesDataForFarm().size(); i++) {
+            List<CropResourceUsageView> resourceListForSingleStrategy = (List<CropResourceUsageView>) reportDataPage2.getStrategiesDataForFarm().get(i).get("resourceList");
+            resourceListOfAllStrategy.add(resourceListForSingleStrategy);
         }
 
-        table.completeRow ();
+        for (int i = 0; i < resourceListOfAllStrategy.size(); i++) {
+            List<CropResourceUsageView> cropResourceUsageViews = resourceListOfAllStrategy.get(i);
 
-        /**
-         * @changed - Abhishek
-         * @date - 11-01-2016
-         * @desc - changed according to strategies data supplied by controller instead of baseline strategy
-         */
-        //  Adding Data for Resources
-        /*for (JSONObject strategyDataJsonObject : allSelectedStrategiesData) {*/
-        for (JSONObject strategyDataJsonObject : reportDataPage2.getStrategiesDataForFarm ()) {
-            table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( ((FarmCustomStrategyView) strategyDataJsonObject.get ( "farmCustomStrategy" )).getStrategyName () ) );
+            for (CropResourceUsageView cropResourceUsageView : cropResourceUsageViews) {
+                PdfPCell resourceHeaderCell;
+                String resourceName = "";
+                if (cropResourceUsageView.isActive()) {
+                    if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
+                        //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUsageView.getCropResourceUse());
+                        resourceName = cropResourceUsageView.getCropResourceUse();
+                    } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
+                        //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("Working\n" + cropResourceUsageView.getCropResourceUse());
+                        resourceName = cropResourceUsageView.getCropResourceUse();
+                    } else {
+                        //resourceHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(cropResourceUsageView.getCropResourceUse() + "\n" + cropResourceUsageView.getUoMResource());
+                        resourceName = cropResourceUsageView.getCropResourceUse() + "\n" + cropResourceUsageView.getUoMResource();
+                    }
+                    // resourceHeaderCell.setRowspan(2);
+//            resourceHeaderCell.setRotation(90);
+//            resourceHeaderCell.rotate();
+                    setForResourceHeader.add(resourceName);
+
+                    //resourceName = cropResourceUsageView.getCropResourceUse() + "/n" + cropResourceUsageView.getUoMResource();
+                }
+            }
+        }
+        noOfResource = setForResourceHeader.size();
+        table = generateHeaderForResource(noOfResource);
+        Iterator iterator = setForResourceHeader.iterator();
+        while (iterator.hasNext()) {
+            PdfPCell resource = ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" + iterator.next());
+            resource.setRowspan(2);
+            table.addCell(resource);
+        }
+
+            table.completeRow();
+
             /**
              * @changed - Abhishek
-             * @date - 11-02-2016
-             * @desc - Applied format of $xxx,xxx
+             * @date - 11-01-2016
+             * @desc - changed according to strategies data supplied by controller instead of baseline strategy
              */
-            table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( "$" + strategyDataJsonObject.get ( "potentialProfit" ).toString () ) );
+            //  Adding Data for Resources
+        /*for (JSONObject strategyDataJsonObject : allSelectedStrategiesData) {*/
+            for (JSONObject strategyDataJsonObject : reportDataPage2.getStrategiesDataForFarm()) {
+                table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(((FarmCustomStrategyView) strategyDataJsonObject.get("farmCustomStrategy")).getStrategyName()));
+                /**
+                 * @changed - Abhishek
+                 * @date - 11-02-2016
+                 * @desc - Applied format of $xxx,xxx
+                 */
+                table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + strategyDataJsonObject.get("potentialProfit").toString()));
             /*table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(""));*/
-            /**
-             * @Added - Abhishek
-             * @date - 12-1-2016
-             * @desc - Blank cell for table
-             */
-            Map <String, String> cropResourceUse = (Map <String, String>) strategyDataJsonObject.get ( "cropResourceUsed" );
-            Map <String, String> cropResourceUnused = (Map <String, String>) strategyDataJsonObject.get ( "cropResourceUnused" );
+                /**
+                 * @Added - Abhishek
+                 * @date - 12-1-2016
+                 * @desc - Blank cell for table
+                 */
+                Map<String, String> cropResourceUse = (Map<String, String>) strategyDataJsonObject.get("cropResourceUsed");
+                Map<String, String> cropResourceUnused = (Map<String, String>) strategyDataJsonObject.get("cropResourceUnused");
 
-            Double potentialProfit = Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( strategyDataJsonObject.get ( "potentialProfit" ).toString () ) );
-            double workingCapitalUsed=0.0 ;
-            String returnWorkingCapital=null;
-            int index=0;
-            int sizeOfList=((List<CropResourceUsageView>) strategyDataJsonObject.get ( "resourceList"  )).size ();
-            for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDataJsonObject.get ( "resourceList" )) {
-                index++;
+                Double potentialProfit = Double.valueOf(AgricultureStandardUtils.removeAllCommas(strategyDataJsonObject.get("potentialProfit").toString()));
+                double workingCapitalUsed = 0.0;
+                String returnWorkingCapital = null;
+                int index = 0;
+                int sizeOfList = ((List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList")).size();
+                for (CropResourceUsageView cropResourceUsageView : (List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList")) {
+                    index++;
 
-                if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
+                    if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
 
+                        workingCapitalUsed = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
+                        workingCapitalUsed = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUse.get(cropResourceUsageView.getCropResourceUse())));
+                    }
 
-                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get (cropResourceUsageView.getCropResourceUse())));
-                } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
-                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUse.get ( cropResourceUsageView.getCropResourceUse () ) ) );
+                    if (index == sizeOfList) {
+                        if (workingCapitalUsed != 0 && potentialProfit != 0) {
+                            returnWorkingCapital = (AgricultureStandardUtils.doubleWithOneDecimal(potentialProfit / workingCapitalUsed).toString());
+                        } else {
+                            returnWorkingCapital = "NA";
+                        }
+                    }
+
                 }
-                if (index == sizeOfList) {
-                    if (workingCapitalUsed != 0 && potentialProfit != 0) {
-                        returnWorkingCapital = (AgricultureStandardUtils.doubleWithOneDecimal ( potentialProfit / workingCapitalUsed ).toString ());
+                table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" + returnWorkingCapital));
+
+//                fetching data for specific resource
+                Iterator iteratorForHeader = setForResourceHeader.iterator ();
+                HashMap setOfUsedAcresAsDouble = new HashMap ();
+                HashMap selectedUsedAcresAsDouble = new HashMap ();
+
+                Map<String, String> cropResourceUseList = (Map<String, String>) strategyDataJsonObject.get("cropResourceUsed");
+
+                for (CropResourceUsageView cropResourceUsageView : (List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList")) {
+                    if (cropResourceUsageView.isActive()) {
+                        if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
+                            //table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" + cropResourceUsageView.getCropResourceUseAmount()));
+                            //AgricultureStandardUtils.removeAllCommas(cropResourceUseList.get(cropResourceUsageView.getCropResourceUse()));
+                            setOfUsedAcresAsDouble.put(cropResourceUsageView.getCropResourceUse(), cropResourceUseList.get(cropResourceUsageView.getCropResourceUse()));
+                        } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
+                            // table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" + cropResourceUsageView.getCropResourceUseAmount()));
+                            setOfUsedAcresAsDouble.put(cropResourceUsageView.getCropResourceUse(), cropResourceUseList.get(cropResourceUsageView.getCropResourceUse()));
+                        } else {
+                            // table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" + cropResourceUsageView.getCropResourceUseAmount()));
+                            setOfUsedAcresAsDouble.put(cropResourceUsageView.getCropResourceUse(), cropResourceUseList.get(cropResourceUsageView.getCropResourceUse()));
+                        }
+                    }
+                    /*else  {
+                        table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("--"));
+                    }*/
+                }
+
+                 for (int i=0; i< setForResourceHeader.size(); i++) {
+
+                    if (i< setOfUsedAcresAsDouble.size()) {
+                        for (Object resource : setOfUsedAcresAsDouble.keySet() ) {
+                            i++;
+                            selectedUsedAcresAsDouble.put(resource, setOfUsedAcresAsDouble.get(resource));
+                        }
                     } else {
-                        returnWorkingCapital = "NA";
+                        selectedUsedAcresAsDouble.put(i, null);
+                    }
+                 }
+                while (iteratorForHeader.hasNext ()) {
+                    String resource = String.valueOf ( iteratorForHeader.next () ).split("\\n")[0];
+                    if (selectedUsedAcresAsDouble.get ( resource)!=null) {
+                        table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell
+                                ( "" + selectedUsedAcresAsDouble.get ( resource ) ) );
+                    } else {
+                        table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell( ""+"--" ) );
                     }
                 }
+                //            List<CropResourceUsageView> resourceList = (List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList");
+                //            Map<String, String> cropResourceUsed = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("cropResourceUsed");
+                //            for (CropResourceUsageView cropResourceUsageView : resourceList) {
+                //                /**
+                //                 * @changed - Abhishek
+                //                 * @date - 11-02-2016
+                //                 * @desc - Applied format of $xxx,xxx
+                //                 */
+                //
+                //            }
+
+                table.completeRow();
 
             }
-            table.addCell ( ReportTemplate.BoldHeaderBoxBorderTable.getDataCell ( ""+returnWorkingCapital ) );
 
-            for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDataJsonObject.get ( "resourceList" )) {
-                if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("$" +cropResourceUsageView.getCropResourceUseAmount()));
-                } else if  (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell(""+cropResourceUsageView.getCropResourceUseAmount()));
-                }else {
-                    table.addCell(ReportTemplate.BoldHeaderBoxBorderTable.getDataCell("" +cropResourceUsageView.getCropResourceUseAmount()));
-                }
-            }
-    //            List<CropResourceUsageView> resourceList = (List<CropResourceUsageView>) strategyDataJsonObject.get("resourceList");
-    //            Map<String, String> cropResourceUsed = (Map<String, String>) reportDataPage2.getBaseSelectedStrategyOutputDetails().get("cropResourceUsed");
-    //            for (CropResourceUsageView cropResourceUsageView : resourceList) {
-    //                /**
-    //                 * @changed - Abhishek
-    //                 * @date - 11-02-2016
-    //                 * @desc - Applied format of $xxx,xxx
-    //                 */
-    //
-    //            }
+            return table;
+        }
 
-        table.completeRow();
-
-    }
-
-
-        return table;
-    }
 
     private PdfPTable getRiskManagementTable() {
         /**

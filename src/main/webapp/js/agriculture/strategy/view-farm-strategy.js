@@ -28,13 +28,15 @@ function registerTemplates(){
 }
 
 function toggleGraphSection(){
-	$("#tableSectionForStrategy").show();
+	$("#tableSectionForStrategy").hide();
 	$("#graphSectionForStrategy").show();
+    $("#gaugeSectionForStrategy").hide();
 	// $("#headerText").html("Graphical Comparison Of Strategies")
 }
 function toggleGaugeSection(){
-    $("#tableSectionForStrategy").show();
+    $("#tableSectionForStrategy").hide();
     $("#gaugeSectionForStrategy").show();
+    $("#graphSectionForStrategy").hide();
     // $("#headerText").html("Graphical Comparison Of Strategies")
 }
 
@@ -492,7 +494,7 @@ function getStrategyForFarm(farmId){
 					varianceGraphData["varianceGraphData"] = result.jsonArrayForVarianceGraphData;
 					prepareVarianceGraph(varianceGraphData);
 
-                    var gaugeGraphData = {}
+                    var gaugeGraphData = {};
                     gaugeGraphData["gaugeGraphData"] = result.jsonArrayForGaugeChart;
                     applyHtmlThroughTemplate("#enhancedOutputTemplate",gaugeGraphData,"#enhancedProfitOutpout");
 
@@ -526,7 +528,7 @@ function applyHeaders(outputDetails){
 
 //	resource comparison header
 	header["headerDetails"] = outputDetails.jsonArrayForResourceHeader;
-	applyHtmlThroughTemplate("#strategyTableHeaderTemplate", header, "#resourceComparisonThead");
+	applyHtmlThroughTemplate("#resourceTableHeaderTemplate", header, "#resourceComparisonThead");
 
 //	conservation comparison header
 	header["headerDetails"] = outputDetails.jsonArrayForConservationCropHeader;
@@ -622,6 +624,10 @@ function deleteStrategy(){
 	var strategyArray = [];
 	var target = $('#manageStrategies').find('input[name="reportStrategyCheckbox"]:checked');
 	if (target.length == 0){
+		if($("#deleteStrategiesTbody tr:eq(0) td:nth-child(2)").text() === 'Baseline Strategy'){
+            customAlerts("Baseline Strategy can not be deleted.", type_error, 0);
+			return;
+		}
 		customAlerts("Please select the strategies to delete", type_error, 0);
 		return;
 	}

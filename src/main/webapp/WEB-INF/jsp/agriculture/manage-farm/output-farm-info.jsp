@@ -790,9 +790,12 @@
                                             </c:when>
                                             <c:otherwise>Crop-Limits-fixed-hdr-4 </c:otherwise>
                                         </c:choose>" style="display: table-row-group;">
+                                    <c:set var="noCropLimitFlag" value="0" />
                                     <c:forEach var="cropLimit" items="${model.cropLimitsJsonArray}">
                                         <tr class="tblgrn">
                                             <c:if test="${cropLimit.maxLimit!='--'}">
+                                                <c:set var="noCropLimitFlag" value="1" />
+
                                             <td class="success">${cropLimit.cropName}</td>
                                             <%--<td class="success">${cropLimit.minLimit}</td>--%>
                                             <td class="success">  </td>
@@ -805,6 +808,7 @@
                                                             <a href="javascript:void(0)"
                                                                class="remove-text-deco"
                                                                data-toggle="popover"
+                                                               data-container="body"
                                                                data-trigger="hover"
                                                                data-placement="top"
                                                                style="color:#337ab7"
@@ -823,6 +827,7 @@
                                         </tr>
                                         <tr class="tblgrn">
                                             <c:if test="${cropLimit.minLimit!='--'}">
+                                                <c:set var="noCropLimitFlag" value="1" />
                                             <td class="success">${cropLimit.cropName}</td>
                                                 <td class="success">${cropLimit.minLimit}</td>
                                             <td class="success">  </td>
@@ -834,6 +839,7 @@
                                                             <a href="javascript:void(0)"
                                                                class="remove-text-deco"
                                                                data-toggle="popover"
+                                                               data-container="body"
                                                                data-trigger="hover"
                                                                data-placement="top"
                                                                style="color:#337ab7"
@@ -852,6 +858,21 @@
                                             </c:if>
                                     </c:forEach>
 
+                                    </tbody>
+
+                                    <tbody> <%--class="scrollbar-dynamic scrollDiv
+                                        <c:choose>
+                                            <c:when test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
+                                            Crop-Limits-fixed-hdr-6
+                                            </c:when>
+                                            <c:otherwise>Crop-Limits-fixed-hdr-4 </c:otherwise>
+                                        </c:choose>" style="display: table-row-group;"--%>
+
+                                    <c:if test="${noCropLimitFlag eq 0}">
+                                        <tr class="tblgrn">
+                                            <td class="success" style="width: 100%">No Crop Limits Specified.</td>
+                                        </tr>
+                                    </c:if>
                                     </tbody>
                                 </table>
                             </div>

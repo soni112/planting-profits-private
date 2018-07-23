@@ -502,7 +502,7 @@ function getScenarioOutputDetailsForStrategy(){
     var checkedStrategyCheckBox = $('#strategyForScenarioDiv').find('input[name="strategyScenarioCheckbox"]:checked');
 
     if(checkedStrategyCheckBox.length == 0){
-        customAlerts("Select a strategy for scenario analysis", "error", 0);
+        customAlerts("Select one or more strategies for scenario analysis", "error", 0);
         openScenarioAnalysisPopup();
         return;
     }
