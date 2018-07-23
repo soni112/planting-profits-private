@@ -112,18 +112,124 @@ public class SectionTwoPDFGenerator {
         table.setWidthPercentage(100);
 
         // Create Table header cells
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Crop"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Units"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Yield"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Price"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Production Costs Per Acre"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Income\nPer Acre"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Price"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Quantity"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Acres"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Min Crop\nAcreage Limits"));
-        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Max Crop\nAcreage Limits"));
+        PdfPCell cropNameHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Crop");
+        cropNameHeader.setBorderWidth(0);
+        cropNameHeader.setBorderWidthLeft(1);
+        cropNameHeader.setBorderWidthBottom(1);
+        cropNameHeader.setBorderWidthTop(1);
+        cropNameHeader.setBorderWidthRight(1);
+        table.addCell(cropNameHeader);
+
+        PdfPCell unitsHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Units");
+        unitsHeader.setBorderWidth(0);
+        unitsHeader.setBorderWidthLeft(0);
+        unitsHeader.setBorderWidthBottom(1);
+        unitsHeader.setBorderWidthTop(1);
+        unitsHeader.setBorderWidthRight(1);
+        table.addCell(unitsHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Units"));
+
+        PdfPCell estYieldHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Yield");
+        estYieldHeader.setBorderWidth(0);
+        estYieldHeader.setBorderWidthLeft(0);
+        estYieldHeader.setBorderWidthBottom(1);
+        estYieldHeader.setBorderWidthTop(1);
+        estYieldHeader.setBorderWidthRight(1);
+        table.addCell(estYieldHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Yield"));
+
+        PdfPCell estPriceHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Price");
+        estPriceHeader.setBorderWidth(0);
+        estPriceHeader.setBorderWidthLeft(0);
+        estPriceHeader.setBorderWidthBottom(1);
+        estPriceHeader.setBorderWidthTop(1);
+        estPriceHeader.setBorderWidthRight(1);
+        table.addCell(estPriceHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Price"));
+
+        PdfPCell estVariableProductionHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Production Costs Per Acre");
+        estVariableProductionHeader.setBorderWidth(0);
+        estVariableProductionHeader.setBorderWidthLeft(0);
+        estVariableProductionHeader.setBorderWidthBottom(1);
+        estVariableProductionHeader.setBorderWidthTop(1);
+        estVariableProductionHeader.setBorderWidthRight(1);
+        table.addCell(estVariableProductionHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Var Production Costs Per Acre"));
+
+        PdfPCell estIncomeHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Income\nPer Acre");
+        estIncomeHeader.setBorderWidth(0);
+        estIncomeHeader.setBorderWidthLeft(0);
+        estIncomeHeader.setBorderWidthBottom(1);
+        estIncomeHeader.setBorderWidthTop(1);
+        estIncomeHeader.setBorderWidthRight(1);
+        table.addCell(estIncomeHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Est. Income\nPer Acre"));
+
+        PdfPCell forwardSalesHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales");
+        forwardSalesHeader.setBorderWidth(0);
+        forwardSalesHeader.setBorderWidthLeft(0);
+        forwardSalesHeader.setBorderWidthBottom(1);
+        forwardSalesHeader.setBorderWidthTop(1);
+        forwardSalesHeader.setBorderWidthRight(1);
+        table.addCell(forwardSalesHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales"));
+
+        PdfPCell forwardSalesPriceHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Price");
+        forwardSalesPriceHeader.setBorderWidth(0);
+        forwardSalesPriceHeader.setBorderWidthLeft(0);
+        forwardSalesPriceHeader.setBorderWidthBottom(1);
+        forwardSalesPriceHeader.setBorderWidthTop(1);
+        forwardSalesPriceHeader.setBorderWidthRight(1);
+        table.addCell(forwardSalesPriceHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Price"));
+
+        PdfPCell forwardSalesQuantityHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Quantity");
+        forwardSalesQuantityHeader.setBorderWidth(0);
+        forwardSalesQuantityHeader.setBorderWidthLeft(0);
+        forwardSalesQuantityHeader.setBorderWidthBottom(1);
+        forwardSalesQuantityHeader.setBorderWidthTop(1);
+        forwardSalesQuantityHeader.setBorderWidthRight(1);
+        table.addCell(forwardSalesQuantityHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Quantity"));
+
+        PdfPCell forwardSalesAcresHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Acres");
+        forwardSalesAcresHeader.setBorderWidth(0);
+        forwardSalesAcresHeader.setBorderWidthLeft(0);
+        forwardSalesAcresHeader.setBorderWidthBottom(1);
+        forwardSalesAcresHeader.setBorderWidthTop(1);
+        forwardSalesAcresHeader.setBorderWidthRight(1);
+        table.addCell(forwardSalesAcresHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Forward Sales Acres"));
+
+        PdfPCell minCropHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Min Crop\nAcreage Limits");
+        minCropHeader.setBorderWidth(0);
+        minCropHeader.setBorderWidthLeft(0);
+        minCropHeader.setBorderWidthBottom(1);
+        minCropHeader.setBorderWidthTop(1);
+        minCropHeader.setBorderWidthRight(1);
+        table.addCell(minCropHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Min Crop\nAcreage Limits"));
+
+        PdfPCell manCropHeader = ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Max Crop\nAcreage Limits");
+        manCropHeader.setBorderWidth(0);
+        manCropHeader.setBorderWidthLeft(0);
+        manCropHeader.setBorderWidthBottom(1);
+        manCropHeader.setBorderWidthTop(1);
+        manCropHeader.setBorderWidthRight(1);
+        table.addCell(manCropHeader);
+
+//        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Max Crop\nAcreage Limits"));
+
 //        table.addCell(ReportTemplate.BoldHeaderBottomBorderTable.getHeaderCell("Other Resources"));
 
         // Add Data Dynamically
@@ -662,7 +768,7 @@ public class SectionTwoPDFGenerator {
 
         //  Adding header for resources that are in use dynamically
 
-        Set<String> setForResourceHeader = new HashSet<>();
+        LinkedHashSet<String> setForResourceHeader = new LinkedHashSet<>();
         //PdfPCell resourceHeaderCell;
         // PdfPTable table1 = null;
         List<List> resourceListOfAllStrategy = new ArrayList<>();

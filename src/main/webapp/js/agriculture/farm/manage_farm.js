@@ -591,7 +591,8 @@ function validateCropFieldChoice() {
         }
     });
     if (outerValidateCropFieldChoice == false) {
-        customAlerts('There are no crops selected for field "' + fieldName , type_error, time);
+        customAlerts('There are no crops selected for field "' + fieldName +"." + "<br />" +
+            'Either select one or more crops that can be planted in the field or go back to the Field Information page and mark the field as Fallow.', type_error, time);
         return false;
     } else {
         return true;
