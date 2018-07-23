@@ -868,7 +868,7 @@ public class SectionOnePDFGenerator {
                  * @date - 09-02-2016
                  */
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
-                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + farmOutputDetails.getProfitIndex ().toString (), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( farmOutputDetails.getProfitIndex ().toString () + "%", ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorderWidthBottom(1);
@@ -1010,7 +1010,8 @@ public class SectionOnePDFGenerator {
 
 
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
-                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ).replaceAll ( "%", "" ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+//                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ).replaceAll ( "%", "" ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorderWidthBottom(1);
