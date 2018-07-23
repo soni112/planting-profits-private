@@ -662,7 +662,7 @@ public class SectionTwoPDFGenerator {
 
         //  Adding header for resources that are in use dynamically
 
-        Set<String> setForResourceHeader = new HashSet<>();
+        LinkedHashSet<String> setForResourceHeader = new LinkedHashSet<>();
         //PdfPCell resourceHeaderCell;
         // PdfPTable table1 = null;
         List<List> resourceListOfAllStrategy = new ArrayList<>();
