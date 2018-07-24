@@ -1172,7 +1172,7 @@ function validateCropsTableForSA() {
         var cropMinOverridedValue = $(this).children("td:nth(3)").find("input").val().trim();
         if (cropMaxOverridedValue != ""
             && cropMaxOverridedValue != "0"
-            && Number(returnZeroIfBlank(cropMinOverridedValue)) >= Number(cropMaxOverridedValue)) {
+            && Number(returnZeroIfBlank(cropMinOverridedValue)) > Number(cropMaxOverridedValue)) {
             customAlerts("Minimum crop limit must be less then maximum crop limit for " + $(this).children("td:nth(0)").text().trim() + " crop", type_error, time);
             flag = false;
             return flag;
