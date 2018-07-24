@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -635,12 +636,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             Map<String, String> hashMapForRating = (Map<String, String>) outputDetails.get("hashMapForRating");
             Map<String,String> hashMapForWorkReturn=(Map<String,String>) outputDetails.get ( "hashMapForWorkReturn" );
             Map<String,String> hashMapForWorkReturnRating= (Map<String, String>) outputDetails.get ( "hashMapForWorkReturnForRating" );
+            List<CropTypeView> cropTypeViewList = (List<CropTypeView>)outputDetails.get("cropTypeView");
 
             Set<String> cropTypeKeySet = hashMapForAcre.keySet();
             for (String cropTypeKey : cropTypeKeySet) {
                 Double workreturn=0.0;
 
                 JSONObject jsonObject = new JSONObject();
+
 
                 jsonObject.put(CROP_NAME, cropTypeKey);
 
@@ -657,9 +660,15 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 if (hashMapForRatio.get(cropTypeKey).equalsIgnoreCase("0")) {
-                    jsonObject.put(RATIO, "NA");
+                    Double ratio = null;
+                    for (CropTypeView cropTypeView : cropTypeViewList) {
+                        if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
+                             ratio= (Double.parseDouble (cropTypeView.getIntExpCropYield ()) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () );
+                         }
+                    }
+                    jsonObject.put(RATIO, String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio )).split ( "//." )[0]);
                 } else {
-                    jsonObject.put(RATIO, AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
+                    jsonObject.put(RATIO, (hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
                 }
 
                 if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0%")

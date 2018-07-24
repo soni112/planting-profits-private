@@ -18,10 +18,13 @@
                     <ul class="col-lg-12 col-offset-1 col-md-12 col-offset-1 list-unstyled pt-10">
                         <li>
                             <span class="farm-info">${model.userdetail.name}</span>
-                            <span class="farm-info">${model.userdetail.location}</span>
+                            <span class="farm-info">State :${model.userdetail.location}</span>
                             <span class="farm-info">Number of Farms : ${model.userdetail.farmcount}</span>
                             <span class="farm-info">Last activity: ${model.userdetail.lastactivity}</span>
                             <span class="farm-info">${model.userdetail.contribution}</span>
+                            <span class="farm-info"><${model.userdetail.date}> <${model.userdetail.amount}></span>
+
+
                         </li>
                     </ul>
 
