@@ -277,8 +277,13 @@ public class ViewController {
 
 		if(amount <= 0){
 			jsonObject.put("contribution", StringUtils.EMPTY);
+			jsonObject.put("amount",StringUtils.EMPTY);
+			jsonObject.put ( "fromMessage",StringUtils.EMPTY );
 		} else {
-			jsonObject.put("contribution", "Thank you for your $ " + amount);
+			jsonObject.put("contribution", "Thank you for your contribution:  ");
+			jsonObject.put("amount",amount);
+			jsonObject.put ( "fromMessage","from salesForce" );
+
 		}
 		model.put("userdetail", jsonObject);
 		return new ModelAndView("welcome-back","model",model);
