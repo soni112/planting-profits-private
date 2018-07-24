@@ -583,7 +583,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 if (farmOutputDetailsView.getRatio() == 0.0) {
                     jsonObject.put(RATIO, "NA");
                 } else {
-                    jsonObject.put(RATIO, farmOutputDetailsView.getRatio());
+                    String ratioInString = String.valueOf(farmOutputDetailsView.getRatio());
+                    jsonObject.put(RATIO, AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(ratioInString ).split("\\.")[0] );
                 }
 
                 if (farmOutputDetailsView.getProfitIndex() == 0.0) {
@@ -658,7 +659,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 if (hashMapForRatio.get(cropTypeKey).equalsIgnoreCase("0")) {
                     jsonObject.put(RATIO, "NA");
                 } else {
-                    jsonObject.put(RATIO, hashMapForRatio.get(cropTypeKey));
+                    jsonObject.put(RATIO, AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
                 }
 
                 if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0%")
