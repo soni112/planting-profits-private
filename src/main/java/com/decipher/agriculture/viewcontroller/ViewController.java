@@ -281,7 +281,9 @@ public class ViewController {
 			jsonObject.put ( "fromMessage",StringUtils.EMPTY );
 		} else {
 			jsonObject.put("contribution", "Thank you for your contribution:  ");
-			jsonObject.put("amount",amount);
+			jsonObject.put("amount","<"+amount+">");
+			jsonObject.put("date", "<"+account.getLastActiveTimeFormatted()+">");
+
 			jsonObject.put ( "fromMessage","from salesForce" );
 
 		}

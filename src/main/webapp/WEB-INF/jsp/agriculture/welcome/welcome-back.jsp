@@ -22,7 +22,7 @@
                             <span class="farm-info">Number of Farms : ${model.userdetail.farmcount}</span>
                             <span class="farm-info">Last activity: ${model.userdetail.lastactivity}</span>
                             <span class="farm-info">${model.userdetail.contribution}</span>
-                            <span class="farm-info"><${model.userdetail.date}> <${model.userdetail.amount}></span>
+                            <span class="farm-info">${model.userdetail.date} ${model.userdetail.amount}</span>
 
 
                         </li>
