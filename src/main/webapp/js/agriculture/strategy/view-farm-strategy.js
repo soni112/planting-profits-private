@@ -487,7 +487,7 @@ function getStrategyForFarm(farmId){
 					data['graphDataJsonObject'] = [];
 					data['graphJsonObject'] = [];
 					prepareStrategyAnalysisGraph(data);*/
-                    getAndApplyComparisonData();
+                    // getAndApplyComparisonData();
 
 
 					var varianceGraphData = {};

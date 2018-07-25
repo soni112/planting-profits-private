@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -285,7 +286,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
             if(cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )){
-                jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
+                jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
             }else{
                 jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
             }
@@ -553,6 +554,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         JSONArray jsonArray = new JSONArray();
 
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+        List<CropTypeView> cropTypeViewList = (List<CropTypeView>)outputDetails.get("cropTypeView");
+
         double workReturn=0.0;
 
         if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
@@ -581,7 +584,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 if (farmOutputDetailsView.getRatio() == 0.0) {
-                    jsonObject.put(RATIO, "NA");
+                        Double ratio = null;
+                            if(farmOutputDetailsView.getCropTypeView ().getCropName ().equals ( cropName )) {
+                                ratio= (Double.parseDouble (farmOutputDetailsView.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetailsView.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetailsView.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
+                            }
+                        jsonObject.put(RATIO, String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio )).split ( "//." )[0]);
                 } else {
                     String ratioInString = String.valueOf(farmOutputDetailsView.getRatio());
                     jsonObject.put(RATIO, AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(ratioInString ).split("\\.")[0] );
@@ -642,6 +649,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                 JSONObject jsonObject = new JSONObject();
 
+
                 jsonObject.put(CROP_NAME, cropTypeKey);
 
                 String acreage = hashMapForAcre.get(cropTypeKey);
@@ -657,9 +665,15 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 if (hashMapForRatio.get(cropTypeKey).equalsIgnoreCase("0")) {
-                    jsonObject.put(RATIO, "NA");
+                    Double ratio = null;
+                    for (CropTypeView cropTypeView : cropTypeViewList) {
+                        if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
+                             ratio= (Double.parseDouble (cropTypeView.getIntExpCropYield ()) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () );
+                         }
+                    }
+                    jsonObject.put(RATIO, String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio )).split ( "//." )[0]);
                 } else {
-                    jsonObject.put(RATIO, AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
+                    jsonObject.put(RATIO, (hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
                 }
 
                 if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0%")
