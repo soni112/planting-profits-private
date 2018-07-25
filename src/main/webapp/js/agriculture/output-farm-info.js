@@ -402,8 +402,42 @@ function getStrategyForMultipleResources() {
                 } else {
                     var totalAcreagePlanted = 0;
                     var totalLand = 0;
+                    var unusedLand = 0;
+                    var usedCropDetail = new Array();
 
-                    if (result.Strategy == "Acreage") {
+                    $('#sa_multiple_resource_table').find('tr').each(function () {
+                        if ($(this).children().eq(0).html() == 'Land') {
+                            totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
+                        }
+                    });
+                    if (result.Field_Crop_Info != null) {
+                        usedCropDetail = result.Field_Crop_Info;
+                        for (var i = 0; i < usedCropDetail.length; i++) {
+                            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
+                                var landArray = new Array();
+                                var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
+                                totalAcreagePlanted += parseInt(landArray[1].replace(",",""));
+                            }
+                        }
+                    } else {
+                        usedCropDetail = result.Crop_Details;
+                        for (var i = 0; i < usedCropDetail.length; i++) {
+                            totalAcreagePlanted += parseInt(usedCropDetail[i]['land'].replace(",",""));
+                        }
+                    }
+                    var unusedLand = totalLand - totalAcreagePlanted;
+
+                    if (unusedLand > 0 ) {
+                        $("#available-acreage-not-planted-msg").show();
+                        $("#acreage-not-planted-msg").show();
+                    }
+                    else {
+                        $("#available-acreage-not-planted-msg").hide();
+                        $("#acreage-not-planted-msg").hide();
+                    }
+
+
+                    /*if (result.Strategy == "Acreage") {
 
                     $.each(result.Crop_Details, function (k, v) {
                         totalAcreagePlanted += parseInt(removeAllCommas(v.land));
@@ -434,15 +468,15 @@ function getStrategyForMultipleResources() {
                             $("#available-acreage-not-planted-msg").show();
                             $("#acreage-not-planted-msg").show();
                         }
-                     /*   if(result.isAllAcreagePlanted === true){
+                     /!*   if(result.isAllAcreagePlanted === true){
                            $("#available-acreage-not-planted-msg").hide();
                            $("#acreage-not-planted-msg").hide();
                        }
                        else{
                            $("#available-acreage-not-planted-msg").show();
                            $("#acreage-not-planted-msg").show();
-                       }*/
-                    }
+                       }*!/
+                    }*/
                 }
                 /**
                  * @changed - Abhishek
@@ -1172,7 +1206,7 @@ function validateCropsTableForSA() {
         var cropMinOverridedValue = $(this).children("td:nth(3)").find("input").val().trim();
         if (cropMaxOverridedValue != ""
             && cropMaxOverridedValue != "0"
-            && Number(returnZeroIfBlank(cropMinOverridedValue)) >= Number(cropMaxOverridedValue)) {
+            && Number(returnZeroIfBlank(cropMinOverridedValue)) > Number(cropMaxOverridedValue)) {
             customAlerts("Minimum crop limit must be less then maximum crop limit for " + $(this).children("td:nth(0)").text().trim() + " crop", type_error, time);
             flag = false;
             return flag;
