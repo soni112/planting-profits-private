@@ -777,7 +777,8 @@
             <%--<div class="est-income-graph">--%>
                  <%--<i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>--%>
                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
-                <small class="est-income-total">{{=strategy.AverageInConservationCrop}}</small>
+                <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
+                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>
                 </div>
                 </div>
            {{/if}}
@@ -802,6 +803,7 @@
                  <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>--%>
                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
                 <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
+                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>
                 </div>
            {{/if}}</td>
         </tr>
