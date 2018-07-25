@@ -554,6 +554,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         JSONArray jsonArray = new JSONArray();
 
         FarmInfoView farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+        List<CropTypeView> cropTypeViewList = (List<CropTypeView>)outputDetails.get("cropTypeView");
+
         double workReturn=0.0;
 
         if (PlanByStrategy.PLAN_BY_ACRES.equals(farmInfoView.getStrategy())) {
@@ -582,7 +584,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 if (farmOutputDetailsView.getRatio() == 0.0) {
-                    jsonObject.put(RATIO, "NA");
+                        Double ratio = null;
+                            if(farmOutputDetailsView.getCropTypeView ().getCropName ().equals ( cropName )) {
+                                ratio= (Double.parseDouble (farmOutputDetailsView.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetailsView.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetailsView.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
+                            }
+                        jsonObject.put(RATIO, String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio )).split ( "//." )[0]);
                 } else {
                     String ratioInString = String.valueOf(farmOutputDetailsView.getRatio());
                     jsonObject.put(RATIO, AgricultureStandardUtils.commaSeparaterForPriceWithOneDecimal(ratioInString ).split("\\.")[0] );
@@ -636,7 +642,6 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             Map<String, String> hashMapForRating = (Map<String, String>) outputDetails.get("hashMapForRating");
             Map<String,String> hashMapForWorkReturn=(Map<String,String>) outputDetails.get ( "hashMapForWorkReturn" );
             Map<String,String> hashMapForWorkReturnRating= (Map<String, String>) outputDetails.get ( "hashMapForWorkReturnForRating" );
-            List<CropTypeView> cropTypeViewList = (List<CropTypeView>)outputDetails.get("cropTypeView");
 
             Set<String> cropTypeKeySet = hashMapForAcre.keySet();
             for (String cropTypeKey : cropTypeKeySet) {
