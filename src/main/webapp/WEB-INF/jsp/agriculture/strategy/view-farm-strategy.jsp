@@ -106,6 +106,10 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+                                                        <div class="pull-left">
+                                                            <h4>N/A = not included in strategy</h4>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
