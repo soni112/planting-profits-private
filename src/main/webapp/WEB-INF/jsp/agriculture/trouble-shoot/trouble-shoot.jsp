@@ -400,7 +400,7 @@
                                         <a data-toggle="collapse" href="#resources"><b>Available Resources</b></a>
                                         <div id="resources" class="collapse">
                                             There may not be enough of a particular resource to meet the minimum crop
-                                            acreage limits you entered. Remember than <b>firm</b> forward sales contracts
+                                            acreage limits you entered. Remember that <b>firm</b> forward sales contracts
                                             create minimum acreage limits. These resources may be flexible, such as working
                                             capital, and can easily be changed. Some resources, such as on-farm storage,
                                             are not easily changed. If you have minimum crop acreage limits, try one or
