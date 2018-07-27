@@ -1367,8 +1367,8 @@
                         </tbody>
                     </table>
                 </div>
-                    <div id="acreage-not-planted-msg" style="display: none"><span style="color: red"
-                            id="sensetiveAnalysisCropAndResourceUnusedSpan"></span></div>
+                    <span style="color: red"
+                            id="sensetiveAnalysisCropAndResourceUnusedSpan"></span>
                 <%--<div id="acreage-not-planted-msg" style="display: none"><span><c:out value="${resourceList.unused}"></c:out></span> acres not assigned crops</div>--%>
                 <div id="field_crop_button"></div>
             </div>
