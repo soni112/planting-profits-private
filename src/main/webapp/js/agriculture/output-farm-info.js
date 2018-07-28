@@ -201,7 +201,52 @@ function buildObjForTmplIfStrategyField(object) {
 }
 
 function alterHTMLOfTableAndShowPopupTable(result) {
-    var resourse_Crop_Value = null;
+    var totalResourceValue=result.resourceValueNew;
+    var Strategy=result.Strategy;
+    var resource_Crop_Total=0;
+    var usedCropDetail = new Array();
+    var usedLand = 0;
+    var totalLand = 0;
+    $('#sa_multiple_resource_table').find('tr').each(function () {
+        if ($(this).children().eq(0).html() == 'Land') {
+            totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
+        }
+    });
+    if (result.Field_Crop_Info != null) {
+        usedCropDetail = result.Field_Crop_Info;
+        for (var i = 0; i < usedCropDetail.length; i++) {
+            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
+                var landArray = new Array();
+                var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
+                usedLand += parseInt(landArray[1].replace(",",""));
+            }
+        }
+    } else {
+        usedCropDetail = result.Crop_Details;
+        for (var i = 0; i < usedCropDetail.length; i++) {
+            usedLand += parseInt(usedCropDetail[i]['land'].replace(",",""));
+        }
+    }
+    var unusedLand = totalLand - usedLand;
+    var potential_pro = result.Potential_Profit;
+    /**
+     * @chanegd - Abhishek
+     * @date - 25-02-2016
+     * @desc - according to slide#2 of 02212016
+     */
+    /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+".");*/
+    $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : "+"&nbsp;&nbsp;&nbsp;" + "$"+potential_pro);
+    if (unusedLand > 0) {
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
+    }
+    /*else if (unusedLand === 0)
+    {
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" +"All acres are assigned crops");
+    }*/
+    else {
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html(" ");
+    }
+    /*var resourse_Crop_Value = null;
     var resource_Crop_Total = 0;
     if (result.cropValue == undefined) {
         resourse_Crop_Value = result.resourceValue;
@@ -214,11 +259,11 @@ function alterHTMLOfTableAndShowPopupTable(result) {
             }
         });
 
-        /**
+        /!**
          * @changed - Abhishek
          * @date - 15-12-2015
          * @updated - 19-12-2015
-         */
+         *!/
         $("#field_crop_button").html("<div class=\"yellobtn save_senario\"><a onclick=\"getStrategyForSinghalResourcesForCreateNewScenario(" + resourse_Crop_Value + ")\">Save</a></div>");
         //$("#field_crop_button").html("<div class=\"yellobtn save_senario\"><a onclick=\"getStrategyForSinghalResourcesForCreateNewScenario()\">Update</a></div>");
     } else {
@@ -235,40 +280,40 @@ function alterHTMLOfTableAndShowPopupTable(result) {
         });
 
 
-        /**
+        /!**
          * @changed - Abhishek
          * @date - 15-12-2015
          * @updated - 19-12-2015
-         */
+         *!/
         $("#field_crop_button").html("<div class=\"yellobtn save_senario\"><a onclick=\"getStrategyForSingleCropsForCreateNewScenario(" + resourse_Crop_Value + ")\">Save</a></div>");
         //$("#field_crop_button").html("<div class=\"yellobtn save_senario\"><a onclick=\"getStrategyForSingleCropsForCreateNewScenario()\">Update</a></div>");
-    }
+    }*/
 
-    var potential_pro = addCommaSignWithDollarForTextWithOutId(result.Potential_Profit);
-    /**
+    /*var potential_pro = addCommaSignWithDollarForTextWithOutId(result.Potential_Profit);
+    /!**
      * @changed - Abhishek
      * @date - 15-12-2015
-     */
+     *!/
 
     if ($('#Resource-Use').css('display') == 'block') {
-        /**
+        /!**
          * @changed - Abhishek
          * @date - 05-02-2016
          * @desc - according to slide#9 of 02052016
          * @updated - 25-02-2016
          * @desc - according to slide#2 of 02212016
-         */
-        /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+" with <span id=\"resourse_Value_Result\">"+resourse_Crop_Value+"</span> "+unitForCropResourse+" of "+resourceNameForPopUp+".");*/
+         *!/
+        /!*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+" with <span id=\"resourse_Value_Result\">"+resourse_Crop_Value+"</span> "+unitForCropResourse+" of "+resourceNameForPopUp+".");*!/
         $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income :"+"&nbsp;&nbsp;&nbsp;"+ potential_pro + "<div class='hidden'> with <span id=\"resourse_Value_Result\">" + resourse_Crop_Value + "</span> " + unitForCropResourse + " of " + resourceNameForPopUp + ".</div>");
     } else if ($('#Crop-Limits').css('display') == 'block') {
-        /**
+        /!**
          * @changed - Abhishek
          * @date - 05-02-2016
          * @desc - according to slide#9 of 02052016
-         */
-        /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is " + potential_pro + " with " + $('#max_min_selector').val().toString().toLowerCase() + " of <span id=\"resourse_Value_Result\"> " + resourse_Crop_Value + "</span> of " + resourceNameForPopUp + " is required.");*/
+         *!/
+        /!*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is " + potential_pro + " with " + $('#max_min_selector').val().toString().toLowerCase() + " of <span id=\"resourse_Value_Result\"> " + resourse_Crop_Value + "</span> of " + resourceNameForPopUp + " is required.");*!/
         $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income  :" +"&nbsp;&nbsp;&nbsp;"+ potential_pro + "<div class='hidden'> with " + $('#max_min_selector').val().toString().toLowerCase() + " of <span id=\"resourse_Value_Result\"> " + resourse_Crop_Value + "</span> of " + resourceNameForPopUp + " is required.</div>");
-    }
+    }*/
 
 
     var theadObj = {};
