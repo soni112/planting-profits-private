@@ -60,7 +60,7 @@ function buildGaugeMeterComponent() {
             var data = {};
             data.target = $(this).attr('id');
             data.value =$(this).attr('value');
-            setTimeout(function(){ prepareVarianceGenue(data); }, 1000);
+            setTimeout(function(){ prepareVarianceGenue(data); }, 3000);
         });
     });
 
