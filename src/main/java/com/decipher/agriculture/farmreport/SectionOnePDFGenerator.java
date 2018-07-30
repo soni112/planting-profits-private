@@ -156,8 +156,8 @@ public class SectionOnePDFGenerator {
          * @changed - Abhishek
          * @updated - 11-01-2016
          */
-        conservationParagraph.add ( new Chunk ( AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getProfitFromConservation ()) + " % Est. Income under conservation practices\n" +
-                AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getLandUnderConservation ()) + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        conservationParagraph.add ( new Chunk ( AgricultureStandardUtils.doubleWithOneDecimal( Double.parseDouble (conservationBean.getProfitFromConservation () ) ) + " % Est. Income under conservation practices\n" +
+                AgricultureStandardUtils.doubleWithOneDecimal( Double.parseDouble (conservationBean.getLandUnderConservation () ) ) + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
 
         PdfPCell conservationManagementSectionCell = ReportTemplate.getBoxBorderWithoutLeftPaddingCell ();
         conservationManagementSectionCell.addElement ( conservationParagraph );
