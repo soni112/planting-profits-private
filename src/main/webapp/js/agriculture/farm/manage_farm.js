@@ -592,7 +592,7 @@ function validateCropFieldChoice() {
     });
     if (outerValidateCropFieldChoice == false) {
         customAlerts('There are no crops selected for field "' + fieldName +"." + "<br />" +
-            'Either select one or more crops that can be planted in the field or go back to the Field Information page and mark the field as Fallow.', type_error, time);
+            'Either select one or more crops that can be planted in the field or go back to the Field Information page and mark the field as Fallow', type_error, time);
         return false;
     } else {
         return true;
@@ -1469,7 +1469,7 @@ function addNewField() {
         var validationFlag_Field = true;
         $("#Plan_by_Fields_table tbody tr").each(function () {
             if ($(this).children("td:nth(1)").text().trim() == fieldName) {
-                customAlerts('"' + fieldName + '" field name is already exist', type_error, time);
+                customAlerts('"' + fieldName + '"  already exists. Use a different name for the new field.', type_error, time);
                 addErrorClassOnObject('#pop-up-field-name');
                 validationFlag_Field = false;
                 return false;
@@ -1561,7 +1561,7 @@ function addMultiNewField() {
         var validationFlag_Field = true;
         $("#Plan_by_Fields_table tbody tr").each(function () {
             if ($(this).children("td:nth(1)").text().trim() == fieldName) {
-                customAlerts('"' + fieldName + '" field name is already exist', type_error, time);
+                customAlerts('"' + fieldName + '"  already exists. Use a different name for the new field.', type_error, time);
                 addErrorClassOnObject('#pop-up-field-name');
                 validationFlag_Field = false;
                 return false;
@@ -1717,7 +1717,7 @@ function modifyField() {
                             return false;
                         }
                         else {
-                            customAlerts('"' + fieldName + '" field name is already exist', type_error, time);
+                            customAlerts('"' + fieldName + '"  already exists. Use a different name for the new field.', type_error, time);
                             addErrorClassOnObject('#pop-up-field-name');
                             validationFlag_Field = false;
                             return false;

@@ -156,8 +156,8 @@ public class SectionOnePDFGenerator {
          * @changed - Abhishek
          * @updated - 11-01-2016
          */
-        conservationParagraph.add ( new Chunk ( AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getProfitFromConservation ()) + " % Est. Income under conservation practices\n" +
-                AgricultureStandardUtils.priceWithOneDecimal(conservationBean.getLandUnderConservation ()) + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        conservationParagraph.add ( new Chunk ( AgricultureStandardUtils.doubleWithOneDecimal( Double.parseDouble (conservationBean.getProfitFromConservation () ) ) + " % Est. Income under conservation practices\n" +
+                AgricultureStandardUtils.doubleWithOneDecimal( Double.parseDouble (conservationBean.getLandUnderConservation () ) ) + " % Acreage under conservation practices", ReportTemplate.TIMESROMAN_10_NORMAL ) );
 
         PdfPCell conservationManagementSectionCell = ReportTemplate.getBoxBorderWithoutLeftPaddingCell ();
         conservationManagementSectionCell.addElement ( conservationParagraph );
@@ -837,10 +837,10 @@ public class SectionOnePDFGenerator {
                 String estimateIncomePerAce = null;
                 if (farmOutputDetails.getRatio () == 0.0) {
                     Double ratio= (Double.parseDouble (farmOutputDetails.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetails.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetails.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
-                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( ratio ))+"%";
+                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( ratio ));
 //                    estimateIncomePerAce= String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ((Double.parseDouble (farmOutputDetails.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetails.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetails.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () ))+"%");
                 } else {
-                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal( farmOutputDetails.getRatio () )) +"%";
+                    estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal( farmOutputDetails.getRatio () )) ;
 
                 }
                 PdfPCell estimate = new PdfPCell ( new Phrase ( estimateIncomePerAce , ReportTemplate.TIMESROMAN_10_NORMAL ) );
@@ -870,7 +870,7 @@ public class SectionOnePDFGenerator {
                  * @date - 09-02-2016
                  */
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
-                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( farmOutputDetails.getProfitIndex ().toString () + "%", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( farmOutputDetails.getProfitIndex ().toString (), ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorderWidthBottom(1);
@@ -1007,7 +1007,7 @@ public class SectionOnePDFGenerator {
                         }
                     }
                 }
-                PdfPCell estimate = new PdfPCell(new Phrase(estIncomePerAcr +"%", ReportTemplate.TIMESROMAN_10_NORMAL));
+                PdfPCell estimate = new PdfPCell(new Phrase(""+estIncomePerAcr , ReportTemplate.TIMESROMAN_10_NORMAL));
                 estimate.setUseBorderPadding(true);
                 estimate.setBorderWidth(0);
                 estimate.setBorderWidthBottom(1);

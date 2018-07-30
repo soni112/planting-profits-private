@@ -1070,7 +1070,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     if (resourceName != null) {
                         if (resource.getCropResourceUse().equalsIgnoreCase("capital")) {
 //                            differenceString = "$" + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
-                            differenceString = AgricultureStandardUtils.commaSeparaterForLong( Math.abs( i * differenceValue) );
+                            differenceString = "$" + AgricultureStandardUtils.commaSeparaterForLong( Math.abs( i * differenceValue) );
                             resourceStr = AppConstants.WORKING_CAPITAL;
                         } else
 //                            differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue) + " " + resource.getUoMResource();
@@ -1448,7 +1448,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     if (resourceName != null) {
                         if (resource.getCropResourceUse().equalsIgnoreCase("capital")) {
 //                            differenceString = "$" + AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
-                            differenceString = AgricultureStandardUtils.commaSeparaterForLong(Math.abs(i * differenceValue) );
+                            differenceString = "$" + AgricultureStandardUtils.commaSeparaterForLong(Math.abs(i * differenceValue) );
                             resourceStr = AppConstants.WORKING_CAPITAL;
                         }else
 //                            differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue) + " " + resource.getUoMResource();

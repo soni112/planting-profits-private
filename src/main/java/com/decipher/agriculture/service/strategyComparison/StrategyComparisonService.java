@@ -27,4 +27,6 @@ public interface StrategyComparisonService {
 
     JSONArray getVarianceGraphCustomisedDetails(FarmInfoView farmInfoView, int[] strategyIdArray, int[] cropPriceSelection, int[] cropYieldSelection, int[] cropProductionCostSelection, JSONObject rangeValuesObject) throws JSONException;
 
+    JSONObject getAllScenarioAnalysisDetails(FarmInfoView farmInfoView, int farmId, int scenarioId) throws JSONException;
+
 }

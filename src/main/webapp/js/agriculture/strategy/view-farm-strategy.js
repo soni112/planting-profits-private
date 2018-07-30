@@ -60,7 +60,7 @@ function buildGaugeMeterComponent() {
             var data = {};
             data.target = $(this).attr('id');
             data.value =$(this).attr('value');
-            prepareVarianceGenue(data);
+            setTimeout(function(){ prepareVarianceGenue(data); }, 1000);
         });
     });
 
@@ -867,4 +867,81 @@ function getVarianceGraphDetails(){
 
 
 	closeVarianceGraphSetupPopup();
+}
+
+function getScenarioOutputDetails(checkboxName){
+
+    var scenarioId = [];
+    var strategyArray = [];
+
+    var checkedScenarioCheckbox = $('input[name="scenarioCheckbox"]:checked');
+
+    if(checkedScenarioCheckbox.length == 0){
+        customAlerts("Select a scenario analysis", "error", 0);
+        openScenarioPopup();
+        return;
+    }
+
+    var checkedStrategyCheckBox = $('input[name="strategyComparisonCheckbox"]:checked');
+    checkedStrategyCheckBox.each(function(){
+        strategyArray.push($(this).val());
+    });
+
+    checkedScenarioCheckbox = document.querySelectorAll('input[name="' + checkboxName + '"]:checked');
+    Array.prototype.forEach.call(checkedScenarioCheckbox, function(el) {
+    	scenarioId.push(el.value);
+    });
+
+    if (typeof scenarioId != 'undefined') {
+        $.ajax({
+            url: 'ajaxRequest/getStrategyForScenario',
+            type: 'POST',
+            beforeSend: showLoadingImageForStrategy(),
+            data: {
+                scenarioId: scenarioId[0],
+                strategyIdArray: strategyArray,
+                farmId: currentFarmId
+            },
+            success: function (response) {
+                var status = response.status;
+                var result = response.result;
+                if (status == 'success') {
+
+                    var gaugeGraphData = {};
+                    gaugeGraphData["gaugeGraphData"] = result.jsonArrayForGaugeChart;
+                    applyHtmlThroughTemplate("#enhancedOutputTemplate",gaugeGraphData,"#enhancedProfitOutpout");
+
+                    closeScenarioPopup();
+
+                } else if (status == 'Not exists') {
+                    customAlerts('No scenarios prepared for scenario analysis', type_error, time);
+                } else {
+                    location.reload();
+                }
+            },
+            error: function (XMLHttpRequest, status, message) {
+                customAlerts("Error" + XMLHttpRequest + ":" + status + ":" + message, type_error, time);
+            }
+        }).complete(function () {
+            hideLoadingImageForStrategy();
+        });
+    }
+    buildGaugeMeterComponent();
+}
+
+function openScenarioPopup(){
+
+    $('#scenario-popup').show();
+}
+
+function closeScenarioPopup(){
+    $('#scenario-popup').hide();
+}
+
+function showPopupForScenario(){
+    $('#generate-scenario-popup').show();
+}
+
+function hidePopupForScenario(){
+    $('#generate-scenario-popup').show();
 }
