@@ -174,7 +174,7 @@
                                             </button>
                                         </div>
                                     <div class="pull-right cursor-pointer">
-                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;/>
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;"/>
                                     </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
@@ -291,7 +291,7 @@
                                             </button>
                                         </div>
                                     <div class="pull-right cursor-pointer">
-                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;/>
+                                        <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;"/>
                                     </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/showtext.png"/>' onclick="toggleTableSection(); return false;" style="margin-right: 15px;"/>
@@ -321,7 +321,7 @@
                                                 </span>
                                             </td>
                                             <td>Crop Insurance</td>
-                                            <td>Scenario Analysis</td>
+                                            <td><a href="#applyScenarioToCurrent" onclick="openScenarioPopup(); return false" class="open"> Scenario Analysis</a></td>
                                             <td>Return on Working Capital
                                                 <span><a id="returnOnWorkingCapital" class="help_Infromation_PopUp" href="javascript:;">
                                                     <img src="<c:url value="/images/i-icon.png"/>"></a>
@@ -415,8 +415,49 @@
                                     </div>
                                     </div>
                                 </div>
+
+                                <div id="scenario-popup" class="pop-up" style="display: none;">
+                                    <div class="pop-up-body">
+                                        <div class="popup_section">
+
+                                            <div class="potencial_profit_popup">
+                                                <div class="panel panel-yellow">
+                                                    <div class="panel-heading text-center">
+                                                        <label style="cursor: pointer;">Select Scenario Analysis</label>
+                                                    </div>
+                                                    <div class="panel-body" style="display: block">
+
+                                                        <div id="strategyForScenarioDiv">
+                                                            <c:forEach var="scenario" items="${model.savedScenarioData}">
+                                                                <div class="form-group form-group1">
+                                                                    <label>
+                                                                        <input type="radio" name="scenarioCheckbox" value="${scenario.scenarioId}">
+                                                                        &nbsp; &nbsp;${scenario.scenarioName}
+                                                                    </label>
+                                                                </div>
+                                                            </c:forEach>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                        <button class="alertify-button alertify-button-ok pull-right"
+                                                                onclick="getScenarioOutputDetails('scenarioCheckbox'); return false;">Ok
+                                                        </button>
+                                                        <button class="alertify-button alertify-button-cancel pull-right"
+                                                                onclick="closeScenarioPopup(true); return false;">Cancel
+                                                        </button>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+
 
                         <div id="manageStrategies" class="strategy_block right-strategy-details" style="display: none">
                             <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none overflow-x">
@@ -761,7 +802,7 @@
               <div class="gauge_meter">
               <div class="secnario-analysis">
                 <span class="est-income-category">{{= key+1}}</span>
-                    <small class="est-income-total">0.0</small>
+                    <small class="est-income-total">{{= strategy.scenarioAnalysis}}</small>
                   </div>
             </div>
             </td>

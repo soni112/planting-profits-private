@@ -2,6 +2,7 @@ package com.decipher.agriculture.service.strategyComparison.impl;
 
 import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.agriculture.data.strategy.StrategyComparisonType;
+import com.decipher.agriculture.service.farm.FarmService;
 import com.decipher.agriculture.service.farmDetails.FarmDetailsContainerService;
 import com.decipher.agriculture.service.farmDetails.FarmOutputCalculationService;
 import com.decipher.agriculture.service.strategy.impl.RiskAndConservationMgmtDataBuilder;
@@ -14,6 +15,7 @@ import com.decipher.view.form.farmDetails.FarmInfoView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsForFieldView;
 import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
 import com.decipher.view.form.farmDetails.FieldInfoView;
+import com.decipher.view.form.scenario.FarmStrategyScenarioView;
 import com.decipher.view.form.strategy.FarmCustomStrategyView;
 import org.codehaus.jettison.json.JSONException;
 import org.json.simple.JSONArray;
@@ -37,6 +39,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private FarmDetailsContainerService farmDetailsContainerService;
     @Autowired
     private FarmOutputCalculationService farmOutputCalculationService;
+    @Autowired
+    private FarmService farmService;
 
     private StrategyComparisonDataBuilder strategyComparisonDataBuilder;
 
@@ -919,5 +923,62 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
         return strategyComparisonDataBuilder.getVarianceGraphCustomizedDetails(farmInfoView,cropPriceSelection,cropYieldSelection,cropProductionCostSelection, rangeValuesObject);
 
+    }
+
+    public JSONObject getAllScenarioAnalysisDetails(FarmInfoView farmInfoView, int farmId, int scenarioId) {
+
+        farmInfoView = farmService.getBaselineFarmDetails(farmId);
+
+        JSONObject outputDetails = new JSONObject();
+        JSONArray jsonArrayForScenario = new JSONArray();
+
+        Map<FarmStrategyScenarioView, Map<FarmCustomStrategyView, JSONObject>> allScenarioDetails = farmDetailsContainerService.getAllScenarioDetails(farmInfoView);
+        Set<Map.Entry<FarmStrategyScenarioView, Map<FarmCustomStrategyView, JSONObject>>> farmStrategyScenarioViewSet = allScenarioDetails.entrySet();
+
+        for (Map.Entry<FarmStrategyScenarioView, Map<FarmCustomStrategyView, JSONObject>> strategyScenario : farmStrategyScenarioViewSet) {
+            FarmStrategyScenarioView scenarioKey = strategyScenario.getKey();
+            Map<FarmCustomStrategyView, JSONObject> scenarioValue = strategyScenario.getValue();
+
+          int id = scenarioKey.getScenarioId();
+            String scenarioName = scenarioKey.getScenarioName();
+
+            if (id == scenarioId) {
+
+                for (Map.Entry<FarmCustomStrategyView, JSONObject> strategyScenarioJSONArray : scenarioValue.entrySet()) {
+                    FarmCustomStrategyView strategyViewKey = strategyScenarioJSONArray.getKey();
+                    JSONObject scenarioDataValue = strategyScenarioJSONArray.getValue();
+
+                    farmInfoView = (FarmInfoView) scenarioDataValue.get("farmInfoView");
+
+                    JSONObject jsonObjectForStrategy = new JSONObject();
+
+                    jsonObjectForStrategy.put("strategyName", strategyViewKey.getStrategyName());
+                    jsonObjectForStrategy.put("strategyId", strategyViewKey.getId());
+
+                    JSONArray cropArray = new JSONArray();
+
+                    if (Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
+                        Object valueForScenarios = scenarioDataValue.get("potentialProfit");
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("potentialProfit", valueForScenarios);
+                        cropArray.add(jsonObject);
+                    } else if (Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
+                        Object valueForScenarios = scenarioDataValue.get("potentialProfit");
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("potentialProfit", valueForScenarios);
+                        cropArray.add(jsonObject);
+                    }
+
+                    jsonObjectForStrategy.put("scenarioId", id);
+                    jsonObjectForStrategy.put("scenarioName", scenarioName);
+                    jsonObjectForStrategy.put("details", cropArray);
+
+                    jsonArrayForScenario.add(jsonObjectForStrategy);
+                }
+            }
+            outputDetails.put("scenarioValue", jsonArrayForScenario);
+        }
+
+        return outputDetails;
     }
 }
