@@ -1019,8 +1019,8 @@ public class SectionOnePDFGenerator {
 
 
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
-                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ).replaceAll ( "%", "" ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
-//                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+//                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ).replaceAll ( "%", "" ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( "" + hashMapForProfitIndex.get ( cropKey ), ReportTemplate.TIMESROMAN_10_NORMAL ) );
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorderWidthBottom(1);
