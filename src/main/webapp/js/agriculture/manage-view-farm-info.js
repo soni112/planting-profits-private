@@ -212,7 +212,7 @@ function addNewField() {
 		var rowFieldName = $.trim("" + $('#row-field-name__' + i).html());
 		// alert(rowFieldName);
 		if (fieldName.toLowerCase() === rowFieldName.toLowerCase()) {
-			customAlerts('"'+fieldName+'" field name is already exist', "error", 0);
+			customAlerts('"'+fieldName+'"  already exists. Use a different name for the new field.', "error", 0);
 			return false;
 		}
 	}
@@ -305,7 +305,7 @@ function addMultiNewField() {
         var rowFieldName = $.trim("" + $('#row-field-name__' + i).html());
         // alert(rowFieldName);
         if (fieldName.toLowerCase() === rowFieldName.toLowerCase()) {
-            customAlerts('"'+fieldName+'" field name is already exist', "error", 0);
+            customAlerts('"'+fieldName+'"  already exists. Use a different name for the new field.', "error", 0);
             return false;
         }
     }
