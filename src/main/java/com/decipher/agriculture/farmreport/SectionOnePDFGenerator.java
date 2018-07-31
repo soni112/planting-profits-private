@@ -869,8 +869,15 @@ public class SectionOnePDFGenerator {
                  * @chanegd - Abhishek
                  * @date - 09-02-2016
                  */
+
+                String profitInString = null;
+                if (farmOutputDetails.getRatio() == 0.0) {
+                    profitInString = "NA";
+                } else {
+                    profitInString = String.valueOf(farmOutputDetails.getProfitIndex());
+                }
 //				PdfPCell cropContriMargin = new PdfPCell(new Phrase("" + formatter.format(cropContriM), ReportTemplate.TIMESROMAN_10_NORMAL));
-                PdfPCell cropContriMargin = new PdfPCell ( new Phrase ( farmOutputDetails.getProfitIndex ().toString (), ReportTemplate.TIMESROMAN_10_NORMAL ) );
+                PdfPCell cropContriMargin = new PdfPCell(new Phrase(profitInString, ReportTemplate.TIMESROMAN_10_NORMAL));
                 cropContriMargin.setUseBorderPadding ( true );
                 cropContriMargin.setBorderWidth ( 0 );
                 cropContriMargin.setBorderWidthBottom(1);
