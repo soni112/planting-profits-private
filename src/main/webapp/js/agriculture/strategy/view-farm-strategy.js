@@ -698,21 +698,67 @@ function generateReport(){
 			}
 		});
 		strategyIdArray.push(baseStrategy);
-
-		var link = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID='+ strategyIdArray.toString();
+		var link = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID=' + strategyIdArray.toString();
 		// console.log(link);
         // $.fileDownload(link);
 
 		// var a = $('<a></a>').attr('href', link).attr('download', true).attr('target', '_blank');
         // $(a).trigger('click');
 
-		window.location = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID='+ strategyIdArray.toString();
-
+		window.location = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID=' + strategyIdArray.toString();
 	} else {
 		customAlerts("Select maximum of three strategies for generating report", "error", 0);
 	}
 
 }
+
+
+function generateReportForScenario() {
+    var strategyIdArray = [];
+    var scenarioIdArray = [];
+
+    var checkStrategySelectedForReport = $("#strategySelectionDiv").find("input[name='reportStrategyCheckbox']");
+    var checkScenarioSelectedForReport = $("#generateReportForScenarioDiv").find("input[name='scenarioCheckbox']:checked");
+
+    if (checkScenarioSelectedForReport.length == 0) {
+        customAlerts("Select a scenario analysis", "error", 0);
+        showPopupForScenario();
+        return;
+    }
+
+    if (checkStrategySelectedForReport.length > 0) {
+        var baseStrategy;
+        $(checkStrategySelectedForReport).each(function () {
+            if ($(this).prop("checked") == true) {
+                baseStrategy = $.trim($(this).val().split(',')[0]);
+            } else {
+                strategyIdArray.push($(this).val().split(',')[0]);
+            }
+        });
+        strategyIdArray.push(baseStrategy);
+
+
+
+        if (checkScenarioSelectedForReport.length > 0) {
+            var scenarioId;
+            $(checkScenarioSelectedForReport).each(function () {
+                if ($(this).prop("checked") == true) {
+                    scenarioId = $.trim($(this).val().split(',')[0]);
+                } else {
+                    scenarioIdArray.push($(this).val().split(',')[0]);
+				}
+            });
+            scenarioIdArray.push(scenarioId);
+
+            window.location = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID=' + strategyIdArray.toString() + '&scenarioId=' + scenarioIdArray.toString();
+        }else {
+            customAlerts("Select maximum one scenarios for generating report", "error", 0);
+		}
+    } else {
+        customAlerts("Select maximum of three strategies for generating report", "error", 0);
+    }
+}
+
 
 function getAndApplyComparisonDataInGenue() {
     var farmID = $('#sidemenu').find('.open').attr('delta');
@@ -943,5 +989,5 @@ function showPopupForScenario(){
 }
 
 function hidePopupForScenario(){
-    $('#generate-scenario-popup').show();
+    $('#generate-scenario-popup').hide();
 }

@@ -341,7 +341,7 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     if (result.Field_Crop_Info != null) {
         usedCropDetail = result.Field_Crop_Info;
         for (var i = 0; i < usedCropDetail.length; i++) {
-            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
+            if (usedCropDetail[i]['Crop_Info']!==('Not Assigned')) {
             var landArray = new Array();
             var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
             usedLand += parseInt(landArray[1].replace(",",""));

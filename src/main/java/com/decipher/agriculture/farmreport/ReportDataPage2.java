@@ -40,8 +40,9 @@ public class ReportDataPage2 {
 	private JSONObject baseSelectedStrategyOutputDetails;
 	private Map<FarmCustomStrategyView, JSONObject> selectedStrategiesOutputDetailsJsonObjectList;
 	private int totalScenarioCount;
+	private int scenarioId;
 
-	public ReportDataPage2(JSONObject baseSelectedStrategyOutputDetails, Map<FarmCustomStrategyView, JSONObject> selectedStrategiesOutputDetailsJsonObjectList, int totalScenarioCount){
+	public ReportDataPage2(JSONObject baseSelectedStrategyOutputDetails, Map<FarmCustomStrategyView, JSONObject> selectedStrategiesOutputDetailsJsonObjectList, int totalScenarioCount, int scenarioId){
 		/**
 		 * @chanegd - Abhishek
 		 * @date - 11-01-2016
@@ -50,6 +51,7 @@ public class ReportDataPage2 {
 		this.baseSelectedStrategyOutputDetails = baseSelectedStrategyOutputDetails;
 		this.selectedStrategiesOutputDetailsJsonObjectList = selectedStrategiesOutputDetailsJsonObjectList;
 		this.totalScenarioCount = totalScenarioCount;
+		this.scenarioId = scenarioId;
 
 	}
 
@@ -113,6 +115,10 @@ public class ReportDataPage2 {
 
 	public int getTotalScenarioCount() {
 		return totalScenarioCount;
+	}
+
+	public int getScenarioId(){
+		return scenarioId;
 	}
 
 	public List<FarmStrategyScenarioView> getAllScenarios(){
@@ -218,9 +224,11 @@ public class ReportDataPage2 {
 		JSONArray outputDetails = new JSONArray();
 		for (FarmStrategyScenarioView farmStrategyScenarioView : farmStrategyScenarioViewList) {
 			int[] ar = {farmCustomStrategyView.getId()};
-			JSONObject scenarioComparisonDetails = scenarioService.getScenarioComparisonDetails(getFarmInfoView(), farmStrategyScenarioView.getScenarioId(), ar);
-			JSONArray details = (JSONArray) scenarioComparisonDetails.get("outputDetails");
-			outputDetails.addAll(details);
+			if (farmStrategyScenarioView.getScenarioId().equals(scenarioId)){
+				JSONObject scenarioComparisonDetails = scenarioService.getScenarioComparisonDetails(getFarmInfoView(), farmStrategyScenarioView.getScenarioId(), ar);
+				JSONArray details = (JSONArray) scenarioComparisonDetails.get("outputDetails");
+				outputDetails.addAll(details);
+			}
 		}
 
 		return outputDetails;
