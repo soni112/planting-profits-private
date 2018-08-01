@@ -52,7 +52,8 @@ public class GenerateReportController {
     @Secured({"ROLE_SUPER_ADMIN", "ROLE_ADMIN", "ROLE_PROFESSIONAL", "ROLE_GROWER", "ROLE_STUDENT"})
     @RequestMapping(value = "Generate-Report.htm", method = RequestMethod.GET)
     public ModelAndView getReportData(@RequestParam(value = "farmId") int farmId,
-                                      @RequestParam(value = "strategyID") String strategies) throws JSONException {
+                                      @RequestParam(value = "strategyID") String strategies,
+                                      @RequestParam(value = "scenarioId") String scenarioIds) throws JSONException {
 
         Map<String, Object> model = new HashMap<>();
         PlantingProfitLogger.info("inside Generate-Report.htm");
@@ -68,6 +69,7 @@ public class GenerateReportController {
         String[] strategiesArray = strategies.split(",");
         int loopCount = 0;
         int strategyId;
+        int scenarioId = Integer.parseInt(scenarioIds);
         int scenarioCount = 0;
         for (String s : strategiesArray) {
             loopCount++;
@@ -175,7 +177,7 @@ public class GenerateReportController {
         PlantingProfitLogger.info("scenarioCount = " + scenarioCount);
 
         ReportDataPage1 reportDataPage1 = new ReportDataPage1(accountView, baseFarmInfoView, baseSelectedStrategyOutputDetails);
-        ReportDataPage2 reportDataPage2 = new ReportDataPage2(baseSelectedStrategyOutputDetails, allStrategyOutputDetailsContainer, scenarioCount);
+        ReportDataPage2 reportDataPage2 = new ReportDataPage2(baseSelectedStrategyOutputDetails, allStrategyOutputDetailsContainer, scenarioCount, scenarioId);
         ReportDataPage3 reportDataPage3 = new ReportDataPage3(baseSelectedStrategyOutputDetails);
 
         model.put(AppConstants.ACCOUNT_VIEW, accountView);

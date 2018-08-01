@@ -541,11 +541,48 @@
                             </div>
                         </div>
 
-                        <button class="alertify-button alertify-button-ok pull-right" onclick="generateReport(); closeStrategySelectionPopup(); return false;">Generate Report</button>
+                        <button class="alertify-button alertify-button-ok pull-right" onclick="showPopupForScenario(); closeStrategySelectionPopup(); return false;">Generate Report</button>
                         <button class="alertify-button alertify-button-cancel pull-right" onclick="closeStrategySelectionPopup(); return false;">Back</button>
 
                     </div>
 
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="generate-scenario-popup" class="pop-up" style="display: none;">
+    <div class="pop-up-body">
+        <div class="popup_section">
+
+            <div class="potencial_profit_popup">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading text-center">
+                        <label style="cursor: pointer;">Select Scenario Analysis</label>
+                    </div>
+                    <div class="panel-body" style="display: block">
+
+                        <div id="generateReportForScenarioDiv">
+                            <c:forEach var="scenario" items="${model.savedScenarioData}">
+                                <div class="form-group form-group1">
+                                    <label>
+                                        <input type="radio" name="scenarioCheckbox" value="${scenario.scenarioId}">
+                                        &nbsp; &nbsp;${scenario.scenarioName}
+                                    </label>
+                                </div>
+                            </c:forEach>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <button class="alertify-button alertify-button-ok pull-right"
+                                onclick="generateReportForScenario();hidePopupForScenario(); return false;">Ok
+                        </button>
+                        <button class="alertify-button alertify-button-cancel pull-right"
+                                onclick="hidePopupForScenario(); return false;">Cancel
+                        </button>
+                    </div>
                 </div>
 
             </div>
