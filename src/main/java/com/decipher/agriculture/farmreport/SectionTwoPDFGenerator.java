@@ -939,7 +939,8 @@ public class SectionTwoPDFGenerator {
          * @desc - Making table columns dynamic according to # of scenarios
          */
         /*PdfPTable table = ReportTemplate.getFullWidthTable(9);*/
-        PdfPTable table = ReportTemplate.getFullWidthTable((reportDataPage2.getTotalScenarioCount() == 0 ? 1 : reportDataPage2.getTotalScenarioCount()) + 4);
+//        PdfPTable table = ReportTemplate.getFullWidthTable((reportDataPage2.getTotalScenarioCount() == 0 ? 1 : reportDataPage2.getTotalScenarioCount())+3);
+        PdfPTable table = ReportTemplate.getFullWidthTable(6);
 
         PdfPCell strategyCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell("Strategy");
         if (reportDataPage2.getTotalScenarioCount() !=0 ) {
@@ -965,7 +966,7 @@ public class SectionTwoPDFGenerator {
          * @desc - Making table columns dynamic according to # of scenarios
          */
         /*riskManagementCell.setColspan(7);*/
-        riskManagementCell.setColspan(reportDataPage2.getTotalScenarioCount() + 3);
+        riskManagementCell.setColspan(5);
         table.addCell(riskManagementCell);
 
         table.completeRow();
@@ -1020,14 +1021,12 @@ public class SectionTwoPDFGenerator {
 
 //        table.completeRow();
 
-        List<JSONObject> strategiesDataForFarm = reportDataPage2.getStrategiesDataForFarm();
         List<FarmStrategyScenarioView> farmStrategyScenarioViewList = reportDataPage2.getAllScenarios();
         for (FarmStrategyScenarioView farmStrategyScenarioView : farmStrategyScenarioViewList) {
             if (farmStrategyScenarioView.getScenarioId().equals(reportDataPage2.getScenarioId())){
                 PdfPCell scenarioHeaderCell = ReportTemplate.BoldHeaderBoxBorderTable.getHeaderCell(farmStrategyScenarioView.getScenarioName());
                 table.addCell(scenarioHeaderCell);
             }
-
         }
 
 
@@ -1061,6 +1060,7 @@ public class SectionTwoPDFGenerator {
          * @desc - changed according to strategies data supplied by controller instead of baseline strategy
          */
         //  Data for risk management table
+        List<JSONObject> strategiesDataForFarm = reportDataPage2.getStrategiesDataForFarm();
         int emptyCellCount = 0;
         for (JSONObject strategyDataJsonObject : strategiesDataForFarm) {
             FarmCustomStrategyView farmCustomStrategyView = (FarmCustomStrategyView) strategyDataJsonObject.get("farmCustomStrategy");
