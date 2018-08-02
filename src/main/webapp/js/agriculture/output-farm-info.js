@@ -341,7 +341,7 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     if (result.Field_Crop_Info != null) {
         usedCropDetail = result.Field_Crop_Info;
         for (var i = 0; i < usedCropDetail.length; i++) {
-            if (usedCropDetail[i]['Crop_Info']!==('Not Assigned')) {
+            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
             var landArray = new Array();
             var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
             usedLand += parseInt(landArray[1].replace(",",""));
@@ -446,82 +446,47 @@ function getStrategyForMultipleResources() {
                     // return false;
                 } else {
                     var totalAcreagePlanted = 0;
-                    var totalLand = 0;
-                    var unusedLand = 0;
                     var usedCropDetail = new Array();
 
-                    $('#sa_multiple_resource_table').find('tr').each(function () {
-                        if ($(this).children().eq(0).html() == 'Land') {
-                            totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
-                        }
-                    });
-                    if (result.Field_Crop_Info != null) {
-                        usedCropDetail = result.Field_Crop_Info;
-                        for (var i = 0; i < usedCropDetail.length; i++) {
-                            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
-                                var landArray = new Array();
-                                var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
-                                totalAcreagePlanted += parseInt(landArray[1].replace(",",""));
-                            }
-                        }
-                    } else {
+                    if (result.Strategy == "Acerage") {
                         usedCropDetail = result.Crop_Details;
                         for (var i = 0; i < usedCropDetail.length; i++) {
                             totalAcreagePlanted += parseInt(usedCropDetail[i]['land'].replace(",",""));
                         }
-                    }
-                    var unusedLand = totalLand - totalAcreagePlanted;
-
-                    if (unusedLand > 0 ) {
-                        $("#available-acreage-not-planted-msg").show();
-                        $("#acreage-not-planted-msg").show();
-                    }
-                    else {
-                        $("#available-acreage-not-planted-msg").hide();
-                        $("#acreage-not-planted-msg").hide();
-                    }
-
-
-                    /*if (result.Strategy == "Acreage") {
-
-                    $.each(result.Crop_Details, function (k, v) {
-                        totalAcreagePlanted += parseInt(removeAllCommas(v.land));
-                    });
 
                     $('#sa_multiple_resource_table').find('tr').each(function () {
                         if ($(this).children().eq(0).html() == 'Land') {
                             totalLand = parseInt(removeAllCommas($.trim($(this).find('input').val())));
                         }
                     });
-                    if (totalLand <= totalAcreagePlanted) {
-                        $("#available-acreage-not-planted-msg").hide();
-                        $("#acreage-not-planted-msg").hide();
-                    } else {
-                        $("#available-acreage-not-planted-msg").show();
-                        $("#acreage-not-planted-msg").show();
-                    }
-                }
-                else{
-                        var currentPotentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
-                        var changePotentialProfit = Number(removeAllCommasAndDollar( result.Potential_Profit));
-
-                        var diffrence = changePotentialProfit-currentPotentialProfit;
-                        if ( diffrence > 0 ) {
+                        if ( totalLand - totalAcreagePlanted == 0 ) {
                             $("#available-acreage-not-planted-msg").hide();
                             $("#acreage-not-planted-msg").hide();
                         }else {
                             $("#available-acreage-not-planted-msg").show();
                             $("#acreage-not-planted-msg").show();
                         }
-                     /!*   if(result.isAllAcreagePlanted === true){
+                }
+                else{
+                        var currentPotentialProfit = Number(removeAllCommasAndDollar($(".baseline_potential_profit").text()));
+                        var changePotentialProfit = Number(removeAllCommasAndDollar( result.Potential_Profit));
+                        var diffrence = changePotentialProfit-currentPotentialProfit;
+                        if ( result.totalUnusedLand == 0 ) {
+                            $("#available-acreage-not-planted-msg").hide();
+                            $("#acreage-not-planted-msg").hide();
+                        }else {
+                            $("#available-acreage-not-planted-msg").show();
+                            $("#acreage-not-planted-msg").show();
+                        }
+                        /*if(result.isAllAcreagePlanted === true){
                            $("#available-acreage-not-planted-msg").hide();
                            $("#acreage-not-planted-msg").hide();
                        }
                        else{
                            $("#available-acreage-not-planted-msg").show();
                            $("#acreage-not-planted-msg").show();
-                       }*!/
-                    }*/
+                       }*/
+                    }
                 }
                 /**
                  * @changed - Abhishek
