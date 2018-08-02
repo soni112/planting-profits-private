@@ -411,6 +411,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
             }
         }
         jsonObject.put("isAllAcreagePlanted", totalLand.equals(totalUsedLand));
+        jsonObject.put("totalUnusedLand", totalLand - totalUsedLand);
+        jsonObject.put("Field_Crop_Info", jsonArray);
+        jsonObject.put("Strategy", "Field");
         return jsonObject;
     }
 
