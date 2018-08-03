@@ -215,7 +215,7 @@ function alterHTMLOfTableAndShowPopupTable(result) {
     if (result.Field_Crop_Info != null) {
         usedCropDetail = result.Field_Crop_Info;
         for (var i = 0; i < usedCropDetail.length; i++) {
-            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
+            if (usedCropDetail[i]['Crop_Info']!==('Not Assigned')) {
                 var landArray = new Array();
                 var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
                 usedLand += parseInt(landArray[1].replace(",",""));
@@ -341,7 +341,7 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     if (result.Field_Crop_Info != null) {
         usedCropDetail = result.Field_Crop_Info;
         for (var i = 0; i < usedCropDetail.length; i++) {
-            if (usedCropDetail[i]['Crop_Info']!==('Not Planted')) {
+            if (usedCropDetail[i]['Crop_Info']!==('Not Assigned')) {
             var landArray = new Array();
             var landArray = usedCropDetail[i]['Field_Info'].split(/[()]/, 2);
             usedLand += parseInt(landArray[1].replace(",",""));
@@ -1653,7 +1653,7 @@ function getTotalAcreaege() {
     var totalAcreage = 0;
     if (strategy == "PLAN_BY_FIELDS") {
         $('#strategyDetailsTable').find('.fieldAcreageSpecific').each(function () {
-            if ($(this).find('.fieldCropInfoSpecific').html() != "Not Planted") {
+            if ($(this).find('.fieldCropInfoSpecific').html() != "Not Assigned") {
                 totalAcreage += parseInt(removeAllCommasAndDollar($(this).find('.fieldSizeSpecific').html()));
             }
         });
