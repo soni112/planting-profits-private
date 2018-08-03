@@ -3728,8 +3728,8 @@ function calculatePercentageOfMaxAcreagePercentage(obj) {
             var per = Math.ceil((maxAcreage / totalLand) * 100);
             currentTr.find('.maxCropAcreagePercentage').val(isNaN(per) ? '' : per);
         }
-        else if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcreagePer && (maxAcreagePer != 0 || maxAcreagePer != '')) {
-            var val = Math.ceil((totalLand * maxAcreagePer) / 100);
+        else if ($(obj).hasClass('maxCropAcreagePercentage') && maxAcragePer && (maxAcragePer != 0 || maxAcragePer != '')) {
+            var val = Math.ceil((totalLand * maxAcragePer) / 100);
             currentTr.find('.maxCropAcreage').val(isNaN(val) ? '' : val);
         }
         else if (maxAcreageString.toString().length != 0 && maxAcreage == 0) {
