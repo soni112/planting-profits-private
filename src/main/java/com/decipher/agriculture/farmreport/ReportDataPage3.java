@@ -133,7 +133,7 @@ public class ReportDataPage3 {
                     Map<String, Object> data = new HashMap<String, Object>();
                     data.put("field", fieldInfoView.getFieldName());
                     data.put("size", fieldInfoView.getFieldSize());
-                    data.put("crop", "Not Planted");
+                    data.put("crop", "Not Assigned");
                     finalData.add(data);
                 }
             }

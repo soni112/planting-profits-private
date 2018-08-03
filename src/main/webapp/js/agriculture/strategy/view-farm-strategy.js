@@ -705,7 +705,7 @@ function generateReport(){
 		// var a = $('<a></a>').attr('href', link).attr('download', true).attr('target', '_blank');
         // $(a).trigger('click');
 
-		window.location = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID=' + strategyIdArray.toString();
+		window.location = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID=' + strategyIdArray.toString()+'&scenarioId=';
 	} else {
 		customAlerts("Select maximum of three strategies for generating report", "error", 0);
 	}
@@ -718,13 +718,7 @@ function generateReportForScenario() {
     var scenarioIdArray = [];
 
     var checkStrategySelectedForReport = $("#strategySelectionDiv").find("input[name='reportStrategyCheckbox']");
-    var checkScenarioSelectedForReport = $("#generateReportForScenarioDiv").find("input[name='scenarioCheckbox']:checked");
-
-    if (checkScenarioSelectedForReport.length == 0) {
-        customAlerts("Select a scenario analysis", "error", 0);
-        showPopupForScenario();
-        return;
-    }
+    var checkScenarioSelectedForReport = $("#generateReportForScenarioDiv").find("input[name='scenarioCheck']:checked");
 
     if (checkStrategySelectedForReport.length > 0) {
         var baseStrategy;
@@ -976,8 +970,12 @@ function getScenarioOutputDetails(checkboxName){
 }
 
 function openScenarioPopup(){
+    if(document.getElementsByName( 'scenarioCheckbox' ).length > 0){
+        $('#scenario-popup').show();
+    }else {
+        customAlerts('Scenario analysis not generated.', type_error, time);
+	}
 
-    $('#scenario-popup').show();
 }
 
 function closeScenarioPopup(){
@@ -985,7 +983,11 @@ function closeScenarioPopup(){
 }
 
 function showPopupForScenario(){
-    $('#generate-scenario-popup').show();
+    if(document.getElementsByName( 'scenarioCheck' ).length > 0){
+        $('#generate-scenario-popup').show();
+	}else {
+        generateReport();
+	}
 }
 
 function hidePopupForScenario(){

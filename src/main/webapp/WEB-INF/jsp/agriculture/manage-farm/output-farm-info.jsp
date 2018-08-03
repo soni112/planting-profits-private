@@ -334,7 +334,7 @@
                                                         <tr class="tblgrn">
                                                             <td class="success">${cropFieldsList.fieldName}</td>
                                                             <td class="success">${cropFieldsList.fieldSize}</td>
-                                                            <td class="success">Not Planted</td>
+                                                            <td class="success">Not Assigned</td>
                                                         </tr>
                                                     </c:if>
                                                 </c:otherwise>

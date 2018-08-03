@@ -526,7 +526,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                                     JSONObject jsonObjectDetails = new JSONObject();
                                     jsonObjectDetails.put("field", fieldInfoView.getFieldName());
                                     jsonObjectDetails.put("size", fieldInfoView.getFieldSize());
-                                    jsonObjectDetails.put("crop", "Not Planted");
+                                    jsonObjectDetails.put("crop", "Not Assigned");
                                     jsonArray.add(jsonObjectDetails);
                                 }
                             }

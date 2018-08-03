@@ -344,7 +344,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     try {
                         JSONObject object = new JSONObject();
                         object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                        object.put("Crop_Info",fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Planted");
+                        object.put("Crop_Info",fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Assigned");
                         jsonArray.add(object);
                         JSONObject objectForGraphByField = new JSONObject();
                         objectForGraphByField.put("Field_Info", fieldInfoView.getFieldName());

@@ -69,6 +69,9 @@ public class GenerateReportController {
         String[] strategiesArray = strategies.split(",");
         int loopCount = 0;
         int strategyId;
+        if (scenarioIds==""){
+            scenarioIds = "0";
+        }
         int scenarioId = Integer.parseInt(scenarioIds);
         int scenarioCount = 0;
         for (String s : strategiesArray) {
