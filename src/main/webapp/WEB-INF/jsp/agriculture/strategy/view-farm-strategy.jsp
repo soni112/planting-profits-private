@@ -568,7 +568,7 @@
                             <c:forEach var="scenario" items="${model.savedScenarioData}">
                                 <div class="form-group form-group1">
                                     <label>
-                                        <input type="radio" name="scenarioCheckbox" value="${scenario.scenarioId}">
+                                        <input type="radio" name="scenarioCheck" value="${scenario.scenarioId}">
                                         &nbsp; &nbsp;${scenario.scenarioName}
                                     </label>
                                 </div>
