@@ -46,9 +46,7 @@
                                         <i class="fa fa-bar-chart-o"></i> Dashboard
                                     </button>--%>
                                         <div class="pull-right cursor-pointer">
-                                            <button onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 12px; height: 34px; border: none; background-color: #f2f2f2">
-                                                <i class="fa fa-bar-chart-o"></i> Dashboard
-                                            </button>
+                                            <img src='<c:url value="/images/dashboard.png" />' onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 15px;" />
                                         </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;" />
@@ -169,9 +167,7 @@
                                         <i class="fa fa-bar-chart-o"></i> Dashboard
                                     </button>--%>
                                         <div class="pull-right cursor-pointer">
-                                            <button onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 12px; height: 34px; border: none; background-color: #f2f2f2">
-                                                <i class="fa fa-bar-chart-o"></i> Dashboard
-                                            </button>
+                                            <img src='<c:url value="/images/dashboard.png" />' onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 15px;" />
                                         </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;"/>
@@ -286,9 +282,7 @@
                                         <i class="fa fa-bar-chart-o"></i> Dashboard
                                     </button>--%>
                                         <div class="pull-right cursor-pointer">
-                                            <button onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 12px; height: 34px; border: none; background-color: #f2f2f2">
-                                                <i class="fa fa-bar-chart-o"></i> Dashboard
-                                            </button>
+                                            <img src='<c:url value="/images/dashboard.png" />' onclick="buildGaugeMeterComponent();toggleGaugeSection(); return false;" style="margin-right: 15px;" />
                                         </div>
                                     <div class="pull-right cursor-pointer">
                                         <img src='<c:url value="/images/graph_tab.png" />' onclick="toggleGraphSection(); return false;" style="margin-right: 15px;"/>

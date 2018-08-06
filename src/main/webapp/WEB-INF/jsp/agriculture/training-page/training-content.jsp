@@ -194,7 +194,7 @@
                         <a href="#" onclick="switchVideo(this); return false;"
                            data-link="http://dev.plantingprofits.com:82/module4B.mp4">
                             <div class="image-thumb fl">
-                                <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 4 - Entering Farm Information and Generating a Baseline Strategy">
+                                <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 4B - Entering Farm Information and Generating a Baseline Strategy">
                             </div>
                             <div class="author-info">
                                 <h5 class="">Module 4B</h5>
@@ -210,7 +210,7 @@
                         <a href="#" onclick="switchVideo(this); return false;"
                            data-link="http://dev.plantingprofits.com:82/module5.mp4">
                             <div class="image-thumb fl">
-                                <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 4 - Entering Farm Information and Generating a Baseline Strategy">
+                                <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 5 - Compare Strategies and Select The Best Strategy">
                             </div>
                             <div class="author-info">
                                 <h5 class="">Module 5</h5>
@@ -221,6 +221,22 @@
                         </a>
                     </div>
                     <!-- END / Training Video 5     -->
+                    <!-- Training Video 6 -->
+                    <div class="about-author">
+                        <a href="#" onclick="switchVideo(this); return false;"
+                           data-link="http://dev.plantingprofits.com:82/module6.mp4">
+                            <div class="image-thumb fl">
+                                <img src="<c:url value="/images/training/planting_training3.png"/>" alt="Module 6 - Scenario Analysis">
+                            </div>
+                            <div class="author-info">
+                                <h5 class="">Module 6</h5>
+                                <div class="author-content">
+                                    <p>Scenario Analysis</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- END / Training Video 6     -->
                 </aside>
             </div>
             <!-- END / SIDEBAR -->
