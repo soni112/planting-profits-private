@@ -986,6 +986,7 @@ function showPopupForScenario(){
     if(document.getElementsByName( 'scenarioCheck' ).length > 0){
         $('#generate-scenario-popup').show();
 	}else {
+    	customAlerts('No scenarios available', type_error, time);
         generateReport();
 	}
 }

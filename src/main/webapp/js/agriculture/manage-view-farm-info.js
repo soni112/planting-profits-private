@@ -305,7 +305,7 @@ function addMultiNewField() {
         var rowFieldName = $.trim("" + $('#row-field-name__' + i).html());
         // alert(rowFieldName);
         if (fieldName.toLowerCase() === rowFieldName.toLowerCase()) {
-            customAlerts('"'+fieldName+'"  already exists. Use a different name for the new field.', "error", 0);
+            customAlerts('"' + fieldName + '"  already exists. Use a different name for the new field', type_error, time);
             return false;
         }
     }
@@ -449,7 +449,7 @@ function showCropInfoDetails() {
 }
 
 var crop_detail_id = "";
-var crop_detail_array = new Array();
+var crop_detail_array = [];
 function getProductionCostDetails(crop_id, crop_name) {
 	$("#crop_name_dynamic").html(crop_name);
 	crop_name = crop_name.replace(/\s+/g, '');
@@ -806,7 +806,7 @@ function removeCropFieldChoiceHead() {
 		theadColumnLength = $("#field_choice_crop_thead_row_first > td").length;
 	}
 	theadColumnLength = parseInt(theadColumnLength);
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for (var i = 2; i <= theadColumnLength; i++) {
 		var columnName = $.trim(""
 				+ $("#field_choice_crop_thead_row_column__" + i).html());
@@ -1266,7 +1266,7 @@ function showFieldCropChoicePreviousPage() {
 //end
 function addFieldVarianceResourceValue() {
 	var rowLength = $("#crop_resources_usages_difference_tbody > tr ").length;
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for (var i = 1; i <= rowLength; i++) {
 		var isFind = false;
 		var columnName = $.trim(""+ $('#resources_usages_difference_row__' + i+ '_resource_name').html());
@@ -1350,7 +1350,7 @@ function addFieldVarianceResourceValue() {
 function removeForwardSalesTableValue() {
 	var rowLength = $("#forward_sales_information_tbody > tr ").length;
 
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for (var i = 1; i <= rowLength; i++) {
 		var isFind = false;
 		for (var j = 0; j < field_crop.length; j++) {
@@ -1448,7 +1448,7 @@ function removeForwardSalesTableValue() {
 function addRemoveCropLimitTableData() {
 	var rowLength = $("#crop_limits_table_tbody > tr ").length;
 
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for (var i = 1; i <= rowLength; i++) {
 		var isFind = false;
 		for (var j = 0; j < field_crop.length; j++) {
@@ -1568,7 +1568,7 @@ function addRemoveCropLimitTableData() {
 function addRemoveCropInsuranceTable() {
 	var rowLength = $("#crop_insurance_table_tbody > tr ").length;
 
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for (var i = 1; i <= rowLength; i++) {
 		var isFind = false;
 		for (var j = 0; j < field_crop.length; j++) {
@@ -1747,7 +1747,7 @@ function removeCropResourcesUsageTableValue() {
 		theadColumnLength = $("#crop_resource_usage_thead_first_row > td").length;		
 	}
 	theadColumnLength = parseInt(theadColumnLength);
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for (var i = 4; i <= theadColumnLength; i++) {
 		var columnName = $.trim(""+ $("#crop_resource_usage_thead_first_row_column__" + i).html());
 		var isFind = false;
@@ -1831,7 +1831,7 @@ function removeCropResourcesUsageTableValue() {
 }
 function removeCropResourcesUsageTableBodyValue() {
 	var rowLength = $("#crop_resource_usage_tbody > tr ").length;
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for (var i = 1; i <= rowLength; i++) {
 		var isFind = false;
 		for (var j = 0; j < field_crop.length; j++) {
@@ -2128,21 +2128,21 @@ function saveAllFarmInformation() {
 	Modified by Harshit Gupta
 	Start
 	*/
-	var crop_str=new Array();
+	var crop_str=[];
 	// end
 	
-	var crop_information_detail=new Array();	
-	var option_crop_info_array=new Array();
-	var optional_planting_date_array=new Array();
-	var cal_var_cost_crops=new Array();
-	var manage_resource_tbody_array=new Array();
-	var crop_resource_usage_tbody_array=new Array();
-	var crop_limits_table_tbody_array=new Array();
-	var forward_sales_information_tbody_array=new Array();
-	var plan_by_field_tbody_array=new Array();
-	var field_choice_crop_tbody_row_array=new Array();
-	var crop_resources_usages_difference_tbody_array=new Array();
-	var crop_group_array=new Array();
+	var crop_information_detail=[];
+	var option_crop_info_array=[];
+	var optional_planting_date_array=[];
+	var cal_var_cost_crops=[];
+	var manage_resource_tbody_array=[];
+	var crop_resource_usage_tbody_array=[];
+	var crop_limits_table_tbody_array=[];
+	var forward_sales_information_tbody_array=[];
+	var plan_by_field_tbody_array=[];
+	var field_choice_crop_tbody_row_array=[];
+	var crop_resources_usages_difference_tbody_array=[];
+	var crop_group_array=[];
 	
 	
 	if ($("input[name='irrigate']:checked").length > 0) {
@@ -2648,7 +2648,7 @@ function removeField()
 		}
 		return false;
 	}
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for(var i=1;i<rowLength;i++)
 	{
 		
@@ -2982,7 +2982,7 @@ function removeResourse()
 	var resourceNameForRemove="";
 	var resourceNameForRemoveSelect="";
 	
-	var myTestArray=new Array();
+	var myTestArray=[];
 	//alert("hello");
 	var rowLength=$("#manage_resource_tbody > tr").length;
 	//alert("length before:"+rowLength);
@@ -3161,7 +3161,7 @@ function removeProductionCostField(id)
 	var componentFieldNameForRemove="";
 	
 	var rowLength=$("#production_cost_table_tbody__"+id+" > tr").length;
-	var myTestArray = new Array();
+	var myTestArray = [];
 	for(var i=1;i<=(rowLength-2);i++)
 		{
 		if($("#production_cost_component_manage_checkbox__"+i+"_"+id).is(':checked'))
@@ -4278,7 +4278,7 @@ function addNewGroup()
 		div_hide11();
 		return false;
 	}
-	var crop_groupArray = new Array();
+	var crop_groupArray = [];
 	$("#gropofcrop :selected").each(function(){
 		crop_groupArray.push($(this).val());
 	});
@@ -4378,7 +4378,7 @@ function modifyGroup()
 		}
 		
 	});
-	var crop_groupArray = new Array();
+	var crop_groupArray = [];
 	$("#gropofcrop :selected").each(function(){
 		crop_groupArray.push($(this).val());
 	});
