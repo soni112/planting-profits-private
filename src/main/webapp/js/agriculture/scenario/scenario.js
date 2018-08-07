@@ -348,6 +348,11 @@ function loadSelectedScenarioData(obj) {
 }
 
 function modifyScenarioHandler() {
+    var tempData = $("#saved_scenario").find(":selected").val();
+    if (tempData === "0, 0") {
+        customAlerts("Please select scenario first", "error" ,0 );
+        return;
+    }
     enableOrDisableScenarioInput($('#viewEditScenario'), "enable");
 }
 
