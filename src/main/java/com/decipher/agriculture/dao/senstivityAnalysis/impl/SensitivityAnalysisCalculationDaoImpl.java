@@ -945,7 +945,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         if(i == 0) {
                             jsonObject.put("Potential_Profit", currentPotentialProfit);
                         } else {
-                            jsonObject.put("Potential_Profit", bestResult.getObjective().doubleValue());
+                            jsonObject.put("Potential_Profit", AgricultureStandardUtils.withoutDecimalAndComma(bestResult.getObjective().doubleValue()));
                         }
                     } catch (Exception e) {
 
