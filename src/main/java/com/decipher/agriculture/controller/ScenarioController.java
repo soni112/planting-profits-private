@@ -73,7 +73,7 @@ public class ScenarioController {
                 }
             } else {
                 jsonResponse.setStatus(JsonResponse.RESULT_FAILED);
-                jsonResponse.setResult(JsonResponse.RESULT_NOT_EXISTS);
+                jsonResponse.setResult("Can not update the scenario with this name !!");
             }
         } else {
 
