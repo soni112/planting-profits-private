@@ -735,11 +735,13 @@ public class SectionOnePDFGenerator {
     }
 
     private PdfPTable getCropContributionMarginTable() {
-        PdfPTable cropContributionMarginTable = new PdfPTable ( 6 );
-        cropContributionMarginTable.setWidthPercentage ( 100 );
+        float[] widths = {0.1f, 0.08f, 0.06f, 0.06f, 0.06f, 0.06f};
+        PdfPTable cropContributionMarginTable = new PdfPTable ( widths );
+        cropContributionMarginTable.setWidthPercentage(100);
 
         // Create Table Header
-        PdfPCell cropHead = new PdfPCell ( new Phrase ( "Crop", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell cropHead = new PdfPCell ( new Phrase ( "Crop", ReportTemplate.TIMESROMAN_10_BOLD ) );
+
         cropHead.setUseBorderPadding ( true );
         cropHead.setBorderWidth (0);
         cropHead.setBorderWidthBottom(1);
@@ -749,7 +751,7 @@ public class SectionOnePDFGenerator {
 //        cropHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cropHead );
 
-        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_BOLD ) );
         estimateHead.setUseBorderPadding ( true );
         estimateHead.setBorderWidth (0);
         estimateHead.setBorderWidthBottom(1);
@@ -759,7 +761,7 @@ public class SectionOnePDFGenerator {
 //        estimateHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( estimateHead );
 
-        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / % of Land", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / % Land", ReportTemplate.TIMESROMAN_10_BOLD ) );
         cmHead.setColspan ( 2 );
 
         cmHead.setUseBorderPadding ( true );
@@ -778,7 +780,7 @@ public class SectionOnePDFGenerator {
         cropContributionMarginTable.addCell ( ratingHead );*/
 
 
-        PdfPCell returnWorkingCapitalHead = new PdfPCell ( new Phrase ( "Return on Working Capital", ReportTemplate.TIMESROMAN_10_NORMAL ) );
+        PdfPCell returnWorkingCapitalHead = new PdfPCell ( new Phrase ( "Return on Working Capital", ReportTemplate.TIMESROMAN_10_BOLD ) );
         returnWorkingCapitalHead.setColspan ( 2 );
         returnWorkingCapitalHead.setUseBorderPadding ( true );
         returnWorkingCapitalHead.setBorderWidth (0);
