@@ -237,7 +237,7 @@ function alterHTMLOfTableAndShowPopupTable(result) {
     /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+".");*/
     $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : "+"&nbsp;&nbsp;&nbsp;" + "$"+potential_pro);
     if (unusedLand > 0) {
-        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" re-unassigned acres");
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
     }
     /*else if (unusedLand === 0)
     {
@@ -363,7 +363,7 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+".");*/
     $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : "+"&nbsp;&nbsp;&nbsp;" + potential_pro);
     if (unusedLand > 0) {
-        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" re-unassigned acres");
+        $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
     }
     /*else if (unusedLand === 0)
     {
