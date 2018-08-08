@@ -97,14 +97,17 @@ public class StrategyViewController {
 			}
 
             JSONArray jsonArray = new JSONArray();
+            String scenarioName = "";
             Map<FarmStrategyScenarioView, Map<FarmCustomStrategyView, JSONObject>> allScenarioDetails = farmDetailsContainerService.getAllScenarioDetails(farmInfoView);
             Set<FarmStrategyScenarioView> farmStrategyScenarioViewSet = allScenarioDetails.keySet();
             for (FarmStrategyScenarioView aFarmStrategyScenarioViewSet : farmStrategyScenarioViewSet) {
                 int scenarioId = aFarmStrategyScenarioViewSet.getScenarioId();
+                scenarioName = aFarmStrategyScenarioViewSet.getScenarioName();
                 jsonArray.add(scenarioId);
             }
 
             model.put("scenarioId", jsonArray);
+            model.put("scenarioName", scenarioName);
             model.put("savedScenarioData", farmStrategyScenarioViewSet);
 
             page = "view-farm-strategy";

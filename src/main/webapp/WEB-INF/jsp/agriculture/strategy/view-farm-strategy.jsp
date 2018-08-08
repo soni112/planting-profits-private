@@ -11,6 +11,16 @@
     var contextPath = '<c:out value="${pageContext.servletContext.contextPath}" />';
 </script>
 
+<script>
+    <c:set value="${model.scenarioName}" var="scenarioName"/>
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').tooltip();
+    });
+</script>
+
 <div class="container-fluid">
     <div class="row">
         <div class="leftside">
@@ -315,7 +325,10 @@
                                                 </span>
                                             </td>
                                             <td>Crop Insurance</td>
-                                            <td><a href="#applyScenarioToCurrent" onclick="openScenarioPopup(); return false" class="open"> Scenario Analysis</a></td>
+                                            <td>
+                                                <a href="#applyScenarioToCurrent" onclick="openScenarioPopup(); return false" class="remove-text" data-toggle="popover" data-container="body" data-trigger="hover"
+                                                   data-placement="top" title="Sceanrio Name"> Scenario Analysis</a>
+                                            </td>
                                             <td>Return on Working Capital
                                                 <span><a id="returnOnWorkingCapital" class="help_Infromation_PopUp" href="javascript:;">
                                                     <img src="<c:url value="/images/i-icon.png"/>"></a>
@@ -425,7 +438,7 @@
                                                             <c:forEach var="scenario" items="${model.savedScenarioData}">
                                                                 <div class="form-group form-group1">
                                                                     <label>
-                                                                        <input type="radio" name="scenarioCheckbox" value="${scenario.scenarioId}">
+                                                                        <input type="radio" data-scenarioName="${scenario.scenarioName}" name="scenarioCheckbox" value="${scenario.scenarioId}">
                                                                         &nbsp; &nbsp;${scenario.scenarioName}
                                                                     </label>
                                                                 </div>
