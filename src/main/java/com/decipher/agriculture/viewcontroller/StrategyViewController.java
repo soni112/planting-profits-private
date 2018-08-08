@@ -97,14 +97,17 @@ public class StrategyViewController {
 			}
 
             JSONArray jsonArray = new JSONArray();
+            String scenarioName = "";
             Map<FarmStrategyScenarioView, Map<FarmCustomStrategyView, JSONObject>> allScenarioDetails = farmDetailsContainerService.getAllScenarioDetails(farmInfoView);
             Set<FarmStrategyScenarioView> farmStrategyScenarioViewSet = allScenarioDetails.keySet();
             for (FarmStrategyScenarioView aFarmStrategyScenarioViewSet : farmStrategyScenarioViewSet) {
                 int scenarioId = aFarmStrategyScenarioViewSet.getScenarioId();
+                scenarioName = aFarmStrategyScenarioViewSet.getScenarioName();
                 jsonArray.add(scenarioId);
             }
 
             model.put("scenarioId", jsonArray);
+            model.put("scenarioName", scenarioName);
             model.put("savedScenarioData", farmStrategyScenarioViewSet);
 
             page = "view-farm-strategy";
@@ -166,11 +169,16 @@ public class StrategyViewController {
             HashMap <String, String> detailsDataForGauge;
             String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size ()];
 			Integer[] EstimateIncomeArray = new Integer[jsonArrayForStrategy.size ()];
+			String[] conservationArray = new String[jsonArrayForConservationCrop.size ()];
 
 			for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
                 JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get ( i );
                 returnWorkingCapitalArray[i] = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
 				EstimateIncomeArray[i] = (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
+				JSONObject jsonObjectConservationData = (JSONObject)jsonArrayForConservationCrop.get ( i );
+                JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationData.get ( "details" );
+                Map <String, String> hashForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
+                conservationArray[i] = (String) hashForAverageInConservationCrop.get ("amount");
             }
             for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
                 for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
@@ -192,6 +200,18 @@ public class StrategyViewController {
 
 				}
 			}
+
+            for (int i = 0; i < conservationArray.length; i++) {
+                for (int l = i + 1; l < conservationArray.length; l++) {
+                    if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
+                        String temp = conservationArray[i];
+                        conservationArray[i] = conservationArray[l];
+                        conservationArray[l] = temp;
+                    }
+
+                }
+            }
+
             for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
                 detailsDataForGauge = new HashMap <> ();
                 FarmCustomStrategyView farmCustomStrategyView = (FarmCustomStrategyView) jsonArrayForStrategy.get ( i );
@@ -206,6 +226,9 @@ public class StrategyViewController {
                 detailsDataForGauge.put ( "ReturnWorkingCapital", jsonObjectStrategyData.get ( "returnWorkingCapital" ).toString () );
                 String returnWorking = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
 				int EstimateIncome= (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
+                JSONArray jsonArrayConservation = (JSONArray) jsonObjectConservationCrop.get ( "details" );
+                Map <String, String> hashMapForAcerageInConservation = (Map <String, String>) jsonArrayConservation.get ( 1 );
+                String conservation= (String) hashMapForAcerageInConservation.get ( "amount" );
 
 				int countReturnWorking = 0;
                 for (String returnWorkingCapital :
@@ -225,6 +248,15 @@ public class StrategyViewController {
 						break;
 					}
 				}
+
+				int countConservation=0;
+				for (String conservationArrayValue:conservationArray){
+				    countConservation++;
+				    if (conservationArrayValue.equals(conservation)){
+				        detailsDataForGauge.put("countConservation", "" + countConservation);
+				        break;
+                    }
+                }
                 JSONArray jsonArrayDetails = (JSONArray) jsonObjectForHighRisk.get ( "details" );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationCrop.get ( "details" );
                 JSONArray jsonArrayConversionDetails = (JSONArray) jsonObjectForConversion.get ( "details" );

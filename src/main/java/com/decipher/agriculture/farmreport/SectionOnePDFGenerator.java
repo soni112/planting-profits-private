@@ -735,7 +735,7 @@ public class SectionOnePDFGenerator {
     }
 
     private PdfPTable getCropContributionMarginTable() {
-        float[] widths = {0.1f, 0.08f, 0.06f, 0.06f, 0.06f, 0.06f};
+        float[] widths = {0.1f, 0.09f, 0.06f, 0.05f, 0.06f, 0.05f};
         PdfPTable cropContributionMarginTable = new PdfPTable ( widths );
         cropContributionMarginTable.setWidthPercentage(100);
 
@@ -751,7 +751,7 @@ public class SectionOnePDFGenerator {
 //        cropHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( cropHead );
 
-        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre", ReportTemplate.TIMESROMAN_10_BOLD ) );
+        PdfPCell estimateHead = new PdfPCell ( new Phrase ( "Est. Income per Acre ($)", ReportTemplate.TIMESROMAN_10_BOLD ) );
         estimateHead.setUseBorderPadding ( true );
         estimateHead.setBorderWidth (0);
         estimateHead.setBorderWidthBottom(1);
@@ -761,7 +761,7 @@ public class SectionOnePDFGenerator {
 //        estimateHead.setBorder ( Rectangle.NO_BORDER );
         cropContributionMarginTable.addCell ( estimateHead );
 
-        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit / % Land", ReportTemplate.TIMESROMAN_10_BOLD ) );
+        PdfPCell cmHead = new PdfPCell ( new Phrase ( "% Profit /\n % Land", ReportTemplate.TIMESROMAN_10_BOLD ) );
         cmHead.setColspan ( 2 );
 
         cmHead.setUseBorderPadding ( true );

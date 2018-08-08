@@ -927,10 +927,14 @@ function getScenarioOutputDetails(checkboxName){
         strategyArray.push($(this).val());
     });
 
+    var sec = [];
     checkedScenarioCheckbox = document.querySelectorAll('input[name="' + checkboxName + '"]:checked');
     Array.prototype.forEach.call(checkedScenarioCheckbox, function(el) {
     	scenarioId.push(el.value);
+        sec.push($(el).attr('data-scenarioName'));
     });
+    $('[data-toggle="popover"]').attr('title','');
+    $('[data-toggle="popover"]').attr('data-original-title',sec.join(', '));
 
     if (typeof scenarioId != 'undefined') {
         $.ajax({
