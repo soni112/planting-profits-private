@@ -861,7 +861,7 @@
            {{if strategy.AverageInConservationCrop >= 50.0  }}
           <div class="gauge_meter">
            <div class="secnario-analysis">
-                 <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
+                 <span class="est-income-category">{{= strategy.countConservation}}</span>
 
             <%--<div class="est-income-graph">--%>
                  <%--<i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>--%>
@@ -876,7 +876,7 @@
                  <%--<i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>--%>
                   <div class="gauge_meter">
            <div class="secnario-analysis">
-                 <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
+                 <span class="est-income-category">{{= strategy.countConservation}}</span>
                  <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConversion)}}</small>--%>
                 <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
@@ -887,7 +887,7 @@
            {{if strategy.AverageInConservationCrop < 25.0 }}
             <div class="gauge_meter">
            <div class="secnario-analysis">
-                 <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
+                 <span class="est-income-category">{{= strategy.countConservation}}</span>
          <%--  <div class="secnario-analysis-red">
                  <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>--%>
                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
