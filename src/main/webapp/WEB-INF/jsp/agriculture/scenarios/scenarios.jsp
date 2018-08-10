@@ -233,10 +233,17 @@ Date 24-11-2015
                                 </div>
                             </div>
                         </div>
+
+
+
                         <!--------------end tab------------------------->
                         <div class="clearfix"></div>
                         <div class="yellobtn pre_next">
-                            <a href="#" onclick="saveScenario('createScenario');">Save</a>
+                            <c:forEach var="strategyIdAndName" items="${model.strategyList}">
+                                <c:if test = "${strategyIdAndName.strategyName == 'Baseline Strategy'}">
+                                    <a href="#" onclick="saveScenarioDataWithID('createScenario','${strategyIdAndName.id}');">Save</a>
+                                </c:if>
+                            </c:forEach>
                         </div>
                         <%--</div>--%>
                     </div>
@@ -348,7 +355,8 @@ Date 24-11-2015
                                                                 <a class="help_Infromation_PopUp globalVarCost"><img
                                                                         src="<c:url value="/images/i-icon.png" />"></a>
                                                             </div>
-                                                            <div class="scenario_global">
+                                                         ￼
+   <div class="scenario_global">
                                                                 <input type="text" disabled
                                                                        name="scenario_global_crop_prod_cost"
                                                                        id="globalVarCostEdit" placeholder="0"
