@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import static java.lang.Double.parseDouble;
+
 /**
  * Created on 3/2/17 2:38 PM by Abhishek Samuel
  * Software Engineer
@@ -389,11 +391,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                 if (cropTypeView != null) {
                     int usedAcres, minimumAcres, maximumAcres;
+                    Double profitIndex;
                     if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getForFirm() && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = cropTypeView.getForwardAcres().intValue();
                         maximumAcres = 0;
-                        return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                        profitIndex = farmOutputDetailsView.getProfitIndex();
+                        return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax, profitIndex);
                     } else if (!cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
@@ -419,20 +423,23 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
         } else if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_FIELDS)) {
             Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
-
+            Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
             if (cropTypeView != null) {
 
                 int usedAcres, minimumAcres, maximumAcres;
+                Double profitIndex;
                 if(cropTypeView.getFirmchecked().equalsIgnoreCase("true") && hashMapForAcre.containsKey(cropTypeView.getCropName() + " (Firm)")){
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName() + " (Firm)").split(" ")[0]));
                     minimumAcres = cropTypeView.getForwardAcres().intValue();
                     maximumAcres = 0;
-                    return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
+//                    profitIndex = hashMapForProfit.get("");
+                    profitIndex = 0.0;
+                    return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax, profitIndex);
                 } else {
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName()).split(" ")[0]));
                     minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
                     maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
-                    return getYesNoForFirm(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                    return getYesNoForField(usedAcres, minimumAcres, maximumAcres, minOrMax);
                 }
             } else if (cropsGroupView != null) {
                 Set<CropType> cropSet = cropsGroupView.getCropSet();
@@ -443,7 +450,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 int minimumAcres = Integer.parseInt(cropsGroupView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMinimumAcresWithoutComma());
                 int maximumAcres = Integer.parseInt(cropsGroupView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMaximumAcresWithoutComma());
 
-                return getYesNoForFirm(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                return getYesNoForField(usedAcres, minimumAcres, maximumAcres, minOrMax);
             }
 
         }
@@ -451,7 +458,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         return "";
     }
     @Override
-    public String getYesNoForFirm(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
+    public String getYesNoForField(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax) {
         if (minOrMax.equalsIgnoreCase("min")) {
             int value = usedAcres - minimumAcres;
             if(minimumAcres <= 0){
@@ -492,12 +499,12 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         }
         return "";    }
 
-    public String getYesNoForFirmChecked(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax){
+    public String getYesNoForFirmChecked(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax, Double profitIndex){
         double value = usedAcres - minimumAcres;
         double values=  value/minimumAcres;
-        if(minimumAcres >=0.8){
+        if(profitIndex >=0.8){
             return YES;
-        } else if (value < 0.8) {
+        } else if (profitIndex < 0.8) {
             return NO;
         }
         return "";
@@ -586,7 +593,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 if (farmOutputDetailsView.getRatio() == 0.0) {
                         Double ratio = null;
                             if(farmOutputDetailsView.getCropTypeView ().getCropName ().equals ( cropName )) {
-                                ratio= (Double.parseDouble (farmOutputDetailsView.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetailsView.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetailsView.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
+                                ratio= (parseDouble (farmOutputDetailsView.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetailsView.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetailsView.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
                             }
                         jsonObject.put(RATIO, String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio )).split ( "//." )[0]);
                 } else {
@@ -668,7 +675,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     Double ratio = null;
                     for (CropTypeView cropTypeView : cropTypeViewList) {
                         if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
-                             ratio= (Double.parseDouble (cropTypeView.getIntExpCropYield ()) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () );
+                            Double expCropYield = Double.valueOf(cropTypeView.getIntExpCropYield());
+                            Double expCropPrice = parseDouble(String.valueOf(cropTypeView.getIntExpCropPrice()));
+                            Double calculatedVariableProductionCost = parseDouble(String.valueOf(cropTypeView.getCalculatedVariableProductionCost ()));
+
+                            ratio = (expCropYield * expCropPrice) - (calculatedVariableProductionCost);
+
+//                             ratio= (Double.parseDouble (cropTypeView.getIntExpCropYield ()) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () );
                          }
                     }
                     jsonObject.put(RATIO, String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio )).split ( "//." )[0]);
