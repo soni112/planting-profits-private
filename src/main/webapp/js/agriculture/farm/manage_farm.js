@@ -3167,10 +3167,10 @@ function saveAllFarmInformation() {
                     for (var crop in item[field]) {
                         var data = item[field][crop];
                         field_difference_str = field + "#-#-#" + crop + "#-#-#";
-                        field_difference_str += data["expOverride"] != "" ? removeAllCommasAndDollar(data["expOverride"]) + "#-#-#" : "0#-#-#";
-                        field_difference_str += data["minOverride"] != "" ? removeAllCommasAndDollar(data["minOverride"]) + "#-#-#" : "0#-#-#";
-                        field_difference_str += data["maxOverride"] != "" ? removeAllCommasAndDollar(data["maxOverride"]) + "#-#-#" : "0#-#-#";
-                        field_difference_str += data["resourceOverride"] != "" ? removeAllCommasAndDollar(data["resourceOverride"]) + "#-#-#" : "0#-#-#";
+                        field_difference_str += data["expOverride"] !== "" ? removeAllCommasAndDollar(data["expOverride"]) + "#-#-#" : "0#-#-#";
+                        field_difference_str += data["minOverride"] !== "" ? removeAllCommasAndDollar(data["minOverride"]) + "#-#-#" : "0#-#-#";
+                        field_difference_str += data["maxOverride"] !== "" ? removeAllCommasAndDollar(data["maxOverride"]) + "#-#-#" : "0#-#-#";
+                        field_difference_str += data["resourceOverride"] !== "" ? removeAllCommasAndDollar(data["resourceOverride"]) + "#-#-#" : "0#-#-#";
                     }
                 }
             }

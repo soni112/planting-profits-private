@@ -180,6 +180,100 @@ function saveScenario(containerId) {
     }
     $('#strategy-select-popup').show();
 }
+
+function saveScenarioDataWithID(containerId,strategyId) {
+    var container = $("#" + containerId);
+    if (!validateScenario(container)) {
+        return false;
+    }
+    if (containerId == "createScenario") {
+        // var strategyRadio = $('input[name="strategyRadio"]:checked');
+        // if($('input[name="strategyRadio"]').length == 1){
+        //     strategyId = $('input[name="strategyRadio"]').val();
+        // } else if (strategyRadio.length == 0) {
+        //     customAlerts("Please select the strategy for this scenario", "error", 0);
+        //     return false;
+        // } else {
+        //     strategyId = $(strategyRadio).val();
+        // }
+
+    } else{
+        strategyId = $.trim($("#saved_scenario").find(":selected").val().split(',')[1]);
+    }
+
+
+    var scenarioDataCropSpecific = [];
+
+    // Get Scenario Name
+    var scenarioName = $.trim(container.find("input[type=text][name=scenario_name]").val());
+
+    // Get Global Data
+    var scenario_global_crop_price = $.trim(container.find("input[type=text][name=scenario_global_crop_price]").val());
+    var scenario_global_crop_yields = $.trim(container.find("input[type=text][name=scenario_global_crop_yields]").val());
+    var scenario_global_crop_prod_cost = $.trim(container.find("input[type=text][name=scenario_global_crop_prod_cost]").val());
+    var scenario_Comment = $.trim(container.find("textarea[name=scenarioGlobalComment]").val());
+    var crop_specific_comment = $.trim(container.find("textarea[name=scenarioCropSpecificComment]").val());
+
+    // Get Crop Specific Data
+    $("#"+containerId).find("table tbody tr").each(function () {
+        var crop_data = {};
+        crop_data['crop_id'] = $(this).attr("data-id");
+        crop_data['crop_name'] = $(this).find("td:eq(0)").text();
+        crop_data['crop_price'] = $(this).find("td:eq(1) input").val();
+        crop_data['crop_yield'] = $(this).find("td:eq(2) input").val();
+        crop_data['crop_prod_cost'] = $(this).find("td:eq(3) input").val();
+        scenarioDataCropSpecific.push(crop_data);
+    });
+
+    var scenarioId = null;
+
+    if (typeof window.scenarioId != 'undefined') {
+        scenarioId = $.trim($("#saved_scenario").find(":selected").val().split(',')[0]);
+    }
+    showLoadingImage();
+    $.ajax({
+        url: 'ajaxRequest/scenario/saveScenario',
+        type: 'POST',
+        data: {
+            scenarioName: scenarioName,
+            scenario_global_crop_price: scenario_global_crop_price,
+            scenario_global_crop_yields: scenario_global_crop_yields,
+            scenario_global_crop_prod_cost: scenario_global_crop_prod_cost,
+            scenario_Comment : scenario_Comment,
+            crop_specific_comment : crop_specific_comment,
+            cropSpecific: JSON.stringify(scenarioDataCropSpecific),
+            farmId: farmId,
+            strategyId: strategyId,
+            scenarioId: scenarioId
+        },
+        success: function (response) {
+            if (response.status.indexOf("success") != -1) {
+
+                customAlerts("Scenario has been saved", "success", 0);
+                // showLoadingImage();
+                setTimeout(function () {
+                    sessionStorage.setItem("lastSavedScenario", response.result);
+                    window.location.reload();
+                }, 2000);
+            } else {
+                customAlerts(response.result, "error", 0);
+                hideLoadingImage();
+            }
+
+        },
+        error: function (a, b, c) {
+            // console.log(a);
+            // console.log(b);
+            // console.log(c);
+        },
+        complete: function (response) {
+            delete window.scenarioId;
+            // hideLoadingImage();
+        }
+    });
+
+}
+
 function saveScenarioData(containerId) {
     var container = $("#" + containerId);
     if (!validateScenario(container)) {
