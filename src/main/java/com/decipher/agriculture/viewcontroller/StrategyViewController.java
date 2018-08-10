@@ -187,7 +187,6 @@ public class StrategyViewController {
                         returnWorkingCapitalArray[i] = returnWorkingCapitalArray[l];
                         returnWorkingCapitalArray[l] = temp;
                     }
-
                 }
             }
 			for (int i = 0; i < EstimateIncomeArray.length; i++) {
@@ -203,12 +202,13 @@ public class StrategyViewController {
 
             for (int i = 0; i < conservationArray.length; i++) {
                 for (int l = i + 1; l < conservationArray.length; l++) {
-                    if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
-                        String temp = conservationArray[i];
-                        conservationArray[i] = conservationArray[l];
-                        conservationArray[l] = temp;
+                    if (conservationArray[l]!=null){
+                        if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
+                            String temp = conservationArray[i];
+                            conservationArray[i] = conservationArray[l];
+                            conservationArray[l] = temp;
+                        }
                     }
-
                 }
             }
 
