@@ -267,8 +267,11 @@ function removeAllCommas(str) {
 }
 
 function removeAllCommasAndDollar(str) {
-	str = str.replace("$", "");
-	str = str.replace(/,/g, "");
+	if (str =="" || str =="undefined" || str ==undefined){
+	}else{
+        str = str.replace("$", "");
+        str = str.replace(/,/g, "");
+	}
 	return str;
 }
 
