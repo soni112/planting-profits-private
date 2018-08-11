@@ -675,18 +675,18 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     Double ratio = null;
                     for (CropTypeView cropTypeView : cropTypeViewList) {
                         if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
-                            Double expCropYield = Double.valueOf(cropTypeView.getIntExpCropYield());
-                            Double expCropPrice = parseDouble(String.valueOf(cropTypeView.getIntExpCropPrice()));
-                            Double calculatedVariableProductionCost = parseDouble(String.valueOf(cropTypeView.getCalculatedVariableProductionCost ()));
+                            Double expCropYield = Double.valueOf(cropTypeView.getIntExpCropYield().replaceAll("\\," ,""));
+                            Double expCropPrice = Double.valueOf(String.valueOf(cropTypeView.getIntExpCropPrice()));
+                            Double calculatedVariableProductionCost = Double.valueOf(String.valueOf(cropTypeView.getCalculatedVariableProductionCost ()));
 
                             ratio = (expCropYield * expCropPrice) - (calculatedVariableProductionCost);
 
 //                             ratio= (Double.parseDouble (cropTypeView.getIntExpCropYield ()) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () );
                          }
                     }
-                    jsonObject.put(RATIO, String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio )).split ( "//." )[0]);
+                    jsonObject.put(RATIO, ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio ) ) );
                 } else {
-                    jsonObject.put(RATIO, (hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
+                    jsonObject.put(RATIO, ( AgricultureStandardUtils.withoutDecimalAndComma(hashMapForRatio.get(cropTypeKey) ) ) );
                 }
 
                 if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0%")
