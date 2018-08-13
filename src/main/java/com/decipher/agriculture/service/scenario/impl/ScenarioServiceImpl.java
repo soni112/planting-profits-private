@@ -561,7 +561,8 @@ public class ScenarioServiceImpl implements ScenarioService {
             potentialProfit = AgricultureStandardUtils.commaSeparaterForInteger(farmOutputCalculationDao.calculatePotentialProfitForAcre(farmOutputDetailsViewList));
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                 if (farmOutputDetailsView.getForFirm() || farmOutputDetailsView.getForProposed()) {
-                    totalForwardSales += Integer.parseInt(farmOutputDetailsView.getUsedAcres().replaceAll("\\,", ""));
+//                    totalForwardSales += Integer.parseInt(farmOutputDetailsView.getUsedAcres().replaceAll("\\,", ""));
+                    totalForwardSales += Integer.parseInt(String.valueOf(farmOutputDetailsView.getUsedCapitalPercentage()));
                 }
             }
             /* Output process for Farm by Field */
@@ -582,12 +583,14 @@ public class ScenarioServiceImpl implements ScenarioService {
 
             for (FarmOutputDetailsForFieldView farmOutputDetailsView : farmOutputDetailsForFieldViews) {
                 if (farmOutputDetailsView.isForFirm() || farmOutputDetailsView.isForProposed()) {
-                    totalForwardSales += Integer.parseInt(farmOutputDetailsView.getUsedAcres().replaceAll("\\,", ""));
+                    totalForwardSales += Integer.parseInt(String.valueOf(farmOutputDetailsView.getUsedCapitalPercentage()));
+//                    totalForwardSales += Integer.parseInt(farmOutputDetailsView.getUsedAcres().replaceAll("\\,", ""));
                 }
             }
             potentialProfit = AgricultureStandardUtils.commaSeparaterForInteger(farmOutputCalculationDao.calculatePotentialProfitForField(farmOutputDetailsForFieldViews));
         }
-        double forwardPercentage = (totalForwardSales * 100) / AgricultureStandardUtils.stringToLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUsed").get("Land") == null ? "0" : map.get("cropResourceUsed").get("Land")));
+        double forwardPercentage = totalForwardSales ;
+//        double forwardPercentage = (totalForwardSales * 100) / AgricultureStandardUtils.stringToLong(AgricultureStandardUtils.removeAllCommas(map.get("cropResourceUsed").get("Land") == null ? "0" : map.get("cropResourceUsed").get("Land")));
         /*mapDifferentValues.put("usedForwardAcresP", "" + AgricultureStandardUtils.doubleUptoSingleDecimalPoint(forwardPercentage));*/
 
         /**
