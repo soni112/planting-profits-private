@@ -327,7 +327,7 @@
                                             <td>Crop Insurance</td>
                                             <td>
                                                 <a href="#applyScenarioToCurrent" onclick="openScenarioPopup(); return false" class="remove-text" data-toggle="popover" data-container="body" data-trigger="hover"
-                                                   data-placement="top" title="Sceanrio Name"> Scenario Analysis</a>
+                                                   data-placement="top"> Scenario Analysis</a>
                                             </td>
                                             <td>Return on Working Capital
                                                 <span><a id="returnOnWorkingCapital" class="help_Infromation_PopUp" href="javascript:;">
