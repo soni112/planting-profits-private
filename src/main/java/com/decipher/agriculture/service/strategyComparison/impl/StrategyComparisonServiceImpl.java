@@ -396,24 +396,45 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
     @Override
     public JSONObject getStrategyComparisonDetails(FarmInfoView farmInfoView, int[] strategyIdArray) throws JSONException {
-
-        Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm(farmInfoView);
-
-        Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, strategyIdArray);
-        Map<String, JSONArray> cropDetailsForStrategy = getCropDetailsForStrategy(strategyDetailsForFarm);
-        Map<String, JSONArray> resourceDetailsForStrategy = getResourceDetailsForStrategy(strategyDetailsForFarm);
-        Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm);
-
-
         JSONObject jsonObject = new JSONObject();
+        Set <String> setForCropHeader = new HashSet <String> ();
+
+        int strategyId = 0;
+        for(int i:strategyIdArray) {
+            strategyId = i;
+            Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm(farmInfoView);
+
+            Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, strategyIdArray);
+            Map<String, JSONArray> cropDetailsForStrategy = getCropDetailsForStrategy(strategyDetailsForFarm);
+            Map<String, JSONArray> resourceDetailsForStrategy = getResourceDetailsForStrategy(strategyDetailsForFarm);
+            Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm);
+            JSONArray jsonArrayForHeader = new JSONArray();
+
+            JSONArray jsonArrayForCropHeader = cropDetailsForStrategy.get("jsonArrayForCropHeader");
+            for (Object object : jsonArrayForCropHeader) {
+                JSONObject headerDetails = (JSONObject) object;
+                JSONArray jsonArrayForHeaderDetails = (JSONArray) headerDetails.get("cropKey");
+                if (headerDetails.get("strategyId").equals(strategyId)) {
+                    for (Object jsonArrayForHeaderDetail : jsonArrayForHeaderDetails) {
+                        JSONObject jsonObjectForHeader = (JSONObject) jsonArrayForHeaderDetail;
+                        String cropName = (String) jsonObjectForHeader.get("name");
+                        setForCropHeader.add(cropName);
+                    }
+                }
+            }
+            jsonArrayForHeader.addAll(setForCropHeader);
+
+            Map<String, JSONArray> cropDetailsForHeader = new HashMap<>();
+            cropDetailsForHeader.put("jsonArrayForCropHeader", jsonArrayForHeader);
+
 
         //  Strategy Comparison Details
         jsonObject.put("strategyDetails", strategyOutputDetails.get("jsonArrayForStrategy"));
         jsonObject.put("strategyOutput", strategyOutputDetails.get("jsonArrayForStrategyOutput"));
         jsonObject.put("strategy", farmInfoView.getStrategy());
 
-        jsonObject.put("jsonArrayForCrop", cropDetailsForStrategy.get("jsonArrayForCrop"));
-        jsonObject.put("jsonArrayForCropHeader", cropDetailsForStrategy.get("jsonArrayForCropHeader"));
+            jsonObject.put("jsonArrayForCrop", cropDetailsForStrategy.get("jsonArrayForCrop"));
+            jsonObject.put("jsonArrayForCropHeader", cropDetailsForHeader.get("jsonArrayForCropHeader"));
 
         jsonObject.put("jsonArrayForResource", resourceDetailsForStrategy.get("jsonArrayForResource"));
         jsonObject.put("jsonArrayForResourceHeader", resourceDetailsForStrategy.get("jsonArrayForResourceHeader"));
@@ -425,9 +446,9 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
         jsonObject.put("jsonArrayForHighRiskCropHeader", highRiskAngConservationForStrategy.get("jsonArrayForHighRiskCropHeader"));
 
 
-        //  Variance Graph Details
-        jsonObject.put("jsonArrayForVarianceGraphData", getVarianceGraphDetails(strategyDetailsForFarm, farmInfoView, strategyIdArray));
-
+            //  Variance Graph Details
+            jsonObject.put("jsonArrayForVarianceGraphData", getVarianceGraphDetails(strategyDetailsForFarm, farmInfoView, strategyIdArray));
+        }
 
         return jsonObject;
 
@@ -569,6 +590,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
             JSONObject jsonObjectForStrategy = new JSONObject();
             JSONArray cropArray = new JSONArray();
+            JSONArray jsonArrayForCropHeaderDetails = new JSONArray();
 
             jsonObjectForStrategy.put("strategyName", farmCustomStrategyView.getStrategyName());
             jsonObjectForStrategy.put("strategyId", farmCustomStrategyView.getId());
@@ -581,12 +603,10 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                         jsonObject.put("amount", farmOutputDetailsView.getUsedAcresAsDouble());
                         cropArray.add(jsonObject);
                         System.out.println(jsonObject);
-                        if(!jsonArrayForCropHeader.contains(farmOutputDetailsView.getCropTypeView().getCropName())){
-                            jsonArrayForCropHeader.add(farmOutputDetailsView.getCropTypeView().getCropName());
+                        if(!jsonArrayForCropHeaderDetails.contains(jsonObject)){
+                            jsonArrayForCropHeaderDetails.add(jsonObject);
                         }
-
                     }
-
                 }
             } else if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)){
 
@@ -600,20 +620,17 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     jsonObject.put("name", mapForAcreEntry.getKey());
                     cropArray.add(jsonObject);
 
-                    if (!jsonArrayForCropHeader.contains(mapForAcreEntry.getKey())) {
-                        jsonArrayForCropHeader.add(mapForAcreEntry.getKey());
+                    if (!jsonArrayForCropHeaderDetails.contains(jsonObject)) {
+                        jsonArrayForCropHeaderDetails.add(jsonObject);
                     }
-
                 }
-
             }
-
+            jsonObjectForStrategy.put("cropKey", jsonArrayForCropHeaderDetails);
             jsonObjectForStrategy.put("details", cropArray);
 
-
+            jsonArrayForCropHeader.add(jsonObjectForStrategy);
             jsonArrayForCrop.add(jsonObjectForStrategy);
         }
-
 
         for (Object o : jsonArrayForCrop) {
 
@@ -621,24 +638,31 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
             JSONArray cropDetailsObject = (JSONArray) jsonObject.get("details");
 
-            for(Object o1 :jsonArrayForCropHeader) {
-                Boolean flag = false;
-                String headerCropName = o1.toString();
+            for(Object object :jsonArrayForCropHeader) {
+                JSONObject headerForJsonObject = (JSONObject) object;
+                JSONArray headerCrop = (JSONArray) headerForJsonObject.get("cropKey");
+                for (Object headerCropDetail : headerCrop) {
+                    JSONObject jsonObjectForHeader = (JSONObject) headerCropDetail;
+                    Object cropHeaderName = jsonObjectForHeader.get("name");
 
-                for (Object s : cropDetailsObject) {
-                    JSONObject cropNameInDetails = (JSONObject)s;
-                    String cropName = cropNameInDetails.get("name").toString();
-                    if (cropName.equals(headerCropName)) {
-                        flag = true;
-                        break;
+                    Boolean flag = false;
+                    String headerCropName = cropHeaderName.toString();
+
+                    for (Object s : cropDetailsObject) {
+                        JSONObject cropNameInDetails = (JSONObject) s;
+                        String cropName = cropNameInDetails.get("name").toString();
+                        if (cropName.equals(headerCropName)) {
+                            flag = true;
+                            break;
+                        }
                     }
-                }
 
-                if(!flag){
-                    JSONObject jsonObjectAdd = new JSONObject();
-                    jsonObjectAdd.put("amount", 0);
-                    jsonObjectAdd.put("name", headerCropName);
-                    cropDetailsObject.add(jsonObjectAdd);
+                    if (!flag) {
+                        JSONObject jsonObjectAdd = new JSONObject();
+                        jsonObjectAdd.put("amount", 0);
+                        jsonObjectAdd.put("name", headerCropName);
+                        cropDetailsObject.add(jsonObjectAdd);
+                    }
                 }
             }
 
