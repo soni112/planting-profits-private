@@ -567,7 +567,10 @@
             <div class="potencial_profit_popup">
                 <div class="panel panel-yellow">
                     <div class="panel-heading text-center">
-                        <label style="cursor: pointer;">Select Scenario Analysis</label>
+                        <label style="cursor: pointer;">Select a Scenario to include in the report.</label>
+                        <a id="featuredScenario" class="help_Infromation_PopUp" href="#">
+                            <img src="<c:url value="/images/i-icon.png"/>">
+                        </a>
                     </div>
                     <div class="panel-body" style="display: block">
 
@@ -587,7 +590,7 @@
                                 onclick="generateReportForScenario();hidePopupForScenario(); return false;">Ok
                         </button>
                         <button class="alertify-button alertify-button-cancel pull-right"
-                                onclick="hidePopupForScenario(); return false;">Cancel
+                                onclick="hidePopupForScenario(); openStrategySelectionPopup(); return false;">Cancel
                         </button>
                     </div>
                 </div>
