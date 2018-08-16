@@ -323,6 +323,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     }
     @Override
     public JSONObject getGranularComparisonResult(FarmInfoView farmInfoView, int[] strategyIdArray) throws JSONException {
+        int strategyID;
         Map <FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm ( farmInfoView );
         Map <String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy ( strategyDetailsForFarm );
         Map <String, JSONArray> strategyOutputDetails = getStrategyOutputDetails ( strategyDetailsForFarm, strategyIdArray );
@@ -332,54 +333,57 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
         for (Map.Entry <FarmCustomStrategyView, JSONObject> entry : entries) {
             JSONObject jsonObjectStrategyData = new JSONObject ();
             FarmCustomStrategyView farmCustomStrategyView = entry.getKey ();
+            int strategyId = farmCustomStrategyView.getId();
             JSONObject strategyDetails = entry.getValue ();
             int estimateIncome = 0;
             String returnWorkingCapital = null;
             double variableCostProduction = 0.0;
             double workingCapitalUsed = 0.0;
 
+            for (int i:strategyIdArray) {
+                strategyID = i;
+                if (strategyID == strategyId) {
+                    List<CropTypeView> cropTypeViews = (List<CropTypeView>) strategyDetails.get("cropTypeView");
 
-            List <CropTypeView> cropTypeViews = (List <CropTypeView>) strategyDetails.get ( "cropTypeView" );
+                    if (Objects.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
+                        List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) strategyDetails.get("farmOutputDetails");
+                        for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                            estimateIncome += farmOutputDetailsView.getProfitAsDouble();
+                        }
+                    } else if (Objects.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
+                        List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) strategyDetails.get("farmOutputDetails");
+                        for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
+                            estimateIncome += farmOutputDetailsForFieldView.getProfitDouble();
+                        }
+                    }
+                    int index = 0;
+                    Map<String, String> cropResourceUsed = (Map<String, String>) strategyDetails.get("cropResourceUsed");
+                    int sizeOfList = ((List<CropResourceUsageView>) strategyDetails.get("resourceList")).size();
+                    for (CropResourceUsageView cropResourceUsageView : (List<CropResourceUsageView>) strategyDetails.get("resourceList")) {
+                        index++;
 
-            if (Objects.equals ( farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy (), PlanByStrategy.PLAN_BY_ACRES )) {
-                List <FarmOutputDetailsView> farmOutputDetailsViewList = (List <FarmOutputDetailsView>) strategyDetails.get ( "farmOutputDetails" );
-                for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                    estimateIncome += farmOutputDetailsView.getProfitAsDouble ();
-                }
-            } else if (Objects.equals ( farmCustomStrategyView.getFarmCustomStrategy ().getFarmInfo ().getStrategy (), PlanByStrategy.PLAN_BY_FIELDS )) {
-                List <FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List <FarmOutputDetailsForFieldView>) strategyDetails.get ( "farmOutputDetails" );
-                for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
-                    estimateIncome += farmOutputDetailsForFieldView.getProfitDouble ();
-                }
-            }
-            int index = 0;
-            Map <String, String> cropResourceUsed = (Map <String, String>) strategyDetails.get ( "cropResourceUsed" );
-            int sizeOfList = ((List <CropResourceUsageView>) strategyDetails.get ( "resourceList" )).size ();
-            for (CropResourceUsageView cropResourceUsageView : (List <CropResourceUsageView>) strategyDetails.get ( "resourceList" )) {
-                index++;
-
-                if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "capital" )) {
-                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
-                } else if (cropResourceUsageView.getCropResourceUse ().equalsIgnoreCase ( "land" )) {
-                    workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
-                }/*else {
+                        if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("capital")) {
+                            workingCapitalUsed = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsed.get(cropResourceUsageView.getCropResourceUse())));
+                        } else if (cropResourceUsageView.getCropResourceUse().equalsIgnoreCase("land")) {
+                            workingCapitalUsed = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsed.get(cropResourceUsageView.getCropResourceUse())));
+                        }/*else {
                     workingCapitalUsed = Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( cropResourceUsed.get ( cropResourceUsageView.getCropResourceUse () ) ) );
                 }*/
 
 
-
-
-                if (index == sizeOfList) {
-                    if (workingCapitalUsed != 0 || estimateIncome != 0) {
-                        returnWorkingCapital = String.valueOf ( (AgricultureStandardUtils.doubleWithOneDecimal  ( estimateIncome / workingCapitalUsed ) ) );
-                    } else {
-                        returnWorkingCapital = "NA";
+                        if (index == sizeOfList) {
+                            if (workingCapitalUsed != 0 || estimateIncome != 0) {
+                                returnWorkingCapital = String.valueOf((AgricultureStandardUtils.doubleWithOneDecimal(estimateIncome / workingCapitalUsed)));
+                            } else {
+                                returnWorkingCapital = "0.0";
+                            }
+                        }
                     }
+                    jsonObjectStrategyData.put("EstimateIncome", estimateIncome);
+                    jsonObjectStrategyData.put("returnWorkingCapital", "" + returnWorkingCapital);
+                    jsonArrayStrategyData.add(jsonObjectStrategyData);
                 }
             }
-            jsonObjectStrategyData.put ( "EstimateIncome", estimateIncome );
-            jsonObjectStrategyData.put ( "returnWorkingCapital", "" + returnWorkingCapital );
-            jsonArrayStrategyData.add ( jsonObjectStrategyData );
         }
 
         JSONObject jsonObject = new JSONObject ();
