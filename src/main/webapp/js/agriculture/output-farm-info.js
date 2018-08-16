@@ -228,7 +228,7 @@ function alterHTMLOfTableAndShowPopupTable(result) {
         }
     }
     var unusedLand = totalLand - usedLand;
-    var potential_pro = result.Potential_Profit;
+    var potential_pro = addCommaSignForTextWithOutId(result.Potential_Profit);
     /**
      * @chanegd - Abhishek
      * @date - 25-02-2016

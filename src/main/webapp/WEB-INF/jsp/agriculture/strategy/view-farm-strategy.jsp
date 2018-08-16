@@ -327,7 +327,7 @@
                                             <td>Crop Insurance</td>
                                             <td>
                                                 <a href="#applyScenarioToCurrent" onclick="openScenarioPopup(); return false" class="remove-text" data-toggle="popover" data-container="body" data-trigger="hover"
-                                                   data-placement="top" title="Sceanrio Name"> Scenario Analysis</a>
+                                                   data-placement="top"> Scenario Analysis</a>
                                             </td>
                                             <td>Return on Working Capital
                                                 <span><a id="returnOnWorkingCapital" class="help_Infromation_PopUp" href="javascript:;">
@@ -515,7 +515,7 @@
                                     Select up to three Strategies to include in the report.
                                 </p>
                                 <button class="alertify-button alertify-button-ok pull-right"
-                                        onclick="openStrategySelectionPopup(); return false;">Print</button>
+                                        onclick="showPopupForScenario(); return false;">Print</button>
                             </div>
                         </div>
 
@@ -548,7 +548,7 @@
                             </div>
                         </div>
 
-                        <button class="alertify-button alertify-button-ok pull-right" onclick="showPopupForScenario(); closeStrategySelectionPopup(); return false;">Generate Report</button>
+                        <button class="alertify-button alertify-button-ok pull-right" onclick="closeStrategySelectionPopup(); generateReport(); return false;">Generate Report</button>
                         <button class="alertify-button alertify-button-cancel pull-right" onclick="closeStrategySelectionPopup(); return false;">Back</button>
 
                     </div>
@@ -567,7 +567,10 @@
             <div class="potencial_profit_popup">
                 <div class="panel panel-yellow">
                     <div class="panel-heading text-center">
-                        <label style="cursor: pointer;">Select Scenario Analysis</label>
+                        <label style="cursor: pointer;">Select a Scenario to include in the report.</label>
+                        <a id="featuredScenario" class="help_Infromation_PopUp" href="#">
+                            <img src="<c:url value="/images/i-icon.png"/>">
+                        </a>
                     </div>
                     <div class="panel-body" style="display: block">
 
@@ -584,10 +587,44 @@
 
                         <div class="clearfix"></div>
                         <button class="alertify-button alertify-button-ok pull-right"
-                                onclick="generateReportForScenario();hidePopupForScenario(); return false;">Ok
+                                onclick="hidePopupForScenario(); openStrategySelectionPopup(); return false;">Ok
                         </button>
                         <button class="alertify-button alertify-button-cancel pull-right"
-                                onclick="hidePopupForScenario(); return false;">Cancel
+                                onclick="hidePopupForScenario(); openStrategySelectionPopup(); return false;">Cancel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="no-scenario-popup" class="pop-up" style="display: none;">
+    <div class="pop-up-body">
+        <div class="popup_section">
+
+            <div class="potencial_profit_popup">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading text-center">
+                        <label style="cursor: pointer;">Information</label>
+                    </div>
+                    <div class="panel-body" style="display: block">
+
+                        <div id="generateReportForNoScenarioDiv">
+                            <div class="form-group form-group1">
+                                <label aria-label="center">No Scenario Available</label>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <button class="alertify-button alertify-button-ok pull-right"
+                                onclick="hidePopupForNoScenario();openStrategySelectionPopup(); return false;">Ok
+                        </button>
+                        <button class="alertify-button alertify-button-cancel pull-right"
+                                onclick="hidePopupForNoScenario();openStrategySelectionPopup(); return false;">Cancel
+
                         </button>
                     </div>
                 </div>
