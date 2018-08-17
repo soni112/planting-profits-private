@@ -1009,11 +1009,14 @@ public class SectionOnePDFGenerator {
                 if (profit != 0.0 && acreage != 0.0) {
                     estIncomePerAcr = AgricultureStandardUtils.doubleWithOneDecimal(profit / acreage);
                 }else{
-                    Double ratio = null;
                     for (CropTypeView cropTypeView : cropTypeViewList) {
                         if(cropTypeView.getCropName ().equals ( cropKey )) {
-                            estIncomePerAcr= (Double.parseDouble (cropTypeView.getIntExpCropYield ()) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () );
+                            estIncomePerAcr= AgricultureStandardUtils.doubleWithOneDecimal((Double.parseDouble (AgricultureStandardUtils.removeAllCommas(cropTypeView.getIntExpCropYield ())) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ));
                         }
+//                        else if (profit != 0.0 && acreage != 0.0 && cropTypeView.getProposedchecked()!=null && !cropTypeView.getForwardPrice().isEmpty()){
+//                            String forwardPrice = AgricultureStandardUtils.removeAllCommas(cropTypeView.getForwardPrice().replace("$", ""));
+//                            estIncomePerAcr= AgricultureStandardUtils.doubleWithOneDecimal((Double.parseDouble (AgricultureStandardUtils.removeAllCommas(cropTypeView.getIntExpCropYield ())) * (Double.parseDouble(forwardPrice))) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () ));
+//                        }
                     }
                 }
                 PdfPCell estimate = new PdfPCell(new Phrase(""+estIncomePerAcr , ReportTemplate.TIMESROMAN_10_NORMAL));

@@ -746,7 +746,7 @@ function generateReportForScenario() {
 
             window.location = contextPath + '/Generate-Report.htm?farmId=' + currentFarmId + '&strategyID=' + strategyIdArray.toString() + '&scenarioId=' + scenarioIdArray.toString();
         }else {
-            customAlerts("Select maximum one scenarios for generating report", "error", 0);
+            generateReport();
 		}
     } else {
         customAlerts("Select maximum of three strategies for generating report", "error", 0);
