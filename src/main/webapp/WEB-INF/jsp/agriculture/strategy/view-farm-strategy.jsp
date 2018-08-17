@@ -548,7 +548,7 @@
                             </div>
                         </div>
 
-                        <button class="alertify-button alertify-button-ok pull-right" onclick="closeStrategySelectionPopup(); generateReport(); return false;">Generate Report</button>
+                        <button class="alertify-button alertify-button-ok pull-right" onclick="closeStrategySelectionPopup(); generateReportForScenario(); return false;">Generate Report</button>
                         <button class="alertify-button alertify-button-cancel pull-right" onclick="closeStrategySelectionPopup(); return false;">Back</button>
 
                     </div>
