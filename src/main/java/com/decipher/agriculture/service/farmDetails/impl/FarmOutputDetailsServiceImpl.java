@@ -608,7 +608,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 if (farmOutputDetailsView.getRatio() == 0.0) {
-                        Double ratio = null;
+                        Double ratio = 0.0;
                             if(farmOutputDetailsView.getCropTypeView ().getCropName ().equals ( cropName )) {
                                 ratio= (parseDouble (farmOutputDetailsView.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetailsView.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetailsView.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
                             }
