@@ -80,7 +80,7 @@
                 });
                 var contextPath = '<c:out value="${pageContext.servletContext.contextPath}" />';
                 if(strategyID.length != 0){
-                    window.location.href = contextPath + '/Generate-Report.htm?farmId=' + ${model.farm.farmId} + '&strategyID=' + strategyID.toString();
+                    window.location.href = contextPath + '/Generate-Report.htm?farmId=' + ${model.farm.farmId} + '&strategyID=' + strategyID.toString()+'&scenarioId=';
                     $('info').hide();
                 }
 
