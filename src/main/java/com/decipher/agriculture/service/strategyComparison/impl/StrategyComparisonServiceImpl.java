@@ -432,22 +432,22 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             cropDetailsForHeader.put("jsonArrayForCropHeader", jsonArrayForHeader);
 
 
-        //  Strategy Comparison Details
-        jsonObject.put("strategyDetails", strategyOutputDetails.get("jsonArrayForStrategy"));
-        jsonObject.put("strategyOutput", strategyOutputDetails.get("jsonArrayForStrategyOutput"));
-        jsonObject.put("strategy", farmInfoView.getStrategy());
+            //  Strategy Comparison Details
+            jsonObject.put("strategyDetails", strategyOutputDetails.get("jsonArrayForStrategy"));
+            jsonObject.put("strategyOutput", strategyOutputDetails.get("jsonArrayForStrategyOutput"));
+            jsonObject.put("strategy", farmInfoView.getStrategy());
 
             jsonObject.put("jsonArrayForCrop", cropDetailsForStrategy.get("jsonArrayForCrop"));
             jsonObject.put("jsonArrayForCropHeader", cropDetailsForHeader.get("jsonArrayForCropHeader"));
 
-        jsonObject.put("jsonArrayForResource", resourceDetailsForStrategy.get("jsonArrayForResource"));
-        jsonObject.put("jsonArrayForResourceHeader", resourceDetailsForStrategy.get("jsonArrayForResourceHeader"));
+            jsonObject.put("jsonArrayForResource", resourceDetailsForStrategy.get("jsonArrayForResource"));
+            jsonObject.put("jsonArrayForResourceHeader", resourceDetailsForStrategy.get("jsonArrayForResourceHeader"));
 
-        jsonObject.put("jsonArrayForConservationCrop", highRiskAngConservationForStrategy.get("jsonArrayForConservationCrop"));
-        jsonObject.put("jsonArrayForConservationCropHeader", highRiskAngConservationForStrategy.get("jsonArrayForConservationCropHeader"));
+            jsonObject.put("jsonArrayForConservationCrop", highRiskAngConservationForStrategy.get("jsonArrayForConservationCrop"));
+            jsonObject.put("jsonArrayForConservationCropHeader", highRiskAngConservationForStrategy.get("jsonArrayForConservationCropHeader"));
 
-        jsonObject.put("jsonArrayForHighRiskCrop", highRiskAngConservationForStrategy.get("jsonArrayForHighRiskCrop"));
-        jsonObject.put("jsonArrayForHighRiskCropHeader", highRiskAngConservationForStrategy.get("jsonArrayForHighRiskCropHeader"));
+            jsonObject.put("jsonArrayForHighRiskCrop", highRiskAngConservationForStrategy.get("jsonArrayForHighRiskCrop"));
+            jsonObject.put("jsonArrayForHighRiskCropHeader", highRiskAngConservationForStrategy.get("jsonArrayForHighRiskCropHeader"));
 
 
             //  Variance Graph Details
@@ -480,6 +480,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
                     double potentialProfit = Double.parseDouble(AgricultureStandardUtils.removeAllCommas(jsonObjectForStrategyDetails.get("potentialProfit").toString()));
                     farmCustomStrategyView.setPotentialProfit(potentialProfit);
+                    List<CropTypeView> cropTypeViewList = (List<CropTypeView>) jsonObjectForStrategyDetails.get("cropTypeView");
 
                     if(PlanByStrategy.PLAN_BY_ACRES.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy())){
 
@@ -488,13 +489,30 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                         JSONObject jsonObject = new JSONObject();
                         for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                             JSONObject jsonObjectDetails = new JSONObject();
-                            String cropName;
-                            if(farmOutputDetailsView.getForFirm())
-                                cropName = farmOutputDetailsView.getCropTypeView().getCropName() + " (Firm)";
-                            else if(farmOutputDetailsView.getForProposed())
-                                cropName = farmOutputDetailsView.getCropTypeView().getCropName() + " (Proposed)";
-                            else
-                                cropName = farmOutputDetailsView.getCropTypeView().getCropName();
+                            String cropName = null;
+                            String conservation = " (conservation)";
+                            String highRisk = " (highRisk)";
+                            String conservationHighRisk = " (conservation) (highRisk)";
+
+                            String forStr = "";
+                            if (farmOutputDetailsView.getForFirm()) {
+                                forStr = " (Firm)";
+                            } else if (farmOutputDetailsView.getForProposed()) {
+                                forStr = " (Proposed)";
+                            }
+
+                            for (CropTypeView cropTypeView : cropTypeViewList) {
+                                if (farmOutputDetailsView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getHiRiskCrop().equals("true")) {
+                                    cropName = farmOutputDetailsView.getCropTypeView().getCropName() + forStr + ""+ conservationHighRisk;
+                                }else if (farmOutputDetailsView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getHiRiskCrop().equals("true")){
+                                    cropName = farmOutputDetailsView.getCropTypeView().getCropName() + forStr + ""+highRisk;
+                                }else if (farmOutputDetailsView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getConservation_Crop().equals("true")) {
+                                    cropName = farmOutputDetailsView.getCropTypeView().getCropName() + forStr + ""+conservation;
+                                }else if (farmOutputDetailsView.getCropTypeView().getCropName().equals(cropTypeView.getCropName())){
+                                    cropName = farmOutputDetailsView.getCropTypeView().getCropName()+ forStr;
+                                }
+                            }
+
                             jsonObjectDetails.put("cropName", cropName);
                             jsonObjectDetails.put("acreage", AgricultureStandardUtils.commaSeparaterForLong(farmOutputDetailsView.getUsedAcresAsInteger()));
 
@@ -542,7 +560,24 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                                         } else if (farmOutputDetailsForFieldView.isForProposed()) {
                                             forStr = " (Proposed)";
                                         }
-                                        jsonObjectDetails.put("crop", farmOutputDetailsForFieldView.getCropTypeView().getCropName() + forStr);
+
+                                        String cropNameDetail = null;
+                                        String conservation = " (conservation)";
+                                        String highRisk = " (highRisk)";
+                                        String conservationHighRisk = " (conservation) (highRisk)";
+
+                                        for (CropTypeView cropTypeView : cropTypeViewList) {
+                                            if (farmOutputDetailsForFieldView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getHiRiskCrop().equals("true") && cropTypeView.getConservation_Crop().equals("true")) {
+                                                cropNameDetail = farmOutputDetailsForFieldView.getCropTypeView().getCropName() + forStr + "" + conservationHighRisk;
+                                            }else if (farmOutputDetailsForFieldView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getHiRiskCrop().equals("true")){
+                                                cropNameDetail = farmOutputDetailsForFieldView.getCropTypeView().getCropName() +forStr+""+highRisk;
+                                            }else if (farmOutputDetailsForFieldView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getConservation_Crop().equals("true")) {
+                                                cropNameDetail = farmOutputDetailsForFieldView.getCropTypeView().getCropName() +forStr+""+conservation;
+                                            }else if (farmOutputDetailsForFieldView.getCropTypeView().getCropName().equals(cropTypeView.getCropName())){
+                                                cropNameDetail = farmOutputDetailsForFieldView.getCropTypeView().getCropName() +forStr;
+                                            }
+                                        }
+                                        jsonObjectDetails.put("crop",  cropNameDetail);
                                         jsonArray.add(jsonObjectDetails);
                                     }
                                 }
