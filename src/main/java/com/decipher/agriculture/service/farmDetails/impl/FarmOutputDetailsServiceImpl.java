@@ -287,11 +287,49 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             jsonObject.put(MAX_LIMIT, "--");
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
-            if(cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )){
+
+            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+
+            PlanByStrategy strategy = farmInfoView.getStrategy();
+            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_ACRES)) {
+
+            List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+            Double profitIndex = 0.0;
+            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                if(cropTypeView != null ) {
+                    if (farmOutputDetailsView.getForFirm().equals("true") || farmOutputDetailsView.getForFirm() && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+                        profitIndex = farmOutputDetailsView.getProfitIndex();
+                    }
+                    if (profitIndex >= 0.8)
+                        jsonObject.put(INC_DEC_INCOME, "Increase");
+                    else if (profitIndex <0.8 )
+                        jsonObject.put(INC_DEC_INCOME, "Decrease");
+                }
+            }
+        }
+
+            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_FIELDS)) {
+
+                Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
+                Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
+                if (cropTypeView != null) {
+                    Double profitIndex = 0.0;
+                    if(cropTypeView.getFirmchecked().equalsIgnoreCase("true") || hashMapForAcre.containsKey(cropTypeView.getCropName() + " (Firm)")){
+//                        profitIndex = Double.valueOf(hashMapForProfit.get("profitIndex"));
+                    }
+                    if (profitIndex >= 0.8)
+                        jsonObject.put(INC_DEC_INCOME, "Increase");
+                    else if (profitIndex <0.8 )
+                        jsonObject.put(INC_DEC_INCOME, "Decrease");
+                }
+            }
+
+
+            /*if(cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )){
                 jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Increase" : "Decrease");
             }else{
                 jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
-            }
+            }*/
 //            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
 
             if (min.equalsIgnoreCase ( YES )) {
@@ -396,8 +434,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = cropTypeView.getForwardAcres().intValue();
                         maximumAcres = 0;
-                        profitIndex = farmOutputDetailsView.getProfitIndex();
-                        return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax, profitIndex);
+//                        profitIndex = farmOutputDetailsView.getProfitIndex();
+                        return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
                     } else if (!cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
@@ -434,7 +472,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     maximumAcres = 0;
 //                    profitIndex = hashMapForProfit.get("");
                     profitIndex = 0.0;
-                    return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax, profitIndex);
+                    return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
                 } else {
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName()).split(" ")[0]));
                     minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
@@ -499,12 +537,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         }
         return "";    }
 
-    public String getYesNoForFirmChecked(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax, Double profitIndex){
+    public String getYesNoForFirmChecked(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax){
         double value = usedAcres - minimumAcres;
         double values=  value/minimumAcres;
-        if(profitIndex >=0.8){
+        if (value == 0) {
             return YES;
-        } else if (profitIndex < 0.8) {
+        } else if (values <= 0.15) {
+            return Likely;
+        } else if (values > 0.15) {
             return NO;
         }
         return "";
