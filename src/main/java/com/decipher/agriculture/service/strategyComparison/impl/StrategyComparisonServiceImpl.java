@@ -502,7 +502,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                             }
 
                             for (CropTypeView cropTypeView : cropTypeViewList) {
-                                if (farmOutputDetailsView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getHiRiskCrop().equals("true")) {
+                                if (farmOutputDetailsView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getHiRiskCrop().equals("true") && cropTypeView.getConservation_Crop().equals("true")) {
                                     cropName = farmOutputDetailsView.getCropTypeView().getCropName() + forStr + ""+ conservationHighRisk;
                                 }else if (farmOutputDetailsView.getCropTypeView().getCropName().equals(cropTypeView.getCropName()) && cropTypeView.getHiRiskCrop().equals("true")){
                                     cropName = farmOutputDetailsView.getCropTypeView().getCropName() + forStr + ""+highRisk;
