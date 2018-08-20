@@ -9,6 +9,8 @@ import java.util.Set;
 import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.farm.FarmInfo;
+import com.decipher.agriculture.data.scenario.FarmStrategyScenario;
+import com.decipher.agriculture.data.strategy.FarmCustomStrategy;
 import com.decipher.agriculture.service.account.impl.SessionService;
 import com.decipher.agriculture.service.farm.CropFieldChociesService;
 import com.decipher.agriculture.service.farm.CropGroupService;
@@ -137,6 +139,16 @@ public class FarmViewController {
 //        FarmInfoView farmInfoView = farmInfoService.getFarmByIdAfterCheckForAccount(farmId, account.getId());
 
         Farm farm = farmService.getFarmById(farmId);
+//        Set<FarmCustomStrategy> farmCustomStrategies = farm.getFarmCustomStrategy();
+//        for (FarmCustomStrategy farmCustomStrategy:farmCustomStrategies){
+//            if (farmCustomStrategy.getStrategyName().equals("Baseline Strategy")){
+//                Set<FarmStrategyScenario> farmStrategyScenarios = farmCustomStrategy.getFarmStrategyScenarios();
+//                for (FarmStrategyScenario farmStrategyScenario:farmStrategyScenarios){
+//                    int scenarioId = farmStrategyScenario.getScenarioId();
+//                }
+//            }
+//        }
+
 
         if (farm != null && !farm.getSaveFlag()) {
             myModel.put("farm", farm);
