@@ -329,7 +329,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Increase" : "Decrease");
             }else{
                 jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
-            }*/
+            }
 //            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
 
             if (min.equalsIgnoreCase ( YES )) {
@@ -715,9 +715,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     Double ratio = null;
                     for (CropTypeView cropTypeView : cropTypeViewList) {
                         if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
-                            Double expCropYield = Double.valueOf(cropTypeView.getIntExpCropYield().replaceAll("\\," ,""));
-                            Double expCropPrice = Double.valueOf(String.valueOf(cropTypeView.getIntExpCropPrice()));
-                            Double calculatedVariableProductionCost = Double.valueOf(String.valueOf(cropTypeView.getCalculatedVariableProductionCost ()));
+                            Double expCropYield = parseDouble (AgricultureStandardUtils.removeAllCommas ( cropTypeView.getIntExpCropYield()));
+                            Double expCropPrice = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(cropTypeView.getIntExpCropPrice())));
+                            Double calculatedVariableProductionCost = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(cropTypeView.getCalculatedVariableProductionCost ())));
 
                             ratio = (expCropYield * expCropPrice) - (calculatedVariableProductionCost);
 
@@ -726,7 +726,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     }
                     jsonObject.put(RATIO, ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio ) ) );
                 } else {
-                    jsonObject.put(RATIO, ( AgricultureStandardUtils.withoutDecimalAndComma(hashMapForRatio.get(cropTypeKey) ) ) );
+                    jsonObject.put(RATIO, (hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
                 }
 
                 if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0%")
