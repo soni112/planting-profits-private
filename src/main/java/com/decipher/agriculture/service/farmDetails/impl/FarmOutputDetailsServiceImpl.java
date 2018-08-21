@@ -675,9 +675,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     Double ratio = null;
                     for (CropTypeView cropTypeView : cropTypeViewList) {
                         if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
-                            Double expCropYield = Double.valueOf(cropTypeView.getIntExpCropYield());
-                            Double expCropPrice = parseDouble(String.valueOf(cropTypeView.getIntExpCropPrice()));
-                            Double calculatedVariableProductionCost = parseDouble(String.valueOf(cropTypeView.getCalculatedVariableProductionCost ()));
+                            Double expCropYield = parseDouble (AgricultureStandardUtils.removeAllCommas ( cropTypeView.getIntExpCropYield()));
+                            Double expCropPrice = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(cropTypeView.getIntExpCropPrice())));
+                            Double calculatedVariableProductionCost = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(cropTypeView.getCalculatedVariableProductionCost ())));
 
                             ratio = (expCropYield * expCropPrice) - (calculatedVariableProductionCost);
 
