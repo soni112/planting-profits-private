@@ -337,9 +337,15 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     }
                 }
 
-                if(totalLand == Double.parseDouble ( AgricultureStandardUtils.removeAllCommas ( getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) )))){
-                    max = NO;
+                String cropAcreage = getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) );
+                if (!cropAcreage.equalsIgnoreCase("") ) {
+                    if (totalLand == Double.parseDouble(cropAcreage.replaceAll("\\,",""))) {
+                        max = NO;
+                    }
                 }
+                else
+                    totalLand = 0.0;
+
                 jsonObject1.put(IMPACTING_INCOME, max);
                 jsonObject1.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
                 if (max.equalsIgnoreCase(YES)) {
