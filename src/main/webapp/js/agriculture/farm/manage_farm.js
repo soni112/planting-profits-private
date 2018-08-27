@@ -3633,12 +3633,12 @@ function calculatePercentageOfMinAcreage(obj) {
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var minAcreageString = (currentTr.find('.minCropAcreage').val());
     var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
-    var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
+    var minAcreagePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
     if (minAcreage <= totalLand) {
-        if (minAcreage == 0) {
+        /*if (minAcreage == 0) {
             currentTr.find('.minCropAcreagePercentage').val(0);
-        }
-        var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
+        }*/
+        // var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
         if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
             var per = Math.ceil((minAcreage / totalLand) * 100);
             currentTr.find('.minCropAcreagePercentage').val(isNaN(per) ? '' : per);
@@ -3664,9 +3664,9 @@ function calculatePercentageOfMinAcreagePercent(obj) {
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var minAcreageString = (currentTr.find('.minCropAcreage').val());
     var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
-    var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
-    if (minAcragePer <= 100) {
-        var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
+    var minAcreagePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
+    if (minAcreagePer <= 100) {
+        // var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
         if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
             var per = Math.ceil((minAcreage / totalLand) * 100);
             currentTr.find('.minCropAcreagePercentage').val(isNaN(per) ? '' : per);
