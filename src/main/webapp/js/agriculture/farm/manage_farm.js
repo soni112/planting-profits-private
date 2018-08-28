@@ -1945,7 +1945,7 @@ function addResourcesInAllTables(resourceObject) {
     });
 
     if (flag) {
-        var theadHTML = '<td class="text-center"><span class="tittle-uppercase">' + resourceName + '</span><br><span class="resub">(' + resourceUOM + ')</span></td>';
+        var theadHTML = '<td class="text-center"><span class="tittle-uppercase">' + resourceName + '</span><br><span class="resub">(' + resourceUOM + ') per acre</span></td>';
         $("#crop_resource_usage thead tr").append(theadHTML);
 
         var tbodyTdHTML = '<td class="success infotext"><input type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this)" onkeypress="return isValidNumberValue(event)"></td>';
