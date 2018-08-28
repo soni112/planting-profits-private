@@ -692,7 +692,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     }
                     jsonObject.put(RATIO, ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio ) ) );
                 } else {
-                    jsonObject.put(RATIO, ( AgricultureStandardUtils.withoutDecimalAndComma(hashMapForRatio.get(cropTypeKey) ) ) );
+                    jsonObject.put(RATIO, (hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
                 }
 
                 if (hashMapForProfitIndex.get(cropTypeKey).equalsIgnoreCase("0.0%")
