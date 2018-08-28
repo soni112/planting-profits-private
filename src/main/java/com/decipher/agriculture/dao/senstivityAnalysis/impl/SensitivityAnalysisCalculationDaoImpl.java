@@ -1048,11 +1048,11 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         jsonObject.put("bubbleMessage", "This is the baseline " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " crop acreage limit for " : "") + cropName) : (" amount for " + resourceStr)));
                     } else if (differenceValue > 0) {
 //                        if ((profit < currentPotentialProfit) || (profit < oldProfit)) {
-                        if ((profit < currentPotentialProfit) && (profit < oldProfit)) {
+                        if ((profit < currentPotentialProfit) && (profit < bestResult.getObjective().longValue())) {
                             jsonObject.put("bubbleMessage", "Increasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
                                     " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) decreases Estimated Income by $" + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit - profit < 0 ? 0 : currentPotentialProfit - profit) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
 //                        } else if ((profit == currentPotentialProfit) || (bestResult.getObjective().longValue() == oldProfit)) {
-                        } else if ((profit == currentPotentialProfit) || (profit == oldProfit)) {
+                        } else if ((profit == currentPotentialProfit) || (profit == bestResult.getObjective().longValue())) {
                             jsonObject.put("bubbleMessage", "Increasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
                                     " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) will not increase Estimated Income above the amount in the previous increment, i.e $" + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit) + ", " + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
                         } else {
@@ -1061,11 +1061,11 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         }
                     } else {
 //                        if ((profit < currentPotentialProfit) || (bestResult.getObjective().longValue() < oldProfit)) {
-                        if ((profit < currentPotentialProfit) && (profit < oldProfit)) {
+                        if ((profit < currentPotentialProfit) && (profit < bestResult.getObjective().longValue())) {
                             jsonObject.put("bubbleMessage", "Decreasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
                                     " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) decreases Estimated Income by $" + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit - profit < 0 ? 0 : currentPotentialProfit - profit) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
 //                        } else if ((profit == currentPotentialProfit) || (bestResult.getObjective().longValue() == oldProfit)) {
-                        } else if ((profit == currentPotentialProfit) || (profit == oldProfit)) {
+                        } else if ((profit == currentPotentialProfit) || (profit == bestResult.getObjective().longValue())) {
                             jsonObject.put("bubbleMessage", "Decreasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
                                     " by " + differenceString + (resourceStr == null ? " acres" : "") + " (from the original amount) will not decreases Estimated Income , below the amount in the previous increment, i.e" + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit)+ ", "+(totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
                         } else {
