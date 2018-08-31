@@ -1089,11 +1089,12 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 //                        differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                         differenceString = AgricultureStandardUtils.commaSeparaterForLong( Math.abs( i * differenceValue) );
                     }
-                    if(resourceStr.equals("Working Capital")){
+                    jsonObject.put("Potential_Profit", currentPotentialProfit);
+                    /*if(resourceStr.equals("Working Capital")){
                         jsonObject.put("Potential_Profit", 0);
                     }else {
                         jsonObject.put("Potential_Profit", currentPotentialProfit);
-                    }
+                    }*/
                     if (differenceValue > 0) {
                         continueFlag = false;
                         jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
@@ -1474,12 +1475,12 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     } else {
                         differenceString = AgricultureStandardUtils.commaSeparaterForLong(i * differenceValue);
                     }
-//                    jsonObject.put("Potential_Profit", currentPotentialProfit);
-                    if(resourceStr.equals("Working Capital")){
+                    jsonObject.put("Potential_Profit", currentPotentialProfit);
+                    /*if(resourceStr.equals("Working Capital")){
                         jsonObject.put("Potential_Profit", 0);
                     }else {
                         jsonObject.put("Potential_Profit", currentPotentialProfit);
-                    }
+                    }*/
 
                     if (differenceValue > 0) {
 
