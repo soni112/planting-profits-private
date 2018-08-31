@@ -325,8 +325,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     public JSONObject getGranularComparisonResult(FarmInfoView farmInfoView, int[] strategyIdArray) throws JSONException {
         int strategyID;
         Map <FarmCustomStrategyView, JSONObject> strategyDetailsForFarm = getStrategyDetailsForFarm ( farmInfoView );
-        Map <String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy ( strategyDetailsForFarm );
         Map <String, JSONArray> strategyOutputDetails = getStrategyOutputDetails ( strategyDetailsForFarm, strategyIdArray );
+        Map <String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy ( strategyDetailsForFarm, strategyIdArray);
 
         Set <Map.Entry <FarmCustomStrategyView, JSONObject>> entries = strategyDetailsForFarm.entrySet ();
         JSONArray jsonArrayStrategyData = new JSONArray ();
@@ -348,12 +348,13 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
                     if (Objects.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
                         List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) strategyDetails.get("farmOutputDetails");
                         for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                            estimateIncome += farmOutputDetailsView.getProfitAsDouble();
+                            estimateIncome += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsView.getProfit()));
+//                            farmOutputDetailsView.getProfitAsDouble();
                         }
                     } else if (Objects.equals(farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
                         List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) strategyDetails.get("farmOutputDetails");
                         for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
-                            estimateIncome += farmOutputDetailsForFieldView.getProfitDouble();
+                            estimateIncome += Integer.parseInt(AgricultureStandardUtils.removeAllCommas(farmOutputDetailsForFieldView.getProfit()));
                         }
                     }
                     int index = 0;
@@ -411,7 +412,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             Map<String, JSONArray> strategyOutputDetails = getStrategyOutputDetails(strategyDetailsForFarm, strategyIdArray);
             Map<String, JSONArray> cropDetailsForStrategy = getCropDetailsForStrategy(strategyDetailsForFarm);
             Map<String, JSONArray> resourceDetailsForStrategy = getResourceDetailsForStrategy(strategyDetailsForFarm);
-            Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm);
+            Map<String, JSONArray> highRiskAngConservationForStrategy = getHighRiskAndConservationForStrategy(strategyDetailsForFarm, strategyIdArray);
             JSONArray jsonArrayForHeader = new JSONArray();
 
             JSONArray jsonArrayForCropHeader = cropDetailsForStrategy.get("jsonArrayForCropHeader");
@@ -854,7 +855,7 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
 
     }
 
-    private Map<String, JSONArray> getHighRiskAndConservationForStrategy(Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm){
+    private Map<String, JSONArray> getHighRiskAndConservationForStrategy(Map<FarmCustomStrategyView, JSONObject> strategyDetailsForFarm, int[] strategyIdArray){
 
         JSONArray jsonArrayForConservationCrop = new JSONArray();
         JSONArray jsonArrayForConversion = new JSONArray();
@@ -870,50 +871,54 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
             FarmCustomStrategyView farmCustomStrategyView = entry.getKey();
             JSONObject strategyDetails = entry.getValue();
 
-            FarmInfoView farmInfoView = (FarmInfoView)strategyDetails.get("farmInfoView");
+            for (int strategyId : strategyIdArray) {
 
-            JSONObject conservationObject = new JSONObject();
-            conservationObject.put("strategyName", farmCustomStrategyView.getStrategyName());
-            conservationObject.put("strategyId", farmCustomStrategyView.getId());
+                if (farmCustomStrategyView.getId().equals(strategyId)) {
 
-            JSONArray conservationArray = new JSONArray();
-            conservationArray.add(dataBuilder.getPpFromConservationRiskCrop(farmInfoView, strategyDetails));
-            conservationArray.add(dataBuilder.getAcreageConservationRiskCrop(farmInfoView, strategyDetails));
-            conservationObject.put("details", conservationArray);
+                    FarmInfoView farmInfoView = (FarmInfoView) strategyDetails.get("farmInfoView");
 
-            jsonArrayForConservationCrop.add(conservationObject);
+                    JSONObject conservationObject = new JSONObject();
+                    conservationObject.put("strategyName", farmCustomStrategyView.getStrategyName());
+                    conservationObject.put("strategyId", farmCustomStrategyView.getId());
 
+                    JSONArray conservationArray = new JSONArray();
+                    conservationArray.add(dataBuilder.getPpFromConservationRiskCrop(farmInfoView, strategyDetails));
+                    conservationArray.add(dataBuilder.getAcreageConservationRiskCrop(farmInfoView, strategyDetails));
+                    conservationObject.put("details", conservationArray);
 
-            JSONObject conversionObject = new JSONObject();
-            conversionObject.put("strategyName", farmCustomStrategyView.getStrategyName());
-            conversionObject.put("strategyId", farmCustomStrategyView.getId());
-
-            JSONArray conversionArray = new JSONArray();
-            conversionArray.add(dataBuilder.getAcreageConservation(farmInfoView, strategyDetails));
-            conversionObject.put("details", conversionArray);
-            jsonArrayForConversion.add(conversionObject);
+                    jsonArrayForConservationCrop.add(conservationObject);
 
 
+                    JSONObject conversionObject = new JSONObject();
+                    conversionObject.put("strategyName", farmCustomStrategyView.getStrategyName());
+                    conversionObject.put("strategyId", farmCustomStrategyView.getId());
 
-            JSONObject highRiskObject = new JSONObject();
-            highRiskObject.put("strategyName", farmCustomStrategyView.getStrategyName());
-            highRiskObject.put("strategyId", farmCustomStrategyView.getId());
+                    JSONArray conversionArray = new JSONArray();
+                    conversionArray.add(dataBuilder.getAcreageConservation(farmInfoView, strategyDetails));
+                    conversionObject.put("details", conversionArray);
+                    jsonArrayForConversion.add(conversionObject);
 
-            JSONArray highRiskArray = new JSONArray();
-            highRiskArray.add(dataBuilder.getCapitalUsed(strategyDetails));
-            highRiskArray.add(dataBuilder.getReturnOnLand(farmInfoView, strategyDetails));
-            highRiskArray.add(dataBuilder.getPpFromSingleProfitCrop(farmInfoView, strategyDetails));
-            highRiskArray.add(dataBuilder.getPpFromTwoProfitCrop(farmInfoView, strategyDetails));
-            highRiskArray.add(dataBuilder.getForwardSoldProfit(farmInfoView, strategyDetails));
-            highRiskArray.add(dataBuilder.getProfitFromMinPriceAndYield(farmInfoView, strategyDetails));
-            highRiskArray.add(dataBuilder.getPpFromHighRiskCrop(farmInfoView, strategyDetails));
-            highRiskArray.add(dataBuilder.getAcreageHighRiskCrop(farmInfoView, strategyDetails));
-            highRiskObject.put("details", highRiskArray);
 
-            jsonArrayForHighRiskCrop.add(highRiskObject);
+                    JSONObject highRiskObject = new JSONObject();
+                    highRiskObject.put("strategyName", farmCustomStrategyView.getStrategyName());
+                    highRiskObject.put("strategyId", farmCustomStrategyView.getId());
 
+                    JSONArray highRiskArray = new JSONArray();
+                    highRiskArray.add(dataBuilder.getCapitalUsed(strategyDetails));
+                    highRiskArray.add(dataBuilder.getReturnOnLand(farmInfoView, strategyDetails));
+                    highRiskArray.add(dataBuilder.getPpFromSingleProfitCrop(farmInfoView, strategyDetails));
+                    highRiskArray.add(dataBuilder.getPpFromTwoProfitCrop(farmInfoView, strategyDetails));
+                    highRiskArray.add(dataBuilder.getForwardSoldProfit(farmInfoView, strategyDetails));
+                    highRiskArray.add(dataBuilder.getProfitFromMinPriceAndYield(farmInfoView, strategyDetails));
+                    highRiskArray.add(dataBuilder.getPpFromHighRiskCrop(farmInfoView, strategyDetails));
+                    highRiskArray.add(dataBuilder.getAcreageHighRiskCrop(farmInfoView, strategyDetails));
+                    highRiskObject.put("details", highRiskArray);
+
+                    jsonArrayForHighRiskCrop.add(highRiskObject);
+
+                }
+            }
         }
-
 
         Map<String, JSONArray> output = new HashMap<>();
 
