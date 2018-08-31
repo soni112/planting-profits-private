@@ -168,7 +168,7 @@ public class StrategyViewController {
 
             HashMap <String, String> detailsDataForGauge;
             String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size ()];
-			Integer[] EstimateIncomeArray = new Integer[jsonArrayForStrategy.size ()];
+			Integer[] estimateIncomeArray = new Integer[jsonArrayForStrategy.size ()];
 			String[] conservationArray = new String[jsonArrayForConservationCrop.size ()];
 
 			for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
@@ -178,11 +178,11 @@ public class StrategyViewController {
                 }else {
                     returnWorkingCapitalArray[i] = "0";
                 }
-                EstimateIncomeArray[i] = (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
+                estimateIncomeArray[i] = (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
 				JSONObject jsonObjectConservationData = (JSONObject)jsonArrayForConservationCrop.get ( i );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationData.get ( "details" );
                 Map <String, String> hashForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
-                conservationArray[i] = (String) hashForAverageInConservationCrop.get ("amount");
+                conservationArray[i] = hashForAverageInConservationCrop.get ("amount");
             }
             for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
                 for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
@@ -193,12 +193,12 @@ public class StrategyViewController {
                     }
                 }
             }
-			for (int i = 0; i < EstimateIncomeArray.length; i++) {
-				for (int l = i + 1; l < EstimateIncomeArray.length; l++) {
-					if ( EstimateIncomeArray[i]  < EstimateIncomeArray[l]) {
-						int temp = EstimateIncomeArray[i];
-						EstimateIncomeArray[i] = EstimateIncomeArray[l];
-						EstimateIncomeArray[l] = temp;
+			for (int i = 0; i < estimateIncomeArray.length; i++) {
+				for (int l = i + 1; l < estimateIncomeArray.length; l++) {
+					if ( estimateIncomeArray[i]  < estimateIncomeArray[l]) {
+						int temp = estimateIncomeArray[i];
+                        estimateIncomeArray[i] = estimateIncomeArray[l];
+                        estimateIncomeArray[l] = temp;
 					}
 				}
 			}
@@ -218,18 +218,17 @@ public class StrategyViewController {
 
 
             for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
-			    int count=0;
+			    int count = i;
                 detailsDataForGauge = new HashMap <> ();
                 FarmCustomStrategyView farmCustomStrategyView = (FarmCustomStrategyView) jsonArrayForStrategy.get ( i );
-                 detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString ());
+                detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString ());
                 detailsDataForGauge.put ( "strategyName", farmCustomStrategyView.getStrategyName ());
                 detailsDataForGauge.put ( "EstimateIncome",farmCustomStrategyView.getPotentialProfit().toString());
                 String returnWorking=null;
-                int EstimateIncome= farmCustomStrategyView.getPotentialProfit().intValue();
+                int estimateIncome= farmCustomStrategyView.getPotentialProfit().intValue();
                 for (int key=0;key<jsonArrayStrategyData.size();key++) {
                   JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get(key);
-                    if (jsonObjectStrategyData.containsValue(EstimateIncome)) {
-                        count=key;
+                    if (jsonObjectStrategyData.containsValue(estimateIncome)) {
                         detailsDataForGauge.put ( "ReturnWorkingCapital", jsonObjectStrategyData.get ( "returnWorkingCapital" ).toString () );
                          returnWorking = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
                     }
@@ -250,10 +249,10 @@ public class StrategyViewController {
                     }
                 }
 				int countEstimateIncome = 0;
-				for (int EstimateIncomeArrayValue :
-						EstimateIncomeArray) {
+				for (int estimateIncomeArrayValue :
+						estimateIncomeArray) {
 					countEstimateIncome++;
-					if (EstimateIncomeArrayValue== EstimateIncome) {
+					if (estimateIncomeArrayValue== estimateIncome) {
 						detailsDataForGauge.put ( "countEstimateIncome", "" + countEstimateIncome );
 						break;
 					}
@@ -442,12 +441,13 @@ public class StrategyViewController {
 
             for (int i = 0; i < conservationArray.length; i++) {
                 for (int l = i + 1; l < conservationArray.length; l++) {
-                    if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
-                        String temp = conservationArray[i];
-                        conservationArray[i] = conservationArray[l];
-                        conservationArray[l] = temp;
+                    if (conservationArray[l]!=null){
+                        if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
+                            String temp = conservationArray[i];
+                            conservationArray[i] = conservationArray[l];
+                            conservationArray[l] = temp;
+                        }
                     }
-
                 }
             }
 
