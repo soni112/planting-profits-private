@@ -759,7 +759,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
         long tempHolder = differenceValue.longValue();
         outer:
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i < 5; i++) {
 
             if (i == 0){
                 differenceValue = 0L;
@@ -1160,7 +1160,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         long tempHolder = differenceValue.longValue();
 
         outer:
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i < 5; i++) {
 
             if (i == 0){
                 differenceValue = 0L;
