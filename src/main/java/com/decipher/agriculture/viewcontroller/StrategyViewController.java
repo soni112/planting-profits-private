@@ -147,7 +147,7 @@ public class StrategyViewController {
 	@RequestMapping(value = "getStrategyForFarm", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse getStrategyForFarm(@RequestParam(value = "farmId", required = false) int farmId,
 														 @RequestParam(value = "strategyIdArray[]", required = false) int[] strategyIdArray){
-        int strategyID;
+
         httpSessionService.removeAttribute ( "strategyIdArray" );
         JsonResponse jsonResponse = new JsonResponse ();
 
@@ -182,7 +182,7 @@ public class StrategyViewController {
 				JSONObject jsonObjectConservationData = (JSONObject)jsonArrayForConservationCrop.get ( i );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationData.get ( "details" );
                 Map <String, String> hashForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
-                conservationArray[i] = (String) hashForAverageInConservationCrop.get ("amount");
+                conservationArray[i] = hashForAverageInConservationCrop.get ("amount");
             }
             for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
                 for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
@@ -218,10 +218,10 @@ public class StrategyViewController {
 
 
             for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
-			    int count=0;
+			    int count = i;
                 detailsDataForGauge = new HashMap <> ();
                 FarmCustomStrategyView farmCustomStrategyView = (FarmCustomStrategyView) jsonArrayForStrategy.get ( i );
-                 detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString ());
+                detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString ());
                 detailsDataForGauge.put ( "strategyName", farmCustomStrategyView.getStrategyName ());
                 detailsDataForGauge.put ( "EstimateIncome",farmCustomStrategyView.getPotentialProfit().toString());
                 String returnWorking=null;
@@ -229,7 +229,6 @@ public class StrategyViewController {
                 for (int key=0;key<jsonArrayStrategyData.size();key++) {
                   JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get(key);
                     if (jsonObjectStrategyData.containsValue(estimateIncome)) {
-                        count=key;
                         detailsDataForGauge.put ( "ReturnWorkingCapital", jsonObjectStrategyData.get ( "returnWorkingCapital" ).toString () );
                          returnWorking = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
                     }
@@ -442,12 +441,13 @@ public class StrategyViewController {
 
             for (int i = 0; i < conservationArray.length; i++) {
                 for (int l = i + 1; l < conservationArray.length; l++) {
-                    if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
-                        String temp = conservationArray[i];
-                        conservationArray[i] = conservationArray[l];
-                        conservationArray[l] = temp;
+                    if (conservationArray[l]!=null){
+                        if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
+                            String temp = conservationArray[i];
+                            conservationArray[i] = conservationArray[l];
+                            conservationArray[l] = temp;
+                        }
                     }
-
                 }
             }
 
