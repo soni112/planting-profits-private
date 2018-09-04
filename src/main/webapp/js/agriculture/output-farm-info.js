@@ -350,6 +350,9 @@ function alterHTMLOfTableAndShowPopupTableForMultipalCropResourse(result) {
     } else {
         usedCropDetail = result.Crop_Details;
         for (var i = 0; i < usedCropDetail.length; i++) {
+            if (usedCropDetail[i]['land'] === 0) {
+                usedLand += parseInt(usedCropDetail[i]['land']);
+            } else
             usedLand += parseInt(usedCropDetail[i]['land'].replace(",",""));
         }
     }
