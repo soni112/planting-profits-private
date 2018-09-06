@@ -274,8 +274,8 @@ public class StrategyViewController {
                 detailsDataForGauge.put ( "EstIncomeInOneCrop", hashMapForEstIncomeInOneCrop.get ( "amount" ) );
                 Map <String, String> hashMapForEstIncomeInForwardSale = (Map <String, String>) jsonArrayDetails.get ( 4 );
                 detailsDataForGauge.put ( "EstIncomeInForwardSale", hashMapForEstIncomeInForwardSale.get ( "amount" ) );
-                detailsDataForGauge.put ( "AverageInConservationCrop", hashMapForAverageInConservationCrop.get ( "amount" ) );
-				detailsDataForGauge.put ( "AverageInConversion", hashMapForAverageInConservation.get("amount1"));
+                detailsDataForGauge.put ( "AverageInConservationCrop", AgricultureStandardUtils.withoutDecimalAndComma( AgricultureStandardUtils.removeAllCommas( hashMapForAverageInConservationCrop.get( "amount" ) ) ));
+                detailsDataForGauge.put ( "AverageInConversion", AgricultureStandardUtils.withoutDecimalAndComma( AgricultureStandardUtils.removeAllCommas( hashMapForAverageInConservation.get( "amount1" ) ) ));
                 list.add ( detailsDataForGauge );
                 strategyComparisonDetails.put ( "jsonArrayForGaugeChart", list );
 
@@ -519,7 +519,7 @@ public class StrategyViewController {
                 Map<String, String> hashMapForEstIncomeInForwardSale = (Map<String, String>) jsonArrayDetails.get(4);
                 detailsDataForGauge.put("EstIncomeInForwardSale", hashMapForEstIncomeInForwardSale.get("amount"));
                 detailsDataForGauge.put("AverageInConservationCrop", hashMapForAverageInConservationCrop.get("amount"));
-                detailsDataForGauge.put("AverageInConversion", hashMapForAverageInConservation.get("amount1"));
+                detailsDataForGauge.put("AverageInConversion", AgricultureStandardUtils.withoutDecimalAndComma(hashMapForAverageInConservation.get("amount1")));
                 detailsDataForGauge.put("scenarioAnalysis", hashMapForScenarioAnalysis.get("potentialProfit"));
 
                 list.add(detailsDataForGauge);
