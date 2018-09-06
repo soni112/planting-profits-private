@@ -66,12 +66,20 @@
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/learning-center/learning-center.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
 	</definition>
+	<definition name="professional-partners" extends="defaultTemplate">
+		<put-attribute name="body-content" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
+	</definition>
 	<definition name="consultant-corner" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/consultant-corner/consultant-corner.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
 	</definition>
 	<definition name="farm-data" extends="defaultTemplate">
 		<put-attribute name="body-content" value="/WEB-INF/jsp/agriculture/farm-data/farm-data.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
+	</definition>
+	<definition name="educators" extends="defaultTemplate">
+		<put-attribute name="body-content" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/jsp/common/blank.jsp" />
 	</definition>
 	<definition name="contact" extends="defaultTemplate">
