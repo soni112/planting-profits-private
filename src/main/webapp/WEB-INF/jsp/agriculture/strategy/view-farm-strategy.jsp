@@ -882,7 +882,7 @@
             <td class="success">
               <div class="gauge_meter">
               <div class="secnario-analysis">
-                <span class="est-income-category">{{= key+1}}</span>
+                <span class="est-income-category">{{= strategy.countScenarioData}}</span>
                     <small class="est-income-total">{{= strategy.scenarioAnalysis}}</small>
                   </div>
             </div>
