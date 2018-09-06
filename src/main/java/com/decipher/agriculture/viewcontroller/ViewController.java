@@ -271,7 +271,8 @@ public class ViewController {
 		List<Farm> farmList = farmService.getAllFarmsForUser(account.getId());
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", String.format("%1$s %2$s", account.getFirstName(), account.getLastName()));
-		jsonObject.put("location", String.format("%1$s %2$s", account.getPhysical_Address_State() == null ? "" : account.getPhysical_Address_State().getStateName(), account.getPhysical_Address_Country() == null ? "" : account.getPhysical_Address_Country().getCountryName()));
+		jsonObject.put("state", String.format("%1$s", account.getPhysical_Address_State() == null ? "" : account.getPhysical_Address_State().getStateName()));
+		jsonObject.put("country", String.format("%1$s",account.getPhysical_Address_Country() == null ? "" : account.getPhysical_Address_Country().getCountryName()));
 		jsonObject.put("farmcount", farmList.size());
 		jsonObject.put("lastactivity", account.getLastActiveTimeFormatted());
 
