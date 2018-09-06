@@ -510,6 +510,7 @@ Date 24-11-2015
                                         <td class="add-fieldi">Original Est. Income</td>
                                         <td class="add-fieldi">Scenario Est. Income</td>
                                         <td class="add-fieldi">Difference</td>
+                                        <td class="add-fieldi">% Change</td>
                                         <td class="add-fieldi">Strategy Acres</td>
                                     </tr>
                                     </thead>
@@ -868,6 +869,7 @@ Date 24-11-2015
         {{else}}
             <td class="success">{{= difference}}</td>
         {{/if}}
+        <td class="success">{{= differenceChange}}</td>
         <td class="success">{{= acreage}}</td>
     </tr>
 
