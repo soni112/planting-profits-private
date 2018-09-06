@@ -18,6 +18,8 @@ public interface FarmOutputDetailsService {
     JSONArray buildCropLimitContent(JSONObject outputDetails);
     String getYesNoForField(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax);
 
+    String getYesNoForMax(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax);
+
     String getYesNo(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax);
 
     JSONArray buildCropAcreageContent(JSONObject outputDetails);
