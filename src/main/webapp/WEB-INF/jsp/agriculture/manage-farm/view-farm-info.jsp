@@ -1698,8 +1698,8 @@ start -->
                                                                         <c:if test="${resourceList.cropResourceUse eq resourcesVariancesList.cropFieldResourceUse}">
                                                                             <%--   		cropResourceAmount : ${resourcesVariancesList.cropResourceAmount} --%>
                                                                             <td class="success infotext">
-                                                                                <input type="text"
-                                                                                       onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this)"
+                                                                                <input type="text" class="resources_value"
+                                                                                       onchange="addCommaSignWithOutDollar(this);cropResourceUsageValue(this);cropResourceUsageValueChange(this)"
                                                                                        onkeypress="return isValidNumberValue(event)"
                                                                                        id="crop_resource_usage__${rowCount}__resource__${columnCount}"
                                                                                        value="${resourcesVariancesList.cropResourceAmount eq '0.00' or resourcesVariancesList.cropResourceAmount eq '.00' ?'':resourcesVariancesList.cropResourceAmount}"/>

@@ -185,6 +185,13 @@ public class ViewController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/professional-partners.htm", method = {RequestMethod.GET})
+	public ModelAndView getProfessionalPartners(){
+		ModelAndView modelAndView = new ModelAndView("professional-partners");
+//		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/faq.htm", method = {RequestMethod.GET})
 	public ModelAndView getFaq(){
 		ModelAndView modelAndView = new ModelAndView("faq");
@@ -203,6 +210,13 @@ public class ViewController {
 	public ModelAndView getFarmData(){
 		ModelAndView modelAndView = new ModelAndView("farm-data");
 		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/educators.htm", method = {RequestMethod.GET})
+	public ModelAndView getEducators(){
+		ModelAndView modelAndView = new ModelAndView("educators");
+//		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
 		return modelAndView;
 	}
 

@@ -407,6 +407,7 @@ public class StrategyViewController {
             String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size()];
             Integer[] EstimateIncomeArray = new Integer[jsonArrayForStrategy.size()];
             String[] conservationArray = new String[jsonArrayForConservationCrop.size ()];
+            String[] scenarioAnalysisArray = new String[jsonArrayForScenario.size ()];
 
             for (int i = 0; i < jsonArrayForStrategy.size(); i++) {
                 JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get(i);
@@ -415,7 +416,12 @@ public class StrategyViewController {
                 JSONObject jsonObjectConservationData = (JSONObject)jsonArrayForConservationCrop.get ( i );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationData.get ( "details" );
                 Map <String, String> hashForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
-                conservationArray[i] = (String) hashForAverageInConservationCrop.get ("amount");
+                conservationArray[i] = hashForAverageInConservationCrop.get ("amount");
+                JSONObject jsonObjectScenarioAnalysisData = (JSONObject) jsonArrayForScenario.get(i);
+                JSONArray arrayForScenarioAnalysisData = (JSONArray) jsonObjectScenarioAnalysisData.get("details");
+                Map <String, String> mapForScenarioAnalysisData = (Map <String, String>) arrayForScenarioAnalysisData.get ( 0 );
+                scenarioAnalysisArray[i] = mapForScenarioAnalysisData.get("potentialProfit");
+
             }
             for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
                 for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
@@ -436,6 +442,18 @@ public class StrategyViewController {
                         EstimateIncomeArray[l] = temp;
                     }
 
+                }
+            }
+
+            for (int i = 0; i < scenarioAnalysisArray.length; i++) {
+                for (int l = i + 1; l < scenarioAnalysisArray.length; l++) {
+                    if (scenarioAnalysisArray[l]!=null){
+                        if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( scenarioAnalysisArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( scenarioAnalysisArray[l] ) )) {
+                            String temp = scenarioAnalysisArray[i];
+                            scenarioAnalysisArray[i] = scenarioAnalysisArray[l];
+                            scenarioAnalysisArray[l] = temp;
+                        }
+                    }
                 }
             }
 
@@ -479,7 +497,12 @@ public class StrategyViewController {
 
                 JSONArray jsonArrayConservation = (JSONArray) jsonObjectConservationCrop.get ( "details" );
                 Map <String, String> hashMapForAcerageInConservation = (Map <String, String>) jsonArrayConservation.get ( 1 );
-                String conservation= (String) hashMapForAcerageInConservation.get ( "amount" );
+                String conservation= hashMapForAcerageInConservation.get ( "amount" );
+
+                JSONArray jsonArrayForScenarioAnalysisData = (JSONArray) jsonObjectForScenario.get("details");
+                Map<String, String> hashMapForScenarioAnalysisData = (Map<String, String>) jsonArrayForScenarioAnalysisData.get(0);
+                String scenarioAnalysisData = hashMapForScenarioAnalysisData.get("potentialProfit");
+
                 int countReturnWorking = 0;
                 for (String returnWorkingCapital :
                         returnWorkingCapitalArray) {
@@ -504,6 +527,14 @@ public class StrategyViewController {
                     countConservation++;
                     if (conservationArrayValue.equals(conservation)){
                         detailsDataForGauge.put("countConservation", "" + countConservation);
+                        break;
+                    }
+                }
+                int countScenarioData=0;
+                for (String scenarioAnalysisArrayValue:scenarioAnalysisArray){
+                    countScenarioData++;
+                    if (scenarioAnalysisArrayValue.equals(scenarioAnalysisData)){
+                        detailsDataForGauge.put("countScenarioData", "" + countScenarioData);
                         break;
                     }
                 }
