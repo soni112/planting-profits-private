@@ -493,7 +493,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName()).split(" ")[0]));
                     minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
                     maximumAcres = Integer.parseInt(cropTypeView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcresWithoutComma());
-                    return getYesNoForField(usedAcres, minimumAcres, maximumAcres, minOrMax);
+//                    return getYesNoForField(usedAcres, minimumAcres, maximumAcres, minOrMax);
                 }
             } else if (cropsGroupView != null) {
                 Set<CropType> cropSet = cropsGroupView.getCropSet();
@@ -504,7 +504,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 int minimumAcres = Integer.parseInt(cropsGroupView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMinimumAcresWithoutComma());
                 int maximumAcres = Integer.parseInt(cropsGroupView.getMaximumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropsGroupView.getMaximumAcresWithoutComma());
 
-                return getYesNoForField(usedAcres, minimumAcres, maximumAcres, minOrMax);
+//                return getYesNoForField(usedAcres, minimumAcres, maximumAcres, minOrMax);
             }
 
         }
