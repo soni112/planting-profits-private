@@ -845,7 +845,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                     jsonObject.put("strategyOutput", "$" + AgricultureStandardUtils.commaSeparaterForInteger(strategyProfit));
                     jsonObject.put("scenarioOutput", "$" + AgricultureStandardUtils.commaSeparaterForInteger(scenarioProfit));
                     jsonObject.put("difference", "$" + AgricultureStandardUtils.commaSeparaterForInteger(difference));
-                    jsonObject.put("differenceChange", AgricultureStandardUtils.doubleUptoSingleDecimalPoint(differencePercentage));
+                    jsonObject.put("differenceChange", AgricultureStandardUtils.doubleUptoSingleDecimalPoint(differencePercentage)+"%");
                     jsonObject.put("differenceColor", difference < 0 ? "red" : "");
                     jsonObject.put("acreage", totalAcreage);
                     outputJsonArray.add(jsonObject);
