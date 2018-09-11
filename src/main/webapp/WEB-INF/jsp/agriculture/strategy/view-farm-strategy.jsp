@@ -872,8 +872,10 @@
             <td class="success">
              <div class="est-income-graph">
                  <span class="est-income-category">{{= strategy.countEstimateIncome}}</span>
-                <small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.EstimateIncome)}}</small>
-              </div></td>
+                <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.EstimateIncome)}}</small>--%>
+              </div>
+              <small>{{= addCommaSignWithDollarForTextWithOutId(strategy.EstimateIncome)}}</small>
+              </td>
             <td class="success"><div align="center" id="cropGaugeMeter{{= strategy.id}}" value="{{= strategy.EstIncomeInOneCrop}}" class="progress-graphs gauge_meter "></div>
             <small>{{= strategy.EstIncomeInOneCrop}}</small> </td>
             <td class="success"><div align="center"  id="marketGaugeMeter{{= strategy.id}}" value="{{= strategy.EstIncomeInForwardSale}}" class="progress-graphs gauge_meter "></div>
@@ -882,17 +884,19 @@
             <td class="success">
               <div class="gauge_meter">
               <div class="secnario-analysis">
-                <span class="est-income-category">{{= key+1}}</span>
-                    <small class="est-income-total">{{= strategy.scenarioAnalysis}}</small>
+                <span class="est-income-category">{{= strategy.countScenarioData}}</span>
+                    <%--<small class="est-income-total">{{= strategy.scenarioAnalysis}}</small>--%>
                   </div>
+                  <small>{{= strategy.scenarioAnalysis}}</small>
             </div>
             </td>
             <td class="success">
             <div class="est-income-graph">
                  <span class="est-income-category">{{= strategy.countReturnWorking}}</span>
                    <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.ReturnWorkingCapital)}}</small>--%>
-                   <small class="est-income-total">{{= strategy.ReturnWorkingCapital}}</small>
+                   <%--<small class="est-income-total">{{= strategy.ReturnWorkingCapital}}</small>--%>
                 </div>
+                <small>{{= strategy.ReturnWorkingCapital}}</small>
             </div></td>
             <td class="success">
            {{if strategy.AverageInConservationCrop >= 50.0  }}
@@ -903,9 +907,11 @@
             <%--<div class="est-income-graph">--%>
                  <%--<i class="icon-thumbs-up fa fa-thumbs-up" aria-hidden="true"></i>--%>
                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
-                <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
-                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>
+                <%--<small class="est-income-total">{{= strategy.AverageInConservationCrop}}%</small>
+                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
+                <small>{{= strategy.AverageInConservationCrop}}%</small></br>
+                <small>{{= strategy.AverageInConversion}}</small>
                 </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop > 25.0 && strategy.AverageInConservationCrop < 50.0 }}
@@ -916,9 +922,11 @@
                  <span class="est-income-category">{{= strategy.countConservation}}</span>
                  <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConversion)}}</small>--%>
-                <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
-                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>
+                <%--<small class="est-income-total">{{= strategy.AverageInConservationCrop}}%</small>
+                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
+                <small">{{= strategy.AverageInConservationCrop}}%</small><br>
+                <small>{{= strategy.AverageInConversion}}</small>
             </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop < 25.0 }}
@@ -928,8 +936,11 @@
          <%--  <div class="secnario-analysis-red">
                  <i class="icon-thumbs-up fa fa-thumbs-down" aria-hidden="true"></i>--%>
                 <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.AverageInConservationCrop)}}</small>--%>
-                <small class="est-income-total">{{= strategy.AverageInConservationCrop}}</small>
-                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>
+                <%--<small class="est-income-total">{{= strategy.AverageInConservationCrop}}%</small>
+                <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
+                </div>
+                <small>{{= strategy.AverageInConservationCrop}}%</small></br>
+                <small>{{= strategy.AverageInConversion}}</small>
                 </div>
            {{/if}}</td>
         </tr>

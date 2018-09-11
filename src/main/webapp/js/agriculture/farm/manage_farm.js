@@ -686,7 +686,7 @@ function validateResources() {
         }
     });
     if (resourcesFlag == false) {
-        customAlerts('Please enter amount for "' + resourcesName.substring(0, resourcesName.length - 2) + '" resources', type_error, time);
+        customAlerts('Please enter amount for "' + resourcesName.substring(0, resourcesName.length - 2) + '" resource', type_error, time);
         return false;
     } else if (resourcesFlagWithZeroValue == false) {
         customAlerts('Resource amount can not be zero for "' + resourcesNameWithZeroValue.substring(0, resourcesNameWithZeroValue.length - 2) + '" resources', type_error, time);
@@ -1934,29 +1934,85 @@ function addResourcesInAllTables(resourceObject) {
     var resourceName = $(resourceObject).parent().parent().children("td:nth(1)").text().trim();
     var resourceUOM = $(resourceObject).parent().parent().children("td:nth(2)").text().trim();
     var flag = true;
-    $("#crop_resource_usage thead tr").each(function () {
-        console.log($(this).children().eq(0).text());
-        $(this).find('td').each(function () {
+
+    var allDataArray = [];
+    var subDataObj = {};
+    var daFlg = false;
+    var indVar = 0;
+    subDataObj['name'] = resourceName;
+    if(localStorage.getItem('addResourcesInAllTablesData')){
+        allDataArray = JSON.parse(localStorage.getItem('addResourcesInAllTablesData'));
+        for(var i=0; i< allDataArray.length; i++){
+            if(allDataArray[i]['name'] == resourceName){
+                daFlg = true;
+                indVar = i;
+                break;
+            }
+        }
+    }
+
+    $("#crop_resource_usage tbody tr").each(function () {
+        $(this).find('td').each(function (index) {
+            if(index == 0 && !daFlg){
+                subDataObj[$(this).text()] = '';
+            }
+        });
+    });
+
+    if(!daFlg){
+        allDataArray.push(subDataObj);
+        localStorage.removeItem('addResourcesInAllTablesData');
+        localStorage.setItem('addResourcesInAllTablesData',JSON.stringify(allDataArray));
+    }
+    $("#crop_resource_usage thead tr").each(function (ind) {
+        $(this).find('td').each(function (index) {
             if ($.trim($(this).find('span[class="tittle-uppercase"]').text()) == resourceName) {
                 flag = false;
             }
         });
 
     });
+    // $("#crop_resource_usage thead tr").each(function () {
+    //     console.log($(this).children().eq(0).text());
+    //     $(this).find('td').each(function () {
+    //         if ($.trim($(this).find('span[class="tittle-uppercase"]').text()) == resourceName) {
+    //             flag = false;
+    //         }
+    //     });
+    //
+    // });
 
     if (flag) {
-        var theadHTML = '<td class="text-center"><span class="tittle-uppercase">' + resourceName + '</span><br><span class="resub">(' + resourceUOM + ')</span></td>';
+        var theadHTML = '<td class="text-center"><span class="tittle-uppercase">' + resourceName + '</span><br><span class="resub">(' + resourceUOM + ') per acre</span></td>';
         $("#crop_resource_usage thead tr").append(theadHTML);
 
-        var tbodyTdHTML = '<td class="success infotext"><input type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this)" onkeypress="return isValidNumberValue(event)"></td>';
         $("#crop_resource_usage tbody tr").each(function () {
-            $(this).append(tbodyTdHTML);
+            var valEach = '';
+            $(this).find('td').each(function (index) {
+                if(index == 0 && daFlg){
+                    valEach = allDataArray[indVar][$(this).text()];
+                }
+            });
+            $(this).append('<td class="success infotext"><input data-resName="'+resourceName+'" type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValue(this);cropResourceUsageValueChange(this)" onkeypress="return isValidNumberValue(event)" value="'+valEach+'" /></td>');
         });
         var rowHTMLForFieldDifference = '<tr class="tblgrn text-center"><td class="tblft1 tittle-uppercase">' + resourceName + '</td><td class="success infotext"></td><td class="success infotext"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollar(this)"></td></tr>';
         $("#crop_resources_usages_difference_tbody").append(rowHTMLForFieldDifference);
     }
+}
 
-
+function cropResourceUsageValue(obj) {
+    var resName = $(obj).attr("data-resName");
+    var allDataArray = [];
+    if(localStorage.getItem('addResourcesInAllTablesData')){
+        allDataArray = JSON.parse(localStorage.getItem('addResourcesInAllTablesData'));
+        for(var i=0; i< allDataArray.length; i++){
+            if(allDataArray[i]['name'] == resName){
+                allDataArray[i][$(obj).parent().parent().find('td:first-child').text()]=$(obj).val();
+            }
+        }
+        localStorage.removeItem('addResourcesInAllTablesData');
+        localStorage.setItem('addResourcesInAllTablesData',JSON.stringify(allDataArray))
+    }
 }
 
 function removeResourceFromAllTables(resourceObject) {
@@ -3633,12 +3689,12 @@ function calculatePercentageOfMinAcreage(obj) {
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var minAcreageString = (currentTr.find('.minCropAcreage').val());
     var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
-    var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
+    var minAcreagePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
     if (minAcreage <= totalLand) {
-        if (minAcreage == 0) {
+        /*if (minAcreage == 0) {
             currentTr.find('.minCropAcreagePercentage').val(0);
-        }
-        var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
+        }*/
+        // var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
         if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
             var per = Math.ceil((minAcreage / totalLand) * 100);
             currentTr.find('.minCropAcreagePercentage').val(isNaN(per) ? '' : per);
@@ -3664,9 +3720,9 @@ function calculatePercentageOfMinAcreagePercent(obj) {
     var cropname = currentTr.find('#crop_limits_table_crop_name__1').val();
     var minAcreageString = (currentTr.find('.minCropAcreage').val());
     var minAcreage = Number(removeAllCommas(currentTr.find('.minCropAcreage').val()));
-    var minAcragePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
-    if (minAcragePer <= 100) {
-        var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
+    var minAcreagePer = Number(removeAllCommas(currentTr.find('.minCropAcreagePercentage').val()));
+    if (minAcreagePer <= 100) {
+        // var minAcreagePer = currentTr.find('.minCropAcreagePercentage').val();
         if ($(obj).hasClass('minCropAcreage') && minAcreage && (minAcreage != 0 || minAcreage != '')) {
             var per = Math.ceil((minAcreage / totalLand) * 100);
             currentTr.find('.minCropAcreagePercentage').val(isNaN(per) ? '' : per);

@@ -168,7 +168,7 @@ public class StrategyViewController {
 
             HashMap <String, String> detailsDataForGauge;
             String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size ()];
-			Integer[] EstimateIncomeArray = new Integer[jsonArrayForStrategy.size ()];
+			Integer[] estimateIncomeArray = new Integer[jsonArrayForStrategy.size ()];
 			String[] conservationArray = new String[jsonArrayForConservationCrop.size ()];
 
 			for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
@@ -178,11 +178,11 @@ public class StrategyViewController {
                 }else {
                     returnWorkingCapitalArray[i] = "0";
                 }
-                EstimateIncomeArray[i] = (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
+                estimateIncomeArray[i] = (Integer) jsonObjectStrategyData.get ( "EstimateIncome" );
 				JSONObject jsonObjectConservationData = (JSONObject)jsonArrayForConservationCrop.get ( i );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationData.get ( "details" );
                 Map <String, String> hashForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
-                conservationArray[i] = (String) hashForAverageInConservationCrop.get ("amount");
+                conservationArray[i] = hashForAverageInConservationCrop.get ("amount");
             }
             for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
                 for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
@@ -193,12 +193,12 @@ public class StrategyViewController {
                     }
                 }
             }
-			for (int i = 0; i < EstimateIncomeArray.length; i++) {
-				for (int l = i + 1; l < EstimateIncomeArray.length; l++) {
-					if ( EstimateIncomeArray[i]  < EstimateIncomeArray[l]) {
-						int temp = EstimateIncomeArray[i];
-						EstimateIncomeArray[i] = EstimateIncomeArray[l];
-						EstimateIncomeArray[l] = temp;
+			for (int i = 0; i < estimateIncomeArray.length; i++) {
+				for (int l = i + 1; l < estimateIncomeArray.length; l++) {
+					if ( estimateIncomeArray[i]  < estimateIncomeArray[l]) {
+						int temp = estimateIncomeArray[i];
+                        estimateIncomeArray[i] = estimateIncomeArray[l];
+                        estimateIncomeArray[l] = temp;
 					}
 				}
 			}
@@ -218,18 +218,17 @@ public class StrategyViewController {
 
 
             for (int i = 0; i < jsonArrayForStrategy.size (); i++) {
-			    int count=0;
+			    int count = i;
                 detailsDataForGauge = new HashMap <> ();
                 FarmCustomStrategyView farmCustomStrategyView = (FarmCustomStrategyView) jsonArrayForStrategy.get ( i );
-                 detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString ());
+                detailsDataForGauge.put ( "id", farmCustomStrategyView.getId ().toString ());
                 detailsDataForGauge.put ( "strategyName", farmCustomStrategyView.getStrategyName ());
                 detailsDataForGauge.put ( "EstimateIncome",farmCustomStrategyView.getPotentialProfit().toString());
                 String returnWorking=null;
-                int EstimateIncome= farmCustomStrategyView.getPotentialProfit().intValue();
+                int estimateIncome= farmCustomStrategyView.getPotentialProfit().intValue();
                 for (int key=0;key<jsonArrayStrategyData.size();key++) {
                   JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get(key);
-                    if (jsonObjectStrategyData.containsValue(EstimateIncome)) {
-                        count=key;
+                    if (jsonObjectStrategyData.containsValue(estimateIncome)) {
                         detailsDataForGauge.put ( "ReturnWorkingCapital", jsonObjectStrategyData.get ( "returnWorkingCapital" ).toString () );
                          returnWorking = (String) jsonObjectStrategyData.get ( "returnWorkingCapital" );
                     }
@@ -250,10 +249,10 @@ public class StrategyViewController {
                     }
                 }
 				int countEstimateIncome = 0;
-				for (int EstimateIncomeArrayValue :
-						EstimateIncomeArray) {
+				for (int estimateIncomeArrayValue :
+						estimateIncomeArray) {
 					countEstimateIncome++;
-					if (EstimateIncomeArrayValue== EstimateIncome) {
+					if (estimateIncomeArrayValue== estimateIncome) {
 						detailsDataForGauge.put ( "countEstimateIncome", "" + countEstimateIncome );
 						break;
 					}
@@ -275,8 +274,8 @@ public class StrategyViewController {
                 detailsDataForGauge.put ( "EstIncomeInOneCrop", hashMapForEstIncomeInOneCrop.get ( "amount" ) );
                 Map <String, String> hashMapForEstIncomeInForwardSale = (Map <String, String>) jsonArrayDetails.get ( 4 );
                 detailsDataForGauge.put ( "EstIncomeInForwardSale", hashMapForEstIncomeInForwardSale.get ( "amount" ) );
-                detailsDataForGauge.put ( "AverageInConservationCrop", hashMapForAverageInConservationCrop.get ( "amount" ) );
-				detailsDataForGauge.put ( "AverageInConversion", hashMapForAverageInConservation.get("amount1"));
+                detailsDataForGauge.put ( "AverageInConservationCrop", AgricultureStandardUtils.withoutDecimalAndComma( AgricultureStandardUtils.removeAllCommas( hashMapForAverageInConservationCrop.get( "amount" ) ) ));
+                detailsDataForGauge.put ( "AverageInConversion", AgricultureStandardUtils.withoutDecimalAndComma( AgricultureStandardUtils.removeAllCommas( hashMapForAverageInConservation.get( "amount1" ) ) ));
                 list.add ( detailsDataForGauge );
                 strategyComparisonDetails.put ( "jsonArrayForGaugeChart", list );
 
@@ -408,6 +407,7 @@ public class StrategyViewController {
             String[] returnWorkingCapitalArray = new String[jsonArrayForStrategy.size()];
             Integer[] EstimateIncomeArray = new Integer[jsonArrayForStrategy.size()];
             String[] conservationArray = new String[jsonArrayForConservationCrop.size ()];
+            String[] scenarioAnalysisArray = new String[jsonArrayForScenario.size ()];
 
             for (int i = 0; i < jsonArrayForStrategy.size(); i++) {
                 JSONObject jsonObjectStrategyData = (JSONObject) jsonArrayStrategyData.get(i);
@@ -416,7 +416,12 @@ public class StrategyViewController {
                 JSONObject jsonObjectConservationData = (JSONObject)jsonArrayForConservationCrop.get ( i );
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationData.get ( "details" );
                 Map <String, String> hashForAverageInConservationCrop = (Map <String, String>) jsonArrayConservationDetails.get ( 1 );
-                conservationArray[i] = (String) hashForAverageInConservationCrop.get ("amount");
+                conservationArray[i] = hashForAverageInConservationCrop.get ("amount");
+                JSONObject jsonObjectScenarioAnalysisData = (JSONObject) jsonArrayForScenario.get(i);
+                JSONArray arrayForScenarioAnalysisData = (JSONArray) jsonObjectScenarioAnalysisData.get("details");
+                Map <String, String> mapForScenarioAnalysisData = (Map <String, String>) arrayForScenarioAnalysisData.get ( 0 );
+                scenarioAnalysisArray[i] = mapForScenarioAnalysisData.get("potentialProfit");
+
             }
             for (int i = 0; i < returnWorkingCapitalArray.length; i++) {
                 for (int l = i + 1; l < returnWorkingCapitalArray.length; l++) {
@@ -440,14 +445,27 @@ public class StrategyViewController {
                 }
             }
 
+            for (int i = 0; i < scenarioAnalysisArray.length; i++) {
+                for (int l = i + 1; l < scenarioAnalysisArray.length; l++) {
+                    if (scenarioAnalysisArray[l]!=null){
+                        if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( scenarioAnalysisArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( scenarioAnalysisArray[l] ) )) {
+                            String temp = scenarioAnalysisArray[i];
+                            scenarioAnalysisArray[i] = scenarioAnalysisArray[l];
+                            scenarioAnalysisArray[l] = temp;
+                        }
+                    }
+                }
+            }
+
             for (int i = 0; i < conservationArray.length; i++) {
                 for (int l = i + 1; l < conservationArray.length; l++) {
-                    if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
-                        String temp = conservationArray[i];
-                        conservationArray[i] = conservationArray[l];
-                        conservationArray[l] = temp;
+                    if (conservationArray[l]!=null){
+                        if (Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[i] ) ) < Double.valueOf ( AgricultureStandardUtils.removeAllCommas ( conservationArray[l] ) )) {
+                            String temp = conservationArray[i];
+                            conservationArray[i] = conservationArray[l];
+                            conservationArray[l] = temp;
+                        }
                     }
-
                 }
             }
 
@@ -479,7 +497,12 @@ public class StrategyViewController {
 
                 JSONArray jsonArrayConservation = (JSONArray) jsonObjectConservationCrop.get ( "details" );
                 Map <String, String> hashMapForAcerageInConservation = (Map <String, String>) jsonArrayConservation.get ( 1 );
-                String conservation= (String) hashMapForAcerageInConservation.get ( "amount" );
+                String conservation= hashMapForAcerageInConservation.get ( "amount" );
+
+                JSONArray jsonArrayForScenarioAnalysisData = (JSONArray) jsonObjectForScenario.get("details");
+                Map<String, String> hashMapForScenarioAnalysisData = (Map<String, String>) jsonArrayForScenarioAnalysisData.get(0);
+                String scenarioAnalysisData = hashMapForScenarioAnalysisData.get("potentialProfit");
+
                 int countReturnWorking = 0;
                 for (String returnWorkingCapital :
                         returnWorkingCapitalArray) {
@@ -507,6 +530,14 @@ public class StrategyViewController {
                         break;
                     }
                 }
+                int countScenarioData=0;
+                for (String scenarioAnalysisArrayValue:scenarioAnalysisArray){
+                    countScenarioData++;
+                    if (scenarioAnalysisArrayValue.equals(scenarioAnalysisData)){
+                        detailsDataForGauge.put("countScenarioData", "" + countScenarioData);
+                        break;
+                    }
+                }
                 JSONArray jsonArrayDetails = (JSONArray) jsonObjectForHighRisk.get("details");
                 JSONArray jsonArrayConservationDetails = (JSONArray) jsonObjectConservationCrop.get("details");
                 JSONArray jsonArrayConversionDetails = (JSONArray) jsonObjectForConversion.get("details");
@@ -518,8 +549,8 @@ public class StrategyViewController {
                 detailsDataForGauge.put("EstIncomeInOneCrop", hashMapForEstIncomeInOneCrop.get("amount"));
                 Map<String, String> hashMapForEstIncomeInForwardSale = (Map<String, String>) jsonArrayDetails.get(4);
                 detailsDataForGauge.put("EstIncomeInForwardSale", hashMapForEstIncomeInForwardSale.get("amount"));
-                detailsDataForGauge.put("AverageInConservationCrop", hashMapForAverageInConservationCrop.get("amount"));
-                detailsDataForGauge.put("AverageInConversion", hashMapForAverageInConservation.get("amount1"));
+                detailsDataForGauge.put("AverageInConservationCrop", AgricultureStandardUtils.withoutDecimalAndComma(AgricultureStandardUtils.removeAllCommas(hashMapForAverageInConservationCrop.get("amount") ) ));
+                detailsDataForGauge.put("AverageInConversion", AgricultureStandardUtils.withoutDecimalAndComma( AgricultureStandardUtils.removeAllCommas(hashMapForAverageInConservation.get("amount1") ) ));
                 detailsDataForGauge.put("scenarioAnalysis", hashMapForScenarioAnalysis.get("potentialProfit"));
 
                 list.add(detailsDataForGauge);

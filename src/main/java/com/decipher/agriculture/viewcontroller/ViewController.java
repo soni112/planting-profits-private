@@ -185,6 +185,13 @@ public class ViewController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/professional-partners.htm", method = {RequestMethod.GET})
+	public ModelAndView getProfessionalPartners(){
+		ModelAndView modelAndView = new ModelAndView("professional-partners");
+//		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/faq.htm", method = {RequestMethod.GET})
 	public ModelAndView getFaq(){
 		ModelAndView modelAndView = new ModelAndView("faq");
@@ -203,6 +210,13 @@ public class ViewController {
 	public ModelAndView getFarmData(){
 		ModelAndView modelAndView = new ModelAndView("farm-data");
 		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/educators.htm", method = {RequestMethod.GET})
+	public ModelAndView getEducators(){
+		ModelAndView modelAndView = new ModelAndView("educators");
+//		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
 		return modelAndView;
 	}
 
@@ -271,7 +285,8 @@ public class ViewController {
 		List<Farm> farmList = farmService.getAllFarmsForUser(account.getId());
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", String.format("%1$s %2$s", account.getFirstName(), account.getLastName()));
-		jsonObject.put("location", String.format("%1$s %2$s", account.getPhysical_Address_City(), account.getPhysical_Address_State() == null ? "" : account.getPhysical_Address_State().getStateName()));
+		jsonObject.put("state", String.format("%1$s", account.getPhysical_Address_State() == null ? "" : account.getPhysical_Address_State().getStateName()));
+		jsonObject.put("country", String.format("%1$s",account.getPhysical_Address_Country() == null ? "" : account.getPhysical_Address_Country().getCountryName()));
 		jsonObject.put("farmcount", farmList.size());
 		jsonObject.put("lastactivity", account.getLastActiveTimeFormatted());
 

@@ -814,9 +814,16 @@ public class ScenarioServiceImpl implements ScenarioService {
 //                    int difference = 0;
 //                    if(scenarioProfit > strategyProfit){
                     int difference = scenarioProfit - strategyProfit;
+                    double differencePercentage = 0.0;
+                    try {
+                        differencePercentage = (double)difference/scenarioProfit;
+                    }catch (ArithmeticException e){
+                        e.printStackTrace();
+                    }
 //                    } else if(scenarioProfit < strategyProfit){
 //                        difference = strategyProfit - scenarioProfit;
 //                    }
+
 
                     double totalAcreage = 0.0;
                     if (farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo().getStrategy().equals(PlanByStrategy.PLAN_BY_FIELDS)) {
@@ -838,6 +845,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                     jsonObject.put("strategyOutput", "$" + AgricultureStandardUtils.commaSeparaterForInteger(strategyProfit));
                     jsonObject.put("scenarioOutput", "$" + AgricultureStandardUtils.commaSeparaterForInteger(scenarioProfit));
                     jsonObject.put("difference", "$" + AgricultureStandardUtils.commaSeparaterForInteger(difference));
+                    jsonObject.put("differenceChange", AgricultureStandardUtils.doubleUptoSingleDecimalPoint(differencePercentage)+"%");
                     jsonObject.put("differenceColor", difference < 0 ? "red" : "");
                     jsonObject.put("acreage", totalAcreage);
                     outputJsonArray.add(jsonObject);
