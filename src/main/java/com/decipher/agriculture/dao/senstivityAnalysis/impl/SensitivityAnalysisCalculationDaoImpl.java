@@ -108,7 +108,10 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     } else if(str.split("#-#-#")[0].equals(resourceUsageView.getCropResourceUse())) {
                         resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
 //                        newResourceUsageViews.add(resourceUsageView);
-                        continue outer;
+                        if (!resourceUsageView.getResourseOverrideAmount().equals("0") )
+                            continue outer;
+                        else
+                            resourceUsageView.setActive(false);
                     }
                 }
                 /*for (int i = 0; i < resourceSize; i++) {
@@ -454,7 +457,11 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         continue outer;
                     } else if(str.split("#-#-#")[0].equals(resourceUsageView.getCropResourceUse())) {
                         resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
-                        continue outer;
+                        if (!resourceUsageView.getResourseOverrideAmount().equals("0") )
+                            continue outer;
+                        else
+                          resourceUsageView.setActive(false);
+
                     }
                 }
                 /*for (int i = 0; i < resourceSize; i++) {

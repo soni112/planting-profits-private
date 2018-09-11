@@ -150,19 +150,21 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
 
 
                 for (Entry<String, Double> entry : beanForOutput.getResourceList().entrySet()) {
-                    if (entry.getKey().equals(cropResourceUsageView.getCropResourceUse())) {
+                    if (cropResourceUsageView.isActive()) {
+                        if (entry.getKey().equals(cropResourceUsageView.getCropResourceUse())) {
 
                             /* linear for resource usage */
 
-                        linear.add(entry.getValue(), beanForOutput.getCropType().getCropName());
-                        if (beanForOutput.getFirmAcres() > zeroDouble) {
-                            linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Contract)");
-                            PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Contract)");
-                        } else if (beanForOutput.getProposedAcres() > zeroDouble) {
-                            linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Proposed)");
-                            PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Proposed)");
+                            linear.add(entry.getValue(), beanForOutput.getCropType().getCropName());
+                            if (beanForOutput.getFirmAcres() > zeroDouble) {
+                                linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Contract)");
+                                PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Contract)");
+                            } else if (beanForOutput.getProposedAcres() > zeroDouble) {
+                                linear.add(entry.getValue(), beanForOutput.getCropType().getCropName() + " (Proposed)");
+                                PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName() + " (Proposed)");
+                            }
+                            PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName());
                         }
-                        PlantingProfitLogger.info(entry.getValue() + "----------" + beanForOutput.getCropType().getCropName());
                     }
                 }
 
@@ -716,20 +718,22 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                                     }
                                 }
                             } else {
+                                if (cropResourceUsageView.isActive()) {
                                 for (CropResourceUsageFieldVariances cropResourceUsageFieldVariances : beanForOutput.getCropType().getCropResourceUsageFieldVariances()) {
                                     if (cropResourceUsageFieldVariances.getCropFieldResourceUse().equals(cropResourceUsageView.getCropResourceUse())) {
                                         cropType = beanForOutput.getCropType();
                                         if (cropType.getCropYieldFieldVariances() != null && beanForOutput.getCropType().getCropYieldFieldVariances().getFieldInfo().getFieldName().equals(combination.split("###")[0]) && cropResourceUsageView.getResourseOverrideAmount() != null) {
-                                            Double overrideAmount = Double.parseDouble(cropResourceUsageView.getResourseOverrideAmount());
-                                            linear.add(overrideAmount, combination);
-                                            if (beanForOutput.getFirmAcres() > zeroDouble) {
-                                                linear.add(overrideAmount, combination + " (Contract)");
+                                                Double overrideAmount = Double.parseDouble(cropResourceUsageView.getResourseOverrideAmount());
+                                                linear.add(overrideAmount, combination);
+                                                if (beanForOutput.getFirmAcres() > zeroDouble) {
+                                                    linear.add(overrideAmount, combination + " (Contract)");
 //											PlantingProfitLogger.info(overrideAmount +"----------"+ combination + " (Contract)");
-                                            } else if (beanForOutput.getProposedAcres() > zeroDouble) {
-                                                linear.add(overrideAmount, combination + " (Proposed)");
+                                                } else if (beanForOutput.getProposedAcres() > zeroDouble) {
+                                                    linear.add(overrideAmount, combination + " (Proposed)");
 //											PlantingProfitLogger.info(overrideAmount +"----------"+ combination + " (Proposed)");
+                                                }
                                             }
-                                        } else {
+                                         else {
                                             linear.add(Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageFieldVariances.getCropResourceAmount())), combination);
                                             if (beanForOutput.getFirmAcres() > zeroDouble) {
                                                 linear.add(Double.parseDouble(AgricultureStandardUtils.removeAllCommas(cropResourceUsageFieldVariances.getCropResourceAmount())), combination + " (Contract)");
@@ -743,7 +747,9 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                                 }
                             }
                             break;
+                          }
                         }
+
                     }
                 }
                 problem.add(linear, "<=", Double.parseDouble(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()));
