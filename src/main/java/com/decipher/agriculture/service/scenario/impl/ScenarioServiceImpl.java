@@ -816,9 +816,9 @@ public class ScenarioServiceImpl implements ScenarioService {
                     int difference = scenarioProfit - strategyProfit;
                     double differencePercentage = 0.0;
                     try {
-                        differencePercentage = (double)difference/scenarioProfit;
+                        differencePercentage = (double)(difference*100)/scenarioProfit;
                     }catch (ArithmeticException e){
-                        e.printStackTrace();
+                        PlantingProfitLogger.error(e);
                     }
 //                    } else if(scenarioProfit < strategyProfit){
 //                        difference = strategyProfit - scenarioProfit;
