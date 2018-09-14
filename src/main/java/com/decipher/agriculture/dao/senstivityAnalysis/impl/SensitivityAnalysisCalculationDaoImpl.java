@@ -762,6 +762,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         boolean continueFlag = true;
         CropResourceUsageView resource = null;
 
+        Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
+        Result bestResult = (Result) map.get("Best_Result");
+
         Double amount = 0.0;
 
         long tempHolder = differenceValue.longValue();
@@ -794,17 +797,33 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 							} else {*/
 
                             amount = Double.parseDouble(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()) + differenceValue;
-                            if (amount < 0) {
+
+                            cropResourceUsageView.setCropResourceUseAmount("" + (Long.parseLong(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()) + (differenceValue)));
+							/*}*/
+                            if (Long.parseLong(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()) < 0) {
+                                break outer;
+                            }
+
+                            jsonObject.put("resourceValue", AgricultureStandardUtils.commaSeparaterForLong(Long.parseLong(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank())));
+                            if (uomOfResource == null)
+                                uomOfResource = cropResourceUsageView.getUoMResource();
+
+                            break;
+                        }
+                    }
+                } else if (cropName != null) {
+
+                    /*  if (amount < 0) {
 //                                break outer;
                             }
                             cropResourceUsageView.setCropResourceUseAmount("" + (Long.parseLong(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank()) + (differenceValue)));
-							/*}*/
+							*//*}*//*
 //						cropResourceUsageView.setCropResourceUseAmount(""+(Long.parseLong(cropResourceUsageView.getCropResourceUseAmountZeroIfBlank())+((i>1)?differenceValue:0)));
                             try {
-                                /**
+                                *//**
                                  * @changed - Abhishek
                                  * @date - 09-12-2015
-                                 */
+                                 *//*
                                 String resourceValue = cropResourceUsageView.getCropResourceUseAmount().contains("-") ? "0" : cropResourceUsageView.getCropResourceUseAmount();
                                 jsonObject.put("resourceValue", resourceValue);
                                 if (uomOfResource == null)
@@ -814,8 +833,9 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                             }
                             break;
                         }
-                    }
-                } else if (cropName != null) {
+                    } */
+
+
                     long cropValue = 0l;
                     if (!selectionType.equals("Group")) {
                         for (CropBeanForOutput beanForOutput : cropBeanForOutput) {
@@ -944,8 +964,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 Long totalLand=0L;
                 Long totalUseResourceValue=0L;
                 double useResourceValue=0.0;
-                Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
-                Result bestResult = (Result) map.get("Best_Result");
+                /*Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
+                Result bestResult = (Result) map.get("Best_Result");*/
                 String[] bestCase = (String[]) map.get("Best_Case");
                 if (bestResult != null && amount > 0) {
                     try {
@@ -962,6 +982,24 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         PlantingProfitLogger.error(e);
                     }
                     JSONArray jsonArrayInner = new JSONArray();
+                    for (FieldInfoView fieldInfoView : fieldInfoViews) {
+                        JSONObject object = new JSONObject();
+
+                        object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
+                        object.put("Crop_Info",  fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Assigned");
+
+                        jsonArrayInner.add(object);
+                    }
+                    jsonObject.put("Field_Crop_Info", jsonArrayInner);
+
+
+                jsonObject.put("Strategy", "Field");
+
+//                jsonArray.add(jsonObject);
+
+
+
+//                    JSONArray jsonArrayInner = new JSONArray();
                     boolean flag = false;
                     for (FieldInfoView fieldInfoView : fieldInfoViews) {
                         flag = false;
@@ -1100,7 +1138,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     if(resourceStr.equals("Working Capital")) {
                         jsonObject.put("Potential_Profit", 0);
                     }else {
-                        jsonObject.put("Potential_Profit", currentPotentialProfit);
+                        jsonObject.put("Potential_Profit", bestResult.getObjective().longValue());
                     }
                     if (differenceValue > 0) {
                         continueFlag = false;
@@ -1129,7 +1167,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
                     }
 
-                    JSONArray jsonArrayInner = new JSONArray();
+                    /*JSONArray jsonArrayInner = new JSONArray();
                     for (FieldInfoView fieldInfoView : fieldInfoViews) {
                         JSONObject object = new JSONObject();
 
@@ -1141,7 +1179,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     jsonObject.put("Field_Crop_Info", jsonArrayInner);
 
                 }
-                jsonObject.put("Strategy", "Field");
+                jsonObject.put("Strategy", "Field");*/
+                }
                 jsonArray.add(jsonObject);
             }
         }
@@ -1162,6 +1201,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         long oldProfit = 0;
         boolean continueFlag = true;
         CropResourceUsageView resource = null;
+
+        Result result = linearProgramingSolveDao.getLinearProgramingResultForAcerage(cropBeanForOutput, farmInfo.getLand(), resourceUsageViews, cropsGroups);
 
         Long amount = 0L;
 
@@ -1332,7 +1373,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 }
                 Long totalLand=0L;
                 Long totalUseResourceValue=0L;
-                Result result = linearProgramingSolveDao.getLinearProgramingResultForAcerage(cropBeanForOutput, farmInfo.getLand(), resourceUsageViews, cropsGroups);
+//                Result result = linearProgramingSolveDao.getLinearProgramingResultForAcerage(cropBeanForOutput, farmInfo.getLand(), resourceUsageViews, cropsGroups);
                 if (result != null) {
                     JSONArray innerJsonArray = new JSONArray();
                     for (CropBeanForOutput beanForOutput : cropBeanForOutput) {
@@ -1486,7 +1527,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     if(resourceStr.equals("Working Capital")){
                         jsonObject.put("Potential_Profit", 0);
                     }else {
-                        jsonObject.put("Potential_Profit", currentPotentialProfit);
+                        jsonObject.put("Potential_Profit", result.getObjective().longValue());
                     }
 
                     if (differenceValue > 0) {
