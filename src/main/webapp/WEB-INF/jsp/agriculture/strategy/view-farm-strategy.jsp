@@ -544,7 +544,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none medium-height-overflow medium-height-overRide"
                                 id="strategySelectionDiv">
                             <div class="form-group form-group1">
-                                <label>No custom strategies are present for the farm.</label>
+                                <label>There are no strategies to generate a report.</label>
                             </div>
                         </div>
 
