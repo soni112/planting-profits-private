@@ -254,7 +254,7 @@
 
                                 <ul class="planning">
                                     <li>
-                                        <a data-toggle="collapse" href="#unusedResourcesAcre"><b>Available resources</b></a>
+                                        <a data-toggle="collapse" href="#unusedResourcesAcre"><b>Available resources and minimum crop acreage limits</b></a>
                                         <div id="unusedResourcesAcre" class="collapse">
                                             There may not be enough of a particular resource to assign crops to all
                                             acreage.
@@ -397,7 +397,7 @@
                                 <%--<p>Click one or more of the following parameters to diagnose the problem.</p>--%>
                                 <ul class="planning">
                                     <li>
-                                        <a data-toggle="collapse" href="#resources"><b>Available Resources</b></a>
+                                        <a data-toggle="collapse" href="#resources"><b>Available resources and minimum crop acreage limits</b></a>
                                         <div id="resources" class="collapse">
                                             There may not be enough of a particular resource to meet the minimum crop
                                             acreage limits you entered. Remember that <b>firm</b> forward sales contracts
@@ -422,7 +422,7 @@
                                                     contract.
                                                     <a href="javascript:;" onclick="navigateToCropLimits();return false;">Check
                                                         crop acreage limits</a> and/or
-                                                    <a href="javascript:;" onclick="navigateToForwardSales();return false;">forward sales</a></p>
+                                                    <a href="javascript:;" onclick="navigateToForwardSales();return false;">forward sales</a>.</p>
                                                 <p>3) Use a combination of 1 and 2. After generating a strategy you
                                                     can back down the critical resource(s) that you increased in order
                                                     to generate your strategy. You can also change the minimum crop
@@ -437,12 +437,12 @@
                                         <br/>
                                     </li>
                                     <li>
-                                        <a data-toggle="collapse" href="#cropChoices"><b>Crop/field choices</b></a>
+                                        <a data-toggle="collapse" href="#cropChoices"><b>Crop/field choices and crop acreage limits </b></a>
                                         <div id="cropChoices" class="collapse">
 
                                             Minimum crop acreage limits, combined with which crops can be grown in which
-                                            fields may make some combinations of crops/fields/acreage, that you
-                                            specified, infeasible. That is, Planting Profits cannot generate a strategy
+                                            fields, may make some combinations of crops/fields/acreage, that you
+                                            specified, infeasible,i.e. not possible. That is, Planting Profits cannot generate a strategy
                                             because of conflicts in the model.<br/>
                                             If there are one or more minimum crop acreage limits, there must be enough
                                             acreage across the fields in which the crop can be grown to meet the minimum
@@ -508,7 +508,7 @@
                                 <%--problem.</p>--%>
                                 <ul class="planning">
                                     <li>
-                                        <a data-toggle="collapse" href="#resourcesAcres"><b>Available Resources</b></a>
+                                        <a data-toggle="collapse" href="#resourcesAcres"><b>Available resources and minimum crop acreage limits</b></a>
                                         <div id="resourcesAcres" class="collapse">
                                             There may not be enough of a particular resource to meet the minimum crop
                                             acreage limits you entered. These resources may be flexible, such as working
@@ -531,7 +531,7 @@
                                                     more minimum crop acreage limits or the amount of acreage that has
                                                     <b>firm</b> forward sales contracts.
                                                     <a href="javascript:;" onclick="navigateToCropLimits();return false;">Check
-                                                        crop acreage limits</a> and/or <a href="javascript:;" onclick="navigateToForwardSales();return false;">forward sales</a> </p>
+                                                        crop acreage limits</a> and/or <a href="javascript:;" onclick="navigateToForwardSales();return false;">forward sales</a>.</p>
                                                 <p>3) Use a combination of 1 and 2. After generating a strategy you can
                                                     back down the critical resource(s) that you increased in order to
                                                     generate your strategy. You can also change the minimum crop acreage
