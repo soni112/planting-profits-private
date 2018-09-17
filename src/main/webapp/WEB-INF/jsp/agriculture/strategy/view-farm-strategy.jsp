@@ -896,7 +896,7 @@
                    <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.ReturnWorkingCapital)}}</small>--%>
                    <%--<small class="est-income-total">{{= strategy.ReturnWorkingCapital}}</small>--%>
                 </div>
-                <small>{{= strategy.ReturnWorkingCapital}}</small>
+                <small>{{= strategy.ReturnWorkingCapital}}%</small>
             </div></td>
             <td class="success">
            {{if strategy.AverageInConservationCrop >= 50.0  }}
