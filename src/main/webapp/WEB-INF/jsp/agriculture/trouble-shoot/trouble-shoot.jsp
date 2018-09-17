@@ -441,8 +441,8 @@
                                         <div id="cropChoices" class="collapse">
 
                                             Minimum crop acreage limits, combined with which crops can be grown in which
-                                            fields may make some combinations of crops/fields/acreage, that you
-                                            specified, infeasible. That is, Planting Profits cannot generate a strategy
+                                            fields, may make some combinations of crops/fields/acreage, that you
+                                            specified, infeasible,i.e. not possible. That is, Planting Profits cannot generate a strategy
                                             because of conflicts in the model.<br/>
                                             If there are one or more minimum crop acreage limits, there must be enough
                                             acreage across the fields in which the crop can be grown to meet the minimum
