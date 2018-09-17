@@ -508,7 +508,7 @@
                                 <%--problem.</p>--%>
                                 <ul class="planning">
                                     <li>
-                                        <a data-toggle="collapse" href="#resourcesAcres"><b>Available Resources</b></a>
+                                        <a data-toggle="collapse" href="#resourcesAcres"><b>Available resources and minimum crop acreage limits</b></a>
                                         <div id="resourcesAcres" class="collapse">
                                             There may not be enough of a particular resource to meet the minimum crop
                                             acreage limits you entered. These resources may be flexible, such as working
