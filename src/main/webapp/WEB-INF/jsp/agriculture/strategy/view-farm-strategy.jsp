@@ -911,7 +911,7 @@
                 <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
                 <small>{{= strategy.AverageInConservationCrop}}%</small></br>
-                <small>{{= strategy.AverageInConversion}}</small>
+                <%--<small>{{= strategy.AverageInConversion}}</small>--%>
                 </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop > 25.0 && strategy.AverageInConservationCrop < 50.0 }}
@@ -926,7 +926,7 @@
                 <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
                 <small">{{= strategy.AverageInConservationCrop}}%</small><br>
-                <small>{{= strategy.AverageInConversion}}</small>
+                <%--<small>{{= strategy.AverageInConversion}}</small>--%>
             </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop < 25.0 }}
@@ -940,7 +940,7 @@
                 <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
                 <small>{{= strategy.AverageInConservationCrop}}%</small></br>
-                <small>{{= strategy.AverageInConversion}}</small>
+                <%--<small>{{= strategy.AverageInConversion}}</small>--%>
                 </div>
            {{/if}}</td>
         </tr>
