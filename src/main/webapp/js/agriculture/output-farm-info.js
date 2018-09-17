@@ -540,7 +540,7 @@ function validateResourceTableForSA() {
         }
         else if (resourceName == "Land" || resourceName == "Working Capital") {
             if (resourceOverridedValue == "0") {
-            customAlerts("New resource amount can not be zero for " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
+            customAlerts("Either add a resource quantity or de-activate the " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
             flag = false;
             return flag;
           }
