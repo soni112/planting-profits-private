@@ -30,7 +30,7 @@
             $("#content_box_help").html(html);
 
             if ($("#content_box_help").find("input[name='strategyIdCheckbox']").length == 0) {
-                $("#content_box_help").html("No custom strategies are present for the farm.");
+                $("#content_box_help").html("There are no strategies to generate a report.");
             }
 
             $("#content_box_help").find("input[name='strategyIdCheckbox']").each(function () {

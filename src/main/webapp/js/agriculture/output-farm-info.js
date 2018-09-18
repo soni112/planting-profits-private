@@ -224,6 +224,9 @@ function alterHTMLOfTableAndShowPopupTable(result) {
     } else {
         usedCropDetail = result.Crop_Details;
         for (var i = 0; i < usedCropDetail.length; i++) {
+            if (usedCropDetail[i]['land'] === 0) {
+                usedLand += parseInt(usedCropDetail[i]['land']);
+            } else
             usedLand += parseInt(usedCropDetail[i]['land'].replace(",",""));
         }
     }
@@ -528,17 +531,28 @@ function getStrategyForMultipleResources() {
 function validateResourceTableForSA() {
     var flag = true;
     $("#sa_multiple_resource_table tbody tr").each(function () {
+        var resourceName = $(this).children("td:nth(0)").text();
         var resourceOverridedValue = $(this).children("td:nth(2)").find("input").val().trim();
         if (resourceOverridedValue == "") {
             customAlerts("Please enter new amount for " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
             flag = false;
             return flag;
         }
-        else if (resourceOverridedValue == "0") {
-            customAlerts("New resource amount can not be zero for " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
+        else if (resourceName == "Land" || resourceName == "Working Capital") {
+            if (resourceOverridedValue == "0") {
+            customAlerts("Either add a resource quantity or de-activate the " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
             flag = false;
             return flag;
+          }
         }
+        else if (resourceName !== "Land" || resourceName !== "Working Capital")
+        {
+            if (resourceOverridedValue == "0") {
+                flag = true;
+                return flag;
+           }
+        }
+
     });
     return flag;
 }

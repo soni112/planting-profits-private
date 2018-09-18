@@ -544,7 +544,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 padding-left-none medium-height-overflow medium-height-overRide"
                                 id="strategySelectionDiv">
                             <div class="form-group form-group1">
-                                <label>No custom strategies are present for the farm.</label>
+                                <label>There are no strategies to generate a report.</label>
                             </div>
                         </div>
 
@@ -896,7 +896,7 @@
                    <%--<small class="est-income-total">{{= addCommaSignWithDollarForTextWithOutId(strategy.ReturnWorkingCapital)}}</small>--%>
                    <%--<small class="est-income-total">{{= strategy.ReturnWorkingCapital}}</small>--%>
                 </div>
-                <small>{{= strategy.ReturnWorkingCapital}}</small>
+                <small>{{= strategy.ReturnWorkingCapital}}%</small>
             </div></td>
             <td class="success">
            {{if strategy.AverageInConservationCrop >= 50.0  }}
@@ -911,7 +911,7 @@
                 <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
                 <small>{{= strategy.AverageInConservationCrop}}%</small></br>
-                <small>{{= strategy.AverageInConversion}}</small>
+                <%--<small>{{= strategy.AverageInConversion}}</small>--%>
                 </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop > 25.0 && strategy.AverageInConservationCrop < 50.0 }}
@@ -926,7 +926,7 @@
                 <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
                 <small">{{= strategy.AverageInConservationCrop}}%</small><br>
-                <small>{{= strategy.AverageInConversion}}</small>
+                <%--<small>{{= strategy.AverageInConversion}}</small>--%>
             </div>
            {{/if}}
            {{if strategy.AverageInConservationCrop < 25.0 }}
@@ -940,7 +940,7 @@
                 <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
                 <small>{{= strategy.AverageInConservationCrop}}%</small></br>
-                <small>{{= strategy.AverageInConversion}}</small>
+                <%--<small>{{= strategy.AverageInConversion}}</small>--%>
                 </div>
            {{/if}}</td>
         </tr>
