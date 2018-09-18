@@ -383,14 +383,29 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 else
                     totalLand = 0.0;
 
-                jsonObject1.put(IMPACTING_INCOME, max);
-                jsonObject1.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
-                if (max.equalsIgnoreCase(YES)) {
-                    jsonObject1.put ( MESSAGE, "Maximum crop limit is impacting Estimated Income." );
-                } else if (max.equalsIgnoreCase ( NO )) {
-                    jsonObject1.put ( MESSAGE, "Maximum crop limit is not impacting Estimated Income." );
-                } else {
-                    jsonObject1.put ( MESSAGE, "Maximum crop limit is likely impacting  Estimated Income" );
+//                String minImpactingIncome = min;
+                if (cropTypeView.getMaximumAcres() != null && cropTypeView.getMinimumAcres() != null) {
+                    String max1 = min.equalsIgnoreCase("NO") ? YES : NO;
+                    jsonObject1.put(IMPACTING_INCOME, max1);
+                    jsonObject1.put(INC_DEC_INCOME, max1.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
+                    if (max1.equalsIgnoreCase(YES)) {
+                        jsonObject1.put ( MESSAGE, "Maximum crop limit is impacting Estimated Income." );
+                    } else if (max1.equalsIgnoreCase ( NO )) {
+                        jsonObject1.put ( MESSAGE, "Maximum crop limit is not impacting Estimated Income." );
+                    } else {
+                        jsonObject1.put ( MESSAGE, "Maximum crop limit is likely impacting  Estimated Income" );
+                    }
+                }
+                else if (cropTypeView.getMaximumAcres() != null || cropTypeView.getMinimumAcres() != null) {
+                    jsonObject1.put(IMPACTING_INCOME, max);
+                    jsonObject1.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
+                    if (max.equalsIgnoreCase(YES)) {
+                        jsonObject1.put ( MESSAGE, "Maximum crop limit is impacting Estimated Income." );
+                    } else if (max.equalsIgnoreCase ( NO )) {
+                        jsonObject1.put ( MESSAGE, "Maximum crop limit is not impacting Estimated Income." );
+                    } else {
+                        jsonObject1.put ( MESSAGE, "Maximum crop limit is likely impacting  Estimated Income" );
+                    }
                 }
             }
             jsonArray.add ( jsonObject1 );
@@ -449,13 +464,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             maximumAcres = Integer.parseInt(maxAcresValue.replace(",",""));
                             String minimumAcresValue = cropTypeView.getMinimumAcres().equals("") ? "0" : cropTypeView.getMinimumAcres() ;
                             minimumAcres = Integer.parseInt(minimumAcresValue.replace(",",""));
-                            if(minimumAcres != 0 && maximumAcres != 0) {
+                            /*if(minimumAcres != 0 && maximumAcres != 0) {
                                 return getYesNoForMax(usedAcres, minimumAcres, maximumAcres, minOrMax);
                             }
                             else if(minimumAcres != 0 || maximumAcres !=0 ) {
                                 return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
-                            }
+                            }*/
 
+                            return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
                         }
 
                     }
@@ -583,7 +599,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         if (minOrMax.equalsIgnoreCase("min")) {
 
             double value = usedAcres - minimumAcres;
-           double values=  value / minimumAcres;
+            double values=  value / minimumAcres;
             if(minimumAcres <= 0){
                 return NO;
             } else if (value == 0) {
