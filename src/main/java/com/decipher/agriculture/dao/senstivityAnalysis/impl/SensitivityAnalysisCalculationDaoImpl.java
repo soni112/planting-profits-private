@@ -762,9 +762,6 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         boolean continueFlag = true;
         CropResourceUsageView resource = null;
 
-        Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
-        Result bestResult = (Result) map.get("Best_Result");
-
         Double amount = 0.0;
 
         long tempHolder = differenceValue.longValue();
@@ -964,8 +961,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 Long totalLand=0L;
                 Long totalUseResourceValue=0L;
                 double useResourceValue=0.0;
-                /*Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
-                Result bestResult = (Result) map.get("Best_Result");*/
+                Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
+                Result bestResult = (Result) map.get("Best_Result");
                 String[] bestCase = (String[]) map.get("Best_Case");
                 if (bestResult != null && amount > 0) {
                     try {
@@ -1226,8 +1223,6 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
         boolean continueFlag = true;
         CropResourceUsageView resource = null;
 
-        Result result = linearProgramingSolveDao.getLinearProgramingResultForAcerage(cropBeanForOutput, farmInfo.getLand(), resourceUsageViews, cropsGroups);
-
         Long amount = 0L;
 
         long tempHolder = differenceValue.longValue();
@@ -1397,7 +1392,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 }
                 Long totalLand=0L;
                 Long totalUseResourceValue=0L;
-//                Result result = linearProgramingSolveDao.getLinearProgramingResultForAcerage(cropBeanForOutput, farmInfo.getLand(), resourceUsageViews, cropsGroups);
+                Result result = linearProgramingSolveDao.getLinearProgramingResultForAcerage(cropBeanForOutput, farmInfo.getLand(), resourceUsageViews, cropsGroups);
                 if (result != null) {
                     JSONArray innerJsonArray = new JSONArray();
                     for (CropBeanForOutput beanForOutput : cropBeanForOutput) {
@@ -1551,7 +1546,8 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     if(resourceStr.equals("Working Capital")){
                         jsonObject.put("Potential_Profit", 0);
                     }else {
-                        jsonObject.put("Potential_Profit", result.getObjective().longValue());
+//                        jsonObject.put("Potential_Profit", result.getObjective().longValue());
+                        jsonObject.put("Potential_Profit", 0 );
                     }
 
                     if (differenceValue > 0) {
@@ -1575,7 +1571,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 //                        }
 //                        jsonObject.put("bubbleMessage", msg);
                     }
-                    else
+                    /*else
                     {
                         long profit, temp = result.getObjective().longValue();
                         profit = temp - currentPotentialProfit;
@@ -1597,8 +1593,10 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                     " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) increases Estimated Income by $" + AgricultureStandardUtils.commaSeparaterForLong(profit - currentPotentialProfit < 0 ? 0 : profit - currentPotentialProfit) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
                         }
                         oldProfit = profit;
-                    }
+                    }*/
 
+                    else
+                        jsonObject.put("bubbleMessage", "Cannot generate a strategy when " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) + " is decreased to " + AgricultureStandardUtils.commaSeparaterForLong(amount) + " " + resource.getUoMResource());
                 }
                 jsonArray.add(jsonObject);
             }
