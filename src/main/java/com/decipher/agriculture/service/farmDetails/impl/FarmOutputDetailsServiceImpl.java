@@ -288,7 +288,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
 
-            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+/*            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
 
             PlanByStrategy strategy = farmInfoView.getStrategy();
             if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_ACRES)) {
@@ -322,14 +322,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     else if (profitIndex <0.8 )
                         jsonObject.put(INC_DEC_INCOME, "Decrease");
                 }
-            }
+            }*/
 
-            /*if(cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )){
-                jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Increase" : "Decrease");
+            if(cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )){
+                jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Decrease" : "Increase");
             }else{
                 jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
-            }*/
-//            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
+            }
+            jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) ? "Increase" : "--");
 
             if (min.equalsIgnoreCase ( YES )) {
                 jsonObject.put ( MESSAGE, "Minimum crop limit is impacting Estimated Income." );
@@ -450,12 +450,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 if (cropTypeView != null) {
                     int usedAcres, minimumAcres, maximumAcres;
                     Double profitIndex;
-                    if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getForFirm() && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+//                    if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getForFirm() && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+
+                        if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                         usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                         minimumAcres = cropTypeView.getForwardAcres().intValue();
                         maximumAcres = 0;
-//                        profitIndex = farmOutputDetailsView.getProfitIndex();
-                        return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                        profitIndex = farmOutputDetailsView.getProfitIndex();
+                        return getYesNoForFirmChecked(profitIndex);
                     }
                     else {
                         if (farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
@@ -504,7 +506,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     maximumAcres = 0;
 //                    profitIndex = hashMapForProfit.get("");
                     profitIndex = 0.0;
-                    return getYesNoForFirmChecked(usedAcres, minimumAcres, maximumAcres, minOrMax);
+                    return getYesNoForFirmChecked(profitIndex);
                 } else {
                     usedAcres = Integer.parseInt(AgricultureStandardUtils.removeAllCommas(hashMapForAcre.get(cropTypeView.getCropName()).split(" ")[0]));
                     minimumAcres = Integer.parseInt(cropTypeView.getMinimumAcresWithoutComma().equalsIgnoreCase("") ? "0" : cropTypeView.getMinimumAcresWithoutComma());
@@ -571,15 +573,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
         }
         return "";    }
 
-    public String getYesNoForFirmChecked(int usedAcres, int minimumAcres, int maximumAcres, String minOrMax){
-        double value = usedAcres - minimumAcres;
-        double values=  value/minimumAcres;
-        if (value == 0) {
-            return YES;
-        } else if (values <= 0.15) {
-            return Likely;
-        } else if (values > 0.15) {
+    public String getYesNoForFirmChecked(Double profitIndex){
+//        double value = usedAcres - minimumAcres;
+//        double values=  value/minimumAcres;
+        if (profitIndex >= 0.8) {
             return NO;
+        } else if (profitIndex < 0.8) {
+            return YES;
         }
         return "";
     }
