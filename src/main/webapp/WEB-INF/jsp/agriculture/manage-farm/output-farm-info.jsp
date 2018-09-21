@@ -776,7 +776,7 @@
                                         <td>Minimum Limit</td>
                                         <td>Maximum Limit</td>
                                         <c:if test="${model.farmInfoView.strategy ne 'PLAN_BY_FIELDS'}">
-                                            <td>Impacting Income</td>
+                                            <td>Impacting<br>Est. Income</td>
                                             <td>To Increase<br>Est. Income</td>
                                         </c:if>
                                         <td>Acreage Assigned</td>
