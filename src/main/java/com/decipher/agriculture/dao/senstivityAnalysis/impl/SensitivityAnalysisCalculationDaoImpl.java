@@ -1198,12 +1198,28 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                          continueFlag = false;
                          jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
                                  + " acres of " : "") + cropName) : (resourceStr + " resource")) + " is increased by " + (differenceString) + (resourceStr == null ? " acres" : ""));
-                     }
-                     else
-                         jsonObject.put ("bubbleMessage", "Cannot generate a strategy when the " + ( (selectionType.equals("Crop") || selectionType.equals("Group") ) ? rangeType
-                                 + " acres of " : "") + cropName + " is decreased to " + amount );
-                 }
+                     } else {
+                         for (CropBeanForOutput beanForOutput : cropBeanForOutput) {
+                             if (beanForOutput.getCropType().getCropName().equals(cropName)) {
+                                 if (beanForOutput.getMaxAcre() != 0 && beanForOutput.getMinAcre() != 0) {
+                                     if (beanForOutput.getMinAcre() > beanForOutput.getMaxAcre()) {
+                                         jsonObject.put("bubbleMessage", "Maximum crop acreage limit cannot be less than Minimum crop acreage limit.  No strategy generated");
+                                     }else {
+                                         jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + ((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
+                                                 + " acres of " : "") + cropName + " is decreased to " + amount);
+                                     }
+                                 } else {
+                                     jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + ((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
+                                             + " acres of " : "") + cropName + " is decreased to " + amount);
 
+                                 }
+
+
+                             }
+                         }
+
+                     }
+                 }
 
 
                     JSONArray jsonArrayInner = new JSONArray();
@@ -1627,9 +1643,27 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                             jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
                                     + " acres of " : "") + cropName) : (resourceStr + " resource")) + " is increased by " + (differenceString) + (resourceStr == null ? " acres" : ""));
                         }
-                        else
-                            jsonObject.put ("bubbleMessage", "Cannot generate a strategy when the " + ( (selectionType.equals("Crop") || selectionType.equals("Group") ) ? rangeType
-                                    + " acres of " : "") + cropName + " is decreased to " +" "+ amount );
+                        else {
+                            for (CropBeanForOutput beanForOutput : cropBeanForOutput) {
+                                if (beanForOutput.getCropType().getCropName().equals(cropName)) {
+                                    if (beanForOutput.getMaxAcre() != 0 && beanForOutput.getMinAcre() != 0) {
+                                        if (beanForOutput.getMinAcre() > beanForOutput.getMaxAcre()) {
+                                            jsonObject.put("bubbleMessage", "Maximum crop acreage limit cannot be less than Minimum crop acreage limit.  No strategy generated");
+                                        }else {
+                                            jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + ((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
+                                                    + " acres of " : "") + cropName + " is decreased to " + amount);
+                                        }
+                                    } else {
+                                        jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + ((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
+                                                + " acres of " : "") + cropName + " is decreased to " + amount);
+
+                                    }
+
+
+                                }
+                            }
+
+                        }
                     }
                 }
                 jsonArray.add(jsonObject);
