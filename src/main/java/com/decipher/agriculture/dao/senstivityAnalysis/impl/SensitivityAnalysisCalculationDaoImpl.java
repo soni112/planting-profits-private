@@ -1218,7 +1218,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                      }
                                  } else {
                                      jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + ((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
-                                             + " acres of " : "") + cropName + " is decreased to " + amount);
+                                             + " acres of " : "") + cropName + " is decreased to " + AgricultureStandardUtils.withoutDecimalAndComma(amount));
 
                                  }
 
