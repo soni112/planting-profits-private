@@ -457,7 +457,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         continue outer;
                     } else if(str.split("#-#-#")[0].equals(resourceUsageView.getCropResourceUse())) {
                         resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
-                        if (!resourceUsageView.getResourseOverrideAmount().equals("0") )
+                        if (!resourceUsageView.getResourseOverrideAmount().equalsIgnoreCase("0.0") )
                             continue outer;
                         else
                           resourceUsageView.setActive(false);
