@@ -685,10 +685,9 @@ function validateResources() {
             }
         }
     });
-
     if (resourcesFlag == false) {
         // customAlerts('Please enter amount for "' + resourcesName.substring(0, resourcesName.length - 2) + '" resource', type_error, time);
-        // customAlerts('Please enter amount for "' + resourcesName.substring(0, resourcesName.length - 2) + '" resource', type_error, time);
+        customAlerts('Either add a resource quantity or de-activate the "' + resourcesName.substring(0, resourcesName.length -2) + '" resources', type_error, time);
         return false;
     }
         else if (resourcesFlagWithZeroValue == false) {
