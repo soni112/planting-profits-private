@@ -457,7 +457,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         continue outer;
                     } else if(str.split("#-#-#")[0].equals(resourceUsageView.getCropResourceUse())) {
                         resourceUsageView.setCropResourceUseAmount(str.split("#-#-#")[1]);
-                        if (!resourceUsageView.getResourseOverrideAmount().equals("0") )
+                        if (!resourceUsageView.getResourseOverrideAmount().equalsIgnoreCase("0.0") )
                             continue outer;
                         else
                           resourceUsageView.setActive(false);
@@ -1221,7 +1221,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                      }
                                  } else {
 //                                     jsonObject.put("bubbleMessage", "Cannot generate a strategy when the " + ((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType
-//                                             + " acres of " : "") + cropName + " is decreased to " + amount);
+//                                             + " acres of " : "") + cropName + " is decreased to " + AgricultureStandardUtils.withoutDecimalAndComma(amount));
                                      long profit, temp = bestResult == null ? 0 :bestResult.getObjective().longValue();
                                      profit = temp - currentPotentialProfit;
                                      if (profit == 0.5 || profit == -0.5 || profit == -1 || profit == 1) {

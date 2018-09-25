@@ -431,7 +431,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 String cropAcreage = getCropAcreage ( cropTypeView, outputDetails, cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) );
-                if (!cropAcreage.equalsIgnoreCase("") ) {
+                if (!cropAcreage.equalsIgnoreCase("") && cropAcreage.equalsIgnoreCase("_") ) {
                     if (totalLand == Double.parseDouble(cropAcreage.replaceAll("\\,",""))) {
                         max = NO;
                     }
