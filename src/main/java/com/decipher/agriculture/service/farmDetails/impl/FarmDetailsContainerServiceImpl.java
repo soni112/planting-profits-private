@@ -19,6 +19,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,8 +47,9 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
     private static final String BASELINE_DETAILS = "BaselineDetails";
     private static final String STRATEGY_DETAILS = "StrategyDetails";
     private static final String SCENARIO_DETAILS = "ScenarioDetails";
-
+    public String FILE="/home/ruchika/accountDataContainerMap.ser";
     private final Map<Account, Object> accountDataContainerMap = Collections.synchronizedMap(new TreeMap<Account, Object>());
+    public Map<Account, Object> accountDataContainerMapFile = new HashMap<> (  );
 
     @Autowired
     private ScenarioService scenarioService;
@@ -585,8 +594,46 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
         } catch (Exception e) {
             PlantingProfitLogger.error(e);
         }
-
         return strategyOutputDetails;
     }
 
+    @PostConstruct
+    public void postConstruct(){
+        FileInputStream fileIn = null;
+        ObjectInputStream in=null;
+        try {
+             File file = new File(FILE);
+             if(file.exists()){
+                 fileIn = new FileInputStream(file);
+                 in = new ObjectInputStream(fileIn);
+                 accountDataContainerMapFile= (Map <Account, Object>) in.readObject();
+                 in.close(); }
+        } catch (Exception e) {
+            PlantingProfitLogger.error ( "unable Destroy"+e.getMessage ());
+        }finally {
+            try { fileIn.close();
+            } catch (Exception e) {
+                e.printStackTrace ();
+            }
+        }
+    }
+    @PreDestroy
+    public void preDestroy(){
+        FileOutputStream fileOut= null;
+        ObjectOutputStream out=null;
+        try { fileOut = new FileOutputStream( FILE);
+              out = new ObjectOutputStream(fileOut);
+            out.writeObject(accountDataContainerMap);
+        } catch (Exception e) {
+            PlantingProfitLogger.error ( "unable to construct"+e.getMessage ());
+        }finally {
+            try {
+                out.close();
+                fileOut.close();
+            } catch (Exception e) {
+                e.printStackTrace ();
+            }
+
+        }
+    }
 }

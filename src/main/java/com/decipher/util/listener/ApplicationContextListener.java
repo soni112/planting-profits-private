@@ -5,6 +5,7 @@ package com.decipher.util.listener;
  * @date 27-11-2015 
  */
 
+
 import com.decipher.config.ApplicationConfig;
 import com.decipher.util.PlantingProfitLogger;
 import com.decipher.config.ApplicationMode;
@@ -24,11 +25,11 @@ public class ApplicationContextListener implements ServletContextListener{
 		 * @date - 02-04-2016
 		 * @desc - Destroying scheduler
 		 */
-		try {
+	/*	try {
 			AgricultureScheduler.stopQuartzSchedulerJobs();
 		} catch (SchedulerException e) {
 			PlantingProfitLogger.error(e);
-		}
+		}*/
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class ApplicationContextListener implements ServletContextListener{
 		 * @date - 02-04-2016
 		 * @desc - Initializing scheduler
 		 */
-		try {
+/*		try {
 			ApplicationContext applicationContext = SpringApplicationContextListener.getApplicationContext();
 			ApplicationMode applicationMode = applicationContext.getBean(ApplicationConfig.class).getApplicationMode();
 			if (applicationMode.equals(ApplicationMode.UAT) || applicationMode.equals(ApplicationMode.PRODUCTION)) {
@@ -72,7 +73,7 @@ public class ApplicationContextListener implements ServletContextListener{
 			}
 		} catch (Exception e) {
 			PlantingProfitLogger.error(e);
-		}
+		}*/
 
 	}
 
