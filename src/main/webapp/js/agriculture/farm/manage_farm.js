@@ -686,9 +686,11 @@ function validateResources() {
         }
     });
     if (resourcesFlag == false) {
-        customAlerts('Please enter amount for "' + resourcesName.substring(0, resourcesName.length - 2) + '" resource', type_error, time);
+        // customAlerts('Please enter amount for "' + resourcesName.substring(0, resourcesName.length - 2) + '" resource', type_error, time);
+        customAlerts('Either add a resource quantity or de-activate the "' + resourcesName.substring(0, resourcesName.length -2) + '" resources', type_error, time);
         return false;
-    } else if (resourcesFlagWithZeroValue == false) {
+    }
+        else if (resourcesFlagWithZeroValue == false) {
         customAlerts('Either add a resource quantity or de-activate the "' + resourcesNameWithZeroValue.substring(0, resourcesNameWithZeroValue.length - 2) + '" resources', type_error, time);
         return false;
     } else {
@@ -3222,11 +3224,13 @@ function saveAllFarmInformation() {
                 for (var field in item) {
                     for (var crop in item[field]) {
                         var data = item[field][crop];
-                        field_difference_str = field + "#-#-#" + crop + "#-#-#";
-                        field_difference_str += data["expOverride"] !== "" ? removeAllCommasAndDollar(data["expOverride"]) + "#-#-#" : "0#-#-#";
-                        field_difference_str += data["minOverride"] !== "" ? removeAllCommasAndDollar(data["minOverride"]) + "#-#-#" : "0#-#-#";
-                        field_difference_str += data["maxOverride"] !== "" ? removeAllCommasAndDollar(data["maxOverride"]) + "#-#-#" : "0#-#-#";
-                        field_difference_str += data["resourceOverride"] !== "" ? removeAllCommasAndDollar(data["resourceOverride"]) + "#-#-#" : "0#-#-#";
+                        if (data !== 'undefined' && crop !== '0') {
+                            field_difference_str = field + "#-#-#" + crop + "#-#-#";
+                            field_difference_str += data["expOverride"] !== "" ? removeAllCommasAndDollar(data["expOverride"]) + "#-#-#" : "0#-#-#";
+                            field_difference_str += data["minOverride"] !== "" ? removeAllCommasAndDollar(data["minOverride"]) + "#-#-#" : "0#-#-#";
+                            field_difference_str += data["maxOverride"] !== "" ? removeAllCommasAndDollar(data["maxOverride"]) + "#-#-#" : "0#-#-#";
+                            field_difference_str += data["resourceOverride"] !== "" ? removeAllCommasAndDollar(data["resourceOverride"]) + "#-#-#" : "0#-#-#";
+                        }
                     }
                 }
             }
