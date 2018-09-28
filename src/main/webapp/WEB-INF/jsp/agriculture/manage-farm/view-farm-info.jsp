@@ -1697,6 +1697,7 @@ start -->
                                                                     <c:if test="${cropList.id eq resourcesVariancesList.cropId and resourcesVariancesList.cropFieldResourceUse ne 'Land' and resourcesVariancesList.cropFieldResourceUse ne 'Capital'}">
                                                                         <c:if test="${resourceList.cropResourceUse eq resourcesVariancesList.cropFieldResourceUse}">
                                                                             <%--   		cropResourceAmount : ${resourcesVariancesList.cropResourceAmount} --%>
+                                                                            <c:if test="${resourcesVariancesList.cropResourceAmount ne 'undefined'}">
                                                                             <td class="success infotext">
                                                                                 <input type="text"
                                                                                        data-resName = "${resourcesVariancesList.cropName}"
@@ -1705,6 +1706,7 @@ start -->
                                                                                        id="crop_resource_usage__${rowCount}__resource__${columnCount}"
                                                                                        value="${resourcesVariancesList.cropResourceAmount eq '0.00' or resourcesVariancesList.cropResourceAmount eq '.00' ?'':(resourcesVariancesList.cropResourceAmount eq 'undefined' ? '':resourcesVariancesList.cropResourceAmount)}"/>
                                                                             </td>
+                                                                            </c:if>
                                                                             <c:set var="columnCount"
                                                                                    value="${columnCount+1}"/>
                                                                         </c:if>
