@@ -321,7 +321,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
 
-/*            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
 
             PlanByStrategy strategy = farmInfoView.getStrategy();
             if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_ACRES)) {
@@ -330,9 +330,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 Double profitIndex = 0.0;
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if(cropTypeView != null ) {
-                        if (farmOutputDetailsView.getForFirm().equals("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+//                        if (farmOutputDetailsView.getForFirm().equals("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
                             profitIndex = farmOutputDetailsView.getProfitIndex();
-                        }
+//                        }
                         if (profitIndex >= 0.8)
                             jsonObject.put(INC_DEC_INCOME, "Increase");
                         else if (profitIndex <0.8 )
@@ -340,45 +340,45 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     }
                 }
             }
+//
+//            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_FIELDS)) {
+//
+//                Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
+//                Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
+//                if (cropTypeView != null) {
+//                    Double profitIndex = 0.0;
+//                    if(cropTypeView.getFirmchecked().equalsIgnoreCase("true") || hashMapForAcre.containsKey(cropTypeView.getCropName() + " (Firm)")){
+////                        profitIndex = Double.valueOf(hashMapForProfit.get("profitIndex"));
+//                    }
+//                    if (profitIndex >= 0.8)
+//                        jsonObject.put(INC_DEC_INCOME, "Increase");
+//                    else if (profitIndex <0.8 )
+//                        jsonObject.put(INC_DEC_INCOME, "Decrease");
+//                }
+//            }*/
 
-            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_FIELDS)) {
-
-                Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
-                Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
-                if (cropTypeView != null) {
-                    Double profitIndex = 0.0;
-                    if(cropTypeView.getFirmchecked().equalsIgnoreCase("true") || hashMapForAcre.containsKey(cropTypeView.getCropName() + " (Firm)")){
-//                        profitIndex = Double.valueOf(hashMapForProfit.get("profitIndex"));
-                    }
-                    if (profitIndex >= 0.8)
-                        jsonObject.put(INC_DEC_INCOME, "Increase");
-                    else if (profitIndex <0.8 )
-                        jsonObject.put(INC_DEC_INCOME, "Decrease");
-                }
-            }*/
-
-            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
-
-            PlanByStrategy strategy = farmInfoView.getStrategy();
-            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_ACRES)) {
-
-                List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
-                for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                    if (cropTypeView != null ) {
-                       if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) ) {
-                           if (farmOutputDetailsView.getForFirm() == true ) {
-                               jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Decrease" : "Increase");
-                               break;
-                           } else {
-                               jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
-
-                           }
-
-                       } else
-                           jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
-                    }
-                }
-            }
+//            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+//
+//            PlanByStrategy strategy = farmInfoView.getStrategy();
+//            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_ACRES)) {
+//
+//                List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+//                for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+//                    if (cropTypeView != null ) {
+//                       if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) ) {
+//                           if (farmOutputDetailsView.getForFirm() == true ) {
+//                               jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Decrease" : "Increase");
+//                               break;
+//                           } else {
+//                               jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
+//
+//                           }
+//
+//                       } else
+//                           jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
+//                    }
+//                }
+//            }
 
             /*if(cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" ) ){
                 jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Decrease" : "Increase");
