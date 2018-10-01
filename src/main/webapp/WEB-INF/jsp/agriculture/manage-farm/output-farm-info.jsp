@@ -1456,7 +1456,8 @@
                                         <td>Estimated Income</td>
                                         <td>Estimated Income per Acre ($/acre)</td>
                                         <td>Land Profitability Index</td>
-                                        <td>Rating</td>
+                                        <td>Land Profitability
+                                            Index Rating</td>
                                     </tr>
                                     </thead>
                                     <tbody id="">
