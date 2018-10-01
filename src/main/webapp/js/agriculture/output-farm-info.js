@@ -538,7 +538,17 @@ function validateResourceTableForSA() {
             flag = false;
             return flag;
         }
-        else if (resourceName == "Land" || resourceName == "Working Capital") {
+        // else if (resourceName == "Land" || resourceName == "Working Capital") {
+        //     if (resourceOverridedValue == "0") {
+        //     // customAlerts("Either add a resource quantity or de-activate the " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
+        //     customAlerts("Please ensure that the amount entered are greater than zero for Capital resources", type_error, time);
+        //
+        //
+        //     flag = false;
+        //     return flag;
+        //   }
+        // }
+        else if (resourceName == "Land") {
             if (resourceOverridedValue == "0") {
             // customAlerts("Either add a resource quantity or de-activate the " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
             customAlerts("Please ensure that the amount entered are greater than zero for Capital resources", type_error, time);
@@ -547,6 +557,16 @@ function validateResourceTableForSA() {
             flag = false;
             return flag;
           }
+        }
+        else if (resourceName == "Working Capital") {
+            if (resourceOverridedValue == "0") {
+                // customAlerts("Either add a resource quantity or de-activate the " + $(this).children("td:nth(0)").text().trim() + " resources", type_error, time);
+                customAlerts("Working Capital must be greater than zero to generate a strategy", type_error, time);
+
+
+                flag = false;
+                return flag;
+            }
         }
         else if (resourceName !== "Land" || resourceName !== "Working Capital")
         {

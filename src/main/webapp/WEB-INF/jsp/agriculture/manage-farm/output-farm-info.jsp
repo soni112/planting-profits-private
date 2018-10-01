@@ -359,6 +359,7 @@
                                         <thead>
                                         <tr class="tblhd add-fieldi">
                                             <td class="tblbrdr add-fieldi">Resource</td>
+                                            <td class="tblbrdr add-fieldi">UoM</td>
                                             <td class="tblbrdr add-fieldi">Total Available</td>
                                             <td class="add-fieldi">Used</td>
                                             <td>Unused</td>
@@ -404,12 +405,27 @@
                                                 </c:choose>
                                             </tr>--%>
                                             <tr class="tblgrn">
-                                                <td class="success">
-                                                    ${resourceList.resourceName}
-                                                </td>
-                                                <td class="success">${resourceList.totalAvailable}</td>
-                                                <td class="success">${resourceList.used}</td>
-                                                <td class="success">${resourceList.unused}</td>
+                                                <c:choose>
+
+                                                    <c:when test="${resourceList.resourceName.equals('Working Capital')}">
+                                                        <td class="success">${resourceList.resourceName}</td>
+                                                        <td class="success">${resourceList.uoMResource}</td>
+                                                        <td class="success">$${resourceList.totalAvailable}</td>
+                                                        <td class="success">$${resourceList.used}</td>
+                                                        <td class="success">$${resourceList.unused}</td>
+                                                    </c:when>
+
+                                                    <c:otherwise>
+                                                        <td class="success">${resourceList.resourceName}</td>
+                                                        <td class="success">${resourceList.uoMResource}</td>
+                                                        <td class="success">${resourceList.totalAvailable}</td>
+                                                        <td class="success">${resourceList.used}</td>
+                                                        <td class="success">${resourceList.unused}</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+
+
                                                 <c:choose>
                                                     <c:when test="${model.resourceJsonObject.resourceFlags[resourceList.resourceName]}">
                                                         <td class="success" title="Resource limits or crop acreage limits preventing all land from being planted">
@@ -1456,7 +1472,8 @@
                                         <td>Estimated Income</td>
                                         <td>Estimated Income per Acre ($/acre)</td>
                                         <td>Land Profitability Index</td>
-                                        <td>Rating</td>
+                                        <td>Land Profitability
+                                            Index Rating</td>
                                     </tr>
                                     </thead>
                                     <tbody id="">

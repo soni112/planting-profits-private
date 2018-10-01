@@ -51,6 +51,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
     private static final String RESOURCE_STATUS = "status";
     private static final String RESOURCE_NAME = "resourceName";
+    private static final String UOM_RESOURCE = "uoMResource";
     private static final String RESOURCE_TOTAL_AVAILABLE = "totalAvailable";
     private static final String RESOURCE_USED = "used";
     private static final String RESOURCE_UNUSED = "unused";
@@ -918,6 +919,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     jsonObject.put(RESOURCE_NAME, cropResourceUsageView.getCropResourceUse());
                     flagStatusObj.put(cropResourceUsageView.getCropResourceUse(), false);
                 }
+                jsonObject.put(UOM_RESOURCE, cropResourceUsageView.getUoMResource());
                 jsonObject.put(RESOURCE_TOTAL_AVAILABLE, cropResourceUsageView.getCropResourceUseAmount());
                 jsonObject.put(RESOURCE_USED, cropResourceUsed.get(cropResourceUsageView.getCropResourceUse()));
                 jsonObject.put(RESOURCE_UNUSED, cropResourceUnused.get(cropResourceUsageView.getCropResourceUse()));
