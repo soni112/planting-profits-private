@@ -146,6 +146,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 for (int i = 0; i < jsonArray1.size (); i++) {
                     jsonObject = (JSONObject) jsonArray1.get ( i );
                     jsonObject.put ( "cropName", cropTypeView.getCropName () );
+                    if(jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("No")){
+                        jsonObject.put("incDecIncome","--");
+                    }
                     if (!jsonObject.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
                         jsonObject.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, false ) );
                     } else {
