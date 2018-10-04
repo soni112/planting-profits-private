@@ -658,7 +658,7 @@ function validateResources() {
         addErrorClassOnObject("#total_capital_available");
         return false;
     } else if (totalCapitalAvailable == 0) {
-        customAlerts("Please ensure that the amount entered are greater than zero for Capital resource", type_error, time);
+        customAlerts("Working Capital must be greater than zero to generate a strategy", type_error, time);
         addErrorClassOnObject("#total_capital_available");
         return false;
     } else if (!validateNumberOnly(totalCapitalAvailable) || totalCapitalAvailable < 1) {
