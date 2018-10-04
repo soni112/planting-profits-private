@@ -146,6 +146,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 for (int i = 0; i < jsonArray1.size (); i++) {
                     jsonObject = (JSONObject) jsonArray1.get ( i );
                     jsonObject.put ( "cropName", cropTypeView.getCropName () );
+                    if(jsonObject.get(IMPACTING_INCOME).toString().equalsIgnoreCase("No")){
+                        jsonObject.put("incDecIncome","--");
+                    }
                     if (!jsonObject.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
                         jsonObject.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, false ) );
                     } else {
@@ -156,10 +159,29 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 if (cropTypeView.getFirmchecked ().equalsIgnoreCase ( "true" )) {
 
                     JSONArray jsonArrayForFirm = getCropLimit ( farmInfoView, AgricultureStandardUtils.withoutDecimalAndComma ( cropTypeView.getForwardAcres () ), "", cropTypeView, null, outputDetails );
-                    JSONObject jsonObjectForFirm = new JSONObject ();
+                    JSONObject jsonObjectForFirm;
                     for (int i = 0; i < jsonArrayForFirm.size (); i++) {
                         jsonObjectForFirm = (JSONObject) jsonArrayForFirm.get ( i );
                         jsonObjectForFirm.put ( "cropName", cropTypeView.getCropName () + " (Firm)" );
+
+                        /* checking Firm Condition for Increase Decrease w.r.t Profit Index */
+
+                        List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+                            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                                if (cropTypeView != null) {
+                                    if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+                                        if (farmOutputDetailsView.getForFirm() == true) {
+                                            double profitIndex = farmOutputDetailsView.getProfitIndex();
+                                            if (profitIndex >= 0.8) {
+                                                jsonObjectForFirm.put("incDecIncome", "Increase");
+                                            } else if (profitIndex < 0.8) {
+                                                jsonObjectForFirm.put("incDecIncome", "Decrease");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+//
                         if (!jsonObjectForFirm.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
                             jsonObjectForFirm.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, true ) );
                         } else if (jsonObjectForFirm.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
@@ -177,7 +199,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
         for (CropsGroupView cropsGroupView : cropsGroupViewList) {
             JSONArray jsonArray1 = getCropLimit(farmInfoView, cropsGroupView.getMinimumAcres(), cropsGroupView.getMaximumAcres(), null, cropsGroupView, outputDetails);
-            JSONObject jsonObject = new JSONObject();
+            JSONObject jsonObject;
 
             for (int i = 1; i < jsonArray.size(); i++) {
                 jsonObject = (JSONObject) jsonArray1.get(i);
@@ -294,7 +316,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                                     jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES)? "Decrease" : "Increase");
                                     break;
                                 } else {
-                                    jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
+                                    jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
                                     break;
                                 }
 
@@ -322,7 +344,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             String min = isIncomeImpactedForCropLimit(cropTypeView, cropsGroupView, outputDetails, "min");
             jsonObject.put(IMPACTING_INCOME, min);
 
-/*            farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
+         /*   farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
 
             PlanByStrategy strategy = farmInfoView.getStrategy();
             if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_ACRES)) {
@@ -331,32 +353,32 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 Double profitIndex = 0.0;
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if(cropTypeView != null ) {
-                        if (farmOutputDetailsView.getForFirm().equals("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+//                        if (farmOutputDetailsView.getForFirm().equals("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
                             profitIndex = farmOutputDetailsView.getProfitIndex();
-                        }
+//                        }
                         if (profitIndex >= 0.8)
                             jsonObject.put(INC_DEC_INCOME, "Increase");
                         else if (profitIndex <0.8 )
                             jsonObject.put(INC_DEC_INCOME, "Decrease");
                     }
                 }
-            }
-
-            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_FIELDS)) {
-
-                Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
-                Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
-                if (cropTypeView != null) {
-                    Double profitIndex = 0.0;
-                    if(cropTypeView.getFirmchecked().equalsIgnoreCase("true") || hashMapForAcre.containsKey(cropTypeView.getCropName() + " (Firm)")){
-//                        profitIndex = Double.valueOf(hashMapForProfit.get("profitIndex"));
-                    }
-                    if (profitIndex >= 0.8)
-                        jsonObject.put(INC_DEC_INCOME, "Increase");
-                    else if (profitIndex <0.8 )
-                        jsonObject.put(INC_DEC_INCOME, "Decrease");
-                }
             }*/
+//
+//            if (Objects.equals(strategy, PlanByStrategy.PLAN_BY_FIELDS)) {
+//
+//                Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
+//                Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
+//                if (cropTypeView != null) {
+//                    Double profitIndex = 0.0;
+//                    if(cropTypeView.getFirmchecked().equalsIgnoreCase("true") || hashMapForAcre.containsKey(cropTypeView.getCropName() + " (Firm)")){
+////                        profitIndex = Double.valueOf(hashMapForProfit.get("profitIndex"));
+//                    }
+//                    if (profitIndex >= 0.8)
+//                        jsonObject.put(INC_DEC_INCOME, "Increase");
+//                    else if (profitIndex <0.8 )
+//                        jsonObject.put(INC_DEC_INCOME, "Decrease");
+//                }
+//            }*/
 
             farmInfoView = (FarmInfoView) outputDetails.get("farmInfoView");
 
@@ -367,7 +389,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                     if (cropTypeView != null ) {
                        if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId()) ) {
-                           if (farmOutputDetailsView.getForFirm() == true ) {
+                           if (farmOutputDetailsView.getForFirm().equals(true) ) {
                                jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES)? "Decrease" : "Increase");
                                break;
                            } else {
@@ -376,7 +398,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                            }
 
                        } else
-                           jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
+                           jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
                     }
                 }
             }
@@ -508,8 +530,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     int usedAcres, minimumAcres, maximumAcres;
                     Double profitIndex;
                         if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
-                            boolean forFirm = farmOutputDetailsView.getForFirm();
-                            if (forFirm == true) {
+                            if (farmOutputDetailsView.getForFirm().equals(true)) {
                                 profitIndex = farmOutputDetailsView.getProfitIndex();
                                 return getYesNoForFirmChecked(profitIndex);
                             } else {
