@@ -163,6 +163,25 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     for (int i = 0; i < jsonArrayForFirm.size (); i++) {
                         jsonObjectForFirm = (JSONObject) jsonArrayForFirm.get ( i );
                         jsonObjectForFirm.put ( "cropName", cropTypeView.getCropName () + " (Firm)" );
+
+                        /* checking Firm Condition for Increase Decrease w.r.t Profit Index */
+
+                        List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+                            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                                if (cropTypeView != null) {
+                                    if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+                                        if (farmOutputDetailsView.getForFirm() == true) {
+                                            double profitIndex = farmOutputDetailsView.getProfitIndex();
+                                            if (profitIndex >= 0.8) {
+                                                jsonObjectForFirm.put("incDecIncome", "Increase");
+                                            } else if (profitIndex < 0.8) {
+                                                jsonObjectForFirm.put("incDecIncome", "Decrease");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+//
                         if (!jsonObjectForFirm.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
                             jsonObjectForFirm.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, true ) );
                         } else if (jsonObjectForFirm.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
@@ -297,7 +316,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                                     jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES)? "Decrease" : "Increase");
                                     break;
                                 } else {
-                                    jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
+                                    jsonObject.put(INC_DEC_INCOME, max.equalsIgnoreCase(YES) || max.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
                                     break;
                                 }
 
@@ -379,7 +398,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                            }
 
                        } else
-                           jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Increase" : "--");
+                           jsonObject.put(INC_DEC_INCOME, min.equalsIgnoreCase(YES) || min.equalsIgnoreCase ( Likely ) ? "Decrease" : "--");
                     }
                 }
             }
