@@ -980,18 +980,18 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         PlantingProfitLogger.error(e);
                     }
                     JSONArray jsonArrayInner = new JSONArray();
-                    for (FieldInfoView fieldInfoView : fieldInfoViews) {
-                        JSONObject object = new JSONObject();
-
-                        object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-                        object.put("Crop_Info",  fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Assigned");
-
-                        jsonArrayInner.add(object);
-                    }
-                    jsonObject.put("Field_Crop_Info", jsonArrayInner);
-
-
-                jsonObject.put("Strategy", "Field");
+//                    for (FieldInfoView fieldInfoView : fieldInfoViews) {
+//                        JSONObject object = new JSONObject();
+//
+//                        object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
+//                        object.put("Crop_Info",  fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Assigned");
+//
+//                        jsonArrayInner.add(object);
+//                    }
+//                    jsonObject.put("Field_Crop_Info", jsonArrayInner);
+//
+//
+//                jsonObject.put("Strategy", "Field");
 
 //                jsonArray.add(jsonObject);
 
