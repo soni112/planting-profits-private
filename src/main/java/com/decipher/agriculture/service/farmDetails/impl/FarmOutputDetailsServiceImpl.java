@@ -166,21 +166,21 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                         /* checking Firm Condition for Increase Decrease w.r.t Profit Index */
 
-                        List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
-                            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                                if (cropTypeView != null) {
-                                    if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
-                                        if (farmOutputDetailsView.getForFirm() == true) {
-                                            double profitIndex = farmOutputDetailsView.getProfitIndex();
-                                            if (profitIndex >= 0.8) {
-                                                jsonObjectForFirm.put("incDecIncome", "Increase");
-                                            } else if (profitIndex < 0.8) {
-                                                jsonObjectForFirm.put("incDecIncome", "Decrease");
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+//                        List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+//                            for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+//                                if (cropTypeView != null) {
+//                                    if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
+//                                        if (farmOutputDetailsView.getForFirm() == true) {
+//                                            double profitIndex = farmOutputDetailsView.getProfitIndex();
+//                                            if (profitIndex >= 0.8) {
+//                                                jsonObjectForFirm.put("incDecIncome", "Increase");
+//                                            } else if (profitIndex < 0.8) {
+//                                                jsonObjectForFirm.put("incDecIncome", "Decrease");
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
 //
                         if (!jsonObjectForFirm.get ( IMPACTING_INCOME ).toString ().equalsIgnoreCase ( "--" )) {
                             jsonObjectForFirm.put ( "acreagePlanted", getCropAcreage ( cropTypeView, outputDetails, true ) );
