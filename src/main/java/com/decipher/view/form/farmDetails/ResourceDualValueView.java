@@ -2,9 +2,10 @@ package com.decipher.view.form.farmDetails;
 
 import com.decipher.agriculture.data.farmOutput.ResourceDualValue;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class ResourceDualValueView {
+public class ResourceDualValueView implements Serializable {
 
 	private Double primalValue;
 

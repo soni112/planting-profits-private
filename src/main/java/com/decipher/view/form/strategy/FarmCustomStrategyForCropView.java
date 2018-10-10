@@ -2,7 +2,9 @@ package com.decipher.view.form.strategy;
 
 import com.decipher.agriculture.data.strategy.FarmCustomStrategyForCrop;
 
-public class FarmCustomStrategyForCropView {
+import java.io.Serializable;
+
+public class FarmCustomStrategyForCropView implements Serializable {
 	private Integer id;
 	private String cropname;
 	private String maximum;

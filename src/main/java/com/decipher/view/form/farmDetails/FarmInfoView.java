@@ -5,9 +5,10 @@ import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.util.AgricultureStandardUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class FarmInfoView implements Comparable<FarmInfoView>, Cloneable{
+public class FarmInfoView implements Comparable<FarmInfoView>, Cloneable, Serializable {
 	private Integer id;
 	private String farmName;
 	private String physicalLocation;

@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by Raja Dushyant Vashishtha
@@ -23,7 +24,7 @@ import javax.persistence.Table;
 @Cacheable
 @Entity(name = "Contribution")
 @Table(name = "CONTRIBUTION")
-public class Contribution{
+public class Contribution implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

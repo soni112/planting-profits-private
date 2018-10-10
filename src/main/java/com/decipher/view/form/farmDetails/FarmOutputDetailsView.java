@@ -6,9 +6,10 @@ import com.decipher.util.AgricultureStandardUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class FarmOutputDetailsView implements Comparator<FarmOutputDetailsView>{
+public class FarmOutputDetailsView implements Comparator<FarmOutputDetailsView>, Serializable{
 
 	private Integer id;
 	private String profit;

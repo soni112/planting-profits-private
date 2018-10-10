@@ -2,7 +2,9 @@ package com.decipher.view.form.strategy;
 
 import com.decipher.agriculture.data.strategy.FarmCustomStrategyForResource;
 
-public class FarmCustomStrategyForResourceView {
+import java.io.Serializable;
+
+public class FarmCustomStrategyForResourceView implements Serializable {
     private Integer id;
     private String resourseName;
     private long resourseValue;

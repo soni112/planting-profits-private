@@ -1,227 +1,194 @@
 package com.decipher.view.form.farmDetails;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.decipher.agriculture.data.farm.InternallyCalculatedVariableCropProductionCostComponents;
 
-public class InternallyCalculatedVariableCropProductionCostComponentsView
-{
-	private Integer id;
-	private BigDecimal calculatedVarProductionCost;
-	private BigDecimal costSeed;
-	private BigDecimal costHerbicide;
-	private BigDecimal costInsecticide;
-	private BigDecimal costFungicide;
-	private BigDecimal costFertilizer;
-	private BigDecimal costMicro_Nutrients;
-	private BigDecimal costLabor;
-	private BigDecimal costEquipment;
-	private BigDecimal costIrrigation;
-	private BigDecimal costRent;
-	private BigDecimal costProfessionalServices;
-	private BigDecimal costCropInsurance;
-	private BigDecimal costFinancing;
-	private BigDecimal costOther;
+public class InternallyCalculatedVariableCropProductionCostComponentsView implements Serializable {
+    private Integer id;
+    private BigDecimal calculatedVarProductionCost;
+    private BigDecimal costSeed;
+    private BigDecimal costHerbicide;
+    private BigDecimal costInsecticide;
+    private BigDecimal costFungicide;
+    private BigDecimal costFertilizer;
+    private BigDecimal costMicro_Nutrients;
+    private BigDecimal costLabor;
+    private BigDecimal costEquipment;
+    private BigDecimal costIrrigation;
+    private BigDecimal costRent;
+    private BigDecimal costProfessionalServices;
+    private BigDecimal costCropInsurance;
+    private BigDecimal costFinancing;
+    private BigDecimal costOther;
 
-	public InternallyCalculatedVariableCropProductionCostComponentsView()
-	{
-		
-	}
-	public InternallyCalculatedVariableCropProductionCostComponentsView(
-			InternallyCalculatedVariableCropProductionCostComponents internallyCalculatedVariableCropProductionCostComponents)
-	{
-		this.id = internallyCalculatedVariableCropProductionCostComponents
-				.getId();
-		this.calculatedVarProductionCost = internallyCalculatedVariableCropProductionCostComponents
-				.getCalculatedVarProductionCost();
-		this.costSeed = internallyCalculatedVariableCropProductionCostComponents
-				.getCostSeed();
-		this.costHerbicide = internallyCalculatedVariableCropProductionCostComponents
-				.getCostHerbicide();
-		this.costInsecticide = internallyCalculatedVariableCropProductionCostComponents
-				.getCostInsecticide();
-		this.costFungicide = internallyCalculatedVariableCropProductionCostComponents
-				.getCostFungicide();
-		this.costFertilizer = internallyCalculatedVariableCropProductionCostComponents
-				.getCostFertilizer();
-		this.costMicro_Nutrients = internallyCalculatedVariableCropProductionCostComponents
-				.getCostMicro_Nutrients();
-		this.costLabor = internallyCalculatedVariableCropProductionCostComponents
-				.getCostLabor();
-		this.costEquipment = internallyCalculatedVariableCropProductionCostComponents
-				.getCostEquipment();
-		this.costIrrigation = internallyCalculatedVariableCropProductionCostComponents
-				.getCostIrrigation();
-		this.costRent = internallyCalculatedVariableCropProductionCostComponents
-				.getCostRent();
-		this.costProfessionalServices = internallyCalculatedVariableCropProductionCostComponents
-				.getCostProfessionalServices();
-		this.costCropInsurance = internallyCalculatedVariableCropProductionCostComponents
-				.getCostCropInsurance();
-		this.costFinancing = internallyCalculatedVariableCropProductionCostComponents
-				.getCostFinancing();
-		this.costOther = internallyCalculatedVariableCropProductionCostComponents
-				.getCostOther();
-	}
+    public InternallyCalculatedVariableCropProductionCostComponentsView() {
 
-	public Integer getId()
-	{
-		return id;
-	}
+    }
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public InternallyCalculatedVariableCropProductionCostComponentsView(
+            InternallyCalculatedVariableCropProductionCostComponents internallyCalculatedVariableCropProductionCostComponents) {
+        this.id = internallyCalculatedVariableCropProductionCostComponents
+                .getId();
+        this.calculatedVarProductionCost = internallyCalculatedVariableCropProductionCostComponents
+                .getCalculatedVarProductionCost();
+        this.costSeed = internallyCalculatedVariableCropProductionCostComponents
+                .getCostSeed();
+        this.costHerbicide = internallyCalculatedVariableCropProductionCostComponents
+                .getCostHerbicide();
+        this.costInsecticide = internallyCalculatedVariableCropProductionCostComponents
+                .getCostInsecticide();
+        this.costFungicide = internallyCalculatedVariableCropProductionCostComponents
+                .getCostFungicide();
+        this.costFertilizer = internallyCalculatedVariableCropProductionCostComponents
+                .getCostFertilizer();
+        this.costMicro_Nutrients = internallyCalculatedVariableCropProductionCostComponents
+                .getCostMicro_Nutrients();
+        this.costLabor = internallyCalculatedVariableCropProductionCostComponents
+                .getCostLabor();
+        this.costEquipment = internallyCalculatedVariableCropProductionCostComponents
+                .getCostEquipment();
+        this.costIrrigation = internallyCalculatedVariableCropProductionCostComponents
+                .getCostIrrigation();
+        this.costRent = internallyCalculatedVariableCropProductionCostComponents
+                .getCostRent();
+        this.costProfessionalServices = internallyCalculatedVariableCropProductionCostComponents
+                .getCostProfessionalServices();
+        this.costCropInsurance = internallyCalculatedVariableCropProductionCostComponents
+                .getCostCropInsurance();
+        this.costFinancing = internallyCalculatedVariableCropProductionCostComponents
+                .getCostFinancing();
+        this.costOther = internallyCalculatedVariableCropProductionCostComponents
+                .getCostOther();
+    }
 
-	public BigDecimal getCalculatedVarProductionCost()
-	{
-		return calculatedVarProductionCost;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setCalculatedVarProductionCost(
-			BigDecimal calculatedVarProductionCost)
-	{
-		this.calculatedVarProductionCost = calculatedVarProductionCost;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public BigDecimal getCostSeed()
-	{
-		return costSeed;
-	}
+    public BigDecimal getCalculatedVarProductionCost() {
+        return calculatedVarProductionCost;
+    }
 
-	public void setCostSeed(BigDecimal costSeed)
-	{
-		this.costSeed = costSeed;
-	}
+    public void setCalculatedVarProductionCost(
+            BigDecimal calculatedVarProductionCost) {
+        this.calculatedVarProductionCost = calculatedVarProductionCost;
+    }
 
-	public BigDecimal getCostHerbicide()
-	{
-		return costHerbicide;
-	}
+    public BigDecimal getCostSeed() {
+        return costSeed;
+    }
 
-	public void setCostHerbicide(BigDecimal costHerbicide)
-	{
-		this.costHerbicide = costHerbicide;
-	}
+    public void setCostSeed(BigDecimal costSeed) {
+        this.costSeed = costSeed;
+    }
 
-	public BigDecimal getCostInsecticide()
-	{
-		return costInsecticide;
-	}
+    public BigDecimal getCostHerbicide() {
+        return costHerbicide;
+    }
 
-	public void setCostInsecticide(BigDecimal costInsecticide)
-	{
-		this.costInsecticide = costInsecticide;
-	}
+    public void setCostHerbicide(BigDecimal costHerbicide) {
+        this.costHerbicide = costHerbicide;
+    }
 
-	public BigDecimal getCostFungicide()
-	{
-		return costFungicide;
-	}
+    public BigDecimal getCostInsecticide() {
+        return costInsecticide;
+    }
 
-	public void setCostFungicide(BigDecimal costFungicide)
-	{
-		this.costFungicide = costFungicide;
-	}
+    public void setCostInsecticide(BigDecimal costInsecticide) {
+        this.costInsecticide = costInsecticide;
+    }
 
-	public BigDecimal getCostFertilizer()
-	{
-		return costFertilizer;
-	}
+    public BigDecimal getCostFungicide() {
+        return costFungicide;
+    }
 
-	public void setCostFertilizer(BigDecimal costFertilizer)
-	{
-		this.costFertilizer = costFertilizer;
-	}
+    public void setCostFungicide(BigDecimal costFungicide) {
+        this.costFungicide = costFungicide;
+    }
 
-	public BigDecimal getCostMicro_Nutrients()
-	{
-		return costMicro_Nutrients;
-	}
+    public BigDecimal getCostFertilizer() {
+        return costFertilizer;
+    }
 
-	public void setCostMicro_Nutrients(BigDecimal costMicro_Nutrients)
-	{
-		this.costMicro_Nutrients = costMicro_Nutrients;
-	}
+    public void setCostFertilizer(BigDecimal costFertilizer) {
+        this.costFertilizer = costFertilizer;
+    }
 
-	public BigDecimal getCostLabor()
-	{
-		return costLabor;
-	}
+    public BigDecimal getCostMicro_Nutrients() {
+        return costMicro_Nutrients;
+    }
 
-	public void setCostLabor(BigDecimal costLabor)
-	{
-		this.costLabor = costLabor;
-	}
+    public void setCostMicro_Nutrients(BigDecimal costMicro_Nutrients) {
+        this.costMicro_Nutrients = costMicro_Nutrients;
+    }
 
-	public BigDecimal getCostEquipment()
-	{
-		return costEquipment;
-	}
+    public BigDecimal getCostLabor() {
+        return costLabor;
+    }
 
-	public void setCostEquipment(BigDecimal costEquipment)
-	{
-		this.costEquipment = costEquipment;
-	}
+    public void setCostLabor(BigDecimal costLabor) {
+        this.costLabor = costLabor;
+    }
 
-	public BigDecimal getCostIrrigation()
-	{
-		return costIrrigation;
-	}
+    public BigDecimal getCostEquipment() {
+        return costEquipment;
+    }
 
-	public void setCostIrrigation(BigDecimal costIrrigation)
-	{
-		this.costIrrigation = costIrrigation;
-	}
+    public void setCostEquipment(BigDecimal costEquipment) {
+        this.costEquipment = costEquipment;
+    }
 
-	public BigDecimal getCostRent()
-	{
-		return costRent;
-	}
+    public BigDecimal getCostIrrigation() {
+        return costIrrigation;
+    }
 
-	public void setCostRent(BigDecimal costRent)
-	{
-		this.costRent = costRent;
-	}
+    public void setCostIrrigation(BigDecimal costIrrigation) {
+        this.costIrrigation = costIrrigation;
+    }
 
-	public BigDecimal getCostProfessionalServices()
-	{
-		return costProfessionalServices;
-	}
+    public BigDecimal getCostRent() {
+        return costRent;
+    }
 
-	public void setCostProfessionalServices(BigDecimal costProfessionalServices)
-	{
-		this.costProfessionalServices = costProfessionalServices;
-	}
+    public void setCostRent(BigDecimal costRent) {
+        this.costRent = costRent;
+    }
 
-	public BigDecimal getCostCropInsurance()
-	{
-		return costCropInsurance;
-	}
+    public BigDecimal getCostProfessionalServices() {
+        return costProfessionalServices;
+    }
 
-	public void setCostCropInsurance(BigDecimal costCropInsurance)
-	{
-		this.costCropInsurance = costCropInsurance;
-	}
+    public void setCostProfessionalServices(BigDecimal costProfessionalServices) {
+        this.costProfessionalServices = costProfessionalServices;
+    }
 
-	public BigDecimal getCostFinancing()
-	{
-		return costFinancing;
-	}
+    public BigDecimal getCostCropInsurance() {
+        return costCropInsurance;
+    }
 
-	public void setCostFinancing(BigDecimal costFinancing)
-	{
-		this.costFinancing = costFinancing;
-	}
+    public void setCostCropInsurance(BigDecimal costCropInsurance) {
+        this.costCropInsurance = costCropInsurance;
+    }
 
-	public BigDecimal getCostOther()
-	{
-		return costOther;
-	}
+    public BigDecimal getCostFinancing() {
+        return costFinancing;
+    }
 
-	public void setCostOther(BigDecimal costOther)
-	{
-		this.costOther = costOther;
-	}
+    public void setCostFinancing(BigDecimal costFinancing) {
+        this.costFinancing = costFinancing;
+    }
+
+    public BigDecimal getCostOther() {
+        return costOther;
+    }
+
+    public void setCostOther(BigDecimal costOther) {
+        this.costOther = costOther;
+    }
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.Cache;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by raja on 12/25/15.
@@ -22,7 +23,7 @@ import javax.persistence.Table;
 @Cacheable
 @Entity(name = "FarmStrategyScenarioCropSpecific")
 @Table(name = "FARM_STRATEGY_SCENARIO_CROP_SPECIFIC", uniqueConstraints = @UniqueConstraint(columnNames = "SCENARIO_CROP_SPECIFIC_ID"))
-public class FarmStrategyScenarioCropSpecific {
+public class FarmStrategyScenarioCropSpecific  implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "SCENARIO_CROP_SPECIFIC_ID")

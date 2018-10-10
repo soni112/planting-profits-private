@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @changed - Abhishek
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "ResourceDualValue")
 @Table(name = "RESOURCE_DUAL_VALUE", uniqueConstraints = @UniqueConstraint(columnNames = "RESOURCE_DUAL_VALUE_ID"))
-public class ResourceDualValue {
+public class ResourceDualValue implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

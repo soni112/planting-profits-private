@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by abhishek on 7/4/16.
@@ -25,7 +26,7 @@ import javax.persistence.Table;
 @Cacheable
 @Entity
 @Table(name = "ACCOUNT_DOCUMENTS")
-public class AccountDocuments {
+public class AccountDocuments implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

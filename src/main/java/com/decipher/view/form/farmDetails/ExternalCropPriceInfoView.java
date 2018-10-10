@@ -1,66 +1,56 @@
 package com.decipher.view.form.farmDetails;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.decipher.agriculture.data.farm.ExternalCropPriceInfo;
 
-public class ExternalCropPriceInfoView
-{	
-	private Integer id;
-	private BigDecimal intExpCropPrice;
-	private BigDecimal intMinCropPrice;
-	private BigDecimal intMaxCropPrice;
-	
-	public ExternalCropPriceInfoView()
-	{
-		
-	}
+public class ExternalCropPriceInfoView  implements Serializable {
+    private Integer id;
+    private BigDecimal intExpCropPrice;
+    private BigDecimal intMinCropPrice;
+    private BigDecimal intMaxCropPrice;
 
-	public ExternalCropPriceInfoView(ExternalCropPriceInfo cropPriceInfo)
-	{
-		this.id = cropPriceInfo.getId();
-		this.intExpCropPrice = cropPriceInfo.getIntExpCropPrice();
-		this.intMinCropPrice = cropPriceInfo.getIntMinCropPrice();
-		this.intMaxCropPrice = cropPriceInfo.getIntMaxCropPrice();
-	}
+    public ExternalCropPriceInfoView() {
 
-	public Integer getId()
-	{
-		return id;
-	}
+    }
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public ExternalCropPriceInfoView(ExternalCropPriceInfo cropPriceInfo) {
+        this.id = cropPriceInfo.getId();
+        this.intExpCropPrice = cropPriceInfo.getIntExpCropPrice();
+        this.intMinCropPrice = cropPriceInfo.getIntMinCropPrice();
+        this.intMaxCropPrice = cropPriceInfo.getIntMaxCropPrice();
+    }
 
-	public BigDecimal getIntExpCropPrice()
-	{
-		return intExpCropPrice;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setIntExpCropPrice(BigDecimal intExpCropPrice)
-	{
-		this.intExpCropPrice = intExpCropPrice;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public BigDecimal getIntMinCropPrice()
-	{
-		return intMinCropPrice;
-	}
+    public BigDecimal getIntExpCropPrice() {
+        return intExpCropPrice;
+    }
 
-	public void setIntMinCropPrice(BigDecimal intMinCropPrice)
-	{
-		this.intMinCropPrice = intMinCropPrice;
-	}
+    public void setIntExpCropPrice(BigDecimal intExpCropPrice) {
+        this.intExpCropPrice = intExpCropPrice;
+    }
 
-	public BigDecimal getIntMaxCropPrice()
-	{
-		return intMaxCropPrice;
-	}
+    public BigDecimal getIntMinCropPrice() {
+        return intMinCropPrice;
+    }
 
-	public void setIntMaxCropPrice(BigDecimal intMaxCropPrice)
-	{
-		this.intMaxCropPrice = intMaxCropPrice;
-	}
+    public void setIntMinCropPrice(BigDecimal intMinCropPrice) {
+        this.intMinCropPrice = intMinCropPrice;
+    }
+
+    public BigDecimal getIntMaxCropPrice() {
+        return intMaxCropPrice;
+    }
+
+    public void setIntMaxCropPrice(BigDecimal intMaxCropPrice) {
+        this.intMaxCropPrice = intMaxCropPrice;
+    }
 }

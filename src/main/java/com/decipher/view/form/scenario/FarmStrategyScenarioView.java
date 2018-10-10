@@ -4,12 +4,13 @@ import com.decipher.agriculture.data.strategy.FarmCustomStrategy;
 import com.decipher.agriculture.data.scenario.FarmStrategyScenario;
 import com.decipher.agriculture.data.scenario.FarmStrategyScenarioCropSpecific;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by raja on 12/25/15.
  */
-public class FarmStrategyScenarioView implements Comparable<FarmStrategyScenarioView>{
+public class FarmStrategyScenarioView implements Comparable<FarmStrategyScenarioView>, Serializable {
     private Integer scenarioId;
     private String scenarioName;
     private Integer globalCropPrice;

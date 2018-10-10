@@ -1,12 +1,14 @@
 package com.decipher.agriculture.data.strategy;
 
+import java.io.Serializable;
+
 /**
  * Created by abhishek on 20/4/16.
  *
  * If enum declared outside of  the class public,default,strictfp
  *                  inside          public,default,strictfp,private,protected,
  */
-public enum StrategyComparisonType {
+public enum StrategyComparisonType implements Serializable {
 
     Potential_Profit(0, "Estimated Income"),
     Land_Used(1, "Land Used"),

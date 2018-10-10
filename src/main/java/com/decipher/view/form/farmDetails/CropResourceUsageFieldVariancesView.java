@@ -5,7 +5,9 @@ import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.util.AgricultureStandardUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class CropResourceUsageFieldVariancesView implements Cloneable {
+import java.io.Serializable;
+
+public class CropResourceUsageFieldVariancesView implements Cloneable, Serializable {
     private Integer id;
     private String cropFieldResourceUse;
     private String cropResourceAmount;

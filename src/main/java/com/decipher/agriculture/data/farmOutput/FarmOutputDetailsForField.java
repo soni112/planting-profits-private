@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.io.Serializable;
+
 /**
  * @changed - Abhishek
  * @date - 13-01-2016
@@ -18,7 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @Entity(name = "FarmOutputDetailsForField")
 @Table(name = "FARM_OUTPUT_DETAILS_FOR_FIELD", uniqueConstraints = @UniqueConstraint(columnNames = "FARM_OUTPUT_DETAILS_FOR_FIELD_ID"))
-public class FarmOutputDetailsForField {
+public class FarmOutputDetailsForField implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "FARM_OUTPUT_DETAILS_FOR_FIELD_ID")

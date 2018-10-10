@@ -1,198 +1,166 @@
 package com.decipher.view.form.farmDetails;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.decipher.agriculture.data.farm.VariableCropProductionComponentUnitPrices;
 
-public class VariableCropProductionComponentUnitPricesView
-{
-	private Integer id;	
-	private BigDecimal priceSeed;
-	private BigDecimal priceHerbicide;
-	private BigDecimal priceInsecticide;
-	private BigDecimal priceFungicide;
-	private BigDecimal priceFertilizer;	
-	private BigDecimal priceMicro_Nutrients;
-	private BigDecimal priceLabor;
-	private BigDecimal priceEquipment;
-	private BigDecimal priceIrrigation;
-	private BigDecimal priceRent;
-	private BigDecimal priceProfessionalServices;
-	private BigDecimal priceCropInsurance;
-	private BigDecimal priceFinancing;
-	private BigDecimal priceOther;
-	
-	public VariableCropProductionComponentUnitPricesView()
-	{
-		
-	}
+public class VariableCropProductionComponentUnitPricesView implements Serializable {
+    private Integer id;
+    private BigDecimal priceSeed;
+    private BigDecimal priceHerbicide;
+    private BigDecimal priceInsecticide;
+    private BigDecimal priceFungicide;
+    private BigDecimal priceFertilizer;
+    private BigDecimal priceMicro_Nutrients;
+    private BigDecimal priceLabor;
+    private BigDecimal priceEquipment;
+    private BigDecimal priceIrrigation;
+    private BigDecimal priceRent;
+    private BigDecimal priceProfessionalServices;
+    private BigDecimal priceCropInsurance;
+    private BigDecimal priceFinancing;
+    private BigDecimal priceOther;
 
-	public VariableCropProductionComponentUnitPricesView(VariableCropProductionComponentUnitPrices variableCropProductionComponentUnitPrices)
-	{
-		this.id = variableCropProductionComponentUnitPrices.getId();
-		this.priceSeed = variableCropProductionComponentUnitPrices.getPriceSeed();
-		this.priceHerbicide = variableCropProductionComponentUnitPrices.getPriceHerbicide();
-		this.priceInsecticide = variableCropProductionComponentUnitPrices.getPriceInsecticide();
-		this.priceFungicide = variableCropProductionComponentUnitPrices.getPriceFungicide();
-		this.priceFertilizer = variableCropProductionComponentUnitPrices.getPriceFertilizer();
-		this.priceMicro_Nutrients = variableCropProductionComponentUnitPrices.getPriceMicro_Nutrients();
-		this.priceLabor = variableCropProductionComponentUnitPrices.getPriceLabor();
-		this.priceEquipment = variableCropProductionComponentUnitPrices.getPriceEquipment();
-		this.priceIrrigation = variableCropProductionComponentUnitPrices.getPriceIrrigation();
-		this.priceRent = variableCropProductionComponentUnitPrices.getPriceRent();
-		this.priceProfessionalServices = variableCropProductionComponentUnitPrices.getPriceProfessionalServices();
-		this.priceCropInsurance = variableCropProductionComponentUnitPrices.getPriceCropInsurance();
-		this.priceFinancing = variableCropProductionComponentUnitPrices.getPriceFinancing();
-		this.priceOther = variableCropProductionComponentUnitPrices.getPriceOther();
-	}
+    public VariableCropProductionComponentUnitPricesView() {
 
-	public Integer getId()
-	{
-		return id;
-	}
+    }
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public VariableCropProductionComponentUnitPricesView(VariableCropProductionComponentUnitPrices variableCropProductionComponentUnitPrices) {
+        this.id = variableCropProductionComponentUnitPrices.getId();
+        this.priceSeed = variableCropProductionComponentUnitPrices.getPriceSeed();
+        this.priceHerbicide = variableCropProductionComponentUnitPrices.getPriceHerbicide();
+        this.priceInsecticide = variableCropProductionComponentUnitPrices.getPriceInsecticide();
+        this.priceFungicide = variableCropProductionComponentUnitPrices.getPriceFungicide();
+        this.priceFertilizer = variableCropProductionComponentUnitPrices.getPriceFertilizer();
+        this.priceMicro_Nutrients = variableCropProductionComponentUnitPrices.getPriceMicro_Nutrients();
+        this.priceLabor = variableCropProductionComponentUnitPrices.getPriceLabor();
+        this.priceEquipment = variableCropProductionComponentUnitPrices.getPriceEquipment();
+        this.priceIrrigation = variableCropProductionComponentUnitPrices.getPriceIrrigation();
+        this.priceRent = variableCropProductionComponentUnitPrices.getPriceRent();
+        this.priceProfessionalServices = variableCropProductionComponentUnitPrices.getPriceProfessionalServices();
+        this.priceCropInsurance = variableCropProductionComponentUnitPrices.getPriceCropInsurance();
+        this.priceFinancing = variableCropProductionComponentUnitPrices.getPriceFinancing();
+        this.priceOther = variableCropProductionComponentUnitPrices.getPriceOther();
+    }
 
-	public BigDecimal getPriceSeed()
-	{
-		return priceSeed;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setPriceSeed(BigDecimal priceSeed)
-	{
-		this.priceSeed = priceSeed;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public BigDecimal getPriceHerbicide()
-	{
-		return priceHerbicide;
-	}
+    public BigDecimal getPriceSeed() {
+        return priceSeed;
+    }
 
-	public void setPriceHerbicide(BigDecimal priceHerbicide)
-	{
-		this.priceHerbicide = priceHerbicide;
-	}
+    public void setPriceSeed(BigDecimal priceSeed) {
+        this.priceSeed = priceSeed;
+    }
 
-	public BigDecimal getPriceInsecticide()
-	{
-		return priceInsecticide;
-	}
+    public BigDecimal getPriceHerbicide() {
+        return priceHerbicide;
+    }
 
-	public void setPriceInsecticide(BigDecimal priceInsecticide)
-	{
-		this.priceInsecticide = priceInsecticide;
-	}
+    public void setPriceHerbicide(BigDecimal priceHerbicide) {
+        this.priceHerbicide = priceHerbicide;
+    }
 
-	public BigDecimal getPriceFungicide()
-	{
-		return priceFungicide;
-	}
+    public BigDecimal getPriceInsecticide() {
+        return priceInsecticide;
+    }
 
-	public void setPriceFungicide(BigDecimal priceFungicide)
-	{
-		this.priceFungicide = priceFungicide;
-	}
+    public void setPriceInsecticide(BigDecimal priceInsecticide) {
+        this.priceInsecticide = priceInsecticide;
+    }
 
-	public BigDecimal getPriceFertilizer()
-	{
-		return priceFertilizer;
-	}
+    public BigDecimal getPriceFungicide() {
+        return priceFungicide;
+    }
 
-	public void setPriceFertilizer(BigDecimal priceFertilizer)
-	{
-		this.priceFertilizer = priceFertilizer;
-	}
+    public void setPriceFungicide(BigDecimal priceFungicide) {
+        this.priceFungicide = priceFungicide;
+    }
 
-	public BigDecimal getPriceMicro_Nutrients()
-	{
-		return priceMicro_Nutrients;
-	}
+    public BigDecimal getPriceFertilizer() {
+        return priceFertilizer;
+    }
 
-	public void setPriceMicro_Nutrients(BigDecimal priceMicro_Nutrients)
-	{
-		this.priceMicro_Nutrients = priceMicro_Nutrients;
-	}
+    public void setPriceFertilizer(BigDecimal priceFertilizer) {
+        this.priceFertilizer = priceFertilizer;
+    }
 
-	public BigDecimal getPriceLabor()
-	{
-		return priceLabor;
-	}
+    public BigDecimal getPriceMicro_Nutrients() {
+        return priceMicro_Nutrients;
+    }
 
-	public void setPriceLabor(BigDecimal priceLabor)
-	{
-		this.priceLabor = priceLabor;
-	}
+    public void setPriceMicro_Nutrients(BigDecimal priceMicro_Nutrients) {
+        this.priceMicro_Nutrients = priceMicro_Nutrients;
+    }
 
-	public BigDecimal getPriceEquipment()
-	{
-		return priceEquipment;
-	}
+    public BigDecimal getPriceLabor() {
+        return priceLabor;
+    }
 
-	public void setPriceEquipment(BigDecimal priceEquipment)
-	{
-		this.priceEquipment = priceEquipment;
-	}
+    public void setPriceLabor(BigDecimal priceLabor) {
+        this.priceLabor = priceLabor;
+    }
 
-	public BigDecimal getPriceIrrigation()
-	{
-		return priceIrrigation;
-	}
+    public BigDecimal getPriceEquipment() {
+        return priceEquipment;
+    }
 
-	public void setPriceIrrigation(BigDecimal priceIrrigation)
-	{
-		this.priceIrrigation = priceIrrigation;
-	}
+    public void setPriceEquipment(BigDecimal priceEquipment) {
+        this.priceEquipment = priceEquipment;
+    }
 
-	public BigDecimal getPriceRent()
-	{
-		return priceRent;
-	}
+    public BigDecimal getPriceIrrigation() {
+        return priceIrrigation;
+    }
 
-	public void setPriceRent(BigDecimal priceRent)
-	{
-		this.priceRent = priceRent;
-	}
+    public void setPriceIrrigation(BigDecimal priceIrrigation) {
+        this.priceIrrigation = priceIrrigation;
+    }
 
-	public BigDecimal getPriceProfessionalServices()
-	{
-		return priceProfessionalServices;
-	}
+    public BigDecimal getPriceRent() {
+        return priceRent;
+    }
 
-	public void setPriceProfessionalServices(BigDecimal priceProfessionalServices)
-	{
-		this.priceProfessionalServices = priceProfessionalServices;
-	}
+    public void setPriceRent(BigDecimal priceRent) {
+        this.priceRent = priceRent;
+    }
 
-	public BigDecimal getPriceCropInsurance()
-	{
-		return priceCropInsurance;
-	}
+    public BigDecimal getPriceProfessionalServices() {
+        return priceProfessionalServices;
+    }
 
-	public void setPriceCropInsurance(BigDecimal priceCropInsurance)
-	{
-		this.priceCropInsurance = priceCropInsurance;
-	}
+    public void setPriceProfessionalServices(BigDecimal priceProfessionalServices) {
+        this.priceProfessionalServices = priceProfessionalServices;
+    }
 
-	public BigDecimal getPriceFinancing()
-	{
-		return priceFinancing;
-	}
+    public BigDecimal getPriceCropInsurance() {
+        return priceCropInsurance;
+    }
 
-	public void setPriceFinancing(BigDecimal priceFinancing)
-	{
-		this.priceFinancing = priceFinancing;
-	}
+    public void setPriceCropInsurance(BigDecimal priceCropInsurance) {
+        this.priceCropInsurance = priceCropInsurance;
+    }
 
-	public BigDecimal getPriceOther()
-	{
-		return priceOther;
-	}
+    public BigDecimal getPriceFinancing() {
+        return priceFinancing;
+    }
 
-	public void setPriceOther(BigDecimal priceOther)
-	{
-		this.priceOther = priceOther;
-	}
+    public void setPriceFinancing(BigDecimal priceFinancing) {
+        this.priceFinancing = priceFinancing;
+    }
+
+    public BigDecimal getPriceOther() {
+        return priceOther;
+    }
+
+    public void setPriceOther(BigDecimal priceOther) {
+        this.priceOther = priceOther;
+    }
 }

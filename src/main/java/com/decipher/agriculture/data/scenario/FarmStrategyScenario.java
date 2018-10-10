@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -24,7 +25,7 @@ import java.util.Set;
 @Cacheable
 @Entity(name = "FarmStrategyScenario")
 @Table(name = "FARM_STRATEGY_SCENARIO", uniqueConstraints = @UniqueConstraint(columnNames = "SCENARIO_ID"))
-public class FarmStrategyScenario {
+public class FarmStrategyScenario implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "SCENARIO_ID")

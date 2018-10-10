@@ -3,6 +3,7 @@ package com.decipher.agriculture.data.farm;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "InternallyCalculatedVariableCropProduction")
 @Table(name = "INT_CAL_VAR_CROP_PRODUCTION", uniqueConstraints = @UniqueConstraint(columnNames = "INT_CAL_VAR_CROP_PRODUCTION_ID"))
-public class InternallyCalculatedVariableCropProduction {
+public class InternallyCalculatedVariableCropProduction implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "INT_CAL_VAR_CROP_PRODUCTION_ID")

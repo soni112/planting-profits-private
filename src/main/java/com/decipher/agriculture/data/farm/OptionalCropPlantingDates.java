@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "OptionalCropPlantingDates")
 @Table(name = "OPT_CROP_PLANT_DAT", uniqueConstraints = @UniqueConstraint(columnNames = "OPT_CROP_PLANT_DAT_ID"))
-public class OptionalCropPlantingDates {
+public class OptionalCropPlantingDates implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "OPT_CROP_PLANT_DAT_ID")

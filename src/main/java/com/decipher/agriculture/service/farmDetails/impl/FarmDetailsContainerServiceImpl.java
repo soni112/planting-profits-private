@@ -47,9 +47,10 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
     private static final String BASELINE_DETAILS = "BaselineDetails";
     private static final String STRATEGY_DETAILS = "StrategyDetails";
     private static final String SCENARIO_DETAILS = "ScenarioDetails";
-    public String FILE="/home/ruchika/accountDataContainerMap.ser";
-    private final Map<Account, Object> accountDataContainerMap = Collections.synchronizedMap(new TreeMap<Account, Object>());
-    public Map<Account, Object> accountDataContainerMapFile = new HashMap<> (  );
+
+    private String FILE = System.getProperty("user.home") + File.separator + "Planting_Profit" + File.separator + "accountDataContainerMap.ser";
+
+    private Map<Account, Object> accountDataContainerMap = Collections.synchronizedMap(new TreeMap<Account, Object>());
 
     @Autowired
     private ScenarioService scenarioService;
@@ -333,7 +334,7 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
             Set<FarmCustomStrategyView> farmCustomStrategyViewSet = strategyDetails.keySet();
             Iterator<FarmCustomStrategyView> farmCustomStrategyViewIterator = farmCustomStrategyViewSet.iterator();
 
-            while (farmCustomStrategyViewIterator.hasNext()){
+            while (farmCustomStrategyViewIterator.hasNext()) {
                 FarmCustomStrategyView farmCustomStrategyView = farmCustomStrategyViewIterator.next();
                 for (int strategyId : strategyIdArray) {
                     if (farmCustomStrategyView.getId().equals(strategyId)) {
@@ -451,11 +452,11 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
         Set<FarmStrategyScenarioView> farmStrategyScenarioViewSet = scenarioDetails.keySet();
         Iterator<FarmStrategyScenarioView> farmStrategyScenarioViewIterator = farmStrategyScenarioViewSet.iterator();
 
-        while (farmStrategyScenarioViewIterator.hasNext()){
+        while (farmStrategyScenarioViewIterator.hasNext()) {
             FarmStrategyScenarioView farmStrategyScenarioView = farmStrategyScenarioViewIterator.next();
             for (int scenarioId : scenarioIdArray) {
                 if (farmStrategyScenarioView.getScenarioId().equals(scenarioId)) {
-                    synchronized (farmStrategyScenarioView){
+                    synchronized (farmStrategyScenarioView) {
                         farmStrategyScenarioViewIterator.remove();
                         result = true;
                     }
@@ -598,42 +599,31 @@ public class FarmDetailsContainerServiceImpl implements FarmDetailsContainerServ
     }
 
     @PostConstruct
-    public void postConstruct(){
-        FileInputStream fileIn = null;
-        ObjectInputStream in=null;
+    public void postConstruct() {
         try {
-             File file = new File(FILE);
-             if(file.exists()){
-                 fileIn = new FileInputStream(file);
-                 in = new ObjectInputStream(fileIn);
-                 accountDataContainerMapFile= (Map <Account, Object>) in.readObject();
-                 in.close(); }
-        } catch (Exception e) {
-            PlantingProfitLogger.error ( "unable Destroy"+e.getMessage ());
-        }finally {
-            try { fileIn.close();
-            } catch (Exception e) {
-                e.printStackTrace ();
+            File file = new File(FILE);
+            if (file.exists()) {
+                FileInputStream fileIn = new FileInputStream(file);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                accountDataContainerMap = (Map<Account, Object>) in.readObject();
+                in.close();
+                fileIn.close();
             }
+        } catch (Exception e) {
+            PlantingProfitLogger.error(e.getMessage(), e);
         }
     }
-    @PreDestroy
-    public void preDestroy(){
-        FileOutputStream fileOut= null;
-        ObjectOutputStream out=null;
-        try { fileOut = new FileOutputStream( FILE);
-              out = new ObjectOutputStream(fileOut);
-            out.writeObject(accountDataContainerMap);
-        } catch (Exception e) {
-            PlantingProfitLogger.error ( "unable to construct"+e.getMessage ());
-        }finally {
-            try {
-                out.close();
-                fileOut.close();
-            } catch (Exception e) {
-                e.printStackTrace ();
-            }
 
+    @PreDestroy
+    public void preDestroy() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(FILE);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(accountDataContainerMap);
+            out.close();
+            fileOut.close();
+        } catch (Exception e) {
+            PlantingProfitLogger.error(e.getMessage(), e);
         }
     }
 }

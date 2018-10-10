@@ -1,12 +1,13 @@
 package com.decipher.view.form.farmDetails;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.CropsGroup;
 import com.decipher.util.AgricultureStandardUtils;
 
-public class CropsGroupView {
+public class CropsGroupView implements Serializable {
     private Integer id;
     private String cropsGroupName;
     private String minimumAcres;

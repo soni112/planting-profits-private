@@ -1,5 +1,6 @@
 package com.decipher.agriculture.data.farm;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import org.hibernate.annotations.Type;
 @Cacheable
 @Entity(name = "FarmProductionPlanningModelParameters")
 @Table(name = "FARM_PRODUCTION_PLANNING", uniqueConstraints = @UniqueConstraint(columnNames = "FARM_PRODUCTION_PLANNING_ID"))
-public class FarmProductionPlanningModelParameters {
+public class FarmProductionPlanningModelParameters implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "FARM_PRODUCTION_PLANNING_ID")

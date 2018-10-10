@@ -1,5 +1,6 @@
 package com.decipher.view.form.strategy;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ import com.decipher.agriculture.data.strategy.FarmCustomStrategyForGroup;
 import com.decipher.agriculture.data.strategy.FarmCustomStrategyForResource;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class FarmCustomStrategyView implements Comparable<FarmCustomStrategyView>, Cloneable{
+public class FarmCustomStrategyView implements Comparable<FarmCustomStrategyView>, Cloneable, Serializable {
     private Integer id;
     private String strategyName;
     private boolean strategyForCrop;

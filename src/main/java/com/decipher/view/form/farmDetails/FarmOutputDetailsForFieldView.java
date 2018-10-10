@@ -5,7 +5,9 @@ import com.decipher.agriculture.data.farmOutput.FarmOutputDetailsForField;
 import com.decipher.util.AgricultureStandardUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class FarmOutputDetailsForFieldView {
+import java.io.Serializable;
+
+public class FarmOutputDetailsForFieldView  implements Serializable {
 
 	private Integer id;
 	private String profit;

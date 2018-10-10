@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @changed - Abhishek
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "CropYieldFieldVariances")
 @Table(name = "CROP_YIELD_FIELD_VARIANCES", uniqueConstraints = @UniqueConstraint(columnNames = "CROP_YIELD_FIELD_VARIANCES_ID"))
-public class CropYieldFieldVariances {
+public class CropYieldFieldVariances implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CROP_YIELD_FIELD_VARIANCES_ID")

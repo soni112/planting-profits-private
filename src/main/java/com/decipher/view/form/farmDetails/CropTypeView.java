@@ -1,5 +1,6 @@
 package com.decipher.view.form.farmDetails;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -25,7 +26,7 @@ import com.decipher.util.PlantingProfitLogger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-public class CropTypeView implements Cloneable {
+public class CropTypeView implements Cloneable, Serializable {
     public static final DateFormat formatter = AgricultureStandard.FORMATTER;
 
     private Integer id;

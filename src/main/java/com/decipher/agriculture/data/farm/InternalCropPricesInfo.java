@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "InternalCropPricesInfo")
 @Table(name = "INTERNAL_CROP_PRICES_INFO", uniqueConstraints = @UniqueConstraint(columnNames = "INTERNAL_CROP_PRICES_INFO_ID"))
-public class InternalCropPricesInfo {
+public class InternalCropPricesInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "INTERNAL_CROP_PRICES_INFO_ID")

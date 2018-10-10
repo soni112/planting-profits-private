@@ -2,7 +2,9 @@ package com.decipher.view.form.strategy;
 
 import com.decipher.agriculture.data.strategy.FarmCustomStrategyForGroup;
 
-public class FarmCustomStrategyForGroupView {
+import java.io.Serializable;
+
+public class FarmCustomStrategyForGroupView implements Serializable {
 	private Integer id;
 	private String groupname;
 	private String maximum;

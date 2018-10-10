@@ -3,6 +3,7 @@ package com.decipher.agriculture.data.farm;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "FieldPlanningParameters")
 @Table(name = "FIELD_PLANNING_PARAMETERS", uniqueConstraints = @UniqueConstraint(columnNames = "FIELD_PLANNING_PARAMETERS_ID"))
-public class FieldPlanningParameters {
+public class FieldPlanningParameters implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "FIELD_PLANNING_PARAMETERS_ID")

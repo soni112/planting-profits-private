@@ -2,6 +2,7 @@ package com.decipher.view.form.farmDetails;
 
 import com.decipher.agriculture.data.farmOutput.CropLimitDualValue;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 /**
@@ -9,7 +10,7 @@ import java.text.DecimalFormat;
  * @update - Abhishek
  * @date - 04-01-2016
  */
-public class CropLimitDualValueView {
+public class CropLimitDualValueView  implements Serializable {
     private Double minimumAcreageValue;
     private Double minimumDualValue;
     private Double maximumAcreageValue;

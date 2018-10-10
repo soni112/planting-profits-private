@@ -1,5 +1,6 @@
 package com.decipher.view.form.farmDetails;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import com.decipher.agriculture.data.farm.CropFieldChocies;
@@ -8,7 +9,7 @@ import com.decipher.agriculture.data.farm.FieldInfo;
 import com.decipher.util.AgricultureStandardUtils;
 
 @SuppressWarnings("rawtypes")
-public class FieldInfoView implements Cloneable{
+public class FieldInfoView implements Cloneable, Serializable {
 	private Integer id;
 	private String fieldName;
 	private String fieldSize;

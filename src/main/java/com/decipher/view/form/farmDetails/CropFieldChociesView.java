@@ -3,7 +3,9 @@ package com.decipher.view.form.farmDetails;
 import com.decipher.agriculture.data.farm.CropFieldChocies;
 import com.decipher.agriculture.data.farm.CropType;
 
-public class CropFieldChociesView implements Cloneable{
+import java.io.Serializable;
+
+public class CropFieldChociesView implements Cloneable, Serializable {
 	private Integer id;
 	private String cropFieldChoice;
 	private FieldInfoView fieldName;

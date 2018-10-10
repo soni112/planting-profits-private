@@ -2,54 +2,47 @@ package com.decipher.view.form.farmDetails;
 
 import com.decipher.agriculture.data.farm.VariableCropProductionCostsComponentUsage;
 
-public class VariableCropProductionCostsComponentUsageView
-{
+import java.io.Serializable;
 
-	private Integer id;
-	private Double usagePerUoMLand;
-	private String Other;
+public class VariableCropProductionCostsComponentUsageView implements Serializable {
 
-	public VariableCropProductionCostsComponentUsageView()
-	{
+    private Integer id;
+    private Double usagePerUoMLand;
+    private String Other;
 
-	}
+    public VariableCropProductionCostsComponentUsageView() {
 
-	public VariableCropProductionCostsComponentUsageView(
-			VariableCropProductionCostsComponentUsage variableCropProductionCostsComponentUsage)
-	{
-		this.id = variableCropProductionCostsComponentUsage.getId();
-		this.usagePerUoMLand = variableCropProductionCostsComponentUsage
-				.getUsagePerUoMLand();
-		Other = variableCropProductionCostsComponentUsage.getOther();
-	}
+    }
 
-	public Integer getId()
-	{
-		return id;
-	}
+    public VariableCropProductionCostsComponentUsageView(
+            VariableCropProductionCostsComponentUsage variableCropProductionCostsComponentUsage) {
+        this.id = variableCropProductionCostsComponentUsage.getId();
+        this.usagePerUoMLand = variableCropProductionCostsComponentUsage
+                .getUsagePerUoMLand();
+        Other = variableCropProductionCostsComponentUsage.getOther();
+    }
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public Double getUsagePerUoMLand()
-	{
-		return usagePerUoMLand;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setUsagePerUoMLand(Double usagePerUoMLand)
-	{
-		this.usagePerUoMLand = usagePerUoMLand;
-	}
+    public Double getUsagePerUoMLand() {
+        return usagePerUoMLand;
+    }
 
-	public String getOther()
-	{
-		return Other;
-	}
+    public void setUsagePerUoMLand(Double usagePerUoMLand) {
+        this.usagePerUoMLand = usagePerUoMLand;
+    }
 
-	public void setOther(String other)
-	{
-		Other = other;
-	}
+    public String getOther() {
+        return Other;
+    }
+
+    public void setOther(String other) {
+        Other = other;
+    }
 }

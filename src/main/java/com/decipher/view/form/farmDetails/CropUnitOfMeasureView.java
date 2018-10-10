@@ -2,41 +2,36 @@ package com.decipher.view.form.farmDetails;
 
 import com.decipher.agriculture.data.farm.CropUnitOfMeasure;
 
-public class CropUnitOfMeasureView
-{
+import java.io.Serializable;
 
-	private Integer id;
-	private String unitOfMeasure;
+public class CropUnitOfMeasureView  implements Serializable {
 
-	public CropUnitOfMeasureView()
-	{
+    private Integer id;
+    private String unitOfMeasure;
 
-	}
+    public CropUnitOfMeasureView() {
 
-	public CropUnitOfMeasureView(CropUnitOfMeasure cropUnitOfMeasure)
-	{
-		this.id = cropUnitOfMeasure.getId();
-		this.unitOfMeasure = cropUnitOfMeasure.getUnitOfMeasure();
-	}
+    }
 
-	public Integer getId()
-	{
-		return id;
-	}
+    public CropUnitOfMeasureView(CropUnitOfMeasure cropUnitOfMeasure) {
+        this.id = cropUnitOfMeasure.getId();
+        this.unitOfMeasure = cropUnitOfMeasure.getUnitOfMeasure();
+    }
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getUnitOfMeasure()
-	{
-		return unitOfMeasure;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setUnitOfMeasure(String unitOfMeasure)
-	{
-		this.unitOfMeasure = unitOfMeasure;
-	}
+    public String getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(String unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
+    }
 
 }

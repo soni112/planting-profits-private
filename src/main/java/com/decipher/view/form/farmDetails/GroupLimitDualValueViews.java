@@ -2,12 +2,13 @@ package com.decipher.view.form.farmDetails;
 
 import com.decipher.agriculture.data.farmOutput.GroupLimitDualValue;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 /**
  * Created by abhishek on 4/1/16.
  */
-public class GroupLimitDualValueViews {
+public class GroupLimitDualValueViews implements Serializable {
 
     private Double minimumAcreageValue;
     private Double minimumDualValue;

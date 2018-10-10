@@ -6,7 +6,9 @@ import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.agriculture.data.account.UserState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class AccountView
+import java.io.Serializable;
+
+public class AccountView implements Serializable
 {
 	private Integer id;
 	private AppRole role;

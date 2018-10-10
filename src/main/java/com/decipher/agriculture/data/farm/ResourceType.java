@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @changed - Abhishek
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "ResourceType")
 @Table(name = "RESOURCE_TYPE", uniqueConstraints = @UniqueConstraint(columnNames = "RESOURCE_TYPE_ID"))
-public class ResourceType {
+public class ResourceType implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

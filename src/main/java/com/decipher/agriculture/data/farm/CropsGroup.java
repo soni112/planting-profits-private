@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import javax.persistence.*;
 @Cacheable
 @Entity(name = "CropsGroup")
 @Table(name = "CROPS_GROUP", uniqueConstraints = @UniqueConstraint(columnNames = "CROPS_GROUP_ID"))
-public class CropsGroup {
+public class CropsGroup implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CROPS_GROUP_ID")

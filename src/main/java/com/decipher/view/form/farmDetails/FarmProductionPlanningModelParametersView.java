@@ -1,102 +1,86 @@
 package com.decipher.view.form.farmDetails;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.decipher.agriculture.data.farm.FarmProductionPlanningModelParameters;
 
-public class FarmProductionPlanningModelParametersView
-{
-	private Integer id;
-	private Boolean planByFields;
-	private Boolean planByAcres;
-	private Boolean irrigation;
-	private Boolean forwardSales;
-	private Boolean cropInsurance;
-	private Date plantingYear;
-	
-	public FarmProductionPlanningModelParametersView()
-	{
-		
-	}
+public class FarmProductionPlanningModelParametersView implements Serializable {
+    private Integer id;
+    private Boolean planByFields;
+    private Boolean planByAcres;
+    private Boolean irrigation;
+    private Boolean forwardSales;
+    private Boolean cropInsurance;
+    private Date plantingYear;
 
-	public FarmProductionPlanningModelParametersView(FarmProductionPlanningModelParameters farmProductionPlanningModelParameters)
-	{
-		this.id = farmProductionPlanningModelParameters.getId();
-		this.planByFields = farmProductionPlanningModelParameters.getPlanByFields();
-		this.planByAcres = farmProductionPlanningModelParameters.getPlanByAcres();
-		this.irrigation = farmProductionPlanningModelParameters.getIrrigation();
-		this.forwardSales = farmProductionPlanningModelParameters.getForwardSales();
-		this.cropInsurance = farmProductionPlanningModelParameters.getCropInsurance();
-		this.plantingYear = farmProductionPlanningModelParameters.getPlantingYear();
-	}
+    public FarmProductionPlanningModelParametersView() {
 
-	public Integer getId()
-	{
-		return id;
-	}
+    }
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public FarmProductionPlanningModelParametersView(FarmProductionPlanningModelParameters farmProductionPlanningModelParameters) {
+        this.id = farmProductionPlanningModelParameters.getId();
+        this.planByFields = farmProductionPlanningModelParameters.getPlanByFields();
+        this.planByAcres = farmProductionPlanningModelParameters.getPlanByAcres();
+        this.irrigation = farmProductionPlanningModelParameters.getIrrigation();
+        this.forwardSales = farmProductionPlanningModelParameters.getForwardSales();
+        this.cropInsurance = farmProductionPlanningModelParameters.getCropInsurance();
+        this.plantingYear = farmProductionPlanningModelParameters.getPlantingYear();
+    }
 
-	public Boolean getPlanByFields()
-	{
-		return planByFields;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setPlanByFields(Boolean planByFields)
-	{
-		this.planByFields = planByFields;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Boolean getPlanByAcres()
-	{
-		return planByAcres;
-	}
+    public Boolean getPlanByFields() {
+        return planByFields;
+    }
 
-	public void setPlanByAcres(Boolean planByAcres)
-	{
-		this.planByAcres = planByAcres;
-	}
+    public void setPlanByFields(Boolean planByFields) {
+        this.planByFields = planByFields;
+    }
 
-	public Boolean getIrrigation()
-	{
-		return irrigation;
-	}
+    public Boolean getPlanByAcres() {
+        return planByAcres;
+    }
 
-	public void setIrrigation(Boolean irrigation)
-	{
-		this.irrigation = irrigation;
-	}
+    public void setPlanByAcres(Boolean planByAcres) {
+        this.planByAcres = planByAcres;
+    }
 
-	public Boolean getForwardSales()
-	{
-		return forwardSales;
-	}
+    public Boolean getIrrigation() {
+        return irrigation;
+    }
 
-	public void setForwardSales(Boolean forwardSales)
-	{
-		this.forwardSales = forwardSales;
-	}
+    public void setIrrigation(Boolean irrigation) {
+        this.irrigation = irrigation;
+    }
 
-	public Boolean getCropInsurance()
-	{
-		return cropInsurance;
-	}
+    public Boolean getForwardSales() {
+        return forwardSales;
+    }
 
-	public void setCropInsurance(Boolean cropInsurance)
-	{
-		this.cropInsurance = cropInsurance;
-	}
+    public void setForwardSales(Boolean forwardSales) {
+        this.forwardSales = forwardSales;
+    }
 
-	public Date getPlantingYear()
-	{
-		return plantingYear;
-	}
+    public Boolean getCropInsurance() {
+        return cropInsurance;
+    }
 
-	public void setPlantingYear(Date plantingYear)
-	{
-		this.plantingYear = plantingYear;
-	}
+    public void setCropInsurance(Boolean cropInsurance) {
+        this.cropInsurance = cropInsurance;
+    }
+
+    public Date getPlantingYear() {
+        return plantingYear;
+    }
+
+    public void setPlantingYear(Date plantingYear) {
+        this.plantingYear = plantingYear;
+    }
 }

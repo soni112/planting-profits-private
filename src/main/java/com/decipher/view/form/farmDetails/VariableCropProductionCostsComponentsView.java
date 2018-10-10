@@ -2,196 +2,165 @@ package com.decipher.view.form.farmDetails;
 
 import com.decipher.agriculture.data.farm.VariableCropProductionCostsComponents;
 
-public class VariableCropProductionCostsComponentsView
-{
-	
-	private Integer id;
-	private String seed;
-	private String herbicide;
-	private String insecticide;
-	private String fungicide;
-	private String fertilizer;
-	private String micro_Nutrients;
-	private String labor;
-	private String equipment;
-	private String irrigation;
-	private String rent;
-	private String professionalServices;
-	private String cropInsurance;
-	private String financing;
-	private String other;
-	
-	public VariableCropProductionCostsComponentsView()
-	{
-		
-	}
+import java.io.Serializable;
 
-	public VariableCropProductionCostsComponentsView(VariableCropProductionCostsComponents variableCropProductionCostsComponents)
-	{
-		this.id = variableCropProductionCostsComponents.getId();
-		this.seed = variableCropProductionCostsComponents.getSeed();
-		this.herbicide = variableCropProductionCostsComponents.getHerbicide();
-		this.insecticide = variableCropProductionCostsComponents.getInsecticide();
-		this.fungicide = variableCropProductionCostsComponents.getFungicide();
-		this.fertilizer = variableCropProductionCostsComponents.getFertilizer();
-		this.micro_Nutrients = variableCropProductionCostsComponents.getMicro_Nutrients();
-		this.labor = variableCropProductionCostsComponents.getLabor();
-		this.equipment = variableCropProductionCostsComponents.getEquipment();
-		this.irrigation = variableCropProductionCostsComponents.getIrrigation();
-		this.rent = variableCropProductionCostsComponents.getRent();
-		this.professionalServices = variableCropProductionCostsComponents.getProfessionalServices();
-		this.cropInsurance = variableCropProductionCostsComponents.getCropInsurance();
-		this.financing = variableCropProductionCostsComponents.getFinancing();
-		this.other = variableCropProductionCostsComponents.getOther();
-	}
+public class VariableCropProductionCostsComponentsView implements Serializable {
 
-	public Integer getId()
-	{
-		return id;
-	}
+    private Integer id;
+    private String seed;
+    private String herbicide;
+    private String insecticide;
+    private String fungicide;
+    private String fertilizer;
+    private String micro_Nutrients;
+    private String labor;
+    private String equipment;
+    private String irrigation;
+    private String rent;
+    private String professionalServices;
+    private String cropInsurance;
+    private String financing;
+    private String other;
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public VariableCropProductionCostsComponentsView() {
 
-	public String getSeed()
-	{
-		return seed;
-	}
+    }
 
-	public void setSeed(String seed)
-	{
-		this.seed = seed;
-	}
+    public VariableCropProductionCostsComponentsView(VariableCropProductionCostsComponents variableCropProductionCostsComponents) {
+        this.id = variableCropProductionCostsComponents.getId();
+        this.seed = variableCropProductionCostsComponents.getSeed();
+        this.herbicide = variableCropProductionCostsComponents.getHerbicide();
+        this.insecticide = variableCropProductionCostsComponents.getInsecticide();
+        this.fungicide = variableCropProductionCostsComponents.getFungicide();
+        this.fertilizer = variableCropProductionCostsComponents.getFertilizer();
+        this.micro_Nutrients = variableCropProductionCostsComponents.getMicro_Nutrients();
+        this.labor = variableCropProductionCostsComponents.getLabor();
+        this.equipment = variableCropProductionCostsComponents.getEquipment();
+        this.irrigation = variableCropProductionCostsComponents.getIrrigation();
+        this.rent = variableCropProductionCostsComponents.getRent();
+        this.professionalServices = variableCropProductionCostsComponents.getProfessionalServices();
+        this.cropInsurance = variableCropProductionCostsComponents.getCropInsurance();
+        this.financing = variableCropProductionCostsComponents.getFinancing();
+        this.other = variableCropProductionCostsComponents.getOther();
+    }
 
-	public String getHerbicide()
-	{
-		return herbicide;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setHerbicide(String herbicide)
-	{
-		this.herbicide = herbicide;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getInsecticide()
-	{
-		return insecticide;
-	}
+    public String getSeed() {
+        return seed;
+    }
 
-	public void setInsecticide(String insecticide)
-	{
-		this.insecticide = insecticide;
-	}
+    public void setSeed(String seed) {
+        this.seed = seed;
+    }
 
-	public String getFungicide()
-	{
-		return fungicide;
-	}
+    public String getHerbicide() {
+        return herbicide;
+    }
 
-	public void setFungicide(String fungicide)
-	{
-		this.fungicide = fungicide;
-	}
+    public void setHerbicide(String herbicide) {
+        this.herbicide = herbicide;
+    }
 
-	public String getFertilizer()
-	{
-		return fertilizer;
-	}
+    public String getInsecticide() {
+        return insecticide;
+    }
 
-	public void setFertilizer(String fertilizer)
-	{
-		this.fertilizer = fertilizer;
-	}
+    public void setInsecticide(String insecticide) {
+        this.insecticide = insecticide;
+    }
 
-	public String getMicro_Nutrients()
-	{
-		return micro_Nutrients;
-	}
+    public String getFungicide() {
+        return fungicide;
+    }
 
-	public void setMicro_Nutrients(String micro_Nutrients)
-	{
-		this.micro_Nutrients = micro_Nutrients;
-	}
+    public void setFungicide(String fungicide) {
+        this.fungicide = fungicide;
+    }
 
-	public String getLabor()
-	{
-		return labor;
-	}
+    public String getFertilizer() {
+        return fertilizer;
+    }
 
-	public void setLabor(String labor)
-	{
-		this.labor = labor;
-	}
+    public void setFertilizer(String fertilizer) {
+        this.fertilizer = fertilizer;
+    }
 
-	public String getEquipment()
-	{
-		return equipment;
-	}
+    public String getMicro_Nutrients() {
+        return micro_Nutrients;
+    }
 
-	public void setEquipment(String equipment)
-	{
-		this.equipment = equipment;
-	}
+    public void setMicro_Nutrients(String micro_Nutrients) {
+        this.micro_Nutrients = micro_Nutrients;
+    }
 
-	public String getIrrigation()
-	{
-		return irrigation;
-	}
+    public String getLabor() {
+        return labor;
+    }
 
-	public void setIrrigation(String irrigation)
-	{
-		this.irrigation = irrigation;
-	}
+    public void setLabor(String labor) {
+        this.labor = labor;
+    }
 
-	public String getRent()
-	{
-		return rent;
-	}
+    public String getEquipment() {
+        return equipment;
+    }
 
-	public void setRent(String rent)
-	{
-		this.rent = rent;
-	}
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
 
-	public String getProfessionalServices()
-	{
-		return professionalServices;
-	}
+    public String getIrrigation() {
+        return irrigation;
+    }
 
-	public void setProfessionalServices(String professionalServices)
-	{
-		this.professionalServices = professionalServices;
-	}
+    public void setIrrigation(String irrigation) {
+        this.irrigation = irrigation;
+    }
 
-	public String getCropInsurance()
-	{
-		return cropInsurance;
-	}
+    public String getRent() {
+        return rent;
+    }
 
-	public void setCropInsurance(String cropInsurance)
-	{
-		this.cropInsurance = cropInsurance;
-	}
+    public void setRent(String rent) {
+        this.rent = rent;
+    }
 
-	public String getFinancing()
-	{
-		return financing;
-	}
+    public String getProfessionalServices() {
+        return professionalServices;
+    }
 
-	public void setFinancing(String financing)
-	{
-		this.financing = financing;
-	}
+    public void setProfessionalServices(String professionalServices) {
+        this.professionalServices = professionalServices;
+    }
 
-	public String getOther()
-	{
-		return other;
-	}
+    public String getCropInsurance() {
+        return cropInsurance;
+    }
 
-	public void setOther(String other)
-	{
-		this.other = other;
-	}
+    public void setCropInsurance(String cropInsurance) {
+        this.cropInsurance = cropInsurance;
+    }
+
+    public String getFinancing() {
+        return financing;
+    }
+
+    public void setFinancing(String financing) {
+        this.financing = financing;
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other;
+    }
 }
