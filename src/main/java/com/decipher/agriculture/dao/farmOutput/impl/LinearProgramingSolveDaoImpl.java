@@ -197,14 +197,15 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                 linear.add(beanForOutput.getAcres(), beanForOutput.getCropType().getCropName());
                 problem.add("Maximum " + beanForOutput.getCropType().getCropName(), linear, Operator.LE, beanForOutput.getMaxAcre());
                 PlantingProfitLogger.info(beanForOutput.getMaxAcre());
-            }else if (beanForOutput.getMinAcre()>0 || beanForOutput.getMinAcre()==0){
+            }
+            /*else if (beanForOutput.getMinAcre()>0 || beanForOutput.getMinAcre()==0){
                 if (beanForOutput.getMaxAcre()==0){
                     linear = new Linear();
                     linear.add(beanForOutput.getAcres(), beanForOutput.getCropType().getCropName());
                     problem.add("Maximum " + beanForOutput.getCropType().getCropName(), linear, Operator.LE, beanForOutput.getMaxAcre());
                     PlantingProfitLogger.info(beanForOutput.getMaxAcre());
                 }
-            }
+            }*/
             if (beanForOutput.getFirmAcres() > zeroDouble) {
                 linear = new Linear();
                 linear.add(beanForOutput.getAcres(), beanForOutput.getCropType().getCropName() + " (Contract)");
