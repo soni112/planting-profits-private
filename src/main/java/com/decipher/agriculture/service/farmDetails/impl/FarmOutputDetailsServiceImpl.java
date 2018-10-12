@@ -414,8 +414,10 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             if (min.equalsIgnoreCase ( YES )) {
                 jsonObject.put ( MESSAGE, "Minimum crop limit is impacting Estimated Income." );
             } else if (min.equalsIgnoreCase ( NO )) {
-//                jsonObject.put ( MESSAGE, "Minimum crop limit is not impacting Estimated Income." );
-                jsonObject.put ( MESSAGE, "Minimum crop limit to meet the forward contract is not impacting Estimated Income. It is likely that Estimated Income will increase if acreage of "+cropTypeView.getCropName()+" (Firm) is increased." );
+                if (cropTypeView.getFirmchecked().equalsIgnoreCase("true"))
+                  jsonObject.put ( MESSAGE, "Minimum crop limit to meet the forward contract is not impacting Estimated Income. It is likely that Estimated Income will increase if acreage of "+cropTypeView.getCropName()+" (Firm) is increased." );
+                else
+                 jsonObject.put ( MESSAGE, "Minimum crop limit is not impacting Estimated Income." );
             } else {
                 jsonObject.put ( MESSAGE, "Minimum crop limit is likely impacting Est  Income." );
             }
