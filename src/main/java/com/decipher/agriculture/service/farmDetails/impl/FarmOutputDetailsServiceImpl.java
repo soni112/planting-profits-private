@@ -174,8 +174,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                                             double profitIndex = farmOutputDetailsView.getProfitIndex();
                                             if (profitIndex >= 0.8) {
                                                 jsonObjectForFirm.put(INC_DEC_INCOME, "Increase");
+                                                jsonObjectForFirm.put(IMPACTING_INCOME, NO);
+                                                jsonObjectForFirm.put(MESSAGE, "Minimum crop limit to meet the forward contract is not impacting Estimated Income. It is likely that Estimated Income will increase if acreage of "+cropTypeView.getCropName()+" (Firm) is increased.");
                                             } else if (profitIndex < 0.8) {
                                                 jsonObjectForFirm.put(INC_DEC_INCOME, "Decrease");
+                                                jsonObjectForFirm.put(IMPACTING_INCOME, YES);
+                                                jsonObjectForFirm.put ( MESSAGE, "Minimum crop limit is impacting Estimated Income." );
+
                                             }
                                         }
                                     }
@@ -414,10 +419,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             if (min.equalsIgnoreCase ( YES )) {
                 jsonObject.put ( MESSAGE, "Minimum crop limit is impacting Estimated Income." );
             } else if (min.equalsIgnoreCase ( NO )) {
-                if (cropTypeView.getFirmchecked().equalsIgnoreCase("true"))
-                  jsonObject.put ( MESSAGE, "Minimum crop limit to meet the forward contract is not impacting Estimated Income. It is likely that Estimated Income will increase if acreage of "+cropTypeView.getCropName()+" (Firm) is increased." );
-                else
-                 jsonObject.put ( MESSAGE, "Minimum crop limit is not impacting Estimated Income." );
+                jsonObject.put ( MESSAGE, "Minimum crop limit is not impacting Estimated Income." );
             } else {
                 jsonObject.put ( MESSAGE, "Minimum crop limit is likely impacting Est  Income." );
             }
@@ -532,12 +534,12 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                 if (cropTypeView != null) {
                     int usedAcres, minimumAcres, maximumAcres;
-                    Double profitIndex;
+                 /*   Double profitIndex;
                         if (cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())) {
-                            if (farmOutputDetailsView.getForFirm().equals(true)) {
-                                profitIndex = farmOutputDetailsView.getProfitIndex();
-                                return getYesNoForFirmChecked(profitIndex);
-                            } else {
+//                            if (farmOutputDetailsView.getForFirm().equals(true)) {
+//                                profitIndex = farmOutputDetailsView.getProfitIndex();
+//                                return getYesNoForFirmChecked(profitIndex);
+//                            } else {
                                 usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                                 String maxAcresValue = cropTypeView.getMaximumAcres().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcres();
                                 maximumAcres = Integer.parseInt(maxAcresValue.replace(",",""));
@@ -545,9 +547,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                                 minimumAcres = Integer.parseInt(minimumAcresValue.replace(",",""));
 
                                 return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
-                            }
+//                            }
                         }
-                    else {
+                    else {*/
                         if (farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                             usedAcres = farmOutputDetailsView.getUsedAcresAsInteger();
                             String maxAcresValue = cropTypeView.getMaximumAcres().equalsIgnoreCase("") ? "0" : cropTypeView.getMaximumAcres();
@@ -564,7 +566,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             return getYesNo(usedAcres, minimumAcres, maximumAcres, minOrMax);
                         }
 
-                    }
+//                    }
                 } else if (cropsGroupView != null) {
                     Set<CropType> cropSet = cropsGroupView.getCropSet();
                     int usedAcres = 0;
