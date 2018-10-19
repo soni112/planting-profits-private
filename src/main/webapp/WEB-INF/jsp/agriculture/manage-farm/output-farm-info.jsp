@@ -1543,9 +1543,19 @@
                         </div>
                         <div class="clearfix"></div>
                         <div>
+                            <c:url value="/view-farm-info.htm" var="view-farm-info">
+                                <c:param name="farmId" value="${farmId}"/>
+                            </c:url>
                             <a class="alertify-button alertify-button-ok remove-text-deco"
                                href="${myURL}"
                                 style="color:#0f0f0f">Troubleshoot</a>
+
+                            <c:if test="${model.potentialProfit=='0'}">
+                                <a class="alertify-button alertify-button-ok remove-text-deco"
+                                   href="${view-farm-info}" style="color:#0f0f0f">Back</a>
+                            </c:if>
+
+
                             <a class="alertify-button alertify-button-ok remove-text-deco"
                                     id="checkStrategy-pop-up-close-btn" href="javascript:;"
                                 onclick="$('#checkStrategy-pop-up').hide();"
