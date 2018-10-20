@@ -1543,7 +1543,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div>
-                            <c:url value="/view-farm-info.htm" var="view-farm-info">
+                            <c:url value="/view-farm-info.htm" var="viewFarmInfo">
                                 <c:param name="farmId" value="${farmId}"/>
                             </c:url>
                             <a class="alertify-button alertify-button-ok remove-text-deco"
@@ -1552,7 +1552,7 @@
 
                             <c:if test="${model.potentialProfit=='0'}">
                                 <a class="alertify-button alertify-button-ok remove-text-deco"
-                                   href="${view-farm-info}" style="color:#0f0f0f">Back</a>
+                                   href="${viewFarmInfo}" style="color:#0f0f0f">Back</a>
                             </c:if>
 
 
