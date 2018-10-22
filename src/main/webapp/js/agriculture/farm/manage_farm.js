@@ -2685,6 +2685,13 @@ function changeMinimumYieldValue(obj) {
 function showFieldVariencePage() {
     $(".show_hide_class").addClass("hidden");
     $("#field_varience").removeClass("hidden");
+    $("select").each(function( index, v ) {
+        var str = v.id;
+        var res = str.match(/field_select_drop_down/g);
+        if(res){
+            fieldSelectFieldVarience(this);
+        }
+    });
 }
 
 function cropFieldChoiceCheckboxChenge() {
