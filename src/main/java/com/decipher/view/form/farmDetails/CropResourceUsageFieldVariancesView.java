@@ -52,7 +52,7 @@ public class CropResourceUsageFieldVariancesView implements Cloneable, Serializa
     }
 
     public String getCropResourceAmount() {
-        if (cropResourceAmount == null || cropResourceAmount.equalsIgnoreCase("0")) {
+        if (cropResourceAmount == null || cropResourceAmount.equalsIgnoreCase("0") || cropResourceAmount.equalsIgnoreCase("undefined")) {
             return "";
         } else {
             return AgricultureStandardUtils.commaSeparaterForPrice(cropResourceAmount);
