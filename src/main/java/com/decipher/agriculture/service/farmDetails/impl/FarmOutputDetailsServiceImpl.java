@@ -175,7 +175,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                                             if (profitIndex >= 0.8) {
                                                 jsonObjectForFirm.put(INC_DEC_INCOME, "Increase");
                                                 jsonObjectForFirm.put(IMPACTING_INCOME, NO);
-                                                jsonObjectForFirm.put(MESSAGE, "Minimum crop limit to meet the forward contract is not impacting Estimated Income. It is likely that Estimated Income will increase if acreage of "+cropTypeView.getCropName()+" (Firm) is increased.");
+                                                jsonObjectForFirm.put(MESSAGE, "Minimum crop limit to meet the forward contract is not impacting Estimated Income. It is likely that Estimated Income will increase if the amount of acreage under this contract can be increased.");
                                             } else if (profitIndex < 0.8) {
                                                 jsonObjectForFirm.put(INC_DEC_INCOME, "Decrease");
                                                 jsonObjectForFirm.put(IMPACTING_INCOME, YES);

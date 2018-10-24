@@ -21,18 +21,19 @@
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                    <a href="<c:url value="/consultant-corner.htm"/>" target="_blank">
+                        <img src="<c:url value="/images/ic_consultant.png"/>" width="100px">
+                        <%--<h4 class="" style="padding-top: 21.5%;">Consultant's Corner</h4>--%>
+                    </a>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
                     <a href="<c:url value="/professional-partners.htm"/>" target="_blank">
                         <img src="<c:url value="/images/professional_partners.png"/>" width="100px">
                         <%--<h4 class="">Professional Partners</h4>--%>
                     </a>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
-                    <a href="<c:url value="/consultant-corner.htm"/>" target="_blank">
-                        <img src="<c:url value="/images/ic_consultant.png"/>" width="100px">
-                        <%--<h4 class="" style="padding-top: 21.5%;">Consultant's Corner</h4>--%>
-                    </a>
-                </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
                     <a href="<c:url value="/farm-data.htm"/>" target="_blank">
                         <img src="<c:url value="/images/ic_farmData.png"/>" width="100px">
