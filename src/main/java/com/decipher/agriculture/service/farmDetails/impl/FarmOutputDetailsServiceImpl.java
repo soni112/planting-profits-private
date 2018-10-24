@@ -893,7 +893,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             workReturn = ratio / calculatedVariableProductionCost;
                         }
                     }
-                    jsonObject.put(WORKRETURN, workReturn );
+                    jsonObject.put(WORKRETURN, AgricultureStandardUtils.doubleWithOneDecimal(workReturn) );
 
 //                  jsonObject.put ( WORKRETURN,"NA" );
                 } else {
