@@ -185,6 +185,13 @@ public class ViewController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/consultant-corner.htm", method = {RequestMethod.GET})
+	public ModelAndView getConsultantCorner(){
+		ModelAndView modelAndView = new ModelAndView("consultant-corner");
+		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/professional-partners.htm", method = {RequestMethod.GET})
 	public ModelAndView getProfessionalPartners(){
 		ModelAndView modelAndView = new ModelAndView("professional-partners");
@@ -199,12 +206,7 @@ public class ViewController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/consultant-corner.htm", method = {RequestMethod.GET})
-	public ModelAndView getConsultantCorner(){
-		ModelAndView modelAndView = new ModelAndView("consultant-corner");
-		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
-		return modelAndView;
-	}
+
 
 	@RequestMapping(value = "/farm-data.htm", method = {RequestMethod.GET})
 	public ModelAndView getFarmData(){

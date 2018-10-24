@@ -1254,7 +1254,7 @@ function addCropInAllTables(cropName) {
 
     var rowHTMLForCropResourceUsage = '<tr class="tblgrn text-center"><td class="tblft1">' + cropName + '</td><td class="success infotext tittle-uppercase UOMCropResourceUsage">' + defaultUOMForCrop + '</td><td class="success infotext">$0.00 <img src="images/data.png"></td>';
     for (var i = 0, j = $("#crop_resource_usage thead tr td").length - 3; i < j; i++) {
-        rowHTMLForCropResourceUsage += '<td class="success infotext"><input type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this)" onkeypress="return isValidNumberValue(event)"></td>';
+        rowHTMLForCropResourceUsage += '<td class="success infotext"><input type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this); cropResourceUsageValue(this)" onkeypress="return isValidNumberValue(event)"></td>';
     }
     rowHTMLForCropResourceUsage += "</tr>";
     $("#crop_resource_usage tbody").append(rowHTMLForCropResourceUsage);
@@ -1995,7 +1995,12 @@ function addResourcesInAllTables(resourceObject) {
                     valEach = allDataArray[indVar][$(this).text()];
                 }
             });
-            $(this).append('<td class="success infotext"><input data-resName="'+resourceName+'" type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValue(this);cropResourceUsageValueChange(this)" onkeypress="return isValidNumberValue(event)" value="'+valEach+'" /></td>');
+            if(valEach =="undefined"){
+                $(this).append('<td class="success infotext"><input data-resName="'+resourceName+'" type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this); cropResourceUsageValue(this);" onkeypress="return isValidNumberValue(event)" value="" /></td>');
+            }else {
+                $(this).append('<td class="success infotext"><input data-resName="'+resourceName+'" type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this); cropResourceUsageValue(this);" onkeypress="return isValidNumberValue(event)" value="'+valEach+'" /></td>');
+            }
+
         });
         var rowHTMLForFieldDifference = '<tr class="tblgrn text-center"><td class="tblft1 tittle-uppercase">' + resourceName + '</td><td class="success infotext"></td><td class="success infotext"><input type="text" onkeypress="return isValidNumberValue(event)" onchange="addCommaSignWithOutDollar(this)"></td></tr>';
         $("#crop_resources_usages_difference_tbody").append(rowHTMLForFieldDifference);
