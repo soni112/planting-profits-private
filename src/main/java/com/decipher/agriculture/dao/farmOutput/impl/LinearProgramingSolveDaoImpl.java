@@ -90,8 +90,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
             if (beanForOutput.getMinAcre() == 0.0  && beanForOutput.getProfit() < 0.0) {
                 continue;
             }
-            if (beanForOutput.getMaxAcre() == 0.0)
-                continue;
+           /* if (beanForOutput.getMaxAcre() == 0.0)
+                continue;*/
 
 			/* linear for profit by each crop */
 
@@ -149,8 +149,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                 if (beanForOutput.getMinAcre() == 0.0  && beanForOutput.getProfit() < 0.0) {
                     continue;
                 }
-                if (beanForOutput.getMaxAcre() == 0.0)
-                    continue;
+               /* if (beanForOutput.getMaxAcre() == 0.0)
+                    continue;*/
 
 
                 for (Entry<String, Double> entry : beanForOutput.getResourceList().entrySet()) {
@@ -189,8 +189,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
             if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                 continue;
             }
-            if (beanForOutput.getMaxAcre() == 0.0)
-                continue;
+           /* if (beanForOutput.getMaxAcre() == 0.0)
+                continue;*/
 
             if (beanForOutput.getMinAcre() > zeroDouble) {
                 linear = new Linear();
@@ -269,8 +269,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
             if (beanForOutput.getMinAcre() == 0.0  && beanForOutput.getProfit() < 0.0) {
                 continue;
             }
-            if (beanForOutput.getMaxAcre() == 0.0)
-                continue;
+           /* if (beanForOutput.getMaxAcre() == 0.0)
+                continue;*/
 
             problem.setVarType(beanForOutput.getCropType().getCropName(), Double.class);
             if (beanForOutput.getFirmAcres() > zeroDouble || beanForOutput.getProposedAcres() > zeroDouble) {
@@ -614,9 +614,9 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                     if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                         continue;
                     }
-                    if (beanForOutput.getMaxAcre() == 0.0)
+                   /* if (beanForOutput.getMaxAcre() == 0.0)
                         continue;
-
+*/
 
                     if (combination.split("###")[1].equals(beanForOutput.getCropType().getCropName())) {
                         cropType = beanForOutput.getCropType();
@@ -676,8 +676,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                             if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                                 continue;
                             }
-                            if (beanForOutput.getMaxAcre() == 0.0)
-                                continue;
+                           /* if (beanForOutput.getMaxAcre() == 0.0)
+                                continue;*/
 
                             if (combination.split("###")[1].equals(beanForOutput.getCropType().getCropName())) {
                                 if (beanForOutput.getFirmAcres() > zeroDouble) {
@@ -713,9 +713,9 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                         if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                             continue;
                         }
-                        if (beanForOutput.getMaxAcre() == 0.0)
+                       /* if (beanForOutput.getMaxAcre() == 0.0)
                             continue;
-
+*/
                         if (combination.split("###")[1].equals(beanForOutput.getCropType().getCropName())) {
                             if (cropResourceUsageView.getCropResourceUse().equals("Capital")) {
                                 cropType = beanForOutput.getCropType();
@@ -792,9 +792,9 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                 if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                     continue;
                 }
-                if (beanForOutput.getMaxAcre() == 0.0)
+               /* if (beanForOutput.getMaxAcre() == 0.0)
                     continue;
-
+*/
                 linear = new Linear();
                 for (String combination : combinationSet) {
                     if (combination.split("###")[1].equals(beanForOutput.getCropType().getCropName())) {
@@ -829,8 +829,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                 if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                     continue;
                 }
-                if (beanForOutput.getMaxAcre() == 0.0)
-                    continue;
+               /* if (beanForOutput.getMaxAcre() == 0.0)
+                    continue;*/
 
                 linear = new Linear();
                 for (String combination : combinationList) {
@@ -856,9 +856,9 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                 if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                     continue;
                 }
-                if (beanForOutput.getMaxAcre() == 0.0)
+               /* if (beanForOutput.getMaxAcre() == 0.0)
                     continue;
-
+*/
                 linear = new Linear();
                 for (String combination : combinationSet) {
                     if (combination.split("###")[1].equals(beanForOutput.getCropType().getCropName())) {
@@ -890,8 +890,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                                 if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                                     continue;
                                 }
-                                if (beanForOutput.getMaxAcre() == 0.0)
-                                    continue;
+                               /* if (beanForOutput.getMaxAcre() == 0.0)
+                                    continue;*/
 
                                 if (beanForOutput.getCropType().equals(cropType1)) {
                                     if (beanForOutput.getFirmAcres() > zeroDouble) {
@@ -931,8 +931,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                                 if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                                     continue;
                                 }
-                                if (beanForOutput.getMaxAcre() == 0.0)
-                                    continue;
+                               /* if (beanForOutput.getMaxAcre() == 0.0)
+                                    continue;*/
 
                                 if (beanForOutput.getCropType().equals(cropType1)) {
                                     if (beanForOutput.getFirmAcres() > zeroDouble) {
@@ -964,8 +964,8 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
                     if (beanForOutput.getMinAcre() == 0.0 && beanForOutput.getProfit() < 0.0) {
                         continue;
                     }
-                    if (beanForOutput.getMaxAcre() == 0.0)
-                        continue;
+                   /* if (beanForOutput.getMaxAcre() == 0.0)
+                        continue;*/
 
                     if (combination.split("###")[1].equals(beanForOutput.getCropType().getCropName())) {
                         if (beanForOutput.getFirmAcres() > zeroDouble) {
