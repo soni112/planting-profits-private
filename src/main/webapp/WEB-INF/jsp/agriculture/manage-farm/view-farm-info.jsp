@@ -1667,13 +1667,21 @@ start -->
                                                     <tr id="crop_resource_usage_row__${rowCount}"
                                                         class="tblgrn text-center">
                                                         <c:choose>
-                                                            <c:when test="${cropList.cropYieldFieldId ne null and cropList.cropYieldFieldId ne '0'}">
-                                                                <td id="crop_resource_usage_crop__${rowCount}"
-                                                                    class="tblft1 crop_field_diff"
-                                                                    title="This crop has differences in yield and/or resource usage for field ${cropList.fieldNameForVariances}.">${cropList.cropName}</td>
-                                                                <%--<td id="crop_resource_usage_crop__${rowCount}"
-                                                                    class="tblft1 crop_field_diff"
-                                                                    title="This crop have field difference with field ${cropList.fieldNameForVariances}.">${cropList.cropName}</td>--%>
+                                                            <c:when test="${model.farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
+                                                                <c:choose>
+                                                                    <c:when test="${cropList.cropYieldFieldId ne null and cropList.cropYieldFieldId ne '0'}">
+                                                                        <td id="crop_resource_usage_crop__${rowCount}"
+                                                                            class="tblft1 crop_field_diff"
+                                                                            title="This crop has differences in yield and/or resource usage for field ${cropList.fieldNameForVariances}.">${cropList.cropName}</td>
+                                                                        <%--<td id="crop_resource_usage_crop__${rowCount}"
+                                                                            class="tblft1 crop_field_diff"
+                                                                            title="This crop have field difference with field ${cropList.fieldNameForVariances}.">${cropList.cropName}</td>--%>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <td id="crop_resource_usage_crop__${rowCount}"
+                                                                            class="tblft1">${cropList.cropName}</td>
+                                                                    </c:otherwise>
+                                                                </c:choose>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <td id="crop_resource_usage_crop__${rowCount}"
