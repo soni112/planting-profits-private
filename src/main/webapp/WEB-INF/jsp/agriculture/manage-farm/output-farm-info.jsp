@@ -1273,12 +1273,14 @@
                                     </thead>
                                     <tbody>
                                     <c:forEach var="jsonObj" items="${model.forwardSalesJsonArray}">
+                                        <c:if test="${jsonObj.firmProposedCheck ne 'N/A'}">
                                         <tr class="tblgrn">
                                             <td class="success">${jsonObj.cropName}</td>
                                             <td class="success">${jsonObj.forwardSalesAmount}</td>
                                             <td class="success">${jsonObj.firmProposedCheck}</td>
                                             <td class="success">${jsonObj.status}</td>
                                         </tr>
+                                        </c:if>
                                     </c:forEach>
 
                                     </tbody>
