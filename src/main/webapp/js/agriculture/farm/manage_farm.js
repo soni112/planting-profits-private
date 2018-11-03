@@ -2861,6 +2861,24 @@ function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
     });
 }
 
+$( document ).ready(function() {
+    removeAndAddClass();
+    $("input[name= 'plan_by_farm']").on('change', function(){
+        removeAndAddClass();
+    });
+});
+function removeAndAddClass() {
+    if($("input[name='plan_by_farm']:checked").val() == 'acres'){
+        $('#crop_resource_usage tbody tr').each(function () {
+            $(this).find("td:nth(0)").removeClass('crop_field_diff');
+        });
+    }
+    if($("input[name='plan_by_farm']:checked").val() == 'fields'){
+        $('#crop_resource_usage tbody tr').each(function () {
+            $(this).find("td:nth(0)").removeClass('crop_field_diff').addClass('crop_field_diff');
+        });
+    }
+}
 /*function processForIconInFieldDifference(cropName){
  removeIconFromCropForFieldDifferenceOnCropResourceUsage();
  if(checkIfFieldDifferenceIsEmptyOrNot() == false){
