@@ -2862,7 +2862,6 @@ function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
 }
 
 $( document ).ready(function() {
-    removeAndAddClass();
     $("input[name= 'plan_by_farm']").on('change', function(){
         removeAndAddClass();
     });
