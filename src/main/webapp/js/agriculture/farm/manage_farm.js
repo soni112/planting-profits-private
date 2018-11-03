@@ -3230,6 +3230,8 @@ function saveAllFarmInformation() {
             // showMessageOnConsole($(this).children("td:nth(0)").text().trim() + "#-#-#" + returnZeroIfBlank(removeAllCommasAndDollar($(this).children("td:nth(2)").find("input").val().trim())));
         });
         if ($("#field_select_drop_down").val() != 0 && $("#crop_select_drop_down").val() != 0) {
+            var fieldValue = document.getElementById("field_select_drop_down").value;
+            var cropValue = document.getElementById("crop_select_drop_down").value;
             var item = localStorage.getItem("fieldDifference");
             if (item) {
                 item = JSON.parse(item);
@@ -3237,11 +3239,14 @@ function saveAllFarmInformation() {
                     for (var crop in item[field]) {
                         var data = item[field][crop];
                         if (data !== 'undefined' && crop !== '0') {
-                            field_difference_str = field + "#-#-#" + crop + "#-#-#";
-                            field_difference_str += data["expOverride"] !== "" ? removeAllCommasAndDollar(data["expOverride"]) + "#-#-#" : "0#-#-#";
-                            field_difference_str += data["minOverride"] !== "" ? removeAllCommasAndDollar(data["minOverride"]) + "#-#-#" : "0#-#-#";
-                            field_difference_str += data["maxOverride"] !== "" ? removeAllCommasAndDollar(data["maxOverride"]) + "#-#-#" : "0#-#-#";
-                            field_difference_str += data["resourceOverride"] !== "" ? removeAllCommasAndDollar(data["resourceOverride"]) + "#-#-#" : "0#-#-#";
+                            if(field==fieldValue && crop==cropValue){
+                                field_difference_str = field + "#-#-#" + crop + "#-#-#";
+                                field_difference_str += data["expOverride"] !== "" ? removeAllCommasAndDollar(data["expOverride"]) + "#-#-#" : "0#-#-#";
+                                field_difference_str += data["minOverride"] !== "" ? removeAllCommasAndDollar(data["minOverride"]) + "#-#-#" : "0#-#-#";
+                                field_difference_str += data["maxOverride"] !== "" ? removeAllCommasAndDollar(data["maxOverride"]) + "#-#-#" : "0#-#-#";
+                                field_difference_str += data["resourceOverride"] !== "" ? removeAllCommasAndDollar(data["resourceOverride"]) + "#-#-#" : "0#-#-#";
+
+                            }
                         }
                     }
                 }
