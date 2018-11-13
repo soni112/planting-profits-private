@@ -1266,7 +1266,9 @@
                                     <thead>
                                     <tr class="tblhd add-fieldi">
                                         <td class="tblbrdr add-fieldi">Crop</td>
-                                        <td class="add-fieldi">Contract Amount and Price</td>
+                                        <%--<td class="add-fieldi">Contract Amount and Price</td--%>
+                                        <td class="add-fieldi">Contract Amount</td>
+                                        <td class="add-fieldi">Price</td>
                                         <td class="add-fieldi">Firm/Proposed</td>
                                         <td>Filled</td>
                                     </tr>
@@ -1279,6 +1281,7 @@
                                         <tr class="tblgrn">
                                             <td class="success">${jsonObj.cropName}</td>
                                             <td class="success">${jsonObj.forwardSalesAmount}</td>
+                                            <td class="success">${jsonObj.forwardSalesPrice}</td>
                                             <td class="success">${jsonObj.firmProposedCheck}</td>
                                             <td class="success">${jsonObj.status}</td>
                                         </tr>
