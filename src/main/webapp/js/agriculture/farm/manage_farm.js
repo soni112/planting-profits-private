@@ -2775,11 +2775,18 @@ function getFieldYieldDiffence(obj) {
         $("#field_difference_min").val("");
         $("#field_difference_max").val("");
         $("#resources_usages_production_cost_resource_override").val("");
+        $("#yield-difference-tbody tr").each(function () {
+            $(this).children("td:nth(1)").text("");
+            $(this).children("td:nth(2)").find("input").val("");
+        });
         $("#crop_resources_usages_difference_tbody tr").each(function () {
             $(this).children("td:nth(1)").text("");
             $(this).children("td:nth(2)").find("input").val("");
         });
     } else {
+        $("#yield-difference-tbody tr").each(function () {
+            $(this).children("td:nth(2)").find("input").val("");
+        });
         $("#crop_resources_usages_difference_tbody tr").each(function () {
             $(this).children("td:nth(2)").find("input").val("");
         });
