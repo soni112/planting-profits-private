@@ -87,7 +87,7 @@
                                     <table width="100%" cellspacing="0" id="cropAcreageAndProfit"
                                            class="table table-striped tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll" width="100%">
                                         <thead style="display: table-header-group;">
-                                        <tr class="tblhd add-fieldi">
+                                        <tr class="tblheader add-fieldi">
                                             <td class="tblbrdr add-fieldi">Crop</td>
                                             <td class="add-fieldi">Acreage</td>
                                             <td>Est. Income</td>
@@ -296,7 +296,7 @@
                                     <%--<table width="100%" cellspacing="0"
                                            class="table table-striped tbl-bordr tblbrdr output_table">
                                         <thead>--%>
-                                        <tr class="tblhd add-fieldi">
+                                        <tr class="tblheader add-fieldi">
                                             <td class="tblbrdr add-fieldi">Field</td>
                                             <td class="add-fieldi">Acreage</td>
                                             <td>Crop</td>
@@ -787,7 +787,7 @@
 
                                     ">
                                     <thead style="display: table-header-group;">
-                                    <tr class="tblhd add-fieldi">
+                                    <tr class="tblheader add-fieldi">
                                         <td class="tblbrdr add-fieldi">Crop</td>
                                         <td>Minimum Limit</td>
                                         <td>Maximum Limit</td>
@@ -1266,7 +1266,9 @@
                                     <thead>
                                     <tr class="tblhd add-fieldi">
                                         <td class="tblbrdr add-fieldi">Crop</td>
-                                        <td class="add-fieldi">Contract Amount and Price</td>
+                                        <%--<td class="add-fieldi">Contract Amount and Price</td--%>
+                                        <td class="add-fieldi">Contract Amount</td>
+                                        <td class="add-fieldi">Price</td>
                                         <td class="add-fieldi">Firm/Proposed</td>
                                         <td>Filled</td>
                                     </tr>
@@ -1279,6 +1281,7 @@
                                         <tr class="tblgrn">
                                             <td class="success">${jsonObj.cropName}</td>
                                             <td class="success">${jsonObj.forwardSalesAmount}</td>
+                                            <td class="success">${jsonObj.forwardSalesPrice}</td>
                                             <td class="success">${jsonObj.firmProposedCheck}</td>
                                             <td class="success">${jsonObj.status}</td>
                                         </tr>
