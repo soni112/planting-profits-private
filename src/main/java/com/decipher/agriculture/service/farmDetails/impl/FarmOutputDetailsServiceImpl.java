@@ -47,6 +47,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
     private static final String YES = "Yes";
     private static final String NO = "No";
     private static final String Likely = "Likely";
+    private static final String PARTIAL = "Partial";
 
 
     private static final String RESOURCE_STATUS = "status";
@@ -104,7 +105,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 jsonObject.put("cropName", cropTypeView.getCropName());
 
                 if (cropTypeView.getProposedchecked() || cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
-                    jsonObject.put("forwardSalesAmount", cropTypeView.getAcresStr() + " acres at " + cropTypeView.getForwardPrice() + "/" + cropTypeView.getCropUOM());
+//                    jsonObject.put("forwardSalesAmount", cropTypeView.getAcresStr() + " acres at " + cropTypeView.getForwardPrice() + "/" + cropTypeView.getCropUOM());
+                    jsonObject.put("forwardSalesAmount", cropTypeView.getAcresStr() +" "+"acres");
+                    jsonObject.put("forwardSalesPrice", cropTypeView.getForwardPrice() + "/" + cropTypeView.getCropUOM());
                 } else {
                     jsonObject.put("forwardSalesAmount", "");
                 }
@@ -116,13 +119,62 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 } else {
                     jsonObject.put("firmProposedCheck", "N/A");
                 }
+                if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
+                    List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) outputDetails.get("farmOutputDetails");
+                    for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
+                        Double usedAcres = farmOutputDetailsForFieldView.getUsedAcresAsDouble();
+                        int contractAmount = Integer.parseInt(cropTypeView.getAcresStr());
+                        double checkStatusValue = contractAmount - usedAcres;
 
-                if (cropTypeView.getFirmchecked().equalsIgnoreCase("true")) {
-                    jsonObject.put("status", YES);
-                } else if (cropTypeView.getProposedchecked() && flag) {
-                    jsonObject.put("status", YES);
-                } else {
-                    jsonObject.put("status", NO);
+                        if (farmOutputDetailsForFieldView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
+                            if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                jsonObject.put("status", YES);
+                            } else if (checkStatusValue > 0) {
+                                jsonObject.put("status", PARTIAL);
+                            }
+
+//                    } else if (cropTypeView.getProposedchecked() && flag) {
+                        } else if (farmOutputDetailsForFieldView.getCropTypeView().getProposedchecked()) {
+                            if (contractAmount == 0) {
+                                jsonObject.put("status", NO);
+                            }else if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                jsonObject.put("status", YES);
+                            } else if (checkStatusValue > 0) {
+                                jsonObject.put("status", PARTIAL);
+                            }
+                        }else{
+                            jsonObject.put("status", NO);
+                        }
+                    }
+                }
+                if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
+                    List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+                    for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
+                        Double usedAcres = farmOutputDetailsView.getUsedAcresAsDouble();
+                        int contractAmount = Integer.parseInt(cropTypeView.getAcresStr());
+                        double checkStatusValue = contractAmount - usedAcres;
+
+                        if (farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
+                            if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                jsonObject.put("status", YES);
+                            } else if (checkStatusValue > 0) {
+                                jsonObject.put("status", PARTIAL);
+                            }
+
+//                    } else if (cropTypeView.getProposedchecked() && flag) {
+                        } else if (farmOutputDetailsView.getCropTypeView().getProposedchecked()) {
+                            if (contractAmount == 0) {
+                                jsonObject.put("status", NO);
+                            }else if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                jsonObject.put("status", YES);
+                            } else if (checkStatusValue > 0) {
+                                jsonObject.put("status", PARTIAL);
+                            }
+                        }else{
+                            jsonObject.put("status", NO);
+                        }
+                    }
+
                 }
 
                 jsonArray.add(jsonObject);
