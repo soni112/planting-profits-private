@@ -123,8 +123,9 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) outputDetails.get("farmOutputDetails");
                     for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
                         Double usedAcres = farmOutputDetailsForFieldView.getUsedAcresAsDouble();
-                        int contractAmount = Integer.parseInt(cropTypeView.getAcresStr());
-                        double checkStatusValue = contractAmount - usedAcres;
+                        String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
+                        double contractAmount1 = Double.parseDouble(contractAmount);
+                        double checkStatusValue = contractAmount1 - usedAcres;
 
                         if (farmOutputDetailsForFieldView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
                             if (checkStatusValue == 0 || checkStatusValue < 0) {
@@ -135,7 +136,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
 //                    } else if (cropTypeView.getProposedchecked() && flag) {
                         } else if (farmOutputDetailsForFieldView.getCropTypeView().getProposedchecked()) {
-                            if (contractAmount == 0) {
+                            if (contractAmount1 == 0) {
                                 jsonObject.put("status", NO);
                             }else if (checkStatusValue == 0 || checkStatusValue < 0) {
                                 jsonObject.put("status", YES);
