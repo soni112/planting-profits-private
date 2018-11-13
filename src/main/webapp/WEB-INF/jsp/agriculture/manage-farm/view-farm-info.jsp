@@ -403,7 +403,7 @@
                                     <div class="table-responsive">
                                         <table id="Plan_by_Fields_table" class="table table-striped tbl-bordr tbl-fixd-hdr tbl-fixd-hdr-manag tblbrdr scroll" cellspacing="0" width="100%">
                                             <thead id="Plan_by_Fields_thead" style="display: table-header-group;">
-                                                <tr class="tblhd text-center add-fieldi">
+                                                <tr class="tblheader text-center add-fieldi">
                                                     <td>Modify</td>
                                                     <td class="tblbrdr text-center add-fieldi">Name</td>
                                                     <td class="text-center add-fieldi">Size (In Acres) </td>
@@ -1361,7 +1361,7 @@ start -->
 
                                             <!--       Crop/Field Choices dynamic table genarate details get by Crop/Field Choices View list -->
 
-                                            <tr class="tblhd text-center add-fieldi"
+                                            <tr class="tblheader text-center add-fieldi"
                                                 id="field_choice_crop_thead_row_first">
                                                 <td class="tblbrdr text-center add-fieldi"
                                                     id="field_choice_crop_thead_row_column__1">
@@ -1480,7 +1480,7 @@ start -->
                                                class="table tbl table-striped tbl-bordr  tblbrdr resources-tbl-fixd-hdr"
                                                cellspacing="0" width="100%">
                                             <thead>
-                                            <tr class="tblhd text-center add-fieldi">
+                                            <tr class="tblheader text-center add-fieldi">
                                                 <td class="tblbrdr text-center add-fieldi">Manage</td>
                                                 <td class="text-center add-fieldi">Resource Name</td>
                                                 <!--	@changed - Abhishek		@date - 23-01-2016 		@desc - Added help information functionality-->
@@ -2072,7 +2072,7 @@ start -->
                                                cellspacing="0" width="100%">
                                             <thead>
                                             <!--	@changed - Abhishek		@date - 29-12-2015 		@desc - Added help information functionality   -->
-                                            <tr class="tblhd text-center add-fieldi">
+                                            <tr class="tblheader text-center add-fieldi">
                                                 <td class="tblbrdr text-center add-fieldi">Crop</td>
                                                 <td class="text-center add-fieldi">Yield Units</td>
                                                 <td class="text-center add-fieldi">Price <a id="forward_sale_price"
@@ -2236,7 +2236,7 @@ Commented as per client requirement
                                         <table id="crop_limits_table" class="table table-striped crop-limits-tbl tbl-bordr tbl-fixd-hdr tblbrdr output_table scroll"
                                                cellspacing="0" width="100%">
                                             <thead>
-                                            <tr class="tblhd text-center add-fieldi">
+                                            <tr class="tblheader text-center add-fieldi">
                                                 <td class="tblbrdr text-center add-fieldi">Modify</td>
                                                 <td class="tblbrdr text-center add-fieldi">Crop</td>
                                                 <!-- @changed - Abhishek 	@date - 23-01-2016		@desc - according to silde# 130of 01042015-->
