@@ -1074,6 +1074,7 @@ function nextResources() {
                 warningMessageForOneTimeOnly = false;
             }
         }
+        setIconOnCropForFieldDifferenceOnCropResourceUsage();
         callMethodForPageChangeAndProgressBarImage(7, 6);
     }
 }
@@ -2815,10 +2816,12 @@ function getFieldYieldDiffence(obj) {
         var fieldName = $('#field_select_drop_down').val();
         var cropName = $('#crop_select_drop_down').val();
         if (typeof item[fieldName] != "undefined" && typeof item[fieldName][cropName] != "undefined") {
-            $("#field_difference_exp").val(item[fieldName][cropName]["expOverride"]);
-            $("#field_difference_min").val(item[fieldName][cropName]["minOverride"]);
-            $("#field_difference_max").val(item[fieldName][cropName]["maxOverride"]);
-            $("#resources_usages_production_cost_resource_override").val(item[fieldName][cropName]["resourceOverride"]);
+            if(typeof item[fieldName] != fieldName && typeof item[fieldName][cropName] != cropName){
+                $("#field_difference_exp").val(item[fieldName][cropName]["expOverride"]);
+                $("#field_difference_min").val(item[fieldName][cropName]["minOverride"]);
+                $("#field_difference_max").val(item[fieldName][cropName]["maxOverride"]);
+                $("#resources_usages_production_cost_resource_override").val(item[fieldName][cropName]["resourceOverride"]);
+            }
         }
     }
 }
@@ -2830,6 +2833,7 @@ function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
     }
 
     $('#crop_resource_usage tbody tr').each(function () {
+        $(this).children("td:nth(0)").addClass("crop_field_diff").removeClass("crop_field_diff");
         if ($(this).children("td:nth(0)").text().trim() == $currentObj.val()) {
 
             var flag = false;
