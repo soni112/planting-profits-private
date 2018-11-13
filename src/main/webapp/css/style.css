@@ -1499,6 +1499,20 @@ h2.form-heading {
     endColorstr='#f3c86c', GradientType=0); /* IE6-9 */
     font-size: 16px;
 }
+.tblheader{
+    background: #fed57b; /* Old browsers */
+    background: -moz-linear-gradient(top, #f3c86c 0%, #f7d790 26%, #ebc062 69%, #fce5b5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3c86c),
+    color-stop(26%, #f7d790), color-stop(69%, #ebc062),
+    color-stop(100%, #e4b95b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, 0 #fce5b5 26%, #f7d790 26%, #f7d790 69%, #fce5b5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f3c86c 0%, #facf73 26%, #f7d790 69%, #efce5b5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f3c86c 0%, #facf73 26%, #f7d790 69%, #fce5b5 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #f3c86c 0%, #facf73 26%, #f7d790 69%, #fce5b5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fce5b5',
+    endColorstr='#f3c86c', GradientType=0); /* IE6-9 */
+    font-size: 13px;"
+}
 
 .tblft {
     background: #8dbe50;
