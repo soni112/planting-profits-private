@@ -961,44 +961,23 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                 Long totalLand=0L;
                 Long totalUseResourceValue=0L;
                 double useResourceValue=0.0;
+                boolean flag = false;
                 Map<String, Object> map = linearProgramingSolveDao.getBestResultFromLinearProgramingForField(cropBeanForOutput, resourceUsageViews, cropsGroups, fieldInfoViews, array);
                 Result bestResult = (Result) map.get("Best_Result");
                 String[] bestCase = (String[]) map.get("Best_Case");
-                if (bestResult != null && amount > 0) {
+                if (bestResult != null ) {
                     try {
                         if(i == 0) {
                             jsonObject.put("Potential_Profit", currentPotentialProfit);
                         } else {
                             jsonObject.put("Potential_Profit",bestResult.getObjective ().longValue ());
-//                            jsonObject.put("Potential_Profit", currentPotentialProfit);
-
-//                            jsonObject.put(" ", AgricultureStandardUtils.withoutDecimalAndComma(bestResult.getObjective().doubleValue()));
                         }
-//                        jsonObject.put("Potential_Profit",bestResult.getObjective ().longValue ());
                     } catch (Exception e) {
 
                         PlantingProfitLogger.error(e);
                     }
                     JSONArray jsonArrayInner = new JSONArray();
-//                    for (FieldInfoView fieldInfoView : fieldInfoViews) {
-//                        JSONObject object = new JSONObject();
-//
-//                        object.put("Field_Info", fieldInfoView.getFieldName() + " (" + AgricultureStandardUtils.withoutDecimalAndComma(fieldInfoView.getFieldSize()) + ")");
-//                        object.put("Crop_Info",  fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Assigned");
-//
-//                        jsonArrayInner.add(object);
-//                    }
-//                    jsonObject.put("Field_Crop_Info", jsonArrayInner);
-//
-//
-//                jsonObject.put("Strategy", "Field");
 
-//                jsonArray.add(jsonObject);
-
-
-
-//                    JSONArray jsonArrayInner = new JSONArray();
-                    boolean flag = false;
                     for (FieldInfoView fieldInfoView : fieldInfoViews) {
                         flag = false;
                         for (String str : bestCase) {
@@ -1326,6 +1305,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
 
 
                     JSONArray jsonArrayInner = new JSONArray();
+                    if (!flag) {
                     for (FieldInfoView fieldInfoView : fieldInfoViews) {
                         JSONObject object = new JSONObject();
 
@@ -1333,6 +1313,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         object.put("Crop_Info",  fieldInfoView.getFallow().equalsIgnoreCase("true") ? "Fallow" : "Not Assigned");
 
                         jsonArrayInner.add(object);
+                      }
                     }
                     jsonObject.put("Field_Crop_Info", jsonArrayInner);
 

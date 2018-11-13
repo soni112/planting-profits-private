@@ -1272,8 +1272,10 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:set var="noForwardFlag" value="0" />
                                     <c:forEach var="jsonObj" items="${model.forwardSalesJsonArray}">
                                         <c:if test="${jsonObj.firmProposedCheck ne 'N/A'}">
+                                            <c:set var="noForwardFlag" value="1" />
                                         <tr class="tblgrn">
                                             <td class="success">${jsonObj.cropName}</td>
                                             <td class="success">${jsonObj.forwardSalesAmount}</td>
@@ -1283,6 +1285,13 @@
                                         </c:if>
                                     </c:forEach>
 
+                                    </tbody>
+                                    <tbody>
+                                    <c:if test="${noForwardFlag eq 0}">
+                                        <tr class="tblgrn">
+                                            <td class="success" style="width: 100%" colspan="5">No Forward Sales Specified.</td>
+                                        </tr>
+                                    </c:if>
                                     </tbody>
                                 </table>
                             </div>
