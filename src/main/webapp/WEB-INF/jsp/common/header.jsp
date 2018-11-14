@@ -67,11 +67,14 @@
                            href="<c:url value="/contribution.htm"/> "
                             <%--onclick="navigateToContributionPage('<c:url value="/contribution.htm"/>')"--%>
                             >Make a contribution</a>
+
+                        <a class="alertify-button alertify-button-ok pull-right remove-text-deco"
+                           id="header-home-button"
+                           style="margin: 24px 10px; font-weight: 600;"
+                           href="<c:url value="/home.htm"/> "
+                            >Home</a>
                     </sec:authorize>
-                    <a class="alertify-button alertify-button-ok pull-right remove-text-deco"
-                       style="margin: 24px 10px; font-weight: 600;"
-                       href="<c:url value="/home.htm"/> "
-                    >Home</a>
+
                 </div>
             </div>
         </div>
