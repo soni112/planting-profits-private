@@ -1993,10 +1993,11 @@ function addResourcesInAllTables(resourceObject) {
             var valEach = '';
             $(this).find('td').each(function (index) {
                 if(index == 0 && daFlg){
+                    // valEach = allDataArray[indVar][$(this).text()]?allDataArray[indVar][$(this).text()]:'';
                     valEach = allDataArray[indVar][$(this).text()];
                 }
             });
-            if(valEach =="undefined"){
+            if(valEach == "undefined" || valEach == "" || valEach == undefined){
                 $(this).append('<td class="success infotext"><input data-resName="'+resourceName+'" type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this); cropResourceUsageValue(this);" onkeypress="return isValidNumberValue(event)" value="" /></td>');
             }else {
                 $(this).append('<td class="success infotext"><input data-resName="'+resourceName+'" type="text" onchange="addCommaSignWithOutDollar(this);cropResourceUsageValueChange(this); cropResourceUsageValue(this);" onkeypress="return isValidNumberValue(event)" value="'+valEach+'" /></td>');
