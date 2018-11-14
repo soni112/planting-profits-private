@@ -5,7 +5,7 @@ $(function () {
 
     $('#header-user-nav').hide();
     $('#header-donation-button').hide();
-
+    $('#header-home-button').hide();
     $('#horizontalTab').easyResponsiveTabs({
         type: 'default', //Types: default, vertical, accordion
         width: 'auto', //auto or any width like 600px
