@@ -1408,6 +1408,8 @@ start -->
                                                                 class="success">
                                                                 <label>
                                                                     <input type="checkbox"
+                                                                           data-row="${rowFieldCount}"
+                                                                           data-col="${columnCropCount}"
                                                                            onchange="cropFieldChoiceCheckboxChenge(this)"
                                                                            class="cropFieldChoiceCheckbox countChoiceCheckboxChenge"
                                                                            id="field_choice_crop_selected_row__${rowFieldCount}__column__${columnCropCount}"

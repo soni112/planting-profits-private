@@ -1074,7 +1074,6 @@ function nextResources() {
                 warningMessageForOneTimeOnly = false;
             }
         }
-        setIconOnCropForFieldDifferenceOnCropResourceUsage();
         callMethodForPageChangeAndProgressBarImage(7, 6);
     }
 }
@@ -2695,29 +2694,43 @@ function showFieldVariencePage() {
     $("select").each(function( index, v ) {
         var str = v.id;
         var res = str.match(/field_select_drop_down/g);
-        if(res){
+        var crop = str.match(/crop_select_drop_down/g);
+        if(res && crop){
             fieldSelectFieldVarience(this);
+            getFieldYieldDiffence(this);
         }
     });
 }
 
-function cropFieldChoiceCheckboxChenge() {
-    /* var count=0;
-     $(".countChoiceCheckboxChenge").each(function() {
-         if($(this).is(':checked')){
-             count++;
-         }
-     });
-     if(count > 30)
-     {
-         customAlerts("Crops/fields selection is limited to 30",'error',0);
-
-       /!*  $(".countChoiceCheckboxChenge").each(function() {
-             $(this).prop("checked", false);
-         })*!/
-
-     }*/
-
+function cropFieldChoiceCheckboxChenge(obj) {
+    if(!$(obj).is(':checked')){
+        var cropName = $("#field_choice_crop_thead_row_first td:nth("+$(obj).data('col')+")").text();
+        var fieldName = $("#field_choice_crop_tbody tr:nth("+( $(obj).data('row') - 1 )+") td:nth(0)").text();
+        var item = localStorage.getItem("fieldDifference");
+        if (item){
+            var itemValue = JSON.parse(item);
+            Object.keys(itemValue).forEach(function(key) {
+                if (key === fieldName){
+                    Object.keys(itemValue[key]).forEach(function (cropValue) {
+                         if(cropValue.valueOf()== cropName){
+                             delete itemValue[key][cropValue];
+                             localStorage.setItem("fieldDifference", JSON.stringify(itemValue));
+                             $('#crop_resource_usage tbody tr').each(function () {
+                                 if($(this).children("td:nth(0)").text().trim() == cropName){
+                                     $(this).find("td:nth(0)").removeClass('crop_field_diff');
+                                 }
+                             });
+                         }
+                    });
+                    $('#crop_resource_usage tbody tr').each(function () {
+                        if($(this).children("td:nth(0)").text().trim() == cropName){
+                            $(this).find("td:nth(0)").removeClass('crop_field_diff');
+                        }
+                    });
+                }
+            });
+        }
+    }
 }
 
 
@@ -2841,7 +2854,6 @@ function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
     }
 
     $('#crop_resource_usage tbody tr').each(function () {
-        $(this).children("td:nth(0)").addClass("crop_field_diff").removeClass("crop_field_diff");
         if ($(this).children("td:nth(0)").text().trim() == $currentObj.val()) {
 
             var flag = false;
