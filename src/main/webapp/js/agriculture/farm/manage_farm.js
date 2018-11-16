@@ -2722,6 +2722,11 @@ function cropFieldChoiceCheckboxChenge(obj) {
                              });
                          }
                     });
+                    $('#crop_resource_usage tbody tr').each(function () {
+                        if($(this).children("td:nth(0)").text().trim() == cropName){
+                            $(this).find("td:nth(0)").removeClass('crop_field_diff');
+                        }
+                    });
                 }
             });
         }
