@@ -1270,7 +1270,10 @@
                                         <td class="add-fieldi">Contract Amount</td>
                                         <td class="add-fieldi">Price</td>
                                         <td class="add-fieldi">Firm/Proposed</td>
-                                        <td>Filled</td>
+                                        <td class="add-fieldi">Filled</td>
+                                        <td class="add-fieldi">Amt Filled<br>(Acres)</td>
+                                        <td class="add-fieldi">Amt Unfilled<br>(Acres)</td>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -1284,6 +1287,8 @@
                                             <td class="success">${jsonObj.forwardSalesPrice}</td>
                                             <td class="success">${jsonObj.firmProposedCheck}</td>
                                             <td class="success">${jsonObj.status}</td>
+                                            <td class="success">${jsonObj.usedAcres}</td>
+                                            <td class="success">${jsonObj.amountUnfilled}</td>
                                         </tr>
                                         </c:if>
                                     </c:forEach>
@@ -1292,7 +1297,7 @@
                                     <tbody>
                                     <c:if test="${noForwardFlag eq 0}">
                                         <tr class="tblgrn">
-                                            <td class="success" style="width: 100%" colspan="5">No Forward Sales Specified.</td>
+                                            <td class="success" style="width: 100%" colspan="7">No Forward Sales Specified.</td>
                                         </tr>
                                     </c:if>
                                     </tbody>
