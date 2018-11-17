@@ -122,58 +122,76 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
                     List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) outputDetails.get("farmOutputDetails");
                     for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
-                        Double usedAcres = farmOutputDetailsForFieldView.getUsedAcresAsDouble();
-                        String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
-                        double contractAmount1 = Double.parseDouble(contractAmount);
-                        double checkStatusValue = contractAmount1 - usedAcres;
+                        if (Objects.equals(cropTypeView.getId(), farmOutputDetailsForFieldView.getCropTypeView().getId())) {
+                            Double usedAcres = farmOutputDetailsForFieldView.getUsedAcresAsDouble();
+                            String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
+                            double contractAmount1 = Double.parseDouble(contractAmount);
+                            double checkStatusValue = contractAmount1 - usedAcres;
+                            jsonObject.put("usedAcres", farmOutputDetailsForFieldView.getUsedAcres());
+                            String totalLand = farmInfoView.getLand().equalsIgnoreCase("") ? "0" : farmInfoView.getLand();
+                            int totalLand1 = Integer.parseInt(totalLand);
+                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsForFieldView.getUsedAcresAsDouble());
 
-                        if (farmOutputDetailsForFieldView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
-                            if (checkStatusValue == 0 || checkStatusValue < 0) {
-                                jsonObject.put("status", YES);
-                            } else if (checkStatusValue > 0) {
-                                jsonObject.put("status", PARTIAL);
-                            }
+
+                            jsonObject.put("amountUnfilled", amountUnfilled);
+
+                            if (farmOutputDetailsForFieldView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
+                                if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                    jsonObject.put("status", YES);
+                                } else if (checkStatusValue > 0) {
+                                    jsonObject.put("status", PARTIAL);
+                                }
 
 //                    } else if (cropTypeView.getProposedchecked() && flag) {
-                        } else if (farmOutputDetailsForFieldView.getCropTypeView().getProposedchecked()) {
-                            if (contractAmount1 == 0) {
-                                jsonObject.put("status", NO);
-                            }else if (checkStatusValue == 0 || checkStatusValue < 0) {
-                                jsonObject.put("status", YES);
-                            } else if (checkStatusValue > 0) {
-                                jsonObject.put("status", PARTIAL);
+                            } else if (farmOutputDetailsForFieldView.getCropTypeView().getProposedchecked()) {
+                                if (contractAmount1 == 0) {
+                                    jsonObject.put("status", NO);
+                                } else if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                    jsonObject.put("status", YES);
+                                } else if (checkStatusValue > 0) {
+                                    jsonObject.put("status", PARTIAL);
+                                }
                             }
-                        }else{
-                            jsonObject.put("status", NO);
+//                        else{
+//                            jsonObject.put("status", NO);
+//                        }
                         }
                     }
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
                     List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                        Double usedAcres = farmOutputDetailsView.getUsedAcresAsDouble();
-                        String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
-                        double contractAmount1 = Double.parseDouble(contractAmount);
-                        double checkStatusValue = contractAmount1 - usedAcres;
+                        if (Objects.equals(cropTypeView.getId(), farmOutputDetailsView.getCropTypeView().getId())) {
+                            Double usedAcres = farmOutputDetailsView.getUsedAcresAsDouble();
+                            String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
+                            double contractAmount1 = Double.parseDouble(contractAmount);
+                            double checkStatusValue = contractAmount1 - usedAcres;
+                            jsonObject.put("usedAcres", farmOutputDetailsView.getUsedAcres());
+                            String totalLand = farmInfoView.getLand().equalsIgnoreCase("") ? "0" : farmInfoView.getLand();
+                            int totalLand1 = Integer.parseInt(totalLand);
+                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsView.getUsedAcresAsDouble());
+                            jsonObject.put("amountUnfilled", amountUnfilled);
 
-                        if (farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
-                            if (checkStatusValue == 0 || checkStatusValue < 0) {
-                                jsonObject.put("status", YES);
-                            } else if (checkStatusValue > 0) {
-                                jsonObject.put("status", PARTIAL);
-                            }
+                            if (farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
+                                if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                    jsonObject.put("status", YES);
+                                } else if (checkStatusValue > 0) {
+                                    jsonObject.put("status", PARTIAL);
+                                }
 
 //                    } else if (cropTypeView.getProposedchecked() && flag) {
-                        } else if (farmOutputDetailsView.getCropTypeView().getProposedchecked()) {
-                            if (contractAmount1 == 0) {
-                                jsonObject.put("status", NO);
-                            }else if (checkStatusValue == 0 || checkStatusValue < 0) {
-                                jsonObject.put("status", YES);
-                            } else if (checkStatusValue > 0) {
-                                jsonObject.put("status", PARTIAL);
+                            } else if (farmOutputDetailsView.getCropTypeView().getProposedchecked()) {
+                                if (contractAmount1 == 0) {
+                                    jsonObject.put("status", NO);
+                                } else if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                    jsonObject.put("status", YES);
+                                } else if (checkStatusValue > 0) {
+                                    jsonObject.put("status", PARTIAL);
+                                }
                             }
-                        }else{
+                        /*else{
                             jsonObject.put("status", NO);
+                        }*/
                         }
                     }
 
