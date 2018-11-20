@@ -399,6 +399,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
             mapForCropsForField.put("farmInfoView", new FarmInfoView(farmInfo));
             JSONObject object = new JSONObject();
             object.putAll(mapForCropsForField);
+            object.put("farmOutputDetails", farmOutputDetailsForFieldViewList);
 
             jsonObject.put("outputDetails", farmOutputDetailsService.buildCropAcreageContent(object));
             jsonObject.put("Field_Crop_Info", jsonArray);
