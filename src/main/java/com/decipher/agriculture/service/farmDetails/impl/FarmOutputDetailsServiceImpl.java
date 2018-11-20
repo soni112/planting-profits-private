@@ -896,6 +896,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
 
         } else if (PlanByStrategy.PLAN_BY_FIELDS.equals(farmInfoView.getStrategy())) {
+            List<FarmOutputDetailsForFieldView> farmOutputDetailsViewList = (List<FarmOutputDetailsForFieldView>) outputDetails.get("farmOutputDetails");
             Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
             Map<String, String> hashMapForProfit = (Map<String, String>) outputDetails.get("hashMapForProfit");
             Map<String, String> hashMapForRatio = (Map<String, String>) outputDetails.get("hashMapForRatio");
@@ -927,7 +928,16 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                 if (hashMapForRatio.get(cropTypeKey).equalsIgnoreCase("0")) {
                     Double ratio = null;
-                    for (CropTypeView cropTypeView : cropTypeViewList) {
+                    for (FarmOutputDetailsForFieldView farmOutputDetailsView : farmOutputDetailsViewList) {
+                        Double expCropYield = parseDouble (AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getCropTypeView().getIntExpCropYield()));
+                        Double expCropPrice = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(farmOutputDetailsView.getCropTypeView().getIntExpCropPrice())));
+                        Double calculatedVariableProductionCost = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(farmOutputDetailsView.getCropTypeView().getCalculatedVariableProductionCost ())));
+
+                        ratio = (expCropYield * expCropPrice) - (calculatedVariableProductionCost);
+
+
+                    }
+                    /*for (CropTypeView cropTypeView : cropTypeViewList) {
                         if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
                             Double expCropYield = parseDouble (AgricultureStandardUtils.removeAllCommas ( cropTypeView.getIntExpCropYield()));
                             Double expCropPrice = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(cropTypeView.getIntExpCropPrice())));
@@ -937,7 +947,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
 //                             ratio= (Double.parseDouble (cropTypeView.getIntExpCropYield ()) * cropTypeView.getIntExpCropPrice ().doubleValue ()) -( cropTypeView.getCalculatedVariableProductionCost ().doubleValue () );
                          }
-                    }
+                    }*/
                     jsonObject.put(RATIO, ( AgricultureStandardUtils.withoutDecimalAndComma ( ratio ) ) );
                 } else {
                     jsonObject.put(RATIO, (hashMapForRatio.get(cropTypeKey) ).split("\\.")[0] );
@@ -954,7 +964,16 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                 if (hashMapForWorkReturn.get ( cropTypeKey ).equalsIgnoreCase ( "0.0" ) ){
                     Double ratio = null;
-                    for (CropTypeView cropTypeView : cropTypeViewList) {
+                    for (FarmOutputDetailsForFieldView farmOutputDetailsView : farmOutputDetailsViewList) {
+                        Double expCropYield = parseDouble (AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getCropTypeView().getIntExpCropYield()));
+                        Double expCropPrice = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(farmOutputDetailsView.getCropTypeView().getIntExpCropPrice())));
+                        Double calculatedVariableProductionCost = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(farmOutputDetailsView.getCropTypeView().getCalculatedVariableProductionCost ())));
+
+                        ratio = (expCropYield * expCropPrice) - (calculatedVariableProductionCost);
+
+                        workReturn = ratio / calculatedVariableProductionCost;
+                    }
+                    /*for (CropTypeView cropTypeView : cropTypeViewList) {
                         if(cropTypeView.getCropName ().equals ( cropTypeKey )) {
                             Double expCropYield = parseDouble (AgricultureStandardUtils.removeAllCommas ( cropTypeView.getIntExpCropYield()));
                             Double expCropPrice = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(cropTypeView.getIntExpCropPrice())));
@@ -964,7 +983,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
 
                             workReturn = ratio / calculatedVariableProductionCost;
                         }
-                    }
+                    }*/
                     jsonObject.put(WORKRETURN, AgricultureStandardUtils.doubleWithOneDecimal(workReturn) );
 
 //                  jsonObject.put ( WORKRETURN,"NA" );
