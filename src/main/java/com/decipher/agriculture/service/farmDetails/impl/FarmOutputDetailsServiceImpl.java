@@ -927,7 +927,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
 
                 if (hashMapForRatio.get(cropTypeKey).equalsIgnoreCase("0")) {
-                    Double ratio = null;
+                    Double ratio = 0.0;
                     for (FarmOutputDetailsForFieldView farmOutputDetailsView : farmOutputDetailsViewList) {
                         Double expCropYield = parseDouble (AgricultureStandardUtils.removeAllCommas ( farmOutputDetailsView.getCropTypeView().getIntExpCropYield()));
                         Double expCropPrice = parseDouble(AgricultureStandardUtils.removeAllCommas ( String.valueOf(farmOutputDetailsView.getCropTypeView().getIntExpCropPrice())));
