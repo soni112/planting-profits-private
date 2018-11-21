@@ -1101,6 +1101,10 @@ function nextFieldDifference() {
         callMethodForPageChangeAndProgressBarImage(7, 6);
     }
 }
+function nextFieldDifference2() {
+    $('#formBlank')[0].reset();
+}
+
 
 function saveFieldDifference() {
     var fieldName = $("#field_select_drop_down").val();
@@ -2846,6 +2850,89 @@ function getFieldYieldDiffence(obj) {
         }
     }
 }
+
+function getValueForFieldDiffrence(){
+    /*var cropName = ("#field_select_drop_down").value;
+    var fieldName = ("#crop_select_drop_down").value;*/
+    var cropName = document.getElementById("crop_select_drop_down").value;
+    var fieldName = document.getElementById("field_select_drop_down").value;
+    var item = localStorage.getItem("fieldDifference");
+    if (item){
+        var itemValue = JSON.parse(item);
+        Object.keys(itemValue).forEach(function(key) {
+            if (key === fieldName){
+                Object.keys(itemValue[key]).forEach(function (cropValue) {
+                    if(cropValue.valueOf()== cropName){
+                        delete itemValue[key][cropValue];
+                    }
+                });
+
+            }
+        });
+    }
+
+
+}
+
+function saveDatabaseValuesToLocalStorage(){
+    var fieldName = $("#field_select_drop_down").val();
+    var cropName = $("#crop_select_drop_down").val();
+    var value = {};
+    if(cropName == null){
+        customAlerts('Please select crop name', type_error, time);
+    }
+    if(fieldName == null){
+        customAlerts('Please select field', type_error, time);
+    }
+    var expCropYieldField = document.getElementById("expCropYieldField");
+    if(expCropYieldField != null){
+        expCropYieldField = expCropYieldField.value;
+    }else{
+        expCropYieldField = null;
+    }
+    var minCropYieldField = document.getElementById("minCropYieldField");
+    if(minCropYieldField != null){
+        minCropYieldField = minCropYieldField.value;
+    }else{
+        minCropYieldField = null;
+    }
+    var maxCropYieldField = document.getElementById("maxCropYieldField");
+    if(maxCropYieldField != null){
+        maxCropYieldField = maxCropYieldField.value;
+    }else{
+        maxCropYieldField = null;
+    }
+    var productionCost = document.getElementById("productionCost");
+    if(productionCost != null){
+        productionCost = productionCost.value;
+    }else{
+        productionCost = null;
+    }
+
+    if(expCropYieldField == null && minCropYieldField == null && maxCropYieldField == null && productionCost == null){
+        customAlerts('Please insert values first', type_error, time);
+    }
+    if (fieldName != 0 && cropName != 0) {
+
+
+        value["minOverride"] = minCropYieldField;
+        value["maxOverride"] = maxCropYieldField;
+        value["expOverride"] = expCropYieldField;
+        value["resourceOverride"] = productionCost;
+    }
+    var item = localStorage.getItem("fieldDifference");
+    item = item ? JSON.parse(item) : item;
+    if (!item) {
+        item = {};
+        item[fieldName] = {};
+    } else if (typeof item[fieldName] == "undefined") {
+        item[fieldName] = {};
+    }
+    item[fieldName][cropName] = value;
+    localStorage.setItem("fieldDifference", JSON.stringify(item));
+}
+
+
 
 function setIconOnCropForFieldDifferenceOnCropResourceUsage() {
     var $currentObj = $('#crop_select_drop_down');
