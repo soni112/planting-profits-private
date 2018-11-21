@@ -3,45 +3,34 @@
  */
 package com.decipher.agriculture.dao.senstivityAnalysis.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
 import com.decipher.AppConstants;
+import com.decipher.agriculture.bean.CropBeanForOutput;
 import com.decipher.agriculture.bean.OutputBeanForStrategy;
 import com.decipher.agriculture.dao.farmOutput.FarmOutputCalculationDao;
 import com.decipher.agriculture.dao.farmOutput.LinearProgramingSolveDao;
 import com.decipher.agriculture.dao.senstivityAnalysis.SensitivityAnalysisCalculationDao;
-import com.decipher.agriculture.service.farm.FarmInfoService;
-import com.decipher.agriculture.service.farmDetails.FarmOutputCalculationService;
-import com.decipher.agriculture.service.farmDetails.FarmOutputDetailsService;
-import com.decipher.agriculture.service.strategy.FarmCustomStrategyService;
-import com.decipher.view.form.farmDetails.CropTypeView;
-import com.decipher.view.form.farmDetails.FarmInfoView;
-import com.decipher.view.form.farmDetails.FarmOutputDetailsForFieldView;
-import com.decipher.view.form.farmDetails.FarmOutputDetailsView;
-import net.sf.javailp.Result;
-
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.decipher.agriculture.bean.CropBeanForOutput;
 import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.CropsGroup;
 import com.decipher.agriculture.data.farm.FarmInfo;
 import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.agriculture.service.farm.CropResourceUsageService;
 import com.decipher.agriculture.service.farm.CropTypeService;
+import com.decipher.agriculture.service.farm.FarmInfoService;
 import com.decipher.agriculture.service.farm.FieldInfoService;
+import com.decipher.agriculture.service.farmDetails.FarmOutputCalculationService;
+import com.decipher.agriculture.service.farmDetails.FarmOutputDetailsService;
+import com.decipher.agriculture.service.strategy.FarmCustomStrategyService;
 import com.decipher.util.AgricultureStandardUtils;
 import com.decipher.util.PlantingProfitLogger;
-import com.decipher.view.form.farmDetails.CropResourceUsageView;
-import com.decipher.view.form.farmDetails.FieldInfoView;
+import com.decipher.view.form.farmDetails.*;
+import net.sf.javailp.Result;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
 
 /**
  * @author Harshit Gupta
@@ -1664,7 +1653,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                                 } else {
 
                                     jsonObject.put("bubbleMessage", "Increasing " + (resourceStr == null ? (((selectionType.equals("Crop") || selectionType.equals("Group")) ? rangeType + " acres of " : "") + cropName) : (resourceStr + " resource")) +
-                                            " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) increases Estimated Income by $ " + AgricultureStandardUtils.commaSeparaterForLong(currentPotentialProfit - profit ) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
+                                            " by " + (differenceString) + (resourceStr == null ? " acres" : "") + " (from the original amount) increases Estimated Income by $ " + AgricultureStandardUtils.commaSeparaterForLong(profit - currentPotentialProfit ) + (totalLand.equals(totalUseResourceValue) ? "" : "<sup style='color:red'>*</sup>."));
 
                                 }
                             } else {
