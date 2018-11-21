@@ -1133,7 +1133,7 @@
                                     </div>
                                 </div>
 
-                                <form onsubmit="return false" id="formBlank">
+
                                 <div class="clearfix"></div>
                                 <div class="yellobtn pre_next">
                                     <a id="submit popup" onclick="nextCropsInformationDetails()">Next</a>
@@ -1877,15 +1877,7 @@ start -->
                                                             </c:if>
                                                         </c:if>
                                                     </c:forEach>
-                                                    <c:forEach var="exe_min_max" items="${model.cropTypeView}">
-                                                        <c:if test="${exe_min_max.selected}">
-                                                        <c:if test="${exe_min_max.cropIdForVariences eq exe_min_max.id}">
-                                                        <input type="hidden" id="expCropYieldField" value="${exe_min_max.expCropYieldField}"/>
-                                                        <input type="hidden" id="minCropYieldField" value="${exe_min_max.minCropYieldField}"/>
-                                                        <input type="hidden" id="maxCropYieldField" value="${exe_min_max.maxCropYieldField}"/>
-                                                        </c:if>
-                                                        </c:if>
-                                                    </c:forEach>
+
                                                     <!-- create By Bhagvan Singh on 13-04-2015 for unselected condition create Yield Difference
     start -->
                                                     <c:if test="${yieldDifferenceStatus eq 1}">
@@ -1986,12 +1978,6 @@ start -->
                                                         </c:if>
                                                     </c:forEach>
 
-                                                    <c:forEach var="resourceListForCropResourcesUsages" items="${model.cropTypeView}">
-                                                    <c:if test="${resourceListForCropResourcesUsages.selected and resourceListForCropResourcesUsages.id eq resourceListForCropResourcesUsages.cropIdForVariences}">
-                                                    <input type="hidden" id="productionCost" value="${resourceListForCropResourcesUsages.varProductionCostStr}"/>
-                                                    </c:if>
-                                                    </c:forEach>
-
                                                     <!-- created By Bhagvan Singh for variable prodution cost default column on 13-042015
     start -->
                                                     <c:if test="${resourceUsageDifferenceStatus eq 1}">
@@ -2063,10 +2049,6 @@ start -->
                                     <div class="yellobtn pre_next"
                                          id="dynamic_button_for_yeild_differnce">
                                         <a onclick="nextFieldDifference(); saveFieldDifference()">Ok</a>
-                                    </div>
-                                    <div class="yellobtn pre_next"
-                                         id="dynamic_button_for_yeild_differnce">
-                                        <a onclick="getValueForFieldDiffrence(); saveDatabaseValuesToLocalStorage(); nextFieldDifference2();">Reset All to Original Values</a>
                                     </div>
                                 </div>
                             </div>
@@ -2190,7 +2172,6 @@ start -->
                                         </table>
                                     </div>
                                 </div>
-                                </form>
                                 <div class="clearfix"></div>
                                 <div class="ques">
                                     <%--
