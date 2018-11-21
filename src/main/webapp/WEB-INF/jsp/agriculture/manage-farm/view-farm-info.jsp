@@ -1832,7 +1832,7 @@ start -->
     start -->
                                                     <c:set var="yieldDifferenceStatus" value="1"/>
 
-                                                    <c:forEach var="cropList" items="${model.cropTypeView}" begin="1" end="3">
+                                                    <c:forEach var="cropList" items="${model.cropTypeView}" end="3">
                                                         <c:if test="${cropList.selected}">
                                                             <c:if test="${cropList.cropIdForVariences eq cropList.id}">
                                                                 <c:set var="yieldDifferenceStatus"
@@ -1951,7 +1951,7 @@ start -->
                                                     <c:set var="resourceUsageDifferenceStatus" value="1"/>
                                                     <c:set var="cropIdForResourceUsageDifference" value=""/>
                                                     <c:forEach var="resourceListForCropResourcesUsages"
-                                                               items="${model.cropTypeView}" end="1">
+                                                               items="${model.cropTypeView}" end="3">
                                                         <c:if
                                                                 test="${resourceListForCropResourcesUsages.selected and resourceListForCropResourcesUsages.id eq resourceListForCropResourcesUsages.cropIdForVariences}">
 
