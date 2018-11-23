@@ -1877,18 +1877,6 @@ start -->
                                                             </c:if>
                                                         </c:if>
                                                     </c:forEach>
-                                                    <c:forEach var="exe_min_max" items="${model.cropTypeView}">
-                                                        <c:if test="${exe_min_max.selected}">
-                                                        <c:if test="${exe_min_max.cropIdForVariences eq exe_min_max.id}">
-                                                        <input type="hidden" id="expCropYieldField" value="${exe_min_max.expCropYieldField}"/>
-                                                        <input type="hidden" id="minCropYieldField" value="${exe_min_max.minCropYieldField}"/>
-                                                        <input type="hidden" id="maxCropYieldField" value="${exe_min_max.maxCropYieldField}"/>
-                                                        <input type="hidden" id="fieldNameForVariances" value="${exe_min_max.fieldNameForVariances}"/>
-                                                        <input type="hidden" id="fieldIdForVariances" value="${exe_min_max.fieldIdForVariances}"/>
-                                                        <input type="hidden" id="cropName" value="${exe_min_max.cropName}"/>
-                                                        </c:if>
-                                                        </c:if>
-                                                    </c:forEach>
                                                     <!-- create By Bhagvan Singh on 13-04-2015 for unselected condition create Yield Difference
     start -->
                                                     <c:if test="${yieldDifferenceStatus eq 1}">
@@ -1989,11 +1977,6 @@ start -->
                                                         </c:if>
                                                     </c:forEach>
 
-                                                    <c:forEach var="resourceListForCropResourcesUsages" items="${model.cropTypeView}">
-                                                    <c:if test="${resourceListForCropResourcesUsages.selected and resourceListForCropResourcesUsages.id eq resourceListForCropResourcesUsages.cropIdForVariences}">
-                                                    <input type="hidden" id="productionCost" value="${resourceListForCropResourcesUsages.varProductionCostStr}"/>
-                                                    </c:if>
-                                                    </c:forEach>
 
                                                     <!-- created By Bhagvan Singh for variable prodution cost default column on 13-042015
     start -->
