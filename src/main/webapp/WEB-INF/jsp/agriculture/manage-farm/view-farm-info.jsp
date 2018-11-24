@@ -1133,7 +1133,7 @@
                                     </div>
                                 </div>
 
-
+                                <form onsubmit="return false" id="formBlank">
                                 <div class="clearfix"></div>
                                 <div class="yellobtn pre_next">
                                     <a id="submit popup" onclick="nextCropsInformationDetails()">Next</a>
@@ -1189,7 +1189,7 @@
                                     <!-- Modified by Harshit Gupta 10-04-2015
 Start
  -->
-                                    <c:forEach var="cropList" items="${model.cropTypeView}">
+                                    <c:forEach var="cropList" items="${model.cropTypeView}" varStatus="loop">
                                         <!--get crop list from CropView object -->
                                         <c:if test="${cropList.selected}">
                                             <%-- <c:out value="${cropList.cropName}"></c:out> --%>
@@ -1300,7 +1300,7 @@ Start
                                                         <td class="tblft1" colspan="2">Total Variable Cost per Acre:
                                                         </td>
                                                         <td><input type="hidden"
-                                                                   id="hidden_id_for_production_cost_row"
+                                                                   id="hidden_id_for_production_cost_row_${loop.index}"
                                                                    value="${cropList.cropNameForId}" class="tblgrn">
                                                         </td>
                                                         <td></td>
@@ -1877,7 +1877,6 @@ start -->
                                                             </c:if>
                                                         </c:if>
                                                     </c:forEach>
-
                                                     <!-- create By Bhagvan Singh on 13-04-2015 for unselected condition create Yield Difference
     start -->
                                                     <c:if test="${yieldDifferenceStatus eq 1}">
@@ -1978,6 +1977,7 @@ start -->
                                                         </c:if>
                                                     </c:forEach>
 
+
                                                     <!-- created By Bhagvan Singh for variable prodution cost default column on 13-042015
     start -->
                                                     <c:if test="${resourceUsageDifferenceStatus eq 1}">
@@ -2049,6 +2049,10 @@ start -->
                                     <div class="yellobtn pre_next"
                                          id="dynamic_button_for_yeild_differnce">
                                         <a onclick="nextFieldDifference(); saveFieldDifference()">Ok</a>
+                                    </div>
+                                    <div class="yellobtn pre_next"
+                                         id="dynamic_button_for_yeild_differnce">
+                                        <a onclick="getValueForFieldDiffrence(); saveDatabaseValuesToLocalStorage(); nextFieldDifference2();">Reset All to Original Values</a>
                                     </div>
                                 </div>
                             </div>
@@ -2172,6 +2176,7 @@ start -->
                                         </table>
                                     </div>
                                 </div>
+                                </form>
                                 <div class="clearfix"></div>
                                 <div class="ques">
                                     <%--
