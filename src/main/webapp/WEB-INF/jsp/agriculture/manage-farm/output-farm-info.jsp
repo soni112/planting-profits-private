@@ -449,7 +449,7 @@
                                     <div class="clearfix"></div>
                                     <c:if test="${resourceFlag}">
                                     <p class="pull-left">
-                                        * One or more factors preventing all available land from being planted.
+                                        * One or more factors preventing all available land from being assigned crops.
                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                             <c:param name="farmId" value="${farmId}"/>
                                             <c:param name="key" value="unused"/>
@@ -482,7 +482,7 @@
                                 </div>
                                 <c:if test="${resourceFlag}">
                                 <p class="pull-left">
-                                    * One or more factors preventing all available land from being planted.
+                                    * One or more factors preventing all available land from being assigned crops.
                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                         <c:param name="farmId" value="${farmId}"/>
                                         <c:param name="key" value="unused"/>
@@ -605,7 +605,7 @@
                                                     <div id="forCastSingleResourcechartdiv"
                                                          style="width: 100%; height: 400px; background-color: #FFFFFF; margin-top: 12px; float: left; display: none;"></div>
                                                     <p class="pull-left" style="display: none" id="SingleResource_Message">
-                                                        * One or more factors preventing all available land from being planted.
+                                                        * One or more factors preventing all available land from being assigned crops.
                                                         <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                             <c:param name="farmId" value="${farmId}"/>
                                                             <c:param name="key" value="unused"/>
@@ -1015,7 +1015,7 @@
                                                          style="width: 100%; height: 400px; background-color: #FFFFFF; margin-top: 12px; float: left; display: none;"></div>
                                                 </div>
                                                 <p class="pull-left" id="SingleCrop_Message" style="display: none">
-                                                    * One or more factors preventing all available land from being planted.
+                                                    * One or more factors preventing all available land from being assigned crops.
                                                     <c:url value="/troubleshoot.htm" var="troubleshooturl">
                                                         <c:param name="farmId" value="${farmId}"/>
                                                         <c:param name="key" value="unused"/>
