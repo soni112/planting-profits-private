@@ -971,9 +971,9 @@
                                                                 <option value="Group#-#-#${cropsGroupView.cropsGroupName}#-#-#${cropsGroupView.id}">${cropsGroupView.cropsGroupName}</option>
                                                             </c:if>
                                                         </c:forEach>
-                                                        <c:if test="${cropLimitFlag == 0}">
+                                                        <%--<c:if test="${cropLimitFlag == 0}">
                                                             <option value="Crop#-#-#">No Crop Limit specifed</option>
-                                                        </c:if>
+                                                        </c:if>--%>
 
                                                     </select>
                                                 </div>
