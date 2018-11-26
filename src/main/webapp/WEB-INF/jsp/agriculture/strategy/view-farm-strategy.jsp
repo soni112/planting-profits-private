@@ -882,13 +882,17 @@
            <small> {{= strategy.EstIncomeInForwardSale}}</small></td>
             <td class="success">Coming Soon</td>
             <td class="success">
+            {{if strategy.scenarioAnalysis > "0"  }}
               <div class="gauge_meter">
-              <div class="secnario-analysis">
-                <span class="est-income-category">{{= strategy.countScenarioData}}</span>
-                    <%--<small class="est-income-total">{{= strategy.scenarioAnalysis}}</small>--%>
+                  <div class="secnario-analysis">
+                    <span class="est-income-category">{{= strategy.countScenarioData}}</span>
+                        <%--<small class="est-income-total">{{= strategy.scenarioAnalysis}}</small>--%>
                   </div>
-                  <small>{{= strategy.scenarioAnalysis}}</small>
-            </div>
+
+                    <small>{{= strategy.scenarioAnalysis}}</small>
+              </div>
+            {{/if}}
+                <small class="naID" style="display: hidden">N/A</small>
             </td>
             <td class="success">
             <div class="est-income-graph">
@@ -939,7 +943,12 @@
                 <%--<small class="est-income-total">{{= strategy.AverageInConservationCrop}}%</small>
                 <small class="est-income-total">{{= strategy.AverageInConversion}}</small>--%>
                 </div>
+                {{if strategy.AverageInConservationCrop >0  }}
                 <small>{{= strategy.AverageInConservationCrop}}%</small></br>
+                {{/if}}
+                {{if strategy.AverageInConservationCrop ==0  }}
+                <small>N/A</small></br>
+                {{/if}}
                 <%--<small>{{= strategy.AverageInConversion}}</small>--%>
                 </div>
            {{/if}}</td>
