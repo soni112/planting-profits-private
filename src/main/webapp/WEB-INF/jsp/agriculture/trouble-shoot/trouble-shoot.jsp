@@ -248,8 +248,7 @@
                                 <%--<p>Review the Troubleshooting paths below and make adjustments to resources, and crop acreage limits or crop so that all acreage is assigned a crop. </p>--%>
                                 <%--<p> Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>--%>
                                 <p>
-                                    Review the Troubleshooting Paths below and make adjustments to resources, crop
-                                    acreage limits or crops so that all acreage is assigned a crop.
+                                    Review the Troubleshooting Paths below and All available acreage not assigned crops – Planning by Acres or crops so that all acreage is assigned a crop.
                                 </p>
 
                                 <ul class="planning">
