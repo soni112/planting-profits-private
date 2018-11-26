@@ -25,7 +25,7 @@
                         <br>
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
-                                <h2><b>All available acreage not planted - Planning by Fields</b></h2>
+                                <h2><b>All available acreage not assigned crops – Planning by Fields</b></h2>
                                 <h2>
                                     <p>
                                         Why did Planting Profits not assign crops to all available land?
