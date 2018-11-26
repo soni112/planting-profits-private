@@ -954,7 +954,7 @@ function getScenarioOutputDetails(checkboxName){
                     var gaugeGraphData = {};
                     gaugeGraphData["gaugeGraphData"] = result.jsonArrayForGaugeChart;
                     applyHtmlThroughTemplate("#enhancedOutputTemplate",gaugeGraphData,"#enhancedProfitOutpout");
-
+                    hideNa();
                     closeScenarioPopup();
 
                 } else if (status == 'Not exists') {
@@ -971,6 +971,13 @@ function getScenarioOutputDetails(checkboxName){
         });
     }
     buildGaugeMeterComponent();
+}
+function hideNa() {
+    if(document.getElementsByName( 'scenarioCheckbox' ).length > 0){
+        $('.naID').hide();
+    }else {
+        $('.naID').show();
+	}
 }
 
 function openScenarioPopup(){
