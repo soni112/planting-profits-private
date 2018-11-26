@@ -130,10 +130,12 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             jsonObject.put("usedAcres", farmOutputDetailsForFieldView.getUsedAcres());
                             String totalLand = farmInfoView.getLand().equalsIgnoreCase("") ? "0" : farmInfoView.getLand();
                             int totalLand1 = Integer.parseInt(totalLand);
-                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsForFieldView.getUsedAcresAsDouble());
+//                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsForFieldView.getUsedAcresAsDouble());
+                            double amountUnfilled = contractAmount1-usedAcres;
+                            Integer amountUnfilled1 = AgricultureStandardUtils.doubleToInteger(amountUnfilled);
 
 
-                            jsonObject.put("amountUnfilled", amountUnfilled);
+                            jsonObject.put("amountUnfilled", amountUnfilled1);
 
                             if (farmOutputDetailsForFieldView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
                                 if (checkStatusValue == 0 || checkStatusValue < 0) {
@@ -169,8 +171,10 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             jsonObject.put("usedAcres", farmOutputDetailsView.getUsedAcres());
                             String totalLand = farmInfoView.getLand().equalsIgnoreCase("") ? "0" : farmInfoView.getLand();
                             int totalLand1 = Integer.parseInt(totalLand);
-                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsView.getUsedAcresAsDouble());
-                            jsonObject.put("amountUnfilled", amountUnfilled);
+//                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsView.getUsedAcresAsDouble());
+                            double amountUnfilled = contractAmount1-usedAcres;
+                            Integer amountUnfilled1 = AgricultureStandardUtils.doubleToInteger(amountUnfilled);
+                            jsonObject.put("amountUnfilled", amountUnfilled1);
 
                             if (farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
                                 if (checkStatusValue == 0 || checkStatusValue < 0) {

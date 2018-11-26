@@ -936,8 +936,8 @@ public class StrategyComparisonServiceImpl implements StrategyComparisonService 
     private JSONArray getConservationCropHeader(){
         JSONArray conservationCropHeader = new JSONArray();
 
-        conservationCropHeader.add("% Est. Income Assigned to Conservation Crops");
-        conservationCropHeader.add("% Acreage Assigned to Conservation Crops");
+        conservationCropHeader.add("% Est. Income in Conservation Crops");
+        conservationCropHeader.add("% Acreage in Conservation Crops");
 
         return conservationCropHeader;
     }

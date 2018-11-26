@@ -838,7 +838,7 @@ public class SectionOnePDFGenerator {
 
                 String estimateIncomePerAce = null;
                 if (farmOutputDetails.getRatio () == 0.0) {
-                    Double ratio= (Double.parseDouble (farmOutputDetails.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetails.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetails.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
+                    Double ratio= (Double.parseDouble (AgricultureStandardUtils.removeAllCommas(farmOutputDetails.getCropTypeView ().getIntExpCropYield ())) * farmOutputDetails.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetails.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () );
                     estimateIncomePerAce = String.valueOf ( AgricultureStandardUtils.doubleWithOneDecimal ( ratio ));
 //                    estimateIncomePerAce= String.valueOf ( AgricultureStandardUtils.withoutDecimalAndComma ((Double.parseDouble (farmOutputDetails.getCropTypeView ().getIntExpCropYield ()) * farmOutputDetails.getCropTypeView ().getIntExpCropPrice ().doubleValue ()) -( farmOutputDetails.getCropTypeView ().getCalculatedVariableProductionCost ().doubleValue () ))+"%");
                 } else {
