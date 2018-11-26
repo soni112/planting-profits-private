@@ -1267,7 +1267,7 @@
                                     <tr class="tblhd add-fieldi">
                                         <td class="tblbrdr add-fieldi">Crop</td>
                                         <%--<td class="add-fieldi">Contract Amount and Price</td--%>
-                                        <td class="add-fieldi">Contract Amount</td>
+                                        <td class="add-fieldi">Contract Amt</td>
                                         <td class="add-fieldi">Price</td>
                                         <td class="add-fieldi">Firm/Proposed</td>
                                         <td class="add-fieldi">Filled</td>
