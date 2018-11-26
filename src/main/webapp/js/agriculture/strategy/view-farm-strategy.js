@@ -175,7 +175,7 @@ function prepareStrategyAnalysisGraph(object){
 
 	var chart = AmCharts.makeChart( "multipleStrategyAnalysisChartDiv", {
 		"type": "xy",
-		"startDuration": 0.5,
+		// "startDuration": 0.5,
 		"graphs": object.graphJsonObject,
 		"valueAxes": [
 			{
