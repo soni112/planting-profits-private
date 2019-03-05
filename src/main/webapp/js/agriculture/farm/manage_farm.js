@@ -2937,7 +2937,7 @@ function removeAndAddClass() {
     }
     /*if($("input[name='plan_by_farm']:checked").val() == 'fields'){
         $('#crop_resource_usage tbody tr').each(function () {
-            $(this).find("td:nth(0)").removeClass('crop_field_diff').addClass('crop_field_diff');
+            $(this).find("td:nth(0)").addClass('crop_field_diff').removeClass('crop_field_diff');
         });
     }*/
 }
