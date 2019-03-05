@@ -519,7 +519,7 @@ public class LinearProgramingSolveDaoImpl implements LinearProgramingSolveDao {
             if (j == 1) {
                 startLimit = 0;
             } else {
-                startLimit = ((j * percentage) - percentage) + 1;
+                startLimit = ((j * percentage) - percentage) ;
             }
             collectionToHold.add(array.subList(startLimit, limit));
 
