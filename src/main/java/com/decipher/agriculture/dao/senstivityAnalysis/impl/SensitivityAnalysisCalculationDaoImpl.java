@@ -586,7 +586,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsByFarmList) {
                         if (Objects.equals(farmOutputDetailsView.getCropTypeView().getId(), beanForOutput.getCropType().getId()) &&
                                 Objects.equals(acreUsed, farmOutputDetailsView.getUsedAcresAsDouble().longValue())) {
-                            objectForGraphByCrop.put("Profit", farmOutputDetailsView.getUsedAcresAsDouble().intValue());
+                            objectForGraphByCrop.put("Profit", AgricultureStandardUtils.withoutDecimalAndCommaToLong(farmOutputDetailsView.getProfitDouble()));
                         }
                     }
 
@@ -621,7 +621,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                         for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsByFarmList) {
                             if (Objects.equals(farmOutputDetailsView.getCropTypeView().getId(), beanForOutput.getCropType().getId()) &&
                                     Objects.equals(acreUsed, farmOutputDetailsView.getUsedAcresAsDouble().longValue())) {
-                                objectForGraphByCrop.put("Profit", farmOutputDetailsView.getUsedAcresAsDouble().intValue());
+                                objectForGraphByCrop.put("Profit", AgricultureStandardUtils.withoutDecimalAndCommaToLong(farmOutputDetailsView.getProfitDouble()));
                             }
                         }
 
@@ -657,7 +657,7 @@ public class SensitivityAnalysisCalculationDaoImpl implements SensitivityAnalysi
                             for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsByFarmList) {
                                 if (Objects.equals(farmOutputDetailsView.getCropTypeView().getId(), beanForOutput.getCropType().getId()) &&
                                         Objects.equals(acreUsed, farmOutputDetailsView.getUsedAcresAsDouble().longValue())) {
-                                    objectForGraphByCrop.put("Profit", farmOutputDetailsView.getUsedAcresAsDouble().intValue());
+                                    objectForGraphByCrop.put("Profit", AgricultureStandardUtils.withoutDecimalAndCommaToLong(farmOutputDetailsView.getProfitDouble()));
                                 }
                             }
 //								for (Object o : outputDetailsList) {
