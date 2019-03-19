@@ -459,9 +459,10 @@ var landProfitablityIndexRating = "<p>Land Profitability Index rating is as foll
 	"<p>Red : Land Profitability Index is less than 0.6" +
     "<p>Grey:  Land Profitability Index N/A if the crop was not selected for planting</p>";
 
-var montyCarloSwitch = "<p>Estimated Income for a given crop is computed as (Yield * Price) – Variable Production Costs.  Estimated Income can be calculated in one of two ways:</p>" +
-	"<p>1. Enter your expected yield and expected price forecasts for each crop. This will generate an Estimated Income using these values.</p>" +
-	"<p>2. To simulate the uncertainty of yield and price, enter Min and Max Yields and Prices. </p>";
+var montyCarloSwitch = "<p>Estimate Income for a given crop is computed as: (Price * Yield ) – Variable Production Costs</p>" +
+	"<p> Estimated Income for each crop can be calculated one of two ways:</p>" +
+	"<p>1. Using the estimated price and estimated yield <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or <br>" +
+	"2. Using the range between minimum and maximum prices and yields to simulate the uncertainty &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of price and yield forecasts </p>";
 
 /* @author Jyoti    @date 02-01-2017  PPT NO : 12312106 Slide no : 4*/
 /*var new_strategy = "<p>Save it as a new strategy if you want to continue making changes to your Baseline, but also want to keep this strategy to compare it with others now or later.</p>";*/

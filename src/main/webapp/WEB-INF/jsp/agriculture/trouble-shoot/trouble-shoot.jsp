@@ -28,7 +28,7 @@
                                 <h2><b>All available acreage not assigned crops – Planning by Fields</b></h2>
                                 <h2>
                                     <p>
-                                        Why did Planting Profits not assign crops to all available land?
+                                        Why were all fields not assigned crops?
                                         &nbsp;<a data-toggle="collapse" href="#moreUnusedAcreageContentField"
                                                  onclick="changeMoreLess(this); return false;">More</a>
                                     </p>
@@ -225,7 +225,7 @@
 
                                 <h2>
                                     <p>
-                                        Why did Planting Profits not assign crops to all available land?
+                                        Why was all available land not assigned crops?
                                         &nbsp;<a data-toggle="collapse" href="#moreUnusedAcreageContent"
                                                  onclick="changeMoreLess(this); return false;">More</a>
                                     </p>
@@ -248,7 +248,7 @@
                                 <%--<p>Review the Troubleshooting paths below and make adjustments to resources, and crop acreage limits or crop so that all acreage is assigned a crop. </p>--%>
                                 <%--<p> Please make adjustments to resources, crop/field choices, crop acreage limits or crops to generate a strategy. Click on the parameters below to find and fix the problem.</p>--%>
                                 <p>
-                                    Review the Troubleshooting Paths below and All available acreage not assigned crops – Planning by Acres or crops so that all acreage is assigned a crop.
+                                    Review the Troubleshooting tips below and make adjustments to resources, crop acreage limits or crops so that all acreage are assigned crops.
                                 </p>
 
                                 <ul class="planning">
