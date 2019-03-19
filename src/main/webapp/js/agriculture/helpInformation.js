@@ -459,8 +459,8 @@ var landProfitablityIndexRating = "<p>Land Profitability Index rating is as foll
 	"<p>Red : Land Profitability Index is less than 0.6" +
     "<p>Grey:  Land Profitability Index N/A if the crop was not selected for planting</p>";
 
-var montyCarloSwitch = "<p>Estimated Income for a given crop is computed as (Yield * Price) – Variable Production Costs.</p>" +
-	"<p> Estimated Income can be calculated in one of two ways:</p>" +
+var montyCarloSwitch = "<p>Estimate Income for a given crop is computed as: (Price * Yield ) – Variable Production Costs</p>" +
+	"<p> Estimated Income for each crop can be calculated one of two ways:</p>" +
 	"<p>1. Using the estimated price and estimated yield <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or <br>" +
 	"2. Using the range between minimum and maximum prices and yields to simulate the uncertainty &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of price and yield forecasts </p>";
 
