@@ -5,6 +5,7 @@ import com.decipher.agriculture.data.farm.CropType;
 import com.decipher.agriculture.data.farm.PlanByStrategy;
 import com.decipher.agriculture.service.farmDetails.FarmOutputDetailsService;
 import com.decipher.util.AgricultureStandardUtils;
+import com.decipher.util.PlantingProfitLogger;
 import com.decipher.view.form.farmDetails.CropResourceUsageView;
 import com.decipher.view.form.farmDetails.CropTypeView;
 import com.decipher.view.form.farmDetails.CropsGroupView;
@@ -16,11 +17,7 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Double.parseDouble;
 
@@ -162,8 +159,23 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
                     List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
+                    for(int i=0; i<farmOutputDetailsViewList.size(); i++){
+                        FarmOutputDetailsView farmOutputDetailsViewI = farmOutputDetailsViewList.get(i);
+                        for(int j=0; j<farmOutputDetailsViewList.size(); j++){
+                            FarmOutputDetailsView farmOutputDetailsViewJ = farmOutputDetailsViewList.get(j);
+                            if(i != j){
+                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
+                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
+                                        farmOutputDetailsViewList.remove(i);
+                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
+                                        farmOutputDetailsViewList.remove(j);
+                                    }
+                                }
+                            }
+                        }
+                    }
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
-                        if (Objects.equals(cropTypeView.getId(), farmOutputDetailsView.getCropTypeView().getId())) {
+                        if (Objects.equals(cropTypeView.getId(), farmOutputDetailsView.getCropTypeView().getId()) && (farmOutputDetailsView.getForFirm().equals(true) || farmOutputDetailsView.getForProposed().equals(true))) {
                             Double usedAcres = farmOutputDetailsView.getUsedAcresAsDouble();
                             String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
                             double contractAmount1 = Double.parseDouble(contractAmount);
@@ -200,12 +212,13 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     }
 
                 }
-
-                jsonArray.add(jsonObject);
+                if(jsonObject.size() == 7){
+                    jsonArray.add(jsonObject);
+                }
             }
         }
 
-        return jsonArray;
+            return jsonArray;
     }
 
     @Override
