@@ -95,9 +95,5 @@
     </div>
 
 </header>
-<script>
-    if(location.search === '?loginToPrivate=yes'){
-        document.getElementById('popup').click();
-    }
-</script>
+
 <%@ include file="change-password.jsp" %>
