@@ -16,6 +16,10 @@
         });
     });
 
+    if(location.search === '?loginToPrivate=yes'){
+        document.getElementById('popup').click();
+    }
+
 </script>
 <header>
     <div class="topbar">
