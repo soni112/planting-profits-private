@@ -118,13 +118,28 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
                     List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) outputDetails.get("farmOutputDetails");
+                    for(int i=0; i<farmOutputDetailsForFieldViewList.size(); i++){
+                        FarmOutputDetailsForFieldView farmOutputDetailsViewI = farmOutputDetailsForFieldViewList.get(i);
+                        for(int j=0; j<farmOutputDetailsForFieldViewList.size(); j++){
+                            FarmOutputDetailsForFieldView farmOutputDetailsViewJ = farmOutputDetailsForFieldViewList.get(j);
+                            if(i != j){
+                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
+                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
+                                        farmOutputDetailsForFieldViewList.remove(i);
+                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
+                                        farmOutputDetailsForFieldViewList.remove(j);
+                                    }
+                                }
+                            }
+                        }
+                    }
                     for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
-                        if (Objects.equals(cropTypeView.getId(), farmOutputDetailsForFieldView.getCropTypeView().getId())) {
-                            Double usedAcres = farmOutputDetailsForFieldView.getUsedAcresAsDouble();
+                        if (Objects.equals(cropTypeView.getId(), farmOutputDetailsForFieldView.getCropTypeView().getId()) && (farmOutputDetailsForFieldView.isForProposed() || farmOutputDetailsForFieldView.isForFirm())) {
+                                Double usedAcres = farmOutputDetailsForFieldView.getCropTypeView().getForwardAcres();
                             String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
                             double contractAmount1 = Double.parseDouble(contractAmount);
                             double checkStatusValue = contractAmount1 - usedAcres;
-                            jsonObject.put("usedAcres", farmOutputDetailsForFieldView.getUsedAcres());
+                            jsonObject.put("usedAcres", AgricultureStandardUtils.withoutDecimalAndComma(usedAcres));
                             String totalLand = farmInfoView.getLand().equalsIgnoreCase("") ? "0" : farmInfoView.getLand();
                             int totalLand1 = Integer.parseInt(totalLand);
 //                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsForFieldView.getUsedAcresAsDouble());
