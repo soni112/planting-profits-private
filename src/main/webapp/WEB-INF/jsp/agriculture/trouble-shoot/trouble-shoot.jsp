@@ -389,9 +389,10 @@
                         <c:choose>
                             <c:when test="${farmInfoView.strategy eq 'PLAN_BY_FIELDS'}">
                                 <h2><b>Planning by Fields - Strategy not generated</b></h2>
-                                <p>Please make adjustments to resources, crop/field choices, crop acreage limits or
-                                    crops to generate a strategy. Click on the parameters below to find and fix the
-                                    problem.</p>
+                                <p>Review the Troubleshooting tips below and
+                                    make adjustments to resources, crop acreage
+                                    limits or crops so that all acres are assigned
+                                    crops.</p>
                                 <br/>
                                 <%--<p>Click one or more of the following parameters to diagnose the problem.</p>--%>
                                 <ul class="planning">
