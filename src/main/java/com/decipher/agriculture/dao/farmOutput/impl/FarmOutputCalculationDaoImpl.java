@@ -1107,6 +1107,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
     public Double calculatePofitWithFirmSelected(double forwardPrice, double forwardAcres, double expectedYield, double expectedprice,
                                                  double minAcres, double varibleProductionCost, double forwardQuantity) {
         double profit = ((forwardPrice * forwardQuantity) + (expectedprice * (minAcres - forwardAcres) * expectedYield)) - (minAcres * varibleProductionCost);
+//        double profit = minAcres * ((expectedYield * forwardPrice) - varibleProductionCost);
         PlantingProfitLogger.info("Profit : " + profit);
         return profit;
     }
