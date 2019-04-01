@@ -795,3 +795,9 @@
 <script type="text/javascript" src="<c:url value="/js/agriculture/user-registration.js" />"></script>
 
 <script type="text/javascript" src="<c:url value="/js/agriculture/home.js" />"></script>
+
+<script>
+    if(location.search === '?loginToPrivate=yes'){
+        document.getElementById('popup').click();
+    }
+</script>
