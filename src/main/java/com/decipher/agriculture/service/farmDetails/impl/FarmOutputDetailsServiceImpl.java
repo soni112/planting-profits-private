@@ -135,7 +135,7 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     }
                     for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
                         if (Objects.equals(cropTypeView.getId(), farmOutputDetailsForFieldView.getCropTypeView().getId()) && (farmOutputDetailsForFieldView.isForProposed() || farmOutputDetailsForFieldView.isForFirm())) {
-                                Double usedAcres = farmOutputDetailsForFieldView.getCropTypeView().getForwardAcres();
+                            Double usedAcres = farmOutputDetailsForFieldView.getCropTypeView().getForwardAcres();
                             String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
                             double contractAmount1 = Double.parseDouble(contractAmount);
                             double checkStatusValue = contractAmount1 - usedAcres;
@@ -191,7 +191,22 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     }
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                         if (Objects.equals(cropTypeView.getId(), farmOutputDetailsView.getCropTypeView().getId()) && (farmOutputDetailsView.getForFirm().equals(true) || farmOutputDetailsView.getForProposed().equals(true))) {
-                            Double usedAcres = farmOutputDetailsView.getUsedAcresAsDouble();
+                            Map<String, String> hashMapForAcre = (Map<String, String>) outputDetails.get("hashMapForAcre");
+                            Iterator iterator = hashMapForAcre.entrySet().iterator();
+                            Double usedAcres = 0.0;
+                            String cropName = null;
+                            while (iterator.hasNext()) {
+                                Map.Entry pair = (Map.Entry)iterator.next();
+                                if(farmOutputDetailsView.getForFirm()){
+                                    cropName = farmOutputDetailsView.getCropTypeView().getCropName()+(" (Firm)");
+                                }else if(farmOutputDetailsView.getForProposed()){
+                                    cropName = farmOutputDetailsView.getCropTypeView().getCropName()+(" (Proposed)");
+                                }
+                                if(cropName.equalsIgnoreCase(pair.getKey().toString())) {
+                                    String acreage = pair.getValue().toString().split("\\s\\(")[0];
+                                    usedAcres = Double.valueOf(acreage);
+                                }
+                            }
                             String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
                             double contractAmount1 = Double.parseDouble(contractAmount);
                             double checkStatusValue = contractAmount1 - usedAcres;
