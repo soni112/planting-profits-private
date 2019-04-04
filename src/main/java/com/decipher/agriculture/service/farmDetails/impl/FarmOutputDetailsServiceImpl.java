@@ -118,21 +118,21 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
                     List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) outputDetails.get("farmOutputDetails");
-                    for(int i=0; i<farmOutputDetailsForFieldViewList.size(); i++){
-                        FarmOutputDetailsForFieldView farmOutputDetailsViewI = farmOutputDetailsForFieldViewList.get(i);
-                        for(int j=0; j<farmOutputDetailsForFieldViewList.size(); j++){
-                            FarmOutputDetailsForFieldView farmOutputDetailsViewJ = farmOutputDetailsForFieldViewList.get(j);
-                            if(i != j){
-                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
-                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
-                                        farmOutputDetailsForFieldViewList.remove(i);
-                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
-                                        farmOutputDetailsForFieldViewList.remove(j);
-                                    }
-                                }
-                            }
-                        }
-                    }
+//                    for(int i=0; i<farmOutputDetailsForFieldViewList.size(); i++){
+//                        FarmOutputDetailsForFieldView farmOutputDetailsViewI = farmOutputDetailsForFieldViewList.get(i);
+//                        for(int j=0; j<farmOutputDetailsForFieldViewList.size(); j++){
+//                            FarmOutputDetailsForFieldView farmOutputDetailsViewJ = farmOutputDetailsForFieldViewList.get(j);
+//                            if(i != j){
+//                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
+//                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
+//                                        farmOutputDetailsForFieldViewList.remove(i);
+//                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
+//                                        farmOutputDetailsForFieldViewList.remove(j);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
                     for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
                         if (Objects.equals(cropTypeView.getId(), farmOutputDetailsForFieldView.getCropTypeView().getId()) && (farmOutputDetailsForFieldView.isForProposed() || farmOutputDetailsForFieldView.isForFirm())) {
                             Double usedAcres = farmOutputDetailsForFieldView.getCropTypeView().getForwardAcres();
@@ -174,21 +174,21 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
                     List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
-                    for(int i=0; i<farmOutputDetailsViewList.size(); i++){
-                        FarmOutputDetailsView farmOutputDetailsViewI = farmOutputDetailsViewList.get(i);
-                        for(int j=0; j<farmOutputDetailsViewList.size(); j++){
-                            FarmOutputDetailsView farmOutputDetailsViewJ = farmOutputDetailsViewList.get(j);
-                            if(i != j){
-                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
-                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
-                                        farmOutputDetailsViewList.remove(i);
-                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
-                                        farmOutputDetailsViewList.remove(j);
-                                    }
-                                }
-                            }
-                        }
-                    }
+//                    for(int i=0; i<farmOutputDetailsViewList.size(); i++){
+//                        FarmOutputDetailsView farmOutputDetailsViewI = farmOutputDetailsViewList.get(i);
+//                        for(int j=0; j<farmOutputDetailsViewList.size(); j++){
+//                            FarmOutputDetailsView farmOutputDetailsViewJ = farmOutputDetailsViewList.get(j);
+//                            if(i != j){
+//                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
+//                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
+//                                        farmOutputDetailsViewList.remove(i);
+//                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
+//                                        farmOutputDetailsViewList.remove(j);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                         if (Objects.equals(cropTypeView.getId(), farmOutputDetailsView.getCropTypeView().getId()) && (farmOutputDetailsView.getForFirm().equals(true) || farmOutputDetailsView.getForProposed().equals(true))) {
                             Double usedAcres = farmOutputDetailsView.getUsedAcresAsDouble();

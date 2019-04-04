@@ -905,7 +905,7 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                             outputDetailsForForward.setForProposed(false);
                             outputDetailsForForward.setUsedAcres(AgricultureStandardUtils.withoutDecimalAndCommaToLong(result.get(beanForOutput.getCropType().getCropName() + " (Contract)").doubleValue()).doubleValue());
                         } else if (beanForOutput.getProposedAcres() > zeroDouble
-                                && result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue() > zeroDouble) {
+                                && result.get(beanForOutput.getCropType().getCropName() + " (Proposed)").doubleValue() >= zeroDouble) {
                             outputDetailsForForward = new FarmOutputDetails();
                             outputDetailsForForward.setCropType(beanForOutput.getCropType());
                             outputDetailsForForward.setForContract(false);
@@ -1340,24 +1340,40 @@ public class FarmOutputCalculationDaoImpl implements FarmOutputCalculationDao {
                     farmOutputDetailsForField.setUsedAcres(bestResult.get(str).doubleValue());
                     for (CropBeanForOutput cropBeanForOutput : cropBeanForOutputList) {
                         if (cropBeanForOutput.getCropType().getCropName().equals(str.split("###")[1])) {
-                            if (cropBeanForOutput.getFirmAcres() > zeroDouble) {
-                                farmOutputDetailsForFieldForContract = new FarmOutputDetailsForField();
-                                farmOutputDetailsForFieldForContract.setUsedAcres(bestResult.get(str + " (Contract)").doubleValue());
-                                farmOutputDetailsForFieldForContract.setCropType(cropBeanForOutput.getCropType());
-                                farmOutputDetailsForFieldForContract.setForFirm(true);
-                                farmOutputDetailsForFieldForContract.setForProposed(false);
-                            } else if (cropBeanForOutput.getProposedAcres() > zeroDouble && bestResult.get(str + " (Proposed)").doubleValue() > zeroDouble) {
-                                farmOutputDetailsForFieldForContract = new FarmOutputDetailsForField();
-                                farmOutputDetailsForFieldForContract.setUsedAcres(bestResult.get(str + " (Proposed)").doubleValue());
-                                farmOutputDetailsForFieldForContract.setCropType(cropBeanForOutput.getCropType());
-                                farmOutputDetailsForFieldForContract.setForFirm(false);
-                                farmOutputDetailsForFieldForContract.setForProposed(true);
+
+                            if (cropBeanForOutput.getCropType().getCropForwardSales() != null
+                                    && (cropBeanForOutput.getCropType().getCropForwardSales().getFirmchecked().equals("true")
+                                    || cropBeanForOutput.getCropType().getCropForwardSales().getProposedchecked())) {
+
+                                farmOutputDetailsForField.setCropType(cropBeanForOutput.getCropType());
+                                farmOutputDetailsForField.setForFirm(false);
+                                farmOutputDetailsForField.setForProposed(false);
+
+                                if (cropBeanForOutput.getFirmAcres() > zeroDouble) {
+                                    farmOutputDetailsForFieldForContract = new FarmOutputDetailsForField();
+                                    farmOutputDetailsForFieldForContract.setUsedAcres(bestResult.get(str + " (Contract)").doubleValue());
+                                    farmOutputDetailsForFieldForContract.setCropType(cropBeanForOutput.getCropType());
+                                    farmOutputDetailsForFieldForContract.setForFirm(true);
+                                    farmOutputDetailsForFieldForContract.setForProposed(false);
+                                } else if (cropBeanForOutput.getProposedAcres() > zeroDouble
+                                        && bestResult.get(str + " (Proposed)").doubleValue() >= zeroDouble) {
+                                    farmOutputDetailsForFieldForContract = new FarmOutputDetailsForField();
+                                    farmOutputDetailsForFieldForContract.setUsedAcres(bestResult.get(str + " (Proposed)").doubleValue());
+                                    farmOutputDetailsForFieldForContract.setCropType(cropBeanForOutput.getCropType());
+                                    farmOutputDetailsForFieldForContract.setForFirm(false);
+                                    farmOutputDetailsForFieldForContract.setForProposed(true);
+                                }
+                            } else {
+                                farmOutputDetailsForField.setCropType(cropBeanForOutput.getCropType());
+                                farmOutputDetailsForField.setForFirm(false);
+                                farmOutputDetailsForField.setForProposed(false);
+//                                farmOutputDetailsForField.setUsedAcres(bestResult.get(str));
                             }
-                            farmOutputDetailsForField.setForFirm(false);
-                            farmOutputDetailsForField.setForProposed(false);
-                            farmOutputDetailsForField.setCropType(cropBeanForOutput.getCropType());
+//                            farmOutputDetailsForField.setForFirm(false);
+//                            farmOutputDetailsForField.setForProposed(false);
+//                            farmOutputDetailsForField.setCropType(cropBeanForOutput.getCropType());
 //							farmOutputDetailsForField.setProfit(bestResult.get(str).doubleValue()*cropBeanForOutput.getProfit());
-                            break;
+//                            break;
                         }
                     }
                     Set<CropFieldChocies> allChoices = farmOutputDetailsForField.getCropType().getChocies();
