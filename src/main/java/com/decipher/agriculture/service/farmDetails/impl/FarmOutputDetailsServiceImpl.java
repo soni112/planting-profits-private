@@ -118,117 +118,70 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_FIELDS)) {
                     List<FarmOutputDetailsForFieldView> farmOutputDetailsForFieldViewList = (List<FarmOutputDetailsForFieldView>) outputDetails.get("farmOutputDetails");
-//                    for(int i=0; i<farmOutputDetailsForFieldViewList.size(); i++){
-//                        FarmOutputDetailsForFieldView farmOutputDetailsViewI = farmOutputDetailsForFieldViewList.get(i);
-//                        for(int j=0; j<farmOutputDetailsForFieldViewList.size(); j++){
-//                            FarmOutputDetailsForFieldView farmOutputDetailsViewJ = farmOutputDetailsForFieldViewList.get(j);
-//                            if(i != j){
-//                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
-//                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
-//                                        farmOutputDetailsForFieldViewList.remove(i);
-//                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
-//                                        farmOutputDetailsForFieldViewList.remove(j);
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
+                    Double usedAcres = 0.0;
                     for (FarmOutputDetailsForFieldView farmOutputDetailsForFieldView : farmOutputDetailsForFieldViewList) {
                         if (Objects.equals(cropTypeView.getId(), farmOutputDetailsForFieldView.getCropTypeView().getId()) && (farmOutputDetailsForFieldView.isForProposed() || farmOutputDetailsForFieldView.isForFirm())) {
-                            Double usedAcres = farmOutputDetailsForFieldView.getCropTypeView().getForwardAcres();
+                            if (farmOutputDetailsForFieldView.isForFirm() && farmOutputDetailsForFieldView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true"))
+                                usedAcres = farmOutputDetailsForFieldView.getCropTypeView().getForwardAcres();
+                            else if (farmOutputDetailsForFieldView.isForProposed() && farmOutputDetailsForFieldView.getCropTypeView().getProposedchecked()){
+                                usedAcres += farmOutputDetailsForFieldView.getUsedAcresAsDouble();
+                            }
+
                             String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
-                            double contractAmount1 = Double.parseDouble(contractAmount);
-                            double checkStatusValue = contractAmount1 - usedAcres;
-                            jsonObject.put("usedAcres", AgricultureStandardUtils.withoutDecimalAndComma(usedAcres));
-                            String totalLand = farmInfoView.getLand().equalsIgnoreCase("") ? "0" : farmInfoView.getLand();
-                            int totalLand1 = Integer.parseInt(totalLand);
-//                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsForFieldView.getUsedAcresAsDouble());
-                            double amountUnfilled = contractAmount1-usedAcres;
-                            Integer amountUnfilled1 = AgricultureStandardUtils.doubleToInteger(amountUnfilled);
+                            double contractAmountAsDouble = Double.parseDouble(contractAmount);
 
+                            jsonObject.put("amountFilled", AgricultureStandardUtils.withoutDecimalAndComma(usedAcres));
 
-                            jsonObject.put("amountUnfilled", amountUnfilled1);
+                            double amountUnfilled = contractAmountAsDouble-usedAcres;
+                            Integer amountUnfilledAsDouble = AgricultureStandardUtils.doubleToInteger(amountUnfilled);
 
+                            jsonObject.put("amountUnfilled", amountUnfilledAsDouble);
+
+                            /*Amt Filled and Unfilled Column in Forward Sales*/
                             if (farmOutputDetailsForFieldView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
-                                if (checkStatusValue == 0 || checkStatusValue < 0) {
-                                    jsonObject.put("status", YES);
-                                } else if (checkStatusValue > 0) {
-                                    jsonObject.put("status", PARTIAL);
-                                }
-
-//                    } else if (cropTypeView.getProposedchecked() && flag) {
+                                jsonObject.put("status", YES);
                             } else if (farmOutputDetailsForFieldView.getCropTypeView().getProposedchecked()) {
-                                if (contractAmount1 == 0) {
+                                if (usedAcres == 0) {
                                     jsonObject.put("status", NO);
-                                } else if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                } else if (usedAcres == contractAmountAsDouble) {
                                     jsonObject.put("status", YES);
-                                } else if (checkStatusValue > 0) {
+                                } else {
                                     jsonObject.put("status", PARTIAL);
                                 }
                             }
-//                        else{
-//                            jsonObject.put("status", NO);
-//                        }
                         }
                     }
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
                     List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
-//                    for(int i=0; i<farmOutputDetailsViewList.size(); i++){
-//                        FarmOutputDetailsView farmOutputDetailsViewI = farmOutputDetailsViewList.get(i);
-//                        for(int j=0; j<farmOutputDetailsViewList.size(); j++){
-//                            FarmOutputDetailsView farmOutputDetailsViewJ = farmOutputDetailsViewList.get(j);
-//                            if(i != j){
-//                                if(farmOutputDetailsViewI.getCropTypeView().getId().compareTo(farmOutputDetailsViewJ.getCropTypeView().getId()) == 0){
-//                                    if(farmOutputDetailsViewI.getUsedAcres().equalsIgnoreCase("0")){
-//                                        farmOutputDetailsViewList.remove(i);
-//                                    }else if(farmOutputDetailsViewJ.getUsedAcres().equalsIgnoreCase("0")){
-//                                        farmOutputDetailsViewList.remove(j);
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
+
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                         if (Objects.equals(cropTypeView.getId(), farmOutputDetailsView.getCropTypeView().getId()) && (farmOutputDetailsView.getForFirm().equals(true) || farmOutputDetailsView.getForProposed().equals(true))) {
-                            Double usedAcres = farmOutputDetailsView.getUsedAcresAsDouble();
+                            Double usedAcres = 0.0;
+                            usedAcres = farmOutputDetailsView.getUsedAcresAsDouble() == 0.0 ? farmOutputDetailsView.getUsedAcresAsDouble() : farmOutputDetailsView.getCropTypeView().getForwardAcres();
                             String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
-                            double contractAmount1 = Double.parseDouble(contractAmount);
-                            double checkStatusValue = contractAmount1 - usedAcres;
-                            jsonObject.put("usedAcres", farmOutputDetailsView.getUsedAcres());
-                            String totalLand = farmInfoView.getLand().equalsIgnoreCase("") ? "0" : farmInfoView.getLand();
-                            int totalLand1 = Integer.parseInt(totalLand);
-//                            Integer amountUnfilled = AgricultureStandardUtils.doubleToInteger(totalLand1 - farmOutputDetailsView.getUsedAcresAsDouble());
-                            double amountUnfilled = contractAmount1-usedAcres;
+                            double contractAmountAsDouble = Double.parseDouble(contractAmount);
+
+                            jsonObject.put("amountFilled", farmOutputDetailsView.getUsedAcres());
+
+                            double amountUnfilled = contractAmountAsDouble - usedAcres;
                             Integer amountUnfilled1 = AgricultureStandardUtils.doubleToInteger(amountUnfilled);
                             jsonObject.put("amountUnfilled", amountUnfilled1);
 
                             if (farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true")) {
-                                if (checkStatusValue == 0 || checkStatusValue < 0) {
-                                    jsonObject.put("status", YES);
-                                } else if (checkStatusValue > 0) {
-                                    jsonObject.put("status", PARTIAL);
-                                }
-
-//                    } else if (cropTypeView.getProposedchecked() && flag) {
+                                jsonObject.put("status", YES);
                             } else if (farmOutputDetailsView.getCropTypeView().getProposedchecked()) {
-                                if (contractAmount1 == 0) {
+                                if (usedAcres == 0) {
                                     jsonObject.put("status", NO);
-                                } else if (checkStatusValue == 0 || checkStatusValue < 0) {
+                                } else if (usedAcres == contractAmountAsDouble) {
                                     jsonObject.put("status", YES);
-                                } else if (checkStatusValue > 0) {
+                                } else {
                                     jsonObject.put("status", PARTIAL);
                                 }
                             }
-                        /*else{
-                            jsonObject.put("status", NO);
-                        }*/
                         }
                     }
 
-                }
-                if(jsonObject.size() == 7){
-                    jsonArray.add(jsonObject);
                 }
             }
         }
