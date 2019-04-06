@@ -1287,7 +1287,7 @@
                                             <td class="success">${jsonObj.forwardSalesPrice}</td>
                                             <td class="success">${jsonObj.firmProposedCheck}</td>
                                             <td class="success">${jsonObj.status}</td>
-                                            <td class="success">${jsonObj.usedAcres}</td>
+                                            <td class="success">${jsonObj.amountFilled}</td>
                                             <td class="success">${jsonObj.amountUnfilled}</td>
                                         </tr>
                                         </c:if>
