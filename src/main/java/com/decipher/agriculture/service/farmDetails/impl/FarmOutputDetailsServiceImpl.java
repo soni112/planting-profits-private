@@ -154,11 +154,14 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                 }
                 if(Objects.equals(farmInfoView.getStrategy(), PlanByStrategy.PLAN_BY_ACRES)) {
                     List<FarmOutputDetailsView> farmOutputDetailsViewList = (List<FarmOutputDetailsView>) outputDetails.get("farmOutputDetails");
-
+                    Double usedAcres = 0.0;
                     for (FarmOutputDetailsView farmOutputDetailsView : farmOutputDetailsViewList) {
                         if (Objects.equals(cropTypeView.getId(), farmOutputDetailsView.getCropTypeView().getId()) && (farmOutputDetailsView.getForFirm().equals(true) || farmOutputDetailsView.getForProposed().equals(true))) {
-                            Double usedAcres = 0.0;
-                            usedAcres = farmOutputDetailsView.getUsedAcresAsDouble() == 0.0 ? farmOutputDetailsView.getUsedAcresAsDouble() : farmOutputDetailsView.getCropTypeView().getForwardAcres();
+                            if (farmOutputDetailsView.getForFirm() && farmOutputDetailsView.getCropTypeView().getFirmchecked().equalsIgnoreCase("true"))
+                                usedAcres = farmOutputDetailsView.getCropTypeView().getForwardAcres();
+                            else if (farmOutputDetailsView.getForProposed() && farmOutputDetailsView.getCropTypeView().getProposedchecked()){
+                                usedAcres += farmOutputDetailsView.getUsedAcresAsDouble();
+                            }
                             String contractAmount = cropTypeView.getAcresStr().equalsIgnoreCase("") ? "0" : cropTypeView.getAcresStr();
                             double contractAmountAsDouble = Double.parseDouble(contractAmount);
 
