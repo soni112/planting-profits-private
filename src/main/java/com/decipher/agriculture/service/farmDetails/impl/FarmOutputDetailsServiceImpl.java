@@ -181,8 +181,8 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                             }
                         }
                     }
-
                 }
+                jsonArray.add(jsonObject);
             }
         }
 
