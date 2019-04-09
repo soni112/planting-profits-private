@@ -297,5 +297,11 @@ public class AccountServiceImpl implements AccountService {
 		return accountDAO.getCitiesForState(stateId);
 	}
 
+	@Override
+	public String getCurrentUserStateLink(String stateName) {
+		String stateLink = accountDAO.getCurrentUserStateLink(stateName);
+		return stateLink;
+	}
+
 
 }
