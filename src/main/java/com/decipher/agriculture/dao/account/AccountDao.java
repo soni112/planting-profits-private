@@ -72,4 +72,6 @@ public interface AccountDao {
 
     List<UserCity> getCitiesForState(int stateId);
 
+    String getCurrentUserStateLink(String stateName);
+
 }

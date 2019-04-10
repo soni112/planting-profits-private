@@ -77,4 +77,6 @@ public interface AccountService {
 
     List<UserCity> getCitiesForState(int stateId);
 
+    String getCurrentUserStateLink(String stateName);
+
 }

@@ -212,6 +212,23 @@ public class ViewController {
 	public ModelAndView getFarmData(){
 		ModelAndView modelAndView = new ModelAndView("farm-data");
 		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
+        modelAndView.addObject("notLogedIn","Please Login First !");
+        Account account = accountService.getCurrentUser();
+        String stateName = null;
+		if(account == null){
+		    return modelAndView;
+        }else {
+            stateName = account.getPhysical_Address_State().getStateName();
+        }
+		if(stateName.equalsIgnoreCase(null)){
+			stateName = "Not Found";
+		}
+		String stateLink = accountService.getCurrentUserStateLink(stateName);
+		if(stateLink.equalsIgnoreCase("Not Found") || stateLink.equalsIgnoreCase("notLogedIn")){
+		    modelAndView.addObject("stateLink","#");
+        }else {
+            modelAndView.addObject("stateLink", stateLink);
+        }
 		return modelAndView;
 	}
 

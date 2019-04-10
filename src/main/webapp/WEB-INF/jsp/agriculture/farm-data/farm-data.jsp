@@ -16,10 +16,17 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <h1 class="text-white uppercase">Farm Data</h1>
+                    <c:if test="${stateLink == null}">
+                            <h2 style="color: red; margin-left: -49px;"><c:out value="${notLogedIn}"/></h2>
+                    </c:if>
+                    <c:if test="${stateLink == '#'}">
+                        <h2 style="color: red; margin-left: -49px;">No crop data available at this time.</h2>
+                    </c:if>
                     <ul class="list-unstyled text-white text-left" style="font-size: 20px;margin-left: 41%">
-                        <li><i class="fa fa-check text-white"></i> Upload/Download Data</li>
-                        <li><i class="fa fa-check text-white"></i> Find Area Ag Statistics</li>
-                        <li><i class="fa fa-check text-white"></i> xxxx</li>
+                        <li><a href="<c:url value="${stateLink}"/>"
+                        >State Ag Statistics</a></li>
+                        <li><a href="#"> State Crop Budgets</a></li>
+                        <li style="margin-left: -70px;"><a href="#"> Other State Crop Production Cost Data</a></li>
                     </ul>
                 </div><!-- /.col-12 -->
             </div><!-- /.row -->
