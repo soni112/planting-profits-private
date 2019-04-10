@@ -5,6 +5,7 @@ import com.decipher.agriculture.data.account.AppRole;
 import com.decipher.agriculture.data.account.UserCity;
 import com.decipher.agriculture.data.account.UserCountry;
 import com.decipher.agriculture.data.account.UserState;
+import com.decipher.agriculture.data.farm.FarmData;
 import com.decipher.util.PlantingProfitLogger;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -681,6 +682,37 @@ public class AccountDaoImpl implements AccountDao {
 		}
 
 		return userCityList;
+	}
+
+	@Override
+	public String getCurrentUserStateLink(String stateName) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.getTransaction();
+		List<FarmData> stateList = new ArrayList<>();
+		String stateLink = null;
+		try {
+			transaction.begin();
+			Query query = session.createQuery("from FarmData");
+//			query.setParameter("stateId", stateId);
+			stateList = query.list();
+			for(int i=0; i<=stateList.size(); i++){
+			   String stateNameFromLink = stateList.get(i).getStateAgStatistics().split("\\=")[1];
+			    if(stateName.equalsIgnoreCase(stateNameFromLink)){
+                    stateLink = stateList.get(i).getStateAgStatistics();
+                    break;
+                }else{
+			        stateLink = "Not Found";
+                }
+            }
+			session.flush();
+			transaction.commit();
+		} catch(Exception e){
+			transaction.rollback();
+			PlantingProfitLogger.error(e);
+		} finally {
+			session.close();
+		}
+		return stateLink;
 	}
 
 }

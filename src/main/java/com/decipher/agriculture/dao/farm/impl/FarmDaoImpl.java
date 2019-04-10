@@ -1,9 +1,11 @@
 package com.decipher.agriculture.dao.farm.impl;
 
+import com.decipher.agriculture.data.farm.FarmData;
 import com.decipher.agriculture.dao.farm.FarmDao;
 import com.decipher.agriculture.data.farm.Farm;
 import com.decipher.agriculture.data.farm.FarmInfo;
 import com.decipher.agriculture.service.farm.FarmInfoService;
+import com.decipher.agriculture.service.farm.impl.UploadExcelServiceImpl;
 import com.decipher.util.PlantingProfitLogger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -228,8 +230,8 @@ public class FarmDaoImpl implements FarmDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<Farm> getAllFarmsForUser(int userId) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.getTransaction();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.getTransaction();
         List<Farm> farmList = new ArrayList<>();
         try {
             transaction.begin();
@@ -242,23 +244,38 @@ public class FarmDaoImpl implements FarmDao {
                     initializeLazy(farm);
                 }
             }
-
             transaction.commit();
         } catch (Exception e) {
             PlantingProfitLogger.error("Error while getting farms for account ", e);
             transaction.rollback();
-        } finally {
-            session.close();
+        }
+        UploadExcelServiceImpl uploadExcelService = new UploadExcelServiceImpl();
+        uploadExcelService.saveStateNameAndLink();
+        ArrayList stateNameList = uploadExcelService.getStateName();
+        ArrayList stateLinkList = uploadExcelService.getStateLink();
+        if(session.createQuery("from FarmData").list().size() > 1){
+            PlantingProfitLogger.info("Excel Data already available in db");
+        }else {
+            for (int i = 0; i <= stateNameList.size() - 1; i++) {
+                Transaction transaction1 = session.getTransaction();
+                transaction1.begin();
+                String stateName = (String) stateNameList.get(i);
+                String stateLink = (String) stateLinkList.get(i);
+                FarmData farmData = new FarmData();
+                farmData.setState(stateName);
+                farmData.setStateAgStatistics(stateLink);
+                session.saveOrUpdate(farmData);
+                PlantingProfitLogger.info("Trying to save State Name : " + farmData.getState());
+                PlantingProfitLogger.info("Successfully saved state Link : " + farmData.getStateAgStatistics());
+                transaction1.commit();
+            }
         }
         return farmList;
     }
-
     private void initializeLazy(Farm farm) {
 //        if(farm.getFarmInfoList().size() != 0)
 //            Hibernate.initialize(farm.getFarmInfoList());
 //        if(farm.getFarmCustomStrategy().size() != 0)
 //            Hibernate.initialize(farm.getFarmCustomStrategy());
     }
-
-
 }
