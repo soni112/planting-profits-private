@@ -605,29 +605,20 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public List<UserCountry> getAllCountriesList() {
 		Session session = sessionFactory.openSession();
-		Transaction transaction = session.getTransaction();
-
+		session.getTransaction().begin();
 		List<UserCountry> userCountriesList = new ArrayList<>();
-
 		try {
-			transaction.begin();
-
 			Query query = session.createQuery("from UserCountry");
 			userCountriesList = query.list();
-
 			session.flush();
-			if(transaction.getLocalStatus().toString().equalsIgnoreCase("ACTIVE")){
-				transaction.commit();
-			}
+				session.getTransaction().commit();
 		} catch(Exception e){
-			transaction.rollback();
+			session.getTransaction().rollback();
 			PlantingProfitLogger.error(e);
 		} finally {
 			session.close();
 		}
-
-		return userCountriesList;
-
+			return userCountriesList;
 	}
 
 	@Override
