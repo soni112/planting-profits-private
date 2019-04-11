@@ -616,7 +616,9 @@ public class AccountDaoImpl implements AccountDao {
 			userCountriesList = query.list();
 
 			session.flush();
-			transaction.commit();
+			if(transaction.getLocalStatus().toString().equalsIgnoreCase("ACTIVE")){
+				transaction.commit();
+			}
 		} catch(Exception e){
 			transaction.rollback();
 			PlantingProfitLogger.error(e);
