@@ -248,7 +248,7 @@ public class FarmDaoImpl implements FarmDao {
         } catch (Exception e) {
             PlantingProfitLogger.error("Error while getting farms for account ", e);
             transaction.rollback();
-        }
+        }/*
         UploadExcelServiceImpl uploadExcelService = new UploadExcelServiceImpl();
         uploadExcelService.saveStateNameAndLink();
         ArrayList stateNameList = uploadExcelService.getStateName();
@@ -269,6 +269,10 @@ public class FarmDaoImpl implements FarmDao {
                 PlantingProfitLogger.info("Successfully saved state Link : " + farmData.getStateAgStatistics());
                 transaction1.commit();
             }
+
+        }*/
+        finally {
+            session.close();
         }
         return farmList;
     }

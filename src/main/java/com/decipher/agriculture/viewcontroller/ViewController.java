@@ -212,7 +212,7 @@ public class ViewController {
 	public ModelAndView getFarmData(){
 		ModelAndView modelAndView = new ModelAndView("farm-data");
 		modelAndView.addObject("stripePublishKey", StripeUtils.getStripePaymentPublishKey());
-        modelAndView.addObject("notLogedIn","Please Login First !");
+       /* modelAndView.addObject("notLogedIn","Please Login First !");
         Account account = accountService.getCurrentUser();
         String stateName = null;
 		if(account == null){
@@ -228,7 +228,7 @@ public class ViewController {
 		    modelAndView.addObject("stateLink","#");
         }else {
             modelAndView.addObject("stateLink", stateLink);
-        }
+        }*/
 		return modelAndView;
 	}
 
