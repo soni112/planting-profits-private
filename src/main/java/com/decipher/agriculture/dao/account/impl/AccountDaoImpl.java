@@ -693,9 +693,7 @@ public class AccountDaoImpl implements AccountDao {
 		List<FarmData> stateList = new ArrayList<>();
 		String stateLink = null;
 		try {
-			if(transaction.getLocalStatus().toString().equalsIgnoreCase("NOT_ACTIVE")) {
 				transaction.begin();
-			}
 			Query query = session.createQuery("from FarmData");
 //			query.setParameter("stateId", stateId);
 			stateList = query.list();
@@ -708,10 +706,8 @@ public class AccountDaoImpl implements AccountDao {
 			        stateLink = "Not Found";
                 }
             }
-//			session.flush();
-			if(transaction.getLocalStatus().toString().equalsIgnoreCase("ACTIVE")) {
+				session.flush();
 				transaction.commit();
-			}
 		} catch(Exception e){
 			transaction.rollback();
 			PlantingProfitLogger.error(e);
