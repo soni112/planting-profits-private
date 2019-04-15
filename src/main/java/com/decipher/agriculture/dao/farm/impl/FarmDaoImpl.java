@@ -249,7 +249,7 @@ public class FarmDaoImpl implements FarmDao {
             PlantingProfitLogger.error("Error while getting farms for account ", e);
             transaction.rollback();
         }
-        UploadExcelServiceImpl uploadExcelService = new UploadExcelServiceImpl();
+        /*UploadExcelServiceImpl uploadExcelService = new UploadExcelServiceImpl();
         uploadExcelService.saveStateNameAndLink();
         ArrayList stateNameList = uploadExcelService.getStateName();
         ArrayList stateLinkList = uploadExcelService.getStateLink();
@@ -270,10 +270,10 @@ public class FarmDaoImpl implements FarmDao {
                 transaction1.commit();
             }
 
-        }
-     /*   finally {
-            session.close();
         }*/
+        finally {
+            session.close();
+        }
         return farmList;
     }
     private void initializeLazy(Farm farm) {
