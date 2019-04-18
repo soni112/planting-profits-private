@@ -50,58 +50,58 @@
 				<!--end slider_wrapper-->
 			</div>
 		</section>
-		<section>
-			<div class="wrap clearfix">
-				<div class="col-lg-12 col-sm-12 col-md-12 pull-left">
-					<h2 class="welcm">Welcome</h2>
-					<p class="abt" style="padding-right: 15px;">
-						<span <%--class="ag"--%>>Planting Profits<sup>&reg;</sup></span> assists producers with
-						critical crop production planning decisions.<br />
-						<br /> Planting Profits<sup>&reg;</sup> helps producers decide how many acres of
-						each crop to grow and which fields to plant which crops. Planting
-						Profits is a new planning tool. There’s nothing else like.
-						Planting Profits<sup>&reg;</sup> is not recordkeeping, but it turns your farm
-						records into profit. Planting Profits<sup>&reg;</sup> will save you time, make you
-						more money and help you to better manage farming risks. <br />
-						<br /> Our innovative production planning software and on-line
-						consulting service helps producers quickly develop and analyze
-						production plans that maximize profit while managing marketing and
-						production risks. It's way beyond recordkeeping. There's nothing
-						else like it!<br />
-						<br /> Our advanced farm planning software is available to you
-						over the Internet. There is no software or hardware to buy or
-						maintain.
-					</p>
-				</div>
-			</div>
-		</section>
-		<section>
-			<div class="wrap gap clearfix">
-				<div class="col-lg-4 col-md-4 col-sm-4 pull-left padding-right-none">
-					<img src="images/BOTTOMimg.jpg" class="img-responsive frame">
-				</div>
-				<div class="col-lg-8 col-md-8 col-sm-8">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<p class="abt">
-							<span class="product">Production planning software.</span><br />
-							Use of our Planting Profits<sup>&reg;</sup> software is available to producers
-							free of charge. We offer free customer support for quick calls
-							and support packages for customers with greater support needs.
-						</p>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<p class="abt">
-							<span class="onlinefarm">On-line farm planning consulting
-								service.</span><br /> We gather and enter required farm information
-							into our Planting Profits<sup>&reg;</sup> software and work with you to develop
-							alternative crop-acreage strategies.Then we work with you to
-							analyze and compare strategies so you can select the one that is
-							best for you.
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
+		<%--<section>--%>
+			<%--<div class="wrap clearfix">--%>
+				<%--<div class="col-lg-12 col-sm-12 col-md-12 pull-left">--%>
+					<%--<h2 class="welcm">Welcome</h2>--%>
+					<%--<p class="abt" style="padding-right: 15px;">--%>
+						<%--<span &lt;%&ndash;class="ag"&ndash;%&gt;>Planting Profits<sup>&reg;</sup></span> assists producers with--%>
+						<%--critical crop production planning decisions.<br />--%>
+						<%--<br /> Planting Profits<sup>&reg;</sup> helps producers decide how many acres of--%>
+						<%--each crop to grow and which fields to plant which crops. Planting--%>
+						<%--Profits is a new planning tool. There’s nothing else like.--%>
+						<%--Planting Profits<sup>&reg;</sup> is not recordkeeping, but it turns your farm--%>
+						<%--records into profit. Planting Profits<sup>&reg;</sup> will save you time, make you--%>
+						<%--more money and help you to better manage farming risks. <br />--%>
+						<%--<br /> Our innovative production planning software and on-line--%>
+						<%--consulting service helps producers quickly develop and analyze--%>
+						<%--production plans that maximize profit while managing marketing and--%>
+						<%--production risks. It's way beyond recordkeeping. There's nothing--%>
+						<%--else like it!<br />--%>
+						<%--<br /> Our advanced farm planning software is available to you--%>
+						<%--over the Internet. There is no software or hardware to buy or--%>
+						<%--maintain.--%>
+					<%--</p>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+		<%--</section>--%>
+		<%--<section>--%>
+			<%--<div class="wrap gap clearfix">--%>
+				<%--<div class="col-lg-4 col-md-4 col-sm-4 pull-left padding-right-none">--%>
+					<%--<img src="images/BOTTOMimg.jpg" class="img-responsive frame">--%>
+				<%--</div>--%>
+				<%--<div class="col-lg-8 col-md-8 col-sm-8">--%>
+					<%--<div class="col-lg-12 col-md-12 col-sm-12">--%>
+						<%--<p class="abt">--%>
+							<%--<span class="product">Production planning software.</span><br />--%>
+							<%--Use of our Planting Profits<sup>&reg;</sup> software is available to producers--%>
+							<%--free of charge. We offer free customer support for quick calls--%>
+							<%--and support packages for customers with greater support needs.--%>
+						<%--</p>--%>
+					<%--</div>--%>
+					<%--<div class="col-lg-12 col-md-12 col-sm-12">--%>
+						<%--<p class="abt">--%>
+							<%--<span class="onlinefarm">On-line farm planning consulting--%>
+								<%--service.</span><br /> We gather and enter required farm information--%>
+							<%--into our Planting Profits<sup>&reg;</sup> software and work with you to develop--%>
+							<%--alternative crop-acreage strategies.Then we work with you to--%>
+							<%--analyze and compare strategies so you can select the one that is--%>
+							<%--best for you.--%>
+						<%--</p>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</div>--%>
+		<%--</section>--%>
 	</div>
 
 	<!-- Home Page Main Section End -->
