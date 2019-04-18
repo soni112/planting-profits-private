@@ -303,11 +303,11 @@ public class FarmOutputDetailsServiceImpl implements FarmOutputDetailsService {
                     return farmOutputDetailsView.getUsedAcres();
                 }
 
-                if(!farmOutputDetailsView.getForFirm() && !isFirm && cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+                if(!farmOutputDetailsView.getForProposed() && !isFirm && cropTypeView.getProposedchecked() && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                     return farmOutputDetailsView.getUsedAcres();
                 }
 
-                if(!isFirm && !cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
+                if(!farmOutputDetailsView.getForFirm() && !farmOutputDetailsView.getForProposed() && !isFirm && !cropTypeView.getFirmchecked().equalsIgnoreCase("true") && farmOutputDetailsView.getCropTypeView().getId().equals(cropTypeView.getId())){
                     return farmOutputDetailsView.getUsedAcres();
                 }
             }
