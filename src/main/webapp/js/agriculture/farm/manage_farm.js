@@ -2529,6 +2529,19 @@ function addNewGroup() {
                     showModifyColumnInCropLimitTable();
                     $("#group_table_tbody").append(rowHTMLForGroup);
 
+                    var theadColumnsLength = $('#crop_limits_table thead tr td').length;
+                    if($('#crop_limits_table thead tr td.hiddenTD')[0]){
+                        $('.tbl-fixd-hdr tbody>tr>td').css("width", (100 / (theadColumnsLength - 1) ) +  "%");
+                        $('.tbl-fixd-hdr thead>tr>td').css("width",  (100 / (theadColumnsLength - 1) ) + "%");
+                    }else{
+                        $('.tbl-fixd-hdr tbody>tr>td').css("width",  (100 / theadColumnsLength) + "%");
+                        $('.tbl-fixd-hdr thead>tr>td').css("width",  (100 / theadColumnsLength) + "%");
+                    }
+
+                    var theadColumnsLengthSecond = $('#Plan_by_Fields_table thead tr td').length;
+                    $('#Plan_by_Fields_table tbody>tr>td').css("width",  (100 / theadColumnsLengthSecond) + "%");
+                    $('#Plan_by_Fields_table thead>tr>td').css("width",  (100 / theadColumnsLengthSecond) + "%");
+
                     customAlerts('"' + groupName + '" crop group added', type_success, time);
                 }
             }
@@ -2610,6 +2623,14 @@ function removeGroup() {
                         hideModifyColumnInCropLimitTable();
                     }
                 });
+                var theadColumnsLength = $('#crop_limits_table thead tr td').length;
+                if($('#crop_limits_table thead tr td.hiddenTD')[0]){
+                    $('.tbl-fixd-hdr tbody>tr>td').css("width", (100 / (theadColumnsLength - 1) ) +  "%");
+                    $('.tbl-fixd-hdr thead>tr>td').css("width",  (100 / (theadColumnsLength - 1) ) + "%");
+                }else{
+                    $('.tbl-fixd-hdr tbody>tr>td').css("width",  (100 / theadColumnsLength) + "%");
+                    $('.tbl-fixd-hdr thead>tr>td').css("width",  (100 / theadColumnsLength) + "%");
+                }
                 /**
                  * @Changed : Abhishek
                  * @Date : 25-11-2015

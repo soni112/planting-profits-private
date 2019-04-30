@@ -3426,9 +3426,9 @@ ul.sidebar-menu li a i.fa-angle-right {
 #Forward-Sales {
 }
 
-/* 
-	@added - abhishek 
-	@date - 30-11-2015 
+/*
+	@added - abhishek
+	@date - 30-11-2015
 */
 
 #generate_PDF {
@@ -3861,7 +3861,7 @@ sup {
     position: relative;
     float: left;
     /*height: 54px;*/
-    height: 35px;
+    height: 49px;
 }
 .crop-limits-tbl tbody>tr {
     width: 100%;
