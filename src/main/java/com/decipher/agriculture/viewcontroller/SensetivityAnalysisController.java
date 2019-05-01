@@ -24,7 +24,6 @@ import com.decipher.util.PlantingProfitLogger;
 @Controller
 @RequestMapping("/SensetivityAnalysisController")
 public class SensetivityAnalysisController {
-
 	@Autowired
 	private FarmCustomStrategyService farmCustomStrategyService;
 	@Autowired
@@ -33,8 +32,6 @@ public class SensetivityAnalysisController {
 	private SensetivityAnalysisService sensetivityAnalysisService;
 	@Autowired
 	private FarmDetailsContainerService farmDetailsContainerService;
-
-
 	@RequestMapping(value = "getSAForStrategyByMultipleResource", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse getSAForStrategyByMultipleResource(
 			HttpServletRequest request,
@@ -57,7 +54,6 @@ public class SensetivityAnalysisController {
 		}
 		return jsonResponse;
 	}
-
 	@RequestMapping(value = "getSAForStrategyByMultipleCrops", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse getSAForStrategyByMultipleCrops(
 			HttpServletRequest request,
@@ -83,7 +79,6 @@ public class SensetivityAnalysisController {
 		}
 		return jsonResponse;
 	}
-
 	@RequestMapping(value = "getSAForCastGraphForSingleResource", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse getSAForCastGraphForSingleResource(
 			HttpServletRequest request,
@@ -108,7 +103,6 @@ public class SensetivityAnalysisController {
 		}
 		return jsonResponse;
 	}
-
 	@RequestMapping(value = "SAForCastGraphForSingleCrop", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse SAForCastGraphForSingleCrop(
 			HttpServletRequest request,
@@ -135,7 +129,6 @@ public class SensetivityAnalysisController {
 		}
 		return jsonResponse;
 	}
-
 	@RequestMapping(value = "SaveStrategyForMultipleResources", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse SaveStrategyForMultipleResources(
 			HttpServletRequest request,
@@ -174,9 +167,7 @@ public class SensetivityAnalysisController {
 			jsonResponse.setStatus(JsonResponse.RESULT_INVALID_USER_NOT_EXISTS);
 		}
 		return jsonResponse;
-
 	}
-
 	@RequestMapping(value = "SaveStrategyForMultipleCrop", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse SaveStrategyForMultipleCrop(
 			@RequestParam(value = "farmInfoId") int farmInfoId,
@@ -195,9 +186,7 @@ public class SensetivityAnalysisController {
 			if (!exists) {
 				strategyId = farmCustomStrategyService.saveFarmCustomStrategyForMultipleCrop(farmInfoId, cropsArray, cropContractArray,
 										cropProposedArray, cropsGroupArray, strategyName);
-
 				if (strategyId != 0) {
-
 					/**
 					 * @added - Abhishek
 					 * @date - 12-05-2016
@@ -207,8 +196,6 @@ public class SensetivityAnalysisController {
 					FarmInfo farmInfo = farmCustomStrategyView.getFarmCustomStrategy().getFarmInfo();
 
 					farmDetailsContainerService.updateStrategyDetails(new FarmInfoView(farmInfo), farmCustomStrategyView);
-
-
 					jsonResponse.setStatus(JsonResponse.RESULT_SUCCESS);
 				} else {
 					jsonResponse.setStatus(JsonResponse.RESULT_FAILED);
@@ -220,8 +207,5 @@ public class SensetivityAnalysisController {
 			jsonResponse.setStatus(JsonResponse.RESULT_INVALID_USER_NOT_EXISTS);
 		}
 		return jsonResponse;
-
 	}
-
-
 }

@@ -239,6 +239,8 @@ function alterHTMLOfTableAndShowPopupTable(result) {
      */
     /*$("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income is "+potential_pro+".");*/
     $("#sensetiveAnalysisCropAndResourcePotentialProfitSpan").html("Estimated Income : "+"&nbsp;&nbsp;&nbsp;" + "$"+potential_pro);
+    $("#sensetiveAnalysisCropAndResourceValueForSingle").html('').html(removeAllCommasAndDollar(result.resourceValue));
+    $("#sensetiveAnalysisCropAndResourceValueForSingleCropValue").html('').html(result.cropValue);
     if (unusedLand > 0) {
         $("#sensetiveAnalysisCropAndResourceUnusedSpan").html("&nbsp;&nbsp;&nbsp;" + unusedLand +" acres not assigned crops");
     }
@@ -788,6 +790,7 @@ function getStrategyForMultipleCrops() {
                     $("#allAcreageNotPlanted").hide();
                     $('#checkStrategy-pop-up').hide();
                     $("#allAcreageNotPlanted").hide();
+                    $('#viewStrategyMultipleCrops').show();
 
 
                 }else {
@@ -1016,11 +1019,12 @@ function getStrategyForMultipleCropsForCreateNewScenario() {
     });
 }
 
-function getStrategyForSingleCropsForCreateNewScenario(updatedValue) {
+function getStrategyForSingleCropsForCreateNewScenario() {
     /*if(validateCropsTableForSA() == false){
      return false;
      }*/
 
+    var updatedValue = $("#sensetiveAnalysisCropAndResourceValueForSingleCropValue").html().trim();
     var cropName = $("#forCastGraphCropList").val().trim().split("#-#-#")[1];
     var selectionType = $("#forCastGraphCropList").val().trim().split("#-#-#")[0];
     var rangeType = $("#max_min_selector").val();
@@ -1334,6 +1338,7 @@ function forCastGraphForSingleResource() {
                     }
                 });
                 unitForCropResourse = result.resourceUnit;
+                $("#field_crop_button").html("<div class='yellobtn save_senario'><a onclick=\"getStrategyForSinghalResourcesForCreateNewScenario(); hideSensetiveAnalysisCropAndResourcePopup();\">Save</a></div>");
             } else if (status == 'failed') {
                 customAlerts('Some problem occured, Please try again later', type_error, time);
             } else {
@@ -1410,6 +1415,7 @@ function forCastGraphForSingleCropLimit() {
                     }
                 });
                 unitForCropResourse = "acres";
+                $("#field_crop_button").html("<div class=\"yellobtn save_senario\"><a onclick=\"getStrategyForSingleCropsForCreateNewScenario()\">Save</a></div>");
             } else if (status == 'failed') {
                 customAlerts('Some problem occured, Please try again later', type_error, time);
             } else {
@@ -1548,15 +1554,15 @@ function getStrategyForMultipleResourcesForCreateNewScenario() {
 }
 
 function getStrategyForSinghalResourcesForCreateNewScenario() {
-    /*if(validateResourceTableForSA() == false){
+    if(validateResourceTableForSA() == false){
      return false;
-     }*/
+     }
 
     var objetForResourceDetails = {};
     var resourceArray = [], resourceDetails = [];
 
     var resourceName = $("#forCastGraphResourceList").val().trim();
-    var resourceOverridedValue = $("#resourse_Value_Result").text().trim();
+    var resourceOverridedValue = $("#sensetiveAnalysisCropAndResourceValueForSingle").html().trim();
     var oldVal = 0;
     $('#resource-table').find('tbody tr').each(function () {
         if(resourceName == "Capital"){
