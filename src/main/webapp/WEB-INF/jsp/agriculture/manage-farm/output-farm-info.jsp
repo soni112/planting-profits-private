@@ -1389,6 +1389,10 @@
                  src="<c:url value="/images/cross.png"/>">
             <div class="popupform messagepopup">
                 <ul class="potential_criteria">
+                    <li style="display: none">
+                        <span id="sensetiveAnalysisCropAndResourceValueForSingle"></span>
+                        <span id="sensetiveAnalysisCropAndResourceValueForSingleCropValue"></span>
+                    </li>
                     <li><span id="sensetiveAnalysisCropAndResourcePotentialProfitSpan"></span></li>
                 </ul>
                 <div class="clr"></div>
