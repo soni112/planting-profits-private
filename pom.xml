@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springframework.version>4.2.5.RELEASE</springframework.version>
-        <springSecurity.version>3.2.9.RELEASE</springSecurity.version>
+        <springSecurity.version>5.2.10.RELEASE</springSecurity.version>
         <springWebflow.version>2.3.4.RELEASE</springWebflow.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <apacheTiles.version>3.0.8</apacheTiles.version>
