@@ -15,7 +15,7 @@
         <springWebflow.version>2.3.4.RELEASE</springWebflow.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <apacheTiles.version>3.0.8</apacheTiles.version>
-        <jackson.version>2.5.0</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <appname>P_Profit</appname>
     </properties>
 
